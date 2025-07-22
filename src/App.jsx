@@ -37,6 +37,7 @@ function App() {
         </div>
       </nav>
       <div className="main-container">
+        <h1 className="text-2xl font-bold mb-4" style={{textAlign: 'center'}}>{COURSE.name}</h1>
         <div className="heading-padding" />
         <QueryInput onSubmit={handleQuery} />
         {loading && <p style={{textAlign: 'center', marginTop: '2rem'}}>🔄 Thinking...</p>}

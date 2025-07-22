@@ -3,6 +3,12 @@ import "../App.css";
 
 function renderWithTooltips(text, tooltipMap) {
   if (!tooltipMap || Object.keys(tooltipMap).length === 0) return text;
+  
+  // First, convert markdown bold formatting to HTML
+  const processMarkdown = (text) => {
+    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  };
+  
   // Replace each term in tooltipMap with a Tooltip component
   const parts = [];
   let lastIndex = 0;
@@ -10,14 +16,16 @@ function renderWithTooltips(text, tooltipMap) {
   let match;
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIndex) {
-      parts.push(text.slice(lastIndex, match.index));
+      const textSlice = text.slice(lastIndex, match.index);
+      parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: processMarkdown(textSlice) }} />);
     }
     const term = match[0];
     parts.push(<Tooltip key={match.index} term={term} definition={tooltipMap[term]} />);
     lastIndex = regex.lastIndex;
   }
   if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex));
+    const textSlice = text.slice(lastIndex);
+    parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: processMarkdown(textSlice) }} />);
   }
   return parts;
 }
