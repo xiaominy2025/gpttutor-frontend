@@ -41,7 +41,7 @@ export default function AnswerCard({
   concepts.forEach(c => { tooltipMap[c.term] = c.definition; });
 
   return (
-    <>
+    <div data-testid="response">
       <div className="answer-section">
         <h3>Strategic Thinking Lens</h3>
         <p>{renderWithTooltips(strategy, tooltipMap)}</p>
@@ -74,6 +74,6 @@ export default function AnswerCard({
           </ul>
         </div>
       )}
-    </>
+    </div>
   );
 }
