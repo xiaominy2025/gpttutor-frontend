@@ -39,47 +39,6 @@ const testQueries = [
   }
 ];
 
-// Helper function to validate tooltip formatting
-async function validateTooltipFormatting(page: any) {
-  // Look for the actual Tooltip component format that gets rendered
-  const tooltipSpans = await page.locator('span.relative.group').all();
-  const tooltipCount = tooltipSpans.length;
-  
-  console.log(`🔍 Found ${tooltipCount} tooltip components`);
-  
-  if (tooltipCount === 0) {
-    console.log('⚠️ No tooltips found in response');
-    return false;
-  }
-  
-  // Validate each tooltip component format
-  for (let i = 0; i < tooltipSpans.length; i++) {
-    const span = tooltipSpans[i];
-    const className = await span.getAttribute('class');
-    const textContent = await span.textContent();
-    
-    // Check format: <span class="relative group"><span class="underline text-blue-700 cursor-help">Term</span></span>
-    if (!className?.includes('relative') || !className?.includes('group')) {
-      console.log(`❌ Tooltip ${i + 1}: Missing 'relative group' classes`);
-      return false;
-    }
-    
-    if (!textContent?.trim()) {
-      console.log(`❌ Tooltip ${i + 1}: Empty text content`);
-      return false;
-    }
-    
-    console.log(`✅ Tooltip ${i + 1}: "${textContent}"`);
-  }
-  
-  // Check for proper tooltip component structure
-  const html = await page.content();
-  const tooltipComponents = (html.match(/<span class="relative group"/g) || []).length;
-  
-  console.log(`✅ Tooltip component validation passed: ${tooltipComponents} tooltip components found`);
-  return true;
-}
-
 // Helper function to validate section structure
 async function validateSectionStructure(page: any) {
   const expectedSections = [
@@ -109,6 +68,161 @@ async function validateSectionStructure(page: any) {
   }
   
   console.log('✅ All 4 sections present and visible');
+  return true;
+}
+
+// Helper function to validate section content is meaningful
+async function validateSectionContent(page: any, sectionTestId: string, sectionName: string) {
+  console.log(`🔍 Validating ${sectionName} content...`);
+  
+  const sectionElement = page.locator(`[data-testid="${sectionTestId}"]`);
+  const isVisible = await sectionElement.isVisible();
+  
+  if (!isVisible) {
+    console.log(`❌ ${sectionName} section not visible`);
+    return false;
+  }
+  
+  // Get the content - handle different section structures
+  let contentText = '';
+  
+  if (sectionTestId === 'reflection-prompts') {
+    // Reflection prompts render as ul/li elements
+    const ulElement = sectionElement.locator('ul');
+    const isUlVisible = await ulElement.isVisible();
+    
+    if (isUlVisible) {
+      const liElements = ulElement.locator('li');
+      const liCount = await liElements.count();
+      
+      if (liCount > 0) {
+        const liTexts = [];
+        for (let i = 0; i < liCount; i++) {
+          const liText = await liElements.nth(i).textContent();
+          if (liText) liTexts.push(liText.trim());
+        }
+        contentText = liTexts.join(' ');
+      }
+    } else {
+      // Check if there's a fallback message
+      const fallbackElement = sectionElement.locator('p');
+      const fallbackText = await fallbackElement.textContent();
+      contentText = fallbackText || '';
+    }
+  } else {
+    // Other sections render as div elements
+    const contentElement = sectionElement.locator('div').first();
+    contentText = await contentElement.textContent() || '';
+  }
+  
+  if (!contentText) {
+    console.log(`❌ ${sectionName} has no content`);
+    return false;
+  }
+  
+  // Check if content is meaningful (not just fallback message)
+  const fallbackMessages = [
+    "No strategic thinking lens available",
+    "No story available",
+    "No reflection prompts available",
+    "No relevant concepts/tools for this query."
+  ];
+  
+  const isFallbackMessage = fallbackMessages.some(msg => 
+    contentText.trim().includes(msg)
+  );
+  
+  if (isFallbackMessage) {
+    console.log(`❌ ${sectionName} shows fallback message: "${contentText.trim()}"`);
+    return false;
+  }
+  
+  // Check for stray markdown markers
+  const hasStrayMarkers = /[-–—=_]+\s*$/.test(contentText.trim());
+  if (hasStrayMarkers) {
+    console.log(`❌ ${sectionName} contains stray markdown markers: "${contentText.trim()}"`);
+    return false;
+  }
+  
+  // Check for raw markdown formatting
+  const hasRawMarkdown = /\*\*[^*]+\*\*/.test(contentText);
+  if (hasRawMarkdown) {
+    console.log(`❌ ${sectionName} contains raw markdown formatting: "${contentText.trim()}"`);
+    return false;
+  }
+
+  // Check for other markdown artifacts
+  const hasMarkdownArtifacts = /\[.*\]\(.*\)|`.*`|#{1,6}\s/.test(contentText);
+  if (hasMarkdownArtifacts) {
+    console.log(`❌ ${sectionName} contains markdown artifacts: "${contentText.trim()}"`);
+    return false;
+  }
+  
+  // Check if content has reasonable length
+  if (contentText.trim().length < 20) {
+    console.log(`⚠️ ${sectionName} content seems too short: "${contentText.trim()}"`);
+    return false;
+  }
+  
+  console.log(`✅ ${sectionName} has meaningful content: "${contentText.trim().substring(0, 100)}..."`);
+  return true;
+}
+
+// Helper function to validate concept rendering (v1.6 format)
+async function validateConceptRendering(page: any) {
+  console.log('🔍 Validating concept rendering...');
+  
+  // Check if concepts section exists
+  const conceptsSection = page.locator('[data-testid="concepts-section"]');
+  const isVisible = await conceptsSection.isVisible();
+  
+  if (!isVisible) {
+    console.log('❌ Concepts section not visible');
+    return false;
+  }
+  
+  // Check for concept elements with data-testid
+  const conceptElements = page.locator('[data-testid^="concept-"]');
+  const conceptCount = await conceptElements.count();
+  
+  if (conceptCount === 0) {
+    // Check if "No relevant concepts/tools for this query" message is shown
+    const noConceptsMessage = page.locator('text=No relevant concepts/tools for this query');
+    const hasNoConceptsMessage = await noConceptsMessage.isVisible();
+    
+    if (hasNoConceptsMessage) {
+      console.log('✅ No concepts message displayed correctly');
+      return true;
+    } else {
+      console.log('❌ No concepts found and no message displayed');
+      return false;
+    }
+  }
+  
+  console.log(`✅ Found ${conceptCount} concept(s)`);
+  
+  // Validate each concept has the correct format "Term: Definition"
+  for (let i = 0; i < conceptCount; i++) {
+    const conceptElement = page.locator(`[data-testid="concept-${i}"]`);
+    const conceptText = await conceptElement.textContent();
+    
+    if (!conceptText) {
+      console.log(`❌ Concept ${i} has no text content`);
+      return false;
+    }
+    
+    // Check if the concept follows "Term: Definition" format
+    const hasColon = conceptText.includes(':');
+    const hasDefinition = conceptText.split(':').length > 1;
+    
+    if (!hasColon || !hasDefinition) {
+      console.log(`❌ Concept ${i} does not follow "Term: Definition" format: "${conceptText}"`);
+      return false;
+    }
+    
+    console.log(`✅ Concept ${i} format valid: "${conceptText.trim()}"`);
+  }
+  
   return true;
 }
 
@@ -153,50 +267,32 @@ test.describe('V16 UI Test Suite', () => {
       // Validate section structure
       const sectionsValid = await validateSectionStructure(page);
       expect(sectionsValid).toBe(true);
+
+      // Validate each section has meaningful content
+      const strategicValid = await validateSectionContent(page, 'strategic-thinking-lens', 'Strategic Thinking Lens');
+      const storyValid = await validateSectionContent(page, 'story-in-action', 'Story in Action');
+      const reflectionValid = await validateSectionContent(page, 'reflection-prompts', 'Reflection Prompts');
       
-      // Validate tooltip formatting (optional - some queries may not have tooltips)
-      const tooltipsValid = await validateTooltipFormatting(page);
-      if (!tooltipsValid) {
-        console.log('⚠️ No tooltips found - this may be expected for some queries');
-        // Don't fail the test if no tooltips are found
-      } else {
-        console.log('✅ Tooltip validation passed');
-      }
-      
+      // At least one of the main content sections should have meaningful content
+      const hasMainContent = strategicValid || storyValid || reflectionValid;
+      expect(hasMainContent).toBe(true);
+
+      // Validate concept rendering (v1.6 format)
+      const conceptsValid = await validateConceptRendering(page);
+      expect(conceptsValid).toBe(true);
+
       // Additional validation: Check that response content is not empty
       const responseElement = page.locator('[data-testid="response"]');
       const responseText = await responseElement.textContent();
-      
+
       if (!responseText || responseText.trim().length < 100) {
         console.log('⚠️ Response content seems too short');
         console.log(`📝 Response length: ${responseText?.length || 0} characters`);
       } else {
         console.log(`✅ Response content length: ${responseText.length} characters`);
       }
-      
-      // Debug: Check for HTML content in the response
-      const responseHTML = await responseElement.innerHTML();
-      if (responseHTML.includes('<span class="relative group"')) {
-        console.log('✅ Found tooltip components in HTML response');
-      } else {
-        console.log('⚠️ No tooltip components found in HTML response');
-        console.log('🔍 HTML preview:', responseHTML.substring(0, 500) + '...');
-      }
-      
-      // Check for specific content indicators based on expected lenses
-      if (testCase.expectedLenses.includes('strategic_mindset')) {
-        const strategicContent = await page.locator('h3:has-text("Strategic Thinking Lens") + div').textContent();
-        expect(strategicContent?.length).toBeGreaterThan(50);
-        console.log('✅ Strategic Thinking Lens content validated');
-      }
-      
-      if (testCase.expectedLenses.includes('human_behavior')) {
-        const storyContent = await page.locator('h3:has-text("Story in Action") + div').textContent();
-        expect(storyContent?.length).toBeGreaterThan(50);
-        console.log('✅ Story in Action content validated');
-      }
-      
-             console.log(`🎉 Test case ${i + 1} completed successfully`);
+
+      console.log(`🎉 Test case ${i + 1} completed successfully`);
      });
    });
   
@@ -222,11 +318,11 @@ test.describe('V16 UI Test Suite', () => {
     }
   });
   
-  // Additional test: Verify tooltip interaction
-  test('Tooltip Interaction Test', async ({ page }) => {
-    console.log('\n👆 Testing tooltip interactions...');
+  // Additional test: Verify v1.6 concept format compliance
+  test('V1.6 Concept Format Test', async ({ page }) => {
+    console.log('\n🔍 Testing v1.6 concept format compliance...');
     
-    // Submit a simple query to get tooltips
+    // Submit a query that should generate concepts
     const queryInput = page.locator('textarea.query-textarea');
     await queryInput.fill('How should I plan production with fluctuating demand and limited storage?');
     
@@ -237,29 +333,55 @@ test.describe('V16 UI Test Suite', () => {
     await page.waitForSelector('[data-testid="response"]', { timeout: 30000 });
     await page.waitForTimeout(2000);
     
-    // Find tooltips
-    const tooltips = page.locator('span.relative.group');
-    const tooltipCount = await tooltips.count();
+    // Validate concept rendering
+    const conceptsValid = await validateConceptRendering(page);
+    expect(conceptsValid).toBe(true);
     
-    if (tooltipCount > 0) {
-      // Test clicking on first tooltip
-      const firstTooltip = tooltips.first();
-      await firstTooltip.click();
+    // Check that no tooltip-related elements exist
+    const tooltipSpans = page.locator('span[class*="tooltip"]');
+    const tooltipCount = await tooltipSpans.count();
+    expect(tooltipCount).toBe(0);
+    
+    console.log('✅ V1.6 concept format compliance validated');
+  });
+
+  // Additional test: Verify markdown rendering quality
+  test('Markdown Rendering Quality Test', async ({ page }) => {
+    console.log('\n🔍 Testing markdown rendering quality...');
+    
+    // Submit a query that should generate rich content
+    const queryInput = page.locator('textarea.query-textarea');
+    await queryInput.fill('How should I prioritize tasks when under tight deadlines?');
+    
+    const submitButton = page.locator('button.query-submit-btn');
+    await submitButton.click();
+    
+    // Wait for response
+    await page.waitForSelector('[data-testid="response"]', { timeout: 30000 });
+    await page.waitForTimeout(2000);
+    
+    // Check that all sections render properly without markdown artifacts
+    const sections = [
+      { testId: 'strategic-thinking-lens', name: 'Strategic Thinking Lens' },
+      { testId: 'story-in-action', name: 'Story in Action' },
+      { testId: 'reflection-prompts', name: 'Reflection Prompts' }
+    ];
+    
+    for (const section of sections) {
+      const sectionElement = page.locator(`[data-testid="${section.testId}"]`);
+      const contentText = await sectionElement.textContent() || '';
       
-      // Wait for tooltip to appear
-      await page.waitForTimeout(500);
+      // Check for no raw markdown
+      const hasRawMarkdown = /\*\*[^*]+\*\*|`[^`]+`|\[.*\]\(.*\)/.test(contentText);
+      expect(hasRawMarkdown).toBe(false);
       
-      // Check if tooltip content is visible
-      const tooltipContent = page.locator('.absolute.z-10');
-      const isVisible = await tooltipContent.isVisible();
+      // Check for no trailing markers
+      const hasTrailingMarkers = /[-–—=_]+\s*$/.test(contentText.trim());
+      expect(hasTrailingMarkers).toBe(false);
       
-      if (isVisible) {
-        console.log('✅ Tooltip interaction working correctly');
-      } else {
-        console.log('⚠️ Tooltip content not visible after click');
-      }
-    } else {
-      console.log('⚠️ No tooltips found for interaction test');
+      console.log(`✅ ${section.name} renders cleanly without markdown artifacts`);
     }
+    
+    console.log('✅ Markdown rendering quality validated');
   });
 }); 

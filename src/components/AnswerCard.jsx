@@ -1,158 +1,111 @@
-import Tooltip from "./Tooltip";
 import "../App.css";
-
-function renderWithTooltips(text, tooltipMap) {
-  if (!tooltipMap || Object.keys(tooltipMap).length === 0) return text;
-  
-  // First, convert markdown bold formatting to HTML
-  const processMarkdown = (text) => {
-    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  };
-  
-  // Replace each term in tooltipMap with a Tooltip component
-  const parts = [];
-  let lastIndex = 0;
-  
-  // Create a more comprehensive regex that handles case variations and word boundaries
-  const tooltipTerms = Object.keys(tooltipMap).sort((a, b) => b.length - a.length); // Sort by length to match longer terms first
-  const regex = new RegExp(tooltipTerms.map(term => 
-    `\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`
-  ).join('|'), 'gi');
-  
-  let match;
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      const textSlice = text.slice(lastIndex, match.index);
-      parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: processMarkdown(textSlice) }} />);
-    }
-    
-    // Find the exact term from tooltipMap (case-insensitive)
-    const matchedText = match[0];
-    const exactTerm = tooltipTerms.find(term => 
-      term.toLowerCase() === matchedText.toLowerCase()
-    );
-    
-    if (exactTerm) {
-      parts.push(<Tooltip key={match.index} term={matchedText} definition={tooltipMap[exactTerm]} />);
-    } else {
-      // If no exact match, just add the text
-      parts.push(<span key={`text-${match.index}`} dangerouslySetInnerHTML={{ __html: processMarkdown(matchedText) }} />);
-    }
-    
-    lastIndex = regex.lastIndex;
-  }
-  
-  if (lastIndex < text.length) {
-    const textSlice = text.slice(lastIndex);
-    parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: processMarkdown(textSlice) }} />);
-  }
-  
-  return parts;
-}
-
-function renderHTMLWithTooltips(htmlContent, tooltipMap) {
-  if (!htmlContent) return null;
-  
-  // Parse HTML content and convert tooltip spans to Tooltip components
-  const tooltipRegex = /<span class="tooltip" data-tooltip="([^"]+)">([^<]+)<\/span>/g;
-  const parts = [];
-  let lastIndex = 0;
-  let match;
-  
-  while ((match = tooltipRegex.exec(htmlContent)) !== null) {
-    // Add text before the tooltip
-    if (match.index > lastIndex) {
-      const textBefore = htmlContent.slice(lastIndex, match.index);
-      parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: textBefore }} />);
-    }
-    
-    // Add the tooltip component
-    const definition = match[1];
-    const term = match[2];
-    parts.push(<Tooltip key={match.index} term={term} definition={definition} />);
-    
-    lastIndex = tooltipRegex.lastIndex;
-  }
-  
-  // Add remaining text after last tooltip
-  if (lastIndex < htmlContent.length) {
-    const textAfter = htmlContent.slice(lastIndex);
-    parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: textAfter }} />);
-  }
-  
-  return parts.length > 0 ? parts : <span dangerouslySetInnerHTML={{ __html: htmlContent }} />;
-}
-
-function renderContentWithTooltips(content, tooltipMap) {
-  if (!content) return null;
-  
-  // Check if content contains HTML tooltip spans
-  if (content.includes('<span class="tooltip"')) {
-    return renderHTMLWithTooltips(content, tooltipMap);
-  }
-  
-  // Check if content contains tooltip terms from tooltipMap
-  if (tooltipMap && Object.keys(tooltipMap).length > 0) {
-    const hasTooltipTerms = Object.keys(tooltipMap).some(term => {
-      const regex = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
-      return regex.test(content);
-    });
-    
-    if (hasTooltipTerms) {
-      return renderWithTooltips(content, tooltipMap);
-    }
-  }
-  
-  // If no tooltips found, just render with markdown processing
-  const processMarkdown = (text) => {
-    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  };
-  
-  return <span dangerouslySetInnerHTML={{ __html: processMarkdown(content) }} />;
-}
+import ReactMarkdown from 'react-markdown';
 
 export default function AnswerCard({
   strategicThinkingLens = "No strategic thinking lens available",
   storyInAction = "No story available",
   reflectionPrompts = [],
   conceptsToolsPractice = [],
-  tooltips = {},
 }) {
+  // Helper function to check if content is meaningful (not just fallback message)
+  const hasMeaningfulContent = (content) => {
+    if (!content) return false;
+    const fallbackMessages = [
+      "No strategic thinking lens available",
+      "No story available", 
+      "No reflection prompts available",
+      "No relevant concepts/tools for this query."
+    ];
+    return !fallbackMessages.includes(content.trim());
+  };
+
+  // Helper function to render markdown content
+  const renderMarkdownContent = (content) => {
+    if (!content || !hasMeaningfulContent(content)) {
+      return null;
+    }
+    return <ReactMarkdown>{content}</ReactMarkdown>;
+  };
+
+  // Helper function to render concept in "Term: Definition" format
+  const renderConcept = (concept) => {
+    if (typeof concept === 'string') {
+      // Handle string format (from markdown parser)
+      const colonIndex = concept.indexOf(':');
+      if (colonIndex !== -1) {
+        const term = concept.substring(0, colonIndex).trim();
+        const definition = concept.substring(colonIndex + 1).trim();
+        return (
+          <div className="concept-item mb-2">
+            <strong>{term}:</strong> {definition}
+          </div>
+        );
+      }
+      return <div className="concept-item mb-2">{concept}</div>;
+    } else if (concept && concept.term && concept.definition) {
+      // Handle object format (from backend)
+      return (
+        <div className="concept-item mb-2">
+          <strong>{concept.term}:</strong> {concept.definition}
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div data-testid="response">
-      <div className="answer-section">
+      <div className="answer-section" data-testid="strategic-thinking-lens">
         <h3>Strategic Thinking Lens</h3>
-        <div>{renderContentWithTooltips(strategicThinkingLens, tooltips)}</div>
+        <div>
+          {hasMeaningfulContent(strategicThinkingLens) ? (
+            renderMarkdownContent(strategicThinkingLens)
+          ) : (
+            <span className="text-gray-500 italic">No strategic thinking lens available</span>
+          )}
+        </div>
       </div>
       
-      <div className="answer-section">
+      <div className="answer-section" data-testid="story-in-action">
         <h3>Story in Action</h3>
-        <div>{renderContentWithTooltips(storyInAction, tooltips)}</div>
+        <div>
+          {hasMeaningfulContent(storyInAction) ? (
+            renderMarkdownContent(storyInAction)
+          ) : (
+            <span className="text-gray-500 italic">No story available</span>
+          )}
+        </div>
       </div>
       
-      <div className="answer-section">
+      <div className="answer-section" data-testid="reflection-prompts">
         <h3>Reflection Prompts</h3>
-        {reflectionPrompts.length > 0 ? (
+        {reflectionPrompts.length > 0 && reflectionPrompts.some(prompt => hasMeaningfulContent(prompt)) ? (
           <ul>
             {reflectionPrompts.map((prompt, i) => (
-              <li key={i}>{renderContentWithTooltips(prompt, tooltips)}</li>
+              <li key={i} data-testid={`reflection-prompt-${i}`}>
+                {renderMarkdownContent(prompt) || prompt}
+              </li>
             ))}
           </ul>
         ) : (
-          <p>No reflection prompts available</p>
+          <p className="text-gray-500 italic">No reflection prompts available</p>
         )}
       </div>
       
-      {conceptsToolsPractice.length > 0 && (
-        <div className="answer-section">
-          <h3>Concepts/Tools/Practice Reference</h3>
-          <ul>
-            {conceptsToolsPractice.map((concept, i) => (
-              <li key={i}>{renderContentWithTooltips(concept, tooltips)}</li>
-            ))}
-          </ul>
+      <div className="answer-section" data-testid="concepts-section">
+        <h3>Concepts/Tools/Practice Reference</h3>
+        <div className="concepts-section">
+          {conceptsToolsPractice.length === 0 ? (
+            <p className="text-gray-500 italic">No relevant concepts/tools for this query.</p>
+          ) : (
+            conceptsToolsPractice.map((concept, idx) => (
+              <div key={idx} data-testid={`concept-${idx}`}>
+                {renderConcept(concept)}
+              </div>
+            ))
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

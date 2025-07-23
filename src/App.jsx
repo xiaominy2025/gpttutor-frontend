@@ -3,29 +3,55 @@ import { COURSE } from "./config/courseData";
 import QueryInput from "./components/QueryInput";
 import AnswerCard from "./components/AnswerCard";
 import { askGPTutor } from "./api/queryEngine";
-import { transformAnswer } from "./utils/transformAnswer";
+import { parseMarkdownAnswer } from "./utils/markdownParser";
 import thinkpalLogo from "./assets/Logo.png";
 
 function App() {
   const [answer, setAnswer] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleQuery = async (query) => {
     try {
       setLoading(true);
+      setError("");
       const response = await askGPTutor(query);
+      console.log("Full backend response:", response);
       const responseData = response.data;
-      const tooltipsMetadata = response.tooltips_metadata || {};
       
-      console.log("📝 Raw answer string:", responseData.answer);
-      console.log("📝 Tooltips metadata:", tooltipsMetadata);
+      if (!responseData || !responseData.answer || !Array.isArray(responseData.conceptsToolsPractice)) {
+        setError("Backend response missing required fields. Please check backend logs or try a different query.");
+        setAnswer(null);
+        return;
+      }
+
+      // Log the raw answer for debugging
+      console.log("🔍 Raw backend answer:", responseData.answer);
+      console.log("🔍 Backend concepts:", responseData.conceptsToolsPractice);
+
+      // Parse the markdown answer to extract sections
+      const parsedSections = parseMarkdownAnswer(responseData.answer);
       
-      const finalData = transformAnswer(responseData.answer, tooltipsMetadata);
-      console.log("🧠 Transformed Answer:", finalData);
-      setAnswer({ ...finalData });
+      // Log parsed sections for debugging
+      console.log("📋 Parsed sections:", {
+        strategicThinkingLens: parsedSections.strategicThinkingLens?.substring(0, 100) + "...",
+        storyInAction: parsedSections.storyInAction?.substring(0, 100) + "...",
+        reflectionPromptsCount: parsedSections.reflectionPrompts.length,
+        conceptsCount: responseData.conceptsToolsPractice.length
+      });
+      
+      // Combine parsed sections with concepts from backend
+      const finalData = {
+        ...parsedSections,
+        conceptsToolsPractice: responseData.conceptsToolsPractice // Use backend's parsed concepts
+      };
+
+      console.log("📋 Final parsed data:", finalData);
+      setAnswer(finalData);
     } catch (error) {
-      console.error("❌ Backend error:", error);
-      alert("Error fetching response. Is the backend running?");
+      console.error("❌ Backend error for query:", query, error);
+      setError("Error fetching response. Is the backend running? Check the console for details.");
+      setAnswer(null);
     } finally {
       setLoading(false);
     }
@@ -44,6 +70,7 @@ function App() {
         <div className="heading-padding" />
         <QueryInput onSubmit={handleQuery} />
         {loading && <p style={{textAlign: 'center', marginTop: '2rem'}}>🔄 Thinking...</p>}
+        {error && <p style={{color: 'red', textAlign: 'center', marginTop: '2rem'}}>{error}</p>}
         {answer && <div className="answers-wrapper"><AnswerCard {...answer} key={JSON.stringify(answer)} /></div>}
       </div>
     </div>
