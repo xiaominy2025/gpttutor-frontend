@@ -12,21 +12,41 @@ function renderWithTooltips(text, tooltipMap) {
   // Replace each term in tooltipMap with a Tooltip component
   const parts = [];
   let lastIndex = 0;
-  const regex = new RegExp(Object.keys(tooltipMap).map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+  
+  // Create a more comprehensive regex that handles case variations and word boundaries
+  const tooltipTerms = Object.keys(tooltipMap).sort((a, b) => b.length - a.length); // Sort by length to match longer terms first
+  const regex = new RegExp(tooltipTerms.map(term => 
+    `\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`
+  ).join('|'), 'gi');
+  
   let match;
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIndex) {
       const textSlice = text.slice(lastIndex, match.index);
       parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: processMarkdown(textSlice) }} />);
     }
-    const term = match[0];
-    parts.push(<Tooltip key={match.index} term={term} definition={tooltipMap[term]} />);
+    
+    // Find the exact term from tooltipMap (case-insensitive)
+    const matchedText = match[0];
+    const exactTerm = tooltipTerms.find(term => 
+      term.toLowerCase() === matchedText.toLowerCase()
+    );
+    
+    if (exactTerm) {
+      parts.push(<Tooltip key={match.index} term={matchedText} definition={tooltipMap[exactTerm]} />);
+    } else {
+      // If no exact match, just add the text
+      parts.push(<span key={`text-${match.index}`} dangerouslySetInnerHTML={{ __html: processMarkdown(matchedText) }} />);
+    }
+    
     lastIndex = regex.lastIndex;
   }
+  
   if (lastIndex < text.length) {
     const textSlice = text.slice(lastIndex);
     parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: processMarkdown(textSlice) }} />);
   }
+  
   return parts;
 }
 
@@ -73,7 +93,11 @@ function renderContentWithTooltips(content, tooltipMap) {
   
   // Check if content contains tooltip terms from tooltipMap
   if (tooltipMap && Object.keys(tooltipMap).length > 0) {
-    const hasTooltipTerms = Object.keys(tooltipMap).some(term => content.includes(term));
+    const hasTooltipTerms = Object.keys(tooltipMap).some(term => {
+      const regex = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+      return regex.test(content);
+    });
+    
     if (hasTooltipTerms) {
       return renderWithTooltips(content, tooltipMap);
     }

@@ -103,15 +103,51 @@ export function transformAnswer(rawAnswer = "", tooltips = {}) {
     return markdownTooltips;
   };
 
+  // Extract potential tooltip terms from concepts section
+  const extractTooltipTermsFromConcepts = (conceptsList, providedTooltips) => {
+    const conceptTooltips = {};
+    
+    for (const concept of conceptsList) {
+      // Look for terms in the concept that might be tooltips
+      // Check both the full concept text and individual words
+      const words = concept.split(/\s+/);
+      
+      for (const word of words) {
+        // Clean the word (remove punctuation, parentheses, etc.)
+        const cleanWord = word.replace(/[^\w\s]/g, '');
+        
+        // Check if this word exists in provided tooltips
+        if (providedTooltips[cleanWord]) {
+          conceptTooltips[cleanWord] = providedTooltips[cleanWord];
+        }
+        
+        // Also check for the full concept text
+        if (providedTooltips[concept]) {
+          conceptTooltips[concept] = providedTooltips[concept];
+        }
+      }
+    }
+    
+    return conceptTooltips;
+  };
+
   // Extract tooltips from all sections
   const allContent = [strategicThinkingLens, storyInAction, reflectionPrompts.join('\n'), conceptsToolsPractice.join('\n')].join('\n');
   const extractedTooltips = extractTooltipsFromContent(allContent);
   
   // Also extract from markdown bold formatting
   const markdownTooltips = extractTooltipsFromMarkdown(allContent, tooltips);
+  
+  // Extract potential tooltip terms from concepts section
+  const conceptTooltips = extractTooltipTermsFromConcepts(conceptsToolsPractice, tooltips);
 
-  // Merge all tooltips: HTML spans, markdown bold, and provided tooltips metadata
-  const mergedTooltips = { ...extractedTooltips, ...markdownTooltips, ...tooltips };
+  // Merge all tooltips: HTML spans, markdown bold, concept terms, and provided tooltips metadata
+  const mergedTooltips = { 
+    ...extractedTooltips, 
+    ...markdownTooltips, 
+    ...conceptTooltips,
+    ...tooltips 
+  };
 
   const result = { 
     strategicThinkingLens, 
