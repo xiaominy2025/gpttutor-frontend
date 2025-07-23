@@ -80,12 +80,38 @@ export function transformAnswer(rawAnswer = "", tooltips = {}) {
     return tooltips;
   };
 
+  // Extract tooltips from markdown bold formatting (**term**)
+  const extractTooltipsFromMarkdown = (content, providedTooltips) => {
+    const markdownTooltips = {};
+    
+    // Look for **term** patterns that might be tooltips
+    // This is a heuristic - we'll look for bold terms that appear in the tooltips metadata
+    if (Object.keys(providedTooltips).length > 0) {
+      const markdownBoldRegex = /\*\*([^*]+)\*\*/g;
+      let match;
+      
+      while ((match = markdownBoldRegex.exec(content)) !== null) {
+        const term = match[1];
+        // Check if this term exists in the provided tooltips metadata
+        if (providedTooltips[term]) {
+          // Keep the term as is (with ** formatting) for rendering
+          markdownTooltips[`**${term}**`] = providedTooltips[term];
+        }
+      }
+    }
+    
+    return markdownTooltips;
+  };
+
   // Extract tooltips from all sections
   const allContent = [strategicThinkingLens, storyInAction, reflectionPrompts.join('\n'), conceptsToolsPractice.join('\n')].join('\n');
   const extractedTooltips = extractTooltipsFromContent(allContent);
+  
+  // Also extract from markdown bold formatting
+  const markdownTooltips = extractTooltipsFromMarkdown(allContent, tooltips);
 
-  // Merge tooltips from content with provided tooltips metadata
-  const mergedTooltips = { ...extractedTooltips, ...tooltips };
+  // Merge all tooltips: HTML spans, markdown bold, and provided tooltips metadata
+  const mergedTooltips = { ...extractedTooltips, ...markdownTooltips, ...tooltips };
 
   const result = { 
     strategicThinkingLens, 
