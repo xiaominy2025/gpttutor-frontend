@@ -15,9 +15,12 @@ function App() {
       setLoading(true);
       const response = await askGPTutor(query);
       const responseData = response.data;
+      const tooltipsMetadata = response.tooltips_metadata || {};
+      
       console.log("📝 Raw answer string:", responseData.answer);
-      console.log("📝 Tooltips object:", responseData.tooltips);
-      const finalData = transformAnswer(responseData.answer, responseData.tooltips);
+      console.log("📝 Tooltips metadata:", tooltipsMetadata);
+      
+      const finalData = transformAnswer(responseData.answer, tooltipsMetadata);
       console.log("🧠 Transformed Answer:", finalData);
       setAnswer({ ...finalData });
     } catch (error) {

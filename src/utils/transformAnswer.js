@@ -29,20 +29,20 @@ export function transformAnswer(rawAnswer = "", tooltips = {}) {
     return fallback;
   };
 
-  // Extract strategy from "How to Strategize Your Decision"
-  const strategy = extractSection(
-    ["How to Strategize Your Decision"],
-    "No strategy available"
+  // Extract Strategic Thinking Lens (v16 format)
+  const strategicThinkingLens = extractSection(
+    ["Strategic Thinking Lens"],
+    "No strategic thinking lens available"
   );
 
-  // Extract story from "Story in Action"
-  const story = extractSection(
+  // Extract Story in Action (v16 format)
+  const storyInAction = extractSection(
     ["Story in Action"],
     "No story available"
   );
 
-  // Extract follow-up questions from "Reflection Prompts"
-  const followUps = (() => {
+  // Extract Reflection Prompts (v16 format)
+  const reflectionPrompts = (() => {
     const reflectionContent = extractSection(["Reflection Prompts"], "");
     if (reflectionContent && reflectionContent !== "No reflection prompts available") {
       return reflectionContent
@@ -50,54 +50,51 @@ export function transformAnswer(rawAnswer = "", tooltips = {}) {
         .map(line => line.replace(/^[-*\d.]+\s*/, '').trim())
         .filter(line => line.length > 0);
     }
-    return ["No follow-up questions available"];
+    return ["No reflection prompts available"];
   })();
 
-  // Extract concepts from "Concepts/Tools/Practice Reference"
-  const conceptsHeader = "**Concepts/Tools/Practice Reference**";
-  const conceptsIndex = rawAnswer.indexOf(conceptsHeader);
-  let concepts = [];
-  
-  if (conceptsIndex !== -1) {
-    // Find the start of the content (after the header and double newline)
-    const doubleNewlineIndex = rawAnswer.indexOf('\n\n', conceptsIndex);
-    const contentStart = doubleNewlineIndex + 2;
-    
-    // Find the end (next header or end of string)
-    // Look for the next ** that starts a new line
-    const remainingText = rawAnswer.substring(contentStart);
-    const nextHeaderMatch = remainingText.match(/\n\*\*/);
-    const contentEnd = nextHeaderMatch ? contentStart + nextHeaderMatch.index : rawAnswer.length;
-    
-    const conceptsText = rawAnswer.substring(contentStart, contentEnd).trim();
-    
-    concepts = conceptsText
-      .split(/\n/)
-      .map(line => {
-        // Match format: - **Term**: Definition
-        const match = line.match(/^\s*-\s*\*\*(.+?)\*\*:\s*(.+)$/);
-        if (match) {
-          return { term: match[1].trim(), definition: match[2].trim() };
-        }
-        // Also try format: - Term: Definition (without bold)
-        const match2 = line.match(/^\s*-\s*(.+?):\s*(.+)$/);
-        if (match2) {
-          return { term: match2[1].trim(), definition: match2[2].trim() };
-        }
-        return null;
-      })
-      .filter(Boolean);
-  }
-  
-  // Fallback to tooltips if no concepts found in the answer
-  if (concepts.length === 0 && tooltips && typeof tooltips === 'object') {
-    concepts = Object.entries(tooltips).map(([term, definition]) => ({
-      term: term.trim(),
-      definition: definition.trim()
-    }));
-  }
+  // Extract Concepts/Tools/Practice Reference (v16 format)
+  const conceptsToolsPractice = (() => {
+    const conceptsContent = extractSection(["Concepts/Tools/Practice Reference"], "");
+    if (conceptsContent && conceptsContent !== "No concepts available") {
+      return conceptsContent
+        .split(/\n/)
+        .map(line => line.replace(/^[-*\d.]+\s*/, '').trim())
+        .filter(line => line.length > 0);
+    }
+    return ["No concepts available"];
+  })();
 
-  const result = { strategy, story, followUps, concepts };
-  console.log("🧠 Transformed Answer:", result);
+  // Extract tooltips from HTML spans in the content
+  const extractTooltipsFromContent = (content) => {
+    const tooltipRegex = /<span class="tooltip" data-tooltip="([^"]+)">([^<]+)<\/span>/g;
+    const tooltips = {};
+    let match;
+    
+    while ((match = tooltipRegex.exec(content)) !== null) {
+      const definition = match[1];
+      const term = match[2];
+      tooltips[term] = definition;
+    }
+    
+    return tooltips;
+  };
+
+  // Extract tooltips from all sections
+  const allContent = [strategicThinkingLens, storyInAction, reflectionPrompts.join('\n'), conceptsToolsPractice.join('\n')].join('\n');
+  const extractedTooltips = extractTooltipsFromContent(allContent);
+
+  // Merge tooltips from content with provided tooltips metadata
+  const mergedTooltips = { ...extractedTooltips, ...tooltips };
+
+  const result = { 
+    strategicThinkingLens, 
+    storyInAction, 
+    reflectionPrompts, 
+    conceptsToolsPractice,
+    tooltips: mergedTooltips
+  };
+  
+  console.log("🧠 Transformed Answer (v16):", result);
   return result;
 }

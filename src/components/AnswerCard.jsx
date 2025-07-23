@@ -30,46 +30,77 @@ function renderWithTooltips(text, tooltipMap) {
   return parts;
 }
 
-export default function AnswerCard({
-  strategy = "No strategy available",
-  story = "No story available",
-  concepts = [],
-  followUps = [],
-}) {
-  // Build tooltip map for all concepts
-  const tooltipMap = {};
-  concepts.forEach(c => { tooltipMap[c.term] = c.definition; });
+function renderHTMLWithTooltips(htmlContent, tooltipMap) {
+  if (!htmlContent) return null;
+  
+  // Parse HTML content and convert tooltip spans to Tooltip components
+  const tooltipRegex = /<span class="tooltip" data-tooltip="([^"]+)">([^<]+)<\/span>/g;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+  
+  while ((match = tooltipRegex.exec(htmlContent)) !== null) {
+    // Add text before the tooltip
+    if (match.index > lastIndex) {
+      const textBefore = htmlContent.slice(lastIndex, match.index);
+      parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: textBefore }} />);
+    }
+    
+    // Add the tooltip component
+    const definition = match[1];
+    const term = match[2];
+    parts.push(<Tooltip key={match.index} term={term} definition={definition} />);
+    
+    lastIndex = tooltipRegex.lastIndex;
+  }
+  
+  // Add remaining text after last tooltip
+  if (lastIndex < htmlContent.length) {
+    const textAfter = htmlContent.slice(lastIndex);
+    parts.push(<span key={`text-${lastIndex}`} dangerouslySetInnerHTML={{ __html: textAfter }} />);
+  }
+  
+  return parts.length > 0 ? parts : <span dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+}
 
+export default function AnswerCard({
+  strategicThinkingLens = "No strategic thinking lens available",
+  storyInAction = "No story available",
+  reflectionPrompts = [],
+  conceptsToolsPractice = [],
+  tooltips = {},
+}) {
   return (
     <div data-testid="response">
       <div className="answer-section">
         <h3>Strategic Thinking Lens</h3>
-        <p>{renderWithTooltips(strategy, tooltipMap)}</p>
+        <div>{renderHTMLWithTooltips(strategicThinkingLens, tooltips)}</div>
       </div>
+      
       <div className="answer-section">
         <h3>Story in Action</h3>
-        <p>{renderWithTooltips(story, tooltipMap)}</p>
+        <div>{renderHTMLWithTooltips(storyInAction, tooltips)}</div>
       </div>
+      
       <div className="answer-section">
-        <h3>Follow-up Questions</h3>
-        {followUps.length > 0 ? (
+        <h3>Reflection Prompts</h3>
+        {reflectionPrompts.length > 0 ? (
           <ul>
-            {followUps.map((q, i) => (
-              <li key={i}>{renderWithTooltips(q, tooltipMap)}</li>
+            {reflectionPrompts.map((prompt, i) => (
+              <li key={i}>{renderHTMLWithTooltips(prompt, tooltips)}</li>
             ))}
           </ul>
         ) : (
-          <p>No follow-up questions available</p>
+          <p>No reflection prompts available</p>
         )}
       </div>
-      {concepts.length > 0 && (
+      
+      {conceptsToolsPractice.length > 0 && (
         <div className="answer-section">
-          <h3>Key Concepts</h3>
+          <h3>Concepts/Tools/Practice Reference</h3>
           <ul>
-            {concepts.map((c, i) => (
-              <li key={i}>
-                <Tooltip term={c.term} definition={c.definition} />
-              </li>
+            {conceptsToolsPractice.map((concept, i) => (
+              <li key={i}>{renderHTMLWithTooltips(concept, tooltips)}</li>
             ))}
           </ul>
         </div>
