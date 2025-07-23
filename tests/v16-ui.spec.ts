@@ -226,6 +226,61 @@ async function validateConceptRendering(page: any) {
   return true;
 }
 
+// Helper function to validate reflection prompt click-to-load functionality
+async function validateReflectionPromptClickToLoad(page: any) {
+  console.log('🔍 Validating reflection prompt click-to-load functionality...');
+  
+  // Check if reflection prompts section exists and has prompts
+  const reflectionPromptsSection = page.locator('[data-testid="reflection-prompts"]');
+  const isVisible = await reflectionPromptsSection.isVisible();
+  
+  if (!isVisible) {
+    console.log('❌ Reflection prompts section not visible');
+    return false;
+  }
+  
+  // Check for reflection prompt elements
+  const promptElements = page.locator('[data-testid^="reflection-prompt-"]');
+  const promptCount = await promptElements.count();
+  
+  if (promptCount === 0) {
+    console.log('❌ No reflection prompts found');
+    return false;
+  }
+  
+  console.log(`✅ Found ${promptCount} reflection prompt(s)`);
+  
+  // Get the first prompt text
+  const firstPromptElement = page.locator('[data-testid="reflection-prompt-0"]');
+  const promptText = await firstPromptElement.textContent();
+  
+  if (!promptText) {
+    console.log('❌ First reflection prompt has no text content');
+    return false;
+  }
+  
+  // Clear the input box first
+  const textarea = page.locator('textarea.query-textarea');
+  await textarea.clear();
+  
+  // Click on the first reflection prompt
+  await firstPromptElement.click();
+  
+  // Wait a moment for the click to register
+  await page.waitForTimeout(500);
+  
+  // Check if the textarea now contains the prompt text
+  const textareaValue = await textarea.inputValue();
+  
+  if (textareaValue !== promptText.trim()) {
+    console.log(`❌ Click-to-load failed. Expected: "${promptText.trim()}", Got: "${textareaValue}"`);
+    return false;
+  }
+  
+  console.log(`✅ Click-to-load working correctly. Prompt loaded: "${promptText.trim().substring(0, 50)}..."`);
+  return true;
+}
+
 // Main test suite
 test.describe('V16 UI Test Suite', () => {
   test.beforeEach(async ({ page }) => {
@@ -383,5 +438,45 @@ test.describe('V16 UI Test Suite', () => {
     }
     
     console.log('✅ Markdown rendering quality validated');
+  });
+
+  // New test: Verify reflection prompt click-to-load functionality
+  test('Reflection Prompt Click-to-Load Test', async ({ page }) => {
+    console.log('\n🔍 Testing reflection prompt click-to-load functionality...');
+    
+    // Submit a query that should generate reflection prompts
+    const queryInput = page.locator('textarea.query-textarea');
+    await queryInput.fill('How should I prioritize tasks when under tight deadlines?');
+    
+    const submitButton = page.locator('button.query-submit-btn');
+    await submitButton.click();
+    
+    // Wait for response
+    await page.waitForSelector('[data-testid="response"]', { timeout: 30000 });
+    await page.waitForTimeout(2000);
+    
+    // Validate click-to-load functionality
+    const clickToLoadValid = await validateReflectionPromptClickToLoad(page);
+    expect(clickToLoadValid).toBe(true);
+    
+    // Additional validation: Check that reflection prompts have proper styling
+    const reflectionPrompts = page.locator('[data-testid^="reflection-prompt-"]');
+    const promptCount = await reflectionPrompts.count();
+    
+    if (promptCount > 0) {
+      const firstPrompt = reflectionPrompts.first();
+      
+      // Check for cursor pointer
+      const cursorStyle = await firstPrompt.evaluate(el => getComputedStyle(el).cursor);
+      expect(cursorStyle).toBe('pointer');
+      
+      // Check for hover effects (by checking if the class is applied)
+      const hasHoverClass = await firstPrompt.evaluate(el => el.classList.contains('reflection-prompt-item'));
+      expect(hasHoverClass).toBe(true);
+      
+      console.log('✅ Reflection prompts have proper click-to-load styling');
+    }
+    
+    console.log('✅ Reflection prompt click-to-load functionality validated');
   });
 }); 

@@ -6,6 +6,7 @@ export default function AnswerCard({
   storyInAction = "No story available",
   reflectionPrompts = [],
   conceptsToolsPractice = [],
+  onReflectionPromptClick,
 }) {
   // Helper function to check if content is meaningful (not just fallback message)
   const hasMeaningfulContent = (content) => {
@@ -53,6 +54,19 @@ export default function AnswerCard({
     return null;
   };
 
+  // Helper function to handle reflection prompt click
+  const handlePromptClick = (prompt) => {
+    if (onReflectionPromptClick) {
+      onReflectionPromptClick(prompt);
+      // Scroll to the input box for better UX
+      const textarea = document.querySelector('.query-textarea');
+      if (textarea) {
+        textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        textarea.focus();
+      }
+    }
+  };
+
   return (
     <div data-testid="response">
       <div className="answer-section" data-testid="strategic-thinking-lens">
@@ -82,7 +96,13 @@ export default function AnswerCard({
         {reflectionPrompts.length > 0 && reflectionPrompts.some(prompt => hasMeaningfulContent(prompt)) ? (
           <ul>
             {reflectionPrompts.map((prompt, i) => (
-              <li key={i} data-testid={`reflection-prompt-${i}`}>
+              <li 
+                key={i} 
+                data-testid={`reflection-prompt-${i}`}
+                onClick={() => handlePromptClick(prompt)}
+                className="reflection-prompt-item cursor-pointer hover:bg-blue-50 hover:text-blue-700 p-2 rounded transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
+                title="Click to load this question into the input box"
+              >
                 {renderMarkdownContent(prompt) || prompt}
               </li>
             ))}

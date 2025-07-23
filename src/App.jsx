@@ -10,6 +10,7 @@ function App() {
   const [answer, setAnswer] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [queryInput, setQueryInput] = useState("");
 
   const handleQuery = async (query) => {
     try {
@@ -57,6 +58,12 @@ function App() {
     }
   };
 
+  const handleReflectionPromptClick = (prompt) => {
+    setQueryInput(prompt);
+    // Optionally auto-submit - uncomment the line below if you want this behavior
+    // handleQuery(prompt);
+  };
+
   return (
     <div className="app-bg">
       <nav className="navbar">
@@ -68,10 +75,22 @@ function App() {
       <div className="main-container">
         <h1 className="text-2xl font-bold mb-4" style={{textAlign: 'center'}}>{COURSE.name}</h1>
         <div className="heading-padding" />
-        <QueryInput onSubmit={handleQuery} />
+        <QueryInput 
+          onSubmit={handleQuery} 
+          value={queryInput}
+          onChange={setQueryInput}
+        />
         {loading && <p style={{textAlign: 'center', marginTop: '2rem'}}>🔄 Thinking...</p>}
         {error && <p style={{color: 'red', textAlign: 'center', marginTop: '2rem'}}>{error}</p>}
-        {answer && <div className="answers-wrapper"><AnswerCard {...answer} key={JSON.stringify(answer)} /></div>}
+        {answer && (
+          <div className="answers-wrapper">
+            <AnswerCard 
+              {...answer} 
+              key={JSON.stringify(answer)}
+              onReflectionPromptClick={handleReflectionPromptClick}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

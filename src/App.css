@@ -80,6 +80,48 @@ html, body, #root, .app-bg {
   padding: 1rem 1.2rem;
 }
 
+/* Reflection Prompt Click-to-Load Styles */
+.reflection-prompt-item {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer !important;
+}
+
+.reflection-prompt-item:hover {
+  background-color: #f0f7ff !important;
+  color: #1d75da !important;
+  border-left-color: #1d75da !important;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(29, 117, 218, 0.15);
+}
+
+.reflection-prompt-item:active {
+  transform: translateX(2px);
+  background-color: #e6f0ff !important;
+}
+
+.reflection-prompt-item::before {
+  content: "💭";
+  position: absolute;
+  left: -1.5rem;
+  top: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-size: 0.9rem;
+}
+
+.reflection-prompt-item:hover::before {
+  opacity: 1;
+}
+
+/* Enhanced focus styles for accessibility */
+.reflection-prompt-item:focus {
+  outline: 2px solid var(--thinkpal-blue);
+  outline-offset: 2px;
+}
+
 @media (max-width: 600px) {
   .main-container,
   .answer-section,
@@ -89,6 +131,10 @@ html, body, #root, .app-bg {
     max-width: 98vw;
     padding-left: 0;
     padding-right: 0;
+  }
+  
+  .reflection-prompt-item::before {
+    left: -1rem;
   }
 }
 
