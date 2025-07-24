@@ -23,7 +23,6 @@ body {
 
 /* Main layout containers - ensure all are centered */
 .main-container {
-  width: 100%;
   max-width: 880px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -261,10 +260,7 @@ body, .app-bg {
   color: var(--thinkpal-dark);
   font-family: var(--thinkpal-font);
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  display: block;
   width: 100%;
   font-size: 1.05rem;
 }
