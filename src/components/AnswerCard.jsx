@@ -59,7 +59,7 @@ export default function AnswerCard({
     if (onReflectionPromptClick) {
       onReflectionPromptClick(prompt);
       // Scroll to the input box for better UX
-      const textarea = document.querySelector('.question-input');
+      const textarea = document.querySelector('.question-textarea');
       if (textarea) {
         textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
         textarea.focus();

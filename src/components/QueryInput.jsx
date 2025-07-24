@@ -17,12 +17,12 @@ export default function QueryInput({ onSubmit, value = "", onChange }) {
       className="question-form"
       onSubmit={handleSubmit}
     >
-      <input
-        type="text"
+      <textarea
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
         placeholder="Ask me anything about decision-making..."
-        className="question-input"
+        className="question-textarea"
+        rows={2}
       />
       <button type="submit" className="ask-button">Ask</button>
     </form>

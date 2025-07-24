@@ -55,13 +55,13 @@ html, body, #root, .app-bg {
 /* Question form with flex layout */
 .question-form {
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* Align button to bottom of textarea */
   width: 100%;
   gap: 0.5rem;
 }
 
-/* Question input styling */
-.question-input {
+/* Question textarea styling */
+.question-textarea {
   flex: 1;
   padding: 0.75rem 1rem;
   font-size: 1rem;
@@ -71,9 +71,15 @@ html, body, #root, .app-bg {
   outline: none;
   transition: border 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
+  resize: vertical;
+  min-height: 2.5rem;
+  max-height: 200px;
+  line-height: 1.5;
+  overflow: auto;
+  font-family: inherit;
 }
 
-.question-input:focus {
+.question-textarea:focus {
   border: 2px solid var(--thinkpal-yellow);
   background: #f9fbfd;
   box-shadow: none;
@@ -81,7 +87,8 @@ html, body, #root, .app-bg {
 
 /* Ask button styling */
 .ask-button {
-  padding: 0.75rem 1.5rem;
+  height: 48px; /* Fixed height */
+  padding: 0 1.5rem;
   font-size: 1rem;
   background-color: var(--thinkpal-blue);
   color: white;
@@ -92,6 +99,9 @@ html, body, #root, .app-bg {
   transition: background-color 0.2s, transform 0.1s;
   white-space: nowrap;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ask-button:hover {
@@ -224,14 +234,16 @@ html, body, #root, .app-bg {
     gap: 0.25rem;
   }
   
-  .question-input {
+  .question-textarea {
     font-size: 0.9rem;
     padding: 0.6rem 0.8rem;
+    min-height: 2rem;
   }
   
   .ask-button {
     font-size: 0.9rem;
-    padding: 0.6rem 1rem;
+    height: 40px;
+    padding: 0 1rem;
   }
   
   .reflection-prompt-item::before {
