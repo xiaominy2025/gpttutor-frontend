@@ -41,8 +41,9 @@ body {
   position: sticky;
   top: 0;
   background: #fff;
-  padding-bottom: 1rem;
+  padding: 1rem;
   z-index: 10;
+  border-bottom: 1px solid #ddd;
 }
 
 .answer-body {
