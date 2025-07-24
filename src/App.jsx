@@ -73,10 +73,9 @@ function App() {
         </div>
       </nav>
       <div className="content-area">
-        <div className="main-wrapper">
-          <h1 className="text-2xl font-bold mb-4" style={{textAlign: 'center'}}>{COURSE.name}</h1>
-          <div className="heading-padding" />
-          <div className="question-bar">
+              <div className="main-wrapper">
+        <div className="heading-padding" />
+        <div className="question-bar">
             <QueryInput 
               onSubmit={handleQuery} 
               value={queryInput}
