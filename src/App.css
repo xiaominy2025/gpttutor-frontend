@@ -22,21 +22,20 @@ body {
 }
 
 /* Main layout containers - ensure all are centered */
-.main-container {
+.main-container,
+.question-bar,
+.answer-body,
+.question-form {
   max-width: 880px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
-  width: 100%;
   display: block;
 }
 
 .question-bar {
-  max-width: 880px;
-  margin: 0 auto 2rem auto;
-  padding: 0 0 1rem 0;
-  box-sizing: border-box;
-  width: 100%;
+  margin-bottom: 2rem;
   position: sticky;
   top: 0;
   background: #fff;
@@ -45,27 +44,23 @@ body {
 }
 
 .answer-body {
-  max-width: 880px;
-  margin: 0 auto 2rem auto;
-  padding: 0;
-  box-sizing: border-box;
-  width: 100%;
-  display: block;
+  margin-bottom: 2rem;
 }
 
 /* Question form with flex layout */
 .question-form {
-  display: flex;
-  align-items: flex-end; /* Align button to bottom of textarea */
   width: 100%;
+  display: flex;
+  align-items: flex-end;
   gap: 0.5rem;
 }
 
 /* Question textarea styling */
-.question-textarea {
+.question-textarea,
+.query-textarea {
   flex: 1;
-  padding: 0.75rem 1rem;
   font-size: 1.05rem;
+  padding: 0.75rem 1rem;
   border: 2px solid var(--thinkpal-yellow);
   border-radius: var(--thinkpal-radius);
   background: #f9fbfd;
@@ -80,7 +75,8 @@ body {
   font-family: inherit;
 }
 
-.question-textarea:focus {
+.question-textarea:focus,
+.query-textarea:focus {
   border: 2px solid var(--thinkpal-yellow);
   background: #f9fbfd;
   box-shadow: none;
@@ -120,38 +116,9 @@ body {
 }
 
 /* Answer body styling (for consistency) */
-.answer-body {
-  width: 100%;
-  max-width: 880px;
-  margin: 0 auto 2rem auto;
-  display: block;
-  box-sizing: border-box;
-}
 
-.query-textarea {
-  width: 100% !important;
-  display: block;
-  min-width: 0;
-  min-height: 3.5rem;
-  max-height: 200px;
-  overflow-y: auto;
-  resize: vertical;
-  font-size: 1.15rem;
-  border: 2px solid var(--thinkpal-yellow);
-  border-radius: var(--thinkpal-radius);
-  padding: 0.5rem 1rem;
-  background: #f9fbfd;
-  transition: border 0.2s, box-shadow 0.2s;
-  margin-bottom: 0.5rem;
-  outline: none;
-  box-shadow: none;
-  box-sizing: border-box;
-}
-.query-textarea:focus {
-  border: 2px solid var(--thinkpal-yellow);
-  background: #f9fbfd;
-  box-shadow: none;
-}
+
+
 
 .query-btn-wrapper {
   display: flex;
@@ -241,19 +208,11 @@ body {
 
 @media (max-width: 600px) {
   .main-container,
-  .answer-section,
-  .query-form,
-  .query-textarea,
   .question-bar,
   .answer-body,
   .question-form {
     width: 98vw;
     max-width: 98vw;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  
-  .main-container {
     padding: 0 0.5rem;
   }
   
@@ -261,7 +220,8 @@ body {
     gap: 0.25rem;
   }
   
-  .question-textarea {
+  .question-textarea,
+  .query-textarea {
     font-size: 1rem;
     padding: 0.6rem 0.8rem;
     min-height: 2rem;
