@@ -11,8 +11,17 @@
 }
 
 /* Global box-sizing */
-*, *::before, *::after {
+html, body, #root {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 /* Global font size increase */
