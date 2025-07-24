@@ -65,34 +65,36 @@ function App() {
   };
 
   return (
-    <div className="app-bg">
+    <div className="app-shell">
       <nav className="navbar">
         <div className="navbar-content header-row">
           <img src={thinkpalLogo} alt="ThinkPal Logo" className="navbar-logo header-logo" />
           <span className="header-title">Decision Coach</span>
         </div>
       </nav>
-      <div className="main-container">
-        <h1 className="text-2xl font-bold mb-4" style={{textAlign: 'center'}}>{COURSE.name}</h1>
-        <div className="heading-padding" />
-        <div className="question-bar">
-          <QueryInput 
-            onSubmit={handleQuery} 
-            value={queryInput}
-            onChange={setQueryInput}
-          />
-        </div>
-        {loading && <p style={{textAlign: 'center', marginTop: '2rem'}}>🔄 Thinking...</p>}
-        {error && <p style={{color: 'red', textAlign: 'center', marginTop: '2rem'}}>{error}</p>}
-        {answer && (
-          <div className="answer-body">
-            <AnswerCard 
-              {...answer} 
-              key={JSON.stringify(answer)}
-              onReflectionPromptClick={handleReflectionPromptClick}
+      <div className="content-area">
+        <div className="main-wrapper">
+          <h1 className="text-2xl font-bold mb-4" style={{textAlign: 'center'}}>{COURSE.name}</h1>
+          <div className="heading-padding" />
+          <div className="question-bar">
+            <QueryInput 
+              onSubmit={handleQuery} 
+              value={queryInput}
+              onChange={setQueryInput}
             />
           </div>
-        )}
+          {loading && <p style={{textAlign: 'center', marginTop: '2rem'}}>🔄 Thinking...</p>}
+          {error && <p style={{color: 'red', textAlign: 'center', marginTop: '2rem'}}>{error}</p>}
+          {answer && (
+            <div className="answer-body">
+              <AnswerCard 
+                {...answer} 
+                key={JSON.stringify(answer)}
+                onReflectionPromptClick={handleReflectionPromptClick}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

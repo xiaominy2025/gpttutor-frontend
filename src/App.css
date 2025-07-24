@@ -22,9 +22,15 @@ body {
 }
 
 /* Main layout containers - ensure all are centered */
-.main-container {
+.content-area {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.main-wrapper {
+  width: 100%;
   max-width: 880px;
-  margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
 }
@@ -211,7 +217,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  .main-container,
+  .main-wrapper,
   .question-bar,
   .answer-body,
   .question-form {
@@ -254,13 +260,15 @@ body {
   }
 }
 
-body, .app-bg {
+body, .app-shell {
   min-height: 100vh;
   background: #fff;
   color: var(--thinkpal-dark);
   font-family: var(--thinkpal-font);
   margin: 0;
-  display: block;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  place-items: center;
   width: 100%;
   font-size: 1.05rem;
 }
