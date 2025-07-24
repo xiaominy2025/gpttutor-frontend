@@ -10,6 +10,11 @@
   --thinkpal-border: #bcd4f6;
 }
 
+/* Global box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html, body, #root, .app-bg {
   width: 100vw;
   min-width: 100vw;
@@ -18,16 +23,34 @@ html, body, #root, .app-bg {
 
 .main-container {
   width: 100%;
-  max-width: 960px;
+  max-width: 880px;
   margin: 0 auto;
-  padding: 1.5rem 0;
+  padding: 2rem;
   box-sizing: border-box;
   display: block;
 }
 
 .query-form, .answer-section {
   width: 100%;
-  max-width: 960px;
+  max-width: 880px;
+  margin: 0 auto 2rem auto;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Question bar styling (for consistency) */
+.question-bar {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto 2rem auto;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Answer body styling (for consistency) */
+.answer-body {
+  width: 100%;
+  max-width: 880px;
   margin: 0 auto 2rem auto;
   display: block;
   box-sizing: border-box;
@@ -126,7 +149,9 @@ html, body, #root, .app-bg {
   .main-container,
   .answer-section,
   .query-form,
-  .query-textarea {
+  .query-textarea,
+  .question-bar,
+  .answer-body {
     width: 98vw;
     max-width: 98vw;
     padding-left: 0;

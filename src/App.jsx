@@ -75,15 +75,17 @@ function App() {
       <div className="main-container">
         <h1 className="text-2xl font-bold mb-4" style={{textAlign: 'center'}}>{COURSE.name}</h1>
         <div className="heading-padding" />
-        <QueryInput 
-          onSubmit={handleQuery} 
-          value={queryInput}
-          onChange={setQueryInput}
-        />
+        <div className="question-bar">
+          <QueryInput 
+            onSubmit={handleQuery} 
+            value={queryInput}
+            onChange={setQueryInput}
+          />
+        </div>
         {loading && <p style={{textAlign: 'center', marginTop: '2rem'}}>🔄 Thinking...</p>}
         {error && <p style={{color: 'red', textAlign: 'center', marginTop: '2rem'}}>{error}</p>}
         {answer && (
-          <div className="answers-wrapper">
+          <div className="answer-body">
             <AnswerCard 
               {...answer} 
               key={JSON.stringify(answer)}
