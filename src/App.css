@@ -15,10 +15,10 @@
   box-sizing: border-box;
 }
 
-html, body, #root, .app-bg {
-  width: 100vw;
-  min-width: 100vw;
-  box-sizing: border-box;
+/* Global font size increase */
+body {
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
 .main-container {
@@ -64,7 +64,7 @@ html, body, #root, .app-bg {
 .question-textarea {
   flex: 1;
   padding: 0.75rem 1rem;
-  font-size: 1rem;
+  font-size: 1.05rem;
   border: 2px solid var(--thinkpal-yellow);
   border-radius: var(--thinkpal-radius);
   background: #f9fbfd;
@@ -89,7 +89,7 @@ html, body, #root, .app-bg {
 .ask-button {
   height: 48px; /* Fixed height */
   padding: 0 1.5rem;
-  font-size: 1rem;
+  font-size: 1.05rem;
   background-color: var(--thinkpal-blue);
   color: white;
   border: none;
@@ -162,16 +162,37 @@ html, body, #root, .app-bg {
   margin-bottom: 2rem;
 }
 
+/* Answer section styling with horizontal separators */
 .answer-section {
-  height: auto;
-  max-height: none;
-  overflow: visible;
-  background: #fff;
-  border-radius: var(--thinkpal-radius);
-  box-shadow: var(--thinkpal-shadow);
-  border: 2.5px solid var(--thinkpal-border);
-  margin: 2rem auto 0 auto;
-  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.answer-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.answer-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.answer-section p {
+  margin-bottom: 0.75rem;
+}
+
+.answer-section ul {
+  margin-bottom: 0.75rem;
+}
+
+.answer-section li {
+  margin-bottom: 0.5rem;
 }
 
 /* Reflection Prompt Click-to-Load Styles */
@@ -230,21 +251,37 @@ html, body, #root, .app-bg {
     padding-right: 0;
   }
   
+  .main-container {
+    padding: 1rem;
+  }
+  
   .question-form {
     gap: 0.25rem;
   }
   
   .question-textarea {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 0.6rem 0.8rem;
     min-height: 2rem;
   }
   
   .ask-button {
-    font-size: 0.9rem;
+    font-size: 1rem;
     height: 40px;
     padding: 0 1rem;
   }
+  
+  .answer-section {
+    font-size: 1rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .answer-section h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+}
   
   .reflection-prompt-item::before {
     left: -1rem;
@@ -306,21 +343,6 @@ body, .app-bg {
   max-width: 80vw;
   margin: 0 auto;
   width: 100%;
-}
-
-.answer-section h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--thinkpal-blue);
-}
-.answer-section ul {
-  padding-left: 1.2rem;
-  margin-top: 0.5rem;
-}
-.answer-section li {
-  margin-bottom: 0.4rem;
-  font-size: 1rem;
 }
 
 input[type="text"], input, textarea {
