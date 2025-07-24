@@ -25,7 +25,7 @@ body {
   width: 100%;
   max-width: 880px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 1rem;
   box-sizing: border-box;
   display: block;
 }
@@ -176,11 +176,12 @@ body {
   margin-bottom: 0;
 }
 
+/* Restore original section title styling */
 .answer-section h3 {
+  font-weight: bold;
+  color: #1d75da;
   font-size: 1.25rem;
-  font-weight: 600;
   margin-bottom: 0.75rem;
-  color: #333;
 }
 
 .answer-section p {
@@ -252,7 +253,7 @@ body {
   }
   
   .main-container {
-    padding: 1rem;
+    padding: 0 0.5rem;
   }
   
   .question-form {
