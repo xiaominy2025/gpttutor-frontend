@@ -21,35 +21,33 @@ body {
   line-height: 1.6;
 }
 
-.main-container {
-  width: 100%;
+/* Main layout containers - ensure all are centered */
+.main-container,
+.question-bar,
+.answer-body {
   max-width: 880px;
   margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
-  display: block;
-}
-
-.query-form, .answer-section {
   width: 100%;
-  max-width: 880px;
-  margin: 0 auto 2rem auto;
-  display: block;
-  box-sizing: border-box;
 }
 
-/* Question bar styling (for consistency) */
+.main-container {
+  display: block;
+}
+
 .question-bar {
-  width: 100%;
-  max-width: 880px;
-  margin: 0 auto 2rem auto;
-  display: block;
-  box-sizing: border-box;
+  margin-bottom: 2rem;
   position: sticky;
   top: 0;
   background: #fff;
   padding-bottom: 1rem;
   z-index: 10;
+}
+
+.answer-body {
+  margin-bottom: 2rem;
+  display: block;
 }
 
 /* Question form with flex layout */
