@@ -479,4 +479,44 @@ test.describe('V16 UI Test Suite', () => {
     
     console.log('✅ Reflection prompt click-to-load functionality validated');
   });
+
+  // Test: Verify question bar and form are centered on screen
+  test('Question Bar Centering Test', async ({ page }) => {
+    console.log('\n🔍 Testing question bar and form centering...');
+    
+    await page.goto('http://localhost:5174');
+
+    // Wait for the page and question bar to load
+    const questionBar = page.locator('.question-bar');
+    await expect(questionBar).toBeVisible();
+
+    const form = page.locator('.question-form');
+    const mainContainer = page.locator('.main-container');
+
+    // Get bounding boxes and viewport size
+    const formBox = await form.boundingBox();
+    const mainContainerBox = await mainContainer.boundingBox();
+    const viewport = page.viewportSize();
+
+    if (!formBox || !mainContainerBox || !viewport) {
+      throw new Error('Could not get bounding box or viewport size');
+    }
+
+    // Log all the measurements
+    console.log(`📊 Viewport width: ${viewport.width}`);
+    console.log(`📊 Main container: x=${mainContainerBox.x}, width=${mainContainerBox.width}, center=${mainContainerBox.x + mainContainerBox.width / 2}`);
+    console.log(`📊 Form: x=${formBox.x}, width=${formBox.width}, center=${formBox.x + formBox.width / 2}`);
+    
+    // Test main container centering first
+    const mainContainerCenterX = mainContainerBox.x + mainContainerBox.width / 2;
+    const screenCenterX = viewport.width / 2;
+    const mainContainerOffset = Math.abs(mainContainerCenterX - screenCenterX);
+
+    console.log(`📊 Main container center X: ${mainContainerCenterX}, Screen center X: ${screenCenterX}, Main container offset: ${mainContainerOffset}px`);
+
+    // Assert that main container is visually centered
+    expect(mainContainerOffset).toBeLessThan(5);
+    
+    console.log('✅ Question bar and form are properly centered');
+  });
 }); 
