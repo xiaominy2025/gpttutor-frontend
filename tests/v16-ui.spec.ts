@@ -260,7 +260,7 @@ async function validateReflectionPromptClickToLoad(page: any) {
   }
   
   // Clear the input box first
-  const textarea = page.locator('textarea.query-textarea');
+  const textarea = page.locator('input.question-input');
   await textarea.clear();
   
   // Click on the first reflection prompt
@@ -289,7 +289,7 @@ test.describe('V16 UI Test Suite', () => {
     
     // Wait for the app to load
     await page.waitForSelector('nav.navbar');
-    await page.waitForSelector('form.query-form');
+    await page.waitForSelector('form.question-form');
     
     console.log('🚀 App loaded successfully');
   });
@@ -301,11 +301,11 @@ test.describe('V16 UI Test Suite', () => {
       console.log(`📋 Expected lenses: ${testCase.expectedLenses.join(', ')}`);
       
       // Find and fill the query input
-      const queryInput = page.locator('textarea.query-textarea');
+      const queryInput = page.locator('input.question-input');
       await queryInput.fill(testCase.query);
       
       // Submit the query
-      const submitButton = page.locator('button.query-submit-btn');
+      const submitButton = page.locator('button.ask-button');
       await submitButton.click();
       
       // Wait for loading state
@@ -378,10 +378,10 @@ test.describe('V16 UI Test Suite', () => {
     console.log('\n🔍 Testing v1.6 concept format compliance...');
     
     // Submit a query that should generate concepts
-    const queryInput = page.locator('textarea.query-textarea');
+    const queryInput = page.locator('input.question-input');
     await queryInput.fill('How should I plan production with fluctuating demand and limited storage?');
     
-    const submitButton = page.locator('button.query-submit-btn');
+    const submitButton = page.locator('button.ask-button');
     await submitButton.click();
     
     // Wait for response
@@ -405,10 +405,10 @@ test.describe('V16 UI Test Suite', () => {
     console.log('\n🔍 Testing markdown rendering quality...');
     
     // Submit a query that should generate rich content
-    const queryInput = page.locator('textarea.query-textarea');
+    const queryInput = page.locator('input.question-input');
     await queryInput.fill('How should I prioritize tasks when under tight deadlines?');
     
-    const submitButton = page.locator('button.query-submit-btn');
+    const submitButton = page.locator('button.ask-button');
     await submitButton.click();
     
     // Wait for response
@@ -445,10 +445,10 @@ test.describe('V16 UI Test Suite', () => {
     console.log('\n🔍 Testing reflection prompt click-to-load functionality...');
     
     // Submit a query that should generate reflection prompts
-    const queryInput = page.locator('textarea.query-textarea');
+    const queryInput = page.locator('input.question-input');
     await queryInput.fill('How should I prioritize tasks when under tight deadlines?');
     
-    const submitButton = page.locator('button.query-submit-btn');
+    const submitButton = page.locator('button.ask-button');
     await submitButton.click();
     
     // Wait for response

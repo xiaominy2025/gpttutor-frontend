@@ -45,6 +45,67 @@ html, body, #root, .app-bg {
   margin: 0 auto 2rem auto;
   display: block;
   box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding-bottom: 1rem;
+  z-index: 10;
+}
+
+/* Question form with flex layout */
+.question-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+/* Question input styling */
+.question-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--thinkpal-yellow);
+  border-radius: var(--thinkpal-radius);
+  background: #f9fbfd;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.question-input:focus {
+  border: 2px solid var(--thinkpal-yellow);
+  background: #f9fbfd;
+  box-shadow: none;
+}
+
+/* Ask button styling */
+.ask-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: var(--thinkpal-blue);
+  color: white;
+  border: none;
+  border-radius: var(--thinkpal-radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.1s;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.ask-button:hover {
+  background-color: #1565c0;
+  transform: translateY(-1px);
+}
+
+.ask-button:active {
+  transform: translateY(0);
+}
+
+.ask-button:focus {
+  outline: 2px solid var(--thinkpal-blue);
+  outline-offset: 2px;
 }
 
 /* Answer body styling (for consistency) */
@@ -151,11 +212,26 @@ html, body, #root, .app-bg {
   .query-form,
   .query-textarea,
   .question-bar,
-  .answer-body {
+  .answer-body,
+  .question-form {
     width: 98vw;
     max-width: 98vw;
     padding-left: 0;
     padding-right: 0;
+  }
+  
+  .question-form {
+    gap: 0.25rem;
+  }
+  
+  .question-input {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .ask-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
   }
   
   .reflection-prompt-item::before {

@@ -7,29 +7,24 @@ export default function QueryInput({ onSubmit, value = "", onChange }) {
   const inputValue = value !== undefined ? value : internalInput;
   const setInputValue = onChange || setInternalInput;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(inputValue);
+  };
+
   return (
     <form
-      className="query-form"
-      onSubmit={e => {
-        e.preventDefault();
-        onSubmit(inputValue);
-      }}
+      className="question-form"
+      onSubmit={handleSubmit}
     >
-      <textarea
-        rows={3}
-        className="query-textarea"
-        placeholder="Ask me anything about decision-making..."
+      <input
+        type="text"
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
+        placeholder="Ask me anything about decision-making..."
+        className="question-input"
       />
-      <div className="query-btn-wrapper">
-        <button
-          className="query-submit-btn"
-          type="submit"
-        >
-          Ask
-        </button>
-      </div>
+      <button type="submit" className="ask-button">Ask</button>
     </form>
   );
 }
