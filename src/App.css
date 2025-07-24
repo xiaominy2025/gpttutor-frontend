@@ -56,6 +56,7 @@ body {
 
 .question-bar {
   margin-bottom: 2rem;
+  margin-top: 2rem;
   position: sticky;
   top: 0;
   background: #fff;
