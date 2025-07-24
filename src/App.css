@@ -22,32 +22,34 @@ body {
 }
 
 /* Main layout containers - ensure all are centered */
-.main-container,
-.question-bar,
-.answer-body {
+.main-container {
   max-width: 880px;
   margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
   width: 100%;
-}
-
-.main-container {
   display: block;
 }
 
 .question-bar {
-  margin-bottom: 2rem;
+  max-width: 880px;
+  margin: 0 auto 2rem auto;
+  padding: 0 0 1rem 0;
+  box-sizing: border-box;
+  width: 100%;
   position: sticky;
   top: 0;
   background: #fff;
-  padding: 0 1rem 1rem 1rem;
   z-index: 10;
   border-bottom: 1px solid #ddd;
 }
 
 .answer-body {
-  margin-bottom: 2rem;
+  max-width: 880px;
+  margin: 0 auto 2rem auto;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
   display: block;
 }
 
