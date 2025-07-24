@@ -484,7 +484,7 @@ test.describe('V16 UI Test Suite', () => {
   test('Question Bar Centering Test', async ({ page }) => {
     console.log('\n🔍 Testing question bar and form centering...');
     
-    await page.goto('http://localhost:5176');
+    await page.goto('http://localhost:5175');
 
     // Wait for the page and question bar to load
     const questionBar = page.locator('.question-bar');
