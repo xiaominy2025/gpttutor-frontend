@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { COURSE } from "./config/courseData";
+import { getCourseById, getAllCourses, DEFAULT_COURSE } from "./config/courseData";
 import QueryInput from "./components/QueryInput";
 import AnswerCard from "./components/AnswerCard";
 import SkeletonSection from "./components/SkeletonSection";
+import CourseSelector from "./components/CourseSelector";
 import { askGPTutor } from "./api/queryEngine";
 import { parseMarkdownAnswer } from "./utils/markdownParser";
 import { extractConcepts } from "./utils/extractConcepts";
@@ -14,29 +15,71 @@ function App() {
   const [error, setError] = useState(false);
   const [queryInput, setQueryInput] = useState("");
   const [showSplash, setShowSplash] = useState(true);
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
+  const [showCourseSelector, setShowCourseSelector] = useState(false);
 
-  // Hide splash screen after 5 seconds (for review - will change back to 2.5 seconds)
+  // Get course from URL parameter or default
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseParam = urlParams.get('course');
+    
+    if (courseParam && getAllCourses().some(course => course.id === courseParam)) {
+      setSelectedCourseId(courseParam);
+    } else if (courseParam) {
+      // Invalid course parameter, show course selector
+      setShowCourseSelector(true);
       setShowSplash(false);
-    }, 3000); // Updated to 3000ms for 3 seconds
-
-    return () => clearTimeout(timer);
+    } else {
+      // No course parameter, use default
+      setSelectedCourseId(DEFAULT_COURSE);
+    }
   }, []);
+
+  // Get current course data
+  const currentCourse = selectedCourseId ? getCourseById(selectedCourseId) : null;
+
+  // Hide splash screen after 3 seconds
+  useEffect(() => {
+    if (selectedCourseId && !showCourseSelector) {
+      const timer = setTimeout(() => {
+        setShowSplash(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [selectedCourseId, showCourseSelector]);
 
   const handleSplashClick = () => {
     setShowSplash(false);
+  };
+
+  const handleCourseSelect = (courseId) => {
+    setSelectedCourseId(courseId);
+    setShowCourseSelector(false);
+    setShowSplash(true);
+    
+    // Update URL without page reload
+    const url = new URL(window.location);
+    url.searchParams.set('course', courseId);
+    window.history.pushState({}, '', url);
   };
 
   const handleQuery = async (query) => {
     try {
       setLoading(true);
       setError(false);
-      const response = await askGPTutor(query);
+      
+      // Include course_id in the request
+      const requestData = {
+        query: query,
+        course_id: selectedCourseId || DEFAULT_COURSE
+      };
+      
+      const response = await askGPTutor(requestData);
       console.log("Full backend response:", response);
       console.log("Response status:", response.status);
       console.log("Response headers:", response.headers);
-      const responseData = response.data; // This is the axios response.data
+      const responseData = response.data;
       console.log("🔍 Backend response data:", responseData);
       console.log("🔍 Backend response data type:", typeof responseData);
       console.log("🔍 Backend response keys:", Object.keys(responseData || {}));
@@ -132,17 +175,42 @@ function App() {
     // handleQuery(prompt);
   };
 
+  // Show course selector if no course is selected or if explicitly requested
+  if (showCourseSelector) {
+    return (
+      <div className="app-shell">
+        <nav className="navbar">
+          <div className="navbar-content">
+            <div className="title-badge">
+              <span className="desktop-title">Engent Labs: Practice Labs</span>
+              <span className="mobile-title">Engent Labs</span>
+            </div>
+          </div>
+        </nav>
+        
+        <div className="content-area">
+          <div className="main-wrapper">
+            <CourseSelector 
+              onCourseSelect={handleCourseSelect}
+              selectedCourseId={selectedCourseId}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="app-shell">
-      {showSplash ? (
+      {showSplash && currentCourse ? (
         // Splash Screen
         <div className="splash-screen" onClick={handleSplashClick}>
           <div className="splash-content">
             <div className="splash-logo">
               <img src={thinkpalLogo} alt="Engent Labs Logo" />
             </div>
-            <h2 className="splash-subtitle">Decision-Making Practice Lab</h2>
-            <p className="splash-tagline">A GPT-Powered Active Learning Platform for Deeper Understanding.</p>
+            <h2 className="splash-subtitle">{currentCourse.splashTitle}</h2>
+            <p className="splash-tagline">{currentCourse.splashTagline}</p>
           </div>
         </div>
       ) : (
@@ -152,9 +220,16 @@ function App() {
           <nav className="navbar">
             <div className="navbar-content">
               <div className="title-badge">
-                <span className="desktop-title">Engent Labs: Decision-Making Practice Lab</span>
-                <span className="mobile-title">Decision Lab</span>
+                <span className="desktop-title">{currentCourse?.name || "Engent Labs"}</span>
+                <span className="mobile-title">{currentCourse?.shortName || "Engent Labs"}</span>
               </div>
+              <button 
+                className="course-switcher"
+                onClick={() => setShowCourseSelector(true)}
+                title="Switch Course"
+              >
+                🔄
+              </button>
             </div>
           </nav>
           
@@ -166,6 +241,7 @@ function App() {
                   value={queryInput}
                   onChange={setQueryInput}
                   loading={loading}
+                  placeholder={currentCourse?.samplePrompt ? `Ask your ${currentCourse.id} question… e.g., "${currentCourse.samplePrompt}"` : "Ask your question..."}
                 />
               </div>
               {error && (

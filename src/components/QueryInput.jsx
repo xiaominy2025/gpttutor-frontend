@@ -13,7 +13,7 @@ const LoaderIcon = () => (
   </svg>
 );
 
-export default function QueryInput({ onSubmit, value = "", onChange, loading = false }) {
+export default function QueryInput({ onSubmit, value = "", onChange, loading = false, placeholder = "Ask your question..." }) {
   const [internalInput, setInternalInput] = useState("");
 
   // Use external value if provided, otherwise use internal state
@@ -46,10 +46,10 @@ export default function QueryInput({ onSubmit, value = "", onChange, loading = f
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder='Ask your decision question… e.g., "How should a manufacturing company decide on strategic options for growth under U.S. trade policy uncertainty?"'
+        placeholder={placeholder}
         className="question-textarea"
         rows={2}
-        aria-label='Ask your decision question… e.g., "How should a manufacturing company decide on strategic options for growth under U.S. trade policy uncertainty?"'
+        aria-label={placeholder}
       />
       <button 
         type="submit" 
