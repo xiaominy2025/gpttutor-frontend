@@ -4,17 +4,18 @@ import ReactMarkdown from 'react-markdown';
 export default function AnswerCard({
   strategicThinkingLens = "No strategic thinking lens available",
   storyInAction = "No story available",
-  reflectionPrompts = [],
+  followUpPrompts = [],
   conceptsToolsPractice = [],
   onReflectionPromptClick,
 }) {
+
   // Helper function to check if content is meaningful (not just fallback message)
   const hasMeaningfulContent = (content) => {
     if (!content) return false;
     const fallbackMessages = [
       "No strategic thinking lens available",
       "No story available", 
-      "No reflection prompts available",
+      "No follow-up prompts available",
       "No relevant concepts/tools for this query."
     ];
     return !fallbackMessages.includes(content.trim());
@@ -50,7 +51,11 @@ export default function AnswerCard({
           <strong>{concept.term}:</strong> {concept.definition}
         </div>
       );
+    } else if (concept && typeof concept === 'object') {
+      // Handle other object formats
+      return <div className="concept-item mb-2">{JSON.stringify(concept)}</div>;
     }
+    
     return null;
   };
 
@@ -92,13 +97,13 @@ export default function AnswerCard({
       </div>
       
       <div className="answer-section" data-testid="reflection-prompts">
-        <h3>Reflection Prompts</h3>
-        {reflectionPrompts.length > 0 && reflectionPrompts.some(prompt => hasMeaningfulContent(prompt)) ? (
+        <h3>Follow-up Prompts</h3>
+        {followUpPrompts.length > 0 && followUpPrompts.some(prompt => hasMeaningfulContent(prompt)) ? (
           <ul>
-            {reflectionPrompts.map((prompt, i) => (
+            {followUpPrompts.map((prompt, i) => (
               <li 
                 key={i} 
-                data-testid={`reflection-prompt-${i}`}
+                data-testid={`followup-prompt-${i}`}
                 onClick={() => handlePromptClick(prompt)}
                 className="reflection-prompt-item cursor-pointer hover:bg-blue-50 hover:text-blue-700 p-2 rounded transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
                 title="Click to load this question into the input box"
@@ -108,21 +113,21 @@ export default function AnswerCard({
             ))}
           </ul>
         ) : (
-          <p className="text-gray-500 italic">No reflection prompts available</p>
+          <p className="text-gray-500 italic">No follow-up prompts available</p>
         )}
       </div>
       
       <div className="answer-section" data-testid="concepts-section">
-        <h3>Concepts/Tools/Practice Reference</h3>
+        <h3>Concepts & Tools</h3>
         <div className="concepts-section">
-          {conceptsToolsPractice.length === 0 ? (
-            <p className="text-gray-500 italic">No relevant concepts/tools for this query.</p>
-          ) : (
+          {conceptsToolsPractice && conceptsToolsPractice.length > 0 ? (
             conceptsToolsPractice.map((concept, idx) => (
               <div key={idx} data-testid={`concept-${idx}`}>
                 {renderConcept(concept)}
               </div>
             ))
+          ) : (
+            <p className="text-gray-500 italic">No relevant concepts/tools for this query.</p>
           )}
         </div>
       </div>

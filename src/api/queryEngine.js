@@ -3,12 +3,12 @@ import axios from "axios";
 export const askGPTutor = async (question) => {
   const response = await axios.post(
     import.meta.env.VITE_BACKEND_URL + "/query",
-    { query: question }, // ✅ this is the fix
+    { query: question },
     {
       headers: {
         "Content-Type": "application/json",
       },
     }
   );
-  return response.data;
+  return response; // Return the full response object, not just response.data
 };

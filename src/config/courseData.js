@@ -1,5 +1,5 @@
 export const COURSE = {
-    name: "ThinkPal: Decision Coach",
+    name: "Engent Labs: Decision-Making Practice Lab",
     defaultQuestion: "What is BATNA?",
     mockAnswer: {
       story: "Imagine you're negotiating a job offer...",
