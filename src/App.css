@@ -77,9 +77,9 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(270deg, #6a5acd, #7b68ee, #9370db);
-  background-size: 400% 400%;
-  animation: gradientShift 6s ease infinite;
+  background: linear-gradient(135deg, #6a5acd, #7b68ee, #8a7fff);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,6 +107,7 @@ body {
   opacity: 0;
   transform: scale(0.9);
   animation: fadeInScale 1.2s ease-out forwards;
+  filter: drop-shadow(0 0 8px rgba(0,0,0,0.2));
   /* Removed white filter to keep original colors */
 }
 
@@ -115,7 +116,7 @@ body {
   font-weight: 600;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: #222;
   text-align: center;
   opacity: 0.95;
   line-height: 1.2;
@@ -127,11 +128,16 @@ body {
   font-weight: 500;
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
-  color: #444;
+  color: #333;
   text-align: center;
   line-height: 1.4;
   opacity: 0.85;
   animation: fadeInUp 1s ease-out 0.35s both;
+}
+
+.splash-tagline .highlight {
+  color: #ffcc00; /* Engent Labs accent color */
+  font-weight: 600;
 }
 
 @keyframes fadeInUp {
@@ -167,6 +173,29 @@ body {
   }
 }
 
+/* Responsive scaling */
+@media (max-width: 768px) {
+  .splash-subtitle {
+    font-size: 1.3rem;
+  }
+  .splash-tagline {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    padding: 0 1rem; /* prevent text from hitting screen edges */
+  }
+}
+
+@media (max-width: 480px) {
+  .splash-subtitle {
+    font-size: 1.1rem;
+  }
+  .splash-tagline {
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 0 0.5rem;
+  }
+}
+
 /* Mobile responsive splash screen */
 @media (max-width: 640px) {
   .splash-content {
@@ -176,16 +205,6 @@ body {
   
   .splash-logo img {
     width: 120px;
-  }
-  
-  .splash-subtitle {
-    font-size: 1.4rem;
-    margin-top: 0.5rem;
-  }
-  
-  .splash-tagline {
-    font-size: 1.1rem;
-    margin-top: 0.3rem;
   }
 }
 

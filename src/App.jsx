@@ -262,7 +262,7 @@ function App() {
             </div>
             <h2 className="splash-subtitle">AI‑Powered Active Learning</h2>
             <p className="splash-tagline">
-              Ask Smarter. Think Deeper. Apply Sharper.
+              Ask Smarter. Think Deeper. <span className="highlight">Apply Sharper.</span>
             </p>
           </div>
         </div>
