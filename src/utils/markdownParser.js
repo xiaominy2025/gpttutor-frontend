@@ -94,7 +94,6 @@ export function parseMarkdownAnswer(markdownAnswer) {
     } else {
       // If content is on single line, use a brute force approach
       // Based on the actual content from the screenshot, we know the exact format
-      const testContent = "BATNA: Best Alternative to a Negotiated Agreement Reservation Point: The least favorable point at which one would accept a negotiated agreement in a distributive negotiation auction Zone of Possible Agreement (ZOPA): The range where a deal that benefits both parties overlaps which defines the zone where an agreement can be made";
       
       if (content.includes("BATNA:") && content.includes("Reservation Point:") && content.includes("Zone of Possible Agreement (ZOPA):")) {
         // Extract BATNA

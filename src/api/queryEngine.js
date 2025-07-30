@@ -6,8 +6,15 @@ export const askGPTutor = async (requestData) => {
     ? { query: requestData }
     : requestData;
 
+  const API_BASE = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+  const url = `${API_BASE}/query`;
+  
+  console.log("🔧 QueryEngine API_BASE:", API_BASE);
+  console.log("🔧 QueryEngine URL:", url);
+  console.log("🔧 QueryEngine payload:", payload);
+
   const response = await axios.post(
-    import.meta.env.VITE_BACKEND_URL + "/query",
+    url,
     payload,
     {
       headers: {

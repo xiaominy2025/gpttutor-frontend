@@ -1,7 +1,7 @@
 {
   "name": "gpttutor-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.6.5",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,6 +15,7 @@
     "test:log": "mkdir -p test-logs && npx playwright test --reporter=line,html > test-logs/test-output.log 2>&1"
   },
   "dependencies": {
+    "axios": "^1.11.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",

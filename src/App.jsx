@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { getCourseById, getAllCourses, DEFAULT_COURSE } from "./config/courseData";
+import { useState, useEffect, useCallback } from "react";
 import QueryInput from "./components/QueryInput";
 import AnswerCard from "./components/AnswerCard";
 import SkeletonSection from "./components/SkeletonSection";
@@ -16,38 +15,78 @@ function App() {
   const [queryInput, setQueryInput] = useState("");
   const [showSplash, setShowSplash] = useState(true);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
-  const [showCourseSelector, setShowCourseSelector] = useState(false);
+  const [metadata, setMetadata] = useState(null);
+  const [metadataError, setMetadataError] = useState(false);
 
-  // Get course from URL parameter or default
+  // Define backend base URL with fallback
+  const API_BASE = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+  
+  // Debug: Log the API base URL
+  console.log("🔧 API_BASE:", API_BASE);
+  console.log("🔧 VITE_BACKEND_URL:", import.meta.env.VITE_BACKEND_URL);
+
+  // Function to fetch course metadata from backend
+  const fetchCourseMetadata = useCallback(async (courseId) => {
+    try {
+      console.log("🔧 fetchCourseMetadata called with courseId:", courseId);
+      setMetadataError(false);
+      const url = `${API_BASE}/api/course/${courseId}`;
+      console.log("Fetching course metadata from:", url);
+      
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      console.log("🔧 Raw metadata response:", data);
+      // V1.6.5 backend wraps metadata inside "metadata"
+      setMetadata(data.metadata);
+      console.log("🔧 Set metadata to:", data.metadata);
+    } catch (error) {
+      console.error("Error fetching metadata:", error);
+      setMetadataError(true);
+      setMetadata(null);
+    }
+  }, [API_BASE]);
+
+  // Get course from URL parameter and fetch metadata
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const courseParam = urlParams.get('course');
-    
-    if (courseParam && getAllCourses().some(course => course.id === courseParam)) {
+    if (courseParam) {
       setSelectedCourseId(courseParam);
-    } else if (courseParam) {
-      // Invalid course parameter, show course selector
-      setShowCourseSelector(true);
-      setShowSplash(false);
-    } else {
-      // No course parameter, use default
-      setSelectedCourseId(DEFAULT_COURSE);
+      fetchCourseMetadata(courseParam);
     }
-  }, []);
+  }, [fetchCourseMetadata]);
 
-  // Get current course data
-  const currentCourse = selectedCourseId ? getCourseById(selectedCourseId) : null;
-
-  // Hide splash screen after 3 seconds
+  // Update splash transition
   useEffect(() => {
-    if (selectedCourseId && !showCourseSelector) {
+    if (showSplash) {
       const timer = setTimeout(() => {
         setShowSplash(false);
       }, 3000);
-
       return () => clearTimeout(timer);
     }
-  }, [selectedCourseId, showCourseSelector]);
+  }, [showSplash]);
+
+  // Health check to confirm backend is running
+  useEffect(() => {
+    fetch(`${API_BASE}/health`)
+      .then(res => res.json())
+      .then(data => console.log("✅ Backend health:", data))
+      .catch(err => console.error("❌ Backend not reachable:", err));
+      
+    // Test course metadata fetch
+    fetch(`${API_BASE}/api/course/decision`)
+      .then(res => {
+        console.log("🔧 Course metadata response status:", res.status);
+        return res.json();
+      })
+      .then(data => console.log("✅ Course metadata test:", data.metadata ? "SUCCESS" : "FAILED"))
+      .catch(err => console.error("❌ Course metadata test failed:", err));
+  }, [API_BASE]);
 
   const handleSplashClick = () => {
     setShowSplash(false);
@@ -55,8 +94,7 @@ function App() {
 
   const handleCourseSelect = (courseId) => {
     setSelectedCourseId(courseId);
-    setShowCourseSelector(false);
-    setShowSplash(true);
+    fetchCourseMetadata(courseId); // ensures metadata loads immediately
     
     // Update URL without page reload
     const url = new URL(window.location);
@@ -69,10 +107,17 @@ function App() {
       setLoading(true);
       setError(false);
       
+      // Ensure we have a course selected
+      if (!selectedCourseId) {
+        setError(true);
+        setAnswer(null);
+        return;
+      }
+      
       // Include course_id in the request
       const requestData = {
         query: query,
-        course_id: selectedCourseId || DEFAULT_COURSE
+        course_id: selectedCourseId
       };
       
       const response = await askGPTutor(requestData);
@@ -175,8 +220,8 @@ function App() {
     // handleQuery(prompt);
   };
 
-  // Show course selector if no course is selected or if explicitly requested
-  if (showCourseSelector) {
+  // Show error message if metadata fetch failed
+  if (metadataError) {
     return (
       <div className="app-shell">
         <nav className="navbar">
@@ -190,10 +235,9 @@ function App() {
         
         <div className="content-area">
           <div className="main-wrapper">
-            <CourseSelector 
-              onCourseSelect={handleCourseSelect}
-              selectedCourseId={selectedCourseId}
-            />
+            <div className="error-message">
+              ⚠️ Unable to load course data. Please try refreshing the page.
+            </div>
           </div>
         </div>
       </div>
@@ -202,34 +246,45 @@ function App() {
 
   return (
     <div className="app-shell">
-      {showSplash && currentCourse ? (
+      {console.log("🔍 Render Debug:", { 
+        showSplash, 
+        selectedCourseId, 
+        metadata: metadata ? "LOADED" : "NULL", 
+        metadataError,
+        renderCondition: !selectedCourseId || !metadata ? "SHOW_COURSE_SELECTOR" : "SHOW_MAIN_APP"
+      })}
+      {showSplash ? (
         // Splash Screen
         <div className="splash-screen" onClick={handleSplashClick}>
           <div className="splash-content">
             <div className="splash-logo">
               <img src={thinkpalLogo} alt="Engent Labs Logo" />
             </div>
-            <h2 className="splash-subtitle">{currentCourse.splashTitle}</h2>
-            <p className="splash-tagline">{currentCourse.splashTagline}</p>
+            <h2 className="splash-subtitle">Engent Labs: Practice Labs</h2>
+            <p className="splash-tagline">
+              A GPT-Powered Active Learning Platform for Deeper Understanding.
+            </p>
+          </div>
+        </div>
+      ) : !selectedCourseId || !metadata ? (
+        // Course Selector (when no course is selected OR metadata is missing)
+        <div className="content-area">
+          <div className="main-wrapper">
+            <CourseSelector 
+              onCourseSelect={handleCourseSelect}
+              selectedCourseId={selectedCourseId}
+            />
           </div>
         </div>
       ) : (
-        // Main Application
+        // Main Application (only when course + metadata ready)
         <>
-          {/* Centered title bar */}
           <nav className="navbar">
             <div className="navbar-content">
               <div className="title-badge">
-                <span className="desktop-title">{currentCourse?.name || "Engent Labs"}</span>
-                <span className="mobile-title">{currentCourse?.shortName || "Engent Labs"}</span>
+                <span className="desktop-title">{metadata.title}</span>
+                <span className="mobile-title">{metadata.short_name || "Engent Labs"}</span>
               </div>
-              <button 
-                className="course-switcher"
-                onClick={() => setShowCourseSelector(true)}
-                title="Switch Course"
-              >
-                🔄
-              </button>
             </div>
           </nav>
           
@@ -241,26 +296,19 @@ function App() {
                   value={queryInput}
                   onChange={setQueryInput}
                   loading={loading}
-                  placeholder={currentCourse?.samplePrompt ? `Ask your ${currentCourse.id} question… e.g., "${currentCourse.samplePrompt}"` : "Ask your question..."}
+                  placeholder={metadata.placeholder 
+                    ? `Ask your ${selectedCourseId} question… e.g., "${metadata.placeholder}"` 
+                    : "Ask your question..."}
                 />
               </div>
-              {error && (
-                <div className="error-message">
-                  ⚠️ Something went wrong. Try again.
-                </div>
-              )}
-              
-              {/* Show skeleton sections when loading */}
+              {error && <div className="error-message">⚠️ Something went wrong. Try again.</div>}
               {loading && (
                 <div className="answer-body">
-                  <SkeletonSection title="Strategic Thinking Lens" />
-                  <SkeletonSection title="Story in Action" />
-                  <SkeletonSection title="Follow-up Prompts" />
-                  <SkeletonSection title="Concepts & Tools" />
+                  {(metadata.sections_titles || []).map((title, index) => (
+                    <SkeletonSection key={index} title={title} />
+                  ))}
                 </div>
               )}
-              
-              {/* Show actual answer when loaded */}
               {answer && !loading && (
                 <div className="answer-body">
                   <AnswerCard 
