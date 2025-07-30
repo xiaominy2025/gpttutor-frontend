@@ -260,9 +260,9 @@ function App() {
             <div className="splash-logo">
               <img src={thinkpalLogo} alt="Engent Labs Logo" />
             </div>
-            <h2 className="splash-subtitle">Engent Labs: Practice Labs</h2>
+            <h2 className="splash-subtitle">AI‑Powered Active Learning</h2>
             <p className="splash-tagline">
-              A GPT-Powered Active Learning Platform for Deeper Understanding.
+              Ask Smarter. Think Deeper. Apply Sharper.
             </p>
           </div>
         </div>
