@@ -229,7 +229,7 @@ body {
   max-width: 880px;
   padding-left: clamp(0.5rem, 2vw, 1rem);
   padding-right: clamp(0.5rem, 2vw, 1rem);
-  padding-top: 5.5rem; /* Reduced spacing for tighter navbar + question wrapper layout */
+  padding-top: 4.5rem; /* Further reduced spacing for tighter navbar + question wrapper layout */
   box-sizing: border-box;
   overflow-x: hidden;
   position: relative;
@@ -247,7 +247,7 @@ body {
 /* Question wrapper - always sticky with consistent spacing */
 .question-wrapper {
   position: fixed;
-  top: 50px; /* Match navbar height */
+  top: 35px; /* Reduced from 50px to bring input closer to navbar title */
   left: 0;
   right: 0;
   background: white;
@@ -615,7 +615,7 @@ body {
     width: 100%;
     max-width: 100%;
     padding: 0 0.75rem;
-    padding-top: 3.5rem; /* Reduced spacing for mobile navbar + question wrapper */
+    padding-top: 2.5rem; /* Further reduced spacing for mobile navbar + question wrapper */
     overflow-x: hidden;
   }
   
@@ -644,13 +644,13 @@ body {
   }
   
   .question-wrapper {
-    top: 50px; /* Match mobile navbar height */
+    top: 35px; /* Reduced to bring input closer to navbar title on mobile */
     padding: 0.2rem 0.75rem;
     margin: 0;
   }
   
   .main-wrapper {
-    padding-top: 3rem; /* Reduced spacing for small mobile navbar + question wrapper */
+    padding-top: 2rem; /* Further reduced spacing for small mobile navbar + question wrapper */
   }
   
   /* .question-bar styles removed - using .question-wrapper instead */
@@ -718,7 +718,7 @@ body {
   }
   
   .main-wrapper {
-    padding-top: 2.5rem; /* Reduced spacing for very small mobile navbar + question wrapper */
+    padding-top: 1.5rem; /* Further reduced spacing for very small mobile navbar + question wrapper */
   }
   
   .answer-body {
@@ -843,7 +843,7 @@ body {
   }
   
   .main-wrapper {
-    padding-top: 3.25rem; /* Reduced spacing for fixed navbar + question wrapper on very small mobile */
+    padding-top: 2.25rem; /* Further reduced spacing for fixed navbar + question wrapper on very small mobile */
   }
   
   .query-container {
