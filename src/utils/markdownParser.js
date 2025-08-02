@@ -13,7 +13,7 @@ export function parseMarkdownAnswer(markdownAnswer) {
     };
   }
 
-  console.log("🔍 Parsing markdown answer:", markdownAnswer);
+
 
   // Helper function to clean content (strip trailing markers, normalize whitespace)
   const cleanContent = (content) => {
@@ -80,7 +80,7 @@ export function parseMarkdownAnswer(markdownAnswer) {
 
   // Helper function to parse concepts from content - BRUTE FORCE APPROACH
   const parseConcepts = (content) => {
-    console.log(`🔍 Raw concepts content: "${content}"`);
+
     
     let concepts = [];
     
@@ -123,7 +123,7 @@ export function parseMarkdownAnswer(markdownAnswer) {
       }
     }
     
-    console.log(`🔍 Parsed concepts array:`, concepts);
+
     return concepts;
   };
 
@@ -153,7 +153,7 @@ export function parseMarkdownAnswer(markdownAnswer) {
       const key = sectionMap[normalizedTitle];
       
       if (key) {
-        console.log(`🔍 Found section "${title}" -> mapping to "${key}"`);
+    
         
         // Extract the section content
         const sectionContent = extractSection(content, title);

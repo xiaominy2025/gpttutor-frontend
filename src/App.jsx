@@ -3,10 +3,23 @@ import QueryInput from "./components/QueryInput";
 import AnswerCard from "./components/AnswerCard";
 import SkeletonSection from "./components/SkeletonSection";
 import CourseSelector from "./components/CourseSelector";
+import QuestionHistory from "./components/QuestionHistory";
 import { askGPTutor } from "./api/queryEngine";
 import { parseMarkdownAnswer } from "./utils/markdownParser";
 import { extractConcepts } from "./utils/extractConcepts";
-import thinkpalLogo from "./assets/Logo.png";
+import splashLogo from "./assets/LogoSplash.png";
+
+// V1.6.5: Utility function to sanitize bullet points
+const sanitizeBullets = (lines) => {
+  if (!lines) return [];
+  
+  // Handle both array and string inputs
+  const lineArray = Array.isArray(lines) ? lines : lines.split('\n');
+  
+  return lineArray
+    .map(line => line.replace(/^[-*•]\s*/, '').trim())
+    .filter(line => line.length > 0);
+};
 
 function App() {
   const [answer, setAnswer] = useState(null);
@@ -17,13 +30,53 @@ function App() {
   const [selectedCourseId, setSelectedCourseId] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [metadataError, setMetadataError] = useState(false);
-
+  
+  // Question history state - stores last 5 question-answer pairs
+  const [questionHistory, setQuestionHistory] = useState([]);
+  const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1); // -1 means current question
+  
   // Define backend base URL with fallback
   const API_BASE = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
   
   // Debug: Log the API base URL
   console.log("🔧 API_BASE:", API_BASE);
   console.log("🔧 VITE_BACKEND_URL:", import.meta.env.VITE_BACKEND_URL);
+
+  // Function to add question to history
+  const addToHistory = useCallback((question, answerData) => {
+    const historyItem = {
+      id: Date.now(),
+      question,
+      answer: answerData,
+      timestamp: new Date().toLocaleTimeString()
+    };
+
+    setQuestionHistory(prevHistory => {
+      const newHistory = [historyItem, ...prevHistory.slice(0, 4)]; // Keep only last 5
+      return newHistory;
+    });
+    
+    // Reset to current question
+    setCurrentHistoryIndex(-1);
+  }, []);
+
+  // Function to load a question from history
+  const loadFromHistory = useCallback((index) => {
+    if (index >= 0 && index < questionHistory.length) {
+      const historyItem = questionHistory[index];
+      setAnswer(historyItem.answer);
+      setQueryInput(historyItem.question);
+      setCurrentHistoryIndex(index);
+    }
+  }, [questionHistory]);
+
+  // Function to return to current question
+  const returnToCurrent = useCallback(() => {
+    setCurrentHistoryIndex(-1);
+    setAnswer(null);
+    setQueryInput("");
+    console.log("📚 Returned to current question");
+  }, []);
 
   // Function to fetch course metadata from backend
   const fetchCourseMetadata = useCallback(async (courseId) => {
@@ -114,7 +167,7 @@ function App() {
         return;
       }
       
-      // Include course_id in the request
+      // Traditional approach - include course_id in the request
       const requestData = {
         query: query,
         course_id: selectedCourseId
@@ -195,14 +248,21 @@ function App() {
       const finalConcepts = conceptsFromMarkdown.length > 0 ? conceptsFromMarkdown : conceptsFromBackend;
       console.log("🔍 Final concepts to use:", finalConcepts);
 
+      // V1.6.5: Ensure follow-up prompts and concepts are sanitized
       const finalData = {
         ...parsedSections,
+        followUpPrompts: parsedSections.followUpPrompts
+          ? sanitizeBullets(parsedSections.followUpPrompts)
+          : [],
         conceptsToolsPractice: finalConcepts
+          ? sanitizeBullets(finalConcepts)
+          : []
       };
 
       console.log("📋 Final parsed data:", finalData);
       console.log("🔍 Concepts being passed to AnswerCard:", finalData.conceptsToolsPractice);
       setAnswer(finalData);
+      addToHistory(query, finalData); // Add to history after successful query
     } catch (error) {
       console.error("❌ Backend error for query:", query, error);
       console.error("❌ Error details:", error.message);
@@ -216,8 +276,8 @@ function App() {
 
   const handleReflectionPromptClick = (prompt) => {
     setQueryInput(prompt);
-    // Optionally auto-submit - uncomment the line below if you want this behavior
-    // handleQuery(prompt);
+    // Auto-submit follow-up questions for consistent UX with history
+    handleQuery(prompt);
   };
 
   // Show error message if metadata fetch failed
@@ -258,11 +318,13 @@ function App() {
         <div className="splash-screen" onClick={handleSplashClick}>
           <div className="splash-content">
             <div className="splash-logo">
-              <img src={thinkpalLogo} alt="Engent Labs Logo" />
+              <img src={splashLogo} alt="Engent Labs Splash Logo" />
             </div>
             <h2 className="splash-subtitle">AI‑Powered Active Learning</h2>
             <p className="splash-tagline">
-              Ask Smarter. Think Deeper. <span className="highlight">Apply Sharper.</span>
+              <span className="splash-blue">Ask Smarter.</span>{" "}
+              <span className="splash-white">Think Deeper.</span>{" "}
+              <span className="splash-yellow">Apply Sharper.</span>
             </p>
           </div>
         </div>
@@ -283,7 +345,7 @@ function App() {
             <div className="navbar-content">
               <div className="title-badge">
                 <span className="desktop-title">{metadata.title}</span>
-                <span className="mobile-title">{metadata.short_name || "Engent Labs"}</span>
+                <span className="mobile-title">{metadata.mobile_title || metadata.short_name || "Engent Labs"}</span>
               </div>
             </div>
           </nav>
@@ -302,6 +364,8 @@ function App() {
                 />
               </div>
               {error && <div className="error-message">⚠️ Something went wrong. Try again.</div>}
+              
+              {/* Loading Mode */}
               {loading && (
                 <div className="answer-body">
                   {(metadata.sections_titles || []).map((title, index) => (
@@ -309,8 +373,19 @@ function App() {
                   ))}
                 </div>
               )}
+              
+              {/* Answer Display */}
               {answer && !loading && (
                 <div className="answer-body">
+                  {/* Question History - positioned above Strategic Thinking Lens */}
+                  <QuestionHistory
+                    history={questionHistory}
+                    currentIndex={currentHistoryIndex}
+                    onLoadHistory={loadFromHistory}
+                    onReturnToCurrent={returnToCurrent}
+                    visible={questionHistory.length > 0}
+                  />
+                  
                   <AnswerCard 
                     strategicThinkingLens={answer.strategicThinkingLens}
                     storyInAction={answer.storyInAction}

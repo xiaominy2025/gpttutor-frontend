@@ -29,6 +29,39 @@ export default function AnswerCard({
     return <ReactMarkdown>{content}</ReactMarkdown>;
   };
 
+  // Helper function to clean and render follow-up prompts
+  const renderFollowUpPrompts = (prompts) => {
+    if (!prompts || prompts.length === 0) {
+      return null;
+    }
+
+    // Clean prompts: trim whitespace, remove leading dashes, and filter out empty strings
+    const cleanPrompts = prompts
+      .map(p => p.trim())
+      .map(p => p.replace(/^[-*•]\s*/, '')) // Remove leading dash, asterisk, or bullet
+      .filter(p => p.length > 0 && hasMeaningfulContent(p));
+
+    if (cleanPrompts.length === 0) {
+      return <p className="text-gray-500 italic">No follow-up prompts available</p>;
+    }
+
+    return (
+      <ul>
+        {cleanPrompts.map((prompt, i) => (
+          <li 
+            key={i} 
+            data-testid={`followup-prompt-${i}`}
+            onClick={() => handlePromptClick(prompt)}
+            className="reflection-prompt-item cursor-pointer hover:bg-blue-50 hover:text-blue-700 p-2 rounded transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
+            title="Click to load this question into the input box"
+          >
+            {prompt}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   // Helper function to render concept in "Term: Definition" format
   const renderConcept = (concept) => {
     if (typeof concept === 'string') {
@@ -96,25 +129,9 @@ export default function AnswerCard({
         </div>
       </div>
       
-      <div className="answer-section" data-testid="reflection-prompts">
+      <div className="answer-section" data-testid="followup-prompts">
         <h3>Follow-up Prompts</h3>
-        {followUpPrompts.length > 0 && followUpPrompts.some(prompt => hasMeaningfulContent(prompt)) ? (
-          <ul>
-            {followUpPrompts.map((prompt, i) => (
-              <li 
-                key={i} 
-                data-testid={`followup-prompt-${i}`}
-                onClick={() => handlePromptClick(prompt)}
-                className="reflection-prompt-item cursor-pointer hover:bg-blue-50 hover:text-blue-700 p-2 rounded transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
-                title="Click to load this question into the input box"
-              >
-                {renderMarkdownContent(prompt) || prompt}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-gray-500 italic">No follow-up prompts available</p>
-        )}
+        {renderFollowUpPrompts(followUpPrompts)}
       </div>
       
       <div className="answer-section" data-testid="concepts-section">
