@@ -1301,7 +1301,7 @@ button:hover, button:focus {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 16px; /* Increased from 8px to restore gap between dropdown and input */
   padding: 6px 10px;
   background: #f8f9fa;
   border: 1px solid #e9ecef;
