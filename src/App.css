@@ -39,12 +39,12 @@ body {
 /* Main layout containers - ensure all are centered */
 /* Title Badge - centered in navbar */
 .title-badge {
-  background-color: #f5f5f5;
+  background-color: transparent;
   padding: 6px 16px;
   border-radius: 6px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1.25rem;
-  color: var(--thinkpal-dark);
+  color: #6b7280; /* Light gray color for clean UI consistency */
   text-align: center;
   margin: 0; /* Remove margin to ensure proper vertical centering */
   line-height: 1.2; /* Ensure consistent line height for vertical centering */
@@ -229,7 +229,7 @@ body {
   max-width: 880px;
   padding-left: clamp(0.5rem, 2vw, 1rem);
   padding-right: clamp(0.5rem, 2vw, 1rem);
-  padding-top: 6.5rem; /* Increased spacing for navbar + question wrapper + extra space */
+  padding-top: 5.5rem; /* Reduced spacing for tighter navbar + question wrapper layout */
   box-sizing: border-box;
   overflow-x: hidden;
   position: relative;
@@ -263,7 +263,7 @@ body {
 
 /* Adjust content area to account for fixed question wrapper */
 .content-area {
-  padding-top: 40px; /* Minimal gap between input field and content */
+  padding-top: 20px; /* Reduced gap between input field and content */
 }
 
 /* Question bar styling - kept for backward compatibility */
@@ -607,13 +607,15 @@ body {
   .title-badge {
     font-size: 0.875rem;
     padding: 4px 12px;
+    background-color: transparent;
+    color: #6b7280; /* Consistent light gray for mobile */
   }
   
   .main-wrapper {
     width: 100%;
     max-width: 100%;
     padding: 0 0.75rem;
-    padding-top: 4.5rem; /* Account for mobile navbar + question wrapper + extra space */
+    padding-top: 3.5rem; /* Reduced spacing for mobile navbar + question wrapper */
     overflow-x: hidden;
   }
   
@@ -648,7 +650,7 @@ body {
   }
   
   .main-wrapper {
-    padding-top: 4rem; /* Account for small mobile navbar + question wrapper + extra space */
+    padding-top: 3rem; /* Reduced spacing for small mobile navbar + question wrapper */
   }
   
   /* .question-bar styles removed - using .question-wrapper instead */
@@ -716,7 +718,7 @@ body {
   }
   
   .main-wrapper {
-    padding-top: 3.5rem; /* Account for very small mobile navbar + question wrapper + extra space */
+    padding-top: 2.5rem; /* Reduced spacing for very small mobile navbar + question wrapper */
   }
   
   .answer-body {
@@ -841,7 +843,7 @@ body {
   }
   
   .main-wrapper {
-    padding-top: 4.25rem; /* Account for fixed navbar + question wrapper on very small mobile */
+    padding-top: 3.25rem; /* Reduced spacing for fixed navbar + question wrapper on very small mobile */
   }
   
   .query-container {
