@@ -398,7 +398,7 @@ body {
 /* Answer body styling (for consistency) */
 .answer-body {
   margin-bottom: 1rem; /* Reduced from 2rem */
-  margin-top: 0.5rem; /* Reduced top margin */
+  margin-top: 1.5rem; /* Increased top margin to create better gap between history dropdown and input */
 }
 
 /* Skeleton loading styles */
