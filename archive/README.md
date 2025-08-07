@@ -1,13 +1,13 @@
 # Archive Directory
 
-This directory contains legacy files that are no longer used in the current V1.6.6 implementation but are preserved for reference and potential future use.
+This directory contains legacy files that are no longer used in the current V1.6.6.6 implementation but are preserved for reference and potential future use.
 
 ## Directory Structure
 
 ### `/legacy-documentation/`
 Contains all legacy documentation files including:
 - **V1.6.5 Documentation**: All V1.6.5 feature implementation docs
-- **V1.6.6 Documentation**: Previous V1.6.6 documentation (before streaming removal)
+- **V1.6.6 Documentation**: Previous V1.6.6 documentation (before streaming removal and version update)
 - **V1.6.x Documentation**: Various V1.6.x implementation summaries
 - **Frontend/Backend Documentation**: Legacy API and feature documentation
 - **Sample Files**: Test cases, sample responses, debug images
@@ -26,7 +26,7 @@ Contains test-related files:
 - **playwright-report.zip**: Compressed test reports
 - **test-logs/**: Test execution logs
 
-## Current V1.6.6 Implementation
+## Current V1.6.6.6 Implementation
 
 The current implementation uses:
 - **Dynamic course configuration** via backend metadata
@@ -38,7 +38,7 @@ The current implementation uses:
 
 ## Archive Date
 **Archived**: August 7, 2025
-**Reason**: Cleanup of unused files for V1.6.6 production deployment
+**Reason**: Cleanup of unused files for V1.6.6.6 production deployment
 
 ## Notes
 - All archived files are preserved for reference

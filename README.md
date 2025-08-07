@@ -1,8 +1,8 @@
-# Engent Labs: Active Learning Platform V1.6.6
+# Engent Labs: Active Learning Platform V1.6.6.6
 
 A GPT-powered active learning platform for deeper understanding across multiple domains. Built with React, Vite, and modern web technologies.
 
-## 🚀 V1.6.6 Features
+## 🚀 V1.6.6.6 Features
 
 ### 🧹 Bullet Point Sanitization (NEW)
 - **Universal Cleanup**: Removes unwanted markdown list markers (`-`, `*`, `•`)
@@ -331,7 +331,7 @@ Each course can customize through backend metadata:
 ### Version Management
 ```bash
 # Create new version
-git tag -a v1.6.6 -m "Version 1.6.6: Enhanced Course Selection and Bullet Sanitization"
+git tag -a v1.6.6.6 -m "Version 1.6.6.6: Enhanced Course Selection and Bullet Sanitization"
 
 # Push tags
 git push origin --tags
@@ -387,7 +387,7 @@ For support and questions:
 
 ---
 
-**Version**: V1.6.6  
+**Version**: V1.6.6.6  
 **Last Updated**: January 2025  
 **Status**: Production Ready ✅  
 **Test Status**: 35/35 tests passing ✅  
