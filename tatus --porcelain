@@ -1,0 +1,5 @@
+[33m844521c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;33mtag: [m[1;33mV1.6.5.0[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m  Fix: Corrected Gap Between History Dropdown and Input Field
+[33m157712f[m  Adjust: Increased Gap Between History Dropdown and Input Field
+[33m3923b7c[m  Fix: Restored Gap Between History Dropdown and Input Field
+[33m759e6c0[m  Fix: Reduced Gap Between Navbar Title and Input Field
+[33ma3f5675[m  UI Enhancement: Improved Navbar Title Styling and Reduced Spacing

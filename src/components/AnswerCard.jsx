@@ -1,20 +1,35 @@
 import "../App.css";
 import ReactMarkdown from 'react-markdown';
 
-export default function AnswerCard({
-  strategicThinkingLens = "No strategic thinking lens available",
-  storyInAction = "No story available",
-  followUpPrompts = [],
-  conceptsToolsPractice = [],
-  onReflectionPromptClick,
+export default function AnswerCard({ 
+  answer, 
+  sectionTitles = [], 
+  onReflectionPromptClick 
 }) {
+  // Use provided section titles or fallback to 3-section defaults
+  const defaultTitles = ["Strategic Thinking Lens", "Follow-up Prompts", "Concepts/Tools"];
+  const titles = sectionTitles && sectionTitles.length > 0 ? sectionTitles : defaultTitles;
+  
+  // Debug logging
+  console.log("🔧 AnswerCard Debug:", {
+    sectionTitles,
+    titles,
+    titlesLength: titles.length,
+    is3SectionMode: titles.length === 3
+  });
+  
+  // Extract answer properties with fallbacks (no storyInAction)
+  const {
+    strategicThinkingLens = "No strategic thinking lens available",
+    followUpPrompts = [],
+    conceptsToolsPractice = []
+  } = answer || {};
 
   // Helper function to check if content is meaningful (not just fallback message)
   const hasMeaningfulContent = (content) => {
     if (!content) return false;
     const fallbackMessages = [
       "No strategic thinking lens available",
-      "No story available", 
       "No follow-up prompts available",
       "No relevant concepts/tools for this query."
     ];
@@ -108,7 +123,7 @@ export default function AnswerCard({
   return (
     <div data-testid="response">
       <div className="answer-section" data-testid="strategic-thinking-lens">
-        <h3>Strategic Thinking Lens</h3>
+        <h3>{titles[0]}</h3>
         <div>
           {hasMeaningfulContent(strategicThinkingLens) ? (
             renderMarkdownContent(strategicThinkingLens)
@@ -118,24 +133,13 @@ export default function AnswerCard({
         </div>
       </div>
       
-      <div className="answer-section" data-testid="story-in-action">
-        <h3>Story in Action</h3>
-        <div>
-          {hasMeaningfulContent(storyInAction) ? (
-            renderMarkdownContent(storyInAction)
-          ) : (
-            <span className="text-gray-500 italic">No story available</span>
-          )}
-        </div>
-      </div>
-      
       <div className="answer-section" data-testid="followup-prompts">
-        <h3>Follow-up Prompts</h3>
+        <h3>{titles[1]}</h3>
         {renderFollowUpPrompts(followUpPrompts)}
       </div>
       
       <div className="answer-section" data-testid="concepts-section">
-        <h3>Concepts & Tools</h3>
+        <h3>{titles[2]}</h3>
         <div className="concepts-section">
           {conceptsToolsPractice && conceptsToolsPractice.length > 0 ? (
             conceptsToolsPractice.map((concept, idx) => (

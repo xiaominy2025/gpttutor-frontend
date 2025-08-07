@@ -40,14 +40,14 @@ body {
 /* Title Badge - centered in navbar */
 .title-badge {
   background-color: transparent;
-  padding: 6px 16px;
+  padding: 10px 16px; /* Increased top/bottom padding further */
   border-radius: 6px;
   font-weight: 600;
   font-size: 1.25rem;
   color: #6b7280; /* Light gray color for clean UI consistency */
   text-align: center;
   margin: 0; /* Remove margin to ensure proper vertical centering */
-  line-height: 1.2; /* Ensure consistent line height for vertical centering */
+  line-height: 1.4; /* Increased line height to prevent text cutoff */
 }
 
 /* Responsive title classes */

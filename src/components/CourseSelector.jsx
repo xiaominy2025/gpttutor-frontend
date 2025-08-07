@@ -5,17 +5,17 @@ export default function CourseSelector({ onCourseSelect, selectedCourseId = null
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Predefined list of available course IDs - memoized to avoid dependency issues
-  const courseIds = useMemo(() => ['decision', 'marketing', 'strategy'], []);
-
-  // Fallback course data in case backend is unavailable
+  // Fetch available course IDs from backend - with fallback to known courses
+  const [availableCourseIds, setAvailableCourseIds] = useState(['decision', 'marketing', 'strategy']);
+  
+  // Generic fallback course data in case backend is unavailable
   const fallbackCourseData = useMemo(() => ({
     decision: {
       title: "Decision-Making Practice Lab",
       short_name: "Decision Lab",
       description: "Practice strategic decision-making with real-world scenarios",
       tagline: "Master the art of strategic decision-making",
-      placeholder: "How should I approach this strategic decision?",
+      placeholder: "Ask your decision-making question...",
       mobile_title: "Decision Lab"
     },
     marketing: {
@@ -23,7 +23,7 @@ export default function CourseSelector({ onCourseSelect, selectedCourseId = null
       short_name: "Marketing Lab",
       description: "Develop marketing strategies and analyze market dynamics",
       tagline: "Build winning marketing strategies",
-      placeholder: "What marketing approach should I take?",
+      placeholder: "Ask your marketing question...",
       mobile_title: "Marketing Lab"
     },
     strategy: {
@@ -31,7 +31,7 @@ export default function CourseSelector({ onCourseSelect, selectedCourseId = null
       short_name: "Strategy Lab", 
       description: "Enhance strategic thinking and planning capabilities",
       tagline: "Think strategically, act decisively",
-      placeholder: "How can I develop a strategic framework?",
+      placeholder: "Ask your strategy question...",
       mobile_title: "Strategy Lab"
     }
   }), []);
@@ -39,17 +39,55 @@ export default function CourseSelector({ onCourseSelect, selectedCourseId = null
   // Define backend base URL with fallback
   const API_BASE = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
-  // Fetch metadata for all courses
+  // Fetch available course IDs and metadata for all courses
   useEffect(() => {
+    const fetchAvailableCourses = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+        
+        // First, try to fetch available course IDs from backend
+        try {
+          const coursesUrl = `${API_BASE}/api/courses`;
+          console.log("🔧 Fetching available courses from:", coursesUrl);
+          
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+          
+          const response = await fetch(coursesUrl, {
+            signal: controller.signal
+          });
+          
+          clearTimeout(timeoutId);
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.courses && Array.isArray(data.courses)) {
+              console.log("🔧 Available courses from backend:", data.courses);
+              setAvailableCourseIds(data.courses);
+            }
+          }
+        } catch (error) {
+          console.warn("Could not fetch available courses from backend, using fallback:", error);
+          // Keep the default course IDs
+        }
+      } catch (error) {
+        console.error("Error in fetchAvailableCourses:", error);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     const fetchAllCourseMetadata = async () => {
       try {
         setLoading(true);
         setError(false);
         
-        console.log("🔧 Starting to fetch metadata for courses:", courseIds);
+        console.log("🔧 Starting to fetch metadata for courses:", availableCourseIds);
         console.log("🔧 API_BASE:", API_BASE);
         
-        const metadataPromises = courseIds.map(async (courseId) => {
+        const metadataPromises = availableCourseIds.map(async (courseId) => {
           try {
             const url = `${API_BASE}/api/course/${courseId}`;
             console.log(`🔧 Fetching metadata for ${courseId} from:`, url);
@@ -107,8 +145,11 @@ export default function CourseSelector({ onCourseSelect, selectedCourseId = null
       }
     };
 
-    fetchAllCourseMetadata();
-  }, [courseIds, API_BASE]);
+    // First fetch available courses, then fetch metadata
+    fetchAvailableCourses().then(() => {
+      fetchAllCourseMetadata();
+    });
+  }, [API_BASE]);
 
   if (loading) {
     return (
@@ -118,7 +159,7 @@ export default function CourseSelector({ onCourseSelect, selectedCourseId = null
           Loading available courses...
         </p>
         <div className="course-grid">
-          {courseIds.map((courseId) => (
+          {availableCourseIds.map((courseId) => (
             <div key={courseId} className="course-card loading">
               <div className="course-card-header">
                 <h3 className="course-name">Loading...</h3>
@@ -151,7 +192,7 @@ export default function CourseSelector({ onCourseSelect, selectedCourseId = null
       </p>
       
       <div className="course-grid">
-        {courseIds.map((courseId) => {
+        {availableCourseIds.map((courseId) => {
           const courseData = coursesMetadata[courseId] || fallbackCourseData[courseId];
           
           // Always show courses as available, using fallback data if backend is down

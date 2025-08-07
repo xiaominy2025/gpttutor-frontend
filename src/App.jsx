@@ -31,6 +31,28 @@ function App() {
   const [metadata, setMetadata] = useState(null);
   const [metadataError, setMetadataError] = useState(false);
   
+  // Extract section titles from metadata
+  const sectionTitles = metadata?.sections_titles || [];
+  
+  // Debug logging for section titles
+  console.log("🔧 App.jsx Debug:", {
+    metadata: metadata ? "LOADED" : "NULL",
+    sectionTitles,
+    sectionTitlesLength: sectionTitles.length,
+    metadataKeys: metadata ? Object.keys(metadata) : []
+  });
+  
+  // Monitor metadata changes
+  useEffect(() => {
+    if (metadata) {
+      console.log("🔧 Metadata changed:", {
+        title: metadata.title,
+        sections_titles: metadata.sections_titles,
+        sections_titles_length: metadata.sections_titles?.length || 0
+      });
+    }
+  }, [metadata]);
+  
   // Question history state - stores last 5 question-answer pairs
   const [questionHistory, setQuestionHistory] = useState([]);
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1); // -1 means current question
@@ -95,8 +117,11 @@ function App() {
       const data = await response.json();
       console.log("🔧 Raw metadata response:", data);
       // V1.6.5 backend wraps metadata inside "metadata"
-      setMetadata(data.metadata);
-      console.log("🔧 Set metadata to:", data.metadata);
+      const metadata = data.metadata;
+      console.log("🔧 Set metadata to:", metadata);
+      console.log("🔧 Metadata sections_titles:", metadata?.sections_titles);
+      console.log("🔧 Metadata keys:", metadata ? Object.keys(metadata) : []);
+      setMetadata(metadata);
     } catch (error) {
       console.error("Error fetching metadata:", error);
       setMetadataError(true);
@@ -368,7 +393,7 @@ function App() {
               {/* Loading Mode */}
               {loading && (
                 <div className="answer-body">
-                  {(metadata.sections_titles || []).map((title, index) => (
+                  {sectionTitles.map((title, index) => (
                     <SkeletonSection key={index} title={title} />
                   ))}
                 </div>
@@ -387,13 +412,18 @@ function App() {
                   />
                   
                   <AnswerCard 
-                    strategicThinkingLens={answer.strategicThinkingLens}
-                    storyInAction={answer.storyInAction}
-                    followUpPrompts={answer.followUpPrompts || []}
-                    conceptsToolsPractice={answer.conceptsToolsPractice || []}
+                    answer={answer}
+                    sectionTitles={sectionTitles}
                     key={JSON.stringify(answer)}
                     onReflectionPromptClick={handleReflectionPromptClick}
                   />
+                  {/* Debug info */}
+                  {console.log("🔧 AnswerCard render debug:", {
+                    sectionTitles,
+                    sectionTitlesLength: sectionTitles.length,
+                    metadata: metadata ? "LOADED" : "NULL",
+                    selectedCourseId
+                  })}
                 </div>
               )}
             </div>
