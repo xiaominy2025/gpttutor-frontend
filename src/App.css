@@ -1515,6 +1515,30 @@ button:hover, button:focus {
   }
 }
 
+/* Rejection panel styling for abuse protection */
+.rejection-panel {
+  background-color: #fff8e1;
+  border-left: 4px solid #fbc02d;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rejection-panel h3 {
+  color: #e65100;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.rejection-panel p {
+  color: #795548;
+  margin: 0;
+  line-height: 1.5;
+}
+
 
 
 

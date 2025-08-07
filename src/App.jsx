@@ -207,6 +207,42 @@ function App() {
       console.log("🔍 Backend response data type:", typeof responseData);
       console.log("🔍 Backend response keys:", Object.keys(responseData || {}));
       
+      // ✅ Check for rejection status first (before structure validation)
+      if (responseData && responseData.status === "rejected") {
+        console.log("⚠️ Backend rejected the query:", responseData);
+        setAnswer({
+          status: "rejected",
+          message: responseData.message || "This question appears to be outside the scope of strategic thinking and business analysis."
+        });
+        return;
+      }
+      
+      // Also check for rejection in nested structure
+      if (responseData && responseData.data && responseData.data.status === "rejected") {
+        console.log("⚠️ Backend rejected the query (nested):", responseData.data);
+        setAnswer({
+          status: "rejected",
+          message: responseData.data.message || "This question appears to be outside the scope of strategic thinking and business analysis."
+        });
+        return;
+      }
+      
+      // Check for rejection in other possible locations
+      if (responseData && responseData.data && responseData.data.answer && responseData.data.answer.status === "rejected") {
+        console.log("⚠️ Backend rejected the query (in answer):", responseData.data.answer);
+        setAnswer({
+          status: "rejected",
+          message: responseData.data.answer.message || "This question appears to be outside the scope of strategic thinking and business analysis."
+        });
+        return;
+      }
+      
+      // Log the full structure for debugging
+      console.log("🔍 Full responseData structure:", JSON.stringify(responseData, null, 2));
+      if (responseData && responseData.data) {
+        console.log("🔍 responseData.data structure:", JSON.stringify(responseData.data, null, 2));
+      }
+      
       // Check if the response has the expected structure
       if (!responseData || !responseData.data || !responseData.data.answer) {
         console.error("❌ Invalid response structure:", responseData);

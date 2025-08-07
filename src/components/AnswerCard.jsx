@@ -6,6 +6,16 @@ export default function AnswerCard({
   sectionTitles = [], 
   onReflectionPromptClick 
 }) {
+  // ✅ Handle rejected query from backend
+  if (answer && answer.status === "rejected") {
+    return (
+      <div className="rejection-panel">
+        <h3>⚠️ Off-topic Question</h3>
+        <p>{answer.message || "This question appears to be outside the scope of strategic thinking and business analysis."}</p>
+      </div>
+    );
+  }
+
   // Use provided section titles or fallback to 3-section defaults
   const defaultTitles = ["Strategic Thinking Lens", "Follow-up Prompts", "Concepts/Tools"];
   const titles = sectionTitles && sectionTitles.length > 0 ? sectionTitles : defaultTitles;
