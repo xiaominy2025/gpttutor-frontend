@@ -4,7 +4,8 @@ import ReactMarkdown from 'react-markdown';
 export default function AnswerCard({ 
   answer, 
   sectionTitles = [], 
-  onReflectionPromptClick 
+  onReflectionPromptClick,
+  onAnswer
 }) {
   // ✅ Handle rejected query from backend
   if (answer && answer.status === "rejected") {
@@ -12,6 +13,20 @@ export default function AnswerCard({
       <div className="rejection-panel">
         <h3>⚠️ Off-topic Question</h3>
         <p>{answer.message || "This question appears to be outside the scope of strategic thinking and business analysis."}</p>
+      </div>
+    );
+  }
+
+  // ✅ Handle simple string responses from backend
+  if (typeof answer === 'string') {
+    return (
+      <div className="answer-container">
+        <div className="answer-section">
+          <h3 className="section-title">Response</h3>
+          <div className="section-content">
+            <ReactMarkdown>{answer}</ReactMarkdown>
+          </div>
+        </div>
       </div>
     );
   }
@@ -62,28 +77,52 @@ export default function AnswerCard({
 
     // Clean prompts: trim whitespace, remove leading dashes, and filter out empty strings
     const cleanPrompts = prompts
-      .map(p => p.trim())
+      .map(p => (typeof p === 'string' ? p : String(p || '')).trim())
       .map(p => p.replace(/^[-*•]\s*/, '')) // Remove leading dash, asterisk, or bullet
       .filter(p => p.length > 0 && hasMeaningfulContent(p));
 
-    if (cleanPrompts.length === 0) {
+    // If a single item contains multiple questions, split them into separate prompts
+    const splitIntoQuestions = (text) => {
+      if (!text || typeof text !== 'string') return [];
+      // First, normalize common separators like " - " that appear between questions
+      const normalized = text.replace(/\s*-\s*/g, ' ').trim();
+      // Split by question marks and re-attach the delimiter
+      const parts = normalized.split('?')
+        .map(s => s.trim())
+        .filter(Boolean)
+        .map(s => s.endsWith('?') ? s : s + '?');
+      // If no question marks were found, return the original text
+      return parts.length > 0 ? parts : [text];
+    };
+
+    const expandedPrompts = cleanPrompts.flatMap(splitIntoQuestions)
+      .map(p => p.replace(/^[-*•]\s*/, '').trim())
+      .filter(Boolean);
+
+    if (expandedPrompts.length === 0) {
       return <p className="text-gray-500 italic">No follow-up prompts available</p>;
     }
 
+    // Render as a clickable numbered list
     return (
-      <ul>
-        {cleanPrompts.map((prompt, i) => (
-          <li 
-            key={i} 
+      <ol className="list-decimal ml-6 space-y-2">
+        {expandedPrompts.map((prompt, i) => (
+          <li
+            key={i}
             data-testid={`followup-prompt-${i}`}
-            onClick={() => handlePromptClick(prompt)}
-            className="reflection-prompt-item cursor-pointer hover:bg-blue-50 hover:text-blue-700 p-2 rounded transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
-            title="Click to load this question into the input box"
+            onClick={() => {
+              if (onReflectionPromptClick) {
+                onReflectionPromptClick(prompt);
+              }
+            }}
+            className="cursor-pointer hover:text-blue-700"
+            style={{ cursor: 'pointer' }}
+            title="Click to ask this question"
           >
             {prompt}
           </li>
         ))}
-      </ul>
+      </ol>
     );
   };
 
@@ -117,18 +156,49 @@ export default function AnswerCard({
     return null;
   };
 
-  // Helper function to handle reflection prompt click
-  const handlePromptClick = (prompt) => {
-    if (onReflectionPromptClick) {
-      onReflectionPromptClick(prompt);
-      // Scroll to the input box for better UX
-      const textarea = document.querySelector('.question-textarea');
-      if (textarea) {
-        textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        textarea.focus();
+  // Helper function to deduplicate concepts
+  const deduplicateConcepts = (concepts) => {
+    if (!Array.isArray(concepts)) return [];
+    
+    console.log('🔍 Original concepts array:', concepts);
+    
+    const seen = new Set();
+    const uniqueConcepts = [];
+    
+    concepts.forEach((concept, index) => {
+      let conceptKey;
+      
+      // Normalize the concept for comparison
+      if (typeof concept === 'string') {
+        // Remove leading/trailing whitespace and normalize
+        conceptKey = concept.trim().toLowerCase();
+        // Remove common prefixes like "- " or "* "
+        conceptKey = conceptKey.replace(/^[-*•]\s*/, '');
+      } else if (concept && concept.term) {
+        conceptKey = concept.term.trim().toLowerCase();
+      } else if (concept && concept.definition) {
+        // If only definition exists, use first part as key
+        conceptKey = concept.definition.trim().toLowerCase().split(':')[0];
+      } else {
+        conceptKey = JSON.stringify(concept).toLowerCase();
       }
-    }
+      
+      console.log(`🔍 Concept ${index}:`, concept, 'Normalized Key:', conceptKey);
+      
+      if (!seen.has(conceptKey) && conceptKey.length > 0) {
+        seen.add(conceptKey);
+        uniqueConcepts.push(concept);
+        console.log(`✅ Added unique concept: ${conceptKey}`);
+      } else {
+        console.log(`❌ Skipped duplicate concept: ${conceptKey}`);
+      }
+    });
+    
+    console.log('🔍 Deduplicated concepts:', uniqueConcepts);
+    return uniqueConcepts;
   };
+
+  // Follow-up click handling now delegated to parent via onReflectionPromptClick
 
   return (
     <div data-testid="response">
@@ -143,16 +213,18 @@ export default function AnswerCard({
         </div>
       </div>
       
-      <div className="answer-section" data-testid="followup-prompts">
+      <div id="followUpContainer" className="answer-section" data-testid="followup-prompts">
         <h3>{titles[1]}</h3>
-        {renderFollowUpPrompts(followUpPrompts)}
+        <div id="followUpPrompts">
+          {renderFollowUpPrompts(followUpPrompts)}
+        </div>
       </div>
       
       <div className="answer-section" data-testid="concepts-section">
         <h3>{titles[2]}</h3>
         <div className="concepts-section">
           {conceptsToolsPractice && conceptsToolsPractice.length > 0 ? (
-            conceptsToolsPractice.map((concept, idx) => (
+            deduplicateConcepts(conceptsToolsPractice).map((concept, idx) => (
               <div key={idx} data-testid={`concept-${idx}`}>
                 {renderConcept(concept)}
               </div>

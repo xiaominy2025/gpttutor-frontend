@@ -1,0 +1,4 @@
+# Copy this file to terraform.tfvars and update with your values
+s3_bucket_name = "your-s3-bucket-name"
+acm_certificate_arn = "arn:aws:acm:us-east-1:YOUR_ACCOUNT_ID:certificate/YOUR_CERT_ID"
+domain_names = ["engentlabs.com", "www.engentlabs.com"]

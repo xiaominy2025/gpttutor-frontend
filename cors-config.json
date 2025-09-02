@@ -1,0 +1,8 @@
+{
+  "AllowOrigins": ["https://www.engentlabs.com", "https://engentlabs.com"],
+  "AllowMethods": ["GET", "POST", "OPTIONS"],
+  "AllowHeaders": ["Content-Type", "Authorization"],
+  "ExposeHeaders": ["*"],
+  "MaxAge": 86400,
+  "AllowCredentials": false
+}

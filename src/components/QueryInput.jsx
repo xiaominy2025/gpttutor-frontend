@@ -39,10 +39,12 @@ export default function QueryInput({ onSubmit, value = "", onChange, loading = f
 
   return (
     <form
+      id="queryForm"
       className="question-form"
       onSubmit={handleSubmit}
     >
       <textarea
+        id="queryInput"
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}

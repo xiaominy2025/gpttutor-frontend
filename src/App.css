@@ -36,14 +36,185 @@ body {
   line-height: 1.65;
 }
 
+/* Splash Screen Styles */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--thinkpal-blue) 0%, var(--thinkpal-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  color: white;
+}
+
+.splash-content {
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+.splash-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.splash-logo img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.splash-subtitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.splash-tagline {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.splash-blue { color: var(--thinkpal-yellow); }
+.splash-white { color: white; }
+.splash-yellow { color: var(--thinkpal-yellow); }
+
+.splash-click-hint {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  animation: pulse 2s infinite;
+  margin-top: 3rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+/* Navigation Styles */
+.navbar {
+  background: white;
+  border-bottom: 1px solid var(--thinkpal-gray);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-button {
+  background: transparent;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  padding: 0.2rem 0.3rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.back-button:hover {
+  background: #f9fafb;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.content-area {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.main-wrapper {
+  background: white;
+  border-radius: var(--thinkpal-radius);
+  box-shadow: var(--thinkpal-shadow);
+  padding: 2rem;
+}
+
+.question-wrapper {
+  margin-bottom: 2rem;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  color: var(--thinkpal-blue);
+  font-weight: 500;
+}
+
+.answer-body {
+  margin-top: 2rem;
+}
+
+/* Simple answer container for string responses */
+.answer-container {
+  background: white;
+  border-radius: var(--thinkpal-radius);
+  box-shadow: var(--thinkpal-shadow);
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.answer-section {
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  color: var(--thinkpal-blue);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--thinkpal-gray);
+  padding-bottom: 0.5rem;
+}
+
+.section-content {
+  line-height: 1.6;
+  color: var(--thinkpal-dark);
+}
+
 /* Main layout containers - ensure all are centered */
 /* Title Badge - centered in navbar */
 .title-badge {
   background-color: transparent;
-  padding: 10px 16px; /* Increased top/bottom padding further */
+  padding: 8px 12px; /* Reduced padding */
   border-radius: 6px;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.1rem; /* Reduced font size */
   color: #6b7280; /* Light gray color for clean UI consistency */
   text-align: center;
   margin: 0; /* Remove margin to ensure proper vertical centering */
@@ -101,6 +272,7 @@ body {
 
 .splash-logo img {
   width: 160px;
+  
   height: auto;
   margin-bottom: 0;
   filter: drop-shadow(0 0 8px rgba(0,0,0,0.2));
@@ -491,9 +663,10 @@ body {
 
 /* Restore original section title styling */
 .answer-section h3 {
-  font-weight: bold;
+  font-weight: 700;
   color: #1d75da;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  letter-spacing: -0.2px;
   margin-bottom: 0.75rem;
 }
 
@@ -1122,6 +1295,14 @@ button:hover, button:focus {
   text-align: center;
 }
 
+.navbar-title, .title-badge {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: black;
+  margin: 0;
+  text-align: center;
+}
+
 .main-centered {
   max-width: 800px;
   width: 90%;
@@ -1399,13 +1580,13 @@ button:hover, button:focus {
 .skeleton-section {
   padding: 1rem;
   border-radius: 8px;
-  background: #f8f9fa;
+  background: #fafbfc;
   margin-bottom: 1rem;
 }
 
 .skeleton-title {
   height: 24px;
-  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background: linear-gradient(90deg, #eee 25%, #f6f7f8 50%, #eee 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
   border-radius: 4px;
@@ -1415,7 +1596,7 @@ button:hover, button:focus {
 
 .skeleton-line {
   height: 16px;
-  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background: linear-gradient(90deg, #eee 25%, #f6f7f8 50%, #eee 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
   border-radius: 4px;

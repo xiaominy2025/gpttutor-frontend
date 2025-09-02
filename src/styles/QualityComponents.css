@@ -1,0 +1,235 @@
+/* Quality Indicator Styles */
+.quality-indicator {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+  border-left: 4px solid;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.quality-loading {
+  background-color: #e3f2fd;
+  border-left-color: #2196f3;
+  color: #1565c0;
+}
+
+.quality-warning {
+  background-color: #fff3e0;
+  border-left-color: #ff9800;
+  color: #e65100;
+}
+
+.quality-success {
+  background-color: #e8f5e8;
+  border-left-color: #4caf50;
+  color: #2e7d32;
+}
+
+.quality-consistent {
+  background-color: #e8f5e8;
+  border-left-color: #4caf50;
+  color: #2e7d32;
+}
+
+.quality-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.quality-score-badge {
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+.quality-tip {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.quality-explanation {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.quality-explanation p {
+  margin: 4px 0;
+}
+
+/* Response Display Styles */
+.response-container {
+  margin-top: 24px;
+}
+
+.quality-warning-banner {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border: 1px solid #ffb74d;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.1);
+}
+
+.warning-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.warning-header .icon {
+  font-size: 24px;
+}
+
+.warning-header .title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e65100;
+}
+
+.warning-body p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.retry-button {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.retry-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.retry-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.retry-note {
+  margin-top: 8px;
+  color: #666;
+  font-style: italic;
+}
+
+.quality-score {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.score-bar {
+  flex: 1;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9800 0%, #4caf50 100%);
+  transition: width 0.3s ease;
+}
+
+.score-text {
+  font-weight: 600;
+  color: #333;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Response content styling */
+.response-content {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.response-content h3 {
+  color: #333;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.content-text {
+  line-height: 1.6;
+  color: #444;
+}
+
+.prompts-list {
+  list-style: none;
+  padding: 0;
+}
+
+.prompt-item {
+  background: #f8f9fa;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border-left: 3px solid #007bff;
+}
+
+.concepts-tools {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+/* Cache Management Button */
+.cache-clear-button {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: auto;
+}
+
+.cache-clear-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* Loading Message Timing Styles */
+.loading-message .timing-info {
+  color: #6b7280; /* Medium gray color */
+  font-size: 0.875rem; /* Slightly smaller than main text */
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+/* All timing information is now consistently gray */

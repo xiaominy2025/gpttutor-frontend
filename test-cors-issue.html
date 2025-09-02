@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Issue Diagnosis - Engent Labs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .error {
+            background-color: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .success {
+            background-color: #dcfce7;
+            border: 1px solid #22c55e;
+            color: #166534;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .info {
+            background-color: #dbeafe;
+            border: 1px solid #3b82f6;
+            color: #1e40af;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #2563eb;
+        }
+        pre {
+            background-color: #f3f4f6;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 CORS Issue Diagnosis - Engent Labs</h1>
+    
+    <div class="info">
+        <h3>Issue Identified</h3>
+        <p>The frontend at <strong>https://www.engentlabs.com</strong> cannot communicate with the backend Lambda function due to CORS (Cross-Origin Resource Sharing) configuration issues.</p>
+    </div>
+
+    <div class="error">
+        <h3>🚨 Current Error</h3>
+        <p><strong>CORS Policy Error:</strong> Origin 'https://www.engentlabs.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.</p>
+    </div>
+
+    <h2>🔧 Required Backend Fix</h2>
+    
+    <div class="info">
+        <h3>Backend Lambda Function Needs These CORS Headers:</h3>
+        <pre>Access-Control-Allow-Origin: https://www.engentlabs.com
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Access-Control-Max-Age: 86400</pre>
+    </div>
+
+    <h2>🧪 Test Backend Connectivity</h2>
+    
+    <button onclick="testHealth()">Test Health Endpoint</button>
+    <button onclick="testQuery()">Test Query Endpoint</button>
+    <button onclick="testCourseConfig()">Test Course Config</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const BACKEND_URL = 'https://uvfr5y7mwffusf4c2avkbpc3240hacyi.lambda-url.us-east-2.on.aws';
+        
+        function addResult(message, isError = false) {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = isError ? 'error' : 'success';
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            results.appendChild(div);
+        }
+
+        async function testHealth() {
+            try {
+                addResult('Testing health endpoint...');
+                const response = await fetch(`${BACKEND_URL}/health`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult(`✅ Health check successful: ${JSON.stringify(data)}`);
+                } else {
+                    addResult(`❌ Health check failed: ${response.status} ${response.statusText}`, true);
+                }
+            } catch (error) {
+                addResult(`❌ Health check error: ${error.message}`, true);
+            }
+        }
+
+        async function testQuery() {
+            try {
+                addResult('Testing query endpoint...');
+                const response = await fetch(`${BACKEND_URL}/query`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        query: 'How do I make a decision?',
+                        course_id: 'decision',
+                        user_id: 'test'
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult(`✅ Query successful: ${JSON.stringify(data).substring(0, 200)}...`);
+                } else {
+                    addResult(`❌ Query failed: ${response.status} ${response.statusText}`, true);
+                }
+            } catch (error) {
+                addResult(`❌ Query error: ${error.message}`, true);
+            }
+        }
+
+        async function testCourseConfig() {
+            try {
+                addResult('Testing course config endpoint...');
+                const response = await fetch(`${BACKEND_URL}/courses/decision/config`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult(`✅ Course config successful: ${JSON.stringify(data).substring(0, 200)}...`);
+                } else {
+                    addResult(`❌ Course config failed: ${response.status} ${response.statusText}`, true);
+                }
+            } catch (error) {
+                addResult(`❌ Course config error: ${error.message}`, true);
+            }
+        }
+
+        // Auto-test on load
+        window.onload = function() {
+            addResult('🔍 Starting CORS diagnosis...');
+            setTimeout(testHealth, 1000);
+        };
+    </script>
+</body>
+</html>

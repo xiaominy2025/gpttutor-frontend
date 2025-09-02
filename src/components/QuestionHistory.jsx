@@ -5,7 +5,8 @@ export default function QuestionHistory({
   currentIndex, 
   onLoadHistory, 
   onReturnToCurrent,
-  visible = true 
+  visible = true,
+  currentQuestion = ''
 }) {
   if (!visible || history.length === 0) {
     return null;
@@ -30,7 +31,11 @@ export default function QuestionHistory({
           }
         }}
       >
-        <option value={-1}>Current Question</option>
+        <option value={-1}>
+          {currentQuestion && currentQuestion.trim().length > 0 
+            ? (currentQuestion.length > 100 ? `${currentQuestion.substring(0,100)}...` : currentQuestion)
+            : 'Current Question'}
+        </option>
         {history.map((item, index) => (
           <option key={item.id} value={index}>
             {item.question.length > 100 
