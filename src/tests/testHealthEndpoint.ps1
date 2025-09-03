@@ -2,7 +2,7 @@
 # This tests if the /health endpoint can handle POST requests with query data
 
 param(
-    [string]$LambdaUrl = "https://uvfr5y7mwffusf4c2avkbpc3240hacyi.lambda-url.us-east-2.on.aws/health",
+    [string]$LambdaUrl = "https://ppoh5tatv4cnr7x7gzgha5k6wu0jrisc.lambda-url.us-east-2.on.aws/health",
     [string]$TestOrigin = "https://www.engentlabs.com"
 )
 

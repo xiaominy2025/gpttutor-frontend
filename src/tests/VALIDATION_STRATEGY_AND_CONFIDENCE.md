@@ -6,7 +6,7 @@ This document outlines the comprehensive validation strategy for the pre-warming
 
 ## 🔗 Backend Integration Status
 
-✅ **Lambda Backend**: `https://uvfr5y7mwffusf4c2avkbpc3240hacyi.lambda-url.us-east-2.on.aws/`  
+✅ **Lambda Backend**: `https://ppoh5tatv4cnr7x7gzgha5k6wu0jrisc.lambda-url.us-east-2.on.aws/`  
 ✅ **CORS Configuration**: Properly configured for `engentlabs.com` domains  
 ✅ **QueryService Integration**: Updated to use direct Lambda URL  
 

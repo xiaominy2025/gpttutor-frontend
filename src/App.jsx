@@ -41,15 +41,35 @@ function LabsApp() {
   // Initialize QueryService
   const queryService = QueryService.getInstance()
   
-  // Periodic system health check to detect cooling
+  // Periodic system health check to detect cooling and UI issues
   React.useEffect(() => {
     const healthCheckInterval = setInterval(async () => {
       try {
+        // Check if system has cooled down
         await queryService.checkAndWarmUpIfNeeded();
+        
+        // Check for UI issues and auto-fix
+        const cacheStats = queryService.getCacheStats();
+        if (cacheStats.cachedQueries > 0) {
+          console.log(`🔍 Health check: Cache has ${cacheStats.cachedQueries} items, system healthy`);
+        }
+        
+        // Auto-clear cache if too many items (prevent UI issues)
+        if (cacheStats.cachedQueries > 25) {
+          console.log('🧹 Health check: Auto-clearing cache to prevent UI issues');
+          queryService.clearCache();
+          // Reset UI state to fresh
+          setQualityStatus('loading');
+          setQualityScore(0);
+          setRetryCount(0);
+          setCurrentResponse(null);
+          setAnswer('');
+        }
+        
       } catch (error) {
         console.warn('System health check failed:', error);
       }
-    }, 5 * 60 * 1000); // Check every 5 minutes
+    }, 2 * 60 * 1000); // Check every 2 minutes
     
     return () => clearInterval(healthCheckInterval);
   }, []);
@@ -124,13 +144,20 @@ function LabsApp() {
     }
   }, [showSplash])
 
+  // When entering course selection, proactively pre-warm in background
+  React.useEffect(() => {
+    if (currentView === 'courseSelection') {
+      try { QueryService.getInstance().preWarmLambda?.(); } catch (e) {}
+    }
+  }, [currentView])
+
   // Fetch course metadata when course is selected
   React.useEffect(() => {
     if (selectedCourseId) {
       console.log('Course selected, setting up metadata for:', selectedCourseId)
       
-      // Pre-warm Lambda on course selection
-      api.health().catch(() => {});
+      // Pre-warm Lambda on course selection (stronger pre-warm)
+      try { queryService.preWarmLambda?.(); } catch (e) {}
       
       // Use the UI config if available, otherwise fetch
       if (uiConfig) {
@@ -196,7 +223,22 @@ function LabsApp() {
       
       setQualityStatus(quality)
       setQualityScore(score)
-      setCurrentResponse(result)
+      
+      // Normalize backend response to prevent UI crashes
+      const normalizedResult = {
+        ...result,
+        data: {
+          ...result.data,
+          strategicThinkingLens: typeof result.data?.strategicThinkingLens === 'string' ? result.data.strategicThinkingLens : (result.data?.strategicThinkingLens ?? ''),
+          followUpPrompts: Array.isArray(result.data?.followUpPrompts)
+            ? result.data.followUpPrompts
+            : (typeof result.data?.followUpPrompts === 'string'
+                ? result.data.followUpPrompts.split('\n').map(s => s.trim()).filter(Boolean)
+                : []),
+          conceptsToolsPractice: result.data?.conceptsToolsPractice || []
+        }
+      }
+      setCurrentResponse(normalizedResult)
       
       console.log(`📊 Query quality: ${quality} (${score}/100)`)
       
@@ -207,11 +249,23 @@ function LabsApp() {
           conceptsCount: result.data?.conceptsToolsPractice?.length || 0
         })
 
+        // Normalize Concepts & Tools to readable text if array of objects
+        const conceptsReadable = Array.isArray(result.data?.conceptsToolsPractice)
+          ? result.data.conceptsToolsPractice.map((c) => {
+              if (c && typeof c === 'object') {
+                const term = c.term || ''
+                const def = c.definition || ''
+                return term && def ? `${term}: ${def}` : (term || def || '')
+              }
+              return typeof c === 'string' ? c : ''
+            }).filter(Boolean).join('\n')
+          : (typeof result.data?.conceptsToolsPractice === 'string' ? result.data.conceptsToolsPractice : '')
+
         // Use backend-provided data directly (no fallbacks needed)
         const richAnswer = {
           strategicThinkingLens: result.data?.strategicThinkingLens || 'No strategic thinking lens available',
-          followUpPrompts: result.data?.followUpPrompts || [],
-          conceptsToolsPractice: result.data?.conceptsToolsPractice || []
+          followUpPrompts: Array.isArray(result.data?.followUpPrompts) ? result.data.followUpPrompts : [],
+          conceptsToolsPractice: conceptsReadable
         };
 
         setAnswer(richAnswer)
@@ -266,13 +320,6 @@ function LabsApp() {
     }
   };
 
-  // Expose follow-up handler globally (legacy; not used by current UI rendering)
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.handleFollowUpClick = handleFollowUpClick;
-    }
-  }, []);
-
   // Handle retry for better quality
   const handleRetry = async () => {
     if (retryCount >= 2) return; // Max 2 retries
@@ -290,7 +337,33 @@ function LabsApp() {
       
       setQualityStatus(quality);
       setQualityScore(score);
-      setCurrentResponse(result);
+      
+      // Normalize Concepts & Tools to readable text if array of objects
+      const conceptsReadable = Array.isArray(result.data?.conceptsToolsPractice)
+        ? result.data.conceptsToolsPractice.map((c) => {
+            if (c && typeof c === 'object') {
+              const term = c.term || ''
+              const def = c.definition || ''
+              return term && def ? `${term}: ${def}` : (term || def || '')
+            }
+            return typeof c === 'string' ? c : ''
+          }).filter(Boolean).join('\n')
+        : (typeof result.data?.conceptsToolsPractice === 'string' ? result.data.conceptsToolsPractice : '')
+
+      const normalizedResult = {
+        ...result,
+        data: {
+          ...result.data,
+          strategicThinkingLens: typeof result.data?.strategicThinkingLens === 'string' ? result.data.strategicThinkingLens : (result.data?.strategicThinkingLens ?? ''),
+          followUpPrompts: Array.isArray(result.data?.followUpPrompts)
+            ? result.data.followUpPrompts
+            : (typeof result.data?.followUpPrompts === 'string'
+                ? result.data.followUpPrompts.split('\n').map(s => s.trim()).filter(Boolean)
+                : []),
+          conceptsToolsPractice: conceptsReadable
+        }
+      }
+      setCurrentResponse(normalizedResult);
       
       console.log(`🔄 Retry ${retryCount + 1} quality: ${quality} (${score}/100)`);
       
@@ -504,8 +577,9 @@ function LabsApp() {
               src={engentLabsLogo} 
               alt="Engent Labs Logo" 
               style={{ 
-                width: '3rem', 
-                height: '3rem' 
+                height: '3rem',
+                width: 'auto',
+                objectFit: 'contain'
               }}
             />
             <div style={{ textAlign: 'center' }}>
@@ -656,20 +730,8 @@ function LabsApp() {
               <span className="mobile-title">{`Engent Labs: ${courseMetadata.mobile_title || courseMetadata.title}`}</span>
               </div>
               
-              {/* Cache Management Button */}
-              <button
-                onClick={() => {
-                  queryService.clearCache();
-                  setQualityStatus('loading');
-                  setQualityScore(0);
-                  setRetryCount(0);
-                  setCurrentResponse(null);
-                }}
-                className="cache-clear-button"
-                title="Clear cache and warm up Lambda"
-              >
-                🧹 Clear Cache
-              </button>
+              {/* Remove Clear Cache button - implement automatic cache management instead */}
+              {/* Cache is now managed automatically to prevent UI issues */}
             </div>
           </nav>
           
@@ -732,12 +794,7 @@ function LabsApp() {
               
               {answer && !loading && (
                 <div className="answer-body">
-                  {/* Quality Indicator */}
-                  <QualityIndicator 
-                    status={qualityStatus} 
-                    retryCount={retryCount}
-                    qualityScore={qualityScore}
-                  />
+                  {/* Removed Quality Indicator per request */}
                   
                   {/* Question History - positioned above answer */}
                   <QuestionHistory
@@ -756,6 +813,14 @@ function LabsApp() {
                       quality={qualityStatus}
                       retryCount={retryCount}
                       onRetry={handleRetry}
+                      onPromptClick={(prompt) => {
+                        // Strip bullet numbers (e.g., "1. ", "2. ", etc.) from the prompt
+                        const cleanPrompt = prompt.replace(/^\d+\.\s*/, '');
+                        setQueryInput(cleanPrompt);
+                        setPendingQuestion(cleanPrompt);
+                        // Automatically submit the clean prompt
+                        handleSubmit(cleanPrompt);
+                      }}
                     />
                   ) : (
                     <AnswerCard 

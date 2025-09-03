@@ -1,4 +1,4 @@
-$u = 'https://uvfr5y7mwffusf4c2avkbpc3240hacyi.lambda-url.us-east-2.on.aws/query'
+$u = 'https://ppoh5tatv4cnr7x7gzgha5k6wu0jrisc.lambda-url.us-east-2.on.aws/query'
 $h = @{'Content-Type'='application/json'}
 
 # Test Query 1

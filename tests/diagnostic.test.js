@@ -158,7 +158,7 @@ function simulateDiagnosticScript(backendResponse) {
 
   // Simulate JavaScript loading check
   mockDiagnostics.jsLoaded = true
-  mockDiagnostics.apiUrl = 'https://uvfr5y7mwffusf4c2avkbpc3240hacyi.lambda-url.us-east-2.on.aws'
+      mockDiagnostics.apiUrl = 'https://ppoh5tatv4cnr7x7gzgha5k6wu0jrisc.lambda-url.us-east-2.on.aws'
 
   // Simulate backend connectivity check
   if (backendResponse && backendResponse.status === 'success' && backendResponse.data && backendResponse.data.status === 'healthy') {

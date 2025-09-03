@@ -30,7 +30,7 @@ window.engentLabsApi = {
 }
 
 // Mock window.getApiBaseUrl
-window.getApiBaseUrl = vi.fn(() => 'https://uvfr5y7mwffusf4c2avkbpc3240hacyi.lambda-url.us-east-2.on.aws')
+window.getApiBaseUrl = vi.fn(() => 'https://ppoh5tatv4cnr7x7gzgha5k6wu0jrisc.lambda-url.us-east-2.on.aws')
 
 // Mock window.gptTutorDiagnostics
 window.gptTutorDiagnostics = {

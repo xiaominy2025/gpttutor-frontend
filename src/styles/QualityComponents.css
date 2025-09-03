@@ -174,11 +174,69 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* Emphasize section headers */
 .response-content h3 {
-  color: #333;
+  color: #111827;
   margin-bottom: 12px;
   padding-bottom: 8px;
   border-bottom: 2px solid #f0f0f0;
+  font-weight: 700; /* bold headers for sections */
+}
+
+/* Concepts list - subtle accent dots (no brackets/bullets) */
+.concepts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.concepts-item {
+  padding: 8px 0;
+  margin: 4px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: baseline;
+  line-height: 1.5;
+}
+
+.concepts-item:last-child {
+  border-bottom: none;
+}
+
+.concepts-item:hover {
+  background: #fafafa;
+  border-radius: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+.concepts-bracket {
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  background-color: #3b82f6;
+  border-radius: 2px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.concepts-term {
+  font-weight: 400;
+  color: #374151;
+  font-size: 1rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 16px;
+}
+
+.concepts-def {
+  color: #6b7280;
+  font-size: 1rem;
+  line-height: 1.4;
+  flex: 1;
+  margin: 0;
 }
 
 .content-text {
@@ -191,12 +249,24 @@
   padding: 0;
 }
 
+/* Section separators between blocks */
+.section-separator {
+  margin: 20px 0;
+  border-top: 1px solid #eee;
+}
+
+/* Neutral prompt card styling (remove blue bracket) */
 .prompt-item {
   background: #f8f9fa;
   padding: 12px;
   margin: 8px 0;
   border-radius: 6px;
-  border-left: 3px solid #007bff;
+  border-left: none; /* removed blue bracket */
+  border: 1px solid #e9ecef;
+}
+
+.prompt-item:hover {
+  background: #f1f3f5;
 }
 
 .concepts-tools {
@@ -207,21 +277,26 @@
 
 /* Cache Management Button */
 .cache-clear-button {
-  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 400;
   cursor: pointer;
   transition: all 0.2s ease;
   margin-left: auto;
+  opacity: 0.7;
 }
 
 .cache-clear-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+  background: #e9ecef;
+  color: #495057;
+  border-color: #adb5bd;
+  opacity: 1;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Loading Message Timing Styles */
@@ -233,3 +308,91 @@
 }
 
 /* All timing information is now consistently gray */
+
+/* Concepts grid distinct from prompts */
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.concept-card {
+  border: 1px solid #e9ecef;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.concept-term {
+  font-weight: 600;
+  color: #1f2937; /* slate-800 */
+  margin-bottom: 4px;
+}
+
+.concept-def {
+  color: #6b7280; /* slate-500 */
+  line-height: 1.5;
+}
+
+/* Ensure strategic text wraps and isn't clipped */
+.strategic-text p {
+  margin: 0 0 12px 0;
+  white-space: normal;
+  overflow: visible;
+}
+
+/* Section Headers - Consistent styling */
+.response-content h3 {
+  color: #333;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f0f0f0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.strategic-lens, .follow-up-prompts, .concepts-tools {
+  margin-bottom: 24px;
+}
+
+.strategic-lens .content-text {
+  white-space: normal;
+  word-break: break-word;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.prompt-item {
+  background: #f8f9fa;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.prompt-item:hover {
+  background: #f1f3f5;
+  border-color: #cbd5e0;
+}
+
+.prompt-item button {
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.prompt-item button:hover {
+  color: #007bff;
+}

@@ -2,7 +2,7 @@
 # This script tests various common API patterns to find working endpoints
 
 param(
-    [string]$BaseUrl = "https://uvfr5y7mwffusf4c2avkbpc3240hacyi.lambda-url.us-east-2.on.aws",
+    [string]$BaseUrl = "https://ppoh5tatv4cnr7x7gzgha5k6wu0jrisc.lambda-url.us-east-2.on.aws",
     [string]$TestOrigin = "https://www.engentlabs.com"
 )
 

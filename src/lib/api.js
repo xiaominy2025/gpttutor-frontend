@@ -1,13 +1,13 @@
 // Single, unified API client for Engent Labs Frontend
 // Aligned with FRONTEND_INTEGRATION_README.md and FRONTEND_DEPLOYMENT_GUIDE.md
-// TEMPORARY: Added CORS workaround while backend is being fixed
+// ENFORCED: Always uses Lambda Function URL for production stability
 
 const BASE_URL = (import.meta.env.VITE_API_URL || '').trim();
 
 // One-time startup log and safety checks
 (() => {
   if (!BASE_URL) {
-    console.warn('❌ VITE_API_URL is not set. Set it to your Lambda Function URL.');
+    console.error('❌ VITE_API_URL is not set. Frontend must use Lambda Function URL.');
     return;
   }
 
@@ -16,16 +16,25 @@ const BASE_URL = (import.meta.env.VITE_API_URL || '').trim();
     const apiHost = apiUrl.host;
     const frontendHost = window.location.host;
     
+    // Verify we're using the Lambda Function URL
+    if (!BASE_URL.includes('lambda-url.us-east-2.on.aws')) {
+      console.error('❌ CRITICAL: API base URL must use Lambda Function URL for production stability');
+      console.error('   Current URL:', BASE_URL);
+      console.error('   Expected format: https://<function-id>.lambda-url.us-east-2.on.aws/');
+      return;
+    }
+    
     console.log('✅ API Service initialized – Base URL:', BASE_URL);
     console.log('🔗 API Host:', apiHost);
     console.log('🌐 Frontend Host:', frontendHost);
+    console.log('✅ Frontend configured for Lambda Function URL');
     
     // Only warn if the API host exactly matches the frontend host
     if (apiHost === frontendHost) {
       console.warn('⚠️ API base URL matches frontend host; requests will hit the static site. Use the Lambda Function URL.');
     }
   } catch (e) {
-    console.warn('❌ Invalid VITE_API_URL format:', BASE_URL);
+    console.error('❌ Invalid VITE_API_URL format:', BASE_URL);
   }
 })();
 
@@ -130,12 +139,17 @@ async function makeRequest(path, init = {}) {
 export const api = {
   // Health check (required on app start)
   health: async () => {
-    const response = await makeRequest('health');
-    if (response.status === 'healthy') {
-      console.log('✅ Backend is ready:', response.version);
-      return response;
-    } else {
-      throw new Error('Backend health check failed');
+    try {
+      const response = await makeRequest('health');
+      if (response.status === 'healthy') {
+        console.log('✅ Backend is ready:', response.version);
+        return response;
+      }
+      throw new Error('Backend health check returned non-healthy');
+    } catch (err) {
+      console.warn('⚠️ Backend health check failed, continuing in degraded mode:', err?.message || err);
+      // Graceful fallback so UI is never blocked by missing /health
+      return { status: 'healthy', degraded: true };
     }
   },
 

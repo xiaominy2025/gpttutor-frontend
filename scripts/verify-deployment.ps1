@@ -89,7 +89,7 @@ function Test-ProductionURLs {
 function Test-BackendAPI {
     Write-ColorOutput "🔍 Testing backend API..." $Blue
     
-    $backendUrl = "https://uvfr5y7mwffusf4c2avkbpc3240hacyi.lambda-url.us-east-2.on.aws"
+    $backendUrl = "https://ppoh5tatv4cnr7x7gzgha5k6wu0jrisc.lambda-url.us-east-2.on.aws"
     
     try {
         Write-ColorOutput "   Testing backend health endpoint" $Cyan
@@ -141,7 +141,7 @@ function Show-VerificationSummary {
     Write-ColorOutput "Production URLs:" $Cyan
     Write-ColorOutput "  • https://engentlabs.com" $Cyan
     Write-ColorOutput "  • https://www.engentlabs.com" $Cyan
-    Write-ColorOutput "Backend API: https://uvfr5y7mwffusf4c2avkbpc3240hacyi.lambda-url.us-east-2.on.aws" $Cyan
+    Write-ColorOutput "Backend API: https://ppoh5tatv4cnr7x7gzgha5k6wu0jrisc.lambda-url.us-east-2.on.aws" $Cyan
     Write-ColorOutput ""
     Write-ColorOutput "🎯 Next Steps:" $Blue
     Write-ColorOutput "1. Open https://engentlabs.com in your browser" $Cyan
