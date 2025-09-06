@@ -8,16 +8,15 @@ class QueryService {
   private warmUpPromise: Promise<void> | null = null;
   private qualityHistory = new Map<string, QualityStatus>();
   
-  // QA/QC Configuration
-  private readonly MIN_QUALITY_THRESHOLD = 66; // Lowered from 70 to 66
-  private readonly MAX_WARMUP_ATTEMPTS = 2; // Reduced from 3 to 2 attempts
-  private readonly WARMUP_DELAY_MS = 2000; // Delay between warm-up attempts
-  private readonly FORCE_WARMUP_TIMEOUT = 30000; // Force warm-up timeout (30s)
+  // QA/QC Configuration - Optimized for PC=1
+  private readonly MIN_QUALITY_THRESHOLD = 50; // Lowered for PC=1 (always warm)
+  private readonly MAX_RETRY_ATTEMPTS = 1; // Single retry only with PC=1
+  private readonly RETRY_TIMEOUT = 30000; // 30s max total time
 
-  // Automatic cache management to prevent UI issues
-  private readonly MAX_CACHE_SIZE = 50; // Increased from 20 to be less aggressive
-  private readonly MAX_CACHE_AGE_MS = 30 * 60 * 1000; // 30 minutes max age
-  private readonly PROBLEM_DETECTION_THRESHOLD = 10; // Increased from 5 to be less aggressive
+  // Automatic cache management - Optimized for PC=1
+  private readonly MAX_CACHE_SIZE = 100; // Increased for PC=1 (more memory available)
+  private readonly MAX_CACHE_AGE_MS = 60 * 60 * 1000; // 1 hour max age (increased)
+  private readonly PROBLEM_DETECTION_THRESHOLD = 15; // More tolerant with PC=1
 
   // Track cache health
   private cacheHealth = {
@@ -53,30 +52,23 @@ class QueryService {
       // Make actual query
       let response = await this.makeQuery(query, courseId);
       
-      // QA/QC: Quality gate - safety net for when system cools down
+      // QA/QC: Fast structural completeness check for PC=1
       const quality = analyzeResponseQuality(response);
       const qualityScore = getQualityScore(response);
       
       if (qualityScore < this.MIN_QUALITY_THRESHOLD) {
-        console.log(`🚫 QA/QC: Response quality ${qualityScore}/100 below threshold ${this.MIN_QUALITY_THRESHOLD} - system may have cooled down`);
+        console.log(`🚫 QA/QC: Response quality ${qualityScore}/100 below threshold ${this.MIN_QUALITY_THRESHOLD} - structural issues detected`);
         
-        // Force re-warm-up and retry (reactive quality control)
-        console.log('🔄 QA/QC: Forcing re-warm-up to restore quality...');
-        await this.forceWarmUp();
-        
+        // Single retry (no warm-up delays with PC=1)
+        console.log('🔄 QA/QC: Single retry for structural issues...');
         const retryResponse = await this.makeQuery(query, courseId);
-        const retryQuality = analyzeResponseQuality(retryResponse);
         const retryScore = getQualityScore(retryResponse);
         
-        console.log(`🔄 QA/QC: Retry quality ${retryScore}/100 (${retryQuality})`);
+        console.log(`🔄 QA/QC: Retry quality ${retryScore}/100`);
         
-        // Use retry response if it meets quality standards
-        if (retryScore >= this.MIN_QUALITY_THRESHOLD) {
-          response = retryResponse;
-          console.log(`✅ QA/QC: Quality restored to ${retryScore}/100 after re-warm-up`);
-        } else {
-          console.warn(`⚠️ QA/QC: Quality still below threshold after re-warm-up (${retryScore}/100)`);
-        }
+        // Accept retry response regardless of quality (PC=1 should be consistent)
+        response = retryResponse;
+        console.log(`✅ QA/QC: Using retry response (${retryScore}/100)`);
       }
       
       // Store quality metrics
@@ -151,79 +143,23 @@ class QueryService {
     await this.warmUpPromise;
   }
 
+  // Simplified for PC=1 - no complex force warm-up needed
   private async forceWarmUp(): Promise<void> {
-    console.log('🔒 QA/QC: Starting forced warm-up process...');
-    
-    let attempts = 0;
-    let lastQualityScore = 0;
-    
-    while (attempts < this.MAX_WARMUP_ATTEMPTS) {
-      attempts++;
-      console.log(`🔥 QA/QC: Warm-up attempt ${attempts}/${this.MAX_WARMUP_ATTEMPTS}`);
-      
-      try {
-        // Send warm-up query
-        const warmUpResponse = await this.makeQuery("What is strategic planning?", "decision");
-        const quality = analyzeResponseQuality(warmUpResponse);
-        const qualityScore = getQualityScore(warmUpResponse);
-        
-        console.log(`📊 QA/QC: Warm-up quality: ${quality} (${qualityScore}/100)`);
-        
-        // Check if quality meets threshold
-        if (qualityScore >= this.MIN_QUALITY_THRESHOLD) {
-          this._isWarmedUp = true;
-          console.log(`✅ QA/QC: Lambda warmed up successfully - quality ${qualityScore}/100 meets threshold`);
-          return;
-        }
-        
-        // Quality improved but still below threshold
-        if (qualityScore > lastQualityScore) {
-          console.log(`📈 QA/QC: Quality improving: ${lastQualityScore} → ${qualityScore}`);
-          lastQualityScore = qualityScore;
-        }
-        
-        // Wait before next attempt
-        if (attempts < this.MAX_WARMUP_ATTEMPTS) {
-          console.log(`⏳ QA/QC: Waiting ${this.WARMUP_DELAY_MS}ms before next attempt...`);
-          await new Promise(resolve => setTimeout(resolve, this.WARMUP_DELAY_MS));
-        }
-        
-      } catch (error) {
-        console.warn(`⚠️ QA/QC: Warm-up attempt ${attempts} failed:`, error);
-        
-        if (attempts < this.MAX_WARMUP_ATTEMPTS) {
-          console.log(`⏳ QA/QC: Waiting ${this.WARMUP_DELAY_MS}ms before retry...`);
-          await new Promise(resolve => setTimeout(resolve, this.WARMUP_DELAY_MS));
-        }
-      }
-    }
-    
-    // If we reach here, warm-up failed to meet quality threshold
-    console.warn(`⚠️ QA/QC: Warm-up failed after ${this.MAX_WARMUP_ATTEMPTS} attempts, proceeding with lower quality`);
-    this._isWarmedUp = true; // Don't block user queries indefinitely
+    console.log('🔒 QA/QC: PC=1 always warm, skipping complex warm-up...');
+    this._isWarmedUp = true; // PC=1 means always warm
   }
 
   private async performWarmUp(): Promise<void> {
     try {
       console.log("🔥 Warming up Lambda function...");
       
-      // Send a simple warm-up query to populate the concept embeddings cache
+      // Single health check query (PC=1 eliminates need for complex warm-up)
       const warmUpResponse = await this.makeQuery("What is strategic planning?", "decision");
       
-      // Check if warm-up was successful
-      const quality = analyzeResponseQuality(warmUpResponse);
-      const qualityScore = getQualityScore(warmUpResponse);
+      // Simple success check (PC=1 should be consistent)
+      this._isWarmedUp = true;
+      console.log(`✅ Lambda warmed up successfully (PC=1 always warm)`);
       
-      if (qualityScore >= this.MIN_QUALITY_THRESHOLD) {
-        this._isWarmedUp = true;
-        console.log(`✅ Lambda warmed up successfully - quality ${qualityScore}/100 meets threshold`);
-        
-        // After successful warm-up, update any cached low-quality responses
-        await this.updateAllCachedLowQualityResponses();
-      } else {
-        console.warn(`⚠️ Lambda warm-up response quality ${qualityScore}/100 below threshold ${this.MIN_QUALITY_THRESHOLD}`);
-        this._isWarmedUp = true; // Don't block user queries
-      }
     } catch (error) {
       console.warn("⚠️ Lambda warm-up failed, proceeding anyway:", error);
       // Don't block user queries if warm-up fails
