@@ -7,9 +7,9 @@ export const analyzeResponseQuality = (response: QueryResponse): QualityStatus =
   const hasRequiredSections = !!(answer && strategicThinkingLens && followUpPrompts && conceptsToolsPractice);
   if (!hasRequiredSections) return 'low';
   
-  // Check strategic lens word count (100-150 words = ~600-900 chars)
+  // Check strategic lens word count (80-150 words = optimal range)
   const strategicWordCount = strategicThinkingLens.trim().split(/\s+/).length;
-  const hasProperStrategicLens = strategicWordCount >= 80 && strategicWordCount <= 200;
+  const hasProperStrategicLens = strategicWordCount >= 80 && strategicWordCount <= 150;
   
   // Check follow-up prompts are actionable
   const hasActionablePrompts = Array.isArray(followUpPrompts) && 
@@ -38,10 +38,12 @@ export const getQualityScore = (response: QueryResponse): number => {
   
   // Strategic lens quality (40% weight) - based on word count, not char count
   const strategicWordCount = strategicThinkingLens.trim().split(/\s+/).length;
-  if (strategicWordCount >= 80 && strategicWordCount <= 200) {
-    score += 40; // Perfect word count range
+  if (strategicWordCount >= 100 && strategicWordCount <= 150) {
+    score += 40; // Perfect word count range (100-150 words)
+  } else if (strategicWordCount >= 80 && strategicWordCount <= 200) {
+    score += 35; // Good range (80-200 words)
   } else if (strategicWordCount >= 50 && strategicWordCount <= 300) {
-    score += 30; // Acceptable range
+    score += 25; // Acceptable range
   } else {
     score += 10; // Too short or too long
   }
@@ -49,15 +51,17 @@ export const getQualityScore = (response: QueryResponse): number => {
   // Follow-up prompts quality (30% weight)
   const actionablePrompts = Array.isArray(followUpPrompts) ? 
     followUpPrompts.filter(p => p && p.length > 20).length : 0;
-  if (actionablePrompts >= 3) score += 30;
-  else if (actionablePrompts >= 2) score += 20;
-  else score += 10;
+  if (actionablePrompts >= 4) score += 30; // Excellent - 4+ prompts
+  else if (actionablePrompts >= 3) score += 25; // Good - 3 prompts
+  else if (actionablePrompts >= 2) score += 20; // Acceptable - 2 prompts
+  else score += 10; // Poor - 1 or fewer
   
   // Concepts/tools relevance (30% weight)
   const conceptsLength = Array.isArray(conceptsToolsPractice) ? conceptsToolsPractice.length : 0;
-  if (conceptsLength >= 3) score += 30;
-  else if (conceptsLength >= 2) score += 20;
-  else score += 10;
+  if (conceptsLength >= 4) score += 30; // Excellent - 4+ concepts
+  else if (conceptsLength >= 3) score += 25; // Good - 3 concepts
+  else if (conceptsLength >= 2) score += 20; // Acceptable - 2 concepts
+  else score += 10; // Poor - 1 or fewer
   
   return score;
 };

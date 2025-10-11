@@ -83,7 +83,8 @@ class QueryService {
       // Automatic cache management to prevent UI issues
       this.manageCache();
       
-      console.log(`📊 Query quality: ${quality} (${qualityScore}/100) - ${response.data.answer.length} chars`);
+      const answerWordCount = response.data.answer.trim().split(/\s+/).length;
+      console.log(`📊 Query quality: ${quality} (${qualityScore}/100) - ${answerWordCount} words`);
       return response;
       
     } catch (error) {
@@ -121,7 +122,8 @@ class QueryService {
           if (freshScore >= this.MIN_QUALITY_THRESHOLD) {
             this.queryCache.set(cacheKey, freshResponse);
             this.qualityHistory.set(cacheKey, freshQuality);
-            console.log(`✅ Cache updated: ${freshQuality} (${freshScore}/100) - ${freshResponse.data.answer.length} chars`);
+            const freshAnswerWordCount = freshResponse.data.answer.trim().split(/\s+/).length;
+            console.log(`✅ Cache updated: ${freshQuality} (${freshScore}/100) - ${freshAnswerWordCount} words`);
           } else {
             console.log(`⚠️ Fresh response still low quality: ${freshScore}/100`);
           }

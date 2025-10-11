@@ -14,6 +14,7 @@ import engentLabsLogo from './assets/logo.png'
 import './styles/QualityComponents.css'
 import QueryService from './services/QueryService'
 import { analyzeResponseQuality, getQualityScore } from './utils/qualityAnalyzer'
+import { logQuerySubmitted, logQueryRetried, logHistoryQueryLoaded, logHistoryCopied } from './utils/analytics'
 
 // Main App Component for Labs
 function LabsApp() {
@@ -74,16 +75,24 @@ function LabsApp() {
     return () => clearInterval(healthCheckInterval);
   }, []);
   
-  // Set favicon to Engent Labs logo
+  // Set favicon to square public asset to avoid stretching
   React.useEffect(() => {
     try {
-      const link = document.querySelector("link[rel='icon']") || document.createElement('link');
-      link.setAttribute('rel', 'icon');
-      link.setAttribute('type', 'image/png');
-      link.setAttribute('href', engentLabsLogo);
-      if (!link.parentNode) {
-        document.head.appendChild(link);
-      }
+      const iconHref = '/assets/logo-CNq5NF33.png';
+      const ensureIcon = (rel) => {
+        const selector = `link[rel='${rel}']`;
+        let link = document.querySelector(selector);
+        if (!link) {
+          link = document.createElement('link');
+          link.setAttribute('rel', rel);
+          document.head.appendChild(link);
+        }
+        link.setAttribute('type', 'image/png');
+        link.setAttribute('sizes', '32x32');
+        link.setAttribute('href', iconHref);
+      };
+      ensureIcon('icon');
+      ensureIcon('shortcut icon');
     } catch (e) {
       // no-op if document is unavailable
     }
@@ -214,6 +223,9 @@ function LabsApp() {
       console.log('Submitting query:', query, 'for course:', selectedCourseId)
       setPendingQuestion(query)
       
+      // Log query submission to GA4
+      logQuerySubmitted()
+      
       // Use QueryService with quality management
       const result = await queryService.query(query, selectedCourseId)
       
@@ -269,7 +281,7 @@ function LabsApp() {
         };
 
         setAnswer(richAnswer)
-        addToHistory(query, result.data?.answer || '')
+        addToHistory(query, result.data?.answer || '', normalizedResult)
         setQueryInput('')
 
         // We now render prompts inside AnswerCard as a clickable numbered list
@@ -327,6 +339,9 @@ function LabsApp() {
     setRetryCount(prev => prev + 1);
     setQualityStatus('loading');
     
+    // Log query retry to GA4
+    logQueryRetried();
+    
     try {
       // Retry the same query
       const result = await queryService.query(pendingQuestion, selectedCourseId);
@@ -375,7 +390,7 @@ function LabsApp() {
         };
         
         setAnswer(richAnswer);
-        addToHistory(pendingQuestion, result.data?.answer || '');
+        addToHistory(pendingQuestion, result.data?.answer || '', normalizedResult);
       }
     } catch (error) {
       console.error('❌ Retry failed:', error);
@@ -383,17 +398,24 @@ function LabsApp() {
     }
   };
 
-  // Function to add question to history
-  const addToHistory = (question, answerData) => {
+  // Function to add question to history (store full response for rehydration)
+  const addToHistory = (question, answerData, response = null) => {
     const historyItem = {
       id: Date.now(),
-      question,
+      question: question.trim(),
       answer: answerData,
-      timestamp: new Date().toLocaleTimeString()
+      timestamp: new Date().toLocaleTimeString(),
+      response: response || currentResponse // use provided response or fallback to currentResponse
     }
 
     setQuestionHistory(prevHistory => {
-      const newHistory = [historyItem, ...prevHistory.slice(0, 4)] // Keep only last 5
+      // Remove any existing entry with the same question (case-insensitive)
+      const filteredHistory = prevHistory.filter(item => 
+        item.question.toLowerCase().trim() !== question.toLowerCase().trim()
+      )
+      
+      // Add new item at the beginning and keep only last 5
+      const newHistory = [historyItem, ...filteredHistory].slice(0, 5)
       return newHistory
     })
     
@@ -405,18 +427,76 @@ function LabsApp() {
   const loadFromHistory = (index) => {
     if (index >= 0 && index < questionHistory.length) {
       const historyItem = questionHistory[index]
-      setAnswer(historyItem.answer)
-      setQueryInput(historyItem.question)
+      
+      // Clear input box when viewing history (cached answer, no need for text in input)
+      setQueryInput('')
+      setPendingQuestion(historyItem.question) // Track which question we're viewing
       setCurrentHistoryIndex(index)
+      
+      // Automatically show the cached answer
+      if (historyItem.response) {
+        setCurrentResponse(historyItem.response)
+        if (historyItem.response.status === 'success') {
+          const richAnswer = {
+            strategicThinkingLens: historyItem.response.data?.strategicThinkingLens || 'No strategic thinking lens available',
+            followUpPrompts: Array.isArray(historyItem.response.data?.followUpPrompts) ? historyItem.response.data.followUpPrompts : [],
+            conceptsToolsPractice: historyItem.response.data?.conceptsToolsPractice || []
+          }
+          setAnswer(richAnswer)
+        } else if (historyItem.response.status === 'rejected') {
+          setAnswer({ status: 'rejected', message: historyItem.response.message || 'Query rejected' })
+        } else {
+          setAnswer(historyItem.answer || '')
+        }
+      } else {
+        // Legacy fallback
+        setAnswer(historyItem.answer)
+      }
+      
+      console.log('📚 Loaded from history:', historyItem.question)
+      
+      // Log history query loaded to GA4
+      logHistoryQueryLoaded(historyItem.question)
     }
   }
 
   // Function to return to current question
   const returnToCurrent = () => {
     setCurrentHistoryIndex(-1)
-    setAnswer('')
-    setQueryInput('')
-    console.log('📚 Returned to current question')
+    
+    // ✅ Fix Bug 2: Restore the most recent question/answer instead of clearing
+    if (questionHistory.length > 0) {
+      const mostRecent = questionHistory[0] // Most recent is at index 0
+      setQueryInput(mostRecent.question)
+      setPendingQuestion(mostRecent.question)
+      
+      // Restore the cached answer
+      if (mostRecent.response) {
+        setCurrentResponse(mostRecent.response)
+        if (mostRecent.response.status === 'success') {
+          const richAnswer = {
+            strategicThinkingLens: mostRecent.response.data?.strategicThinkingLens || 'No strategic thinking lens available',
+            followUpPrompts: Array.isArray(mostRecent.response.data?.followUpPrompts) ? mostRecent.response.data.followUpPrompts : [],
+            conceptsToolsPractice: mostRecent.response.data?.conceptsToolsPractice || []
+          }
+          setAnswer(richAnswer)
+        } else if (mostRecent.response.status === 'rejected') {
+          setAnswer({ status: 'rejected', message: mostRecent.response.message || 'Query rejected' })
+        } else {
+          setAnswer(mostRecent.answer || '')
+        }
+      } else {
+        setAnswer(mostRecent.answer)
+      }
+      
+      console.log('📚 Returned to current question:', mostRecent.question)
+    } else {
+      // No history, just clear
+      setAnswer('')
+      setQueryInput('')
+      setPendingQuestion('')
+      console.log('📚 No history to return to')
+    }
   }
 
   const goBackToCourseSelection = () => {
@@ -727,7 +807,7 @@ function LabsApp() {
             </button>
               <div className="title-badge">
               <span className="desktop-title">{`Engent Labs: ${courseMetadata.title}`}</span>
-              <span className="mobile-title">{`Engent Labs: ${courseMetadata.mobile_title || courseMetadata.title}`}</span>
+              <span className="mobile-title">{courseMetadata.mobile_title || courseMetadata.title}</span>
               </div>
               
               {/* Remove Clear Cache button - implement automatic cache management instead */}

@@ -1477,27 +1477,37 @@ button:hover, button:focus {
   font-size: 0.8rem;
 }
 
-/* Question History Dropdown Styles */
-.question-history-dropdown {
-  display: flex;
+/* Custom History Dropdown Styles */
+.custom-history-dropdown {
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.history-dropdown-toggle {
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 24px; /* Further increased to create better separation between dropdown and input */
-  padding: 6px 10px;
+  gap: 8px;
+  padding: 8px 12px;
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 10;
-  margin: 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #495057;
+  transition: all 0.2s ease;
 }
 
-.history-dropdown-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
+.history-dropdown-toggle:hover {
+  background: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.history-dropdown-toggle:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
 }
 
 .history-label {
@@ -1512,45 +1522,108 @@ button:hover, button:focus {
   color: #495057;
 }
 
-.history-select {
-  flex: 1;
-  padding: 6px 8px;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  font-size: 0.85rem;
+.dropdown-arrow {
+  font-size: 0.75rem;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+}
+
+.history-dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
   background: white;
-  color: #495057;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 400px;
+  overflow-y: auto;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.history-item {
+  padding: 0.5rem;
+  border-bottom: 1px solid #f3f4f6;
   cursor: pointer;
-  min-width: 400px;
+  transition: background 0.15s ease;
   position: relative;
-  z-index: 251;
 }
 
-.history-select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+.history-item:last-child {
+  border-bottom: none;
 }
 
-.history-select option {
-  padding: 4px;
-  font-size: 0.85rem;
+.history-item:hover {
+  background: #f9fafb;
+}
+
+.history-item.current {
+  background: #dbeafe;
+  font-weight: 500;
+  cursor: default; /* Not clickable - already selected */
+}
+
+.history-item.current:hover {
+  background: #dbeafe; /* No hover effect - not clickable */
+}
+
+.history-item-text {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.5;
+  font-size: 0.875rem;
+  color: #374151;
+  padding-right: 24px;
+}
+
+.history-item.current .history-item-text {
+  color: #1e40af;
+}
+
+.current-indicator {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: #2563eb;
+  font-size: 1rem;
+}
+
+.expand-toggle {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-style: italic;
+  cursor: pointer;
+  display: inline;
+  margin-left: 2px;
+}
+
+.expand-toggle:hover {
+  color: #2563eb;
+  text-decoration: underline;
 }
 
 /* Responsive design for dropdown */
 @media (max-width: 768px) {
-  .question-history-dropdown {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
+  .custom-history-dropdown {
     width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
   }
   
-  .history-dropdown-header {
-    justify-content: flex-start;
-    flex-shrink: 0;
+  .history-dropdown-toggle {
+    width: 100%;
+    justify-content: space-between;
   }
   
   .history-label {
@@ -1561,10 +1634,16 @@ button:hover, button:focus {
     display: inline;
   }
   
-  .history-select {
-    min-width: 0;
-    flex: 1;
-    max-width: calc(100% - 40px);
+  .history-dropdown-panel {
+    max-height: 300px;
+  }
+  
+  .history-item {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .history-item-text {
+    font-size: 0.8125rem;
   }
 }
 

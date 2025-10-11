@@ -1,5 +1,6 @@
 import React from 'react';
 import { QueryResponse, QualityStatus } from '../types/QualityTypes';
+import { logFollowupClicked } from '../utils/analytics';
 
 interface ResponseDisplayProps {
   response: QueryResponse;
@@ -77,7 +78,10 @@ const ResponseDisplay: React.FC<ResponseDisplayProps> = ({
               <li 
                 key={index} 
                 className="prompt-item"
-                onClick={() => onPromptClick(prompt)}
+                onClick={() => {
+                  logFollowupClicked(prompt);
+                  onPromptClick(prompt);
+                }}
                 style={{ cursor: 'pointer' }}
               >
                 {prompt}

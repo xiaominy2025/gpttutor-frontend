@@ -1,5 +1,6 @@
 import "../App.css";
 import ReactMarkdown from 'react-markdown';
+import { logFollowupClicked } from '../utils/analytics';
 
 export default function AnswerCard({ 
   answer, 
@@ -83,34 +84,58 @@ export default function AnswerCard({
 
     // If a single item contains multiple questions, split them into separate prompts
     const splitIntoQuestions = (text) => {
-      if (!text || typeof text !== 'string') return [];
+      if (!text || typeof text !== 'string') return [text];
+      
       // First, normalize common separators like " - " that appear between questions
       const normalized = text.replace(/\s*-\s*/g, ' ').trim();
-      // Split by question marks and re-attach the delimiter
-      const parts = normalized.split('?')
-        .map(s => s.trim())
-        .filter(Boolean)
-        .map(s => s.endsWith('?') ? s : s + '?');
-      // If no question marks were found, return the original text
-      return parts.length > 0 ? parts : [text];
+      
+      // Check if the text contains multiple questions by looking for question patterns
+      // Split by question marks but preserve them in the result
+      const questionMatches = normalized.match(/[^?]*\?/g);
+      
+      if (questionMatches && questionMatches.length > 1) {
+        // Multiple questions found, return them as separate prompts
+        return questionMatches
+          .map(s => s.trim())
+          .filter(Boolean);
+      } else if (questionMatches && questionMatches.length === 1) {
+        // Single question found, return as is
+        return [questionMatches[0].trim()];
+      } else {
+        // No question marks found, return the original text
+        return [normalized];
+      }
     };
 
     const expandedPrompts = cleanPrompts.flatMap(splitIntoQuestions)
       .map(p => p.replace(/^[-*•]\s*/, '').trim())
       .filter(Boolean);
 
-    if (expandedPrompts.length === 0) {
+    // Remove duplicates to prevent the same prompt from appearing multiple times
+    const uniquePrompts = [];
+    const seenPrompts = new Set();
+    
+    for (const prompt of expandedPrompts) {
+      const normalizedPrompt = prompt.toLowerCase().trim();
+      if (!seenPrompts.has(normalizedPrompt)) {
+        seenPrompts.add(normalizedPrompt);
+        uniquePrompts.push(prompt);
+      }
+    }
+
+    if (uniquePrompts.length === 0) {
       return <p className="text-gray-500 italic">No follow-up prompts available</p>;
     }
 
     // Render as a clickable numbered list
     return (
       <ol className="list-decimal ml-6 space-y-2">
-        {expandedPrompts.map((prompt, i) => (
+        {uniquePrompts.map((prompt, i) => (
           <li
             key={i}
             data-testid={`followup-prompt-${i}`}
             onClick={() => {
+              logFollowupClicked(prompt);
               if (onReflectionPromptClick) {
                 onReflectionPromptClick(prompt);
               }
