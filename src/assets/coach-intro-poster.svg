@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+<defs><filter id="wash"><feTurbulence type="fractalNoise" baseFrequency=".024" numOctaves="3" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale="20"/></filter></defs>
+<path fill="#FAFAF7" d="M0 0h960v540H0z"/>
+<g opacity=".16" filter="url(#wash)"><ellipse cx="180" cy="331" rx="122" ry="89" fill="#D9A441"/><ellipse cx="379" cy="311" rx="119" ry="111" fill="#467FA8"/><ellipse cx="515" cy="375" rx="73" ry="63" fill="#267456"/></g>
+<g font-family="Inter,system-ui,sans-serif" fill="#263B43">
+<text x="42" y="72" font-size="44" font-weight="700">Interactive Decision Coaching</text>
+<text x="43" y="110" font-size="24">An introduction to six coaches</text>
+<path d="M42 139H918M620 161V493" stroke="#c8d5cd"/>
+<g fill="none" stroke-width="4" stroke-linecap="round"><path d="M144 333L319 246M144 333L319 407M342 246L519 200M342 246L519 292M342 407L519 371M342 407L519 448" stroke="#467FA8"/><path d="M144 333L319 246M342 246L519 200" stroke="#267456"/></g>
+<rect x="110" y="315" width="36" height="36" rx="3" fill="#FAFAF7" stroke="#D9A441" stroke-width="3"/><circle cx="331" cy="246" r="13" fill="#FAFAF7" stroke="#467FA8" stroke-width="3"/><circle cx="331" cy="407" r="13" fill="#FAFAF7" stroke="#467FA8" stroke-width="3"/>
+<g fill="#467FA8"><circle cx="521" cy="200" r="5"/><circle cx="521" cy="292" r="5"/><circle cx="521" cy="371" r="5"/><circle cx="521" cy="448" r="5"/></g>
+<text x="650" y="207" font-size="19" fill="#267456" font-weight="700">COACHING GUIDANCE</text>
+<text x="650" y="256" font-size="23">Clarify what matters.</text><text x="650" y="300" font-size="23">Analyze the options.</text><text x="650" y="344" font-size="23">Use your judgment.</text>
+</g></svg>

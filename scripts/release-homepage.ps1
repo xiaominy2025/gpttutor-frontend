@@ -76,7 +76,7 @@ if ($Action -eq 'Publish') {
 }
 
 Invoke-ReleaseAws s3 cp $entry "$site/index.html" --content-type 'text/html; charset=utf-8' --cache-control 'no-cache' --only-show-errors
-$invalidation = Invoke-ReleaseAws cloudfront create-invalidation --distribution-id $Distribution --paths '/' '/index.html' '/labs' '/labs/' --query 'Invalidation.Id' --output text
+$invalidation = Invoke-ReleaseAws cloudfront create-invalidation --distribution-id $Distribution --paths '/' '/index.html' '/labs' '/labs/' '/explore' '/explore/' --query 'Invalidation.Id' --output text
 Invoke-ReleaseAws cloudfront wait invalidation-completed --distribution-id $Distribution --id $invalidation
 Invoke-ReleaseAws s3 cp "$site/index.html" $probe --only-show-errors
 if ((Get-ReleaseHash $probe) -ne (Get-ReleaseHash $entry)) { throw 'Live entrypoint verification failed.' }
