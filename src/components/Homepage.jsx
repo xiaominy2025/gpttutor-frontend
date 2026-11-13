@@ -3,6 +3,23 @@ import { Link } from 'react-router-dom';
 import QueryService from '../services/QueryService';
 import { SectionFadeIn } from './SectionFadeIn';
 
+const decisionTools = [
+	{
+		name: 'Practice Lab',
+		description: 'Practice structured reasoning with course-aligned guidance, follow-up prompts, and decision concepts.',
+		action: 'Launch Practice Lab',
+		route: '/labs',
+	},
+	{
+		name: 'AI Decision Tree Coach',
+		description: 'Map your choices, compare uncertain outcomes, and refine your decision with interactive coaching.',
+		action: 'Launch Decision Tree Coach',
+		url: 'https://decisiontree.engentlabs.com/',
+	},
+];
+
+const toolLaunchClass = 'inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#2B8AF7] text-white font-semibold shadow-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-[#2B8AF7] focus:ring-offset-2';
+
 const Homepage = () => {
 	const queryService = QueryService.getInstance();
 	const videoRef = useRef(null);
@@ -128,13 +145,12 @@ const Homepage = () => {
 
 						{/* Main Headline */}
 						<h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-							<span className="hidden md:inline">AI That Helps Students Learn How to Think</span>
-							<span className="md:hidden">AI That Teaches How to Think</span>
+							Interactive Decision Coaching
 						</h1>
 
 						{/* Subheadline */}
 						<p className="text-lg md:text-xl text-gray-700 mb-6">
-							A structured learning flow built from your course materials — not a generic chatbot answer.
+							Practice structured reasoning with your course materials and explore choices with interactive decision tools.
 						</p>
 
 						{/* Tagline */}
@@ -209,6 +225,27 @@ const Homepage = () => {
 				</div>
 			</section>
 
+			<SectionFadeIn id="decision-tools" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-100">
+				<div className="max-w-6xl mx-auto">
+					<h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10">
+						Explore Our Decision Tools
+					</h2>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+						{decisionTools.map((tool) => (
+							<article key={tool.name} className="flex flex-col items-start bg-white rounded-2xl shadow-md border border-gray-100 p-5 sm:p-6">
+								<h3 className="text-lg font-semibold text-gray-900 mb-2">{tool.name}</h3>
+								<p className="text-sm sm:text-base text-gray-700 leading-relaxed flex-1 mb-5">{tool.description}</p>
+								{tool.route ? (
+									<Link to={tool.route} className={toolLaunchClass}>{tool.action}</Link>
+								) : (
+									<a href={tool.url} className={toolLaunchClass}>{tool.action}</a>
+								)}
+							</article>
+						))}
+					</div>
+				</div>
+			</SectionFadeIn>
+
 			{/* What Is Engent Labs? */}
 			<SectionFadeIn className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white border-y border-gray-100">
 				<div className="max-w-6xl mx-auto">
@@ -224,7 +261,7 @@ const Homepage = () => {
 									</svg>
 								</div>
 								<p className="text-sm sm:text-base text-gray-700 leading-relaxed flex-1">
-									Engent Labs is an AI-powered practice environment that teaches students structured reasoning using their actual course materials.
+									Engent Labs brings together interactive tools for practicing structured reasoning and working through decisions.
 								</p>
 							</div>
 						</div>
