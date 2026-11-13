@@ -162,14 +162,13 @@ const Homepage = () => {
 
 						{/* CTA Buttons */}
 						<div className="mt-8 flex flex-col sm:flex-row gap-4">
-							<Link
-								to="/labs"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#2B8AF7] text-white font-semibold shadow-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-[#2B8AF7] focus:ring-offset-2"
+							<button
+								type="button"
+								onClick={() => scrollToSection('decision-tools')}
+								className={toolLaunchClass}
 							>
-								Start a Practice Lab
-							</Link>
+								Explore Our Decision Tools
+							</button>
 							<button
 								type="button"
 								onClick={() => scrollToSection('example')}
