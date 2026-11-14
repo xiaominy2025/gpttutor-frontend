@@ -98,7 +98,7 @@
 .engent-illustration-toggle{display:block;text-align:left;width:100%;margin-top:12px;border-radius:6px}
 .engent-illustration-toggle .engent-explore-art{display:block;margin-bottom:4px}
 .engent-illustration-toggle .engent-text-link{display:inline-flex;align-items:center;min-height:44px}
-.engent-case-library{background:var(--paper);scroll-margin-top:14px}
+.engent-case-library{background:#f2f3f2;scroll-margin-top:14px}
 .engent-case-library .engent-section>p{max-width:65ch;margin-top:8px}
 .engent-case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px;align-items:start}
 .engent-case{background:#fff;border:1px solid var(--line);border-radius:10px}
@@ -126,13 +126,13 @@
 .engent-case-selection{display:grid;gap:24px;margin-top:22px;max-width:860px}
 .engent-case-selection section h2{font-size:1.35rem}
 .engent-case-episodes{display:grid;margin-top:10px;border-top:1px solid var(--line)}
-.engent-case-episodes button{display:grid;grid-template-columns:2ch minmax(0,1fr) auto;align-items:center;gap:12px;text-align:left;color:var(--slate);background:#fafaf7;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:9px 12px;box-shadow:none}
+.engent-case-episodes button{display:grid;grid-template-columns:2ch minmax(0,1fr) auto;align-items:center;gap:12px;text-align:left;color:var(--slate);background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:9px 12px;box-shadow:none}
 .engent-episode-number,.engent-episode-affordance{font-size:.78rem}
-.engent-case-episodes button:hover{background:#f2f6f3}
+.engent-case-episodes button:hover{background:#e7ebe8}
 .engent-case-episodes button:focus-visible{outline-offset:1px}
 .engent-case-episodes button span{display:block}
-.engent-case-episodes button[aria-pressed="true"]{border-color:var(--green);background:#e5eee6}
-.engent-case-selection .engent-case-detail{border:1px solid var(--line);border-radius:8px;padding:14px;background:white}
+.engent-case-episodes button[aria-pressed="true"]{border-color:var(--line);background:transparent}
+.engent-case-selection .engent-case-detail{border-bottom:1px solid var(--line);padding:0 0 16px;background:transparent}
 .engent-explore-hero .engent-section{padding-block:clamp(20px,4vw,44px)}
 .engent-explore-hero h1,.engent-case-library h1{font-size:clamp(2rem,4vw,3.5rem)}
 .engent-case-episodes .engent-case-context{margin:2px 0 0}
@@ -142,8 +142,6 @@
 .engent-selected-episode .engent-case-cover{margin:0}
 @media(max-width:520px){.engent-selected-episode{grid-template-columns:minmax(76px,26%) minmax(0,1fr);gap:10px}}
 .engent-episode-media{display:grid;gap:8px;margin-block:12px;color:var(--slate)}
-.engent-audio-toolbar{display:flex;align-items:center;gap:6px;max-width:620px}.engent-episode-media audio{display:block;flex:1;min-width:0;width:100%}
-.engent-episode-media select{border:1px solid #879793;border-radius:4px;padding:5px;background:white;color:var(--slate);min-height:36px}
 .engent-episode-media summary{cursor:pointer;font-weight:650}
 .engent-transcript{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:8px}
 .engent-selected-episode>div:only-child{grid-column:1/-1}
@@ -151,7 +149,6 @@
 .engent-episode-affordance small{display:block}
 .engent-collection-note{font-size:.8rem;color:#50635d}
 .engent-episode-notes summary{cursor:pointer;font-size:.88rem}
-.engent-episode-media select{flex:none}
 .engent-site{--media-track:#e5e7e5;--media-buffer:#c4d4cd;--media-played:#83a99a;--media-thumb:#446e60}
 .engent-media-progress{appearance:none;-webkit-appearance:none;background:transparent;flex:1;min-width:40px;height:32px;margin:0;cursor:pointer}
 .engent-media-progress::-webkit-slider-runnable-track{height:5px;border-radius:5px;background:linear-gradient(to right,var(--media-played) 0 var(--played),var(--media-buffer) var(--played) max(var(--played),var(--buffered)),var(--media-track) max(var(--played),var(--buffered)) 100%)}
@@ -160,4 +157,14 @@
 .engent-media-progress::-moz-range-thumb{width:12px;height:12px;background:var(--media-thumb);border-radius:50%;border:1px solid white}
 .engent-media-progress:hover,.engent-media-progress:focus-visible{--media-played:#699384}
 .engent-media-progress:disabled{cursor:default}
-.engent-audio-progress{display:flex;align-items:center;gap:10px;max-width:620px;font-size:.8rem;font-variant-numeric:tabular-nums}
+.engent-audio-toolbar{display:flex;align-items:center;gap:clamp(4px,1.1vw,12px);max-width:620px}
+.engent-audio-toolbar button,.engent-speed-picker summary{display:grid;place-items:center;flex:none;min-width:36px;min-height:40px;padding:0 6px;border:0;background:transparent;color:var(--slate);box-shadow:none;font-size:.875rem}
+.engent-audio-toolbar .engent-audio-play{width:42px;height:42px;padding:0;border-radius:50%;background:#285d4e;color:white}
+.engent-audio-toolbar .engent-audio-play:hover,.engent-audio-toolbar .engent-audio-play:focus-visible{background:#204d41;color:white}
+.engent-audio-time{font-size:.75rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.engent-speed-picker{position:relative;flex:none}
+.engent-speed-picker summary{cursor:pointer;list-style:none}
+.engent-speed-picker summary::-webkit-details-marker{display:none}
+.engent-speed-options{position:absolute;z-index:2;right:0;bottom:100%;min-width:76px;padding:4px;border:1px solid #aab7b1;border-radius:6px;background:#f2f3f2}
+.engent-speed-options button{width:100%}
+.engent-speed-options button:hover,.engent-speed-options button[aria-pressed="true"]{background:#dce7e1}

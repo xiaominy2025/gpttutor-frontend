@@ -16,6 +16,12 @@ function CaseCover({ item }) {
 
 function EpisodeMedia({ episode }) {
   const player = useRef(null);
+  const speedPicker = useRef(null);
+  const speedLabel = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [speed, setSpeed] = useState(1);
+  const [playbackError, setPlaybackError] = useState('');
   const [transcript, setTranscript] = useState(null);
   const [failed, setFailed] = useState(false);
   const [showText, setShowText] = useState(false);
@@ -48,14 +54,20 @@ function EpisodeMedia({ episode }) {
 
   if (!recording) return <span className="engent-status">Audio coming soon</span>;
   return <div className="engent-episode-media">
-    <div className="engent-audio-toolbar">
-      <audio ref={player} controls preload="none" src={recording} aria-label={`Listen to ${episode.title}`}
-        onTimeUpdate={updateTiming} onDurationChange={updateTiming} onProgress={updateTiming} />
-      <select aria-label="Playback speed" title="Playback speed" defaultValue="1" onChange={event => { player.current.playbackRate = Number(event.target.value); }}>
-        {[.75,1,1.25,1.5,2].map(rate => <option key={rate} value={rate}>{rate}×</option>)}
-      </select>
-    </div>
-    <div className="engent-audio-progress">
+    <audio ref={player} preload="none" src={recording} muted={muted}
+      onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)}
+      onError={() => setPlaybackError('This recording could not be loaded.')}
+      onTimeUpdate={updateTiming} onDurationChange={updateTiming} onProgress={updateTiming} />
+    <div className="engent-audio-toolbar" role="group" aria-label={`Playback for ${episode.title}`}>
+      <button type="button" className="engent-audio-play" aria-label={playing ? 'Pause episode' : 'Play episode'}
+        onClick={() => {
+          const audio = player.current;
+          if (!audio.paused) audio.pause();
+          else {
+            setPlaybackError('');
+            audio.play().catch(() => setPlaybackError('This recording could not be played.'));
+          }
+        }}><span aria-hidden="true">{playing ? 'Ⅱ' : '▶'}</span></button>
       <MediaProgress {...timing} label="Episode position" disabled={!timing.total}
         aria-valuetext={`${episodeDuration(Math.floor(timing.elapsed))} of ${episodeDuration(Math.floor(timing.total))}`}
         onChange={event => {
@@ -63,8 +75,31 @@ function EpisodeMedia({ episode }) {
           player.current.currentTime = elapsed;
           setTiming(current => ({ ...current, elapsed }));
         }} />
-      <span aria-hidden="true">{episodeDuration(Math.floor(timing.elapsed))} / {episodeDuration(Math.floor(timing.total))}</span>
+      <span className="engent-audio-time" aria-hidden="true">{episodeDuration(Math.floor(timing.elapsed))} / {episodeDuration(Math.floor(timing.total))}</span>
+      <button type="button" className="engent-audio-volume" aria-label={muted ? 'Unmute' : 'Mute'} onClick={() => setMuted(value => !value)}>
+        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7">
+          <path d="M3 9h4l5-4v14l-5-4H3z" />
+          {muted ? <path d="m16 9 5 6m0-6-5 6" /> : <path d="M16 8q4 4 0 8m3-11q6 7 0 14" />}
+        </svg>
+      </button>
+      <details className="engent-speed-picker" ref={speedPicker} onKeyDown={event => {
+        if (event.key === 'Escape' && speedPicker.current.open) {
+          speedPicker.current.open = false;
+          speedLabel.current.focus();
+        }
+      }}>
+        <summary ref={speedLabel} aria-label={`Playback speed, ${speed}×`}>{speed}×</summary>
+        <div className="engent-speed-options" role="group" aria-label="Playback speeds">
+          {[.75,1,1.25,1.5,2].map(rate => <button key={rate} type="button" aria-pressed={rate === speed} onClick={() => {
+            player.current.playbackRate = rate;
+            setSpeed(rate);
+            speedPicker.current.open = false;
+            speedLabel.current.focus();
+          }}>{rate}×</button>)}
+        </div>
+      </details>
     </div>
+    {playbackError && <p role="status">{playbackError}</p>}
     {script && <details onToggle={event => setShowText(event.currentTarget.open)}>
       <summary>Transcript</summary>
       <div className="engent-transcript">{transcript ?? (failed ? 'Transcript unavailable.' : 'Loading transcript…')}</div>

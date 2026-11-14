@@ -122,7 +122,9 @@ async function checks(browser) {
       };
       return rows.every(row => [...row.querySelectorAll('span')].every(label => {
         const text = luminance(getComputedStyle(label).color);
-        const background = luminance(getComputedStyle(row).backgroundColor);
+        const background = luminance(getComputedStyle(row).backgroundColor === 'rgba(0, 0, 0, 0)'
+          ? getComputedStyle(row.closest('.engent-case-library')).backgroundColor
+          : getComputedStyle(row).backgroundColor);
         return label.getBoundingClientRect().height > 0 &&
           (Math.max(text,background) + .05) / (Math.min(text,background) + .05) >= 4.5;
       }));
@@ -147,10 +149,18 @@ async function checks(browser) {
     await preview.getByRole('heading',{name:'Aerospace schedule risk'}).waitFor();
     const player = preview.locator('audio');
     assert.equal(await player.getAttribute('preload'), 'none');
-    await player.evaluate(audio => audio.play());
+    await preview.getByRole('button',{name:'Play episode'}).click();
     await page.waitForFunction(() => document.querySelector('audio').currentTime > 0);
-    await preview.getByLabel('Playback speed').selectOption('1.5');
+    const speed = preview.getByLabel('Playback speed, 1×');
+    await speed.focus();
+    await page.keyboard.press('Enter');
+    await preview.getByRole('button',{name:'1.5×',exact:true}).click();
+    assert.equal(await preview.getByLabel('Playback speed, 1.5×').evaluate(element => element === document.activeElement),true);
     assert.equal(await player.evaluate(audio => audio.playbackRate), 1.5);
+    await preview.getByRole('button',{name:'Mute',exact:true}).click();
+    assert.equal(await player.evaluate(audio => audio.muted),true);
+    await preview.getByRole('button',{name:'Unmute'}).click();
+    assert.equal(await preview.getByRole('slider',{name:'Episode position'}).count(),1);
     await preview.getByRole('slider',{name:'Episode position'}).fill('15');
     await page.waitForFunction(() => document.querySelector('audio').currentTime >= 15);
     const original = await player.elementHandle();
