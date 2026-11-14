@@ -67,10 +67,10 @@ async function checks(browser) {
         assert(guidanceFits, `${mode}: ${title} guidance exceeds its panel`);
       }
       await position.fill(String(Math.round((index * 9.6 + 8) * 10) / 10));
-      if (index === 1 || index === 4) {
+      if (index === 1 || index === 4 || index === 5) {
         const safeArea = await stage.evaluate(frame => {
           const bounds = frame.getBoundingClientRect();
-          const labels = ['Historical observations', 'Projected forecast', 'Below target', 'Simulated profit'];
+          const labels = ['Historical observations', 'Projected forecast', 'Below target', 'Simulated profit', 'Maximize Annual Operating Profit'];
           return [...frame.querySelectorAll('svg text')]
             .filter(label => labels.includes(label.textContent))
             .every(label => label.getBoundingClientRect().bottom <= bounds.bottom - bounds.height * .10);

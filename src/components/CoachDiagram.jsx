@@ -17,7 +17,7 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
   const axes = <path d="M70 37V241H486" stroke={slate} strokeOpacity=".42" />;
 
   return (
-    <svg className={className} viewBox={kind === 'forecast' || kind === 'simulation' ? '0 0 530 326' : '0 0 530 285'} aria-hidden="true" fill="none" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox={['forecast', 'simulation', 'optimization'].includes(kind) ? '0 0 530 326' : '0 0 530 285'} aria-hidden="true" fill="none" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
       <defs>
         <filter id={grain} x="-15%" y="-15%" width="130%" height="130%">
           <feTurbulence type="fractalNoise" baseFrequency=".037" numOctaves="3" seed="7" result="paperGrain" />
@@ -55,15 +55,19 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           <text x="35" y="26" fontWeight="700">Illustrative profit units</text>
           {labels([[154,60,'Worst-case'],[267,60,'Most likely'],[387,60,'Best-case'],[35,125,'Pilot'],[35,203,'Full launch']])}
           <path d="M145 76H491M145 153H491M145 230H491" stroke={slate} strokeOpacity=".2" />
-          {['+8','+16','+22','−12','+20','+37'].map((label,i) => {
+          {[8,16,22,-12,20,37].map((value,i) => {
             const x = 195 + (i%3)*112;
             const y = i<3 ? 119 : 197;
-            return <g key={label} {...reveal(.12+i*.11)}>
-              <path d={`M${x-38} ${y-8}q7-21 41-17q38 1 36 24q-3 20-39 21q-42-3-38-28Z`} fill={blue} opacity=".25" filter={`url(#${grain})`} />
-              <text x={x} y={y+5} textAnchor="middle" fontWeight="700">{label}</text>
+            const width = Math.abs(value) * 1.55;
+            const zero = x - 15;
+            const start = value < 0 ? zero - width : zero;
+            return <g key={value} {...reveal(.12+i*.11)}>
+              <text x={x} y={y-6} textAnchor="middle" fontWeight="700">{value < 0 ? '−' : '+'}{Math.abs(value)}</text>
+              <rect x={start} y={y+3} width={width} height="9" rx="2" fill={value < 0 ? slate : blue} fillOpacity=".24" filter={`url(#${grain})`} />
+              <path d={`M${start} ${y+8}h${width}`} stroke={value < 0 ? slate : blue} />
+              <path d={`M${zero} ${y+1}v14`} stroke={slate} strokeWidth="1" />
             </g>;
           })}
-          <path d="M153 141H466" fill="none" stroke={green} {...draw(.80,.16)} />
         </>}
         {kind === 'tree' && <>
           <rect x="62" y="122" width="37" height="37" rx="3" fill={gold} fillOpacity=".34" stroke={gold} {...reveal(.03)} />
@@ -94,22 +98,26 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           <g {...reveal(.72)}><text x="82" y="272">Below target</text><text x="338" y="272">Simulated profit</text><text x="195" y="71">Profit target</text><path d="M87 247v5h93v-5" stroke={blue} {...draw(.78,.17)} /></g>
         </>}
         {kind === 'optimization' && <>
-          <path d="M80 46V237H286" stroke={slate} strokeOpacity=".42" />
-          {labels([[64,39,'y'],[275,258,'x'],[64,255,'0']])}
-          <path d="M80 105L242 237" stroke={blue} strokeOpacity=".72" {...draw(.09,.27)} />
-          <path d="M80 61L188 237" stroke={blue} strokeOpacity=".72" {...draw(.28,.27)} />
-          <path d="M80 237V105L134 149L188 237Z" fill={blue} fillOpacity=".32" opacity={step(.48,.23)} />
-          <path d="M86 229V119L130 155L176 229Z" fill={blue} fillOpacity=".13" opacity={step(.48,.23)} filter={`url(#${grain})`} />
-          <g fontSize="13" {...reveal(.48)}>{labels([[267,159,'x + y ≤ 6'],[267,185,'2x + y ≤ 8'],[267,211,'x, y ≥ 0']])}</g>
-          <g {...reveal(.62)}>
-            <path d="M80 83L206 237M161 105l25-23m-11 1 11-1-2 11" stroke={gold} />
-            <text x="197" y="77" fontSize="13">Increasing 3x + 2y</text>
+          <text x="42" y="20" fontSize="13">Illustrative planning example</text>
+          <text x="42" y="46" fontWeight="700">Volume (units)</text>
+          <path d="M80 56V130H490M80 182V222H490" stroke={slate} strokeOpacity=".35" />
+          {[120,230,340,450].map((x,i) => <g key={x}>
+            <path d={`M${x} 56V130m0 52v40`} stroke={slate} strokeOpacity=".13" strokeWidth="1" />
+            <text x={x} y="241" textAnchor="middle">Q{i+1}</text>
+          </g>)}
+          <path d="M120 94L230 58L340 98.5L450 71.5" stroke={blue} strokeWidth="6" strokeOpacity=".15" {...draw(.04,.27)} />
+          <path d="M120 94L230 58L340 98.5L450 71.5" stroke={blue} {...draw(.04,.27)} />
+          <g {...reveal(.11)}><path d="M178 41h16" stroke={blue} /><text x="201" y="46">Demand</text></g>
+          <g {...reveal(.30)}><text x="80" y="153" fontSize="13">Capacity, labor, costs, and inventory balance</text></g>
+          <path d="M120 80.5L230 71.5L340 85L450 85" stroke={green} strokeWidth="6" strokeOpacity=".15" {...draw(.38,.24)} />
+          <path d="M120 80.5L230 71.5L340 85L450 85" stroke={green} {...draw(.38,.24)} />
+          <g {...reveal(.42)}><path d="M289 41h16" stroke={green} /><text x="312" y="46">Optimized production plan</text></g>
+          <g {...reveal(.65)}>
+            <text x="42" y="177" fontWeight="700">Quarterly operating profit ($)</text>
           </g>
-          <g {...reveal(.76)}>
-            <circle cx="134" cy="149" r="10" fill={green} fillOpacity=".2" /><circle cx="134" cy="149" r="4" fill={green} />
-            <path d="M142 145L203 122H250" stroke={green} />
-            <text x="256" y="126" fontWeight="700">Optimal solution (2, 4)</text>
-          </g>
+          <path d="M120 209L230 189L340 213L450 198" stroke={gold} strokeWidth="6" strokeOpacity=".19" {...draw(.64,.21)} />
+          <path d="M120 209L230 189L340 213L450 198" stroke={gold} {...draw(.64,.21)} />
+          <text x="265" y="265" textAnchor="middle" fontWeight="700" {...reveal(.85)}>Maximize Annual Operating Profit</text>
         </>}
       </g>
     </svg>
