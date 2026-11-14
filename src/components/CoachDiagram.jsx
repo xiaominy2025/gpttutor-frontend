@@ -110,21 +110,25 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           {[138,244,350,456].map((x,i) =>
             <text key={x} x={x} y="239" textAnchor="middle">Q{i+1}</text>
           )}
-          {/* Demand: 80, 120, 85, 115. Production: 102, 98, 101, 99.
-              Capacity: 130. Starting at zero, ending inventory is 22, 0, 16, 0. */}
+          {/* Demand: 80, 122, 85, 118. Production: 105, 97, 104, 99.
+              Capacity: 110. Starting at zero, ending inventory is 25, 0, 19, 0. */}
+          <path d="M116 112L134 130M138 130H456" stroke="#777D7B" strokeWidth="1.4" />
+          <text x="108" y="117" textAnchor="end" style={{color:'#626967'}}>Capacity limit</text>
+          <clipPath id={`${grain}-optimization-sweep`}>
+            <rect x="134" y="45" width={326 * step(.08,.68)} height="125" />
+          </clipPath>
           {[
-            ['Demand', blue, 'M138 140C173 140 209 100 244 100S315 135 350 135S421 105 456 105', 140, 145, .05],
-            ['Capacity limit', green, 'M138 90H456', 90, 90, .25],
-            ['Production', '#65A17C', 'M138 118C173 118 209 122 244 122S315 119 350 119S421 121 456 121', 118, 118, .45],
-            ['Profit', gold, 'M138 59C173 59 209 54 244 54S315 60 350 60S421 56 456 56', 59, 60, .66],
-          ].map(([name, color, curve, startY, labelY, start]) => (
+            ['Demand', blue, 'M138 160C173 160 209 118 244 118S315 155 350 155S421 122 456 122', 160, 161],
+            ['Production', '#65A17C', 'M138 135C173 135 209 143 244 143S315 136 350 136S421 141 456 141', 135, 137],
+            ['Profit', gold, 'M138 59C173 59 209 54 244 54S315 60 350 60S421 56 456 56', 59, 60],
+          ].map(([name, color, curve, startY, labelY]) => (
             <g key={name}>
-              <path d={curve} stroke={color} strokeWidth="7" strokeOpacity=".16" {...draw(start,.18)} />
-              <path d={curve} stroke={color} strokeWidth="2.7" {...draw(start,.18)} />
-              <g {...reveal(start)}>
-                <path d={`M116 ${labelY}L134 ${startY}`} stroke={color} strokeWidth="1.4" />
-                <text x="108" y={labelY+5} textAnchor="end" fontWeight="700">{name}</text>
+              <g clipPath={`url(#${grain}-optimization-sweep)`}>
+                <path d={curve} stroke={color} strokeWidth="7" strokeOpacity=".16" />
+                <path d={curve} stroke={color} strokeWidth="2.7" />
               </g>
+              <path d={`M116 ${labelY}L134 ${startY}`} stroke={color} strokeWidth="1.4" />
+              <text x="108" y={labelY+5} textAnchor="end" fontWeight="700">{name}</text>
             </g>
           ))}
           <g opacity={step(.55,.06) * (1 - step(.79,.08))} stroke="#65A17C" strokeWidth="1.5">
