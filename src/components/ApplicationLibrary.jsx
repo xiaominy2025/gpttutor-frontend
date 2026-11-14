@@ -100,7 +100,7 @@ function EpisodeMedia({ episode }) {
       </details>
     </div>
     {playbackError && <p role="status">{playbackError}</p>}
-    {script && <details onToggle={event => setShowText(event.currentTarget.open)}>
+    {script && <details className="engent-episode-disclosure" onToggle={event => setShowText(event.currentTarget.open)}>
       <summary>Transcript</summary>
       <div className="engent-transcript">{transcript ?? (failed ? 'Transcript unavailable.' : 'Loading transcript…')}</div>
     </details>}
@@ -141,11 +141,11 @@ export default function ApplicationLibrary({ title, cases, coachId }) {
             </div>
           </div>
           <EpisodeMedia key={selected.id} episode={selected} />
-          {illustrative && selected.context && <details className="engent-episode-notes">
+          {illustrative && selected.context && <details className="engent-episode-disclosure">
             <summary>Episode notes</summary>
             <p>This scenario illustrates a decision-making challenge in the industry. It does not represent a documented decision by the named organization.</p>
           </details>}
-          {source && <details className="engent-episode-notes">
+          {source && <details className="engent-episode-disclosure">
             <summary>Episode notes</summary>
             <a className="engent-text-link" href={source}>Read the published case</a>
           </details>}

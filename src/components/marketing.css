@@ -142,13 +142,15 @@
 .engent-selected-episode .engent-case-cover{margin:0}
 @media(max-width:520px){.engent-selected-episode{grid-template-columns:minmax(76px,26%) minmax(0,1fr);gap:10px}}
 .engent-episode-media{display:grid;gap:8px;margin-block:12px;color:var(--slate)}
-.engent-episode-media summary{cursor:pointer;font-weight:650}
 .engent-transcript{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:8px}
 .engent-selected-episode>div:only-child{grid-column:1/-1}
 .engent-episode-affordance{text-align:right}
 .engent-episode-affordance small{display:block}
 .engent-collection-note{font-size:.8rem;color:#50635d}
-.engent-episode-notes summary{cursor:pointer;font-size:.88rem}
+.engent-episode-disclosure > summary{display:flex;align-items:center;gap:8px;width:fit-content;min-height:36px;cursor:pointer;font-size:.88rem;font-weight:600;list-style:none}
+.engent-episode-disclosure > summary::-webkit-details-marker{display:none}
+.engent-episode-disclosure > summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg)}
+.engent-episode-disclosure[open] > summary::before{transform:rotate(45deg)}
 .engent-site{--media-track:#e5e7e5;--media-buffer:#c4d4cd;--media-played:#83a99a;--media-thumb:#446e60}
 .engent-media-progress{appearance:none;-webkit-appearance:none;background:transparent;flex:1;min-width:40px;height:32px;margin:0;cursor:pointer}
 .engent-media-progress::-webkit-slider-runnable-track{height:5px;border-radius:5px;background:linear-gradient(to right,var(--media-played) 0 var(--played),var(--media-buffer) var(--played) max(var(--played),var(--buffered)),var(--media-track) max(var(--played),var(--buffered)) 100%)}

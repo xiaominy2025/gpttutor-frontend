@@ -39,10 +39,10 @@ function MarketingLayout({ explore, coachNav, children }) {
 function Availability({ coach, explore }) {
   if (coach.id === 'process') return <>
     {!explore && <span className="engent-status">Legacy Practice Lab available</span>}
-    <Link to="/labs" className={explore ? 'engent-button' : 'engent-text-link'}>{explore ? 'Open Legacy Practice Lab' : 'Open Practice Lab'} <span aria-hidden="true">↗</span></Link>
+    <Link to="/labs" className={explore ? 'engent-button' : 'engent-text-link'}>{explore ? 'Open Legacy Practice Lab' : 'Open Practice Lab'}</Link>
   </>;
   if (coach.id === 'tree' && treeUrl === 'https://decisiontree.engentlabs.com/') {
-    return <a href={treeUrl} className={explore ? 'engent-button' : 'engent-text-link'}>{explore ? 'Launch Coach' : 'Launch Decision Tree Coach'} <span aria-hidden="true">↗</span></a>;
+    return <a href={treeUrl} className={explore ? 'engent-button' : 'engent-text-link'}>{explore ? 'Launch Coach' : 'Launch Decision Tree Coach'}</a>;
   }
   return <span className="engent-status">{coach.id === 'tree' ? 'Public launch pending' : 'Coming soon'}</span>;
 }
@@ -81,7 +81,7 @@ export default function Homepage() {
         {coaches.map(coach => <article key={coach.id}>
           <Link to={`/explore#${coach.id}`} className="engent-card-art" aria-label={`Learn about ${coach.name}`}><CoachArtwork kind={coach.id} /></Link>
           <h3>{coach.name}</h3><p>{coach.subtitle}</p>
-          <div className="engent-card-actions"><Availability coach={coach} /><Link to={`/explore#${coach.id}`} className="engent-text-link" aria-label={`Explore ${coach.name}`}>Explore <span aria-hidden="true">↗</span></Link></div>
+          <div className="engent-card-actions"><Availability coach={coach} /><Link to={`/explore#${coach.id}`} className="engent-text-link" aria-label={`Explore ${coach.name}`}>Explore</Link></div>
         </article>)}
       </div>
     </section>
@@ -101,7 +101,7 @@ function ExploreCoach({ coach }) {
         <section>
           <h3>Business Case Podcasts</h3>
           <p>Systematic decision-making in action.</p>
-          {Object.hasOwn(podcastCollections, coach.id) ? <Link className="engent-text-link" to={`/explore/${coach.id}/cases`} aria-label={`Explore Cases: ${coach.name}`}>Explore Cases →</Link> : <span className="engent-status">Cases coming soon</span>}
+          {Object.hasOwn(podcastCollections, coach.id) ? <Link className="engent-text-link" to={`/explore/${coach.id}/cases`} aria-label={`Explore Cases: ${coach.name}`}>Explore Cases</Link> : <span className="engent-status">Cases coming soon</span>}
         </section>
         <section>
           <h3>Meet Your Coach</h3>
