@@ -39,6 +39,7 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
         </>}
         {kind === 'forecast' && <>
           {axes}
+          <text x="78" y="29" fontWeight="700">Sales Forecast</text>
           {labels([[78,269,'Historical observations'],[342,269,'Projected forecast']])}
           <path d="M76 205Q114 173 145 182T213 144T290 131" fill="none" stroke={blue} strokeWidth="3.5" {...draw(.03,.30)} />
           <path d="M290 131Q365 87 475 45L475 188Q365 145 290 131Z" fill={blue} opacity={step(.42,.32)*.24} filter={`url(#${grain})`} />
@@ -51,7 +52,7 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           <g {...reveal(.72)}><text x="363" y="30">Uncertainty range</text><text x="327" y="123">Central forecast</text></g>
         </>}
         {kind === 'scenario' && <>
-          <text x="35" y="26" fontWeight="700">Illustrative profit units</text>
+          <text x="35" y="26" fontWeight="700">Project Profit ($M)</text>
           {labels([[154,60,'Worst-case'],[267,60,'Most likely'],[387,60,'Best-case'],[35,125,'Pilot'],[35,203,'Full launch']])}
           <path d="M145 76H491M145 153H491M145 230H491" stroke={slate} strokeOpacity=".2" />
           {[8,16,22,-12,20,37].map((value,i) => {
@@ -70,6 +71,7 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           })}
         </>}
         {kind === 'tree' && <>
+          <text x="35" y="266" fontSize="13">Illustrative payoff units</text>
           <rect x="62" y="122" width="37" height="37" rx="3" fill={gold} fillOpacity=".34" stroke={gold} {...reveal(.03)} />
           <text x="38" y="187">Decision</text>
           <path d="M99 141L233 78M99 141L233 202" stroke={blue} fill="none" {...draw(.16,.26)} />
@@ -84,9 +86,13 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
             {labels([[324,51,'70%'],[324,116,'30%'],[324,173,'60%'],[324,237,'40%']])}
             {[[43,'+36'],[112,'−14'],[172,'+12'],[237,'+4']].map(([y,label])=><g key={label}><circle cx="427" cy={y} r="5" fill={blue}/><text x="444" y={y+5}>{label}</text></g>)}
           </g>
-          <path d="M100 141L232 79" stroke={green} strokeWidth="4" {...draw(.76,.10)} />
-          <path d="M266 75L419 44" stroke={green} strokeWidth="4" {...draw(.87,.10)} />
-          <text x="320" y="24" style={{color:green}} {...reveal(.79)}>Sample path</text>
+          <path d="M99 141L234 78" stroke={green} strokeWidth="4" {...draw(.74,.09)} />
+          <path d="M264 78L420 43" stroke={green} strokeWidth="4" {...draw(.84,.08)} />
+          <path d="M264 78L420 112" stroke={green} strokeWidth="4" {...draw(.84,.08)} />
+          <g {...reveal(.92)}>
+            <text x="35" y="27" style={{color:green}} fontWeight="700">Expand — Highest Expected Value (21)</text>
+            <text x="149" y="235">EV 8.8</text>
+          </g>
         </>}
         {kind === 'simulation' && <>
           {axes}
@@ -100,7 +106,7 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
         </>}
         {kind === 'optimization' && <>
           <text x="265" y="34" textAnchor="middle" fontSize="23" fontWeight="700">Optimized Production Plan</text>
-          <text x="265" y="55" textAnchor="middle" fontSize="14">Illustrative trends · different scales</text>
+          <text x="265" y="55" textAnchor="middle" fontSize="14">Trends</text>
           <path d="M134 217H464" stroke={slate} strokeOpacity=".35" />
           {[138,244,350,456].map((x,i) =>
             <text key={x} x={x} y="239" textAnchor="middle">Q{i+1}</text>
