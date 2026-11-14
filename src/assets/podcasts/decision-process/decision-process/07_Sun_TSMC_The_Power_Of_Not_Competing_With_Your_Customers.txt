@@ -1,0 +1,73 @@
+﻿The Power of Not Competing with Your Customers: TSMC’s Foundry Bet
+Sunday, November 15, 2026
+HOSTS: MARK and CHARLOTTE
+TARGET DURATION: 5–7 minutes
+SPOKEN WORD COUNT: 873
+
+=== BEGIN SPOKEN SCRIPT ===
+
+MARK: In the chip industry, some companies dream up astonishing processors. Others build the factories that turn those designs into physical chips. Now imagine a manufacturer with one unusual promise: we will help many of the world's most ambitious chip designers succeed, and we won't launch our own competing chips against them.
+
+CHARLOTTE: That sounds almost modest. But in one of the world's most technologically demanding industries, it may be a brilliant strategic choice.
+
+MARK: It's the foundation of Taiwan Semiconductor Manufacturing Company, better known as TSMC. When the company was established in 1987, its model was to manufacture chips designed by other companies. It did not need to own the consumer brand on the phone or design the graphics processor inside the computer.
+
+CHARLOTTE: Instead, it wanted to be the manufacturing partner those designers could trust. Why did that matter so much?
+
+MARK: Because designing and manufacturing semiconductors require different combinations of skills and capital. A chip-design company can focus on architecture, software and customers while relying on a specialist foundry to invest in extraordinarily complex production facilities.
+
+CHARLOTTE: And if that foundry were also designing competing chips, customers might hesitate to share sensitive designs or future product plans.
+
+MARK: Exactly. By avoiding direct competition with customers, TSMC helped make specialization commercially credible. Trust wasn't a decorative corporate value. It supported a business structure in which customers could invest in innovation without building their own leading-edge factories.
+
+CHARLOTTE: But trust alone can't manufacture a two-nanometer chip.
+
+MARK: Right. The promise has to be backed by relentless manufacturing execution. TSMC has to deliver process technology, acceptable yields, dependable quality, and capacity when customers need it. A tiny improvement in manufacturing success can have enormous value when products are made in volume.
+
+CHARLOTTE: So there are really three connected strengths: technical leadership, manufacturing reliability, and customer trust. Remove any one of them and the business becomes weaker.
+
+MARK: Precisely. And the scale is extraordinary. On October fifteenth, 2026, TSMC reported third-quarter revenue of about one point four nine trillion New Taiwan dollars, up about fifty-one percent from a year earlier. It said that advanced processes, seven nanometers and smaller, accounted for seventy-nine percent of wafer revenue that quarter.
+
+CHARLOTTE: That's a dramatic result, driven in part by demand for advanced computing and AI chips. But I suspect there's a major risk hidden in those numbers.
+
+MARK: Absolutely. This is one of the most capital-intensive business models imaginable. TSMC must invest in equipment, research, buildings, power, water and specialized people years before it knows exactly how demand will evolve. In October 2026, management maintained a full-year capital-expenditure outlook of roughly sixty to sixty-four billion U.S. dollars.
+
+CHARLOTTE: A staggering commitment. And those investments cannot be reversed easily if demand changes. You're making long-term capacity decisions under uncertainty.
+
+MARK: Exactly. Think of it as a strategic optimization problem with severe constraints. If TSMC invests too little, customers cannot get the chips they need, and competitors may win business. If it invests too much, expensive capacity may sit underused. If it builds in the wrong location, geopolitical, energy or infrastructure risks can threaten supply.
+
+CHARLOTTE: And customers are increasingly interested in where chips are manufactured, not just their performance. Geographic concentration creates vulnerabilities that a successful revenue quarter doesn't erase.
+
+MARK: Right. TSMC has been expanding manufacturing outside Taiwan, including in the United States. But geographic diversification comes with cost, talent and execution challenges. Resilience isn't free.
+
+CHARLOTTE: I also notice an important difference between TSMC and a typical software platform. Software companies can often add another user at relatively low marginal cost. A chip foundry must expand physical manufacturing capacity to serve more demand.
+
+MARK: Exactly. The ecosystem effect is real, but it is anchored in hard assets. Customer designs, production experience, supplier partnerships and capital investment reinforce one another. The result is difficult to imitate quickly.
+
+CHARLOTTE: And there's a forecasting challenge. The foundry doesn't know every product its customers will launch or exactly how successful each will be. It has to translate many imperfect signals into decisions about technologies, factory capacity and production schedules.
+
+MARK: Yes. Customer relationships become valuable sources of information, but they don't eliminate uncertainty. An important part of manufacturing leadership is deciding which commitments to make now and which investments to sequence as demand becomes clearer.
+
+CHARLOTTE: That's an unusually tangible version of strategic judgment. It can take years for the consequences of today's choices to become visible.
+
+CHARLOTTE: The business model also changes how competition works. Rather than trying to beat customers in their own markets, TSMC can grow when different customers succeed, even if those customers compete against one another.
+
+MARK: And that's the unusual genius of the choice. Serving competitors can be safer than becoming their competitor, provided the supplier is trusted, capable and fair. Neutrality becomes a strategic asset.
+
+CHARLOTTE: Yet it also creates obligations. Customers need confidentiality, reliable delivery and enough confidence to commit future products to the same manufacturing partner.
+
+MARK: Exactly. The ultimate lesson is larger than semiconductors. A company can build enormous advantage by deciding what not to do. TSMC chose not to compete in chip design, so it could become indispensable to many chip designers.
+
+CHARLOTTE: Here's the question to end our week: could your business become more valuable by giving up one tempting market opportunity, in order to become the trusted partner of an entire industry?
+
+=== END SPOKEN SCRIPT ===
+
+RESEARCH SOURCES (PRODUCER ONLY; DO NOT NARRATE):
+- TSMC founding business model — company historical report
+  https://investor.tsmc.com/static/annualReports/2013/english/c_2_1.html
+- TSMC strategic pillars of technology, manufacturing and customer trust — historical investor report
+  https://investor.tsmc.com/static/annualReports/2012/english/e_2_2.html
+- TSMC SEC earnings release, October 15, 2026 — Q3 revenue and technology mix
+  https://www.sec.gov/Archives/edgar/data/1046179/000104617926000726/a3q26e_withguidancexfinal.htm
+- Financial Times, October 15, 2026 — capex guidance and capacity expansion
+  https://www.ft.com/content/bf6808c6-ce2d-444f-86c9-a9b557b36a47

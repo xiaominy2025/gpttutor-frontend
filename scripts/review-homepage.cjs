@@ -13,7 +13,8 @@ async function fixture(page) {
     if (url.origin === base) {
       const pathname = decodeURIComponent(url.pathname);
       if (pathname.split('/').includes('..') || pathname.includes('\\')) return route.abort();
-      const file = path.join('dist', ['/', '/explore', '/labs'].includes(pathname) ? 'index.html' : pathname);
+      const isPage = ['/', '/explore', '/labs'].includes(pathname) || /^\/explore\/(simulation|optimization|process)\/cases$/.test(pathname);
+      const file = path.join('dist', isPage ? 'index.html' : pathname);
       return fs.existsSync(file) ? route.fulfill({ path: file }) : route.fulfill({ status:404 });
     }
     if (url.hostname === 'practice-fixture.example.invalid') {
@@ -31,6 +32,7 @@ async function checks(browser) {
     page.on('pageerror', error => { errors.push(error.message); console.error(error.message); });
     await page.goto(base);
     await page.getByRole('heading',{level:1}).waitFor(); if (mode === 'desktop') await page.keyboard.press('Tab');
+    assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Explore Coaches'}).count(),1);
     if (mode === 'desktop') assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Skip to content'); await page.evaluate(() => document.activeElement.blur());
     assert.equal(await page.locator('#decision-tools article').count(),6);
     assert.equal(await page.getByRole('link',{name:'Launch Decision Tree Coach'}).count(),0);
@@ -38,7 +40,8 @@ async function checks(browser) {
     await page.screenshot({path:path.join(output,'engent-home-'+mode+'.png'),fullPage:true});
     const stage = page.locator('.coach-stage');
     assert.equal(await stage.locator('img').count(),1);
-    await page.getByRole('button',{name:'Play introduction'}).click();
+    await stage.scrollIntoViewIfNeeded();
+    await page.getByRole('button',{name:'Pause'}).waitFor();
     const changingPath = stage.locator('path[stroke-dasharray]').first();
     const before = await changingPath.getAttribute('stroke-dashoffset');
     await page.waitForFunction(initial => {
@@ -88,11 +91,101 @@ async function checks(browser) {
     await page.getByRole('link',{name:'Explore Decision Tree Coach'}).click();
     assert.equal(page.url(),base+'/explore#tree');
     await page.reload();
-    await page.getByRole('heading',{name:'Explore Engent Labs.'}).waitFor();
-    await page.locator('#tree').getByRole('button',{name:'Open illustration'}).click();
-    await page.getByRole('button',{name:'Play demo'}).waitFor();
+    await page.getByRole('heading',{name:'Explore Decision Coaches',exact:true}).waitFor();
+    assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).count(),0);
+    const tree = page.locator('#tree');
+    await tree.getByRole('button',{name:'Play demo'}).focus();
+    await page.keyboard.press('Enter');
+    await tree.getByRole('button',{name:'Pause'}).click();
+    await tree.getByRole('button',{name:'Resume'}).waitFor();
+    assert.equal(await page.getByLabel('Media', {exact:true}).count(), 0);
+    assert.equal(await page.getByText('Demo description', {exact:true}).count(), 0);
     await page.evaluate(() => window.scrollTo(0,0)); await page.screenshot({path:path.join(output,'engent-explore-'+mode+'.png'),fullPage:true});
-    await page.getByRole('link',{name:'Open Practice Lab'}).click();
+    await page.getByRole('link',{name:'Explore Cases: Simulation Coach'}).click();
+    assert.equal((await page.reload()).status(),200);
+    const gallery = page.locator('#simulation-applications');
+    const episodeList = gallery.getByRole('group',{name:'All Episodes'});
+    const episodes = episodeList.getByRole('button');
+    const preview = gallery.locator('#case-preview');
+    assert.equal(await episodes.count(), 6);
+    assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Simulation Coach'}).count(),1);
+    assert.equal(await gallery.getByText('Based on public sources. Not reviewed or endorsed by the organizations mentioned.',{exact:true}).count(),1);
+    assert.equal(await preview.getByText('Illustrative scenario',{exact:true}).count(),1);
+    const checkContrast = () => episodes.evaluateAll(rows => {
+      const luminance = color => {
+        const rgb = color.match(/[\d.]+/g).slice(0,3).map(Number);
+        return rgb.reduce((sum,value,i) => {
+          const channel = value / 255;
+          return sum + [0.2126,0.7152,0.0722][i] *
+            (channel <= .04045 ? channel / 12.92 : ((channel + .055) / 1.055) ** 2.4);
+        },0);
+      };
+      return rows.every(row => [...row.querySelectorAll('span')].every(label => {
+        const text = luminance(getComputedStyle(label).color);
+        const background = luminance(getComputedStyle(row).backgroundColor === 'rgba(0, 0, 0, 0)'
+          ? getComputedStyle(row.closest('.engent-case-library')).backgroundColor
+          : getComputedStyle(row).backgroundColor);
+        return label.getBoundingClientRect().height > 0 &&
+          (Math.max(text,background) + .05) / (Math.min(text,background) + .05) >= 4.5;
+      }));
+    });
+    assert(await checkContrast(), `${mode}: resting episode contrast`);
+    const previewBounds = await preview.boundingBox();
+    const listBounds = await episodeList.boundingBox();
+    assert(previewBounds.y + previewBounds.height < listBounds.y, `${mode}: preview must be above the episode list`);
+    assert(Math.abs(previewBounds.width - listBounds.width) < 1, `${mode}: preview and list must share a column`);
+    await page.screenshot({path:path.join(output,'engent-cases-'+mode+'.png'),fullPage:true});
+    for (const episode of await episodes.all()) {
+      await episode.hover();
+      assert(await checkContrast(), `${mode}: hovered episode contrast`);
+      await episode.focus();
+      assert(await checkContrast(), `${mode}: focused episode contrast`);
+      await page.keyboard.press('Enter');
+      assert.equal(await episode.getAttribute('aria-pressed'),'true');
+      assert(await checkContrast(), `${mode}: selected episode contrast`);
+    }
+    await episodes.nth(1).focus();
+    await page.keyboard.press('Enter');
+    await preview.getByRole('heading',{name:'Aerospace schedule risk'}).waitFor();
+    const player = preview.locator('audio');
+    assert.equal(await player.getAttribute('preload'), 'none');
+    await preview.getByRole('button',{name:'Play episode'}).click();
+    await page.waitForFunction(() => document.querySelector('audio').currentTime > 0);
+    const speed = preview.getByLabel('Playback speed, 1×');
+    await speed.focus();
+    await page.keyboard.press('Enter');
+    await preview.getByRole('button',{name:'1.5×',exact:true}).click();
+    assert.equal(await preview.getByLabel('Playback speed, 1.5×').evaluate(element => element === document.activeElement),true);
+    assert.equal(await player.evaluate(audio => audio.playbackRate), 1.5);
+    await preview.getByRole('button',{name:'Mute',exact:true}).click();
+    assert.equal(await player.evaluate(audio => audio.muted),true);
+    await preview.getByRole('button',{name:'Unmute'}).click();
+    assert.equal(await preview.getByRole('slider',{name:'Episode position'}).count(),1);
+    await preview.getByRole('slider',{name:'Episode position'}).fill('15');
+    await page.waitForFunction(() => document.querySelector('audio').currentTime >= 15);
+    const original = await player.elementHandle();
+    await episodes.first().click();
+    assert.equal(await original.evaluate(audio => audio.paused), true);
+    assert.equal(await player.evaluate(audio => audio.currentTime), 0);
+    await preview.screenshot({path:path.join(output,'engent-case-detail-'+mode+'.png')});
+    for (const [coach, title] of [['optimization','The Seat Worth Saving'], ['process','The AI Efficiency Trap']]) {
+      assert.equal((await page.goto(base + '/explore/' + coach + '/cases')).status(), 200);
+      await preview.getByRole('heading',{name:title,exact:true}).waitFor();
+      await player.evaluate(audio => audio.play());
+      await page.waitForFunction(() => document.querySelector('audio').currentTime > 0);
+      await player.evaluate(audio => audio.pause());
+      await preview.getByText('Transcript',{exact:true}).click();
+      await page.waitForFunction(() => document.querySelector('.engent-transcript')?.textContent.length > 100);
+      await preview.getByText('Transcript',{exact:true}).click();
+      await page.screenshot({path:path.join(output,'engent-'+coach+'-player-'+mode+'.png'),fullPage:true});
+      if (coach === 'process') {
+        await episodes.last().click();
+        await preview.getByText('Audio coming soon').waitFor();
+        assert.equal(await player.count(),0);
+      }
+    }
+    await page.getByRole('link',{name:'Decision Process Coach'}).click();
+    await page.getByRole('link',{name:'Open Legacy Practice Lab'}).click();
     assert.equal(page.url(),base+'/labs');
     assert.equal((await page.reload()).status(),200);
     await page.getByText('Select a practice lab').waitFor();
@@ -100,6 +193,10 @@ async function checks(browser) {
     await page.getByPlaceholder('Ask a question').waitFor();
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.goto(base);
+    await stage.locator('img').waitFor();
+    await stage.scrollIntoViewIfNeeded();
+    assert.equal(await stage.locator('img').count(),1);
+    await page.getByRole('button',{name:'Next still'}).click();
     for (const title of titles) {
       assert.equal(await stage.locator('strong').innerText(), title);
       assert.equal(await stage.locator('.coach-workspace').evaluate(el => getComputedStyle(el).opacity), '1');

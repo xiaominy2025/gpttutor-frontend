@@ -1,0 +1,58 @@
+BUSINESS CASES — DECISIONS UNDER CONSTRAINTS
+Episode 4: Lockheed Martin — The F-35 Supply Chain Puzzle
+Hosts: Mark and Charlotte
+Target duration: approximately 6 minutes
+
+MARK: Imagine you're responsible for delivering one of the most complex products in the world: a modern fighter aircraft. The customer expects it on schedule. Your factory has skilled workers, sophisticated equipment, and an assembly plan. But a critical component hasn't arrived. What do you do?
+
+CHARLOTTE: You could move the aircraft forward and finish that work later. You could reshuffle workers. You could wait. But each choice creates a different problem somewhere else. And that's why today's case is about Lockheed Martin's F-35 program—and the challenge of making a supply chain and an assembly line work as one system.
+
+MARK: Most people picture supply chain management as purchasing parts and shipping them to a factory. For the F-35, the real challenge goes much further. Thousands of components, specialized tasks, people, and workstations must be coordinated. If one activity slips, its effects can spread.
+
+CHARLOTTE: Which means the management question isn't simply, 'How do we make this station faster?' It's, 'Which change will actually help us deliver more completed aircraft, reliably?'
+
+MARK: That's the question behind a collaboration between Lockheed Martin and researchers at Texas A&M University. The work focused on F-35 final assembly at Fort Worth. Researchers built simulation and analytical decision-support tools to study production schedules, staffing, and the likelihood of delays.
+
+CHARLOTTE: Let's be precise about what that means. This wasn't a published claim that Texas A&M solved Lockheed Martin's entire supplier network. The documented collaboration was about assembly operations. But assembly is where supply-chain constraints become painfully visible.
+
+MARK: Consider a simplified example. An aircraft moves through several assembly stages. Each stage needs the right parts, the right skills, and the right equipment. Suppose station A has extra capacity, but station B is already overloaded. Adding more workers to station A might make that station look productive. It won't necessarily increase completed aircraft.
+
+CHARLOTTE: Because station B is the bottleneck. And if a component is missing at station B, even more workers might not help. The company needs to distinguish a labor constraint from a material constraint, a scheduling constraint, or a capacity constraint.
+
+MARK: Here's where optimization thinking becomes powerful. Managers can define an objective—say, meeting delivery commitments while controlling cost and disruption. Then they can represent the constraints: available labor hours, task precedence, station capacity, component availability, and deadlines.
+
+CHARLOTTE: And instead of debating one fix at a time, they can compare alternatives systematically. What happens if a task moves to another station? If more technicians are assigned to a bottleneck? If the schedule includes a buffer? If a late component changes which work can proceed?
+
+MARK: The Texas A&M team used simulation and what-if analysis to examine such production choices. Simulation matters because real factories are uncertain. A plan that looks ideal on paper may break down when tasks take longer than expected or resources aren't available.
+
+CHARLOTTE: This is also an important distinction about the math. Some manufacturing decisions can be framed using linear or mixed-integer optimization. The publicly described Texas A&M collaboration, however, emphasizes simulation and scheduling analysis. We shouldn't pretend every model was a textbook linear program.
+
+MARK: Now fast-forward to a later, separate assessment. A 2025 Government Accountability Office report described thousands of parts shortages affecting the F-35's final production stage. Missing parts sometimes forced work to be completed outside its planned assembly station.
+
+CHARLOTTE: That's a vivid example of the operational consequences. When work leaves its intended sequence, it can create extra handling, coordination, and rework. The factory may stay busy without becoming more efficient.
+
+MARK: And to be clear, those later findings don't prove that the Texas A&M tools caused or prevented those shortages. They show why coordinating materials and production remains such a consequential challenge.
+
+CHARLOTTE: So imagine you're the operations leader. You have three proposals. Purchasing wants more inventory buffers. Production wants more labor at final assembly. Scheduling wants greater flexibility to resequence tasks. Which one do you fund?
+
+MARK: The answer depends on the binding constraint. If the problem is missing parts, adding labor may be wasteful. If parts are available but a specialized station is overloaded, inventory won't fix throughput. And if tasks are sequenced poorly, you may have enough parts and people but still miss deliveries.
+
+CHARLOTTE: That's the key lesson: a local improvement isn't necessarily a system improvement. The right question is not 'Where can we work harder?' but 'What is preventing the whole system from achieving its objective?'
+
+MARK: And there's a second lesson. Decision-support models don't replace management judgment. They make trade-offs visible. They let leaders test assumptions, see where a plan is fragile, and compare alternatives before disrupting a real production line.
+
+CHARLOTTE: For any company making complex products—aircraft, medical equipment, industrial machinery, even cars—the same principle applies. Supply chains and factories are not separate puzzles. They are one interconnected system of decisions under constraints.
+
+MARK: So the next time you hear that a manufacturer is behind schedule, don't assume the answer is simply more workers, more inventory, or more machines.
+
+CHARLOTTE: First find the constraint. Then ask which decision improves the performance of the whole system.
+
+MARK: That's the F-35 supply chain puzzle. Thanks for listening to Business Cases.
+
+CHARLOTTE: See you next time.
+
+PRODUCTION NOTES — NOT SPOKEN
+- Case focus: Lockheed Martin's F-35 final assembly and the supply-chain implications of material availability and production scheduling.
+- Texas A&M collaboration: described publicly as simulation, scheduling, staffing, and what-if decision-support research; do not characterize it as proven enterprise-wide supply-chain optimization or as exclusively linear programming.
+- GAO 2025 parts shortages are later, separate evidence of production challenges, not outcomes of the collaboration.
+- Verify exact source references and publication details before final publishing. Suggested primary sources: Texas A&M Engineering news/research account of F-35 assembly modeling and GAO's 2025 F-35 production report.

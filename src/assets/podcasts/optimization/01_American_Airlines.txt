@@ -1,0 +1,35 @@
+TITLE: The Seat Worth Saving
+SERIES: Business Cases — Decisions Under Constraints
+HOSTS: Mark and Charlotte
+
+MARK: A discounted traveler wants the last seat on a flight. Do you sell it now, or save it for a higher-paying traveler who might never arrive?
+
+CHARLOTTE: That is a deceptively difficult decision. The question is not simply what looks best right now, but how today’s choice affects every other use of limited resources.
+
+MARK: What did the organization actually do?
+
+CHARLOTTE: American Airlines developed revenue-management models for overbooking, discount allocation, and traffic management. Its 1992 published case estimated $1.4 billion in benefits over three years.
+
+MARK: What makes the decision difficult in practice?
+
+CHARLOTTE: A seat is perishable. Once the plane departs, unsold capacity disappears. But accepting a booking also removes the opportunity to serve another passenger. Connecting itineraries add network-wide complexity.
+
+MARK: So the constraints change which options are realistic. Even a seemingly obvious decision can be poor when we look at the full system.
+
+CHARLOTTE: Exactly. Mathematical optimization makes trade-offs explicit. It starts by defining what the organization wants to achieve, what it can control, and what limits cannot be violated.
+
+MARK: And a model does not replace judgment. Managers must still check assumptions, data quality, unexpected disruptions, and whether the recommendation can actually be implemented.
+
+CHARLOTTE: That is essential. A theoretically attractive solution has little value if the people and systems involved cannot execute it.
+
+MARK: What should listeners take away from this case?
+
+CHARLOTTE: The real objective is not filling every seat at the earliest opportunity. It is maximizing the value of limited capacity while managing uncertain demand.
+
+MARK: And that principle extends far beyond this industry. Whenever people compete for limited money, time, equipment, or capacity, the real challenge is choosing the best combination of actions.
+
+CHARLOTTE: Exactly. Optimization is a disciplined way to make those choices. It is not magic, and it does not eliminate uncertainty. It makes the decision more transparent and repeatable.
+
+MARK: Thanks for listening to Business Cases, where real-world decisions reveal the power of better thinking.
+
+SOURCE (not for narration): https://pubsonline.informs.org/doi/pdf/10.1287/inte.22.1.8

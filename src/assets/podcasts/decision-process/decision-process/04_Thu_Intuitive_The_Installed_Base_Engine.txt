@@ -1,0 +1,67 @@
+﻿The Robot Is Only the Beginning: Intuitive Surgical’s Installed-Base Engine
+Thursday, November 12, 2026
+HOSTS: MARK and CHARLOTTE
+TARGET DURATION: 5–7 minutes
+SPOKEN WORD COUNT: 857
+
+=== BEGIN SPOKEN SCRIPT ===
+
+MARK: Imagine a hospital considering a surgical robot. The machine itself represents a major investment. But the most important economic decision is not simply whether the hospital buys it. It is what happens every time surgeons use it for the next five or ten years.
+
+CHARLOTTE: Because the hospital doesn't buy a robot for its own sake. It needs a clinical program: trained teams, reliable instruments, maintenance, scheduled operating rooms and enough appropriate patients.
+
+MARK: Exactly. That's why Intuitive Surgical is such a revealing business case. Intuitive makes the da Vinci robotic-assisted surgical systems. Its economics depend not only on putting systems into hospitals, but on helping them become part of routine clinical workflows.
+
+CHARLOTTE: So the equipment sale is the beginning of the customer relationship, not the end.
+
+MARK: Right. At the end of 2025, Intuitive reported an installed base of about eleven thousand one hundred and six da Vinci systems worldwide. It reported roughly three point one five million da Vinci procedures during that year, an eighteen percent increase from 2024.
+
+CHARLOTTE: Those are two different measures. Installed systems tell us the size of the network. Procedure volume tells us how much that network is being used.
+
+MARK: And the distinction is economically essential. A hospital can own an expensive piece of equipment that sits idle. That doesn't create much clinical or business value. Utilization matters because procedures drive demand for instruments, accessories, service and training support.
+
+CHARLOTTE: The revenue breakdown makes that visible, doesn't it?
+
+MARK: It does. In its 2025 report, Intuitive said about eighty-four percent of revenue was recurring, including instruments and accessories, service, and operating lease revenue. Instruments and accessories alone generated about six billion dollars. By comparison, total company revenue was about ten billion dollars.
+
+CHARLOTTE: Which means looking only at the price of a surgical robot would miss much of the business model. The company is supporting repeated procedures, not just shipping a machine.
+
+MARK: Exactly. Now notice the strategic loop. More installed systems create opportunities for more procedures. More procedures support recurring revenue and may justify further training and investment. Hospitals that build experience with the system develop workflows and skills around it. That experience can make switching more complicated.
+
+CHARLOTTE: That sounds like a competitive moat. But it could also sound like lock-in. Is that necessarily good for patients or hospitals?
+
+MARK: Not automatically. This is where business analysis needs to keep two questions separate. First, is the commercial system economically attractive to the manufacturer? Second, does using the technology provide appropriate clinical benefits and value for the hospital and patient? Those are related, but they are not identical.
+
+CHARLOTTE: And robotic-assisted surgery should not be assumed superior for every procedure. Benefits, risks, cost and surgeon expertise can vary. Clinical decisions need evidence, not marketing claims.
+
+MARK: Exactly. A strong operating model should make hospitals better at delivering care, not simply make them dependent on a supplier's equipment. Training, maintenance, uptime and appropriate use are central. If a hospital has too few suitable procedures, the capital commitment and ongoing costs may not be justified.
+
+CHARLOTTE: There's also a capacity question. When a hospital invests in a system, it needs a plan for operating-room time, surgeon training, equipment availability and workflow coordination. Buying the robot does not automatically produce more successful operations.
+
+MARK: You've identified the decision-making lesson. The acquisition decision is only the first node in a longer sequence. A hospital is committing to a future operating system under uncertainty about patient demand, case mix, reimbursement and technology development.
+
+CHARLOTTE: And Intuitive faces uncertainty too. New generations of systems require research investment. Competitors may introduce alternatives. Hospitals may resist costs or question benefits. Growth in the installed base doesn't guarantee that every machine will be highly utilized.
+
+MARK: Precisely. That's why it is useful to watch both system placements and procedure utilization. One is about distribution. The other is about recurring value in real use.
+
+CHARLOTTE: There's a further strategic tension. Each additional hospital system can expand the company's reach, yet a system with low utilization can disappoint both its owner and its supplier. That means sales teams should not evaluate success only by equipment placements.
+
+MARK: Exactly. The more demanding question is whether the installation improves the hospital's ability to deliver appropriate care sustainably. That involves more than a sales contract. It requires a realistic plan, trained staff, dependable support and transparent economics.
+
+CHARLOTTE: And whether the model creates value should remain open to measurement, not assumed from the sophistication of the technology.
+
+CHARLOTTE: I also find the management incentives interesting. If your revenue continues after the initial sale, you have a reason to keep the equipment working, keep customers supported and improve the overall experience.
+
+MARK: That's the strongest version of the model: the supplier benefits when the customer uses the system appropriately and reliably. The weakest version would be a model where recurring charges rise without corresponding improvements in customer outcomes.
+
+CHARLOTTE: So the commercial secret is not simply 'sell the razor and then the blades.' It is a much more demanding combination of equipment, skills, service and repeated performance.
+
+MARK: Exactly. Here's the question: when you sell something complex, are you building a business around the initial transaction, or around helping the customer succeed every time they use it?
+
+=== END SPOKEN SCRIPT ===
+
+RESEARCH SOURCES (PRODUCER ONLY; DO NOT NARRATE):
+- Intuitive Surgical 2025 Form 10-K, filed 2026 — installed base, procedure volumes, recurring revenue
+  https://www.sec.gov/Archives/edgar/data/1035267/000103526726000010/isrg-20251231.htm
+- Intuitive Surgical, January 2026 — preliminary full-year operating results
+  https://investor.intuitivesurgical.com/news-releases/news-release-details/intuitive-announces-preliminary-fourth-quarter-and-full-year-5

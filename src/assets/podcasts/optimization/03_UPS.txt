@@ -1,0 +1,35 @@
+TITLE: The Million-Mile Decision
+SERIES: Business Cases — Decisions Under Constraints
+HOSTS: Mark and Charlotte
+
+MARK: A driver has dozens of stops. Should the next delivery be the closest one? Not if that choice makes the rest of the day less efficient.
+
+CHARLOTTE: That is a deceptively difficult decision. The question is not simply what looks best right now, but how today’s choice affects every other use of limited resources.
+
+MARK: What did the organization actually do?
+
+CHARLOTTE: UPS developed ORION, combining package information, maps, and route algorithms. Historical full-deployment projections included 100 million fewer miles and 10 million gallons of fuel saved annually.
+
+MARK: What makes the decision difficult in practice?
+
+CHARLOTTE: Routing has interacting constraints: service windows, roads, time, vehicles, and every other stop. It is a combinatorial optimization problem, not just a basic linear program.
+
+MARK: So the constraints change which options are realistic. Even a seemingly obvious decision can be poor when we look at the full system.
+
+CHARLOTTE: Exactly. Mathematical optimization makes trade-offs explicit. It starts by defining what the organization wants to achieve, what it can control, and what limits cannot be violated.
+
+MARK: And a model does not replace judgment. Managers must still check assumptions, data quality, unexpected disruptions, and whether the recommendation can actually be implemented.
+
+CHARLOTTE: That is essential. A theoretically attractive solution has little value if the people and systems involved cannot execute it.
+
+MARK: What should listeners take away from this case?
+
+CHARLOTTE: Optimize the whole journey rather than the next turn. Small improvements repeated across a huge fleet can become major results.
+
+MARK: And that principle extends far beyond this industry. Whenever people compete for limited money, time, equipment, or capacity, the real challenge is choosing the best combination of actions.
+
+CHARLOTTE: Exactly. Optimization is a disciplined way to make those choices. It is not magic, and it does not eliminate uncertainty. It makes the decision more transparent and repeatable.
+
+MARK: Thanks for listening to Business Cases, where real-world decisions reveal the power of better thinking.
+
+SOURCE (not for narration): https://ops-dr.fhwa.dot.gov/publications/fhwahop19015/2018summary24.htm
