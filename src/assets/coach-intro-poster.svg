@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+<rect width="960" height="540" fill="#FAFAF7"/>
+<g font-family="system-ui,sans-serif" fill="#263B43">
+<text x="55" y="77" font-size="52" font-weight="700">Meet Your Six Decision Coaches</text>
+<text x="55" y="117" font-size="23">Objectives • Analysis • Human Judgment</text>
+<g font-weight="650" font-size="22">
+<path d="M55 156q90-8 249 0l-5 54q-119 8-244 0Z" fill="#D9A441" fill-opacity=".25"/>
+<path d="M356 155q117-6 248 0l-3 55q-120 6-245 0Z" fill="#467FA8" fill-opacity=".23"/>
+<path d="M657 156q130-7 248 0l-3 54q-126 6-245 0Z" fill="#267456" fill-opacity=".20"/>
+<text x="179" y="190" text-anchor="middle">Objectives</text><text x="480" y="190" text-anchor="middle">Analysis</text><text x="781" y="190" text-anchor="middle">Human Judgment</text>
+<path d="M316 182h23m-7-6 7 6-7 6m285-6h23m-7-6 7 6-7 6" fill="none" stroke="#263B43" stroke-width="2"/>
+</g>
+<path d="M55 240H905M55 369H905" stroke="#CBD8D0"/>
+<g fill="none" stroke="#467FA8" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+<path d="M143 292h70"/><circle cx="143" cy="292" r="8" fill="#FAFAF7" stroke="#D9A441"/><circle cx="178" cy="292" r="8" fill="#FAFAF7"/><circle cx="213" cy="292" r="8" fill="#FAFAF7" stroke="#267456"/>
+<path d="M430 312l23-16 27 5 23-17 33-12"/><path d="M480 301l55-44v39Z" fill="#467FA8" fill-opacity=".18" stroke="none"/>
+<path d="M742 266h78v51h-78zm0 25h78m-52-25v51m26-51v51"/>
+<path d="M137 435l42-18m-42 18 42 18m14-36 28-12m-28 12 28 10m-28 26 28-10m-28 10 28 11"/><rect x="122" y="428" width="14" height="14" stroke="#D9A441"/><circle cx="186" cy="417" r="7"/><circle cx="186" cy="453" r="7"/>
+<path d="M432 457h12v-14h12v14m4 0v-32h12v32m4 0v-45h12v45m4 0v-33h12v33m4 0v-17h12v17"/>
+<path d="M734 407v32h93m-87-13 26-15 26 17 27-14"/>
+<path d="M740 420l26-4 26 7 27-4" stroke="#267456"/>
+<path d="M740 458l26-9 26 10 27-7" stroke="#D9A441"/>
+</g>
+<g text-anchor="middle" font-size="21" font-weight="620">
+<text x="178" y="345">Decision Process</text><text x="480" y="345">Forecasting</text><text x="781" y="345">Scenario Analysis</text>
+<text x="178" y="496">Decision Tree</text><text x="480" y="496">Simulation</text><text x="781" y="496">Optimization</text>
+</g>
+</g></svg>

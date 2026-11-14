@@ -1,0 +1,83 @@
+.engent-site{--paper:#fafaf7;--slate:#263b43;--blue:#467fa8;--gold:#d9a441;--green:#267456;--line:#dce3df;background:var(--paper);color:var(--slate);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+.engent-wrap{width:min(1160px,calc(100% - 56px));margin-inline:auto}
+.engent-header,.engent-footer{border-bottom:1px solid var(--line);background:var(--paper)}
+.engent-header-row{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:76px}
+.engent-header img{width:152px;height:48px;object-fit:contain;object-position:left center}
+.engent-header nav,.engent-footer{font-size:.88rem;font-weight:650}
+.engent-site a,.engent-site button{touch-action:manipulation}
+.engent-site :focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.engent-skip{position:absolute;z-index:5;left:12px;top:12px;padding:10px 14px;background:white;transform:translateY(-180%)}
+.engent-skip:focus{transform:none}
+.engent-hero{padding:clamp(48px,7vw,106px) 0;background:#f4f5ee}
+.engent-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:clamp(24px,5vw,74px)}
+.engent-site h1,.engent-site h2,.engent-site h3{font-weight:700;line-height:1.12;letter-spacing:-.034em}
+.engent-site h1{font-size:clamp(2.45rem,5.1vw,5.1rem);margin:10px 0 20px}
+.engent-site h1 span{color:var(--green)}
+.engent-site h2{font-size:clamp(1.7rem,3.5vw,2.65rem)}
+.engent-site h3{font-size:1.2rem}
+.engent-lede{font-size:clamp(1rem,1.65vw,1.25rem);max-width:41ch}
+.coach-eyebrow{text-transform:uppercase;font-size:.72rem;letter-spacing:.13em;font-weight:750;color:var(--green)}
+.engent-actions{display:flex;align-items:center;flex-wrap:wrap;gap:16px 20px;margin-top:26px}
+.engent-button,.coach-controls button{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--green);color:white;font-weight:700;padding:11px 16px;border-radius:6px}
+.engent-button:hover,.coach-controls button:hover{background:#1d5e45}
+.engent-text-link{color:#235e48;font-weight:700;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;font-size:.9rem}
+.engent-hero-art,.coach-stage{background-color:var(--paper);border:1px solid #d4ddd4;border-radius:12px;overflow:hidden}
+.engent-hero-art,.coach-workspace{background:var(--paper) url('../assets/coach-paper.webp') center / cover}
+.engent-hero-art svg{display:block;width:100%;padding:12px}
+.coach-pencil text{fill:currentColor}
+.coach-pencil path[stroke]{stroke-linecap:round;stroke-linejoin:round}
+.engent-hero-art figcaption{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:12px 16px;font-size:.75rem}
+.engent-hero-art figcaption span:first-child{font-weight:750}
+.engent-section{padding-block:clamp(38px,6vw,80px)}
+.engent-section-head{margin-bottom:24px}
+.engent-section-head p,.engent-why h2{margin-top:7px}
+.engent-why{display:grid;grid-template-columns:.8fr 2.2fr;gap:24px}
+.engent-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.engent-principles div{border-top:3px solid var(--gold);padding-top:12px}
+.engent-principles div:nth-child(2){border-color:var(--blue)}
+.engent-principles div:nth-child(3){border-color:var(--green)}
+.engent-principles p{font-size:.92rem;margin-top:4px}
+.engent-intro-band,.engent-explore-hero{background:#eef2ed}
+.engent-intro-band .engent-wrap{max-width:980px}
+.coach-stage{aspect-ratio:16 / 9;position:relative;container-type:inline-size}
+.coach-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.coach-workspace{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,59fr) minmax(0,41fr);grid-template-rows:22% minmax(0,1fr);padding:3.5%}
+.coach-workspace-heading{grid-column:1/-1;display:flex;flex-direction:column;border-bottom:1px solid var(--line);padding-bottom:2%}
+.coach-workspace-heading strong{font-size:5cqw;line-height:1.1;letter-spacing:-.04em}
+.coach-workspace-heading span{font-size:2.9cqw}
+.coach-animated-diagram{width:100%;height:100%}
+.coach-guidance{border-left:1px solid var(--line);padding:4% 0 0 6%;font-size:2.55cqw;line-height:1.24}
+.coach-guidance .coach-eyebrow{font-size:2cqw}
+.coach-guidance p{margin:4% 0}
+.coach-guidance p:first-of-type{font-weight:750}
+.coach-guidance p:last-of-type{color:var(--green)}
+.coach-controls{display:flex;align-items:center;gap:10px;margin-top:11px}
+.coach-controls button{font-size:.82rem;min-height:42px;flex:none}
+.coach-controls button:disabled{opacity:.55}
+.coach-controls input{flex:1;min-width:40px;accent-color:var(--green)}
+.coach-time{font-size:.78rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.coach-transcript{font-size:.9rem;margin-top:10px}
+.coach-transcript summary{cursor:pointer;font-weight:650}
+.coach-transcript ol{list-style:decimal;margin:8px 0 0 20px}
+.engent-tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.engent-tools article{display:flex;flex-direction:column;background:white;border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.engent-card-art{width:100%;max-height:106px;margin-bottom:14px;background:var(--paper);border-radius:5px}
+.engent-tools article p{flex:1;margin-top:5px;font-size:.9rem}
+.engent-card-actions{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:16px}
+.engent-status{font-size:.75rem;color:#495a55;background:#eef2ee;border-radius:4px;padding:3px 7px;font-weight:650}
+.engent-closing{background:#e5eee6;padding:clamp(34px,5vw,62px) 0}
+.engent-closing .engent-wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.engent-footer{border-top:1px solid var(--line)}
+.engent-footer span{font-weight:400}
+.engent-coach-nav{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:24px;font-size:.88rem;text-decoration:underline;text-underline-offset:4px}
+.engent-explore-list{padding-bottom:48px}
+.engent-explore-coach{scroll-margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:30px 0;border-bottom:1px solid var(--line)}
+.engent-explore-coach h2{font-size:1.7rem}
+.engent-explore-coach p{margin-top:6px}
+.engent-explore-subtitle{font-weight:650}
+.engent-demo{background:#eef2ed;padding:15px;border-radius:8px;min-width:0}
+.engent-demo .engent-text-link{margin-top:10px;min-height:34px}
+.engent-demo .coach-player{margin-top:10px}
+.engent-demo video{width:100%;margin-top:10px;border-radius:6px}
+@media(max-width:780px){.engent-hero-grid,.engent-why,.engent-explore-coach{grid-template-columns:1fr}.engent-hero-art{max-width:530px}.engent-tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.engent-wrap{width:calc(100% - 32px)}.engent-header-row{min-height:62px;gap:10px}.engent-header img{width:114px}.engent-header nav{font-size:.76rem}.engent-principles,.engent-tools{grid-template-columns:1fr}.engent-card-art{max-height:96px}.coach-controls button{padding-inline:8px}.coach-controls{gap:6px}}
