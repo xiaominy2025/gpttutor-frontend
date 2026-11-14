@@ -57,7 +57,17 @@ async function checks(browser) {
           lines => lines.filter(line => getComputedStyle(line).fill !== 'none').length
         );
         assert.equal(unexpectedFills, 0);
+        const guidanceFits = await stage.locator('.coach-guidance').evaluate(panel => {
+          const bounds = panel.getBoundingClientRect();
+          return [...panel.children].every(child => {
+            const text = child.getBoundingClientRect();
+            return text.bottom <= bounds.bottom + 1 && text.right <= bounds.right + 1;
+          });
+        });
+        assert(guidanceFits, `${mode}: ${title} guidance exceeds its panel`);
       }
+      await position.fill(String(Math.round((index * 9.6 + 8) * 10) / 10));
+      await stage.screenshot({ path: path.join(output, `engent-scene-${index + 1}-${mode}.png`) });
     }
     await position.fill('8');
     assert.deepEqual(await stage.locator('svg text').allTextContents(), ['1', 'Objectives', '2', 'Analysis', '3', 'Human Judgment']);

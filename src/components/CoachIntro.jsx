@@ -16,7 +16,7 @@ function Workspace({ coach, progress, opacity = 1 }) {
       </div>
       <CoachDiagram kind={coach.id} progress={progress} className="coach-animated-diagram" />
       <div className="coach-guidance">
-        <span className="coach-eyebrow">Coaching guidance</span>
+        <span className="coach-eyebrow">Your Coach</span>
         <p style={{ opacity: clamp(progress * 5 + .15) }}>{coach.question}</p>
         <p style={{ opacity: clamp((progress - .24) * 4) }}>{coach.method}</p>
         <p style={{ opacity: clamp((progress - .60) * 5) }}>{coach.judgment}</p>

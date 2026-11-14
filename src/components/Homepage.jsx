@@ -11,8 +11,8 @@ const treeUrl = import.meta.env.VITE_VERIFIED_DECISION_TREE_URL;
 function MarketingLayout({ explore, children }) {
   const { hash } = useLocation();
   useEffect(() => {
-    document.title = explore ? 'Explore Engent Labs | Interactive Decision Coaching' : 'Engent Labs | Interactive Decision Coaching';
-    return () => { document.title = 'Engent Labs | Interactive Decision Coaching'; };
+    document.title = explore ? 'Explore Engent Labs | Interactive Decision Coaches' : 'Engent Labs | Interactive Decision Coaches';
+    return () => { document.title = 'Engent Labs | Interactive Decision Coaches'; };
   }, [explore]);
   useEffect(() => {
     const section = hash && document.getElementById(hash.slice(1));
@@ -30,7 +30,7 @@ function MarketingLayout({ explore, children }) {
     </header>
     <main id="engent-main">{children}</main>
     <footer className="engent-footer"><div className="engent-wrap engent-header-row">
-      <Link to="/">Engent Labs</Link><span>Interactive Decision Coaching</span>
+      <Link to="/">Engent Labs</Link><span>Interactive Decision Coaches</span>
     </div></footer>
   </div>;
 }
@@ -52,7 +52,7 @@ export default function Homepage() {
       <div className="engent-wrap engent-hero-grid">
         <div>
           <p className="coach-eyebrow">Engent Labs</p>
-          <h1>Interactive<br />Decision Coaching<span>.</span></h1>
+          <h1>Interactive<br />Decision Coaches<span>.</span></h1>
           <p className="engent-lede">Clarify what matters, analyze your options, and make decisions you can explain and stand behind.</p>
           <div className="engent-actions">
             <a href="#decision-tools" className="engent-button">Explore Our Decision Tools <span aria-hidden="true">↓</span></a>

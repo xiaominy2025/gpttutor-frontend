@@ -40,16 +40,19 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
         </>}
         {kind === 'forecast' && <>
           {axes}
-          {labels([[78,269,'Past demand'],[370,269,'Future demand']])}
+          {labels([[78,269,'Historical observations'],[342,269,'Projected forecast']])}
           <path d="M76 205Q114 173 145 182T213 144T290 131" fill="none" stroke={blue} strokeWidth="3.5" {...draw(.03,.30)} />
           <path d="M290 131Q365 87 475 45L475 188Q365 145 290 131Z" fill={blue} opacity={step(.42,.32)*.24} filter={`url(#${grain})`} />
           <path d="M290 131Q381 102 475 98" fill="none" stroke={blue} strokeWidth="3" {...draw(.32,.37)} />
+          <g fill={blue} {...reveal(.33)}>
+            <circle cx="76" cy="205" r="4"/><circle cx="145" cy="182" r="4"/><circle cx="213" cy="144" r="4"/><circle cx="290" cy="131" r="4"/>
+          </g>
           <path d="M290 44V241" stroke={slate} strokeOpacity=".36" strokeDasharray="5 7" />
-          <g {...reveal(.72)}><circle cx="475" cy="98" r="7" fill={green} /><text x="369" y="30">Plausible range</text></g>
+          <g {...reveal(.72)}><text x="363" y="30">Uncertainty range</text><text x="327" y="123">Central forecast</text></g>
         </>}
         {kind === 'scenario' && <>
           <text x="35" y="26" fontWeight="700">Illustrative profit units</text>
-          {labels([[180,60,'Low'],[290,60,'Steady'],[403,60,'High'],[35,125,'Pilot'],[35,203,'Full launch']])}
+          {labels([[154,60,'Worst-case'],[267,60,'Most likely'],[387,60,'Best-case'],[35,125,'Pilot'],[35,203,'Full launch']])}
           <path d="M145 76H491M145 153H491M145 230H491" stroke={slate} strokeOpacity=".2" />
           {['+8','+16','+22','−12','+20','+37'].map((label,i) => {
             const x = 195 + (i%3)*112;
@@ -67,12 +70,16 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           <path d="M99 141L233 78M99 141L233 202" stroke={blue} fill="none" {...draw(.16,.26)} />
           <g {...reveal(.32)}>{[78,202].map(y=><circle key={y} cx="249" cy={y} r="15" fill={paper} stroke={blue} />)}<text x="145" y="92">Expand</text><text x="148" y="206">Wait</text></g>
           <path d="M264 78L420 43M264 78L420 112M264 202L420 172M264 202L420 237" stroke={blue} fill="none" {...draw(.42,.30)} />
-          <g {...reveal(.63)}>{[[43,'+36'],[112,'−14'],[172,'+12'],[237,'+4']].map(([y,label])=><g key={label}><circle cx="427" cy={y} r="5" fill={blue}/><text x="444" y={y+5}>{label}</text></g>)}</g>
+          <g {...reveal(.63)}>
+            {labels([[324,51,'70%'],[324,116,'30%'],[324,173,'60%'],[324,237,'40%']])}
+            {[[43,'+36'],[112,'−14'],[172,'+12'],[237,'+4']].map(([y,label])=><g key={label}><circle cx="427" cy={y} r="5" fill={blue}/><text x="444" y={y+5}>{label}</text></g>)}
+          </g>
           <path d="M100 141L232 79M266 75L419 44" stroke={green} strokeWidth="4" fill="none" {...draw(.79,.17)} />
           <text x="320" y="24" style={{color:green}} {...reveal(.79)}>Sample path</text>
         </>}
         {kind === 'simulation' && <>
           {axes}
+          <text x="58" y="174" transform="rotate(-90 58 174)">Frequency</text>
           {[17,28,50,95,129,160,124,80,46,25,12].map((height,i)=>{
             const h = height*step(.10+Math.abs(i-5)*.065,.42);
             return <rect key={i} x={87+i*34} y={239-h} width="28" height={h} rx="3" fill={blue} fillOpacity={i<3 ? '.32' : '.65'} stroke={blue} />;
@@ -81,13 +88,21 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           <g {...reveal(.72)}><text x="82" y="272">Below target</text><text x="338" y="272">Simulated profit</text><text x="195" y="71">Profit target</text><path d="M87 247v5h93v-5" stroke={blue} {...draw(.78,.17)} /></g>
         </>}
         {kind === 'optimization' && <>
-          {axes}
-          {labels([[75,28,'Staffing'],[377,268,'Capacity']])}
-          <path d="M71 74L465 237" stroke={blue} {...draw(.09,.27)} />
-          <path d="M135 48L343 240" stroke={blue} {...draw(.28,.27)} />
-          <path d="M71 239V74L241 144L343 239Z" fill={blue} opacity={step(.48,.23)*.23} filter={`url(#${grain})`} />
-          <path d="M174 195L301 104" stroke={gold} strokeDasharray="5 7" {...reveal(.62)} />
-          <g {...reveal(.76)}><circle cx="241" cy="144" r="12" fill={green} fillOpacity=".2" /><circle cx="241" cy="144" r="5" fill={green} /><text x="252" y="175">Feasible option</text></g>
+          <path d="M80 46V237H286" stroke={slate} strokeOpacity=".42" />
+          {labels([[64,39,'y'],[275,258,'x'],[64,255,'0']])}
+          <path d="M80 105L242 237" stroke={blue} {...draw(.09,.27)} />
+          <path d="M80 61L188 237" stroke={blue} {...draw(.28,.27)} />
+          <path d="M80 237V105L134 149L188 237Z" fill={blue} fillOpacity=".23" opacity={step(.48,.23)} />
+          <g {...reveal(.48)}>{labels([[267,159,'x + y ≤ 6'],[267,185,'2x + y ≤ 8'],[267,211,'x, y ≥ 0']])}</g>
+          <g {...reveal(.62)}>
+            <path d="M80 83L206 237M161 105l25-23m-11 1 11-1-2 11" stroke={gold} />
+            <text x="197" y="77">Increasing 3x + 2y</text>
+          </g>
+          <g {...reveal(.76)}>
+            <circle cx="134" cy="149" r="10" fill={green} fillOpacity=".2" /><circle cx="134" cy="149" r="4" fill={green} />
+            <path d="M142 145L203 122H250" stroke={green} />
+            <text x="256" y="126">Optimal solution (2, 4)</text>
+          </g>
         </>}
       </g>
     </svg>
