@@ -101,24 +101,25 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
         {kind === 'optimization' && <>
           <text x="265" y="34" textAnchor="middle" fontSize="23" fontWeight="700">Optimized Production Plan</text>
           <text x="265" y="55" textAnchor="middle" fontSize="14">Illustrative trends · different scales</text>
-          <path d="M67 217H404" stroke={slate} strokeOpacity=".35" />
-          {[78,184,290,396].map((x,i) =>
+          <path d="M134 217H464" stroke={slate} strokeOpacity=".35" />
+          {[138,244,350,456].map((x,i) =>
             <text key={x} x={x} y="239" textAnchor="middle">Q{i+1}</text>
           )}
           <clipPath id={`${grain}-optimization-sweep`}>
-            <rect x="74" y="65" width={326 * step(.10,.65)} height="143" />
+            <rect x="134" y="61" width={326 * step(.10,.65)} height="143" />
           </clipPath>
           {[
-            ['Demand', blue, 'M78 119C113 119 149 79 184 79S255 133 290 133S361 91 396 91', 91],
-            ['Production', green, 'M78 140C113 140 149 122 184 122S255 152 290 152S361 145 396 145', 145],
-            ['Profit', gold, 'M78 190C113 190 149 164 184 164S255 201 290 201S361 176 396 176', 176],
-          ].map(([name, color, curve, y]) => (
+            ['Profit', gold, 'M138 72C173 72 209 66 244 66S315 73 350 73S421 68 456 68', 72, 72],
+            ['Production', green, 'M138 103C173 103 209 95 244 95S315 115 350 115S421 109 456 109', 103, 99],
+            ['Demand', blue, 'M138 119C173 119 209 79 244 79S315 133 350 133S421 91 456 91', 119, 129],
+          ].map(([name, color, curve, startY, labelY]) => (
             <g key={name}>
               <g clipPath={`url(#${grain}-optimization-sweep)`}>
                 <path d={curve} stroke={color} strokeWidth="7" strokeOpacity=".16" />
                 <path d={curve} stroke={color} strokeWidth="2.7" />
               </g>
-              <text x="410" y={y+5} fontWeight="700" {...reveal(.70)}>{name}</text>
+              <path d={`M116 ${labelY}L134 ${startY}`} stroke={color} strokeWidth="1.4" />
+              <text x="108" y={labelY+5} textAnchor="end" fontWeight="700">{name}</text>
             </g>
           ))}
           <text x="265" y="267" textAnchor="middle" fontWeight="700" {...reveal(.83)}>Maximize Annual Operating Profit</text>
