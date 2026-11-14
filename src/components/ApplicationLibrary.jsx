@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { podcastAsset } from './podcastCollections';
+import MediaProgress from './MediaProgress';
 
 function CaseCover({ item }) {
   const wash = useId();
@@ -18,8 +19,17 @@ function EpisodeMedia({ episode }) {
   const [transcript, setTranscript] = useState(null);
   const [failed, setFailed] = useState(false);
   const [showText, setShowText] = useState(false);
+  const [timing, setTiming] = useState({ elapsed: 0, total: episode.seconds || 0, buffered: 0 });
   const recording = podcastAsset(episode.asset, 'mp3');
   const script = podcastAsset(episode.asset, 'txt');
+  function updateTiming({ currentTarget: audio }) {
+    const buffered = audio.buffered;
+    setTiming({
+      elapsed: audio.currentTime,
+      total: Number.isFinite(audio.duration) ? audio.duration : episode.seconds,
+      buffered: buffered.length ? buffered.end(buffered.length - 1) : 0,
+    });
+  }
   useEffect(() => {
     const audio = player.current;
     return () => audio?.pause();
@@ -39,10 +49,21 @@ function EpisodeMedia({ episode }) {
   if (!recording) return <span className="engent-status">Audio coming soon</span>;
   return <div className="engent-episode-media">
     <div className="engent-audio-toolbar">
-      <audio ref={player} controls preload="none" src={recording} aria-label={`Listen to ${episode.title}`} />
+      <audio ref={player} controls preload="none" src={recording} aria-label={`Listen to ${episode.title}`}
+        onTimeUpdate={updateTiming} onDurationChange={updateTiming} onProgress={updateTiming} />
       <select aria-label="Playback speed" title="Playback speed" defaultValue="1" onChange={event => { player.current.playbackRate = Number(event.target.value); }}>
         {[.75,1,1.25,1.5,2].map(rate => <option key={rate} value={rate}>{rate}×</option>)}
       </select>
+    </div>
+    <div className="engent-audio-progress">
+      <MediaProgress {...timing} label="Episode position" disabled={!timing.total}
+        aria-valuetext={`${episodeDuration(Math.floor(timing.elapsed))} of ${episodeDuration(Math.floor(timing.total))}`}
+        onChange={event => {
+          const elapsed = Number(event.target.value);
+          player.current.currentTime = elapsed;
+          setTiming(current => ({ ...current, elapsed }));
+        }} />
+      <span aria-hidden="true">{episodeDuration(Math.floor(timing.elapsed))} / {episodeDuration(Math.floor(timing.total))}</span>
     </div>
     {script && <details onToggle={event => setShowText(event.currentTarget.open)}>
       <summary>Transcript</summary>

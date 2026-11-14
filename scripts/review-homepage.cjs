@@ -151,7 +151,7 @@ async function checks(browser) {
     await page.waitForFunction(() => document.querySelector('audio').currentTime > 0);
     await preview.getByLabel('Playback speed').selectOption('1.5');
     assert.equal(await player.evaluate(audio => audio.playbackRate), 1.5);
-    await player.evaluate(audio => { audio.currentTime = 15; });
+    await preview.getByRole('slider',{name:'Episode position'}).fill('15');
     await page.waitForFunction(() => document.querySelector('audio').currentTime >= 15);
     const original = await player.elementHandle();
     await episodes.first().click();

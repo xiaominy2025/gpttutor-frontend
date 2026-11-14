@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import CoachDiagram from './CoachDiagram';
+import MediaProgress from './MediaProgress';
 import { coaches } from './coaches';
 import poster from '../assets/coach-intro-poster.svg';
 
@@ -102,10 +103,10 @@ export default function CoachIntro({ coach, thumbnail, autoplay = false }) {
           <span aria-hidden="true">{playing ? 'Ⅱ' : elapsed >= total ? '↻' : '▶'}</span>
         </button>}
       </div>
-      {!coach && <div className="coach-controls">
-        {reduced ? <button type="button" onClick={() => { started.current = true; setElapsed(atStart ? .1 : index + 1 < scenes.length ? (index + 1) * sceneSeconds : .1); }}>Next still</button> :
-          <button type="button" aria-label={action} title={action} onClick={play}><span aria-hidden="true">{playing ? 'Ⅱ' : elapsed >= total ? '↻' : '▶'}</span></button>}
-        <input type="range" aria-label={coach ? 'Demo position' : 'Introduction position'} aria-valuetext={`${Math.floor(elapsed)} seconds, ${scenes[index].name}`} min="0" max={total} step=".1" value={elapsed} onChange={(event) => {
+      {(!coach || !atStart) && <div className="coach-controls">
+        {!coach && (reduced ? <button type="button" onClick={() => { started.current = true; setElapsed(atStart ? .1 : index + 1 < scenes.length ? (index + 1) * sceneSeconds : .1); }}>Next still</button> :
+          <button type="button" aria-label={action} title={action} onClick={play}><span aria-hidden="true">{playing ? 'Ⅱ' : elapsed >= total ? '↻' : '▶'}</span></button>)}
+        <MediaProgress label={coach ? 'Demo position' : 'Introduction position'} aria-valuetext={`${Math.floor(elapsed)} seconds, ${scenes[index].name}`} total={total} elapsed={elapsed} onChange={(event) => {
           setPlaying(false);
           started.current = true;
           setElapsed(Number(event.target.value));
