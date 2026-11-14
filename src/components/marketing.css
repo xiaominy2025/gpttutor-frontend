@@ -94,3 +94,24 @@
 .engent-explore-art svg{max-height:220px}
 @media(max-width:780px){.engent-hero-grid,.engent-why,.engent-explore-coach{grid-template-columns:1fr}.engent-hero-art{max-width:530px}.engent-tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.engent-wrap{width:calc(100% - 32px)}.engent-header-row{min-height:62px;gap:10px}.engent-header img{width:114px}.engent-header nav{font-size:.76rem}.engent-principles,.engent-tools{grid-template-columns:1fr}.engent-card-art{max-height:96px}.coach-controls button{padding-inline:8px}.coach-controls{gap:6px}}
+.engent-principles .engent-text-link{display:inline-block;margin-top:8px}
+.engent-explore-coach h3{margin-top:18px;font-size:1rem}
+.engent-demo h3:first-child{margin-top:0}
+.engent-explore-coach .engent-card-actions{margin-top:6px}
+.engent-illustration-toggle{display:block;text-align:left;width:100%;margin-top:12px;border-radius:6px}
+.engent-illustration-toggle .engent-explore-art{display:block;margin-bottom:4px}
+.engent-illustration-toggle .engent-text-link{display:inline-flex;align-items:center;min-height:44px}
+.engent-case-library{background:#eef2ed;scroll-margin-top:14px}
+.engent-case-library .engent-section>p{max-width:65ch;margin-top:8px}
+.engent-case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px;align-items:start}
+.engent-case{background:#fff;border:1px solid var(--line);border-radius:10px}
+.engent-case summary{list-style:none;cursor:pointer;padding:14px;border-radius:10px}
+.engent-case summary::-webkit-details-marker{display:none}
+.engent-case summary>span{display:block}
+.engent-case-cover{display:block;width:100%;background:#fafaf7 url('../assets/coach-paper.webp') center/cover;border-radius:5px;margin-bottom:10px}
+.engent-case-title{font-weight:750}
+.engent-case-context{font-size:.85rem;margin-bottom:7px}
+.engent-case-detail{padding:0 14px 15px;line-height:1.5}
+.engent-case-detail p{margin:6px 0;font-size:.88rem}
+@media(max-width:780px){.engent-case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.engent-case-grid{grid-template-columns:1fr}}

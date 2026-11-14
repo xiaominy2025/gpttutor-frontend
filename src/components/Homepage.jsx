@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import CoachArtwork from './CoachArtwork';
 import CoachIntro from './CoachIntro';
+import ApplicationLibrary from './ApplicationLibrary';
 import { coaches } from './coaches';
 import heroArtwork from '../assets/decision-framework.webp';
 import './marketing.css';
@@ -58,7 +59,7 @@ export default function Homepage() {
           <h1>Interactive Decision Coaches<span>.</span></h1>
           <p className="engent-lede">Set clear objectives, compare your options, and make a decision you can explain.</p>
           <div className="engent-actions">
-            <a href="#decision-tools" className="engent-button">Explore Our Decision Tools <span aria-hidden="true">↓</span></a>
+            <Link to="/explore" className="engent-button">Explore the Coaches <span aria-hidden="true">→</span></Link>
             <a href="#engent-intro" className="engent-text-link">Watch the introduction <span aria-hidden="true">↓</span></a>
           </div>
         </div>
@@ -71,9 +72,9 @@ export default function Homepage() {
     <section className="engent-wrap engent-section engent-why" aria-labelledby="why-engent">
       <h2 id="why-engent">Why Engent Labs?</h2>
       <div className="engent-principles">
-        <div><strong>Clear objectives</strong><p>Define the decision and what a good outcome would achieve.</p></div>
-        <div><strong>Useful analysis</strong><p>Compare alternatives and make the trade-offs visible.</p></div>
-        <div><strong>Human judgment</strong><p>Review the assumptions and take responsibility for the choice.</p></div>
+        <div><h3>A Systematic Approach</h3><p>Break a complex decision into manageable steps and make your reasoning visible.</p></div>
+        <div><h3>Interactive AI Decision Coaching</h3><p>Learn by doing. Use Practice Lab to challenge assumptions and explore alternatives with guided questions.</p></div>
+        <div><h3>Real-World Applications</h3><p>See how decision tools apply to business and engineering challenges.</p><Link to="/explore#simulation-applications" className="engent-text-link">Browse case previews →</Link></div>
       </div>
     </section>
     <section className="engent-intro-band" aria-labelledby="engent-intro">
@@ -104,13 +105,19 @@ function ExploreCoach({ coach }) {
   return <article id={coach.id} className="engent-explore-coach" aria-labelledby={`${coach.id}-title`}>
     <div>
       <h2 id={`${coach.id}-title`}>{coach.name}</h2><p className="engent-explore-subtitle">{coach.subtitle}</p><p>{coach.detail}</p>
+      <h3>Practice with Your Coach</h3>
       <div className="engent-card-actions"><Availability coach={coach} /></div>
+      <h3>Explore Real-World Applications</h3>
+      {coach.id === 'simulation' ? <a className="engent-text-link" href="#simulation-applications">Browse Simulation cases →</a> : <p>Applications are planned for this coach.</p>}
     </div>
     <div className="engent-demo">
-      <div className="engent-explore-art"><CoachArtwork kind={coach.id} /></div>
-      <h3>Conceptual illustration</h3><p>{coach.demo}</p>
-      <button type="button" className="engent-text-link" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close illustration' : 'Open illustration'}</button>
-      {open && <CoachIntro coach={coach} />}
+      <h3>Understand the Tool</h3>
+      <p><strong>{coach.question}</strong> {coach.method} {coach.judgment}</p>
+      <button type="button" className="engent-illustration-toggle" aria-expanded={open} aria-controls={`${coach.id}-illustration`} onClick={() => setOpen(!open)}>
+        {!open && <span className="engent-explore-art"><CoachArtwork kind={coach.id} /></span>}
+        <span className="engent-text-link">{open ? 'Close illustration' : 'Open illustration'}</span>
+      </button>
+      <div id={`${coach.id}-illustration`} hidden={!open}>{open && <><p>{coach.demo}</p><CoachIntro coach={coach} /></>}</div>
       {coach.id === 'process' && <details className="coach-transcript">
         <summary>Watch the legacy Practice Lab demo</summary>
         <video controls muted playsInline preload="none" poster="/assets/decision-making-demo.png" aria-label="Silent demo of the legacy Practice Lab interface">
@@ -132,5 +139,6 @@ export function ExplorePage() {
     <section className="engent-wrap engent-explore-list" aria-label="Coach descriptions and demos">
       {coaches.map(coach => <ExploreCoach key={coach.id} coach={coach} />)}
     </section>
+    <ApplicationLibrary />
   </MarketingLayout>;
 }

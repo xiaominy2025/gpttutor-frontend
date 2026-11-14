@@ -92,6 +92,15 @@ async function checks(browser) {
     await page.locator('#tree').getByRole('button',{name:'Open illustration'}).click();
     await page.getByRole('button',{name:'Play demo'}).waitFor();
     await page.evaluate(() => window.scrollTo(0,0)); await page.screenshot({path:path.join(output,'engent-explore-'+mode+'.png'),fullPage:true});
+    const gallery = page.locator('#simulation-applications');
+    assert.equal(await gallery.locator('details').count(), 6);
+    await gallery.screenshot({path:path.join(output,'engent-cases-'+mode+'.png')});
+    const firstCase = gallery.locator('details').first();
+    await firstCase.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await firstCase.getByText('Audio coming soon').waitFor();
+    assert.equal(await firstCase.locator('audio,video').count(), 0);
+    await firstCase.screenshot({path:path.join(output,'engent-case-detail-'+mode+'.png')});
     await page.getByRole('link',{name:'Open Practice Lab'}).click();
     assert.equal(page.url(),base+'/labs');
     assert.equal((await page.reload()).status(),200);
