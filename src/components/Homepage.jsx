@@ -104,8 +104,8 @@ function ExploreCoach({ coach }) {
       <div className="engent-card-actions"><Availability coach={coach} /></div>
     </div>
     <div className="engent-demo">
-      <h3>Guided example</h3><p>{coach.demo}</p>
-      <button type="button" className="engent-text-link" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close demo' : 'Open demo'}</button>
+      <h3>Conceptual illustration</h3><p>{coach.demo}</p>
+      <button type="button" className="engent-text-link" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close illustration' : 'Open illustration'}</button>
       {open && <CoachIntro coach={coach} />}
       {coach.id === 'process' && <details className="coach-transcript">
         <summary>Watch the legacy Practice Lab demo</summary>

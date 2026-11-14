@@ -13,6 +13,10 @@ The marketing pages show Decision Tree Coach as pending by default. After verify
 
 For local review, run `npm ci` and `npm run dev`, then open the printed URL. The homepage introduction runs in-browser from editable SVG diagrams. The Explore page contains individual guided illustrations and the existing Practice Lab software video.
 
+## Reproduce the browser review
+
+Install Playwright Chromium with `npx playwright install chromium`. Build with `VITE_API_URL=https://practice-fixture.example.invalid/` and leave `VITE_VERIFIED_DECISION_TREE_URL` unset. Run `node scripts/review-homepage.cjs` from the repository root. It serves the built files and Practice Lab fixtures through browser request interception, checks the six scenes during playback and in reduced-motion mode, verifies Explore and Practice Lab navigation, and writes screenshots to `review-output`. Set `ENGENT_REVIEW_OUTPUT` to place them elsewhere. Add `--export` to render the MP4 with FFmpeg installed on PATH.
+
 ## Publish or roll back
 
 Use PowerShell from the repository root. Supply the exact verified site bucket, CloudFront distribution and AWS profile for the approved environment. Create a fresh receipt directory for each publish. Use the same receipt directory, bucket, distribution and profile for rollback.

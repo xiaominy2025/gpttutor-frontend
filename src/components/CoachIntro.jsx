@@ -55,9 +55,10 @@ export default function CoachIntro({ coach }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing, reduced, total]);
 
-  const index = Math.min(scenes.length - 1, Math.floor(elapsed / sceneSeconds));
+  const index = Math.min(scenes.length - 1, Math.floor((elapsed + 1e-8) / sceneSeconds));
   const position = (elapsed - index * sceneSeconds) / sceneSeconds;
-  const fading = index < scenes.length - 1 ? clamp((position - .91) / .09) : 0;
+  const fadeIn = index > 0 ? clamp(position / .045) : 1;
+  const fadeOut = index < scenes.length - 1 ? clamp((1 - position) / .045) : 1;
   const atStart = elapsed === 0 && !playing && !coach && !reduced;
   const play = () => {
     if (playing) setPlaying(false);
@@ -71,8 +72,7 @@ export default function CoachIntro({ coach }) {
     <div className="coach-player">
       <div className="coach-stage" aria-hidden="true">
         {atStart && <img className="coach-poster" src={poster} alt="" width="960" height="540" />}
-        {!atStart && <Workspace coach={scenes[index]} progress={reduced || (coach && elapsed === 0 && !playing) ? 1 : clamp(position / .87)} />}
-        {!atStart && !reduced && fading > 0 && <Workspace coach={scenes[index + 1]} progress={0} opacity={fading} />}
+        {!atStart && <Workspace coach={scenes[index]} opacity={reduced ? 1 : Math.min(fadeIn, fadeOut)} progress={reduced || (coach && elapsed === 0 && !playing) ? 1 : clamp(position / .87)} />}
       </div>
       <div className="coach-controls">
         {reduced ? <button type="button" onClick={() => setElapsed(index + 1 < scenes.length ? (index + 1) * sceneSeconds : 0)} disabled={scenes.length === 1}>Next still</button> :

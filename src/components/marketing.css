@@ -24,6 +24,8 @@
 .engent-hero-art,.coach-stage{background-color:var(--paper);border:1px solid #d4ddd4;border-radius:12px;overflow:hidden}
 .engent-hero-art,.coach-workspace{background:var(--paper) url('../assets/coach-paper.webp') center / cover}
 .engent-hero-art svg{display:block;width:100%;padding:12px}
+.coach-pencil text{fill:currentColor}
+.coach-pencil path[stroke]{stroke-linecap:round;stroke-linejoin:round}
 .engent-hero-art figcaption{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:12px 16px;font-size:.75rem}
 .engent-hero-art figcaption span:first-child{font-weight:750}
 .engent-section{padding-block:clamp(38px,6vw,80px)}

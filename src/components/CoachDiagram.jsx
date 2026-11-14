@@ -24,12 +24,13 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           <feDisplacementMap in="SourceGraphic" in2="paperGrain" scale="6" xChannelSelector="R" yChannelSelector="G" />
         </filter>
       </defs>
-      <g fill={slate} stroke="none" fontSize="15" fontFamily="inherit">
+      <g className="coach-pencil" fill="none" stroke="none" fontSize="15" fontFamily="inherit" color={slate}>
         {kind === 'process' && <>
-          <path d="M112 137H432" fill="none" stroke={slate} strokeOpacity=".4" {...draw(.26,.48)} />
-          {[['Objectives',gold,110],['Alternatives',blue,215],['Analysis',blue,320],['Judgment',green,425]].map(([label,color,x],i) =>
-            <g key={label} opacity={step(.08+i*.15)} transform={`translate(${x} ${137 + (1-step(.08+i*.15))*22})`}>
-              <ellipse rx="44" ry="36" fill={color} opacity=".23" filter={`url(#${grain})`} />
+          <path d="M104 137Q262 133 426 137" stroke={slate} strokeOpacity=".4" {...draw(.22,.5)} />
+          {[['Objectives',gold,105],['Analysis',blue,265],['Human Judgment',green,425]].map(([label,color,x],i) =>
+            <g key={label} opacity={step(.08+i*.22)} transform={`translate(${x} ${137 + (1-step(.08+i*.22))*22})`}>
+              <path d="M-62 1Q-53-33-9-35Q32-43 58-15Q69 9 42 27Q7 44-30 30Q-66 23-62 1Z" fill={color} opacity=".24" filter={`url(#${grain})`} />
+              <path d="M-37-19Q4-40 35-17M-32 26Q3 41 38 18" stroke={color} strokeOpacity=".43" strokeWidth="1" />
               <circle r="25" stroke={color} strokeWidth="2" fill={paper} />
               <text y="6" textAnchor="middle" fontWeight="700">{i+1}</text>
               <text y="61" textAnchor="middle">{label}</text>
@@ -47,13 +48,14 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           <g {...reveal(.72)}><circle cx="475" cy="98" r="7" fill={green} /><text x="369" y="30">Plausible range</text></g>
         </>}
         {kind === 'scenario' && <>
+          <text x="35" y="26" fontWeight="700">Illustrative profit units</text>
           {labels([[180,60,'Low'],[290,60,'Steady'],[403,60,'High'],[35,125,'Pilot'],[35,203,'Full launch']])}
           <path d="M145 76H491M145 153H491M145 230H491" stroke={slate} strokeOpacity=".2" />
-          {[['+8',blue],['+16',blue],['+22',blue],['−12',gold],['+20',blue],['+37',blue]].map(([label,color],i) => {
+          {['+8','+16','+22','−12','+20','+37'].map((label,i) => {
             const x = 195 + (i%3)*112;
             const y = i<3 ? 119 : 197;
             return <g key={label} {...reveal(.12+i*.11)}>
-              <rect x={x-36} y={y-23} width="74" height="44" rx="12" fill={color} opacity=".26" filter={`url(#${grain})`} />
+              <path d={`M${x-38} ${y-8}q7-21 41-17q38 1 36 24q-3 20-39 21q-42-3-38-28Z`} fill={blue} opacity=".25" filter={`url(#${grain})`} />
               <text x={x} y={y+5} textAnchor="middle" fontWeight="700">{label}</text>
             </g>;
           })}
@@ -67,15 +69,16 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           <path d="M264 78L420 43M264 78L420 112M264 202L420 172M264 202L420 237" stroke={blue} fill="none" {...draw(.42,.30)} />
           <g {...reveal(.63)}>{[[43,'+36'],[112,'−14'],[172,'+12'],[237,'+4']].map(([y,label])=><g key={label}><circle cx="427" cy={y} r="5" fill={blue}/><text x="444" y={y+5}>{label}</text></g>)}</g>
           <path d="M100 141L232 79M266 75L419 44" stroke={green} strokeWidth="4" fill="none" {...draw(.79,.17)} />
+          <text x="320" y="24" style={{color:green}} {...reveal(.79)}>Sample path</text>
         </>}
         {kind === 'simulation' && <>
           {axes}
           {[17,28,50,95,129,160,124,80,46,25,12].map((height,i)=>{
             const h = height*step(.10+Math.abs(i-5)*.065,.42);
-            return <rect key={i} x={87+i*34} y={239-h} width="28" height={h} rx="3" fill={i<3?gold:blue} fillOpacity=".65" stroke={i<3?gold:blue} />;
+            return <rect key={i} x={87+i*34} y={239-h} width="28" height={h} rx="3" fill={blue} fillOpacity={i<3 ? '.32' : '.65'} stroke={blue} />;
           })}
           <path d="M184 59V241" stroke={gold} strokeDasharray="5 7" {...reveal(.59)} />
-          <g {...reveal(.72)}><text x="82" y="272">Downside</text><text x="338" y="272">Simulated profit</text><text x="195" y="71">Target</text><path d="M90 251H179" stroke={green} {...draw(.78,.17)} /></g>
+          <g {...reveal(.72)}><text x="82" y="272">Below target</text><text x="338" y="272">Simulated profit</text><text x="195" y="71">Profit target</text><path d="M87 247v5h93v-5" stroke={blue} {...draw(.78,.17)} /></g>
         </>}
         {kind === 'optimization' && <>
           {axes}
