@@ -110,8 +110,8 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           </clipPath>
           {[
             ['Profit', gold, 'M138 72C173 72 209 66 244 66S315 73 350 73S421 68 456 68', 72, 72],
-            ['Production', green, 'M138 103C173 103 209 95 244 95S315 115 350 115S421 109 456 109', 103, 99],
-            ['Demand', blue, 'M138 119C173 119 209 79 244 79S315 133 350 133S421 91 456 91', 119, 129],
+            ['Production', green, 'M138 145C173 145 209 117 244 117S315 156 350 156S421 131 456 131', 145, 142],
+            ['Demand', blue, 'M138 153C173 153 209 113 244 113S315 167 350 167S421 125 456 125', 153, 169],
           ].map(([name, color, curve, startY, labelY]) => (
             <g key={name}>
               <g clipPath={`url(#${grain}-optimization-sweep)`}>
