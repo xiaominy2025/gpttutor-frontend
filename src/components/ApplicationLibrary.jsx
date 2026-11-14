@@ -38,10 +38,12 @@ function EpisodeMedia({ episode }) {
 
   if (!recording) return <span className="engent-status">Audio coming soon</span>;
   return <div className="engent-episode-media">
-    <audio ref={player} controls preload="none" src={recording} aria-label={`Listen to ${episode.title}`} />
-    <label>Playback speed <select defaultValue="1" onChange={event => { player.current.playbackRate = Number(event.target.value); }}>
-      {[.75,1,1.25,1.5,2].map(rate => <option key={rate} value={rate}>{rate}×</option>)}
-    </select></label>
+    <div className="engent-audio-toolbar">
+      <audio ref={player} controls preload="none" src={recording} aria-label={`Listen to ${episode.title}`} />
+      <select aria-label="Playback speed" title="Playback speed" defaultValue="1" onChange={event => { player.current.playbackRate = Number(event.target.value); }}>
+        {[.75,1,1.25,1.5,2].map(rate => <option key={rate} value={rate}>{rate}×</option>)}
+      </select>
+    </div>
     {script && <details onToggle={event => setShowText(event.currentTarget.open)}>
       <summary>Transcript</summary>
       <div className="engent-transcript">{transcript ?? (failed ? 'Transcript unavailable.' : 'Loading transcript…')}</div>
@@ -53,9 +55,21 @@ function episodeDuration(seconds) {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 }
 
-export default function ApplicationLibrary({ title, cases, isProcess }) {
+const optimizationSources = {
+  'episode-1': 'https://pubsonline.informs.org/doi/10.1287/inte.22.1.8',
+  'episode-2': 'https://pubsonline.informs.org/doi/10.1287/inte.1090.0472',
+  'episode-3': 'https://ops-dr.fhwa.dot.gov/publications/fhwahop19015/2018summary24.htm',
+  'episode-5': 'https://pubsonline.informs.org/doi/10.1287/inte.2013.0727',
+};
+
+export default function ApplicationLibrary({ title, cases, coachId }) {
   const [selectedId, setSelectedId] = useState(cases[0].id);
   const selected = cases.find(item => item.id === selectedId);
+  const illustrative = coachId === 'simulation' || !selected.asset;
+  const source = coachId === 'optimization' ? optimizationSources[selected.id] : undefined;
+  const classification = illustrative ? 'Illustrative scenario'
+    : source ? 'Documented Business Case'
+      : coachId === 'process' ? 'Business Strategy Analysis' : 'Research case';
   return <section id="simulation-applications" className="engent-case-library" aria-labelledby="simulation-applications-title">
     <div className="engent-wrap engent-section">
       <h1 id="simulation-applications-title">{title} Business Case Podcasts</h1>
@@ -67,11 +81,18 @@ export default function ApplicationLibrary({ title, cases, isProcess }) {
             <div>
               <h2>{selected.title}</h2>
               {selected.context && <p>{selected.context}</p>}
-              <p><strong>Illustrative decision:</strong> {selected.question}</p>
+              <p><span className="engent-status">{classification}</span> {selected.question}</p>
             </div>
           </div>
           <EpisodeMedia key={selected.id} episode={selected} />
-          <p>{isProcess ? 'These strategy stories illustrate systematic decision-making. The questions are teaching examples, not reconstructions of company decisions.' : 'The question is a teaching example. The industry context is shown above.'}</p>
+          {illustrative && selected.context && <details className="engent-episode-notes">
+            <summary>Episode notes</summary>
+            <p>This scenario illustrates a decision-making challenge in the industry. It does not represent a documented decision by the named organization.</p>
+          </details>}
+          {source && <details className="engent-episode-notes">
+            <summary>Episode notes</summary>
+            <a className="engent-text-link" href={source}>Read the published case</a>
+          </details>}
         </article>
         <section aria-labelledby="simulation-episodes-title">
           <h2 id="simulation-episodes-title">All Episodes</h2>
@@ -83,6 +104,7 @@ export default function ApplicationLibrary({ title, cases, isProcess }) {
             </button>)}
           </div>
         </section>
+        <p className="engent-collection-note">Based on public sources. Not reviewed or endorsed by the organizations mentioned.</p>
       </div>
     </div>
   </section>;

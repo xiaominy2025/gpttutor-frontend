@@ -112,10 +112,9 @@ export default function CoachIntro({ coach, thumbnail, autoplay = false }) {
         }} />
         <span className="coach-time">{Math.floor(elapsed)}s / {Math.round(total)}s</span>
       </div>}
-      {coach ? <p className="sr-only" id={`${coach.id}-media-description`}>{coach.demo} {coach.judgment}</p> : <details className="coach-transcript">
-        <summary>Read the scene descriptions</summary>
+      {coach ? <p className="sr-only" id={`${coach.id}-media-description`}>{coach.demo} {coach.judgment}</p> : <section className="sr-only" aria-label="Introduction scene descriptions">
         <ol>{scenes.map((scene) => <li key={scene.id}><strong>{scene.name}.</strong> {scene.demo} {scene.judgment}</li>)}</ol>
-      </details>}
+      </section>}
     </div>
   );
 }

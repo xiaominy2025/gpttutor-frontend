@@ -11,7 +11,7 @@ import './marketing.css';
 const logo = '/assets/Engent Labs Transparent.png';
 const treeUrl = import.meta.env.VITE_VERIFIED_DECISION_TREE_URL;
 
-function MarketingLayout({ explore, children }) {
+function MarketingLayout({ explore, coachNav, children }) {
   const { hash, pathname } = useLocation();
   useEffect(() => {
     document.title = explore ? 'Explore Decision Coaches | Engent Labs' : 'Engent Labs | Interactive Decision Coaches';
@@ -29,13 +29,10 @@ function MarketingLayout({ explore, children }) {
       <div className="engent-wrap engent-header-row">
         <Link to="/" aria-label="Engent Labs home"><img src={logo} alt="Engent Labs" width="152" height="48" /></Link>
         {pathname.replace(/\/+$/, '') !== '/explore' &&
-          <nav aria-label="Main navigation"><Link to="/explore">Explore Coaches</Link></nav>}
+          <nav aria-label="Main navigation">{coachNav ?? <Link to="/explore">Explore Coaches</Link>}</nav>}
       </div>
     </header>
     <main id="engent-main" tabIndex={-1}>{children}</main>
-    <footer className="engent-footer"><div className="engent-wrap engent-header-row">
-      <Link to="/">Engent Labs</Link><span>Ask Smarter. Think Deeper. Apply Sharper.</span>
-    </div></footer>
   </div>;
 }
 
@@ -132,8 +129,7 @@ export function CoachCasesPage() {
   const { coachId } = useParams();
   if (!Object.hasOwn(podcastCollections, coachId)) return <Navigate to="/explore" replace />;
   const collection = podcastCollections[coachId];
-  return <MarketingLayout explore>
-    <div className="engent-wrap engent-case-back"><Link to={`/explore#${coachId}`} className="engent-text-link">← {collection.title} Coach</Link></div>
-    <ApplicationLibrary key={coachId} {...collection} isProcess={coachId === 'process'} />
+  return <MarketingLayout explore coachNav={<Link to={`/explore#${coachId}`}><span aria-hidden="true">← </span>{collection.title} Coach</Link>}>
+    <ApplicationLibrary key={coachId} {...collection} coachId={coachId} />
   </MarketingLayout>;
 }

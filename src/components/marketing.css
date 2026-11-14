@@ -1,9 +1,9 @@
 .engent-site{--paper:#fafaf7;--slate:#263b43;--blue:#467fa8;--gold:#d9a441;--green:#267456;--line:#dce3df;background:var(--paper);color:var(--slate);font-family:Inter,system-ui,sans-serif;line-height:1.55}
 .engent-wrap{width:min(1160px,calc(100% - 56px));margin-inline:auto}
-.engent-header,.engent-footer{border-bottom:1px solid var(--line);background:var(--paper)}
+.engent-header{border-bottom:1px solid var(--line);background:var(--paper)}
 .engent-header-row{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:76px}
 .engent-header img{width:152px;height:48px;object-fit:contain;object-position:left center}
-.engent-header nav,.engent-footer{font-size:.88rem;font-weight:650}
+.engent-header nav{font-size:.88rem;font-weight:650}
 .engent-header nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px clamp(12px,2.4vw,30px)}
 .engent-site a,.engent-site button{touch-action:manipulation}
 .engent-site :focus-visible{outline:3px solid var(--blue);outline-offset:4px}
@@ -68,8 +68,6 @@
 .engent-status{font-size:.75rem;color:#495a55;background:#eef2ee;border-radius:4px;padding:3px 7px;font-weight:650}
 .engent-closing{background:#e5eee6;padding:clamp(34px,5vw,62px) 0}
 .engent-closing .engent-wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.engent-footer{border-top:1px solid var(--line)}
-.engent-footer span{font-weight:400}
 .engent-coach-nav{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:24px;font-size:.88rem;text-decoration:underline;text-underline-offset:4px}
 .engent-explore-list{padding-bottom:48px}
 .engent-explore-coach{scroll-margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:30px 0;border-bottom:1px solid var(--line)}
@@ -100,7 +98,7 @@
 .engent-illustration-toggle{display:block;text-align:left;width:100%;margin-top:12px;border-radius:6px}
 .engent-illustration-toggle .engent-explore-art{display:block;margin-bottom:4px}
 .engent-illustration-toggle .engent-text-link{display:inline-flex;align-items:center;min-height:44px}
-.engent-case-library{background:#eef2ed;scroll-margin-top:14px}
+.engent-case-library{background:var(--paper);scroll-margin-top:14px}
 .engent-case-library .engent-section>p{max-width:65ch;margin-top:8px}
 .engent-case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px;align-items:start}
 .engent-case{background:#fff;border:1px solid var(--line);border-radius:10px}
@@ -124,12 +122,11 @@
 .coach-thumbnail svg{width:86%;height:88%}
 .coach-overlay{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#263b43;color:white;border:2px solid white;font-size:1.2rem}
 .coach-overlay[aria-label="Pause"],.coach-overlay[aria-label="Resume"],.coach-overlay[aria-label="Replay"]{inset:auto 8px 8px auto;transform:none}
-.engent-case-back{padding-block:14px}
 @media(max-width:680px){.engent-coach-content{grid-template-columns:minmax(0,1fr)}}
 .engent-case-selection{display:grid;gap:24px;margin-top:22px;max-width:860px}
 .engent-case-selection section h2{font-size:1.35rem}
-.engent-case-episodes{display:grid;gap:6px;margin-top:10px}
-.engent-case-episodes button{display:grid;grid-template-columns:2ch minmax(0,1fr) auto;align-items:center;gap:12px;text-align:left;color:var(--slate);background:white;border:1px solid var(--line);border-radius:6px;padding:9px 12px}
+.engent-case-episodes{display:grid;margin-top:10px;border-top:1px solid var(--line)}
+.engent-case-episodes button{display:grid;grid-template-columns:2ch minmax(0,1fr) auto;align-items:center;gap:12px;text-align:left;color:var(--slate);background:#fafaf7;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:9px 12px;box-shadow:none}
 .engent-episode-number,.engent-episode-affordance{font-size:.78rem}
 .engent-case-episodes button:hover{background:#f2f6f3}
 .engent-case-episodes button:focus-visible{outline-offset:1px}
@@ -138,7 +135,6 @@
 .engent-case-selection .engent-case-detail{border:1px solid var(--line);border-radius:8px;padding:14px;background:white}
 .engent-explore-hero .engent-section{padding-block:clamp(20px,4vw,44px)}
 .engent-explore-hero h1,.engent-case-library h1{font-size:clamp(2rem,4vw,3.5rem)}
-.engent-footer .engent-header-row{min-height:42px;font-size:.75rem}
 .engent-case-episodes .engent-case-context{margin:2px 0 0}
 .engent-case-episodes button[aria-pressed="true"]{box-shadow:inset 3px 0 var(--green)}
 .engent-selected-episode{display:grid;grid-template-columns:minmax(80px,150px) minmax(0,1fr);align-items:center;gap:14px;margin-bottom:10px}
@@ -146,10 +142,13 @@
 .engent-selected-episode .engent-case-cover{margin:0}
 @media(max-width:520px){.engent-selected-episode{grid-template-columns:minmax(76px,26%) minmax(0,1fr);gap:10px}}
 .engent-episode-media{display:grid;gap:8px;margin-block:12px;color:var(--slate)}
-.engent-episode-media audio{display:block;width:100%;max-width:560px}
-.engent-episode-media select{border:1px solid #879793;border-radius:4px;padding:5px;margin-left:5px;background:white}
+.engent-audio-toolbar{display:flex;align-items:center;gap:6px;max-width:620px}.engent-episode-media audio{display:block;flex:1;min-width:0;width:100%}
+.engent-episode-media select{border:1px solid #879793;border-radius:4px;padding:5px;background:white;color:var(--slate);min-height:36px}
 .engent-episode-media summary{cursor:pointer;font-weight:650}
 .engent-transcript{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:8px}
 .engent-selected-episode>div:only-child{grid-column:1/-1}
 .engent-episode-affordance{text-align:right}
 .engent-episode-affordance small{display:block}
+.engent-collection-note{font-size:.8rem;color:#50635d}
+.engent-episode-notes summary{cursor:pointer;font-size:.88rem}
+.engent-episode-media select{flex:none}
