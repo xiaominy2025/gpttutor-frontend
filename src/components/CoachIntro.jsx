@@ -44,7 +44,7 @@ export default function CoachIntro({ coach }) {
     const start = performance.now() - elapsed * 1000;
     let frame;
     const tick = (now) => {
-      const next = Math.min(total, (now - start) / 1000);
+      const next = Math.max(0, Math.min(total, (now - start) / 1000));
       setElapsed(next);
       if (next < total) frame = requestAnimationFrame(tick);
       else setPlaying(false);
