@@ -1,0 +1,20 @@
+{
+  "name": "engent-decision-process-coach",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node server/dev.mjs",
+    "build": "vite build",
+    "test": "node --test server/chat.test.mjs",
+    "test:browser": "node tests/browser.mjs"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1",
+    "vite": "6.4.5"
+  }
+}
