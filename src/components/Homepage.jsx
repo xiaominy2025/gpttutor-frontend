@@ -27,9 +27,8 @@ function MarketingLayout({ explore, children }) {
     <header className="engent-header">
       <div className="engent-wrap engent-header-row">
         <Link to="/" aria-label="Engent Labs home"><img src={logo} alt="Engent Labs" width="152" height="48" /></Link>
-        <nav aria-label="Main navigation">
-          {pathname === '/explore' ? <span aria-current="page">Explore Coaches</span> : <Link to="/explore">Explore Coaches</Link>}
-        </nav>
+        {pathname.replace(/\/+$/, '') !== '/explore' &&
+          <nav aria-label="Main navigation"><Link to="/explore">Explore Coaches</Link></nav>}
       </div>
     </header>
     <main id="engent-main" tabIndex={-1}>{children}</main>

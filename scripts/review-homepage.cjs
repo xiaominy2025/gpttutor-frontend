@@ -31,6 +31,7 @@ async function checks(browser) {
     page.on('pageerror', error => { errors.push(error.message); console.error(error.message); });
     await page.goto(base);
     await page.getByRole('heading',{level:1}).waitFor(); if (mode === 'desktop') await page.keyboard.press('Tab');
+    assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Explore Coaches'}).count(),1);
     if (mode === 'desktop') assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Skip to content'); await page.evaluate(() => document.activeElement.blur());
     assert.equal(await page.locator('#decision-tools article').count(),6);
     assert.equal(await page.getByRole('link',{name:'Launch Decision Tree Coach'}).count(),0);
@@ -90,6 +91,7 @@ async function checks(browser) {
     assert.equal(page.url(),base+'/explore#tree');
     await page.reload();
     await page.getByRole('heading',{name:'Explore Decision Coaches',exact:true}).waitFor();
+    assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).count(),0);
     const tree = page.locator('#tree');
     await tree.getByRole('button',{name:'Play demo'}).focus();
     await page.keyboard.press('Enter');
@@ -103,7 +105,34 @@ async function checks(browser) {
     const gallery = page.locator('#simulation-applications');
     const episodes = gallery.getByRole('group',{name:'Episodes'}).getByRole('button');
     assert.equal(await episodes.count(), 6);
+    assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Explore Coaches'}).count(),1);
+    const checkContrast = () => episodes.evaluateAll(rows => {
+      const luminance = color => {
+        const rgb = color.match(/[\d.]+/g).slice(0,3).map(Number);
+        return rgb.reduce((sum,value,i) => {
+          const channel = value / 255;
+          return sum + [0.2126,0.7152,0.0722][i] *
+            (channel <= .04045 ? channel / 12.92 : ((channel + .055) / 1.055) ** 2.4);
+        },0);
+      };
+      return rows.every(row => [...row.querySelectorAll('span')].every(label => {
+        const text = luminance(getComputedStyle(label).color);
+        const background = luminance(getComputedStyle(row).backgroundColor);
+        return label.getBoundingClientRect().height > 0 &&
+          (Math.max(text,background) + .05) / (Math.min(text,background) + .05) >= 4.5;
+      }));
+    });
+    assert(await checkContrast(), `${mode}: resting episode contrast`);
     await gallery.screenshot({path:path.join(output,'engent-cases-'+mode+'.png')});
+    for (const episode of await episodes.all()) {
+      await episode.hover();
+      assert(await checkContrast(), `${mode}: hovered episode contrast`);
+      await episode.focus();
+      assert(await checkContrast(), `${mode}: focused episode contrast`);
+      await page.keyboard.press('Enter');
+      assert.equal(await episode.getAttribute('aria-pressed'),'true');
+      assert(await checkContrast(), `${mode}: selected episode contrast`);
+    }
     const preview = gallery.locator('#case-preview');
     await episodes.nth(1).focus();
     await page.keyboard.press('Enter');
