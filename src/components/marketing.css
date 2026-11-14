@@ -145,3 +145,11 @@
 .engent-selected-episode h2{font-size:clamp(1rem,2vw,1.5rem)}
 .engent-selected-episode .engent-case-cover{margin:0}
 @media(max-width:520px){.engent-selected-episode{grid-template-columns:minmax(76px,26%) minmax(0,1fr);gap:10px}}
+.engent-episode-media{display:grid;gap:8px;margin-block:12px;color:var(--slate)}
+.engent-episode-media audio{display:block;width:100%;max-width:560px}
+.engent-episode-media select{border:1px solid #879793;border-radius:4px;padding:5px;margin-left:5px;background:white}
+.engent-episode-media summary{cursor:pointer;font-weight:650}
+.engent-transcript{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:8px}
+.engent-selected-episode>div:only-child{grid-column:1/-1}
+.engent-episode-affordance{text-align:right}
+.engent-episode-affordance small{display:block}

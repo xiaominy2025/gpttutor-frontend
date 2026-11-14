@@ -1,0 +1,35 @@
+TITLE: The Billion-Dollar Refinery Decision
+SERIES: Business Cases — Decisions Under Constraints
+HOSTS: Mark and Charlotte
+
+MARK: Diesel prices rise. Should a refinery simply produce more diesel? Not if crude composition, unit capacity, and product specifications make another product mix more profitable.
+
+CHARLOTTE: That is a deceptively difficult decision. The question is not simply what looks best right now, but how today’s choice affects every other use of limited resources.
+
+MARK: What did the organization actually do?
+
+CHARLOTTE: Chevron described linear-programming-based refinery tools in a 2014 published case. It reported value approaching $1 billion annually at that time, across decades of development.
+
+MARK: What makes the decision difficult in practice?
+
+CHARLOTTE: Refining links material balances, processing capacity, feedstock choices, and product margins. Maximizing one unit’s throughput may reduce refinery-wide profit.
+
+MARK: So the constraints change which options are realistic. Even a seemingly obvious decision can be poor when we look at the full system.
+
+CHARLOTTE: Exactly. Mathematical optimization makes trade-offs explicit. It starts by defining what the organization wants to achieve, what it can control, and what limits cannot be violated.
+
+MARK: And a model does not replace judgment. Managers must still check assumptions, data quality, unexpected disruptions, and whether the recommendation can actually be implemented.
+
+CHARLOTTE: That is essential. A theoretically attractive solution has little value if the people and systems involved cannot execute it.
+
+MARK: What should listeners take away from this case?
+
+CHARLOTTE: Choose the best feasible product mix across the whole system, not the product with the highest selling price.
+
+MARK: And that principle extends far beyond this industry. Whenever people compete for limited money, time, equipment, or capacity, the real challenge is choosing the best combination of actions.
+
+CHARLOTTE: Exactly. Optimization is a disciplined way to make those choices. It is not magic, and it does not eliminate uncertainty. It makes the decision more transparent and repeatable.
+
+MARK: Thanks for listening to Business Cases, where real-world decisions reveal the power of better thinking.
+
+SOURCE (not for narration): https://pubsonline.informs.org/doi/10.1287/inte.2013.0727

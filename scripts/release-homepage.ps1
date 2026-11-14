@@ -41,7 +41,7 @@ if ($Action -eq 'Publish') {
     $assets = foreach ($file in Get-ChildItem -LiteralPath $buildRoot -File -Recurse) {
         $key = $file.FullName.Substring($buildRoot.Length + 1).Replace('\', '/')
         if ($key -eq 'index.html') { continue }
-        if ($key -cmatch '^assets/.+-[A-Za-z0-9_-]{8}\.(js|css|png|svg|webp|woff2?)$') {
+        if ($key -cmatch '^assets/.+-[A-Za-z0-9_-]{8}\.(js|css|png|svg|webp|woff2?|mp3|txt)$') {
             [pscustomobject]@{ Key = $key; Path = $file.FullName }
             continue
         }

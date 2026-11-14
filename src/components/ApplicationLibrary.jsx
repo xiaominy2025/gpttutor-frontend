@@ -1,13 +1,5 @@
-import { useId, useState } from 'react';
-
-const cases = [
-  { id: 'groundwater', title: 'Groundwater monitoring', context: 'Los Alamos National Laboratory', question: 'Where should a limited number of monitoring wells go when groundwater flow is uncertain?', art: 'M25 75Q85 51 145 76T275 79M25 91Q94 68 156 95T275 99M25 109Q92 87 148 115T275 114', decision: 'M76 30V106m69-76v85m61-85v77M67 32h18m51 0h18m43 0h18' },
-  { id: 'schedule', title: 'Aerospace schedule risk', context: 'Lockheed Martin', question: 'Which tasks deserve contingency time when several delays could push a delivery date?', art: 'M38 36h113M69 57h122M108 78h87M127 99h119', decision: 'M208 26v93m-11-11 11 11 11-11M151 36l40 21m0 0 4 21' },
-  { id: 'drilling', title: 'Drill now or wait?', context: 'Oil and gas investment', question: 'Does delaying a drilling investment preserve enough flexibility to justify waiting?', art: 'M40 99l42-69 42 69M61 64h42M53 80h58M82 30v91M123 73h30l50-33m-50 33 50 30', decision: 'M203 40h45m-45 63h45m-12-8 12 8-12 8' },
-  { id: 'grid', title: 'Electric-grid reliability', context: 'National Renewable Energy Laboratory', question: 'How much backup capacity would keep the grid reliable across plausible demand and supply conditions?', art: 'M30 104h246M41 88l40-15 44 5 51-39 48 31 43-16M42 100l40-5 43 2 51-19 48 10 43-7', decision: 'M177 43v34m-8-26 8-8 8 8m-8 18-8-8m8 8 8-8' },
-  { id: 'mortgage', title: 'Mortgage portfolio risk', context: 'Fannie Mae and AWS', question: 'What reserve would cover plausible portfolio losses when defaults and recoveries vary together?', art: 'M31 105h244M53 105V92h19v13m7 0V75h19v30m7 0V53h19v52m7 0V44h19v61m7 0V65h19v40m7 0V80h19v25m7 0V92h19v13', decision: 'M207 35v72m4-72h39m-13 53h27m-8-7 8 7-8 7' },
-  { id: 'drug', title: 'Drug development investment', context: 'Pfizer', question: 'When should a team fund the next trial if clinical results, costs, and timelines are uncertain?', art: 'M32 76h53l48-35m-48 35 48 32m0-67h62l51-19m-51 19 51 23m-113 44h47', decision: 'M118 63h14v14h-14zM177 87h14v14h-14zM200 105h50' },
-];
+import { useEffect, useId, useRef, useState } from 'react';
+import { podcastAsset } from './podcastCollections';
 
 function CaseCover({ item }) {
   const wash = useId();
@@ -21,33 +13,73 @@ function CaseCover({ item }) {
   </svg>;
 }
 
-export default function ApplicationLibrary() {
+function EpisodeMedia({ episode }) {
+  const player = useRef(null);
+  const [transcript, setTranscript] = useState(null);
+  const [failed, setFailed] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const recording = podcastAsset(episode.asset, 'mp3');
+  const script = podcastAsset(episode.asset, 'txt');
+  useEffect(() => {
+    const audio = player.current;
+    return () => audio?.pause();
+  }, []);
+  useEffect(() => {
+    if (!showText || !script) return;
+    const abort = new AbortController();
+    fetch(script, { signal: abort.signal }).then(response => {
+      if (!response.ok) throw new Error('Transcript unavailable');
+      return response.text();
+    }).then(setTranscript).catch(error => {
+      if (error.name !== 'AbortError') setFailed(true);
+    });
+    return () => abort.abort();
+  }, [showText, script]);
+
+  if (!recording) return <span className="engent-status">Audio coming soon</span>;
+  return <div className="engent-episode-media">
+    <audio ref={player} controls preload="none" src={recording} aria-label={`Listen to ${episode.title}`} />
+    <label>Playback speed <select defaultValue="1" onChange={event => { player.current.playbackRate = Number(event.target.value); }}>
+      {[.75,1,1.25,1.5,2].map(rate => <option key={rate} value={rate}>{rate}×</option>)}
+    </select></label>
+    {script && <details onToggle={event => setShowText(event.currentTarget.open)}>
+      <summary>Transcript</summary>
+      <div className="engent-transcript">{transcript ?? (failed ? 'Transcript unavailable.' : 'Loading transcript…')}</div>
+    </details>}
+  </div>;
+}
+
+function episodeDuration(seconds) {
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+}
+
+export default function ApplicationLibrary({ title, cases, isProcess }) {
   const [selectedId, setSelectedId] = useState(cases[0].id);
   const selected = cases.find(item => item.id === selectedId);
   return <section id="simulation-applications" className="engent-case-library" aria-labelledby="simulation-applications-title">
     <div className="engent-wrap engent-section">
-      <h1 id="simulation-applications-title">Simulation Business Case Podcasts</h1>
+      <h1 id="simulation-applications-title">{title} Business Case Podcasts</h1>
       <p>Systematic decision-making in action.</p>
       <div className="engent-case-selection">
         <article className="engent-case-detail" id="case-preview" aria-live="polite">
           <div className="engent-selected-episode">
-            <CaseCover item={selected} />
+            {selected.art && <CaseCover item={selected} />}
             <div>
               <h2>{selected.title}</h2>
-              <p>{selected.context}</p>
+              {selected.context && <p>{selected.context}</p>}
               <p><strong>Illustrative decision:</strong> {selected.question}</p>
             </div>
           </div>
-          <span className="engent-status">Audio coming soon</span>
-          <p>The question is a teaching example. The industry context is shown above.</p>
+          <EpisodeMedia key={selected.id} episode={selected} />
+          <p>{isProcess ? 'These strategy stories illustrate systematic decision-making. The questions are teaching examples, not reconstructions of company decisions.' : 'The question is a teaching example. The industry context is shown above.'}</p>
         </article>
         <section aria-labelledby="simulation-episodes-title">
           <h2 id="simulation-episodes-title">All Episodes</h2>
           <div className="engent-case-episodes" aria-labelledby="simulation-episodes-title" role="group">
             {cases.map((item, index) => <button type="button" key={item.id} aria-controls="case-preview" aria-pressed={item.id === selectedId} onClick={() => setSelectedId(item.id)}>
               <span className="engent-episode-number" aria-hidden="true">{index + 1}</span>
-              <span><span className="engent-case-title">{item.title}</span><span className="engent-case-context">{item.context}</span></span>
-              <span className="engent-episode-affordance" aria-hidden="true">{item.id === selectedId ? 'Selected' : '›'}</span>
+              <span><span className="engent-case-title">{item.title}</span>{item.context && <span className="engent-case-context">{item.context}</span>}</span>
+              <span className="engent-episode-affordance">{item.seconds ? episodeDuration(item.seconds) : 'Coming soon'}{item.id === selectedId && <small aria-hidden="true">Selected</small>}</span>
             </button>)}
           </div>
         </section>

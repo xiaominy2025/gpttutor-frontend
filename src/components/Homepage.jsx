@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import CoachArtwork from './CoachArtwork';
 import CoachIntro from './CoachIntro';
 import ApplicationLibrary from './ApplicationLibrary';
+import { podcastCollections } from './podcastCollections';
 import { coaches } from './coaches';
 import heroArtwork from '../assets/decision-framework.webp';
 import './marketing.css';
@@ -103,7 +104,7 @@ function ExploreCoach({ coach }) {
         <section>
           <h3>Business Case Podcasts</h3>
           <p>Systematic decision-making in action.</p>
-          {coach.id === 'simulation' ? <Link className="engent-text-link" to="/explore/simulation/cases">Explore Cases →</Link> : <span className="engent-status">Cases coming soon</span>}
+          {Object.hasOwn(podcastCollections, coach.id) ? <Link className="engent-text-link" to={`/explore/${coach.id}/cases`} aria-label={`Explore Cases: ${coach.name}`}>Explore Cases →</Link> : <span className="engent-status">Cases coming soon</span>}
         </section>
         <section>
           <h3>Meet Your Coach</h3>
@@ -127,9 +128,12 @@ export function ExplorePage() {
   </MarketingLayout>;
 }
 
-export function SimulationCasesPage() {
+export function CoachCasesPage() {
+  const { coachId } = useParams();
+  if (!Object.hasOwn(podcastCollections, coachId)) return <Navigate to="/explore" replace />;
+  const collection = podcastCollections[coachId];
   return <MarketingLayout explore>
-    <div className="engent-wrap engent-case-back"><Link to="/explore#simulation" className="engent-text-link">← Simulation Coach</Link></div>
-    <ApplicationLibrary />
+    <div className="engent-wrap engent-case-back"><Link to={`/explore#${coachId}`} className="engent-text-link">← {collection.title} Coach</Link></div>
+    <ApplicationLibrary key={coachId} {...collection} isProcess={coachId === 'process'} />
   </MarketingLayout>;
 }

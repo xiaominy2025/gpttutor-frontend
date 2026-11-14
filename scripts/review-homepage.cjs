@@ -13,7 +13,8 @@ async function fixture(page) {
     if (url.origin === base) {
       const pathname = decodeURIComponent(url.pathname);
       if (pathname.split('/').includes('..') || pathname.includes('\\')) return route.abort();
-      const file = path.join('dist', ['/', '/explore', '/explore/simulation/cases', '/labs'].includes(pathname) ? 'index.html' : pathname);
+      const isPage = ['/', '/explore', '/labs'].includes(pathname) || /^\/explore\/(simulation|optimization|process)\/cases$/.test(pathname);
+      const file = path.join('dist', isPage ? 'index.html' : pathname);
       return fs.existsSync(file) ? route.fulfill({ path: file }) : route.fulfill({ status:404 });
     }
     if (url.hostname === 'practice-fixture.example.invalid') {
@@ -100,7 +101,7 @@ async function checks(browser) {
     assert.equal(await page.getByLabel('Media', {exact:true}).count(), 0);
     assert.equal(await page.getByText('Demo description', {exact:true}).count(), 0);
     await page.evaluate(() => window.scrollTo(0,0)); await page.screenshot({path:path.join(output,'engent-explore-'+mode+'.png'),fullPage:true});
-    await page.getByRole('link',{name:'Explore Cases'}).click();
+    await page.getByRole('link',{name:'Explore Cases: Simulation Coach'}).click();
     assert.equal((await page.reload()).status(),200);
     const gallery = page.locator('#simulation-applications');
     const episodeList = gallery.getByRole('group',{name:'All Episodes'});
@@ -142,10 +143,36 @@ async function checks(browser) {
     await episodes.nth(1).focus();
     await page.keyboard.press('Enter');
     await preview.getByRole('heading',{name:'Aerospace schedule risk'}).waitFor();
-    await preview.getByText('Audio coming soon').waitFor();
-    assert.equal(await preview.locator('audio,video').count(), 0);
+    const player = preview.locator('audio');
+    assert.equal(await player.getAttribute('preload'), 'none');
+    await player.evaluate(audio => audio.play());
+    await page.waitForFunction(() => document.querySelector('audio').currentTime > 0);
+    await preview.getByLabel('Playback speed').selectOption('1.5');
+    assert.equal(await player.evaluate(audio => audio.playbackRate), 1.5);
+    await player.evaluate(audio => { audio.currentTime = 15; });
+    await page.waitForFunction(() => document.querySelector('audio').currentTime >= 15);
+    const original = await player.elementHandle();
+    await episodes.first().click();
+    assert.equal(await original.evaluate(audio => audio.paused), true);
+    assert.equal(await player.evaluate(audio => audio.currentTime), 0);
     await preview.screenshot({path:path.join(output,'engent-case-detail-'+mode+'.png')});
-    await page.getByRole('link',{name:'Simulation Coach'}).click();
+    for (const [coach, title] of [['optimization','The Seat Worth Saving'], ['process','The AI Efficiency Trap']]) {
+      assert.equal((await page.goto(base + '/explore/' + coach + '/cases')).status(), 200);
+      await preview.getByRole('heading',{name:title,exact:true}).waitFor();
+      await player.evaluate(audio => audio.play());
+      await page.waitForFunction(() => document.querySelector('audio').currentTime > 0);
+      await player.evaluate(audio => audio.pause());
+      await preview.getByText('Transcript',{exact:true}).click();
+      await page.waitForFunction(() => document.querySelector('.engent-transcript')?.textContent.length > 100);
+      await preview.getByText('Transcript',{exact:true}).click();
+      await page.screenshot({path:path.join(output,'engent-'+coach+'-player-'+mode+'.png'),fullPage:true});
+      if (coach === 'process') {
+        await episodes.last().click();
+        await preview.getByText('Audio coming soon').waitFor();
+        assert.equal(await player.count(),0);
+      }
+    }
+    await page.getByRole('link',{name:'Decision Process Coach'}).click();
     await page.getByRole('link',{name:'Open Legacy Practice Lab'}).click();
     assert.equal(page.url(),base+'/labs');
     assert.equal((await page.reload()).status(),200);
