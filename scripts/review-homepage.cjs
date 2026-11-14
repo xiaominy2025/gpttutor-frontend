@@ -67,6 +67,16 @@ async function checks(browser) {
         assert(guidanceFits, `${mode}: ${title} guidance exceeds its panel`);
       }
       await position.fill(String(Math.round((index * 9.6 + 8) * 10) / 10));
+      if (index === 1 || index === 4) {
+        const safeArea = await stage.evaluate(frame => {
+          const bounds = frame.getBoundingClientRect();
+          const labels = ['Historical observations', 'Projected forecast', 'Below target', 'Simulated profit'];
+          return [...frame.querySelectorAll('svg text')]
+            .filter(label => labels.includes(label.textContent))
+            .every(label => label.getBoundingClientRect().bottom <= bounds.bottom - bounds.height * .10);
+        });
+        assert(safeArea, `${mode}: ${title} labels enter the bottom 10% of the frame`);
+      }
       await stage.screenshot({ path: path.join(output, `engent-scene-${index + 1}-${mode}.png`) });
     }
     await position.fill('8');
