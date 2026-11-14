@@ -106,29 +106,32 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
         </>}
         {kind === 'optimization' && <>
           <text x="265" y="34" textAnchor="middle" fontSize="23" fontWeight="700">Optimized Production Plan</text>
-          <text x="265" y="55" textAnchor="middle" fontSize="14">Trends</text>
           <path d="M134 217H464" stroke={slate} strokeOpacity=".35" />
           {[138,244,350,456].map((x,i) =>
             <text key={x} x={x} y="239" textAnchor="middle">Q{i+1}</text>
           )}
-          <clipPath id={`${grain}-optimization-sweep`}>
-            <rect x="134" y="61" width={326 * step(.10,.65)} height="143" />
-          </clipPath>
+          {/* Demand: 80, 120, 85, 115. Production: 102, 98, 101, 99.
+              Capacity: 130. Starting at zero, ending inventory is 22, 0, 16, 0. */}
           {[
-            ['Profit', gold, 'M138 72C173 72 209 66 244 66S315 73 350 73S421 68 456 68', 72, 72],
-            ['Production', green, 'M138 145C173 145 209 117 244 117S315 156 350 156S421 131 456 131', 145, 142],
-            ['Demand', blue, 'M138 153C173 153 209 113 244 113S315 167 350 167S421 125 456 125', 153, 169],
-          ].map(([name, color, curve, startY, labelY]) => (
+            ['Demand', blue, 'M138 140C173 140 209 100 244 100S315 135 350 135S421 105 456 105', 140, 145, .05],
+            ['Capacity limit', green, 'M138 90H456', 90, 90, .25],
+            ['Production', '#65A17C', 'M138 118C173 118 209 122 244 122S315 119 350 119S421 121 456 121', 118, 118, .45],
+            ['Profit', gold, 'M138 59C173 59 209 54 244 54S315 60 350 60S421 56 456 56', 59, 60, .66],
+          ].map(([name, color, curve, startY, labelY, start]) => (
             <g key={name}>
-              <g clipPath={`url(#${grain}-optimization-sweep)`}>
-                <path d={curve} stroke={color} strokeWidth="7" strokeOpacity=".16" />
-                <path d={curve} stroke={color} strokeWidth="2.7" />
+              <path d={curve} stroke={color} strokeWidth="7" strokeOpacity=".16" {...draw(start,.18)} />
+              <path d={curve} stroke={color} strokeWidth="2.7" {...draw(start,.18)} />
+              <g {...reveal(start)}>
+                <path d={`M116 ${labelY}L134 ${startY}`} stroke={color} strokeWidth="1.4" />
+                <text x="108" y={labelY+5} textAnchor="end" fontWeight="700">{name}</text>
               </g>
-              <path d={`M116 ${labelY}L134 ${startY}`} stroke={color} strokeWidth="1.4" />
-              <text x="108" y={labelY+5} textAnchor="end" fontWeight="700">{name}</text>
             </g>
           ))}
-          <text x="265" y="267" textAnchor="middle" fontWeight="700" {...reveal(.83)}>Maximize Annual Operating Profit</text>
+          <g opacity={step(.55,.06) * (1 - step(.79,.08))} stroke="#65A17C" strokeWidth="1.5">
+            <path d="M151 174Q191 157 231 174m-10-7 10 7-12 2M363 174Q403 157 443 174m-10-7 10 7-12 2" />
+            <text x="294" y="195" textAnchor="middle" stroke="none" fontSize="13">Inventory carryover</text>
+          </g>
+          <text x="265" y="267" textAnchor="middle" fontWeight="700" {...reveal(.86)}>Maximize Annual Operating Profit</text>
         </>}
       </g>
     </svg>
