@@ -115,12 +115,12 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
             <clipPath id={`${grain}-production-sweep`}>
               <rect x="116" y="51" width={338 * step(.14, .64)} height="172" />
             </clipPath>
-            <path d="M120 94L230 58L340 98.5L450 71.5" stroke={blue} strokeWidth="6" strokeOpacity=".15" />
-            <path d="M120 94L230 58L340 98.5L450 71.5" stroke={blue} />
-            <path d="M120 80.5L230 71.5L340 85L450 85" stroke={green} strokeWidth="6" strokeOpacity=".15" />
-            <path d="M120 80.5L230 71.5L340 85L450 85" stroke={green} />
-            <path d="M120 209L230 189L340 213L450 198" stroke={gold} strokeWidth="6" strokeOpacity=".19" />
-            <path d="M120 209L230 189L340 213L450 198" stroke={gold} />
+            <path d="M120 94C157 94 193 58 230 58S303 98.5 340 98.5S413 71.5 450 71.5" stroke={blue} strokeWidth="6" strokeOpacity=".15" />
+            <path d="M120 94C157 94 193 58 230 58S303 98.5 340 98.5S413 71.5 450 71.5" stroke={blue} />
+            <path d="M120 80.5C157 80.5 193 71.5 230 71.5S303 85 340 85S413 85 450 85" stroke={green} strokeWidth="6" strokeOpacity=".15" />
+            <path d="M120 80.5C157 80.5 193 71.5 230 71.5S303 85 340 85S413 85 450 85" stroke={green} />
+            <path d="M120 209C157 209 193 189 230 189S303 213 340 213S413 198 450 198" stroke={gold} strokeWidth="6" strokeOpacity=".19" />
+            <path d="M120 209C157 209 193 189 230 189S303 213 340 213S413 198 450 198" stroke={gold} />
           </g>
           <text x="265" y="265" textAnchor="middle" fontWeight="700" {...reveal(.85)}>Maximize Annual Operating Profit</text>
         </>}
