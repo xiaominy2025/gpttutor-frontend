@@ -36,7 +36,6 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
               <text y="61" textAnchor="middle">{label}</text>
             </g>
           )}
-          <path d="M107 221Q266 265 429 221" fill="none" stroke={green} {...draw(.76,.20)} />
         </>}
         {kind === 'forecast' && <>
           {axes}
