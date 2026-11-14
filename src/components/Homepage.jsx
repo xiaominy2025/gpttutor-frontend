@@ -37,12 +37,8 @@ function MarketingLayout({ explore, coachNav, children }) {
 }
 
 function Availability({ coach, explore }) {
-  if (coach.id === 'process') return <>
-    {!explore && <span className="engent-status">Legacy Practice Lab available</span>}
-    <Link to="/labs" className={explore ? 'engent-button' : 'engent-text-link'}>{explore ? 'Open Legacy Practice Lab' : 'Open Practice Lab'}</Link>
-  </>;
   if (coach.id === 'tree' && treeUrl === 'https://decisiontree.engentlabs.com/') {
-    return <a href={treeUrl} className={explore ? 'engent-button' : 'engent-text-link'}>{explore ? 'Launch Coach' : 'Launch Decision Tree Coach'}</a>;
+    return <a href={treeUrl} className={explore ? 'engent-button' : 'engent-text-link'}>Launch Decision Tree Coach</a>;
   }
   return <span className="engent-status">{coach.id === 'tree' ? 'Public launch pending' : 'Coming soon'}</span>;
 }
@@ -65,7 +61,7 @@ export default function Homepage() {
       <h2 id="why-engent">Why Engent Labs?</h2>
       <div className="engent-principles">
         <div><h3>A Systematic Approach</h3><p>Break a complex decision into manageable steps and make your reasoning visible.</p></div>
-        <div><h3>Interactive AI Decision Coaching</h3><p>Learn by doing. Use Practice Lab to challenge assumptions and explore alternatives with guided questions.</p></div>
+        <div><h3>Interactive AI Decision Coaching</h3><p>Explore alternatives, challenge assumptions, and examine uncertainty with AI Decision Tree Coach.</p></div>
         <div><h3>Real-World Applications</h3><p>See how decision tools apply to business and engineering challenges.</p></div>
       </div>
     </section>

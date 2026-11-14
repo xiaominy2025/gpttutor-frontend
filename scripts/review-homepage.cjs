@@ -24,7 +24,19 @@ async function fixture(page) {
   });
 }
 
+function verifyLaunchLinks(expected) {
+  return async page => {
+    const launches = page.getByRole('link', { name: 'Launch Decision Tree Coach', exact: true });
+    assert.equal(await launches.count(), expected ? 1 : 0);
+    if (expected) assert.equal(await launches.getAttribute('href'), expected);
+    assert.equal(await page.locator('a[href="/labs"], a[href^="/labs/"]').count(), 0);
+    assert.equal(await page.getByText(/Practice Lab/i).count(), 0);
+    assert.equal(await page.getByRole('link', { name: /^Launch/ }).count(), expected ? 1 : 0);
+  };
+}
+
 async function checks(browser) {
+  const checkLaunchLinks = verifyLaunchLinks(process.env.VITE_VERIFIED_DECISION_TREE_URL);
   for (const [mode, device] of Object.entries({desktop:{viewport:{width:1440,height:1000}}, mobile:devices['iPhone 13']})) {
     const page = await browser.newPage({ ...device, reducedMotion: 'no-preference' });
     await fixture(page);
@@ -35,7 +47,7 @@ async function checks(browser) {
     assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Explore Coaches'}).count(),1);
     if (mode === 'desktop') assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Skip to content'); await page.evaluate(() => document.activeElement.blur());
     assert.equal(await page.locator('#decision-tools article').count(),6);
-    assert.equal(await page.getByRole('link',{name:'Launch Decision Tree Coach'}).count(),0);
+    await checkLaunchLinks(page);
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.screenshot({path:path.join(output,'engent-home-'+mode+'.png'),fullPage:true});
     const stage = page.locator('.coach-stage');
@@ -92,6 +104,7 @@ async function checks(browser) {
     assert.equal(page.url(),base+'/explore#tree');
     await page.reload();
     await page.getByRole('heading',{name:'Explore Decision Coaches',exact:true}).waitFor();
+    await checkLaunchLinks(page);
     assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).count(),0);
     const tree = page.locator('#tree');
     await tree.getByRole('button',{name:'Play demo'}).focus();
@@ -185,12 +198,7 @@ async function checks(browser) {
       }
     }
     await page.getByRole('link',{name:'Decision Process Coach'}).click();
-    await page.getByRole('link',{name:'Open Legacy Practice Lab'}).click();
-    assert.equal(page.url(),base+'/labs');
-    assert.equal((await page.reload()).status(),200);
-    await page.getByText('Select a practice lab').waitFor();
-    await page.getByRole('heading',{name:'Decision-Making Lab'}).click();
-    await page.getByPlaceholder('Ask a question').waitFor();
+    await checkLaunchLinks(page);
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.goto(base);
     await stage.locator('img').waitFor();
@@ -204,7 +212,7 @@ async function checks(browser) {
     }
     assert.deepEqual(errors,[]);
     await page.close();
-    console.log(mode+' layout, keyboard, animation, transitions, replay, reduced motion, Explore, and Practice Lab passed');
+    console.log(mode+' layout, keyboard, animation, transitions, replay, reduced motion, Explore, and launch checks passed');
   }
 }
 
