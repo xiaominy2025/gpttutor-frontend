@@ -6,7 +6,7 @@ import QueryInput from './components/QueryInput'
 import CourseSelector from './components/CourseSelector'
 import BackendTest from './components/BackendTest'
 import QuestionHistory from './components/QuestionHistory'
-import Homepage, { ExplorePage } from './components/Homepage'
+import Homepage, { ExplorePage, SimulationCasesPage } from './components/Homepage'
 import QualityIndicator from './components/QualityIndicator.tsx'
 import ResponseDisplay from './components/ResponseDisplay.tsx'
 import splashLogo from './assets/LogoSplash.png'
@@ -937,6 +937,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/explore/simulation/cases" element={<SimulationCasesPage />} />
         <Route path="/labs" element={<LabsApp />} />
       </Routes>
     </Router>

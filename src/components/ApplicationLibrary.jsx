@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, useState } from 'react';
 
 const cases = [
   { id: 'groundwater', title: 'Groundwater monitoring', context: 'Los Alamos National Laboratory', question: 'Where should a limited number of monitoring wells go when groundwater flow is uncertain?', art: 'M25 75Q85 51 145 76T275 79M25 91Q94 68 156 95T275 99M25 109Q92 87 148 115T275 114', decision: 'M76 30V106m69-76v85m61-85v77M67 32h18m51 0h18m43 0h18' },
@@ -22,24 +22,27 @@ function CaseCover({ item }) {
 }
 
 export default function ApplicationLibrary() {
+  const [selectedId, setSelectedId] = useState(cases[0].id);
+  const selected = cases.find(item => item.id === selectedId);
   return <section id="simulation-applications" className="engent-case-library" aria-labelledby="simulation-applications-title">
     <div className="engent-wrap engent-section">
-      <h2 id="simulation-applications-title">Simulation case previews</h2>
+      <h1 id="simulation-applications-title">Simulation Business Case Podcasts</h1>
       <p>Explore six decision questions from business and engineering. Each preview pairs an industry context with an illustrative scenario.</p>
-      <div className="engent-case-grid">
-        {cases.map(item => <details key={item.id} id={`case-${item.id}`} className="engent-case">
-          <summary>
-            <CaseCover item={item} />
+      <div className="engent-case-selection">
+        <div className="engent-case-episodes" aria-label="Episodes" role="group">
+          {cases.map(item => <button type="button" key={item.id} aria-controls="case-preview" aria-pressed={item.id === selectedId} onClick={() => setSelectedId(item.id)}>
             <span className="engent-case-title">{item.title}</span>
             <span className="engent-case-context">{item.context}</span>
-            <span className="engent-text-link">Case details</span>
-          </summary>
-          <div className="engent-case-detail">
-            <h3>Illustrative decision</h3><p>{item.question}</p>
-            <p>The question is a teaching example. The named organization provides industry context.</p>
-            <span className="engent-status">Audio coming soon</span>
-          </div>
-        </details>)}
+          </button>)}
+        </div>
+        <article className="engent-case-detail" id="case-preview" aria-live="polite">
+          <CaseCover item={selected} />
+          <h2>{selected.title}</h2>
+          <p>{selected.context}</p>
+          <h3>Illustrative decision</h3><p>{selected.question}</p>
+          <p>The question is a teaching example. The named organization provides industry context.</p>
+          <span className="engent-status">Audio coming soon</span>
+        </article>
       </div>
     </div>
   </section>;

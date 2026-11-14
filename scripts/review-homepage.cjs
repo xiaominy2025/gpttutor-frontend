@@ -13,7 +13,7 @@ async function fixture(page) {
     if (url.origin === base) {
       const pathname = decodeURIComponent(url.pathname);
       if (pathname.split('/').includes('..') || pathname.includes('\\')) return route.abort();
-      const file = path.join('dist', ['/', '/explore', '/labs'].includes(pathname) ? 'index.html' : pathname);
+      const file = path.join('dist', ['/', '/explore', '/explore/simulation/cases', '/labs'].includes(pathname) ? 'index.html' : pathname);
       return fs.existsSync(file) ? route.fulfill({ path: file }) : route.fulfill({ status:404 });
     }
     if (url.hostname === 'practice-fixture.example.invalid') {
@@ -38,7 +38,8 @@ async function checks(browser) {
     await page.screenshot({path:path.join(output,'engent-home-'+mode+'.png'),fullPage:true});
     const stage = page.locator('.coach-stage');
     assert.equal(await stage.locator('img').count(),1);
-    await page.getByRole('button',{name:'Play introduction'}).click();
+    await stage.scrollIntoViewIfNeeded();
+    await page.getByRole('button',{name:'Pause'}).waitFor();
     const changingPath = stage.locator('path[stroke-dasharray]').first();
     const before = await changingPath.getAttribute('stroke-dashoffset');
     await page.waitForFunction(initial => {
@@ -88,20 +89,30 @@ async function checks(browser) {
     await page.getByRole('link',{name:'Explore Decision Tree Coach'}).click();
     assert.equal(page.url(),base+'/explore#tree');
     await page.reload();
-    await page.getByRole('heading',{name:'Explore Engent Labs.'}).waitFor();
-    await page.locator('#tree').getByRole('button',{name:'Open illustration'}).click();
-    await page.getByRole('button',{name:'Play demo'}).waitFor();
-    await page.evaluate(() => window.scrollTo(0,0)); await page.screenshot({path:path.join(output,'engent-explore-'+mode+'.png'),fullPage:true});
-    const gallery = page.locator('#simulation-applications');
-    assert.equal(await gallery.locator('details').count(), 6);
-    await gallery.screenshot({path:path.join(output,'engent-cases-'+mode+'.png')});
-    const firstCase = gallery.locator('details').first();
-    await firstCase.locator('summary').focus();
+    await page.getByRole('heading',{name:'Explore Decision Coaches',exact:true}).waitFor();
+    const tree = page.locator('#tree');
+    await tree.getByRole('button',{name:'Play demo'}).focus();
     await page.keyboard.press('Enter');
-    await firstCase.getByText('Audio coming soon').waitFor();
-    assert.equal(await firstCase.locator('audio,video').count(), 0);
-    await firstCase.screenshot({path:path.join(output,'engent-case-detail-'+mode+'.png')});
-    await page.getByRole('link',{name:'Open Practice Lab'}).click();
+    await tree.getByRole('button',{name:'Pause'}).click();
+    await tree.getByRole('button',{name:'Resume'}).waitFor();
+    await page.getByLabel('Media', {exact:true}).selectOption('practice');
+    await page.getByLabel('Silent legacy Practice Lab software demo').waitFor();
+    await page.getByLabel('Media', {exact:true}).selectOption('illustration');
+    await page.evaluate(() => window.scrollTo(0,0)); await page.screenshot({path:path.join(output,'engent-explore-'+mode+'.png'),fullPage:true});
+    await page.getByRole('link',{name:'Explore Cases'}).click();
+    assert.equal((await page.reload()).status(),200);
+    const gallery = page.locator('#simulation-applications');
+    const episodes = gallery.getByRole('group',{name:'Episodes'}).getByRole('button');
+    assert.equal(await episodes.count(), 6);
+    await gallery.screenshot({path:path.join(output,'engent-cases-'+mode+'.png')});
+    const preview = gallery.locator('#case-preview');
+    await episodes.nth(1).focus();
+    await page.keyboard.press('Enter');
+    await preview.getByRole('heading',{name:'Aerospace schedule risk'}).waitFor();
+    await preview.getByText('Audio coming soon').waitFor();
+    assert.equal(await preview.locator('audio,video').count(), 0);
+    await preview.screenshot({path:path.join(output,'engent-case-detail-'+mode+'.png')});
+    await page.getByRole('link',{name:'Practice Lab',exact:true}).click();
     assert.equal(page.url(),base+'/labs');
     assert.equal((await page.reload()).status(),200);
     await page.getByText('Select a practice lab').waitFor();
@@ -109,6 +120,10 @@ async function checks(browser) {
     await page.getByPlaceholder('Ask a question').waitFor();
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.goto(base);
+    await stage.locator('img').waitFor();
+    await stage.scrollIntoViewIfNeeded();
+    assert.equal(await stage.locator('img').count(),1);
+    await page.getByRole('button',{name:'Next still'}).click();
     for (const title of titles) {
       assert.equal(await stage.locator('strong').innerText(), title);
       assert.equal(await stage.locator('.coach-workspace').evaluate(el => getComputedStyle(el).opacity), '1');
