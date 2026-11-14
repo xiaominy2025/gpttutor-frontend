@@ -97,31 +97,24 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           <g {...reveal(.72)}><text x="82" y="272">Below target</text><text x="338" y="272">Simulated profit</text><text x="195" y="71">Profit target</text><path d="M87 247v5h93v-5" stroke={blue} {...draw(.78,.17)} /></g>
         </>}
         {kind === 'optimization' && <>
-          <text x="42" y="20" fontSize="13">Illustrative planning example</text>
-          <text x="42" y="46" fontWeight="700">Volume (units)</text>
-          <path d="M80 56V130H490M80 182V222H490" stroke={slate} strokeOpacity=".35" />
-          {[120,230,340,450].map((x,i) => <g key={x}>
-            <path d={`M${x} 56V130m0 52v40`} stroke={slate} strokeOpacity=".13" strokeWidth="1" />
-            <text x={x} y="241" textAnchor="middle">Q{i+1}</text>
-          </g>)}
-          <g {...reveal(.11)}><path d="M178 41h16" stroke={blue} /><text x="201" y="46">Demand</text></g>
-          <g {...reveal(.30)}><text x="80" y="153" fontSize="13">Capacity, labor, costs, and inventory balance</text></g>
-          <g {...reveal(.11)}><path d="M289 41h16" stroke={green} /><text x="312" y="46">Optimized production plan</text></g>
-          <g {...reveal(.11)}>
-            <text x="42" y="177" fontWeight="700">Quarterly operating profit ($)</text>
-          </g>
-          <g clipPath={`url(#${grain}-production-sweep)`}>
-            <clipPath id={`${grain}-production-sweep`}>
-              <rect x="116" y="51" width={338 * step(.14, .64)} height="172" />
-            </clipPath>
-            <path d="M120 94C157 94 193 58 230 58S303 98.5 340 98.5S413 71.5 450 71.5" stroke={blue} strokeWidth="6" strokeOpacity=".15" />
-            <path d="M120 94C157 94 193 58 230 58S303 98.5 340 98.5S413 71.5 450 71.5" stroke={blue} />
-            <path d="M120 80.5C157 80.5 193 71.5 230 71.5S303 85 340 85S413 85 450 85" stroke={green} strokeWidth="6" strokeOpacity=".15" />
-            <path d="M120 80.5C157 80.5 193 71.5 230 71.5S303 85 340 85S413 85 450 85" stroke={green} />
-            <path d="M120 209C157 209 193 189 230 189S303 213 340 213S413 198 450 198" stroke={gold} strokeWidth="6" strokeOpacity=".19" />
-            <path d="M120 209C157 209 193 189 230 189S303 213 340 213S413 198 450 198" stroke={gold} />
-          </g>
-          <text x="265" y="265" textAnchor="middle" fontWeight="700" {...reveal(.85)}>Maximize Annual Operating Profit</text>
+          <text x="265" y="34" textAnchor="middle" fontSize="23" fontWeight="700">Optimized Production Plan</text>
+          <text x="265" y="55" textAnchor="middle" fontSize="14">Illustrative trends · different scales</text>
+          <path d="M67 217H404" stroke={slate} strokeOpacity=".35" />
+          {[78,184,290,396].map((x,i) =>
+            <text key={x} x={x} y="239" textAnchor="middle">Q{i+1}</text>
+          )}
+          {[
+            ['Demand', blue, 'M78 119C113 119 149 79 184 79S255 133 290 133S361 91 396 91', 91, .08],
+            ['Production', green, 'M78 140C113 140 149 122 184 122S255 152 290 152S361 145 396 145', 145, .31],
+            ['Profit', gold, 'M78 190C113 190 149 164 184 164S255 201 290 201S361 176 396 176', 176, .54],
+          ].map(([name, color, curve, y, start]) => (
+            <g key={name}>
+              <path d={curve} stroke={color} strokeWidth="7" strokeOpacity=".16" {...draw(start,.23)} />
+              <path d={curve} stroke={color} strokeWidth="2.7" {...draw(start,.23)} />
+              <text x="410" y={y+5} fontWeight="700" {...reveal(start+.20)}>{name}</text>
+            </g>
+          ))}
+          <text x="265" y="267" textAnchor="middle" fontWeight="700" {...reveal(.83)}>Maximize Annual Operating Profit</text>
         </>}
       </g>
     </svg>
