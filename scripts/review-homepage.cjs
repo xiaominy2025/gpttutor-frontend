@@ -95,9 +95,8 @@ async function checks(browser) {
     await page.keyboard.press('Enter');
     await tree.getByRole('button',{name:'Pause'}).click();
     await tree.getByRole('button',{name:'Resume'}).waitFor();
-    await page.getByLabel('Media', {exact:true}).selectOption('practice');
-    await page.getByLabel('Silent legacy Practice Lab software demo').waitFor();
-    await page.getByLabel('Media', {exact:true}).selectOption('illustration');
+    assert.equal(await page.getByLabel('Media', {exact:true}).count(), 0);
+    assert.equal(await page.getByText('Demo description', {exact:true}).count(), 0);
     await page.evaluate(() => window.scrollTo(0,0)); await page.screenshot({path:path.join(output,'engent-explore-'+mode+'.png'),fullPage:true});
     await page.getByRole('link',{name:'Explore Cases'}).click();
     assert.equal((await page.reload()).status(),200);
@@ -112,7 +111,8 @@ async function checks(browser) {
     await preview.getByText('Audio coming soon').waitFor();
     assert.equal(await preview.locator('audio,video').count(), 0);
     await preview.screenshot({path:path.join(output,'engent-case-detail-'+mode+'.png')});
-    await page.getByRole('link',{name:'Practice Lab',exact:true}).click();
+    await page.getByRole('link',{name:'Simulation Coach'}).click();
+    await page.getByRole('link',{name:'Open Legacy Practice Lab'}).click();
     assert.equal(page.url(),base+'/labs');
     assert.equal((await page.reload()).status(),200);
     await page.getByText('Select a practice lab').waitFor();

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import CoachArtwork from './CoachArtwork';
 import CoachIntro from './CoachIntro';
@@ -28,14 +28,13 @@ function MarketingLayout({ explore, children }) {
       <div className="engent-wrap engent-header-row">
         <Link to="/" aria-label="Engent Labs home"><img src={logo} alt="Engent Labs" width="152" height="48" /></Link>
         <nav aria-label="Main navigation">
-          <Link to="/explore" aria-current={pathname === '/explore' ? 'page' : undefined}>Explore</Link>
-          <Link to="/labs">Practice Lab <span aria-hidden="true">↗</span></Link>
+          {pathname === '/explore' ? <span aria-current="page">Explore Coaches</span> : <Link to="/explore">Explore Coaches</Link>}
         </nav>
       </div>
     </header>
     <main id="engent-main" tabIndex={-1}>{children}</main>
     <footer className="engent-footer"><div className="engent-wrap engent-header-row">
-      <Link to="/">Engent Labs</Link><span>Interactive Decision Coaches</span>
+      <Link to="/">Engent Labs</Link><span>Ask Smarter. Think Deeper. Apply Sharper.</span>
     </div></footer>
   </div>;
 }
@@ -93,7 +92,6 @@ export default function Homepage() {
 }
 
 function ExploreCoach({ coach }) {
-  const [media, setMedia] = useState('illustration');
   return <article id={coach.id} className="engent-explore-coach" aria-labelledby={`${coach.id}-title`}>
     <header className="engent-coach-heading">
       <h2 id={`${coach.id}-title`}>{coach.name}</h2>
@@ -101,16 +99,7 @@ function ExploreCoach({ coach }) {
       <p>{coach.detail}</p>
     </header>
     <div className="engent-coach-content">
-      <div>
-        {coach.id === 'process' && <div className="engent-media-choice"><label htmlFor="practice-media">Media</label> <select id="practice-media" value={media} onChange={event => setMedia(event.target.value)}>
-          <option value="illustration">Conceptual illustration</option>
-          <option value="practice">Legacy Practice Lab demo</option>
-        </select></div>}
-        {media === 'practice' ?
-          <video className="engent-practice-video" controls muted playsInline preload="none" poster="/assets/decision-making-demo.png" aria-label="Silent legacy Practice Lab software demo">
-            <source src="/assets/Engent Labs.mp4" type="video/mp4" />
-          </video> : <CoachIntro coach={coach} thumbnail={<CoachArtwork kind={coach.id} />} />}
-      </div>
+      <CoachIntro coach={coach} thumbnail={<CoachArtwork kind={coach.id} />} />
       <aside className="engent-coach-actions">
         <section>
           <h3>Business Case Podcasts</h3>
@@ -130,7 +119,7 @@ export function ExplorePage() {
   return <MarketingLayout explore>
     <section className="engent-explore-hero"><div className="engent-wrap engent-section">
       <h1>Explore Decision Coaches</h1>
-      <p className="engent-lede">Choose a coach based on the question you need to answer.</p>
+      <p className="engent-lede">Find the right coach for your decision.</p>
       <nav aria-label="Coaches" className="engent-coach-nav">{coaches.map(coach => <a href={`#${coach.id}`} key={coach.id}>{coach.name}</a>)}</nav>
     </div></section>
     <section className="engent-wrap engent-explore-list" aria-label="Decision coaches">

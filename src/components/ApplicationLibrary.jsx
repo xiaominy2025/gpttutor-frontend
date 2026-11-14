@@ -27,7 +27,7 @@ export default function ApplicationLibrary() {
   return <section id="simulation-applications" className="engent-case-library" aria-labelledby="simulation-applications-title">
     <div className="engent-wrap engent-section">
       <h1 id="simulation-applications-title">Simulation Business Case Podcasts</h1>
-      <p>Explore six decision questions from business and engineering. Each preview pairs an industry context with an illustrative scenario.</p>
+      <p>Systematic decision-making in action.</p>
       <div className="engent-case-selection">
         <div className="engent-case-episodes" aria-label="Episodes" role="group">
           {cases.map(item => <button type="button" key={item.id} aria-controls="case-preview" aria-pressed={item.id === selectedId} onClick={() => setSelectedId(item.id)}>
@@ -36,9 +36,10 @@ export default function ApplicationLibrary() {
           </button>)}
         </div>
         <article className="engent-case-detail" id="case-preview" aria-live="polite">
-          <CaseCover item={selected} />
-          <h2>{selected.title}</h2>
-          <p>{selected.context}</p>
+          <header className="engent-selected-episode">
+            <CaseCover item={selected} />
+            <div><h2>{selected.title}</h2><p>{selected.context}</p></div>
+          </header>
           <h3>Illustrative decision</h3><p>{selected.question}</p>
           <p>The question is a teaching example. The named organization provides industry context.</p>
           <span className="engent-status">Audio coming soon</span>

@@ -98,7 +98,7 @@ export default function CoachIntro({ coach, thumbnail, autoplay = false }) {
           {atStart && (thumbnail ? <div className="coach-thumbnail">{thumbnail}</div> : <img className="coach-poster" src={poster} alt="" width="960" height="540" />)}
           {!atStart && <Workspace coach={scenes[index]} opacity={reduced ? 1 : Math.min(fadeIn, fadeOut)} progress={reduced ? 1 : clamp(position / .87)} />}
         </div>
-        {coach && <button type="button" className="coach-overlay" aria-label={reduced ? (atStart ? 'Show illustration still' : 'Show poster') : action} onClick={play}>
+        {coach && <button type="button" className="coach-overlay" aria-describedby={`${coach.id}-media-description`} aria-label={reduced ? (atStart ? 'Show illustration still' : 'Show poster') : action} onClick={play}>
           <span aria-hidden="true">{playing ? 'Ⅱ' : elapsed >= total ? '↻' : '▶'}</span>
         </button>}
       </div>
@@ -112,10 +112,10 @@ export default function CoachIntro({ coach, thumbnail, autoplay = false }) {
         }} />
         <span className="coach-time">{Math.floor(elapsed)}s / {Math.round(total)}s</span>
       </div>}
-      <details className="coach-transcript">
-        <summary>{coach ? 'Demo description' : 'Read the scene descriptions'}</summary>
+      {coach ? <p className="sr-only" id={`${coach.id}-media-description`}>{coach.demo} {coach.judgment}</p> : <details className="coach-transcript">
+        <summary>Read the scene descriptions</summary>
         <ol>{scenes.map((scene) => <li key={scene.id}><strong>{scene.name}.</strong> {scene.demo} {scene.judgment}</li>)}</ol>
-      </details>
+      </details>}
     </div>
   );
 }

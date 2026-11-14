@@ -127,13 +127,18 @@
 .coach-overlay[aria-label="Pause"],.coach-overlay[aria-label="Resume"],.coach-overlay[aria-label="Replay"]{inset:auto 8px 8px auto;transform:none}
 .engent-case-back{padding-block:14px}
 @media(max-width:680px){.engent-coach-content{grid-template-columns:minmax(0,1fr)}}
-.engent-media-choice{display:block;margin-bottom:8px;font-size:.875rem}
-.engent-media-choice select{border:1px solid #879793;border-radius:4px;padding:5px;margin-left:5px;background:white}
-.engent-practice-video{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;background:var(--paper)}
 .engent-case-selection{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:20px;margin-top:22px;align-items:start}
 .engent-case-episodes{display:grid;gap:6px}
 .engent-case-episodes button{text-align:left;background:white;border:1px solid var(--line);border-radius:6px;padding:9px 12px}
 .engent-case-episodes button span{display:block}
 .engent-case-episodes button[aria-pressed="true"]{border-color:var(--green);background:#e5eee6}
 .engent-case-selection .engent-case-detail{border:1px solid var(--line);border-radius:8px;padding:14px;background:white}
+.engent-explore-hero .engent-section{padding-block:clamp(20px,4vw,44px)}
+.engent-explore-hero h1,.engent-case-library h1{font-size:clamp(2rem,4vw,3.5rem)}
+.engent-footer .engent-header-row{min-height:42px;font-size:.75rem}
+.engent-case-episodes .engent-case-context{margin:2px 0 0}
+.engent-case-episodes button[aria-pressed="true"]{box-shadow:inset 3px 0 var(--green)}
+.engent-selected-episode{display:grid;grid-template-columns:minmax(80px,30%) minmax(0,1fr);align-items:center;gap:12px;margin-bottom:16px}
+.engent-selected-episode h2{font-size:clamp(1rem,2vw,1.5rem)}
+.engent-selected-episode .engent-case-cover{margin:0}
 @media(max-width:680px){.engent-case-selection{grid-template-columns:minmax(0,1fr)}}
