@@ -1,0 +1,63 @@
+:root {
+  font-family: "Inter", system-ui, sans-serif;
+  color: #222b23;
+  background: #f6f5ef;
+  line-height: 1.55;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, textarea { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, textarea:focus-visible { outline: 2px solid #39665a; outline-offset: 3px; }
+
+.site-header {
+  min-height: 68px;
+  padding: 12px clamp(18px, 5vw, 64px);
+  border-bottom: 1px solid #d8ded3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.wordmark { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-weight: 700; }
+.brand-mark { background: #426757; width: 11px; height: 11px; border-radius: 50%; }
+.reset { color: #34584a; background: transparent; border: 0; padding: 8px 0; text-decoration: underline; text-underline-offset: 4px; }
+.workspace { max-width: 790px; margin: auto; padding: clamp(24px, 6vw, 66px) clamp(18px, 5vw, 36px) 30px; }
+.intro { margin-bottom: 32px; }
+h1, h2, p { margin: 0; }
+h1 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: clamp(2.4rem, 6vw, 4.1rem); line-height: 1.05; }
+.intro p { color: #4b5e52; margin-top: 10px; }
+.welcome { padding: 22px 0 28px; border-top: 1px solid #cdd7cb; }
+.welcome h2 { font-size: 1.2rem; font-weight: 650; }
+.welcome p { margin: 4px 0 17px; color: #4b5e52; }
+.suggestions { display: flex; flex-wrap: wrap; gap: 8px; }
+.suggestions button, .failure button { background: #fbfcf7; color: #294e40; border: 1px solid #9aada1; border-radius: 9px; padding: 8px 13px; text-align: left; }
+.suggestions button:hover, .failure button:hover { background: #e6ede4; }
+
+.conversation { display: flex; flex-direction: column; gap: 15px; }
+.message { max-width: min(92%, 62ch); padding: 12px 16px; border-radius: 12px; overflow-wrap: anywhere; }
+.message > span { font-size: .78rem; font-weight: 700; color: #365949; display: block; margin-bottom: 3px; }
+.message p { white-space: pre-wrap; }
+.user-message { align-self: flex-end; background: #e3ebe2; }
+.coach-message { align-self: flex-start; background: #fffefa; border: 1px solid #d6dfd3; }
+.tool { border-top: 1px solid #d6dfd3; margin-top: 12px; padding-top: 9px; }
+.status, .failure { margin-top: 14px; }
+.status { color: #4b5e52; }
+.failure { padding: 12px; background: #fbebe5; color: #722d24; border-radius: 8px; }
+.failure button { margin: 8px 8px 0 0; }
+.follow-ups { margin-top: 18px; }
+.follow-ups h2 { font-size: .93rem; margin-bottom: 7px; }
+.composer { display: flex; align-items: flex-end; margin-top: 18px; gap: 9px; background: #fffefa; padding: 8px; border: 1px solid #8da195; border-radius: 12px; }
+.composer textarea { flex: 1; min-width: 0; resize: vertical; border: 0; background: transparent; color: inherit; padding: 7px 8px; }
+.send { border: 0; border-radius: 8px; background: #34584a; color: white; padding: 9px 16px; }
+.send:disabled { cursor: default; background: #dfe8dd; color: #41584b; }
+.ownership { color: #4b5e52; font-size: .8rem; margin: 9px 2px 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (max-width: 480px) {
+  .intro { margin-bottom: 24px; }
+  .message { max-width: 96%; }
+}
