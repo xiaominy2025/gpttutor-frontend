@@ -29,21 +29,28 @@ export default function ApplicationLibrary() {
       <h1 id="simulation-applications-title">Simulation Business Case Podcasts</h1>
       <p>Systematic decision-making in action.</p>
       <div className="engent-case-selection">
-        <div className="engent-case-episodes" aria-label="Episodes" role="group">
-          {cases.map(item => <button type="button" key={item.id} aria-controls="case-preview" aria-pressed={item.id === selectedId} onClick={() => setSelectedId(item.id)}>
-            <span className="engent-case-title">{item.title}</span>
-            <span className="engent-case-context">{item.context}</span>
-          </button>)}
-        </div>
         <article className="engent-case-detail" id="case-preview" aria-live="polite">
-          <header className="engent-selected-episode">
+          <div className="engent-selected-episode">
             <CaseCover item={selected} />
-            <div><h2>{selected.title}</h2><p>{selected.context}</p></div>
-          </header>
-          <h3>Illustrative decision</h3><p>{selected.question}</p>
-          <p>The question is a teaching example. The named organization provides industry context.</p>
+            <div>
+              <h2>{selected.title}</h2>
+              <p>{selected.context}</p>
+              <p><strong>Illustrative decision:</strong> {selected.question}</p>
+            </div>
+          </div>
           <span className="engent-status">Audio coming soon</span>
+          <p>The question is a teaching example. The industry context is shown above.</p>
         </article>
+        <section aria-labelledby="simulation-episodes-title">
+          <h2 id="simulation-episodes-title">All Episodes</h2>
+          <div className="engent-case-episodes" aria-labelledby="simulation-episodes-title" role="group">
+            {cases.map((item, index) => <button type="button" key={item.id} aria-controls="case-preview" aria-pressed={item.id === selectedId} onClick={() => setSelectedId(item.id)}>
+              <span className="engent-episode-number" aria-hidden="true">{index + 1}</span>
+              <span><span className="engent-case-title">{item.title}</span><span className="engent-case-context">{item.context}</span></span>
+              <span className="engent-episode-affordance" aria-hidden="true">{item.id === selectedId ? 'Selected' : '›'}</span>
+            </button>)}
+          </div>
+        </section>
       </div>
     </div>
   </section>;

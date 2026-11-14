@@ -103,7 +103,9 @@ async function checks(browser) {
     await page.getByRole('link',{name:'Explore Cases'}).click();
     assert.equal((await page.reload()).status(),200);
     const gallery = page.locator('#simulation-applications');
-    const episodes = gallery.getByRole('group',{name:'Episodes'}).getByRole('button');
+    const episodeList = gallery.getByRole('group',{name:'All Episodes'});
+    const episodes = episodeList.getByRole('button');
+    const preview = gallery.locator('#case-preview');
     assert.equal(await episodes.count(), 6);
     assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Explore Coaches'}).count(),1);
     const checkContrast = () => episodes.evaluateAll(rows => {
@@ -123,7 +125,11 @@ async function checks(browser) {
       }));
     });
     assert(await checkContrast(), `${mode}: resting episode contrast`);
-    await gallery.screenshot({path:path.join(output,'engent-cases-'+mode+'.png')});
+    const previewBounds = await preview.boundingBox();
+    const listBounds = await episodeList.boundingBox();
+    assert(previewBounds.y + previewBounds.height < listBounds.y, `${mode}: preview must be above the episode list`);
+    assert(Math.abs(previewBounds.width - listBounds.width) < 1, `${mode}: preview and list must share a column`);
+    await page.screenshot({path:path.join(output,'engent-cases-'+mode+'.png'),fullPage:true});
     for (const episode of await episodes.all()) {
       await episode.hover();
       assert(await checkContrast(), `${mode}: hovered episode contrast`);
@@ -133,7 +139,6 @@ async function checks(browser) {
       assert.equal(await episode.getAttribute('aria-pressed'),'true');
       assert(await checkContrast(), `${mode}: selected episode contrast`);
     }
-    const preview = gallery.locator('#case-preview');
     await episodes.nth(1).focus();
     await page.keyboard.press('Enter');
     await preview.getByRole('heading',{name:'Aerospace schedule risk'}).waitFor();
