@@ -105,18 +105,23 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
             <path d={`M${x} 56V130m0 52v40`} stroke={slate} strokeOpacity=".13" strokeWidth="1" />
             <text x={x} y="241" textAnchor="middle">Q{i+1}</text>
           </g>)}
-          <path d="M120 94L230 58L340 98.5L450 71.5" stroke={blue} strokeWidth="6" strokeOpacity=".15" {...draw(.04,.27)} />
-          <path d="M120 94L230 58L340 98.5L450 71.5" stroke={blue} {...draw(.04,.27)} />
           <g {...reveal(.11)}><path d="M178 41h16" stroke={blue} /><text x="201" y="46">Demand</text></g>
           <g {...reveal(.30)}><text x="80" y="153" fontSize="13">Capacity, labor, costs, and inventory balance</text></g>
-          <path d="M120 80.5L230 71.5L340 85L450 85" stroke={green} strokeWidth="6" strokeOpacity=".15" {...draw(.38,.24)} />
-          <path d="M120 80.5L230 71.5L340 85L450 85" stroke={green} {...draw(.38,.24)} />
-          <g {...reveal(.42)}><path d="M289 41h16" stroke={green} /><text x="312" y="46">Optimized production plan</text></g>
-          <g {...reveal(.65)}>
+          <g {...reveal(.11)}><path d="M289 41h16" stroke={green} /><text x="312" y="46">Optimized production plan</text></g>
+          <g {...reveal(.11)}>
             <text x="42" y="177" fontWeight="700">Quarterly operating profit ($)</text>
           </g>
-          <path d="M120 209L230 189L340 213L450 198" stroke={gold} strokeWidth="6" strokeOpacity=".19" {...draw(.64,.21)} />
-          <path d="M120 209L230 189L340 213L450 198" stroke={gold} {...draw(.64,.21)} />
+          <g clipPath={`url(#${grain}-production-sweep)`}>
+            <clipPath id={`${grain}-production-sweep`}>
+              <rect x="116" y="51" width={338 * step(.14, .64)} height="172" />
+            </clipPath>
+            <path d="M120 94L230 58L340 98.5L450 71.5" stroke={blue} strokeWidth="6" strokeOpacity=".15" />
+            <path d="M120 94L230 58L340 98.5L450 71.5" stroke={blue} />
+            <path d="M120 80.5L230 71.5L340 85L450 85" stroke={green} strokeWidth="6" strokeOpacity=".15" />
+            <path d="M120 80.5L230 71.5L340 85L450 85" stroke={green} />
+            <path d="M120 209L230 189L340 213L450 198" stroke={gold} strokeWidth="6" strokeOpacity=".19" />
+            <path d="M120 209L230 189L340 213L450 198" stroke={gold} />
+          </g>
           <text x="265" y="265" textAnchor="middle" fontWeight="700" {...reveal(.85)}>Maximize Annual Operating Profit</text>
         </>}
       </g>
