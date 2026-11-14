@@ -60,10 +60,11 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
             const width = Math.abs(value) * 1.55;
             const zero = x - 15;
             const start = value < 0 ? zero - width : zero;
+            const color = value < 0 ? '#AA3939' : green;
             return <g key={value} {...reveal(.12+i*.11)}>
               <text x={x} y={y-6} textAnchor="middle" fontWeight="700">{value < 0 ? '−' : '+'}{Math.abs(value)}</text>
-              <rect x={start} y={y+3} width={width} height="9" rx="2" fill={value < 0 ? slate : blue} fillOpacity=".24" filter={`url(#${grain})`} />
-              <path d={`M${start} ${y+8}h${width}`} stroke={value < 0 ? slate : blue} />
+              <rect x={start} y={y+3} width={width} height="9" rx="2" fill={color} fillOpacity=".24" filter={`url(#${grain})`} />
+              <path d={`M${start} ${y+8}h${width}`} stroke={color} />
               <path d={`M${zero} ${y+1}v14`} stroke={slate} strokeWidth="1" />
             </g>;
           })}
@@ -83,7 +84,8 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
             {labels([[324,51,'70%'],[324,116,'30%'],[324,173,'60%'],[324,237,'40%']])}
             {[[43,'+36'],[112,'−14'],[172,'+12'],[237,'+4']].map(([y,label])=><g key={label}><circle cx="427" cy={y} r="5" fill={blue}/><text x="444" y={y+5}>{label}</text></g>)}
           </g>
-          <path d="M100 141L232 79M266 75L419 44" stroke={green} strokeWidth="4" fill="none" {...draw(.79,.17)} />
+          <path d="M100 141L232 79" stroke={green} strokeWidth="4" {...draw(.76,.10)} />
+          <path d="M266 75L419 44" stroke={green} strokeWidth="4" {...draw(.87,.10)} />
           <text x="320" y="24" style={{color:green}} {...reveal(.79)}>Sample path</text>
         </>}
         {kind === 'simulation' && <>
@@ -103,15 +105,20 @@ export default function CoachDiagram({ kind, progress = 1, className }) {
           {[78,184,290,396].map((x,i) =>
             <text key={x} x={x} y="239" textAnchor="middle">Q{i+1}</text>
           )}
+          <clipPath id={`${grain}-optimization-sweep`}>
+            <rect x="74" y="65" width={326 * step(.10,.65)} height="143" />
+          </clipPath>
           {[
-            ['Demand', blue, 'M78 119C113 119 149 79 184 79S255 133 290 133S361 91 396 91', 91, .08],
-            ['Production', green, 'M78 140C113 140 149 122 184 122S255 152 290 152S361 145 396 145', 145, .31],
-            ['Profit', gold, 'M78 190C113 190 149 164 184 164S255 201 290 201S361 176 396 176', 176, .54],
-          ].map(([name, color, curve, y, start]) => (
+            ['Demand', blue, 'M78 119C113 119 149 79 184 79S255 133 290 133S361 91 396 91', 91],
+            ['Production', green, 'M78 140C113 140 149 122 184 122S255 152 290 152S361 145 396 145', 145],
+            ['Profit', gold, 'M78 190C113 190 149 164 184 164S255 201 290 201S361 176 396 176', 176],
+          ].map(([name, color, curve, y]) => (
             <g key={name}>
-              <path d={curve} stroke={color} strokeWidth="7" strokeOpacity=".16" {...draw(start,.23)} />
-              <path d={curve} stroke={color} strokeWidth="2.7" {...draw(start,.23)} />
-              <text x="410" y={y+5} fontWeight="700" {...reveal(start+.20)}>{name}</text>
+              <g clipPath={`url(#${grain}-optimization-sweep)`}>
+                <path d={curve} stroke={color} strokeWidth="7" strokeOpacity=".16" />
+                <path d={curve} stroke={color} strokeWidth="2.7" />
+              </g>
+              <text x="410" y={y+5} fontWeight="700" {...reveal(.70)}>{name}</text>
             </g>
           ))}
           <text x="265" y="267" textAnchor="middle" fontWeight="700" {...reveal(.83)}>Maximize Annual Operating Profit</text>
