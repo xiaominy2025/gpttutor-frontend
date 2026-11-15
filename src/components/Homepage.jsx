@@ -76,7 +76,7 @@ export default function Homepage() {
       <div className="engent-section-head"><h2 id="decision-tools-title">Explore Our Decision Tools</h2><p>Choose a coach for the kind of decision you face.</p></div>
       <div className="engent-tools">
         <article>
-          <h3>Practice Lab</h3>
+          <h3>Practice Lab (Legacy)</h3>
           <p>Practice your decision-making skills with guided questions and feedback.</p>
           <div className="engent-card-actions"><Link to="/labs" className="engent-text-link">Launch Practice Lab</Link></div>
         </article>
