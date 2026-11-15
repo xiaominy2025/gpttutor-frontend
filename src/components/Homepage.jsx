@@ -10,12 +10,13 @@ import './marketing.css';
 
 const logo = '/assets/Engent Labs Transparent.png';
 const treeUrl = import.meta.env.VITE_VERIFIED_DECISION_TREE_URL;
+const homepageCoaches = [coaches.find(coach => coach.id === 'tree'), ...coaches.filter(coach => coach.id !== 'tree')];
 
 function MarketingLayout({ explore, coachNav, children }) {
   const { hash, pathname } = useLocation();
   useEffect(() => {
-    document.title = explore ? 'Explore Decision Coaches | Engent Labs' : 'Engent Labs | Interactive Decision Coaches';
-    return () => { document.title = 'Engent Labs | Interactive Decision Coaches'; };
+    document.title = explore ? 'Explore Decision Coaches | Engent Labs' : 'Engent Labs | Interactive Decision Coaching';
+    return () => { document.title = 'Engent Labs | Interactive Decision Coaching'; };
   }, [explore]);
   useEffect(() => {
     const section = hash && document.getElementById(hash.slice(1));
@@ -48,7 +49,7 @@ export default function Homepage() {
     <section className="engent-hero">
       <div className="engent-wrap engent-hero-grid">
         <div>
-          <h1>Interactive Decision Coaches<span>.</span></h1>
+          <h1>Interactive Decision Coaching<span>.</span></h1>
           <p className="engent-lede">Set clear objectives, compare your options, and make a decision you can explain.</p>
         </div>
         <figure className="engent-hero-art">
@@ -72,9 +73,14 @@ export default function Homepage() {
       </div>
     </section>
     <section id="decision-tools" className="engent-wrap engent-section" aria-labelledby="decision-tools-title">
-      <div className="engent-section-head"><h2 id="decision-tools-title">Explore Decision Coaches</h2><p>Choose a coach for the kind of decision you face.</p></div>
+      <div className="engent-section-head"><h2 id="decision-tools-title">Explore Our Decision Tools</h2><p>Choose a coach for the kind of decision you face.</p></div>
       <div className="engent-tools">
-        {coaches.map(coach => <article key={coach.id}>
+        <article>
+          <h3>Practice Lab</h3>
+          <p>Practice your decision-making skills with guided questions and feedback.</p>
+          <div className="engent-card-actions"><Link to="/labs" className="engent-text-link">Launch Practice Lab</Link></div>
+        </article>
+        {homepageCoaches.map(coach => <article key={coach.id}>
           <Link to={`/explore#${coach.id}`} className="engent-card-art" aria-label={`Learn about ${coach.name}`}><CoachArtwork kind={coach.id} /></Link>
           <h3>{coach.name}</h3><p>{coach.subtitle}</p>
           <div className="engent-card-actions"><Availability coach={coach} /><Link to={`/explore#${coach.id}`} className="engent-text-link" aria-label={`Explore ${coach.name}`}>Explore</Link></div>

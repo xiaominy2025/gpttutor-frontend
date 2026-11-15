@@ -25,13 +25,14 @@ async function fixture(page) {
 }
 
 function verifyLaunchLinks(expected) {
-  return async page => {
+  return async (page, homepage = false) => {
     const launches = page.getByRole('link', { name: 'Launch Decision Tree Coach', exact: true });
     assert.equal(await launches.count(), expected ? 1 : 0);
     if (expected) assert.equal(await launches.getAttribute('href'), expected);
-    assert.equal(await page.locator('a[href="/labs"], a[href^="/labs/"]').count(), 0);
-    assert.equal(await page.getByText(/Practice Lab/i).count(), 0);
-    assert.equal(await page.getByRole('link', { name: /^Launch/ }).count(), expected ? 1 : 0);
+    const practice = page.getByRole('link', { name: 'Launch Practice Lab', exact: true });
+    assert.equal(await practice.count(), homepage ? 1 : 0);
+    if (homepage) assert.equal(await practice.getAttribute('href'), '/labs');
+    assert.equal(await page.getByRole('link', { name: /^Launch/ }).count(), (expected ? 1 : 0) + (homepage ? 1 : 0));
   };
 }
 
@@ -46,8 +47,9 @@ async function checks(browser) {
     await page.getByRole('heading',{level:1}).waitFor(); if (mode === 'desktop') await page.keyboard.press('Tab');
     assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Explore Coaches'}).count(),1);
     if (mode === 'desktop') assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Skip to content'); await page.evaluate(() => document.activeElement.blur());
-    assert.equal(await page.locator('#decision-tools article').count(),6);
-    await checkLaunchLinks(page);
+    assert.equal(await page.locator('#decision-tools article').count(),7);
+    await page.getByRole('heading',{name:'Explore Our Decision Tools',exact:true}).waitFor();
+    await checkLaunchLinks(page, true);
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.screenshot({path:path.join(output,'engent-home-'+mode+'.png'),fullPage:true});
     const stage = page.locator('.coach-stage');
@@ -198,6 +200,7 @@ async function checks(browser) {
       }
     }
     await page.getByRole('link',{name:'Decision Process Coach'}).click();
+    await page.getByRole('heading',{name:'Explore Decision Coaches',exact:true}).waitFor();
     await checkLaunchLinks(page);
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.goto(base);
@@ -210,6 +213,11 @@ async function checks(browser) {
       assert.equal(await stage.locator('.coach-workspace').evaluate(el => getComputedStyle(el).opacity), '1');
       await page.getByRole('button',{name:'Next still'}).click();
     }
+    await page.getByRole('link', { name: 'Launch Practice Lab' }).click();
+    await page.waitForURL(base + '/labs');
+    await page.getByText('Select a practice lab', { exact: true }).waitFor();
+    await page.reload();
+    await page.getByText('Select a practice lab', { exact: true }).waitFor();
     assert.deepEqual(errors,[]);
     await page.close();
     console.log(mode+' layout, keyboard, animation, transitions, replay, reduced motion, Explore, and launch checks passed');
