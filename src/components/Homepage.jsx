@@ -10,7 +10,6 @@ import './marketing.css';
 
 const logo = '/assets/Engent Labs Transparent.png';
 const treeUrl = import.meta.env.VITE_VERIFIED_DECISION_TREE_URL;
-const homepageCoaches = [coaches.find(coach => coach.id === 'tree'), ...coaches.filter(coach => coach.id !== 'tree')];
 
 function MarketingLayout({ explore, coachNav, children }) {
   const { hash, pathname } = useLocation();
@@ -41,7 +40,7 @@ function Availability({ coach, explore }) {
   if (coach.id === 'tree' && treeUrl === 'https://decisiontree.engentlabs.com/') {
     return <a href={treeUrl} className={explore ? 'engent-button' : 'engent-text-link'}>Launch Decision Tree Coach</a>;
   }
-  return <span className="engent-status">{coach.id === 'tree' ? 'Public launch pending' : 'Coming soon'}</span>;
+  return <span className="engent-status">Coming Soon</span>;
 }
 
 export default function Homepage() {
@@ -75,17 +74,13 @@ export default function Homepage() {
     <section id="decision-tools" className="engent-wrap engent-section" aria-labelledby="decision-tools-title">
       <div className="engent-section-head"><h2 id="decision-tools-title">Explore Our Decision Tools</h2><p>Choose a coach for the kind of decision you face.</p></div>
       <div className="engent-tools">
-        <article>
-          <h3>Practice Lab (Legacy)</h3>
-          <p>Practice your decision-making skills with guided questions and feedback.</p>
-          <div className="engent-card-actions"><Link to="/labs" className="engent-text-link">Launch Practice Lab</Link></div>
-        </article>
-        {homepageCoaches.map(coach => <article key={coach.id}>
+        {coaches.map(coach => <article key={coach.id}>
           <Link to={`/explore#${coach.id}`} className="engent-card-art" aria-label={`Learn about ${coach.name}`}><CoachArtwork kind={coach.id} /></Link>
           <h3>{coach.name}</h3><p>{coach.subtitle}</p>
           <div className="engent-card-actions"><Availability coach={coach} /><Link to={`/explore#${coach.id}`} className="engent-text-link" aria-label={`Explore ${coach.name}`}>Explore</Link></div>
         </article>)}
       </div>
+      <div className="engent-card-actions"><Link to="/labs" className="engent-text-link">Launch Practice Lab (Legacy)</Link></div>
     </section>
   </MarketingLayout>;
 }

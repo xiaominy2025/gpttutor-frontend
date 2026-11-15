@@ -29,7 +29,8 @@ function verifyLaunchLinks(expected) {
     const launches = page.getByRole('link', { name: 'Launch Decision Tree Coach', exact: true });
     assert.equal(await launches.count(), expected ? 1 : 0);
     if (expected) assert.equal(await launches.getAttribute('href'), expected);
-    const practice = page.getByRole('link', { name: 'Launch Practice Lab', exact: true });
+    assert.equal(await page.getByText('Coming Soon', { exact: true }).count(), expected ? 5 : 6);
+    const practice = page.getByRole('link', { name: 'Launch Practice Lab (Legacy)', exact: true });
     assert.equal(await practice.count(), homepage ? 1 : 0);
     if (homepage) assert.equal(await practice.getAttribute('href'), '/labs');
     assert.equal(await page.getByRole('link', { name: /^Launch/ }).count(), (expected ? 1 : 0) + (homepage ? 1 : 0));
@@ -47,7 +48,7 @@ async function checks(browser) {
     await page.getByRole('heading',{level:1}).waitFor(); if (mode === 'desktop') await page.keyboard.press('Tab');
     assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Explore Coaches'}).count(),1);
     if (mode === 'desktop') assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Skip to content'); await page.evaluate(() => document.activeElement.blur());
-    assert.equal(await page.locator('#decision-tools article').count(),7);
+    assert.equal(await page.locator('#decision-tools article').count(),6);
     await page.getByRole('heading',{name:'Explore Our Decision Tools',exact:true}).waitFor();
     await checkLaunchLinks(page, true);
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
@@ -213,7 +214,7 @@ async function checks(browser) {
       assert.equal(await stage.locator('.coach-workspace').evaluate(el => getComputedStyle(el).opacity), '1');
       await page.getByRole('button',{name:'Next still'}).click();
     }
-    await page.getByRole('link', { name: 'Launch Practice Lab' }).click();
+    await page.getByRole('link', { name: 'Launch Practice Lab (Legacy)' }).click();
     await page.waitForURL(base + '/labs');
     await page.getByText('Select a practice lab', { exact: true }).waitFor();
     await page.reload();
