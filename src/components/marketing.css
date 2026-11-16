@@ -64,7 +64,6 @@
 .engent-tools article{display:flex;flex-direction:column;background:white;border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
 .engent-card-art{width:100%;max-height:106px;margin-bottom:14px;background:var(--paper);border-radius:5px}
 .engent-tools article p{flex:1;margin-top:5px;font-size:.9rem}
-.engent-card-actions{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:16px}
 .engent-status{font-size:.75rem;color:#495a55;background:#eef2ee;border-radius:4px;padding:3px 7px;font-weight:650}
 .engent-closing{background:#e5eee6;padding:clamp(34px,5vw,62px) 0}
 .engent-closing .engent-wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
@@ -94,7 +93,6 @@
 .engent-principles .engent-text-link{display:inline-block;margin-top:8px}
 .engent-explore-coach h3{margin-top:18px;font-size:1rem}
 .engent-demo h3:first-child{margin-top:0}
-.engent-explore-coach .engent-card-actions{margin-top:6px}
 .engent-illustration-toggle{display:block;text-align:left;width:100%;margin-top:12px;border-radius:6px}
 .engent-illustration-toggle .engent-explore-art{display:block;margin-bottom:4px}
 .engent-illustration-toggle .engent-text-link{display:inline-flex;align-items:center;min-height:44px}
@@ -120,7 +118,7 @@
 .engent-coach-actions .engent-status,.engent-coach-actions .engent-text-link,.engent-coach-actions .engent-button{display:inline-flex;margin-top:8px}
 .coach-thumbnail{position:absolute;inset:0;display:grid;place-items:center;background:var(--paper) url('../assets/coach-paper.webp') center/cover}
 .coach-thumbnail svg{width:86%;height:88%}
-.coach-overlay{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;padding:0;background:rgba(255,255,255,.68);color:#347a62;border:0}
+.coach-overlay{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;padding:0;background:transparent;color:#347a62;border:0}
 .coach-overlay[aria-label="Pause"],.coach-overlay[aria-label="Resume"],.coach-overlay[aria-label="Replay"]{inset:auto 8px 8px auto;transform:none}
 @media(max-width:680px){.engent-coach-content{grid-template-columns:minmax(0,1fr)}}
 .engent-case-selection{display:grid;gap:24px;margin-top:22px;max-width:860px}
@@ -172,9 +170,7 @@
 .engent-speed-options button:hover,.engent-speed-options button[aria-pressed="true"]{background:#dce7e1}
 
 .coach-controls .coach-transport{width:48px;height:48px;padding:0;background:transparent;color:#347a62}
-.coach-controls .coach-transport:hover,.coach-overlay:hover{background:#edf4ef}
+.coach-controls .coach-transport:hover{background:#edf4ef}
 .coach-overlay svg,.coach-transport svg{display:block;flex:none}
 .coach-controls .engent-media-progress{--media-played:#a5c5b6;--media-track:#e5e9e6;height:44px}
-.engent-card-art{position:relative}
 .engent-card-art:hover,.engent-card-art:focus-visible{box-shadow:inset 0 0 0 2px var(--green)}
-.engent-card-art-arrow{position:absolute;top:5px;right:7px;color:var(--green);background:white;border-radius:4px;padding:2px 5px;font-size:.85rem}

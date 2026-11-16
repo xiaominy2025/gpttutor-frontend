@@ -26,11 +26,11 @@ async function fixture(page) {
 
 function verifyLaunchLinks(expected) {
   return async (page, homepage = false) => {
-    const launches = page.getByRole('link', { name: homepage ? 'Launch Coach: Decision Tree Coach' : 'Launch Decision Tree Coach', exact: true });
-    assert.equal(await launches.count(), expected ? 1 : 0);
-    if (expected) assert.equal(await launches.getAttribute('href'), expected);
+    const launches = page.getByRole('link', { name: 'Launch Decision Tree Coach', exact: true });
+    assert.equal(await launches.count(), expected && !homepage ? 1 : 0);
+    if (expected && !homepage) assert.equal(await launches.getAttribute('href'), expected);
     assert.equal(await page.getByText('Coming Soon', { exact: true }).count(), expected ? 5 : 6);
-    assert.equal(await page.getByRole('link', { name: /^Launch/ }).count(), expected ? 1 : 0);
+    assert.equal(await page.getByRole('link', { name: /^Launch/ }).count(), expected && !homepage ? 1 : 0);
   };
 }
 
@@ -49,7 +49,7 @@ async function checks(browser) {
     await page.getByRole('heading',{name:'Explore Our Decision Tools',exact:true}).waitFor();
     await checkLaunchLinks(page, true);
     for (const card of await page.locator('#decision-tools article').all()) {
-      assert.equal(await card.locator('.engent-card-actions a').count(), 1);
+      assert.equal(await card.getByRole('link').count(), 1);
     }
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.screenshot({path:path.join(output,'engent-home-'+mode+'.png'),fullPage:true});
