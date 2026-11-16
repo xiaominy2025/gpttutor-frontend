@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { podcastAsset } from './podcastCollections';
 import MediaProgress from './MediaProgress';
+import PlaybackIcon from './PlaybackIcon';
 
 function CaseCover({ item }) {
   const wash = useId();
@@ -67,7 +68,7 @@ function EpisodeMedia({ episode }) {
             setPlaybackError('');
             audio.play().catch(() => setPlaybackError('This recording could not be played.'));
           }
-        }}><span aria-hidden="true">{playing ? 'Ⅱ' : '▶'}</span></button>
+        }}><PlaybackIcon playing={playing} /></button>
       <MediaProgress {...timing} label="Episode position" disabled={!timing.total}
         aria-valuetext={`${episodeDuration(Math.floor(timing.elapsed))} of ${episodeDuration(Math.floor(timing.total))}`}
         onChange={event => {
@@ -141,14 +142,6 @@ export default function ApplicationLibrary({ title, cases, coachId }) {
             </div>
           </div>
           <EpisodeMedia key={selected.id} episode={selected} />
-          {illustrative && selected.context && <details className="engent-episode-disclosure">
-            <summary>Episode notes</summary>
-            <p>This scenario illustrates a decision-making challenge in the industry. It does not represent a documented decision by the named organization.</p>
-          </details>}
-          {source && <details className="engent-episode-disclosure">
-            <summary>Episode notes</summary>
-            <a className="engent-text-link" href={source}>Read the published case</a>
-          </details>}
         </article>
         <section aria-labelledby="simulation-episodes-title">
           <h2 id="simulation-episodes-title">All Episodes</h2>
