@@ -38,7 +38,7 @@ function MarketingLayout({ explore, coachNav, children }) {
 
 function Availability({ coach, explore }) {
   if (coach.id === 'tree' && treeUrl === 'https://decisiontree.engentlabs.com/') {
-    return <a href={treeUrl} className={explore ? 'engent-button' : 'engent-text-link'}>Launch Decision Tree Coach</a>;
+    return <a href={treeUrl} aria-label={explore ? undefined : 'Launch Coach: Decision Tree Coach'} className={explore ? 'engent-button' : 'engent-text-link'}>{explore ? 'Launch Decision Tree Coach' : 'Launch Coach'}</a>;
   }
   return <span className="engent-status">Coming Soon</span>;
 }
@@ -75,9 +75,10 @@ export default function Homepage() {
       <div className="engent-section-head"><h2 id="decision-tools-title">Explore Our Decision Tools</h2><p>Choose a coach for the kind of decision you face.</p></div>
       <div className="engent-tools">
         {coaches.map(coach => <article key={coach.id}>
-          <Link to={`/explore#${coach.id}`} className="engent-card-art" aria-label={`Learn about ${coach.name}`}><CoachArtwork kind={coach.id} /></Link>
+          <Link to={`/explore#${coach.id}`} className="engent-card-art" aria-label={`Learn about ${coach.name}`}><CoachArtwork kind={coach.id} /><span className="engent-card-art-arrow" aria-hidden="true">→</span></Link>
           <h3>{coach.name}</h3><p>{coach.subtitle}</p>
-          <div className="engent-card-actions"><Availability coach={coach} /><Link to={`/explore#${coach.id}`} className="engent-text-link" aria-label={`Explore ${coach.name}`}>Explore</Link></div>
+          <div className="engent-card-actions"><Availability coach={coach} />
+            {!(coach.id === 'tree' && treeUrl === 'https://decisiontree.engentlabs.com/') && <Link to={`/explore#${coach.id}`} className="engent-text-link" aria-label={`Explore ${coach.name}`}>Explore</Link>}</div>
         </article>)}
       </div>
       <div className="engent-card-actions"><Link to="/labs" className="engent-text-link">Launch Practice Lab (Legacy)</Link></div>

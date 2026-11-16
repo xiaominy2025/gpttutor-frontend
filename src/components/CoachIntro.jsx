@@ -8,6 +8,14 @@ const sceneSeconds = 9.6;
 const duration = Number((coaches.length * sceneSeconds).toFixed(1));
 const clamp = (value) => Math.max(0, Math.min(1, value));
 
+function PlaybackIcon({ playing, ended }) {
+  return <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+    {playing ? <path fill="currentColor" d="M7 5h3v14H7zm7 0h3v14h-3z" />
+      : ended ? <path d="M5 10a7 7 0 1 1 1 7M5 4v6h6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      : <path fill="currentColor" d="M8 4.5 20 12 8 19.5z" />}
+  </svg>;
+}
+
 function Workspace({ coach, progress, opacity = 1 }) {
   return (
     <div className="coach-workspace" style={{ opacity }}>
@@ -100,12 +108,12 @@ export default function CoachIntro({ coach, thumbnail, autoplay = false }) {
           {!atStart && <Workspace coach={scenes[index]} opacity={reduced ? 1 : Math.min(fadeIn, fadeOut)} progress={reduced ? 1 : clamp(position / .87)} />}
         </div>
         {coach && <button type="button" className="coach-overlay" aria-describedby={`${coach.id}-media-description`} aria-label={reduced ? (atStart ? 'Show illustration still' : 'Show poster') : action} onClick={play}>
-          <span aria-hidden="true">{playing ? 'Ⅱ' : elapsed >= total ? '↻' : '▶'}</span>
+          <PlaybackIcon playing={playing} ended={elapsed >= total} />
         </button>}
       </div>
       {(!coach || !atStart) && <div className="coach-controls">
         {!coach && (reduced ? <button type="button" onClick={() => { started.current = true; setElapsed(atStart ? .1 : index + 1 < scenes.length ? (index + 1) * sceneSeconds : .1); }}>Next still</button> :
-          <button type="button" aria-label={action} title={action} onClick={play}><span aria-hidden="true">{playing ? 'Ⅱ' : elapsed >= total ? '↻' : '▶'}</span></button>)}
+          <button type="button" className="coach-transport" aria-label={action} title={action} onClick={play}><PlaybackIcon playing={playing} ended={elapsed >= total} /></button>)}
         <MediaProgress label={coach ? 'Demo position' : 'Introduction position'} aria-valuetext={`${Math.floor(elapsed)} seconds, ${scenes[index].name}`} total={total} elapsed={elapsed} onChange={(event) => {
           setPlaying(false);
           started.current = true;
