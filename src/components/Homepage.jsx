@@ -81,7 +81,6 @@ export default function Homepage() {
             {!(coach.id === 'tree' && treeUrl === 'https://decisiontree.engentlabs.com/') && <Link to={`/explore#${coach.id}`} className="engent-text-link" aria-label={`Explore ${coach.name}`}>Explore</Link>}</div>
         </article>)}
       </div>
-      <div className="engent-card-actions"><Link to="/labs" className="engent-text-link">Launch Practice Lab (Legacy)</Link></div>
     </section>
   </MarketingLayout>;
 }

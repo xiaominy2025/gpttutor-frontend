@@ -30,10 +30,7 @@ function verifyLaunchLinks(expected) {
     assert.equal(await launches.count(), expected ? 1 : 0);
     if (expected) assert.equal(await launches.getAttribute('href'), expected);
     assert.equal(await page.getByText('Coming Soon', { exact: true }).count(), expected ? 5 : 6);
-    const practice = page.getByRole('link', { name: 'Launch Practice Lab (Legacy)', exact: true });
-    assert.equal(await practice.count(), homepage ? 1 : 0);
-    if (homepage) assert.equal(await practice.getAttribute('href'), '/labs');
-    assert.equal(await page.getByRole('link', { name: /^Launch/ }).count(), (expected ? 1 : 0) + (homepage ? 1 : 0));
+    assert.equal(await page.getByRole('link', { name: /^Launch/ }).count(), expected ? 1 : 0);
   };
 }
 
@@ -219,8 +216,8 @@ async function checks(browser) {
       assert.equal(await stage.locator('.coach-workspace').evaluate(el => getComputedStyle(el).opacity), '1');
       await page.getByRole('button',{name:'Next still'}).click();
     }
-    await page.getByRole('link', { name: 'Launch Practice Lab (Legacy)' }).click();
-    await page.waitForURL(base + '/labs');
+    assert.equal(await page.locator('a[href="/labs"]').count(), 0);
+    await page.goto(base + '/labs');
     await page.getByText('Select a practice lab', { exact: true }).waitFor();
     await page.reload();
     await page.getByText('Select a practice lab', { exact: true }).waitFor();
