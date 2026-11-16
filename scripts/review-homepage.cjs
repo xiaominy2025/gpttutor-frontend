@@ -128,7 +128,7 @@ async function checks(browser) {
     assert.equal(await episodes.count(), 6);
     assert.equal(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Simulation Coach'}).count(),1);
     assert.equal(await gallery.getByText('Based on public sources. Not reviewed or endorsed by the organizations mentioned.',{exact:true}).count(),1);
-    assert.equal(await preview.getByText('Illustrative scenario',{exact:true}).count(),1);
+    assert.equal(await preview.getByText('Illustrative scenario',{exact:true}).count(),0);
     const checkContrast = () => episodes.evaluateAll(rows => {
       const luminance = color => {
         const rgb = color.match(/[\d.]+/g).slice(0,3).map(Number);

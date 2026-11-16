@@ -124,7 +124,7 @@ export default function ApplicationLibrary({ title, cases, coachId }) {
   const selected = cases.find(item => item.id === selectedId);
   const illustrative = coachId === 'simulation' || !selected.asset;
   const source = coachId === 'optimization' ? optimizationSources[selected.id] : undefined;
-  const classification = illustrative ? 'Illustrative scenario'
+  const classification = illustrative ? null
     : source ? 'Documented Business Case'
       : coachId === 'process' ? 'Business Strategy Analysis' : 'Research case';
   return <section id="simulation-applications" className="engent-case-library" aria-labelledby="simulation-applications-title">
@@ -138,7 +138,7 @@ export default function ApplicationLibrary({ title, cases, coachId }) {
             <div>
               <h2>{selected.title}</h2>
               {selected.context && <p>{selected.context}</p>}
-              <p><span className="engent-status">{classification}</span> {selected.question}</p>
+              <p>{classification && <><span className="engent-status">{classification}</span>{' '}</>}{selected.question}</p>
             </div>
           </div>
           <EpisodeMedia key={selected.id} episode={selected} />
