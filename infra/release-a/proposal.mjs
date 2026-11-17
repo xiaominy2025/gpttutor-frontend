@@ -1,0 +1,26 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {parseDocument} from 'yaml';
+const template=parseDocument(readFileSync('infra/release-a/template.yaml','utf8'),{logLevel:'silent'}).toJS();
+const value={status:'LOCAL_PROPOSAL_ONLY_NO_AWS_CHANGE_SET_CREATED',account:'771049112957',region:'us-east-1',
+ stack:'engent-release-a-alpha',platformBaseline:'f5272d2004f32fa93f51df76f7f90372b83a116f',
+ treeSource:'ae8279e441b774f672c474038923029e2e7443df',
+ prerequisites:[{action:'Modify only after explicit security approval',resource:'us-east-1_CipTwwDZb',
+  field:'AdminCreateUserConfig.AllowAdminCreateUserOnly',before:false,after:true,
+  preserveAllOtherAcceptedUpdateFields:true,reason:'Block self-registration before public managed-login client creation'}],
+ add:Object.entries(template.Resources).map(([logicalId,resource])=>({logicalId,type:resource.Type})),
+ generatedBySAM:['ApiVersion<content-hash>','ApiAliaslive'],
+ existingChanges:[
+  {resource:'E1C4AJI9FUE47B',action:'Add one S3 origin and /explore, /explore/*, /engent-alpha/* behaviors; pin Tree frontend to reviewed immutable prefix',preserve:['/api/*','default behavior','aliases','certificate','existing OAC','bucket policy']},
+  {resource:'decisiontree-alpha-staging-api:live',action:'Publish reviewed source, preserve current Alpha environment except five shared-auth fields, move only Alpha live alias'},
+  {resource:'decisiontree-alpha-staging-Data-JH4B4OFXWER5',action:'No table configuration change; PLATFORM# session rows only from new role'},
+  {resource:'decisiontree-alpha-staging-frontend-vnhhrwadnpad',action:'Add immutable release prefixes only; retain all prior objects'},
+  {resource:'decisiontree-alpha-artifacts-771049112957-us-east-1',action:'Add release-a/<source-sha> artifacts only'}],
+ treeEnvironmentDelta:{SHARED_AUTH_ENABLED:'true only after baseline passes',PLATFORM_CLIENT:'PlatformClientId stack output',
+  SHARED_TREE_CLIENT:'TreeClientId stack output',SHARED_LOGIN_DOMAIN:'engent-platform-alpha-771049112957.auth.us-east-1.amazoncognito.com',
+  PLATFORM_CALLER_ROLE:'arn:aws:sts::771049112957:assumed-role/engent-platform-alpha-runtime'},
+ defaults:{EnableAuth:'false',NAVIGATOR_ENABLED:'false'},
+ deferred:['Navigator','OpenAI calls/credentials','SSM IP-HMAC secret','budget state/infrastructure','metrics/alarms/SNS','new table/API/distribution/buckets','DNS/certificate','other coaches','production'],
+ replacements:[],userMigrations:[],newUsersAuthorized:false,projectWriteTestsAuthorized:false,
+ approval:'Specific Alpha resources plus existing-only signup policy; no production/merge/AI approval'};
+writeFileSync('infra/release-a/proposal.json',JSON.stringify(value,null,2)+'\n');
+console.log('Local proposed resource/configuration manifest generated. No AWS calls.');
