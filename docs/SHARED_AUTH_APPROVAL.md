@@ -105,3 +105,5 @@ The distribution's existing 403/404 fallback maps to the marketing entrypoint. P
 The November 17 SNS read shows the proposed existing topic has no subscriptions. The new confirmation-required email subscription in this template is required for alarm acceptance. Email delivery and any IAM provider-action gaps remain Alpha gates. The application resource manifest and literal policies are checked in under infra/platform/approval for review.
 
 Final local verification: 56 platform tests pass, frontend and bundled Lambda builds pass, and SAM lint passes. Six IAM policy documents returned no Access Analyzer findings. Effective permissions and real browser/AI flows remain unverified until approved Alpha testing. External npm dependency audit was rejected by automatic approval review because it submits private dependency metadata; no audit pass is claimed.
+
+Security audit status superseded: the owner-approved audit and scoped dependency remediation are documented in SECURITY_DEPENDENCIES.md and docs/security/*.json. Production-only audit now reports zero; development exceptions remain open. No Alpha approval is requested by this code update.
