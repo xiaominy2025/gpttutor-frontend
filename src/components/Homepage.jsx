@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import CoachArtwork from './CoachArtwork';
+import PlatformAccess from './PlatformAccess';
 import CoachIntro from './CoachIntro';
 import ApplicationLibrary from './ApplicationLibrary';
 import { podcastCollections } from './podcastCollections';
@@ -116,6 +117,7 @@ export function ExplorePage() {
   return <MarketingLayout explore>
     <section className="engent-explore-hero"><div className="engent-wrap engent-section">
       <h1>Explore Decision Coaches</h1>
+      {import.meta.env.VITE_SHARED_AUTH_ENABLED === 'true' && <PlatformAccess />}
       <p className="engent-lede">Find the right coach for your decision.</p>
       <nav aria-label="Coaches" className="engent-coach-nav">{coaches.map(coach => <a href={`#${coach.id}`} key={coach.id}>{coach.name}</a>)}</nav>
     </div></section>

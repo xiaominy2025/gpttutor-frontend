@@ -1,0 +1,100 @@
+{
+  "status": "LOCAL_PROPOSAL_REQUIRES_OWNER_APPROVAL",
+  "account": "771049112957",
+  "region": "us-east-1",
+  "stack": "engent-platform-prod",
+  "additions": [
+    {
+      "action": "Add",
+      "logicalId": "State",
+      "type": "AWS::DynamoDB::Table"
+    },
+    {
+      "action": "Add",
+      "logicalId": "Domain",
+      "type": "AWS::Cognito::UserPoolDomain"
+    },
+    {
+      "action": "Add",
+      "logicalId": "PlatformClient",
+      "type": "AWS::Cognito::UserPoolClient"
+    },
+    {
+      "action": "Add",
+      "logicalId": "TreeClient",
+      "type": "AWS::Cognito::UserPoolClient"
+    },
+    {
+      "action": "Add",
+      "logicalId": "PlatformBranding",
+      "type": "AWS::Cognito::ManagedLoginBranding"
+    },
+    {
+      "action": "Add",
+      "logicalId": "TreeBranding",
+      "type": "AWS::Cognito::ManagedLoginBranding"
+    },
+    {
+      "action": "Add",
+      "logicalId": "Logs",
+      "type": "AWS::Logs::LogGroup"
+    },
+    {
+      "action": "Add",
+      "logicalId": "Runtime",
+      "type": "AWS::IAM::Role"
+    },
+    {
+      "action": "Add",
+      "logicalId": "HttpApi",
+      "type": "AWS::Serverless::HttpApi"
+    },
+    {
+      "action": "Add",
+      "logicalId": "Api",
+      "type": "AWS::Serverless::Function"
+    },
+    {
+      "action": "Add",
+      "logicalId": "NotificationSubscription",
+      "type": "AWS::SNS::Subscription"
+    },
+    {
+      "action": "Add",
+      "logicalId": "Budget50",
+      "type": "AWS::CloudWatch::Alarm"
+    },
+    {
+      "action": "Add",
+      "logicalId": "Budget80",
+      "type": "AWS::CloudWatch::Alarm"
+    },
+    {
+      "action": "Add",
+      "logicalId": "Budget100",
+      "type": "AWS::CloudWatch::Alarm"
+    }
+  ],
+  "externalChanges": [
+    {
+      "action": "Modify",
+      "target": "CloudFront E1V533CXZPR3FL",
+      "scope": "add platform origin and /api/platform/* only"
+    },
+    {
+      "action": "Modify",
+      "target": "decisiontree-prod-api and eoszayfkqd",
+      "scope": "new disabled shared sign-in routes, AWS_IAM POST entitlement route, exact role call"
+    },
+    {
+      "action": "Create",
+      "target": "/engent-platform-prod/navigator-credentials",
+      "scope": "Standard SecureString using alias/aws/ssm, owner enters value privately"
+    }
+  ],
+  "replacements": [],
+  "userMigration": false,
+  "newPools": false,
+  "dnsChanges": false,
+  "serviceChangeSet": "Not generated because CreateChangeSet uploads/templates and mutates AWS. Review this proposal and templates before approving that operation."
+}
