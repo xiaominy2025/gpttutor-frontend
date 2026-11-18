@@ -4,11 +4,18 @@ import {render,screen,fireEvent,cleanup,within} from '@testing-library/react';
 import PlatformAccess from '../../src/components/PlatformAccess';
 it('keeps Explore public and handles the optional Guest Navigator without browser tokens',async()=>{
  const original=global.fetch;
+ const messages=['How do I think about uncertainty?','I want to reduce risk.','What if conditions change?'];
+ const replies=['The options expose you to different risks.\n\nConsider what matters to you.','Your priority is clearer. A reversible option could make the risk easier to manage.','The trade-off is flexibility versus commitment. The final choice depends on your tolerance for risk.'];
+ let round=0;
  global.fetch=vi.fn(async(path,options)=>{
   if(path==='/api/platform/session')return {ok:true,json:async()=>({signedIn:false,navigator:true})};
   expect(path).toBe('/api/platform/navigator');
-  expect(JSON.parse(options.body)).toEqual({message:'Which coach helps with uncertainty?',history:[]});
-  return {ok:true,json:async()=>({reply:'Decision Tree Coach helps map uncertain paths.',done:true})};
+  const request=JSON.parse(options.body);
+  expect(request.message).toBe(messages[round]);
+  expect(request.history).toHaveLength(round*2);
+  expect(request.continuation).toBe(round?'signed-'+round:undefined);
+  const reply=replies[round++];
+  return {ok:true,json:async()=>({reply,done:round===3,continuation:round===3?null:'signed-'+round})};
  });
  try {
   render(<PlatformAccess/>);
@@ -20,15 +27,21 @@ it('keeps Explore public and handles the optional Guest Navigator without browse
   fireEvent.click(open);
   expect(screen.getByRole('dialog',{name:'AI Navigator'})).toBe(dialog);
   expect(screen.getByRole('link',{name:'Sign in'}).getAttribute('href')).toBe('/api/platform/login');
-  fireEvent.change(screen.getByLabelText('Your decision'),{target:{value:'Which coach helps with uncertainty?'}});
+  fireEvent.change(screen.getByLabelText('Your decision'),{target:{value:messages[0]}});
   fireEvent.click(screen.getByRole('button',{name:'Ask Navigator'}));
-  await screen.findByText('Decision Tree Coach helps map uncertain paths.');
-  expect(screen.queryByRole('textbox')).toBeNull();
+  await screen.findByRole('textbox',{name:'Your follow-up (optional)'});
+  expect(within(dialog).getByRole('log')).toHaveTextContent('The options expose you to different risks.');
   fireEvent.click(within(dialog).getByRole('button',{name:'Close'}));
   expect(screen.queryByRole('dialog')).toBeNull();
   expect(open).toHaveFocus();
   fireEvent.click(open);
-  expect(within(dialog).getByText('Decision Tree Coach helps map uncertain paths.')).toBeVisible();
+  expect(within(dialog).getByRole('log')).toHaveTextContent('The options expose you to different risks.');
+  for(const message of messages.slice(1)){
+   fireEvent.change(screen.getByLabelText('Your follow-up (optional)'),{target:{value:message}});
+   fireEvent.click(screen.getByRole('button',{name:'Continue'}));
+   await screen.findByText(replies[messages.indexOf(message)]);
+  }
+  expect(screen.queryByRole('textbox')).toBeNull();
   fireEvent.click(screen.getByRole('button',{name:'Start New Decision'}));
   expect(screen.getByLabelText('Your decision').value).toBe('');
  }finally{cleanup();global.fetch=original;}

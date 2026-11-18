@@ -15,11 +15,14 @@ const app=platformApp({
   remove:async id=>claims.delete(id)
  },
  generate:async (_key,request)=>{
-  const clarify=request.input.length===1;
-  const reply=clarify?'What outcome matters most if you have to make a trade-off?':
-   'Compare two feasible options against that priority. Write down one fact you can check this week that could change which option you prefer.';
+  const turn=(request.input.length+1)/2;
+  const reply=[
+   'A second shift could improve delivery reliability, but it commits staff hours before you know whether extra capacity is the bottleneck. The trade-off depends on whether late orders are occasional or routine.\n\nWhich outcome matters most if you have to make a trade-off?',
+   'Delivery reliability is clearer as the priority. A seasonal increase and a persistent bottleneck point to different ways of comparing capacity. Temporary staffing could offer flexibility, while a permanent shift offers consistency.\n\nThe judgment is how much uncertainty about future demand you can tolerate before committing.',
+   'The decision balances reliable deliveries, staffing commitments, and uncertainty about how long the demand will last. Your judgment depends on how costly delays are and how much capacity you can change later. The choice remains yours and can be reconsidered as demand becomes clearer.'
+  ][turn-1];
   return {usage:{input_tokens:0,output_tokens:0},output:[{content:[{type:'output_text',
-   text:JSON.stringify({kind:clarify?'clarify':'guide',reply})}]}]};
+   text:JSON.stringify({kind:'guide',reply})}]}]};
  }
 });
 

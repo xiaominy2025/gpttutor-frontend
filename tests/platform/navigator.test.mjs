@@ -12,7 +12,7 @@ function setup() {
  const generate=vi.fn(async (_key,request)=>{
   const final=request.input.length===5;
   return {usage:{input_tokens:100,output_tokens:30},output:[{content:[{type:'output_text',
-   text:JSON.stringify({kind:final?'guide':'clarify',reply:final?'The choice turns on whether extra capacity solves a recurring bottleneck or only covers a brief peak.':'What would change your choice?'})}]}]};
+   text:JSON.stringify({kind:'guide',reply:final?'The choice turns on whether extra capacity solves a recurring bottleneck or only covers a brief peak.':request.input.length===1?'Which outcome would make the extra capacity worthwhile?':'Reliable deliveries are your priority. Seasonal demand could make a temporary shift worth considering.'})}]}]};
  });
  const app=platformApp({enabled:true,navigator:true,origin,treeOrigin:'https://decisiontree.engentlabs.com',
   oauth:{session:async()=>null},credentials:async()=>({key:'mock',ipSecret:'fixture-secret'}),
@@ -33,11 +33,21 @@ it('authenticates history, binds it to the caller, and completes the third turn'
  expect((await ask(first.history)).statusCode).toBe(400);
  expect((await ask(first.history,first.continuation,'b'.repeat(43))).statusCode).toBe(400);
  expect((await ask([{...first.history[0],text:'Different'},first.history[1]],first.continuation)).statusCode).toBe(400);
- const second=await ask(first.history,first.continuation);
- const third=await ask(second.history,second.continuation);
+ const competing=await Promise.all([
+  ask(first.history,first.continuation,'a'.repeat(43),'Reliable delivery is the objective.'),
+  ask(first.history,first.continuation,'a'.repeat(43),'Reliable delivery is the objective.')
+ ]);
+ expect(competing.map(response=>response.statusCode).sort()).toEqual([200,409]);
+ const second=competing.find(response=>response.statusCode===200);
+ expect(second).toMatchObject({done:false,reply:expect.stringContaining('Seasonal demand')});
+ expect(second.reply).not.toMatch(/\?/);
+ expect(generate.mock.lastCall[1].instructions).toContain('Do not repeat the previous question');
+ const third=await ask(second.history,second.continuation,'a'.repeat(43),'What if the peak is temporary?');
  expect(third).toMatchObject({statusCode:200,done:true,continuation:null});
  expect(generate.mock.lastCall[1].text.format.schema.properties.kind.enum).toEqual(['guide']);
- expect((await ask(third.history,third.continuation)).statusCode).toBe(400);
+ expect(generate.mock.lastCall[1].instructions).toContain('do not ask a question');
+ expect((await ask(third.history,second.continuation)).statusCode).toBe(400);
+ expect((await ask(first.history,first.continuation)).statusCode).toBe(409);
  expect((await ask(second.history,second.continuation)).statusCode).toBe(409);
  expect(controls.admit).toHaveBeenCalledTimes(3);
 });
@@ -76,6 +86,10 @@ const refinementCases=[
   null,'Waiting for the estimate has a purpose: it could change which venue fits, and you can learn it before losing the date. Waiting beyond that point may offer little unless another useful signal is coming. The judgment is how much booking risk you can accept for better information.'],
  ['reversible learning','We can buy equipment now or rent it for one month. Orders are promising but unconfirmed, and renting costs more per week.',
   null,'Renting buys flexibility and a chance to learn whether the orders are durable. Buying saves on repeated rental if demand holds, but commits cash before you know. A month of actual orders could give you a reason to revisit the choice. Even a well-judged trial can turn out poorly.'],
+ ['narrow alternatives and fear of mistakes','I can either accept a permanent lab role or stay in my current job. I keep delaying because I am afraid of regretting either choice.',
+  null,'The options differ in stability and what you would learn about lab work. A short placement or a chance to shadow the team could make the choice less all-or-nothing, if available. Waiting can help if useful information is coming. A well-considered decision can still disappoint.\n\nWhat could you learn by waiting that would actually change how you compare these options?'],
+ ['reconsidering as circumstances change','I chose a paid internship to support my final year, but my funding changed and a research placement reopened. How might I revisit the decision?',
+  null,'Your original choice responded to your financial constraint. With funding changed, the research placement and internship can be compared again against the experience you want before graduation. Reconsidering makes sense if the new funding changes which options are feasible.\n\nWhat part of your original reasoning still holds now that the money constraint has changed?'],
  ['transit pass trade-off','A $60 monthly transit pass covers eight round trips I expect to take. Tickets cost $6 per round trip. I am on a tight budget and might take one more trip.',
   null,'The pass fixes the cost upfront, while tickets let you pay only for trips you take. Eight trips cost $48 and nine cost $54. The costs match at ten trips. The trade-off is whether any convenience or additional travel is worth committing scarce cash upfront.']
 ];
@@ -86,7 +100,7 @@ function mockReply(kind,reply) {
  }]}]};
 }
 
-it.each(refinementCases)('asks only for decision-changing context and returns a clear mock decision map for %s',async(_name,message,clarification,guidance)=>{
+it.each(refinementCases)('returns a mock decision map and leaves a voluntary follow-up available for %s',async(_name,message,clarification,guidance)=>{
  const {ask,generate}=setup();
  const guest='a'.repeat(43);
  let result;
@@ -112,13 +126,14 @@ it.each(refinementCases)('asks only for decision-changing context and returns a 
  expect(request.instructions).toContain('Objectives → Analysis → Human Judgment');
  expect(request.instructions).toContain('tolerance for risk');
  expect(request.instructions).toContain('how relevant alternatives serve competing objectives');
- expect(request.instructions).toContain('materially improve understanding');
- expect(request.instructions).toContain('without ranking or favoring one unless the student explicitly asks for a recommendation');
- expect(request.instructions).toContain('Use conditional comparisons and avoid directives');
- expect(request.instructions).toContain('under stated assumptions from what remains the student’s judgment');
- expect(request.instructions).toContain('Leave the choice with the student');
- expect(request.instructions).toContain('verify any factual or numerical claim');
+ expect(request.instructions).toContain('only if helpful');
+ expect(request.instructions).toContain('without ranking, recommending, or favoring one');
+ expect(request.instructions).toContain('Use conditional comparisons');
+ expect(request.instructions).toContain('Do not infer a weakness simply because a detail is absent');
+ expect(request.instructions).toContain('two to four short natural paragraphs');
+ expect(request.instructions).toContain('leave the choice with the student');
+ expect(request.instructions).toContain('Verify factual and numerical claims');
  expect(request.text.format.schema.required).toEqual(['kind','reply']);
- expect(result).toMatchObject({statusCode:200,done:true,continuation:null,reply:guidance});
+ expect(result).toMatchObject({statusCode:200,done:false,continuation:expect.any(String),reply:guidance});
  expect(generate).toHaveBeenCalledTimes(clarification?2:1);
 });
