@@ -1,6 +1,6 @@
 import React from 'react';
 import {it,expect,vi} from 'vitest';
-import {render,screen,fireEvent,cleanup} from '@testing-library/react';
+import {render,screen,fireEvent,cleanup,within} from '@testing-library/react';
 import PlatformAccess from '../../src/components/PlatformAccess';
 it('keeps Explore public and handles the optional Guest Navigator without browser tokens',async()=>{
  const original=global.fetch;
@@ -12,12 +12,23 @@ it('keeps Explore public and handles the optional Guest Navigator without browse
  });
  try {
   render(<PlatformAccess/>);
-  await screen.findByRole('heading',{name:'AI Navigator'});
+  const open=await screen.findByRole('button',{name:'Open Navigator'});
+  const dialog=document.querySelector('dialog');
+  dialog.showModal=()=>dialog.setAttribute('open','');
+  dialog.close=()=>{dialog.removeAttribute('open');dialog.dispatchEvent(new Event('close'));};
+  expect(screen.queryByRole('dialog')).toBeNull();
+  fireEvent.click(open);
+  expect(screen.getByRole('dialog',{name:'AI Navigator'})).toBe(dialog);
   expect(screen.getByRole('link',{name:'Sign in'}).getAttribute('href')).toBe('/api/platform/login');
   fireEvent.change(screen.getByLabelText('Your decision'),{target:{value:'Which coach helps with uncertainty?'}});
   fireEvent.click(screen.getByRole('button',{name:'Ask Navigator'}));
   await screen.findByText('Decision Tree Coach helps map uncertain paths.');
   expect(screen.queryByRole('textbox')).toBeNull();
+  fireEvent.click(within(dialog).getByRole('button',{name:'Close'}));
+  expect(screen.queryByRole('dialog')).toBeNull();
+  expect(open).toHaveFocus();
+  fireEvent.click(open);
+  expect(within(dialog).getByText('Decision Tree Coach helps map uncertain paths.')).toBeVisible();
   fireEvent.click(screen.getByRole('button',{name:'Start New Decision'}));
   expect(screen.getByLabelText('Your decision').value).toBe('');
  }finally{cleanup();global.fetch=original;}

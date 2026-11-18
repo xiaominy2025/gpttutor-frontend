@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 export default function PlatformAccess() {
  const [account,setAccount]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false);
+ const [navigatorError,setNavigatorError]=useState('');
+ const dialog=useRef(null),openButton=useRef(null);
  const [message,setMessage]=useState(''),[history,setHistory]=useState([]);
  const [continuation,setContinuation]=useState(null),[done,setDone]=useState(false);
  useEffect(()=>{
@@ -15,7 +17,7 @@ export default function PlatformAccess() {
  async function ask(event) {
   event.preventDefault();
   if(busy||done||!message.trim())return;
-  setBusy(true);setError('');
+  setBusy(true);setNavigatorError('');
   try {
    const response=await fetch('/api/platform/navigator',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({message,history,...(continuation?{continuation}:{})})});
@@ -23,11 +25,11 @@ export default function PlatformAccess() {
    if(!response.ok) throw Error(result.error);
    setHistory(rows=>[...rows,{role:'user',text:message},{role:'assistant',text:result.reply}]);setMessage('');
    setContinuation(result.continuation ?? null);setDone(result.done);
-  } catch(error) {setError(error.message||'Navigator is temporarily unavailable.');}
+  } catch(error) {setNavigatorError(error.message||'Navigator is temporarily unavailable.');}
   finally {setBusy(false);}
  }
  function resetDecision() {
-  setHistory([]);setMessage('');setContinuation(null);setDone(false);setError('');
+  setHistory([]);setMessage('');setContinuation(null);setDone(false);setNavigatorError('');
  }
  async function logout() {
   setBusy(true);
@@ -43,17 +45,40 @@ export default function PlatformAccess() {
    :<a className="engent-text-link" href="/api/platform/login">Sign in</a>}
   {account?.signedIn && <p><a className="engent-text-link" href={account.treeLoginUrl}>Open Decision Tree Coach with shared sign-in</a></p>}
   {account?.signedIn && <p>Signing out here also ends the shared login session. Other open coach sessions can remain active.</p>}
-  {account?.navigator && <form onSubmit={ask}>
-   <h2>AI Navigator</h2>
-   <p>Describe a decision you’re facing and get a practical starting point.</p>
-   <div role="log" aria-label="Navigator conversation">{history.map((row,index)=><p key={index}><strong>{row.role==='user'?'You':'Navigator'}</strong> {row.text}</p>)}</div>
-   {!done && history.length<6 && <>
-   <label htmlFor="navigator-message">{history.length?'Your answer':'Your decision'}</label>
-   <textarea disabled={busy} id="navigator-message" maxLength={2000} value={message} onChange={event=>setMessage(event.target.value)} required />
-   <button disabled={busy||!message.trim()}>{busy?'Thinking…':history.length?'Continue':'Ask Navigator'}</button>
-   </>}
-   {(history.length>0||error) && <button type="button" disabled={busy} onClick={resetDecision}>Start New Decision</button>}
-  </form>}
+  {account?.navigator && <>
+   <div className="navigator-intro">
+    <div>
+     <h2>AI Navigator</h2>
+     <p>Explore what matters, weigh your options, and decide how to approach your decision.</p>
+    </div>
+    <button type="button" className="engent-button" ref={openButton} aria-haspopup="dialog"
+     onClick={()=>dialog.current.showModal()}>Open Navigator</button>
+   </div>
+   <dialog ref={dialog} className="navigator-dialog" aria-labelledby="navigator-title"
+    onClose={()=>openButton.current?.focus()}>
+    <header className="navigator-dialog-header">
+     <h2 id="navigator-title">AI Navigator</h2>
+     <button type="button" className="navigator-secondary" onClick={()=>dialog.current.close()}>Close</button>
+    </header>
+    <form className="navigator-dialog-form" onSubmit={ask}>
+     <div role="log" aria-label="Navigator conversation" className="navigator-log">
+      {history.map((row,index)=><p key={index}><strong>{row.role==='user'?'You':'Navigator'}</strong> {row.text}</p>)}
+     </div>
+     {navigatorError && <p role="alert">{navigatorError}</p>}
+     {!done && history.length<6 && <>
+      <label htmlFor="navigator-message">{history.length?'Your answer':'Your decision'}</label>
+      <textarea disabled={busy} id="navigator-message" maxLength={2000} value={message} onChange={event=>setMessage(event.target.value)} required />
+     </>}
+     <div className="navigator-actions">
+      {!done && history.length<6 && <button className="engent-button" disabled={busy||!message.trim()}>
+       {busy?'Thinking…':history.length?'Continue':'Ask Navigator'}
+      </button>}
+      {(history.length>0||navigatorError) && <button type="button" className="navigator-secondary" disabled={busy}
+       onClick={resetDecision}>Start New Decision</button>}
+     </div>
+    </form>
+   </dialog>
+  </>}
   {error && <p role="alert">{error}</p>}
  </section>;
 }
