@@ -111,3 +111,9 @@ Remaining development dependency exceptions (14 platform / 5 Tree package-chain 
 The requested decision is approval of this **specific Alpha-only resource/configuration set, the existing-only signup guard, and its non-AI verification**, subject to naming existing testers and deciding any project-write test permission. It is not approval for production, DNS, Navigator, user migration, entitlement changes, merges or paid AI. Keep PRs 7 and 14 draft.
 
 Local preparation verification: platform 60/60 tests pass (four Release A guard/plan tests added); existing Tree suite 248/248 previously passed at unchanged ae8279e. Release A frontend/Lambda local build and SAM lint pass. Literal runtime/operator/session IAM validation returns no Access Analyzer findings. New auth bundle module inventory contains no SSM, CloudWatch, OpenAI, Navigator budget or remaining advisory module. Static validation does not replace live IAM and Cognito tests.
+
+## Gate 1 source-only correction
+
+Per Issue 6 comment 6965250315, the unused `ExistingOnlyGuardVerified` parameter is replaced by `SignupGuardRequiredBeforeExecution=true`. This acknowledges the future Gate 2 obligation; it does not claim Alpha self-registration has already been disabled. Resource definitions, IAM, URLs, outputs, runtime and feature defaults are unchanged. Local tests verify exact template equivalence except this name/description and model an unexecuted request while the signup guard remains false. They do not prove AWS acceptance.
+
+The previous Gate 1 owner authorization pins source 57317528. This correction requires an explicit owner amendment approving the replacement source/template hashes before any artifact upload or CreateChangeSet. Until then, no AWS writes. Even after an amendment, Gate 1 permits only immutable approved Alpha prefixes and an unexecuted change set with EnableAuth=false; it does not authorize execution, signup-policy changes or any other Gate 2 action.

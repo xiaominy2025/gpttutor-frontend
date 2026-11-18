@@ -2,10 +2,10 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Release A Alpha auth only; reuse Alpha hosting, API and namespaced session storage. No Navigator.
 Parameters:
-  ExistingOnlyGuardVerified:
+  SignupGuardRequiredBeforeExecution:
     Type: String
     AllowedValues: ['true']
-    Description: Required explicit acknowledgement that Alpha AllowAdminCreateUserOnly=true was verified before public clients are created.
+    Description: Acknowledges the future requirement for Gate 2 to approve, apply and verify the Alpha existing-only signup guard before any change-set execution. Does not attest that the guard is applied during Gate 1.
   EnableAuth: {Type: String, Default: 'false', AllowedValues: ['false', 'true']}
 Resources:
   Domain:
