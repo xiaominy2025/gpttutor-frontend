@@ -70,6 +70,10 @@ const refinementCases=[
   null,'Keeping, cleaning if appropriate, and replacing the kettle trade off convenience and cash. If it continues to work safely, the value of saving a minute depends on how often you use it and how tight the budget is.'],
  ['irreversible equipment purchase','Our plant is considering a $1.2 million custom production line with no resale market. We only have verbal demand estimates, but a contract manufacturer could make the first batch.',
   null,'The custom line offers control but makes an irreversible commitment before demand is firm. A contract batch preserves the option to wait at the cost of less control and potentially higher unit costs. The trade-off depends on how much those constraints matter while you learn whether demand holds.'],
+ ['purposeful waiting','A nonrefundable venue deposit is due in two weeks. I get a reliable attendance estimate next week, and the venue can hold the date until then.',
+  null,'Waiting for the estimate has a purpose: it could change which venue fits, and you can learn it before losing the date. Waiting beyond that point may offer little unless another useful signal is coming. The judgment is how much booking risk you can accept for better information.'],
+ ['reversible learning','We can buy equipment now or rent it for one month. Orders are promising but unconfirmed, and renting costs more per week.',
+  null,'Renting buys flexibility and a chance to learn whether the orders are durable. Buying saves on repeated rental if demand holds, but commits cash before you know. A month of actual orders could give you a reason to revisit the choice. Even a well-judged trial can turn out poorly.'],
  ['transit pass trade-off','A $60 monthly transit pass covers eight round trips I expect to take. Tickets cost $6 per round trip. I am on a tight budget and might take one more trip.',
   null,'The pass fixes the cost upfront, while tickets let you pay only for trips you take. Eight trips cost $48 and nine cost $54. The costs match at ten trips. The trade-off is whether any convenience or additional travel is worth committing scarce cash upfront.']
 ];
@@ -99,6 +103,10 @@ it.each(refinementCases)('asks only for decision-changing context and returns a 
  }
 
  const request=generate.mock.calls[0][1];
+ expect(request.instructions).toContain('a sound decision can still turn out badly');
+ expect(request.instructions).toContain('whether waiting would bring useful information or merely postpone the choice');
+ expect(request.instructions).toContain('Treat acting and waiting as alternatives');
+ expect(request.instructions).toContain('reversibility, staged commitments, feedback');
  expect(request.instructions).toContain('Objectives → Analysis → Human Judgment');
  expect(request.instructions).toContain('tolerance for risk');
  expect(request.instructions).toContain('how relevant alternatives serve competing objectives');
