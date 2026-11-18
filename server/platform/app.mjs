@@ -87,7 +87,7 @@ export function platformApp({oauth,entitlements,credentials,controls,generate,or
      await controls.settle(lease,0,true);throw new PlatformError(503,'Navigator usage unavailable.');
     }
     await controls.settle(lease,Math.ceil(usage.input_tokens*price.input+usage.output_tokens*price.output));
-    const result=readNavigatorReply(response,history,treeOrigin);
+    const result=readNavigatorReply(response,history);
     const nextHistory=[...history,{role:'user',text:input.message},{role:'assistant',text:result.reply}];
     return reply(200,{...result,continuation:result.done?null:makeContinuation(secret.ipSecret,actor,nextHistory)});
    } catch(error) {

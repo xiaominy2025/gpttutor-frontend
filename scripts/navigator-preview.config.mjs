@@ -19,7 +19,7 @@ const app=platformApp({
   const reply=clarify?'What outcome matters most if you have to make a trade-off?':
    'Compare two feasible options against that priority. Write down one fact you can check this week that could change which option you prefer.';
   return {usage:{input_tokens:0,output_tokens:0},output:[{content:[{type:'output_text',
-   text:JSON.stringify({kind:clarify?'clarify':'guide',reply,coach:'none'})}]}]};
+   text:JSON.stringify({kind:clarify?'clarify':'guide',reply})}]}]};
  }
 });
 

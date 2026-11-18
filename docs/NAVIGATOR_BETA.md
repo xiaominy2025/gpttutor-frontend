@@ -26,7 +26,7 @@ The check reports model access or an HTTP status, without printing the key or AP
 ## Behavior and review boundaries
 
 - The application keeps transcript text in browser memory and sends it with short-lived, caller-bound signed continuations. The platform store receives a consumed-continuation hash and TTL only. There is no saved project or transcript. Each continuation is single-use on success. Failed requests release the claim when they can and the spending controls still account for uncertain provider calls.
-- A decision may end on its first turn. Each clarification asks for one answer and the third turn requires guidance. Coach names come from the Explore catalog and Tree's launch link comes from the existing stage-specific configuration. Other Coaches are marked coming soon.
+- A decision may end on its first turn. Each clarification asks for one answer and the third turn requires guidance. Navigator explains one decision insight and gives one concrete starting action. It may briefly name a useful analytical method. Students can browse the six Coaches directly on Explore.
 - Before rollout, verify the configured model and prices against the dedicated project, the active stage's Tree destination and authentication, and representative response quality. A browser disconnect after successful processing can require starting a new decision. Guest request quotas can delay retries or a third turn when earlier turns fall in the same minute.
 
 ## Representative decision cases
@@ -60,11 +60,11 @@ Score each complete transcript from 0 to 2 on each dimension. Use 0 for absent o
 
 1. **Understanding.** Identifies the decision, objective, and decision-changing constraint or uncertainty.
 2. **Educational insight.** Surfaces a specific implication, trade-off, or valuable overlooked alternative.
-3. **Practical starting guidance.** Ends with one or two concrete, feasible actions.
-4. **Analytical fit.** Uses the lightest useful method. Any Coach actually fits and has accurate availability and link.
+3. **Practical starting guidance.** Ends with one concrete, feasible starting action.
+4. **Analytical fit.** Uses the lightest useful method, when a method helps. Explains how it connects to the decision and leaves the choice with the student.
 5. **Brevity and discipline.** One focused question when needed, useful guidance in at most three user turns, plain and concise replies.
 
-Suggested review bar is 8/10 with no zero, plus no invented Coach link or fourth turn. Mock tests verify application behavior. Rate response quality only after collecting real conversations.
+Suggested review bar is 8/10 with no zero, plus no invitation to continue after guidance or fourth turn. Mock tests verify application behavior. Rate response quality only after collecting real conversations.
 
 ## Proposed paid evaluation
 
