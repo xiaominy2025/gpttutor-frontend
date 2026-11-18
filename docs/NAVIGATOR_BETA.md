@@ -26,7 +26,7 @@ The check reports model access or an HTTP status, without printing the key or AP
 ## Behavior and review boundaries
 
 - The application keeps transcript text in browser memory and sends it with short-lived, caller-bound signed continuations. The platform store receives a consumed-continuation hash and TTL only. There is no saved project or transcript. Each continuation is single-use on success. Failed requests release the claim when they can and the spending controls still account for uncertain provider calls.
-- A decision may end on its first turn. Each clarification asks for one answer and the third turn requires guidance. Navigator explains one decision insight and gives one concrete starting action. It may briefly name a useful analytical method. Students can browse the six Coaches directly on Explore.
+- A decision may end on its first turn. Each clarification asks for one answer and the third turn requires guidance. Navigator explains one decision insight and helps the student see how objectives, alternatives, and judgment shape the choice. It may briefly name a useful analytical method. Students can browse the six Coaches directly on Explore.
 - Before rollout, verify the configured model and prices against the dedicated project, the active stage's Tree destination and authentication, and representative response quality. A browser disconnect after successful processing can require starting a new decision. Guest request quotas can delay retries or a third turn when earlier turns fall in the same minute.
 
 ## Representative decision cases
@@ -54,17 +54,19 @@ Use the text before the arrow as the opening turn. The hint after the arrow is a
 19. **Clarification.** “Should we choose Vendor A or Vendor B? Everyone has a strong opinion.” → Ask about the outcome or constraint that would distinguish them.
 20. **No specialized Coach.** “Two friends invited me on different weekend trips. I can afford either but need a restful weekend before a busy week.” → Use a straightforward rest and relationship trade-off.
 
+21. **Transit pass.** “A $60 monthly transit pass covers eight round trips I expect to take. Tickets cost $6 per round trip. I am on a tight budget and might take one more trip.” → Compare paying per trip with committing upfront. If numbers are included, eight trips cost $48, nine cost $54, and ten break even.
+
 ## Conversation rubric
 
 Score each complete transcript from 0 to 2 on each dimension. Use 0 for absent or misleading, 1 for partially useful, and 2 for consistently strong. Record exact excerpts and one improvement per score below 2.
 
-1. **Understanding.** Identifies the decision, objective, and decision-changing constraint or uncertainty.
-2. **Educational insight.** Surfaces a specific implication, trade-off, or valuable overlooked alternative.
-3. **Practical starting guidance.** Ends with one concrete, feasible starting action.
-4. **Analytical fit.** Uses the lightest useful method, when a method helps. Explains how it connects to the decision and leaves the choice with the student.
-5. **Brevity and discipline.** One focused question when needed, useful guidance in at most three user turns, plain and concise replies.
+1. **Objectives and priorities.** Helps the student see what they want to achieve and which priorities or constraints matter most.
+2. **Alternatives.** Helps the student recognize relevant options and see how those options serve competing objectives.
+3. **Uncertainty and consequences.** Shows what could change, how it affects the options, and why it matters.
+4. **Human judgment.** Makes clear where the student’s values, experience, risk tolerance, and circumstances shape the choice.
+5. **Mental map.** Leaves the student with a concise, connected way to think about the decision and ownership of the final choice.
 
-Suggested review bar is 8/10 with no zero, plus no invitation to continue after guidance or fourth turn. Mock tests verify application behavior. Rate response quality only after collecting real conversations.
+Suggested review bar is 8/10 with no zero, with accurate factual and numerical claims. Check that clarification was useful, the dialogue ended within three user turns, and final guidance closed without an invitation to continue. Mock tests verify application behavior. Rate response quality only after collecting real conversations.
 
 ## Proposed paid evaluation
 
