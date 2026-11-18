@@ -8,7 +8,7 @@ it('keeps Explore public and handles the optional Guest Navigator without browse
   if(path==='/api/platform/session')return {ok:true,json:async()=>({signedIn:false,navigator:true})};
   expect(path).toBe('/api/platform/navigator');
   expect(JSON.parse(options.body)).toEqual({message:'Which coach helps with uncertainty?',history:[]});
-  return {ok:true,json:async()=>({reply:'Decision Tree Coach helps map uncertain paths.'})};
+  return {ok:true,json:async()=>({reply:'Decision Tree Coach helps map uncertain paths.',done:true})};
  });
  try {
   render(<PlatformAccess/>);
@@ -17,6 +17,8 @@ it('keeps Explore public and handles the optional Guest Navigator without browse
   fireEvent.change(screen.getByLabelText('Your decision'),{target:{value:'Which coach helps with uncertainty?'}});
   fireEvent.click(screen.getByRole('button',{name:'Ask Navigator'}));
   await screen.findByText('Decision Tree Coach helps map uncertain paths.');
+  expect(screen.queryByRole('textbox')).toBeNull();
+  fireEvent.click(screen.getByRole('button',{name:'Start New Decision'}));
   expect(screen.getByLabelText('Your decision').value).toBe('');
  }finally{cleanup();global.fetch=original;}
 });

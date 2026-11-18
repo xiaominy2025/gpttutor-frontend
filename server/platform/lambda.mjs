@@ -49,7 +49,7 @@ export async function handlerEntry(event) {
      {MetricName:'NavigatorAdmittedMicros',Value:micros,Unit:'Count'}]}));
   }});
   const signer=new SignatureV4({service:'execute-api',region,credentials:defaultProvider(),sha256:Sha256});
-  handler=platformApp({oauth,origin,treeOrigin:env.TREE_ORIGIN,credentials,controls,enabled:env.SHARED_AUTH_ENABLED==='true',navigator:env.NAVIGATOR_ENABLED==='true',
+  handler=platformApp({oauth,conversationStore:store,origin,treeOrigin:env.TREE_ORIGIN,credentials,controls,enabled:env.SHARED_AUTH_ENABLED==='true',navigator:env.NAVIGATOR_ENABLED==='true',
    price:{model:env.NAVIGATOR_MODEL,input:Number(env.INPUT_USD_PER_MILLION),output:Number(env.OUTPUT_USD_PER_MILLION)},
    entitlements:async token=>{
     const request=await signer.sign(new HttpRequest({protocol:'https:',hostname:treeUrl.hostname,path:treeUrl.pathname,method:'POST',
