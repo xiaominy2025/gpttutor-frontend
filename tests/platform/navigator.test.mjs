@@ -52,6 +52,8 @@ it('allows a failed clarification attempt to be retried and charges the uncertai
 });
 
 const refinementCases=[
+ ['chemistry internship versus academic research','I am a chemistry student deciding between an industry internship and an academic research placement. I want to explore both industry and graduate school. How can I think through the choice?',
+  null,'Both placements can build chemistry skills, but they can answer different questions about your future. The internship may show how teams use chemistry to solve production or product problems, while research may show how you enjoy investigating an open question. The actual work and mentorship matter more than the titles. The comparison depends on which uncertainty you most want to resolve this summer and what opportunities you might have to explore the other path later.'],
  ['graduate school',"Should I do a master's?",
   ['What job would you want the degree to help you get?','I want a data scientist role and would need a loan.'],
   'The objective is qualifying for data-science roles. A degree buys a credential, while coursework or a portfolio can demonstrate skills with less debt. Which path fits depends on what your target roles require and how much financial risk you are comfortable taking.'],
@@ -111,6 +113,9 @@ it.each(refinementCases)('asks only for decision-changing context and returns a 
  expect(request.instructions).toContain('tolerance for risk');
  expect(request.instructions).toContain('how relevant alternatives serve competing objectives');
  expect(request.instructions).toContain('materially improve understanding');
+ expect(request.instructions).toContain('without ranking or favoring one unless the student explicitly asks for a recommendation');
+ expect(request.instructions).toContain('Use conditional comparisons and avoid directives');
+ expect(request.instructions).toContain('under stated assumptions from what remains the student’s judgment');
  expect(request.instructions).toContain('Leave the choice with the student');
  expect(request.instructions).toContain('verify any factual or numerical claim');
  expect(request.text.format.schema.required).toEqual(['kind','reply']);
