@@ -1,0 +1,203 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'PROPOSAL ONLY: production auth-only reuse; requires validated registration guard before public clients. No deployment authorized.'
+Parameters:
+  RegistrationGuardAttachedBeforeExecution:
+    Type: String
+    AllowedValues: ['true']
+    Description: Acknowledges independent preflight verification that the client-aware registration guard is attached; this parameter is not proof.
+  EnableAuth: {Type: String, Default: 'false', AllowedValues: ['false', 'true']}
+Resources:
+  Domain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties: {Domain: engent-platform-prod-771049112957, ManagedLoginVersion: 2, UserPoolId: us-east-1_Ilf34btQ0}
+  PlatformClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: engent-platform-prod
+      UserPoolId: us-east-1_Ilf34btQ0
+      GenerateSecret: false
+      ExplicitAuthFlows: [ALLOW_USER_AUTH]
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthFlows: [code]
+      AllowedOAuthScopes: [openid, email, aws.cognito.signin.user.admin]
+      SupportedIdentityProviders: [COGNITO]
+      CallbackURLs: ['https://www.engentlabs.com/api/platform/callback']
+      LogoutURLs: ['https://www.engentlabs.com/explore']
+      EnableTokenRevocation: true
+      PreventUserExistenceErrors: ENABLED
+      AccessTokenValidity: 15
+      IdTokenValidity: 15
+      RefreshTokenValidity: 30
+      TokenValidityUnits: {AccessToken: minutes, IdToken: minutes, RefreshToken: days}
+      ReadAttributes: [sub, email, email_verified]
+      WriteAttributes: [email]
+  TreeClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: engent-tree-prod-shared
+      UserPoolId: us-east-1_Ilf34btQ0
+      GenerateSecret: false
+      ExplicitAuthFlows: [ALLOW_USER_AUTH]
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthFlows: [code]
+      AllowedOAuthScopes: [openid, email, aws.cognito.signin.user.admin]
+      SupportedIdentityProviders: [COGNITO]
+      CallbackURLs: ['https://decisiontree.engentlabs.com/api/shared/callback']
+      LogoutURLs: ['https://decisiontree.engentlabs.com/']
+      EnableTokenRevocation: true
+      PreventUserExistenceErrors: ENABLED
+      AccessTokenValidity: 15
+      IdTokenValidity: 15
+      RefreshTokenValidity: 30
+      TokenValidityUnits: {AccessToken: minutes, IdToken: minutes, RefreshToken: days}
+      ReadAttributes: [sub, email, email_verified]
+      WriteAttributes: [email]
+  PlatformBranding:
+    Type: AWS::Cognito::ManagedLoginBranding
+    DependsOn: Domain
+    Properties: {UserPoolId: us-east-1_Ilf34btQ0, ClientId: !Ref PlatformClient, UseCognitoProvidedValues: true}
+  TreeBranding:
+    Type: AWS::Cognito::ManagedLoginBranding
+    DependsOn: Domain
+    Properties: {UserPoolId: us-east-1_Ilf34btQ0, ClientId: !Ref TreeClient, UseCognitoProvidedValues: true}
+  Logs:
+    Type: AWS::Logs::LogGroup
+    Properties: {LogGroupName: /aws/lambda/engent-platform-prod-api, RetentionInDays: 14}
+  RuntimeBoundary:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: engent-platform-prod-runtime-boundary
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: [dynamodb:GetItem, dynamodb:PutItem, dynamodb:DeleteItem]
+            Resource: arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data
+            Condition: {'ForAllValues:StringLike': {'dynamodb:LeadingKeys': ['PLATFORM#*']}, 'Null': {'dynamodb:LeadingKeys': 'false'}}
+          - Effect: Allow
+            Action: [logs:CreateLogStream, logs:PutLogEvents]
+            Resource: !GetAtt Logs.Arn
+          - Effect: Allow
+            Action: execute-api:Invoke
+            Resource: arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/entitlements
+  Runtime:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: engent-platform-prod-runtime
+      PermissionsBoundary: !Ref RuntimeBoundary
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement: [{Effect: Allow, Principal: {Service: lambda.amazonaws.com}, Action: 'sts:AssumeRole'}]
+      Policies:
+        - PolicyName: release-a-auth-only
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [dynamodb:GetItem, dynamodb:PutItem, dynamodb:DeleteItem]
+                Resource: arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data
+                Condition: {'ForAllValues:StringLike': {'dynamodb:LeadingKeys': ['PLATFORM#*']}, 'Null': {'dynamodb:LeadingKeys': 'false'}}
+              - Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents]
+                Resource: !GetAtt Logs.Arn
+              - Effect: Allow
+                Action: execute-api:Invoke
+                Resource: arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/entitlements
+  Api:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: engent-platform-prod-api
+      CodeUri: ../../.artifacts/release-a-production/api/
+      Handler: index.handlerEntry
+      Runtime: nodejs22.x
+      Architectures: [arm64]
+      MemorySize: 256
+      Timeout: 28
+      ReservedConcurrentExecutions: 2
+      AutoPublishAlias: live
+      Role: !GetAtt Runtime.Arn
+      Environment:
+        Variables:
+          STAGE: prod
+          APP_ORIGIN: https://www.engentlabs.com
+          TREE_ORIGIN: https://decisiontree.engentlabs.com
+          STUDENT_POOL: us-east-1_Ilf34btQ0
+          STATE_TABLE: decisiontree-prod-data
+          PLATFORM_CLIENT: !Ref PlatformClient
+          LOGIN_DOMAIN: engent-platform-prod-771049112957.auth.us-east-1.amazoncognito.com
+          SHARED_AUTH_ENABLED: !Ref EnableAuth
+          NAVIGATOR_ENABLED: 'false'
+  Integration:
+    Type: AWS::ApiGatewayV2::Integration
+    DependsOn: ApiAliaslive
+    Properties:
+      ApiId: eoszayfkqd
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !Sub '${Api.Arn}:live'
+      PayloadFormatVersion: '2.0'
+      TimeoutInMillis: 29000
+  Route:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: eoszayfkqd
+      RouteKey: ANY /api/platform/{proxy+}
+      AuthorizationType: NONE
+      Target: !Sub 'integrations/${Integration}'
+  Invocation:
+    Type: AWS::Lambda::Permission
+    DependsOn: ApiAliaslive
+    Properties:
+      FunctionName: !Sub '${Api.Arn}:live'
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceAccount: '771049112957'
+      SourceArn: arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/*/*/api/platform/*
+  EntitlementsRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: eoszayfkqd
+      RouteKey: POST /internal/platform/entitlements
+      AuthorizationType: AWS_IAM
+      Target: integrations/9gaznns
+  TreeSessionDeletion:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: release-a-shared-session-delete
+      Roles: [decisiontree-prod-ApiRole-vGwUeXNVhAHY]
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: dynamodb:DeleteItem
+            Resource: arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data
+            Condition: {'ForAllValues:StringLike': {'dynamodb:LeadingKeys': ['SHARED#OAUTH#*', 'SHARED#SESSION#*']}, 'Null': {'dynamodb:LeadingKeys': 'false'}}
+  ExploreRewrite:
+    Type: AWS::CloudFront::Function
+    Properties:
+      Name: engent-release-a-prod-explore
+      AutoPublish: true
+      FunctionConfig: {Comment: Production auth-only Explore asset mapping, Runtime: cloudfront-js-2.0}
+      FunctionCode: |
+        function handler(event) {
+          var request = event.request;
+          if (request.headers.host && request.headers.host.value === 'engentlabs.com') {
+            if (request.method !== 'GET' && request.method !== 'HEAD') return {statusCode: 403, statusDescription: 'Forbidden'};
+            var parts = [];
+            Object.keys(request.querystring || {}).forEach(function(key) {
+              var item = request.querystring[key];
+              (item.multiValue || [item]).forEach(function(v) { parts.push(key + '=' + v.value); });
+            });
+            return {statusCode: 302, statusDescription: 'Found', headers: {
+              location: {value: 'https://www.engentlabs.com' + request.uri + (parts.length ? '?' + parts.join('&') : '')},
+              'cache-control': {value: 'no-store'}}};
+          }
+          if (request.uri.indexOf('/engent-release-a/') === 0) request.uri = request.uri.slice('/engent-release-a'.length);
+          else if (request.uri === '/explore' || request.uri.indexOf('/explore/') === 0) request.uri = '/index.html';
+          return request;
+        }
+Outputs:
+  PlatformClientId: {Value: !Ref PlatformClient}
+  TreeClientId: {Value: !Ref TreeClient}
+  PlatformAliasArn: {Value: !Sub '${Api.Arn}:live'}
+  RewriteArn: {Value: !GetAtt ExploreRewrite.FunctionARN}
