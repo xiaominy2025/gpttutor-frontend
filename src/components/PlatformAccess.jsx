@@ -95,12 +95,20 @@ export default function PlatformAccess({renderHeader=account=>account}) {
      <button type="button" className="navigator-secondary" onClick={()=>dialog.current.close()}>Close</button>
     </header>
     <form className="navigator-dialog-form" onSubmit={ask}>
-     <div role="log" aria-label="Navigator conversation" className="navigator-log" ref={log} tabIndex={history.length?0:undefined}>
-      {history.map((row,index)=><p key={index}><strong>{row.role==='user'?'You':'Navigator'}</strong> {row.text}</p>)}
+     <div role="log" aria-label="Navigator conversation" className="navigator-log" ref={log} tabIndex={history.length?0:-1}>
+      {!history.length&&<div className="navigator-welcome">
+       <h3>Welcome to AI Navigator</h3>
+       <p>Describe a decision you're facing. I'll help you think through it using three perspectives: <strong>Objectives, Analysis, and Human Judgment</strong>.</p>
+       <p>After my initial guidance, you can explore up to three follow-up questions or ask your own. The goal is to help you develop a clearer decision-making process—not make the decision for you.</p>
+      </div>}
+      {history.map((row,index)=><div className={'navigator-message '+row.role} key={index}>
+       <strong>{row.role==='user'?'You':'Navigator'}</strong>
+       <p>{row.text}</p>
+      </div>)}
       {!done&&followUps.length>0&&<div className="navigator-follow-ups" role="group" aria-label="Explore a follow-up path">
        {followUps.map(({dimension,question})=><button type="button" key={dimension} disabled={busy}
         onClick={()=>{log.current?.focus();void submitMessage(question,dimension);}}>
-        <strong>{dimensionLabels[dimension]}</strong> {question}
+        <strong className={dimension}>{dimensionLabels[dimension]}</strong><span>{question}</span>
        </button>)}
       </div>}
      </div>

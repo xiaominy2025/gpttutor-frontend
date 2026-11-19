@@ -179,13 +179,19 @@
 .navigator-intro{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-block:12px;padding:14px 16px;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
 .engent-site .navigator-intro h2,.engent-site .navigator-dialog h2{font-size:1.25rem;margin:0}
 .navigator-intro p{margin-top:4px}
-.navigator-dialog{position:fixed;inset:0;margin:auto;width:min(650px,90vw);height:min(580px,90dvh);min-width:min(360px,90vw);min-height:min(340px,90dvh);max-width:90vw;max-height:90dvh;resize:both;padding:0;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--slate);overflow:hidden}
+.navigator-dialog{position:fixed;inset:0;margin:auto;width:min(650px,90vw);height:min(var(--navigator-height,540px),90dvh);min-width:min(360px,90vw);min-height:min(340px,90dvh);max-width:90vw;max-height:90dvh;resize:both;padding:0;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--slate);overflow:hidden}
 .navigator-dialog[open]{display:flex;flex-direction:column}
+.navigator-dialog:has(.navigator-welcome){--navigator-height:440px}
 .navigator-dialog::backdrop{background:rgb(38 59 67 / 55%)}
 .navigator-dialog-header{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line)}
 .navigator-dialog-form{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px;padding:12px 20px 20px;overflow:auto}
-.navigator-log{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
-.navigator-log p{margin-block-end:10px;overflow-wrap:anywhere;white-space:pre-wrap}
+.navigator-log{flex:1;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable;padding:3px 4px}
+.navigator-log p{overflow-wrap:anywhere;white-space:pre-wrap}
+.navigator-welcome{border-bottom:1px solid var(--line);padding:5px 0 12px}
+.navigator-welcome p{margin-top:8px}
+.navigator-message{padding:10px 12px;margin-bottom:8px;border-radius:8px;min-width:0;background:white}
+.navigator-message.user{background:#edf4ef}
+.navigator-message strong{display:block;margin-bottom:3px;font-size:.76rem;color:var(--green)}
 .navigator-dialog label{font-weight:700}
 .navigator-dialog textarea{width:100%;flex:none;height:96px;resize:none;border:1px solid var(--line);border-radius:6px;background:white;padding:10px}
 .navigator-actions{flex:none;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
@@ -198,6 +204,8 @@
 }
 
 .navigator-follow-ups{display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:6px 4px 10px}
-.navigator-follow-ups button{padding:7px 10px;border:1px solid var(--line);border-radius:6px;text-align:left;font-size:.86rem;overflow-wrap:anywhere}
+.navigator-follow-ups button{display:grid;gap:2px;min-width:0;min-height:44px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:transparent;text-align:left;font-size:.9rem;overflow-wrap:anywhere}
 .navigator-follow-ups button:hover:not(:disabled){background:#edf4ef}
-.navigator-follow-ups strong{color:var(--green)}
+.navigator-follow-ups strong{font-size:.75rem;color:var(--green)}
+.navigator-follow-ups .analysis{color:#2b5c80}
+.navigator-follow-ups .judgment{color:#79520e}

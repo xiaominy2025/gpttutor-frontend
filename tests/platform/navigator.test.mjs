@@ -10,7 +10,7 @@ function setup() {
  };
  const controls={admit:vi.fn(async()=>({})),settle:vi.fn(async()=>{})};
  const generate=vi.fn(async (_key,request)=>{
-  const final=request.input.length===5;
+  const final=request.input.length===7;
   return {usage:{input_tokens:100,output_tokens:30},output:[{content:[{type:'output_text',
    text:JSON.stringify({kind:'guide',reply:final?'Duration belongs in your evidence, while acceptable disruption depends on your priorities. A later change in demand could justify revisiting your judgment.':request.input.length===1?'Which outcome would make the extra capacity worthwhile?':'Reliable deliveries are your priority. Seasonal demand makes it important to separate a temporary problem from a lasting one before committing.'})}]}]};
  });
@@ -26,7 +26,7 @@ function setup() {
  return {ask,controls,generate};
 }
 
-it('authenticates history, binds it to the caller, and completes the third turn',async()=>{
+it('authenticates history, binds it to the caller, and completes the fourth turn',async()=>{
  const {ask,generate,controls}=setup();
  const first=await ask();
  expect(first).toMatchObject({statusCode:200,done:false});
@@ -43,13 +43,15 @@ it('authenticates history, binds it to the caller, and completes the third turn'
  expect(second.reply).not.toMatch(/\?/);
  expect(generate.mock.lastCall[1].instructions).toContain('Do not repeat the earlier question');
  const third=await ask(second.history,second.continuation,'a'.repeat(43),'What if the peak is temporary?');
- expect(third).toMatchObject({statusCode:200,done:true,continuation:null});
+ expect(third).toMatchObject({statusCode:200,done:false,continuation:expect.any(String)});
+ const fourth=await ask(third.history,third.continuation,'a'.repeat(43),'How can I use feedback to revisit my decision?');
+ expect(fourth).toMatchObject({statusCode:200,done:true,continuation:null});
  expect(generate.mock.lastCall[1].text.format.schema.properties.kind.enum).toEqual(['guide']);
  expect(generate.mock.lastCall[1].instructions).toContain('ask no questions');
- expect((await ask(third.history,second.continuation)).statusCode).toBe(400);
+ expect((await ask(fourth.history,third.continuation)).statusCode).toBe(400);
  expect((await ask(first.history,first.continuation)).statusCode).toBe(409);
  expect((await ask(second.history,second.continuation)).statusCode).toBe(409);
- expect(controls.admit).toHaveBeenCalledTimes(3);
+ expect(controls.admit).toHaveBeenCalledTimes(4);
 });
 
 it('allows a failed clarification attempt to be retried and charges the uncertain call',async()=>{
@@ -125,7 +127,7 @@ function mockPaths(followUps,exploredDimension=null){
  }]}]};
 }
 
-it('binds the three paths to the continuation, preserves unselected paths, and closes after round three',async()=>{
+it('binds the three paths to the continuation, preserves unselected paths, and closes after round four',async()=>{
  const {ask,generate,controls}=setup();
  const guest='a'.repeat(43);
  generate.mockResolvedValueOnce(mockPaths(chemistryPaths));
@@ -146,10 +148,15 @@ it('binds the three paths to the continuation, preserves unselected paths, and c
  expect((await ask(first.history,token,guest,chemistryPaths[0].question,'objectives')).statusCode).toBe(409);
  expect((await ask(second.history,second.continuation,guest,chemistryPaths[0].question,'objectives')).statusCode).toBe(400);
 
+ generate.mockResolvedValueOnce(mockPaths([]));
+ const third=await ask(second.history,second.continuation,guest,'I can treat the summer as one sample. How can I revisit my assumptions later?');
+ expect(third).toMatchObject({statusCode:200,done:false,followUps:[revised,chemistryPaths[2]]});
  generate.mockResolvedValueOnce(mockPaths(chemistryPaths));
- const final=await ask(second.history,second.continuation,guest,'I can treat the summer as one sample. How can I revisit my assumptions later?');
+ const final=await ask(third.history,third.continuation,guest,chemistryPaths[2].question,'judgment');
  expect(final).toMatchObject({statusCode:200,done:true,followUps:[],continuation:null});
- expect(generate).toHaveBeenCalledTimes(3);
+ expect(generate.mock.lastCall[1].instructions).toContain('The student selected judgment');
+ expect(generate.mock.lastCall[1].instructions).toContain('Answer the student’s final question substantively');
+ expect(generate).toHaveBeenCalledTimes(4);
 });
 
 it.each([
@@ -164,4 +171,40 @@ it.each([
  const second=await ask(first.history,first.continuation,guest,message);
  expect(second.followUps).toEqual(expected);
  expect(generate.mock.lastCall[1].instructions).toContain('never for a passing mention');
+});
+
+it.each([
+ ['objectives','analysis','judgment'],
+ ['judgment','objectives','analysis']
+])('accepts a full four-turn decision in %s → %s → %s order',async(...order)=>{
+ const {ask,generate}=setup();
+ const guest='a'.repeat(43);
+ generate.mockResolvedValueOnce(mockPaths(chemistryPaths));
+ let turn=await ask([],undefined,guest,chemistry);
+ for(const dimension of order){
+  const selected=turn.followUps.find(item=>item.dimension===dimension);
+  expect(selected).toBeDefined();
+  generate.mockResolvedValueOnce(mockPaths([]));
+  turn=await ask(turn.history,turn.continuation,guest,selected.question,dimension);
+  expect(turn.statusCode).toBe(200);
+  expect(turn.followUps.some(item=>item.dimension===dimension)).toBe(false);
+ }
+ expect(turn).toMatchObject({done:true,followUps:[],continuation:null});
+ expect(generate).toHaveBeenCalledTimes(4);
+ expect((await ask(turn.history,undefined,guest,'Can I ask a fifth question?')).statusCode).toBe(400);
+});
+
+it('omits duplicate initial questions and preserves a remaining question when an update duplicates another path',async()=>{
+ const {ask,generate}=setup();
+ const guest='a'.repeat(43);
+ generate.mockResolvedValueOnce(mockPaths([
+  chemistryPaths[0],
+  {...chemistryPaths[1],question:chemistryPaths[0].question.toUpperCase()},
+  chemistryPaths[2]
+ ]));
+ const first=await ask([],undefined,guest,chemistry);
+ expect(first.followUps).toEqual([chemistryPaths[0],chemistryPaths[2]]);
+ generate.mockResolvedValueOnce(mockPaths([{...chemistryPaths[2],question:chemistryPaths[0].question}]));
+ const second=await ask(first.history,first.continuation,guest,chemistryPaths[0].question,'objectives');
+ expect(second.followUps).toEqual([chemistryPaths[2]]);
 });

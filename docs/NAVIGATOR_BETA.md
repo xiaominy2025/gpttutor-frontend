@@ -26,8 +26,8 @@ The check reports model access or an HTTP status, without printing the key or AP
 ## Behavior and review boundaries
 
 - The application keeps transcript text in browser memory and sends it with short-lived, caller-bound signed continuations. The platform store receives a consumed-continuation hash and TTL only. There is no saved project or transcript. Each continuation is single-use on success. Failed requests release the claim when they can and the spending controls still account for uncertain provider calls.
-- Students can stop after either of the first two replies, answer an optional reflection question, or send their own follow-up. The third accepted user message ends the decision with a synthesis. Navigator explains one decision insight and helps the student see how objectives, alternatives, and judgment shape the choice. It may briefly name a useful analytical method. Students can browse the six Coaches directly on Explore.
-- Before rollout, verify the configured model and prices against the dedicated project, the active stage's Tree destination and authentication, and representative response quality. A browser disconnect after successful processing can require starting a new decision. Guest request quotas can delay retries or a third turn when earlier turns fall in the same minute.
+- Students can stop at any point, select an optional Objectives, Analysis, or Human Judgment question, or write their own follow-up. The fourth accepted user message ends the decision with a synthesis. Navigator explains one decision insight and helps the student see how objectives, alternatives, and judgment shape the choice. It may briefly name a useful analytical method. Students can browse the six Coaches directly on Explore.
+- Before rollout, verify the configured model and prices against the dedicated project, the active stage's Tree destination and authentication, and representative response quality. A browser disconnect after successful processing can require starting a new decision. Guest request quotas can delay retries or later turns when earlier turns fall in the same minute.
 
 ## Representative decision cases
 
@@ -66,7 +66,7 @@ Score each complete transcript from 0 to 2 on each dimension. Use 0 for absent o
 4. **Human judgment.** Makes clear where the student’s values, experience, risk tolerance, and circumstances shape the choice.
 5. **Mental map.** Leaves the student with a concise, connected way to think about the decision and ownership of the final choice.
 
-Suggested review bar is 8/10 with no zero, with accurate factual and numerical claims. Check that optional reflection questions examine the student’s thinking, that a follow-up adds a new perspective when useful, the dialogue ended within three user turns, and final guidance closed without an invitation to continue. Mock tests verify application behavior. Rate response quality only after collecting real conversations.
+Suggested review bar is 8/10 with no zero, with accurate factual and numerical claims. Check that optional reflection questions examine the student’s thinking, that a follow-up adds a new perspective when useful, the dialogue ended within four user turns, and final guidance closed without an invitation to continue. Mock tests verify application behavior. Rate response quality only after collecting real conversations.
 
 ## Proposed paid evaluation
 
