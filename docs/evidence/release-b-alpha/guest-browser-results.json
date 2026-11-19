@@ -1,0 +1,218 @@
+{
+  "results": [
+    {
+      "mode": "desktop",
+      "page": "tree",
+      "htmlHashVerified": true,
+      "heading": "Decision Tree Coach",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "desktop",
+      "page": "home",
+      "htmlHashVerified": true,
+      "heading": "Interactive Decision Coaching.",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "desktop",
+      "page": "explore",
+      "htmlHashVerified": true,
+      "heading": "Explore Decision Coaches",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "desktop",
+      "page": "cases",
+      "htmlHashVerified": true,
+      "heading": "Simulation Business Case Podcasts",
+      "refresh": true,
+      "overflow": false,
+      "audio": "played-and-paused",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "desktop",
+      "page": "admin",
+      "htmlHashVerified": true,
+      "heading": "Administrator Control Center",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "desktop",
+      "page": "admin-slash",
+      "htmlHashVerified": true,
+      "heading": "Administrator Control Center",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "mobile",
+      "page": "tree",
+      "htmlHashVerified": true,
+      "heading": "Decision Tree Coach",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "mobile",
+      "page": "home",
+      "htmlHashVerified": true,
+      "heading": "Interactive Decision Coaching.",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "mobile",
+      "page": "explore",
+      "htmlHashVerified": true,
+      "heading": "Explore Decision Coaches",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "mobile",
+      "page": "cases",
+      "htmlHashVerified": true,
+      "heading": "Simulation Business Case Podcasts",
+      "refresh": true,
+      "overflow": false,
+      "audio": "played-and-paused",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "mobile",
+      "page": "admin",
+      "htmlHashVerified": true,
+      "heading": "Administrator Control Center",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    },
+    {
+      "mode": "mobile",
+      "page": "admin-slash",
+      "htmlHashVerified": true,
+      "heading": "Administrator Control Center",
+      "refresh": true,
+      "overflow": false,
+      "audio": "not-tested",
+      "projects": "blocked-all",
+      "auth": "no-code-or-user"
+    }
+  ],
+  "blocked": [
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/admin/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/admin/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/admin/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/admin/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/admin/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/admin/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/admin/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/css2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/admin/settings",
+      "method": "GET"
+    }
+  ]
+}

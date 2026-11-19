@@ -16,3 +16,14 @@ it('operator proposal scopes Alpha writes, guard pass-role and registration-only
  const guard=p.Statement.find(s=>s.Sid==='CreateBoundedGuardRole');
  expect(guard.Condition.ArnEquals['iam:PermissionsBoundary']).toContain('engent-release-a-alpha-registration-boundary');
 });
+it('Alpha header-policy amendment changes only three explicit security fields without runtime or resource additions',()=>{
+ const p=JSON.parse(readFileSync('infra/release-b/alpha-header-policy-amendment.json','utf8'));
+ expect(p.status).toBe('PROPOSED_NOT_APPLIED');expect(p.policyId).toBe('b5d73939-4c3d-4a75-aca8-45d6bb7b1f7e');
+ expect(p.onlyDistribution).toBe('E1C4AJI9FUE47B');expect(p.newAwsResources).toBe(0);expect(p.productionAuthorized).toBe(false);
+ expect(p.changes).toEqual([
+ {path:'SecurityHeadersConfig.ReferrerPolicy.ReferrerPolicy',before:'no-referrer',after:'strict-origin'},
+ {path:'SecurityHeadersConfig.ReferrerPolicy.Override',before:true,after:false},
+ {path:'SecurityHeadersConfig.ContentSecurityPolicy.Override',before:true,after:false}]);
+ expect(p.operatorAction.action).toBe('cloudfront:UpdateResponseHeadersPolicy');expect(p.operatorAction.automaticIamGrant).toBe(false);
+ expect(p.runtimePins.frontend).toBe('5658560a879d1d032fba38330d3f913a2fd107a7');expect(p.runtimePins.tree).toBe('9e64a6889d041007ffd40e5738db3f9b07987224');
+});

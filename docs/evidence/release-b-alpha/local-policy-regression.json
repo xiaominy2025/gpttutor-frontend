@@ -1,0 +1,56 @@
+[
+  {
+    "viewport": "desktop",
+    "mode": "before",
+    "initialStatus": 403,
+    "nullOrigin": true,
+    "cspBlocked": false,
+    "oneSyntheticCode": true,
+    "pass": true
+  },
+  {
+    "viewport": "desktop",
+    "mode": "referrer-only",
+    "initialStatus": 200,
+    "nullOrigin": false,
+    "cspBlocked": true,
+    "oneSyntheticCode": true,
+    "pass": true
+  },
+  {
+    "viewport": "desktop",
+    "mode": "proposed",
+    "initialStatus": 200,
+    "nullOrigin": false,
+    "cspBlocked": false,
+    "oneSyntheticCode": true,
+    "pass": true
+  },
+  {
+    "viewport": "mobile",
+    "mode": "before",
+    "initialStatus": 403,
+    "nullOrigin": true,
+    "cspBlocked": false,
+    "oneSyntheticCode": true,
+    "pass": true
+  },
+  {
+    "viewport": "mobile",
+    "mode": "referrer-only",
+    "initialStatus": 200,
+    "nullOrigin": false,
+    "cspBlocked": true,
+    "oneSyntheticCode": true,
+    "pass": true
+  },
+  {
+    "viewport": "mobile",
+    "mode": "proposed",
+    "initialStatus": 200,
+    "nullOrigin": false,
+    "cspBlocked": false,
+    "oneSyntheticCode": true,
+    "pass": true
+  }
+]
