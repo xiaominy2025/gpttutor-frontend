@@ -1,0 +1,42 @@
+{
+  "reviewOnly": true,
+  "account": "771049112957",
+  "region": "us-east-1",
+  "stage": "prod",
+  "routeResource": {
+    "Type": "AWS::ApiGatewayV2::Route",
+    "Properties": {
+      "ApiId": "eoszayfkqd",
+      "RouteKey": "POST /internal/platform/advanced-request",
+      "AuthorizationType": "AWS_IAM",
+      "Target": "integrations/9gaznns"
+    }
+  },
+  "appendToExistingRuntimePolicy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "B1TreeAdvancedRequest",
+        "Effect": "Allow",
+        "Action": "execute-api:Invoke",
+        "Resource": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/advanced-request"
+      }
+    ]
+  },
+  "runtimeRole": "engent-platform-prod-runtime",
+  "boundaryAction": "Append identical allow statement to engent-platform-prod-runtime-boundary; preserve all existing statements",
+  "backendFlags": {
+    "RELEASE_B1_ENABLED": "true",
+    "SHARED_AUTH_ENABLED": "true"
+  },
+  "noChange": [
+    "Cognito",
+    "Administrator MFA",
+    "DNS",
+    "Tree runtime IAM",
+    "DynamoDB schema",
+    "CloudFront behaviors",
+    "Navigator",
+    "AI credentials"
+  ]
+}

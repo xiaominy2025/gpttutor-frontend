@@ -50,16 +50,17 @@ export async function handlerEntry(event){
   const oauth=createOAuth({store:releaseAStore(db),provider:cognitoProvider({poolId:config.pool,
    clientId:process.env.PLATFORM_CLIENT,domain:config.domain}),origin:config.origin,prefix:'/api/platform'});
   const signer=new SignatureV4({service:'execute-api',region,credentials:defaultProvider(),sha256:Sha256});
-  app=authOnlyApp({oauth,origin:config.origin,treeOrigin:config.treeOrigin,enabled:true,
-   entitlements:async token=>{
-    const hostname=config.api+'.execute-api.us-east-1.amazonaws.com',path='/internal/platform/entitlements';
-    const request=await signer.sign(new HttpRequest({protocol:'https:',hostname,path,method:'POST',
-     headers:{host:hostname,'content-type':'application/json'},body:JSON.stringify({accessToken:token})}));
-    const response=await fetch('https://'+hostname+path,{method:'POST',headers:request.headers,body:request.body,
-     signal:AbortSignal.timeout(10000),redirect:'error'});
-    if(!response.ok)throw new PlatformError(response.status===403?401:503,'Account access is unavailable.');
+  const invoke=async(path,body)=>{
+    if(!['/internal/platform/entitlements','/internal/platform/advanced-request'].includes(path))throw new PlatformError(503,'Account service unavailable.');
+    const hostname=config.api+'.execute-api.us-east-1.amazonaws.com';
+    const request=await signer.sign(new HttpRequest({protocol:'https:',hostname,path,method:'POST',headers:{host:hostname,'content-type':'application/json'},body:JSON.stringify(body)}));
+    const response=await fetch('https://'+hostname+path,{method:'POST',headers:request.headers,body:request.body,signal:AbortSignal.timeout(10000),redirect:'error'});
+    if(!response.ok)throw new PlatformError([401,403,409,429].includes(response.status)?response.status:503,response.status===429?'Too many requests. Try again later.':response.status===409?'Account changed. Refresh and try again.':'Account service unavailable.');
     return response.json();
-   }});
+  };
+  app=authOnlyApp({oauth,origin:config.origin,treeOrigin:config.treeOrigin,enabled:true,b1Enabled:process.env.RELEASE_B1_ENABLED==='true',
+   entitlements:token=>invoke('/internal/platform/entitlements',{accessToken:token}),
+   requestAdvanced:(token,reason)=>invoke('/internal/platform/advanced-request',{accessToken:token,reason})});
  }
  return app(event);
 }
