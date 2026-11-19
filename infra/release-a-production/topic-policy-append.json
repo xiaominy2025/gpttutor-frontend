@@ -1,0 +1,20 @@
+{
+  "Sid": "ReleaseAAllowExactCloudWatchAlarms",
+  "Effect": "Allow",
+  "Principal": {
+    "Service": "cloudwatch.amazonaws.com"
+  },
+  "Action": "sns:Publish",
+  "Resource": "arn:aws:sns:us-east-1:771049112957:decisiontree-prod-AlarmTopic-aTZwTdkMddZO",
+  "Condition": {
+    "StringEquals": {
+      "aws:SourceAccount": "771049112957"
+    },
+    "ArnEquals": {
+      "aws:SourceArn": [
+        "arn:aws:cloudwatch:us-east-1:771049112957:alarm:engent-release-a-prod-guard-invocation-failure",
+        "arn:aws:cloudwatch:us-east-1:771049112957:alarm:engent-release-a-prod-bff-invocation-failure"
+      ]
+    }
+  }
+}

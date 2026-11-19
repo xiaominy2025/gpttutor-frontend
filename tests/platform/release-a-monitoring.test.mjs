@@ -1,0 +1,8 @@
+import {readFileSync} from 'node:fs';
+import {describe,it,expect} from 'vitest';
+const read=n=>JSON.parse(readFileSync(new URL('../../infra/release-a-production/'+n,import.meta.url)));
+describe('production monitoring proposal',()=>{
+ it('contains exactly two alarms and one owner-parametrized email subscription',()=>{const t=read('monitoring.template.json');expect(Object.keys(t.Resources)).toHaveLength(3);expect(t.Resources.OperatorSubscription.Properties.Endpoint).toEqual({Ref:'OperatorEmail'});for(const n of ['Guard','Bff']){const p=t.Resources[n+'Alarm'].Properties;expect(p.Metrics.filter(m=>m.MetricStat)).toHaveLength(2);expect(p.EvaluationPeriods).toBe(1);expect(p.TreatMissingData).toBe('notBreaching');expect(p.Metrics.at(-1).Expression).toBe('FILL(errors,0)+FILL(throttles,0)');expect(p.AlarmActions).toEqual(p.OKActions);}});
+ it('allows only CloudWatch from the account and two exact new alarm ARNs',()=>{const p=read('topic-policy-append.json');expect(p.Principal).toEqual({Service:'cloudwatch.amazonaws.com'});expect(p.Action).toBe('sns:Publish');expect(p.Condition.StringEquals['aws:SourceAccount']).toBe('771049112957');expect(p.Condition.ArnEquals['aws:SourceArn']).toHaveLength(2);expect(JSON.stringify(p)).not.toContain('*');});
+ it('aligns inventory and public-on acceptance gates',()=>{const g=read('execution-gate.json');expect(g.initialExpectedResources.totalInitialCfnResources).toBe(27);expect(g.monitoring.billedStandardMetrics).toBe(4);expect(g.monitoring.estimatedFixedUsdMonthlyBeforeAllowances).toBe(0.4);expect(g.actualChangeSetsCreated).toBe(false);expect(g.pilot.defaultEndPolicy).toContain('all-acceptance-alert-delivery-and-response-gates');});
+});
