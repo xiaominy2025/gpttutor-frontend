@@ -1,7 +1,7 @@
 import {createHmac, randomBytes} from 'node:crypto';
 import {cookie, digest, PlatformError} from './oauth.mjs';
 
-import {readConversation, makeContinuation, navigatorRequest, readNavigatorReply, maxTurns, maxOutputTokens} from './navigator.mjs';
+import {readConversation, makeContinuation, navigatorRequest, readNavigatorReply, maxTurns, maxReplyLength, maxMessageLength, maxRequestBytes} from './navigator.mjs';
 
 const prefix='/api/platform';
 const cookiesOf=event=>Object.fromEntries((event.cookies??[event.headers?.cookie??'']).join(';').split(';').map(part=>part.trim().split('=')).filter(pair=>pair.length===2));
@@ -50,13 +50,13 @@ export function platformApp({oauth,entitlements,credentials,controls,generate,or
    }
    if(path!==prefix+'/navigator' || method!=='POST' || !navigator) return reply(410,{error:'Feature unavailable.'});
    const raw=event.isBase64Encoded?Buffer.from(event.body??'','base64').toString('utf8'):event.body??'';
-   if(Buffer.byteLength(raw)>50000) return reply(413,{error:'Message is too large.'});
+   if(Buffer.byteLength(raw)>maxRequestBytes) return reply(413,{error:'Message is too large.'});
    let input;
    try { input=JSON.parse(raw); } catch { return reply(400,{error:'Invalid message.'}); }
-   if(!input || typeof input.message!=='string'||!input.message.trim()||input.message.length>2000 ||
+   if(!input || typeof input.message!=='string'||!input.message.trim()||input.message.length>maxMessageLength ||
       !Array.isArray(input.history)||input.history.length>maxTurns*2||input.history.length%2!==0 ||
       input.history.some((row,index)=>!row||row.role!==(index%2?'assistant':'user')||
-        typeof row.text!=='string'||row.text.length>(index%2?1000:2000))) {
+        typeof row.text!=='string'||row.text.length>(index%2?maxReplyLength:maxMessageLength))) {
     return reply(400,{error:'Use a message up to 2,000 characters and a valid conversation.'});
    }
    const secret=await credentials();
@@ -75,7 +75,7 @@ export function platformApp({oauth,entitlements,credentials,controls,generate,or
    if(!/^[a-z0-9][a-z0-9.-]+$/.test(price.model??'')||![price.input,price.output].every(value=>Number.isFinite(value)&&value>0)) throw new PlatformError(503,'Navigator pricing unavailable.');
    const bytes=Buffer.byteLength(JSON.stringify(request));
    // UTF-8 byte count plus framing is a conservative token ceiling for this bounded request.
-   const reservation=Math.ceil((bytes+1024)*price.input+maxOutputTokens*price.output);
+   const reservation=Math.ceil((bytes+1024)*price.input+request.max_output_tokens*price.output);
    const claim=input.continuation && 'NAVIGATOR#TURN#'+digest(input.continuation);
    if(claim && !await conversationStore.replace(claim,0,{expiresAt:Math.ceil(Number(input.continuation.split('.')[0])/1000)})) {
     throw new PlatformError(409,'This turn was already submitted. Start a new decision if needed.');

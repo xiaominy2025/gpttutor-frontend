@@ -1,3 +1,4 @@
+import {maxRequestBytes} from '../server/platform/navigator.mjs';
 import {defineConfig, mergeConfig} from 'vite';
 import base from '../vite.config.js';
 import {platformApp} from '../server/platform/app.mjs';
@@ -43,7 +44,7 @@ export default mergeConfig(base,defineConfig({
     let size=0;
     for await(const chunk of req){
      size+=chunk.length;
-     if(size>50000){res.writeHead(413);res.end();return;}
+     if(size>maxRequestBytes){res.writeHead(413);res.end();return;}
      chunks.push(chunk);
     }
     const result=await app({rawPath:req.url,headers:req.headers,body:Buffer.concat(chunks).toString(),

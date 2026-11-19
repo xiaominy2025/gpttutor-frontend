@@ -1,5 +1,6 @@
 import {it,expect,vi} from 'vitest';
 import {platformApp} from '../../server/platform/app.mjs';
+import {maxMessageLength,maxReplyLength,maxRequestBytes,navigatorRequest} from '../../server/platform/navigator.mjs';
 
 const origin='https://www.engentlabs.com';
 function setup() {
@@ -207,4 +208,47 @@ it('omits duplicate initial questions and preserves a remaining question when an
  generate.mockResolvedValueOnce(mockPaths([{...chemistryPaths[2],question:chemistryPaths[0].question}]));
  const second=await ask(first.history,first.continuation,guest,chemistryPaths[0].question,'objectives');
  expect(second.followUps).toEqual([chemistryPaths[2]]);
+});
+
+it('accepts and carries maximum-size replies through turn four and reserves the actual Luna output ceiling',async()=>{
+ const {ask,generate,controls}=setup();
+ const guest='a'.repeat(43);
+ // Control characters exercise the worst-case JSON escaping overhead.
+ const text='x'+'\u0001'.repeat(maxReplyLength-1);
+ const longQuestion='How can I weigh my practical obligations, values, and tolerance for uncertainty when deciding what the enrollment experience can teach me about my longer-term aims?';
+ const paths=[...chemistryPaths.slice(0,2),{dimension:'judgment',question:longQuestion}];
+ const message='m'+'\u0001'.repeat(maxMessageLength-1);
+ let turn={history:[],continuation:undefined};
+ for(let i=0;i<4;i++){
+  const response=mockReply('guide',text);
+  response.output[0].content[0].text=JSON.stringify({kind:'guide',reply:text,followUps:paths});
+  generate.mockResolvedValueOnce(response);
+  if(i===3){
+   const bytes=Buffer.byteLength(JSON.stringify({history:turn.history,continuation:turn.continuation,message}));
+   expect(bytes).toBeGreaterThan(50000);
+   expect(bytes).toBeLessThanOrEqual(maxRequestBytes);
+  }
+  const next=await ask(turn.history,turn.continuation,guest,message);
+  expect(next).toMatchObject({statusCode:200,done:i===3,reply:text,followUps:i===3?[]:paths});
+  const request=generate.mock.lastCall[1];
+  expect(request.max_output_tokens).toBe(1500);
+  expect(controls.admit.mock.lastCall[3]).toBe(Math.ceil((Buffer.byteLength(JSON.stringify(request))+1024)*0.1+1500*0.5));
+  turn=next;
+ }
+ expect(navigatorRequest('other-model',[],'test').max_output_tokens).toBe(400);
+});
+
+it('rejects oversized provider guidance and does not issue a continuation',async()=>{
+ const {ask,generate}=setup();
+ generate.mockResolvedValueOnce(mockReply('guide','x'.repeat(maxReplyLength+1)));
+ const result=await ask();
+ expect(result.statusCode).toBe(503);
+ expect(result.continuation).toBeUndefined();
+});
+
+it('coaches to the needed depth without fixed writing targets',()=>{
+ const {instructions}=navigatorRequest('gpt-6-luna',[],'test');
+ expect(instructions).toContain('Provide sufficient explanation to make the relevant reasoning understandable and useful');
+ expect(instructions).toContain('Avoid unnecessary repetition and irrelevant detail');
+ expect(instructions).not.toMatch(/\d[\d,–-]*\s+(?:words|paragraphs|characters)/i);
 });
