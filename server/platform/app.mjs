@@ -66,8 +66,12 @@ export function platformApp({oauth,entitlements,credentials,controls,generate,or
    const ip=event.requestContext?.http?.sourceIp;
    if(!ip) throw new PlatformError(503,'Navigator is unavailable.');
    const ipHash=createHmac('sha256',secret.ipSecret).update(ip).digest('hex');
-   const history=readConversation(input,secret.ipSecret,actor);
-   const request=navigatorRequest(price.model,history,input.message);
+   const {history,dimension}=input;
+   const followUps=readConversation(input,secret.ipSecret,actor);
+   if(dimension!=null&&!followUps.some(item=>item.dimension===dimension&&item.question===input.message)) {
+    return reply(400,{error:'This follow-up is no longer available.'});
+   }
+   const request=navigatorRequest(price.model,history,input.message,followUps,dimension);
    if(!/^[a-z0-9][a-z0-9.-]+$/.test(price.model??'')||![price.input,price.output].every(value=>Number.isFinite(value)&&value>0)) throw new PlatformError(503,'Navigator pricing unavailable.');
    const bytes=Buffer.byteLength(JSON.stringify(request));
    // UTF-8 byte count plus framing is a conservative token ceiling for this bounded request.
@@ -87,9 +91,9 @@ export function platformApp({oauth,entitlements,credentials,controls,generate,or
      await controls.settle(lease,0,true);throw new PlatformError(503,'Navigator usage unavailable.');
     }
     await controls.settle(lease,Math.ceil(usage.input_tokens*price.input+usage.output_tokens*price.output));
-    const result=readNavigatorReply(response,history);
+    const result=readNavigatorReply(response,history,followUps,dimension);
     const nextHistory=[...history,{role:'user',text:input.message},{role:'assistant',text:result.reply}];
-    return reply(200,{...result,continuation:result.done?null:makeContinuation(secret.ipSecret,actor,nextHistory)});
+    return reply(200,{...result,continuation:result.done?null:makeContinuation(secret.ipSecret,actor,nextHistory,result.followUps)});
    } catch(error) {
     if(claim) await conversationStore.remove(claim,1);
     throw error;

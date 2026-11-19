@@ -22,7 +22,11 @@ const app=platformApp({
    'The decision balances reliable deliveries, staffing commitments, and uncertainty about how long the demand will last. Your judgment depends on how costly delays are and how much capacity you can change later. The choice remains yours and can be reconsidered as demand becomes clearer.'
   ][turn-1];
   return {usage:{input_tokens:0,output_tokens:0},output:[{content:[{type:'output_text',
-   text:JSON.stringify({kind:'guide',reply})}]}]};
+   text:JSON.stringify({kind:'guide',reply,exploredDimension:null,followUps:turn===1?[
+    {dimension:'objectives',question:'How can I tell whether delivery is my primary goal?'},
+    {dimension:'analysis',question:'How can I examine what is causing late orders?'},
+    {dimension:'judgment',question:'How can I decide how much uncertainty I can accept?'}
+   ]:turn===2?[{dimension:'analysis',question:'How can I test whether demand is seasonal?'}]:[]})}]}]};
  }
 });
 

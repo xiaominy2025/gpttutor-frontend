@@ -4,7 +4,8 @@ import {render,screen,fireEvent,cleanup,within} from '@testing-library/react';
 import PlatformAccess from '../../src/components/PlatformAccess';
 it('keeps Explore public and handles the optional Guest Navigator without browser tokens',async()=>{
  const original=global.fetch;
- const messages=['How do I think about uncertainty?','I want to reduce risk.','What if conditions change?'];
+ const messages=['How do I think about uncertainty?','How can I clarify what I want to achieve?','What if conditions change?'];
+ const paths=[{dimension:'objectives',question:messages[1]},{dimension:'analysis',question:'How can I check my assumptions?'},{dimension:'judgment',question:'How can I revisit my decision?'}];
  const replies=['The options expose you to different risks.\n\nConsider what matters to you.','Your priority is clearer. A reversible option could make the risk easier to manage.','The trade-off is flexibility versus commitment. The final choice depends on your tolerance for risk.'];
  let round=0;
  global.fetch=vi.fn(async(path,options)=>{
@@ -13,9 +14,10 @@ it('keeps Explore public and handles the optional Guest Navigator without browse
   const request=JSON.parse(options.body);
   expect(request.message).toBe(messages[round]);
   expect(request.history).toHaveLength(round*2);
+  expect(request.dimension).toBe(round===1?'objectives':undefined);
   expect(request.continuation).toBe(round?'signed-'+round:undefined);
   const reply=replies[round++];
-  return {ok:true,json:async()=>({reply,done:round===3,continuation:round===3?null:'signed-'+round})};
+  return {ok:true,json:async()=>({reply,done:round===3,continuation:round===3?null:'signed-'+round,followUps:round===1?paths:round===2?paths.slice(1):[]})};
  });
  try {
   render(<PlatformAccess/>);
@@ -36,11 +38,16 @@ it('keeps Explore public and handles the optional Guest Navigator without browse
   expect(open).toHaveFocus();
   fireEvent.click(open);
   expect(within(dialog).getByRole('log')).toHaveTextContent('The options expose you to different risks.');
-  for(const message of messages.slice(1)){
-   fireEvent.change(screen.getByLabelText('Your follow-up (optional)'),{target:{value:message}});
-   fireEvent.click(screen.getByRole('button',{name:'Continue'}));
-   await screen.findByText(replies[messages.indexOf(message)]);
-  }
+  const followUps=within(dialog).getByRole('group',{name:'Explore a follow-up path'});
+  expect(within(followUps).getAllByRole('button')).toHaveLength(3);
+  fireEvent.click(within(followUps).getByRole('button',{name:/^Objectives/}));
+  await screen.findByText(replies[1]);
+  expect(within(followUps).queryByRole('button',{name:/^Objectives/})).toBeNull();
+  expect(within(followUps).getAllByRole('button')).toHaveLength(2);
+  fireEvent.change(screen.getByLabelText('Your follow-up (optional)'),{target:{value:messages[2]}});
+  fireEvent.click(screen.getByRole('button',{name:'Continue'}));
+  await screen.findByText(replies[2]);
+  expect(within(dialog).queryByRole('group',{name:'Explore a follow-up path'})).toBeNull();
   expect(screen.queryByRole('textbox')).toBeNull();
   fireEvent.click(screen.getByRole('button',{name:'Start New Decision'}));
   expect(screen.getByLabelText('Your decision').value).toBe('');

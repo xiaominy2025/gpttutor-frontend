@@ -17,9 +17,9 @@ function setup() {
  const app=platformApp({enabled:true,navigator:true,origin,treeOrigin:'https://decisiontree.engentlabs.com',
   oauth:{session:async()=>null},credentials:async()=>({key:'mock',ipSecret:'fixture-secret'}),
   price:{model:'gpt-6-luna',input:0.1,output:0.5},controls,generate,conversationStore});
- async function ask(history=[],continuation,guest='a'.repeat(43),message='Should we invest in capacity now?') {
+ async function ask(history=[],continuation,guest='a'.repeat(43),message='Should we invest in capacity now?',dimension) {
   const {statusCode,body}=await app({rawPath:'/api/platform/navigator',headers:{origin},cookies:['__Host-engent-guest='+guest],
-   requestContext:{http:{method:'POST',sourceIp:'127.0.0.1'}},body:JSON.stringify({history,continuation,message})});
+   requestContext:{http:{method:'POST',sourceIp:'127.0.0.1'}},body:JSON.stringify({history,continuation,message,dimension})});
   const response=JSON.parse(body);
   return {...response,statusCode,history:[...history,{role:'user',text:message},{role:'assistant',text:response.reply}]};
  }
@@ -108,7 +108,60 @@ it.each(processCases)('returns a mock decision map and leaves a voluntary follow
  expect(request.instructions).toContain('Use the scenario to illustrate the reasoning move');
  expect(request.instructions).toContain('Do not ask them to choose between priorities');
  expect(request.instructions).toContain('Do not ask for an option preference or for facts so you can do the analysis');
- expect(request.text.format.schema.required).toEqual(['kind','reply']);
+ expect(request.text.format.schema.required).toEqual(['kind','reply','followUps','exploredDimension']);
  expect(result).toMatchObject({statusCode:200,done:false,continuation:expect.any(String),reply:guidance});
  expect(generate).toHaveBeenCalledTimes(clarification?2:1);
+});
+
+const chemistry="I'm studying chemistry at Rice University, second year, graduating in two years. I'm unsure whether to pursue a Ph.D. or find a job after my B.S. Should I seek an industry internship or lab research this summer?";
+const chemistryPaths=[
+ {dimension:'objectives',question:'How can I separate my summer objectives from my eventual career decision?'},
+ {dimension:'analysis',question:'How can I test my assumptions about each kind of work?'},
+ {dimension:'judgment',question:'How can I decide when I have learned enough to revisit my plans?'}
+];
+function mockPaths(followUps,exploredDimension=null){
+ return {usage:{input_tokens:100,output_tokens:80},output:[{content:[{type:'output_text',
+  text:JSON.stringify({kind:'guide',reply:'Separate what this decision needs to accomplish from what you can learn later.',followUps,exploredDimension})
+ }]}]};
+}
+
+it('binds the three paths to the continuation, preserves unselected paths, and closes after round three',async()=>{
+ const {ask,generate,controls}=setup();
+ const guest='a'.repeat(43);
+ generate.mockResolvedValueOnce(mockPaths(chemistryPaths));
+ const first=await ask([],undefined,guest,chemistry);
+ expect(first).toMatchObject({statusCode:200,done:false,followUps:chemistryPaths});
+ const token=first.continuation;
+ expect((await ask(first.history,token,guest,'Unissued question?','objectives')).statusCode).toBe(400);
+ expect((await ask(first.history,token,guest,chemistryPaths[0].question,'judgment')).statusCode).toBe(400);
+ const altered=token.slice(0,token.lastIndexOf('.')+1)+'W10';
+ expect((await ask(first.history,altered,guest,chemistryPaths[0].question,'objectives')).statusCode).toBe(400);
+ expect(controls.admit).toHaveBeenCalledTimes(1);
+
+ const revised={dimension:'analysis',question:'How can I tell what evidence from summer work applies to my later career decision?'};
+ generate.mockResolvedValueOnce(mockPaths([revised,chemistryPaths[0]],'judgment'));
+ const second=await ask(first.history,token,guest,chemistryPaths[0].question,'objectives');
+ expect(second).toMatchObject({statusCode:200,done:false,followUps:[revised,chemistryPaths[2]]});
+ expect(generate.mock.lastCall[1].instructions).toContain('The student selected objectives');
+ expect((await ask(first.history,token,guest,chemistryPaths[0].question,'objectives')).statusCode).toBe(409);
+ expect((await ask(second.history,second.continuation,guest,chemistryPaths[0].question,'objectives')).statusCode).toBe(400);
+
+ generate.mockResolvedValueOnce(mockPaths(chemistryPaths));
+ const final=await ask(second.history,second.continuation,guest,'I can treat the summer as one sample. How can I revisit my assumptions later?');
+ expect(final).toMatchObject({statusCode:200,done:true,followUps:[],continuation:null});
+ expect(generate).toHaveBeenCalledTimes(3);
+});
+
+it.each([
+ ['I saw the word analysis in the reply.',null,chemistryPaths],
+ ['How can I decide what evidence would disprove my assumptions?', 'analysis',[chemistryPaths[0],chemistryPaths[2]]]
+])('keeps or removes a dimension based on meaningful free-form exploration: %s',async(message,explored,expected)=>{
+ const {ask,generate}=setup();
+ const guest='a'.repeat(43);
+ generate.mockResolvedValueOnce(mockPaths(chemistryPaths));
+ const first=await ask([],undefined,guest,chemistry);
+ generate.mockResolvedValueOnce(mockPaths([],explored));
+ const second=await ask(first.history,first.continuation,guest,message);
+ expect(second.followUps).toEqual(expected);
+ expect(generate.mock.lastCall[1].instructions).toContain('never for a passing mention');
 });

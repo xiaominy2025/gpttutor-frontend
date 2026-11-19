@@ -1,9 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react';
 
+const dimensionLabels={objectives:'Objectives',analysis:'Analysis',judgment:'Human Judgment'};
+
 export default function PlatformAccess({renderHeader=account=>account}) {
  const [account,setAccount]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false);
  const [navigatorError,setNavigatorError]=useState('');
  const dialog=useRef(null),openButton=useRef(null),log=useRef(null);
+ const pending=useRef(false);
+ const [followUps,setFollowUps]=useState([]);
  const [message,setMessage]=useState(''),[history,setHistory]=useState([]);
  const [continuation,setContinuation]=useState(null),[done,setDone]=useState(false);
  useEffect(()=>{
@@ -34,21 +38,28 @@ export default function PlatformAccess({renderHeader=account=>account}) {
   if(log.current)log.current.scrollTop=log.current.scrollHeight;
  }
  useEffect(scrollToLatest,[history]);
- async function ask(event) {
-  event.preventDefault();
-  if(busy||done||!message.trim())return;
+ async function submitMessage(text,dimension) {
+  if(pending.current||busy||done||!text.trim())return;
+  pending.current=true;
   setBusy(true);setNavigatorError('');
   try {
    const response=await fetch('/api/platform/navigator',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({message,history,...(continuation?{continuation}:{})})});
+    body:JSON.stringify({message:text,history,...(continuation?{continuation}:{}),...(dimension?{dimension}:{})})});
    const result=await response.json();
    if(!response.ok) throw Error(result.error);
-   setHistory(rows=>[...rows,{role:'user',text:message},{role:'assistant',text:result.reply}]);setMessage('');
+   setHistory(rows=>[...rows,{role:'user',text},{role:'assistant',text:result.reply}]);
+   if(!dimension||result.done)setMessage('');
+   setFollowUps(result.followUps??[]);
    setContinuation(result.continuation ?? null);setDone(result.done);
   } catch(error) {setNavigatorError(error.message||'Navigator is temporarily unavailable.');}
-  finally {setBusy(false);}
+  finally {pending.current=false;setBusy(false);}
+ }
+ function ask(event) {
+  event.preventDefault();
+  void submitMessage(message);
  }
  function resetDecision() {
+  setFollowUps([]);
   setHistory([]);setMessage('');setContinuation(null);setDone(false);setNavigatorError('');
  }
  async function logout() {
@@ -86,6 +97,12 @@ export default function PlatformAccess({renderHeader=account=>account}) {
     <form className="navigator-dialog-form" onSubmit={ask}>
      <div role="log" aria-label="Navigator conversation" className="navigator-log" ref={log} tabIndex={history.length?0:undefined}>
       {history.map((row,index)=><p key={index}><strong>{row.role==='user'?'You':'Navigator'}</strong> {row.text}</p>)}
+      {!done&&followUps.length>0&&<div className="navigator-follow-ups" role="group" aria-label="Explore a follow-up path">
+       {followUps.map(({dimension,question})=><button type="button" key={dimension} disabled={busy}
+        onClick={()=>{log.current?.focus();void submitMessage(question,dimension);}}>
+        <strong>{dimensionLabels[dimension]}</strong> {question}
+       </button>)}
+      </div>}
      </div>
      {navigatorError && <p role="alert">{navigatorError}</p>}
      {!done && <>

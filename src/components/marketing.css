@@ -196,3 +196,8 @@
  .navigator-dialog textarea{height:clamp(48px,16dvh,96px);font-size:16px}
  .navigator-dialog-header,.navigator-dialog-form{padding-inline:16px}
 }
+
+.navigator-follow-ups{display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:6px 4px 10px}
+.navigator-follow-ups button{padding:7px 10px;border:1px solid var(--line);border-radius:6px;text-align:left;font-size:.86rem;overflow-wrap:anywhere}
+.navigator-follow-ups button:hover:not(:disabled){background:#edf4ef}
+.navigator-follow-ups strong{color:var(--green)}
