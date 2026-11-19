@@ -24,6 +24,7 @@
     "Explicit single production milestone authorization",
     "Clean pinned source/artifacts",
     "Fresh account/region, ETag, alias/config revision, pool/client/role/boundary receipts",
+    "Approved logging-v2 field exclusion and log-prefix CloudFront denial verified before any OAuth/session traffic",
     "Guard code/invoke/read policies verified before any public client creation",
     "Actual Add-only CREATE change sets and bounded phase UPDATE diffs reviewed",
     "Existing pre-provisioned verified Advanced acceptance account only"
@@ -60,5 +61,27 @@
       "Unreviewed infrastructure drift, replacement or cost expansion"
     ]
   },
-  "actualChangeSetsCreated": false
+  "actualChangeSetsCreated": false,
+  "mandatoryPrivacyPrerequisite": {
+    "deliveryId": "aThRgLrDEczfdnUd",
+    "removeRecordFields": [
+      "cs-uri-query",
+      "cs(Cookie)",
+      "cs(Referer)"
+    ],
+    "preserve": "Existing JSON format, source, destination and S3 suffix",
+    "bucketPolicyDeny": {
+      "bucket": "engentlabs-frontend",
+      "prefix": "AWSLogs/*",
+      "principal": "cloudfront.amazonaws.com",
+      "sourceDistribution": "E1V533CXZPR3FL",
+      "actions": [
+        "s3:GetObject",
+        "s3:GetObjectVersion"
+      ]
+    },
+    "verification": "Create one non-sensitive owned probe in AWSLogs/engent-release-a-probe/, verify its marker cannot be fetched through CloudFront, then delete only its recorded VersionId. No existing logs read.",
+    "retainOnAuthRollback": true,
+    "newCfnResources": 0
+  }
 }

@@ -24,3 +24,4 @@ it('consumes callbacks through OAuth verification and provides a safe failure',a
  const response=await authOnlyApp({oauth,origin,treeOrigin,enabled:true})(event('GET','callback',{rawQueryString:'code=fixture&state=fixture'}));
  expect(response.statusCode).toBe(503);expect(response.body).not.toContain('private-token');expect(response.headers['Cache-Control']).toBe('no-store');
 });
+it('keeps no-store and no-referrer headers on OAuth redirects',async()=>{const app=authOnlyApp({enabled:true,origin,treeOrigin,oauth:{login:async()=>({url:'https://fixture-login.example.test/',cookie:'fixture-cookie'})}});const r=await app(event('GET','login'));expect(r.statusCode).toBe(303);expect(r.headers['Cache-Control']).toBe('no-store');expect(r.headers['Referrer-Policy']).toBe('no-referrer');expect(r.headers['X-Content-Type-Options']).toBe('nosniff');});

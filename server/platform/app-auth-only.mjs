@@ -4,8 +4,8 @@ import {PlatformError} from './oauth.mjs';
 const prefix='/api/platform';
 const cookiesOf=event=>Object.fromEntries((event.cookies??[event.headers?.cookie??'']).join(';').split(';').map(part=>part.trim().split('=')).filter(pair=>pair.length===2));
 const reply=(statusCode,body,cookies=[])=>({statusCode,cookies,headers:{'Content-Type':'application/json','Cache-Control':'no-store',
- 'X-Content-Type-Options':'nosniff'},body:JSON.stringify(body)});
-const redirect=(url,cookies=[])=>({...reply(303,{},cookies),headers:{'Cache-Control':'no-store',Location:url}});
+ 'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'},body:JSON.stringify(body)});
+const redirect=(url,cookies=[])=>{const r=reply(303,{},cookies);r.headers.Location=url;return r;};
 const catalog=['Decision Process Coach','Forecasting Coach','Scenario Analysis Coach','Decision Tree Coach','Simulation Coach','Optimization Coach'];
 export function authOnlyApp({oauth,entitlements,origin,treeOrigin,enabled=false}) {
  async function member(session) {

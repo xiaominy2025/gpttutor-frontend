@@ -37,3 +37,9 @@ Local verification on 2026-11-18: 29 platform tests / 12 files passed, including
 - The original website root index is never overwritten: publish/rollback changes the reviewed CloudFront origin pointer to/from a versioned release. Original assets/podcasts stay available. No S3 --delete.
 
 The final source/artifact pins, fresh production receipts and explicit monitoring/end-of-pilot policy are recorded in Issue #6 and Tree `docs/release-a-production-execution-gate.md`. Real change-set diffs will be generated only within an explicitly authorized production milestone.
+
+## Mandatory logging privacy prerequisite
+
+The existing website logging-v2 delivery aThRgLrDEczfdnUd selects query, cookie and referrer fields and writes into the website bucket. Its bucket policy currently permits CloudFront reads across that bucket. Legacy Distribution.Logging.Enabled=false does not describe logging-v2. No historical logs were read and no exposure is asserted from log contents.
+
+Before authentication activation, obtain authorization for the exact two existing-setting patches produced by `release-a-logging-privacy.mjs`: remove cs-uri-query/cs(Cookie)/cs(Referer) (33->30 fields, JSON/destination/suffix retained), and append a CloudFront-only deny on engentlabs-frontend/AWSLogs/* (GetObject/GetObjectVersion, exact distribution). One new non-sensitive probe object tests the deny; never retrieve an existing visitor log. Delete only the probe's recorded VersionId afterward. These are zero-new-resource prerequisites and remain on auth rollback. Existing JSON log consumers must tolerate the removed fields. No changes are made by this preparation.
