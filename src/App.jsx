@@ -936,6 +936,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        {import.meta.env.VITE_RELEASE_B_EMAIL_ENABLED === "true" && import.meta.env.VITE_VERIFIED_DECISION_TREE_URL === "https://d6owpirihdsus.cloudfront.net/" && <Route path="/engent-alpha/" element={<Homepage />} />}
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/explore/:coachId/cases" element={<CoachCasesPage />} />
         <Route path="/labs" element={<LabsApp />} />

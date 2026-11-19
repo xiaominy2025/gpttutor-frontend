@@ -99,7 +99,25 @@
                 },
                 "ForAllValues:StringLike": {
                   "dynamodb:LeadingKeys": [
-                    "SHARED#EMAIL-LEASE#*"
+                    "SHARED#EMAIL-LEASE#*",
+                    "SESSION#*"
+                  ]
+                }
+              }
+            },
+            {
+              "Effect": "Allow",
+              "Action": "dynamodb:DeleteItem",
+              "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+              "Condition": {
+                "Null": {
+                  "dynamodb:LeadingKeys": "false"
+                },
+                "ForAllValues:StringLike": {
+                  "dynamodb:LeadingKeys": [
+                    "SHARED#EMAIL-LEASE#*",
+                    "SHARED#EMAIL-HANDOFF#*",
+                    "SHARED#SESSION#*"
                   ]
                 }
               }

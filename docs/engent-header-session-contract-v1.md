@@ -1,0 +1,29 @@
+# Engent Labs universal header and session contract 1.0.0
+
+Authority: frontend Issue 13; execution: Issue 11; published fallback: Issue 6. This contract is bundled locally in each repository, not fetched as a remote header runtime. EngentHeader.jsx and EngentHeader.css are byte-identical; the offline browser test compares them. Each application releases independently.
+
+## Header interface
+
+EngentHeader accepts logoUrl, homeUrl, pageName, status, optional navigation and account children. One native details/summary account menu; Escape closes and restores summary focus. A linked logo names Engent Labs home; visible page identity; accessible account status. Minimum 54px height, responsive widths, no horizontal page overflow; workspaces keep their own toolbar beneath it. Scoped styles isolate legacy website/Tree CSS. Public homepage media/cards/podcasts and Tree map/project controls are unchanged.
+
+Guest menu: Continue as Guest or Sign in with Email. No password or separate registration affordance. Student is the platform role; a coach badge says Decision Tree Advanced, never universal Advanced. New/returning identity verification uses the same original confidential-client email flow; admission is internal and conditional. Student access request remains tied to Tree and original MFA-protected approval. Administrator console/session authority stays separate.
+
+Home, Explore and case pages own one header/account controller; no competing Explore panel. Tree landing and project workspace own the same header; direct Sign in links to a fixed central Explore email entry and allowlisted return=tree. After email verification a fresh POST handoff starts, avoiding expiration during time spent reading email. Alpha home link is /engent-alpha/ so protected tests never need production. Other coaches adopt this version when launched, without creating infrastructure now.
+
+## Session and coordinated sign-out
+
+One original credential SESSION record is the revocation authority. The bridge lease is derived with a domain-separated SHA256 of its random opaque root; it cannot reveal that root and requires no additional registry/index. Lease, Explore wrapper and Tree cookie deadlines are capped by a strongly consistent read of the actual root metadata. Original account/sub and coach permissions are revalidated, not inferred from header labels.
+
+Guest -> email challenge -> verified credential root + PENDING lease/wrapper -> mandatory browser-bound POST account-context confirmation -> ACTIVE lease and participating cookies. Pending proof is NOT protected application access. Activation and grant consumption share the root/lease transaction; a wrong account leaves the source pending. Completion is capped at ten minutes. Home/Explore/cases return to their fixed original destination; direct Coach sign-in returns to Tree without a second code. Handoff checks root AND lease expiry/sub and consumes the grant atomically. Source logout/root expiry revokes all access derived from that root. New protected requests fail closed before visual state refresh. Requests admitted before the revocation point are not claimed to be cancelled or undone.
+
+Sign out of Engent Labs on either header deletes/revokes only the current participating root, then cleans local lease/wrapper/cookies. Other devices' roots and Administrator sessions remain. Failure reports incomplete sign-out, never a success based only on clearing UI. Disabled/expired users can still revoke their root without a membership-verification dead end. Pending grants cannot survive root revocation. Root refresh cannot recreate a deleted record under original conditional session-renewal rules.
+
+With B enabled, a legacy-only cookie is NOT a participating session: every protected Tree /api path is gated except explicit health/logout and separate Admin endpoints; old native/OAuth login paths are disabled. Explore does not fall through to A when B cookies disappear. Joining retires the previous same-subject native/OAuth browser session after wrong-account checks. Flag OFF retains the original A adapters; use the captured A frontend artifact for byte-identical rollback, not a claim that a rebuilt OFF bundle has identical bytes. A is an emergency release rollback, not an automatic post-logout alternate login.
+
+Authenticated visible tabs poll at 30 seconds and refresh on focus/visibility. Guest tabs use initial/focus checks, not periodic polling. BroadcastChannel accelerates same-origin Explore tabs only; backend root verification is the cross-host security authority. Direct HTML remains accessible as Guest after revocation; protected APIs do not.
+
+## Release gates and compatibility
+
+New server/UI flags default OFF; retain all A artifacts. B acceptance requires both participating backends enforcing the same root contract; do not call a mixed A/B rollout coordinated. Temporary A behavior retires only after approved B Alpha and production acceptance. No public B deployment or live first-time claim is made from mocks. Minimal POST transport/conflict-recovery responses carry no separate email/password workflow; recovery returns to the application header or explicitly clears only an unregistered legacy sign-in. An active participating account must use coordinated header sign-out, never legacy-only clearing.
+
+Required tests: one-code new/returning mocks plus approved real Cognito canary; disabled/paused/Advanced and fresh roles; CSRF/replay/wrong browser/account; root/lease/grant expiry and refresh races; logout from both hosts across tabs and another device; old-cookie suppression; partial failure; direct visit/refresh; keyboard/mobile; feature-OFF A regression. Production acceptance and all-device logout are separate. Future protocol changes must version this contract and declare invariant deviations/retirement triggers in their PR.

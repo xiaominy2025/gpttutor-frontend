@@ -12,6 +12,7 @@ let app;
 export async function handlerEntry(event){
  const alpha=process.env.STAGE==='alpha',fallback=alpha?alphaFallback:productionFallback;
  if(process.env.RELEASE_B_EMAIL_ENABLED!=='true')return fallback(event);
+ if(process.env.SHARED_AUTH_ENABLED!=='true')return {statusCode:503,headers:{'Cache-Control':'no-store'},body:'Shared session configuration unavailable.'};
  if(!app){
   const config=alpha?alphaConfig(process.env):releaseAConfig(process.env);
   const db=DynamoDBDocumentClient.from(new DynamoDBClient({region:'us-east-1'}),{marshallOptions:{removeUndefinedValues:true}});

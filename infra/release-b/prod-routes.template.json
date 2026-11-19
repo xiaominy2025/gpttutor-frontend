@@ -99,7 +99,8 @@
                 },
                 "ForAllValues:StringLike": {
                   "dynamodb:LeadingKeys": [
-                    "SHARED#EMAIL-LEASE#*"
+                    "SHARED#EMAIL-LEASE#*",
+                    "SESSION#*"
                   ]
                 }
               }
