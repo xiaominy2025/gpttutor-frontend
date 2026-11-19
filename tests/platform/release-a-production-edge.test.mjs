@@ -23,3 +23,9 @@ it('canonicalizes only the fixed website host and maps Explore/assets without dr
  expect(handler({request:{...www,uri:'/engent-release-a/assets/file.js'}}).uri).toBe('/assets/file.js');
  expect(handler({request:{...www,uri:'/api/platform/callback'}}).uri).toBe('/api/platform/callback');
 });
+
+it('supplies complete API behavior and origin fields required by CloudFront update',()=>{
+ const preview=productionEdgeProposal(base(),{commit:'a'.repeat(40)});
+ const api=preview.config.CacheBehaviors.Items[0];expect(api.FieldLevelEncryptionId).toBe('');expect(api.TrustedSigners).toEqual({Enabled:false,Quantity:0});expect(api.TrustedKeyGroups).toEqual({Enabled:false,Quantity:0});expect(api.GrpcConfig).toEqual({Enabled:false});
+ const origin=preview.config.Origins.Items.find(o=>o.Id==='engent-release-a-api');expect(origin.ConnectionAttempts).toBe(3);expect(origin.ConnectionTimeout).toBe(10);expect(origin.OriginShield).toEqual({Enabled:false});expect(origin.OriginAccessControlId).toBe('');
+});
