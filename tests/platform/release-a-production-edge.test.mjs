@@ -9,7 +9,7 @@ it('prepares isolated preview and final publication preserving legacy routes, TL
  expect(before.DistributionConfig.Origins.Quantity).toBe(1);
  const published=productionEdgeProposal(before,{commit,mode:'publish'});
  expect(published.config.DefaultCacheBehavior.TargetOriginId).toBe('engent-release-a-web');
- expect(published.config.Origins.Items[1].OriginAccessControlId).toBe('existing-oac');
+ expect(published.config.Origins.Items.find(o=>o.Id==='engent-release-a-web').OriginAccessControlId).toBe('existing-oac');
  const api=published.config.CacheBehaviors.Items[0];expect(api.CachePolicyId).toBe('4135ea2d-6df8-44a3-9df3-4b5a84be39ad');
  expect(()=>productionEdgeProposal({ETag:'new',DistributionConfig:published.config},{commit})).toThrow();
 });
