@@ -13,7 +13,7 @@ export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=f
  if(!enabled)return isNew?response(410,{}):fallback(e);
  try{
  const c=cookies(e),sid=c[sessionName];
- // Preserve every Release A request when no Release B cookie is present.
+ // Original A is reachable only with the B feature OFF.
  // B enabled never falls through to a legacy OAuth session, even after B cookies are cleared.
  if(!isNew&&!sid&&p==='/api/platform/session'&&method==='GET')return response(200,{signedIn:false});
  const wrapper=opaque(sid)?await store.get(key(sid)):null;
@@ -55,7 +55,7 @@ export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=f
   const v=body(e,['reason']);const a=await session();if(a.sub!==live.sub)throw error();return response(200,await invoke('advanced-request',{lease:live.lease,reason:v.reason}));
  }
  if(p==='/api/platform/logout'||p==='/api/platform/email/cancel'){
-  body(e,[]);let scope='none';if(live){const result=await invoke('session',{lease:live.lease,action:p.endsWith('/cancel')?'cancel':'logout'});scope=result.scope;if(!await store.remove(key(sid),live.version))throw error(503);}return response(200,{ok:true,scope},[cookie(sessionName,'',0),cookie('__Host-engent-platform','',0)]);
+  body(e,[]);let scope=p.endsWith('/cancel')?'pending-signin-cancelled':'participating-browser';if(live){const result=await invoke('session',{lease:live.lease,action:p.endsWith('/cancel')?'cancel':'logout'});scope=result.scope;/* Keep the TTL-bound wrapper mapping for retry after a lost response. Root/lease revocation prevents reuse; cookie is cleared below. */}return response(200,{ok:true,scope},[cookie(sessionName,'',0),cookie('__Host-engent-platform','',0)]);
  }
  return response(404,{});
  }catch(err){if(p==='/api/platform/email/authorize')return {statusCode:err.status===503?503:401,headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'none'; base-uri 'none'; frame-ancestors 'none'"},body:'<!doctype html><title>Engent Labs sign-in</title><h1>Sign-in could not finish</h1><p>The secure browser confirmation expired or is unavailable. Return to Engent Labs to finish sign-in or explicitly request a new code. No new code has been sent automatically.</p><a href="/explore?entry=email">Return to Engent Labs</a>'};return response([400,401,403,409,410,413,429,503,405].includes(err.status)?err.status:503,{error:err.status===429?'Too many attempts. Try again later.':err.status===409?'Account conflict. Sign out of the other account before retrying.':'Email sign-in unavailable.'});}

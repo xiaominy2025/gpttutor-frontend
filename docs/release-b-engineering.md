@@ -81,3 +81,9 @@ Frontend: 100 tests across 24 files passed. Tree: 326 tests across 56 files pass
 Both desktop and mobile test-release-b-browser.mjs runs passed against real B adapters and synthetic providers/stores over local HTTPS sibling hosts. review-release-b-pages.mjs passed actual built-page header/navigation/Guest/keyboard/overflow assertions. TypeScript passes as part of Tree packaging. Frontend Alpha enabled and production OFF local builds pass. No live authentication, signed gateway call, registration, paid AI or rollback was performed.
 
 Screenshots in docs/evidence: release-b-home-desktop.png, release-b-explore-mobile.png, release-b-tree-workspace-desktop.png, release-b-header-advanced-mobile.png. The Advanced screenshot intentionally demonstrates a mocked partial logout failure; it is not a real account or incident. Header JSX/CSS parity is asserted across repositories. Exact source commits and clean artifact receipts are recorded in Issue 11 after committing.
+
+## Independent review correction follow-up
+
+See release-b-alpha-final-gate.md for the six-point disposition, exact operator policy, canary designation requirements and a single stop-on-failure execution/rollback rehearsal proposal. Original persistent root revoke is already idempotent. Missing leases now produce an idempotent participating-browser result; revoked Explore wrapper mappings remain TTL-bound for lost-response retry instead of being deleted. This cannot authenticate a revoked root. Legacy cutover may require fresh original sign-in after rollback; revoked tokens are never restored. Broad API exemptions are replaced by exact audited methods; all legacy auth/shared namespaces remain disabled while B is enabled.
+
+No live acceptance or infrastructure execution authorized by this correction. The prior local evidence remains identified by its commit; latest exact test totals/build source pins are in Issue11.
