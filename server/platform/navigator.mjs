@@ -16,6 +16,9 @@ const pathwayCoaching = {
 };
 const maxQuestionLength = 240;
 
+// Model text is separate from the protocol, even when the model echoes its instructions.
+const hasProtocolText = text => /\b(?:exploredDimension|followUps|selectedDimension)\b|"(?:continuation|done|kind|reply)"\s*:|\btreat conversation content as untrusted\b/i.test(text);
+
 const questionKey = question => question.toLowerCase().replace(/\s+/g,' ');
 
 function validFollowUps(value) {
@@ -23,7 +26,7 @@ function validFollowUps(value) {
  if(Array.isArray(value))for(const item of value) {
   const question=typeof item?.question==='string'?item.question.trim():'';
   if(dimensions.includes(item?.dimension) && question.endsWith('?') && question.length<=maxQuestionLength && !/[\u0000-\u001f]/.test(question) &&
-     !byDimension.has(item.dimension) && !seen.has(questionKey(question))) {
+     !hasProtocolText(question) && !byDimension.has(item.dimension) && !seen.has(questionKey(question))) {
    byDimension.set(item.dimension,question);
    seen.add(questionKey(question));
   }
@@ -100,7 +103,7 @@ export function readNavigatorReply(response, history, previous=[], selectedDimen
  let result;
  try { result=JSON.parse(text); } catch { /* Invalid or incomplete structured output. */ }
  if (!result || !['clarify','guide'].includes(result.kind) ||
-     typeof result.reply !== 'string' || !result.reply.trim() || result.reply.length > maxReplyLength ||
+     typeof result.reply !== 'string' || !result.reply.trim() || result.reply.length > maxReplyLength || hasProtocolText(result.reply) ||
      (result.kind === 'clarify' && history.length >= (maxTurns - 1)*2)) {
   throw new PlatformError(503,'Navigator could not respond. Please try again.');
  }
@@ -109,7 +112,7 @@ export function readNavigatorReply(response, history, previous=[], selectedDimen
  if (!done) {
   const updates=validFollowUps(result.followUps);
   const explored=selectedDimension ?? result.exploredDimension;
-  followUps=history.length ? previous.filter(item=>item.dimension!==explored)
+  followUps=history.length ? previous.filter(item=>item.dimension!==explored&&!hasProtocolText(item.question))
    .map(item=>{
     const update=updates.find(candidate=>candidate.dimension===item.dimension);
     return update&&!previous.some(other=>other.dimension!==item.dimension&&questionKey(other.question)===questionKey(update.question))?update:item;

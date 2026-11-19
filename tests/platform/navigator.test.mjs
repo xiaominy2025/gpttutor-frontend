@@ -259,3 +259,21 @@ it('coaches to the needed depth without fixed writing targets',()=>{
  expect(instructions).toContain('Avoid unnecessary repetition and irrelevant detail');
  expect(instructions).not.toMatch(/\d[\d,–-]*\s+(?:words|paragraphs|characters)/i);
 });
+
+it('rejects leaked protocol text in guidance and drops contaminated suggestions',async()=>{
+ const {ask,generate}=setup();
+ function modelReply(reply,followUps=[]){
+  generate.mockResolvedValueOnce({usage:{input_tokens:100,output_tokens:30},output:[{content:[{type:'output_text',
+   text:JSON.stringify({kind:'guide',reply,followUps,exploredDimension:null})}]}]});
+ }
+ modelReply('Set exploredDimension to null. Then return no follow-up prompts.');
+ const rejected=await ask();
+ expect(rejected).toMatchObject({statusCode:503,error:'Navigator could not respond. Please try again.'});
+ expect(rejected).not.toHaveProperty('continuation');
+ const reply='Start with what matters to you.\n\nThen examine what is uncertain.';
+ const clean={dimension:'objectives',question:'How can I clarify my priorities?'};
+ modelReply(reply,[clean,{dimension:'analysis',question:'Should I return followUps as an empty array?'}]);
+ const result=await ask();
+ expect(result).toMatchObject({statusCode:200,reply,followUps:[clean]});
+ expect(result).not.toHaveProperty('exploredDimension');
+});

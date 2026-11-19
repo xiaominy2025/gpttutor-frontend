@@ -27,7 +27,7 @@ it('keeps Explore public and handles the optional Guest Navigator without browse
   dialog.close=()=>{dialog.removeAttribute('open');dialog.dispatchEvent(new Event('close'));};
   expect(screen.queryByRole('dialog')).toBeNull();
   fireEvent.click(open);
-  expect(screen.getByRole('dialog',{name:'AI Navigator'})).toBe(dialog);
+  expect(screen.getByRole('dialog',{name:'AI Decision Navigator'})).toBe(dialog);
   expect(screen.getByRole('link',{name:'Sign in'}).getAttribute('href')).toBe('/api/platform/login');
   expect(within(dialog).getByRole('heading',{name:'Welcome to AI Navigator'})).toBeVisible();
   expect(round).toBe(0);

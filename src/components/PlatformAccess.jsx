@@ -99,10 +99,13 @@ export default function PlatformAccess({renderHeader=account=>account}) {
      <button type="button" className="engent-text-link navigator-open" ref={openButton} aria-haspopup="dialog"
       onClick={()=>{dialog.current.showModal();scrollToLatest();}}>Open Navigator <ArrowRightIcon aria-hidden="true" /></button>
     </div>
-   <dialog ref={dialog} className="navigator-dialog" aria-labelledby="navigator-title"
+   <dialog ref={dialog} className="navigator-dialog" aria-labelledby="navigator-title" aria-describedby="navigator-subtitle"
     onClose={()=>openButton.current?.focus()}>
     <header className="navigator-dialog-header">
-     <h2 id="navigator-title">AI Navigator</h2>
+     <div>
+      <h2 id="navigator-title">AI Decision Navigator</h2>
+      <p id="navigator-subtitle">See the bigger picture. Build a clearer mental map of your decision.</p>
+     </div>
      <button type="button" className="navigator-icon-action" aria-label="Close Navigator" title="Close Navigator" onClick={()=>dialog.current.close()}><XMarkIcon aria-hidden="true" /></button>
     </header>
     <form className="navigator-dialog-form" onSubmit={ask}>
@@ -129,17 +132,21 @@ export default function PlatformAccess({renderHeader=account=>account}) {
      </div>
      {navigatorError && <p role="alert">{navigatorError}</p>}
      {!done && <>
-      <label htmlFor="navigator-message">{history.length?'Your follow-up (optional)':'Your decision'}</label>
-      <textarea disabled={busy} id="navigator-message" maxLength={2000} value={message} onChange={event=>setMessage(event.target.value)} required />
+      <div className="navigator-composer-heading">
+       <label htmlFor="navigator-message">{history.length?'Your follow-up (optional)':'Your decision'}</label>
+       <span role="status">{busy?'Thinking…':''}</span>
+      </div>
+      <div className="navigator-composer">
+       <textarea disabled={busy} id="navigator-message" maxLength={2000} value={message} onChange={event=>setMessage(event.target.value)} required />
+       <button type="submit" className="navigator-icon-action" aria-label={sendLabel} title={sendLabel} disabled={busy||!message.trim()}>
+        <ArrowUpIcon aria-hidden="true" />
+       </button>
+      </div>
      </>}
-     <div className="navigator-actions">
-      {!done && <button type="submit" className="navigator-icon-action" aria-label={sendLabel} title={sendLabel} disabled={busy||!message.trim()}>
-       <ArrowUpIcon aria-hidden="true" />
-      </button>}
-      {(history.length>0||navigatorError) && <button type="button" className="navigator-icon-action" disabled={busy}
-       aria-label="Start New Decision" title="Start New Decision" onClick={resetDecision}><ArrowPathIcon aria-hidden="true" /></button>}
-      <span role="status">{busy?'Thinking…':''}</span>
-     </div>
+     {(history.length>0||navigatorError) && <div className="navigator-actions">
+      <button type="button" className="navigator-icon-action" disabled={busy}
+       aria-label="Start New Decision" title="Start New Decision" onClick={resetDecision}><ArrowPathIcon aria-hidden="true" /></button>
+     </div>}
     </form>
    </dialog>
    </section>
