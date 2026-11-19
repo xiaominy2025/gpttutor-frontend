@@ -8,6 +8,7 @@ export default function PlatformAccess({renderHeader=account=>account}) {
  const dialog=useRef(null),openButton=useRef(null),log=useRef(null);
  const pending=useRef(false);
  const [followUps,setFollowUps]=useState([]);
+ const [pendingDimension,setPendingDimension]=useState(null);
  const [message,setMessage]=useState(''),[history,setHistory]=useState([]);
  const [continuation,setContinuation]=useState(null),[done,setDone]=useState(false);
  useEffect(()=>{
@@ -41,6 +42,7 @@ export default function PlatformAccess({renderHeader=account=>account}) {
  async function submitMessage(text,dimension) {
   if(pending.current||busy||done||!text.trim())return;
   pending.current=true;
+  setPendingDimension(dimension??null);
   setBusy(true);setNavigatorError('');
   try {
    const response=await fetch('/api/platform/navigator',{method:'POST',headers:{'Content-Type':'application/json'},
@@ -52,7 +54,7 @@ export default function PlatformAccess({renderHeader=account=>account}) {
    setFollowUps(result.followUps??[]);
    setContinuation(result.continuation ?? null);setDone(result.done);
   } catch(error) {setNavigatorError(error.message||'Navigator is temporarily unavailable.');}
-  finally {pending.current=false;setBusy(false);}
+  finally {pending.current=false;setPendingDimension(null);setBusy(false);}
  }
  function ask(event) {
   event.preventDefault();
@@ -106,7 +108,7 @@ export default function PlatformAccess({renderHeader=account=>account}) {
        <p>{row.text}</p>
       </div>)}
       {!done&&followUps.length>0&&<div className="navigator-follow-ups" role="group" aria-label="Explore a follow-up path">
-       {followUps.map(({dimension,question})=><button type="button" key={dimension} disabled={busy}
+       {followUps.map(({dimension,question})=><button type="button" key={dimension} disabled={busy} data-pending={pendingDimension===dimension?'true':undefined}
         onClick={()=>{log.current?.focus();void submitMessage(question,dimension);}}>
         <strong className={dimension}>{dimensionLabels[dimension]}</strong><span>{question}</span>
        </button>)}

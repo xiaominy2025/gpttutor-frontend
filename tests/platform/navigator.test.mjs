@@ -109,6 +109,9 @@ it.each(processCases)('returns a mock decision map and leaves a voluntary follow
  expect(request.instructions).toContain('Objectives → Analysis → Human Judgment');
  expect(request.instructions).toContain('Do not evaluate, compare the merits of, rank, or select their options');
  expect(request.instructions).toContain('Use the scenario to illustrate the reasoning move');
+ expect(request.instructions).toContain('Make the guidance stand on its own before you generate the optional questions');
+ expect(request.instructions).toContain('Connect these steps');
+ expect(request.instructions).toContain('never as a substitute for it');
  expect(request.instructions).toContain('Do not ask them to choose between priorities');
  expect(request.instructions).toContain('Do not ask for an option preference or for facts so you can do the analysis');
  expect(request.text.format.schema.required).toEqual(['kind','reply','followUps','exploredDimension']);
