@@ -160,6 +160,7 @@ it('binds the three paths to the continuation, preserves unselected paths, and c
  expect(final).toMatchObject({statusCode:200,done:true,followUps:[],continuation:null});
  expect(generate.mock.lastCall[1].instructions).toContain('The student selected judgment');
  expect(generate.mock.lastCall[1].instructions).toContain('Answer the student’s final question substantively');
+ expect(generate.mock.lastCall[1].instructions).toContain('Do not recap the entire conversation');
  expect(generate).toHaveBeenCalledTimes(4);
 });
 
@@ -191,6 +192,9 @@ it.each([
   generate.mockResolvedValueOnce(mockPaths([]));
   turn=await ask(turn.history,turn.continuation,guest,selected.question,dimension);
   expect(turn.statusCode).toBe(200);
+  const instructions=generate.mock.lastCall[1].instructions;
+  if(dimension==='analysis')expect(instructions).toContain('relative attractiveness');
+  if(dimension==='judgment')expect(instructions).toContain('which compromises they can accept');
   expect(turn.followUps.some(item=>item.dimension===dimension)).toBe(false);
  }
  expect(turn).toMatchObject({done:true,followUps:[],continuation:null});

@@ -1,6 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {FlagIcon, MagnifyingGlassIcon, ScaleIcon} from '@heroicons/react/24/outline';
 
-const dimensionLabels={objectives:'Objectives',analysis:'Analysis',judgment:'Human Judgment'};
+const paths={
+ objectives:{label:'Objectives',Icon:FlagIcon},
+ analysis:{label:'Analysis',Icon:MagnifyingGlassIcon},
+ judgment:{label:'Human Judgment',Icon:ScaleIcon}
+};
 
 export default function PlatformAccess({renderHeader=account=>account}) {
  const [account,setAccount]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false);
@@ -108,10 +113,14 @@ export default function PlatformAccess({renderHeader=account=>account}) {
        <p>{row.text}</p>
       </div>)}
       {!done&&followUps.length>0&&<div className="navigator-follow-ups" role="group" aria-label="Explore a follow-up path">
-       {followUps.map(({dimension,question})=><button type="button" key={dimension} disabled={busy} data-pending={pendingDimension===dimension?'true':undefined}
-        onClick={()=>{log.current?.focus();void submitMessage(question,dimension);}}>
-        <strong className={dimension}>{dimensionLabels[dimension]}</strong><span>{question}</span>
-       </button>)}
+       {followUps.map(({dimension,question})=>{
+        const {label,Icon}=paths[dimension];
+        return <button type="button" key={dimension} disabled={busy} data-pending={pendingDimension===dimension?'true':undefined}
+         onClick={()=>{log.current?.focus();void submitMessage(question,dimension);}}>
+         <Icon aria-hidden="true" className="navigator-path-icon"/>
+         <span><strong className={dimension}>{label}</strong><span>{question}</span></span>
+        </button>;
+       })}
       </div>}
      </div>
      {navigatorError && <p role="alert">{navigatorError}</p>}

@@ -184,9 +184,9 @@
 .navigator-dialog::backdrop{background:rgb(38 59 67 / 55%)}
 .navigator-dialog-header{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line)}
 .navigator-dialog-form{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px;padding:12px 20px 20px;overflow:auto}
-.navigator-dialog-form > *{width:100%;max-width:44rem;align-self:center;min-width:0}
-.navigator-log{flex:0 1 auto;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable;padding:3px 4px}
-.navigator-log p{overflow-wrap:anywhere;white-space:pre-wrap}
+.navigator-dialog-form > *{width:100%;min-width:0}
+.navigator-log{flex:0 1 auto;min-height:0;min-width:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:3px 4px}
+.navigator-log p{max-inline-size:68ch;overflow-wrap:anywhere;white-space:pre-wrap}
 .navigator-welcome{border-bottom:1px solid var(--line);padding:5px 0 12px}
 .navigator-welcome p{margin-top:8px}
 .navigator-message{padding:10px 12px;margin-bottom:8px;border-radius:8px;min-width:0;background:white}
@@ -204,10 +204,12 @@
 }
 
 .navigator-follow-ups{display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:6px 4px 10px}
-.navigator-follow-ups button{display:grid;gap:2px;min-width:0;min-height:44px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--slate);text-align:left;font-size:.9rem;overflow-wrap:anywhere;box-shadow:none}
+.navigator-follow-ups button{display:grid;grid-template-columns:1rem minmax(0,1fr);align-items:start;gap:8px;min-width:0;min-height:44px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:#fbfcfa;color:var(--slate);text-align:left;font-size:.9rem;overflow-wrap:anywhere;box-shadow:none}
 .navigator-follow-ups button:hover:not(:disabled),.navigator-follow-ups button:focus-visible,.navigator-follow-ups button[data-pending='true']{background:#edf4ef}
 .navigator-follow-ups button:disabled{opacity:1;cursor:wait}
 .navigator-follow-ups button:disabled:not([data-pending]){background:#f2f4f1}
+.navigator-path-icon{width:1rem;height:1rem;margin-top:2px;color:var(--green)}
+.navigator-follow-ups button > span{display:grid;gap:2px;max-inline-size:68ch}
 .navigator-follow-ups strong{font-size:.75rem;color:var(--green)}
 .navigator-follow-ups .analysis{color:#2b5c80}
 .navigator-follow-ups .judgment{color:#79520e}
