@@ -114,13 +114,14 @@ function ExploreCoach({ coach }) {
 }
 
 export function ExplorePage() {
-  return <MarketingLayout explore>
-    <section className="engent-explore-hero"><div className="engent-wrap engent-section">
+  const renderHeader = account => <section className="engent-explore-hero"><div className="engent-wrap engent-section">
       <h1>Explore Decision Coaches</h1>
-      {import.meta.env.VITE_SHARED_AUTH_ENABLED === 'true' && <PlatformAccess />}
+      {account}
       <p className="engent-lede">Find the right coach for your decision.</p>
       <nav aria-label="Coaches" className="engent-coach-nav">{coaches.map(coach => <a href={`#${coach.id}`} key={coach.id}>{coach.name}</a>)}</nav>
-    </div></section>
+    </div></section>;
+  return <MarketingLayout explore>
+    {import.meta.env.VITE_SHARED_AUTH_ENABLED === 'true' ? <PlatformAccess renderHeader={renderHeader} /> : renderHeader()}
     <section className="engent-wrap engent-explore-list" aria-label="Decision coaches">
       {coaches.map(coach => <ExploreCoach key={coach.id} coach={coach} />)}
     </section>
