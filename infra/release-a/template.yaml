@@ -1,0 +1,174 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Release A Alpha auth only; reuse Alpha hosting, API and namespaced session storage. No Navigator.
+Parameters:
+  SignupGuardRequiredBeforeExecution:
+    Type: String
+    AllowedValues: ['true']
+    Description: Acknowledges the future requirement for Gate 2 to approve, apply and verify the Alpha existing-only signup guard before any change-set execution. Does not attest that the guard is applied during Gate 1.
+  EnableAuth: {Type: String, Default: 'false', AllowedValues: ['false', 'true']}
+Resources:
+  Domain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties: {Domain: engent-platform-alpha-771049112957, ManagedLoginVersion: 2, UserPoolId: us-east-1_CipTwwDZb}
+  PlatformClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: engent-platform-alpha
+      UserPoolId: us-east-1_CipTwwDZb
+      GenerateSecret: false
+      ExplicitAuthFlows: [ALLOW_USER_AUTH]
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthFlows: [code]
+      AllowedOAuthScopes: [openid, email, aws.cognito.signin.user.admin]
+      SupportedIdentityProviders: [COGNITO]
+      CallbackURLs: ['https://d6owpirihdsus.cloudfront.net/api/platform/callback']
+      LogoutURLs: ['https://d6owpirihdsus.cloudfront.net/explore']
+      EnableTokenRevocation: true
+      PreventUserExistenceErrors: ENABLED
+      AccessTokenValidity: 15
+      IdTokenValidity: 15
+      RefreshTokenValidity: 30
+      TokenValidityUnits: {AccessToken: minutes, IdToken: minutes, RefreshToken: days}
+      ReadAttributes: [sub, email, email_verified]
+      WriteAttributes: [email]
+  TreeClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: engent-tree-alpha-shared
+      UserPoolId: us-east-1_CipTwwDZb
+      GenerateSecret: false
+      ExplicitAuthFlows: [ALLOW_USER_AUTH]
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthFlows: [code]
+      AllowedOAuthScopes: [openid, email, aws.cognito.signin.user.admin]
+      SupportedIdentityProviders: [COGNITO]
+      CallbackURLs: ['https://d6owpirihdsus.cloudfront.net/api/shared/callback']
+      LogoutURLs: ['https://d6owpirihdsus.cloudfront.net/']
+      EnableTokenRevocation: true
+      PreventUserExistenceErrors: ENABLED
+      AccessTokenValidity: 15
+      IdTokenValidity: 15
+      RefreshTokenValidity: 30
+      TokenValidityUnits: {AccessToken: minutes, IdToken: minutes, RefreshToken: days}
+      ReadAttributes: [sub, email, email_verified]
+      WriteAttributes: [email]
+  PlatformBranding:
+    Type: AWS::Cognito::ManagedLoginBranding
+    DependsOn: Domain
+    Properties: {UserPoolId: us-east-1_CipTwwDZb, ClientId: !Ref PlatformClient, UseCognitoProvidedValues: true}
+  TreeBranding:
+    Type: AWS::Cognito::ManagedLoginBranding
+    DependsOn: Domain
+    Properties: {UserPoolId: us-east-1_CipTwwDZb, ClientId: !Ref TreeClient, UseCognitoProvidedValues: true}
+  Logs:
+    Type: AWS::Logs::LogGroup
+    Properties: {LogGroupName: /aws/lambda/engent-platform-alpha-api, RetentionInDays: 14}
+  Runtime:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: engent-platform-alpha-runtime
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement: [{Effect: Allow, Principal: {Service: lambda.amazonaws.com}, Action: 'sts:AssumeRole'}]
+      Policies:
+        - PolicyName: release-a-auth-only
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [dynamodb:GetItem, dynamodb:PutItem, dynamodb:DeleteItem]
+                Resource: arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5
+                Condition: {'ForAllValues:StringLike': {'dynamodb:LeadingKeys': ['PLATFORM#*']}}
+              - Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents]
+                Resource: !GetAtt Logs.Arn
+              - Effect: Allow
+                Action: execute-api:Invoke
+                Resource: arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/entitlements
+  Api:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: engent-platform-alpha-api
+      CodeUri: ../../.artifacts/release-a/api/
+      Handler: index.handlerEntry
+      Runtime: nodejs22.x
+      Architectures: [arm64]
+      MemorySize: 256
+      Timeout: 28
+      ReservedConcurrentExecutions: 2
+      AutoPublishAlias: live
+      Role: !GetAtt Runtime.Arn
+      Environment:
+        Variables:
+          STAGE: alpha
+          APP_ORIGIN: https://d6owpirihdsus.cloudfront.net
+          TREE_ORIGIN: https://d6owpirihdsus.cloudfront.net
+          STUDENT_POOL: us-east-1_CipTwwDZb
+          STATE_TABLE: decisiontree-alpha-staging-Data-JH4B4OFXWER5
+          PLATFORM_CLIENT: !Ref PlatformClient
+          LOGIN_DOMAIN: engent-platform-alpha-771049112957.auth.us-east-1.amazoncognito.com
+          SHARED_AUTH_ENABLED: !Ref EnableAuth
+          NAVIGATOR_ENABLED: 'false'
+  Integration:
+    Type: AWS::ApiGatewayV2::Integration
+    DependsOn: ApiAliaslive
+    Properties:
+      ApiId: 8qmgd1ghdi
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !Sub '${Api.Arn}:live'
+      PayloadFormatVersion: '2.0'
+      TimeoutInMillis: 29000
+  Route:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: 8qmgd1ghdi
+      RouteKey: ANY /api/platform/{proxy+}
+      AuthorizationType: NONE
+      Target: !Sub 'integrations/${Integration}'
+  Invocation:
+    Type: AWS::Lambda::Permission
+    DependsOn: ApiAliaslive
+    Properties:
+      FunctionName: !Sub '${Api.Arn}:live'
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceAccount: '771049112957'
+      SourceArn: arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/*/*/api/platform/*
+  EntitlementsRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: 8qmgd1ghdi
+      RouteKey: POST /internal/platform/entitlements
+      AuthorizationType: AWS_IAM
+      Target: integrations/1xwneaq
+  TreeSessionDeletion:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: release-a-shared-session-delete
+      Roles: [decisiontree-alpha-staging-ApiRole-tmQtkTYts533]
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: dynamodb:DeleteItem
+            Resource: arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5
+            Condition: {'ForAllValues:StringLike': {'dynamodb:LeadingKeys': ['SHARED#*']}}
+  ExploreRewrite:
+    Type: AWS::CloudFront::Function
+    Properties:
+      Name: engent-release-a-alpha-explore
+      AutoPublish: true
+      FunctionConfig: {Comment: Alpha Explore prefix isolation only, Runtime: cloudfront-js-2.0}
+      FunctionCode: |
+        function handler(event) {
+          var request = event.request;
+          if (request.uri.indexOf('/engent-alpha/') === 0) request.uri = request.uri.slice('/engent-alpha'.length);
+          else if (request.uri === '/explore' || request.uri.indexOf('/explore/') === 0) request.uri = '/index.html';
+          return request;
+        }
+Outputs:
+  PlatformClientId: {Value: !Ref PlatformClient}
+  TreeClientId: {Value: !Ref TreeClient}
+  PlatformAliasArn: {Value: !Sub '${Api.Arn}:live'}
+  RewriteArn: {Value: !GetAtt ExploreRewrite.FunctionARN}

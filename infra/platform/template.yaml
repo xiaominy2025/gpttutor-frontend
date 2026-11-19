@@ -1,0 +1,220 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Additive Engent Labs shared identity and Navigator
+Parameters:
+  Stage: {Type: String, AllowedValues: [alpha, prod]}
+  ApplicationOrigin: {Type: String, AllowedPattern: 'https://[a-zA-Z0-9.-]+'}
+  StudentPool: {Type: String}
+  TreeOrigin: {Type: String, AllowedPattern: 'https://[a-zA-Z0-9.-]+'}
+  TreeApiId: {Type: String, AllowedPattern: '[a-z0-9]+'}
+  NotificationTopic: {Type: String, AllowedPattern: 'arn:aws:sns:us-east-1:771049112957:.+'}
+  NavigatorLimits:
+    Type: String
+    Default: '{"guestDaily":5,"guestMinute":2,"guestConcurrent":1,"ipDaily":20,"accountDaily":20,"accountMinute":5,"accountConcurrent":1,"globalConcurrent":2}'
+  NotificationEmail: {Type: String, AllowedPattern: '[^@ ]+@[^@ ]+\\.[^@ ]+'}
+  NavigatorModel: {Type: String}
+  InputPrice: {Type: Number, MinValue: 0.000001}
+  OutputPrice: {Type: Number, MinValue: 0.000001}
+  EnableAuth: {Type: String, AllowedValues: ['true', 'false'], Default: 'false'}
+  EnableNavigator: {Type: String, AllowedValues: ['true', 'false'], Default: 'false'}
+Rules:
+  EnvironmentIsolation:
+    Assertions:
+      - Assert: !Or
+          - !Not [!Equals [!Ref Stage, prod]]
+          - !And
+            - !Equals [!Ref StudentPool, us-east-1_Ilf34btQ0]
+            - !Equals [!Ref ApplicationOrigin, 'https://www.engentlabs.com']
+            - !Equals [!Ref TreeOrigin, 'https://decisiontree.engentlabs.com']
+            - !Equals [!Ref TreeApiId, eoszayfkqd]
+        AssertDescription: Production uses the approved existing identity and origins.
+      - Assert: !Or
+          - !Equals [!Ref Stage, prod]
+          - !And
+            - !Equals [!Ref StudentPool, us-east-1_CipTwwDZb]
+            - !Equals [!Ref TreeApiId, 8qmgd1ghdi]
+            - !Equals [!Ref TreeOrigin, 'https://d6owpirihdsus.cloudfront.net']
+            - !Not [!Equals [!Ref ApplicationOrigin, 'https://www.engentlabs.com']]
+        AssertDescription: Alpha must use its own existing pool and API.
+Resources:
+  State:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName: !Sub 'engent-platform-${Stage}-state'
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions: [{AttributeName: pk, AttributeType: S}]
+      KeySchema: [{AttributeName: pk, KeyType: HASH}]
+      TimeToLiveSpecification: {AttributeName: expiresAt, Enabled: true}
+      SSESpecification: {SSEEnabled: true}
+  Domain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: !Sub 'engent-platform-${Stage}-771049112957'
+      ManagedLoginVersion: 2
+      UserPoolId: !Ref StudentPool
+  PlatformClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: !Sub 'engent-platform-${Stage}'
+      UserPoolId: !Ref StudentPool
+      GenerateSecret: false
+      ExplicitAuthFlows: [ALLOW_USER_AUTH]
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthFlows: [code]
+      AllowedOAuthScopes: [openid, email, aws.cognito.signin.user.admin]
+      SupportedIdentityProviders: [COGNITO]
+      CallbackURLs: [!Sub '${ApplicationOrigin}/api/platform/callback']
+      LogoutURLs: [!Sub '${ApplicationOrigin}/explore']
+      EnableTokenRevocation: true
+      PreventUserExistenceErrors: ENABLED
+      AccessTokenValidity: 15
+      IdTokenValidity: 15
+      RefreshTokenValidity: 30
+      TokenValidityUnits: {AccessToken: minutes, IdToken: minutes, RefreshToken: days}
+      ReadAttributes: [sub, email, email_verified]
+      WriteAttributes: [email]
+  TreeClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: !Sub 'engent-tree-${Stage}-shared'
+      UserPoolId: !Ref StudentPool
+      GenerateSecret: false
+      ExplicitAuthFlows: [ALLOW_USER_AUTH]
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthFlows: [code]
+      AllowedOAuthScopes: [openid, email, aws.cognito.signin.user.admin]
+      SupportedIdentityProviders: [COGNITO]
+      CallbackURLs: [!Sub '${TreeOrigin}/api/shared/callback']
+      LogoutURLs: [!Sub '${TreeOrigin}/']
+      EnableTokenRevocation: true
+      PreventUserExistenceErrors: ENABLED
+      AccessTokenValidity: 15
+      IdTokenValidity: 15
+      RefreshTokenValidity: 30
+      TokenValidityUnits: {AccessToken: minutes, IdToken: minutes, RefreshToken: days}
+      ReadAttributes: [sub, email, email_verified]
+      WriteAttributes: [email]
+  PlatformBranding:
+    Type: AWS::Cognito::ManagedLoginBranding
+    DependsOn: Domain
+    Properties: {UserPoolId: !Ref StudentPool, ClientId: !Ref PlatformClient, UseCognitoProvidedValues: true}
+  TreeBranding:
+    Type: AWS::Cognito::ManagedLoginBranding
+    DependsOn: Domain
+    Properties: {UserPoolId: !Ref StudentPool, ClientId: !Ref TreeClient, UseCognitoProvidedValues: true}
+  Logs:
+    Type: AWS::Logs::LogGroup
+    Properties: {LogGroupName: !Sub '/aws/lambda/engent-platform-${Stage}-api', RetentionInDays: 14}
+  Runtime:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'engent-platform-${Stage}-runtime'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement: [{Effect: Allow, Principal: {Service: lambda.amazonaws.com}, Action: 'sts:AssumeRole'}]
+      Policies:
+        - PolicyName: platform-runtime
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [dynamodb:GetItem, dynamodb:PutItem, dynamodb:UpdateItem, dynamodb:DeleteItem]
+                Resource: !GetAtt State.Arn
+              - Effect: Allow
+                Action: ssm:GetParameter
+                Resource: !Sub 'arn:aws:ssm:us-east-1:771049112957:parameter/engent-platform-${Stage}/navigator-credentials'
+              - Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents]
+                Resource: !GetAtt Logs.Arn
+              - Effect: Allow
+                Action: cloudwatch:PutMetricData
+                Resource: '*'
+                Condition: {StringEquals: {'cloudwatch:namespace': !Sub 'Engent/Platform/${Stage}'}}
+              - Effect: Allow
+                Action: execute-api:Invoke
+                Resource: !Sub 'arn:aws:execute-api:us-east-1:771049112957:${TreeApiId}/$default/POST/internal/platform/entitlements'
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: '$default'
+      Tags: {Application: !Sub 'engent-platform-${Stage}'}
+      DefaultRouteSettings: {ThrottlingRateLimit: 5, ThrottlingBurstLimit: 10}
+  Api:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'engent-platform-${Stage}-api'
+      CodeUri: ../../.artifacts/platform/
+      Handler: index.handlerEntry
+      Runtime: nodejs22.x
+      Architectures: [arm64]
+      MemorySize: 512
+      Timeout: 28
+      ReservedConcurrentExecutions: 2
+      Role: !GetAtt Runtime.Arn
+      Environment:
+        Variables:
+          STAGE: !Ref Stage
+          APP_ORIGIN: !Ref ApplicationOrigin
+          TREE_ORIGIN: !Ref TreeOrigin
+          STATE_TABLE: !Ref State
+          STUDENT_POOL: !Ref StudentPool
+          PLATFORM_CLIENT: !Ref PlatformClient
+          LOGIN_DOMAIN: !Sub 'engent-platform-${Stage}-771049112957.auth.us-east-1.amazoncognito.com'
+          TREE_ENTITLEMENTS_URL: !Sub 'https://${TreeApiId}.execute-api.us-east-1.amazonaws.com/internal/platform/entitlements'
+          SHARED_AUTH_ENABLED: !Ref EnableAuth
+          NAVIGATOR_ENABLED: !Ref EnableNavigator
+          NAVIGATOR_MODEL: !Ref NavigatorModel
+          NAVIGATOR_LIMITS: !Ref NavigatorLimits
+          INPUT_USD_PER_MILLION: !Ref InputPrice
+          OUTPUT_USD_PER_MILLION: !Ref OutputPrice
+      Events:
+        Platform: {Type: HttpApi, Properties: {ApiId: !Ref HttpApi, Path: '/api/platform/{proxy+}', Method: ANY}}
+  NotificationSubscription:
+    Type: AWS::SNS::Subscription
+    Properties: {TopicArn: !Ref NotificationTopic, Protocol: email, Endpoint: !Ref NotificationEmail}
+  Budget50:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub 'engent-platform-${Stage}-navigator-50'
+      Namespace: !Sub 'Engent/Platform/${Stage}'
+      MetricName: NavigatorBudgetPercent
+      Statistic: Maximum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 50
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmActions: [!Ref NotificationTopic]
+  Budget80:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub 'engent-platform-${Stage}-navigator-80'
+      Namespace: !Sub 'Engent/Platform/${Stage}'
+      MetricName: NavigatorBudgetPercent
+      Statistic: Maximum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 80
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmActions: [!Ref NotificationTopic]
+  Budget100:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub 'engent-platform-${Stage}-navigator-100'
+      Namespace: !Sub 'Engent/Platform/${Stage}'
+      MetricName: NavigatorBudgetPercent
+      Statistic: Maximum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 100
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmActions: [!Ref NotificationTopic]
+Outputs:
+  ApiId: {Value: !Ref HttpApi}
+  PlatformClientId: {Value: !Ref PlatformClient}
+  TreeClientId: {Value: !Ref TreeClient}
+  LoginDomain: {Value: !Sub 'engent-platform-${Stage}-771049112957.auth.us-east-1.amazoncognito.com'}

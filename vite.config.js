@@ -8,8 +8,9 @@ export default defineConfig({
   server: {
     // Development server configuration
     port: 5173,
-    host: true
+    host: '127.0.0.1'
   },
+  preview: { host: '127.0.0.1' },
   build: {
     // Production build configuration
     outDir: 'dist',

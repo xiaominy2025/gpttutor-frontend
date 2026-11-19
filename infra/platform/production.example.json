@@ -1,0 +1,14 @@
+{
+  "Stage": "prod",
+  "ApplicationOrigin": "https://www.engentlabs.com",
+  "StudentPool": "us-east-1_Ilf34btQ0",
+  "TreeOrigin": "https://decisiontree.engentlabs.com",
+  "TreeApiId": "eoszayfkqd",
+  "NotificationTopic": "arn:aws:sns:us-east-1:771049112957:decisiontree-prod-AlarmTopic-aTZwTdkMddZO",
+  "NotificationEmail": "REPLACE_WITH_OWNER_CONFIRMED_EMAIL",
+  "NavigatorModel": "gpt-6-luna",
+  "InputPrice": 0.1,
+  "OutputPrice": 0.5,
+  "EnableAuth": "false",
+  "EnableNavigator": "false"
+}

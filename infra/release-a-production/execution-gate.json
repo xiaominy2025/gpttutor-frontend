@@ -1,0 +1,104 @@
+{
+  "status": "PROPOSAL_ONLY_NO_PRODUCTION_WRITE_AUTHORIZED",
+  "account": "771049112957",
+  "region": "us-east-1",
+  "entry": "https://www.engentlabs.com/explore",
+  "tree": "https://decisiontree.engentlabs.com/",
+  "stacks": {
+    "guard": "engent-release-a-prod-registration",
+    "auth": "engent-release-a-prod",
+    "monitoring": "engent-release-a-prod-monitoring"
+  },
+  "initialExpectedResources": {
+    "guardAdds": 7,
+    "authDeclared": 15,
+    "authTransformedAdds": 17,
+    "totalInitialCfnResources": 27,
+    "monitoringAdds": 3
+  },
+  "sourceOnlyTools": [
+    "scripts/release-a-production-template.mjs",
+    "scripts/release-a-production-patches.mjs",
+    "scripts/release-a-production-cloudfront.mjs",
+    "scripts/release-a-asset-metadata.mjs"
+  ],
+  "writePrerequisites": [
+    "Explicit single production milestone authorization",
+    "Clean pinned source/artifacts",
+    "Fresh account/region, ETag, alias/config revision, pool/client/role/boundary receipts",
+    "Approved logging-v2 field exclusion and log-prefix CloudFront denial verified before any OAuth/session traffic",
+    "Guard code/invoke/read policies verified before any public client creation",
+    "Actual Add-only CREATE change sets and bounded phase UPDATE diffs reviewed",
+    "Existing pre-provisioned verified Advanced acceptance account only"
+  ],
+  "protectedUnchanged": [
+    "Original confidential OTP client",
+    "Production registration enabled and AllowAdminCreateUserOnly=false",
+    "Separate Administrator MFA",
+    "User entitlements and projects",
+    "Homepage design/animations/podcasts",
+    "Alpha/staging",
+    "Existing AI credentials and budgets"
+  ],
+  "prohibited": [
+    "PR merge",
+    "DNS/Namecheap writes",
+    "Production user creation/deletion or entitlement edits",
+    "Project writes, autosave or recovery-sync in test browser",
+    "Paid AI calls and Navigator",
+    "S3 destructive sync or original index overwrite",
+    "Monitoring outside exactly two alarms and one owner-authorized email subscription"
+  ],
+  "pilot": {
+    "type": "attended",
+    "minutes": 30,
+    "automaticNotifications": "REQUIRED_verified_before_public_ON",
+    "defaultEndPolicy": "public-ON-only-if-all-acceptance-alert-delivery-and-response-gates-pass-otherwise-rollback-OFF",
+    "continuePolicyRequires": "Named operator, owner-authorized confirmed mailbox, actual alarm-to-email delivery and acknowledgement, rollback access and accepted response commitment",
+    "rollbackImmediatelyOn": [
+      "Registration regression or guard read/invoke failure",
+      "Wrong identity, privilege, issuer/audience or cookie host scope",
+      "Unexpected project-write/AI request forwarded",
+      "Persistent auth/session/callback 5xx or IAM denial",
+      "Unreviewed infrastructure drift, replacement or cost expansion"
+    ],
+    "automatedRollback": "Required attended local supervisor; deterministic critical gate failure/timeout triggers prevalidated restoration; metric alarm alone is not a critical gate because expected guard denials increment Errors."
+  },
+  "actualChangeSetsCreated": false,
+  "mandatoryPrivacyPrerequisite": {
+    "deliveryId": "aThRgLrDEczfdnUd",
+    "removeRecordFields": [
+      "cs-uri-query",
+      "cs(Cookie)",
+      "cs(Referer)"
+    ],
+    "preserve": "Existing JSON format, source, destination and S3 suffix",
+    "bucketPolicyDeny": {
+      "bucket": "engentlabs-frontend",
+      "prefix": "AWSLogs/*",
+      "principal": "cloudfront.amazonaws.com",
+      "sourceDistribution": "E1V533CXZPR3FL",
+      "actions": [
+        "s3:GetObject",
+        "s3:GetObjectVersion"
+      ]
+    },
+    "verification": "Create one non-sensitive owned probe in AWSLogs/engent-release-a-probe/, verify its marker cannot be fetched through CloudFront, then delete only its recorded VersionId. No existing logs read.",
+    "retainOnAuthRollback": true,
+    "newCfnResources": 0
+  },
+  "monitoring": {
+    "template": "monitoring.template.json",
+    "resources": 3,
+    "alarms": 2,
+    "billedStandardMetrics": 4,
+    "estimatedFixedUsdMonthlyBeforeAllowances": 0.4,
+    "subscription": "one owner-designated email; not yet provided/authorized",
+    "topic": "arn:aws:sns:us-east-1:771049112957:decisiontree-prod-AlarmTopic-aTZwTdkMddZO",
+    "topicPolicyPatch": "append topic-policy-append.json only; preserve existing statements",
+    "operator": "owner must explicitly designate; no silent assignment",
+    "responseProposal": "acknowledge within 30 minutes during explicitly accepted coverage; unknown identity/privilege/data-write or confirmed registration outage triggers shared-auth rollback; no Codex background/on-call promise",
+    "limits": "No synthetic availability/semantic-security detector or 24x7 SLA. Expected denials can alert; confirm classification and acceptable noise before continuing.",
+    "authorization": "NOT_GRANTED"
+  }
+}

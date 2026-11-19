@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import CoachArtwork from './CoachArtwork';
+import PlatformAccess from './PlatformAccess';
 import CoachIntro from './CoachIntro';
 import ApplicationLibrary from './ApplicationLibrary';
 import { podcastCollections } from './podcastCollections';
@@ -40,9 +41,10 @@ function canLaunch(coach) {
   return coach.id === 'tree' && treeUrl === 'https://decisiontree.engentlabs.com/';
 }
 
-function Availability({ coach }) {
+function Availability({ coach, sharedLaunch }) {
   if (canLaunch(coach)) {
-    return <a href={treeUrl} className="engent-button">Launch Decision Tree Coach</a>;
+    const destination = sharedLaunch === 'https://decisiontree.engentlabs.com/api/shared/login' ? sharedLaunch : treeUrl;
+    return <a href={destination} className="engent-button">Launch Decision Tree Coach</a>;
   }
   return <span className="engent-status">Coming Soon</span>;
 }
@@ -88,7 +90,7 @@ export default function Homepage() {
   </MarketingLayout>;
 }
 
-function ExploreCoach({ coach }) {
+function ExploreCoach({ coach, sharedLaunch }) {
   return <article id={coach.id} className="engent-explore-coach" aria-labelledby={`${coach.id}-title`}>
     <header className="engent-coach-heading">
       <h2 id={`${coach.id}-title`}>{coach.name}</h2>
@@ -105,7 +107,7 @@ function ExploreCoach({ coach }) {
         </section>
         <section>
           <h3>Meet Your Coach</h3>
-          <Availability coach={coach} />
+          <Availability coach={coach} sharedLaunch={sharedLaunch} />
         </section>
       </aside>
     </div>
@@ -113,14 +115,16 @@ function ExploreCoach({ coach }) {
 }
 
 export function ExplorePage() {
+  const [sharedLaunch, setSharedLaunch] = useState(null);
   return <MarketingLayout explore>
     <section className="engent-explore-hero"><div className="engent-wrap engent-section">
       <h1>Explore Decision Coaches</h1>
+      {import.meta.env.VITE_SHARED_AUTH_ENABLED === 'true' && <PlatformAccess onSharedLaunch={setSharedLaunch} />}
       <p className="engent-lede">Find the right coach for your decision.</p>
       <nav aria-label="Coaches" className="engent-coach-nav">{coaches.map(coach => <a href={`#${coach.id}`} key={coach.id}>{coach.name}</a>)}</nav>
     </div></section>
     <section className="engent-wrap engent-explore-list" aria-label="Decision coaches">
-      {coaches.map(coach => <ExploreCoach key={coach.id} coach={coach} />)}
+      {coaches.map(coach => <ExploreCoach key={coach.id} coach={coach} sharedLaunch={sharedLaunch} />)}
     </section>
   </MarketingLayout>;
 }

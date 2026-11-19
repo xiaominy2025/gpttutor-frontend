@@ -1,0 +1,233 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:CreateChangeSet",
+        "cloudformation:DescribeChangeSet",
+        "cloudformation:DescribeStacks",
+        "cloudformation:DescribeStackEvents",
+        "cloudformation:DescribeStackResources",
+        "cloudformation:GetTemplate",
+        "cloudformation:ExecuteChangeSet",
+        "cloudformation:DeleteChangeSet"
+      ],
+      "Resource": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-release-a-alpha/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetBucketLocation",
+        "s3:GetBucketVersioning"
+      ],
+      "Resource": [
+        "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+        "arn:aws:s3:::decisiontree-alpha-artifacts-771049112957-us-east-1"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": [
+        "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+        "arn:aws:s3:::decisiontree-alpha-artifacts-771049112957-us-east-1"
+      ],
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "releases/engent-release-a/*",
+            "release-a/*"
+          ]
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-a/*",
+        "arn:aws:s3:::decisiontree-alpha-artifacts-771049112957-us-east-1/release-a/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:GetRole",
+        "iam:DeleteRole",
+        "iam:PutRolePolicy",
+        "iam:GetRolePolicy",
+        "iam:DeleteRolePolicy",
+        "iam:TagRole",
+        "iam:UntagRole",
+        "iam:ListRolePolicies"
+      ],
+      "Resource": "arn:aws:iam::771049112957:role/engent-platform-alpha-runtime"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRole",
+        "iam:PutRolePolicy",
+        "iam:GetRolePolicy",
+        "iam:DeleteRolePolicy"
+      ],
+      "Resource": "arn:aws:iam::771049112957:role/decisiontree-alpha-staging-ApiRole-tmQtkTYts533"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::771049112957:role/engent-platform-alpha-runtime",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "lambda.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:CreateFunction",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration",
+        "lambda:GetFunction",
+        "lambda:GetFunctionConfiguration",
+        "lambda:DeleteFunction",
+        "lambda:PublishVersion",
+        "lambda:CreateAlias",
+        "lambda:GetAlias",
+        "lambda:UpdateAlias",
+        "lambda:DeleteAlias",
+        "lambda:ListVersionsByFunction",
+        "lambda:AddPermission",
+        "lambda:GetPolicy",
+        "lambda:RemovePermission",
+        "lambda:PutFunctionConcurrency",
+        "lambda:DeleteFunctionConcurrency",
+        "lambda:TagResource",
+        "lambda:UntagResource",
+        "lambda:ListTags"
+      ],
+      "Resource": [
+        "arn:aws:lambda:us-east-1:771049112957:function:engent-platform-alpha-api",
+        "arn:aws:lambda:us-east-1:771049112957:function:engent-platform-alpha-api:*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:GetFunction",
+        "lambda:GetFunctionConfiguration",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration",
+        "lambda:PublishVersion",
+        "lambda:GetAlias",
+        "lambda:UpdateAlias",
+        "lambda:ListVersionsByFunction"
+      ],
+      "Resource": [
+        "arn:aws:lambda:us-east-1:771049112957:function:decisiontree-alpha-staging-api",
+        "arn:aws:lambda:us-east-1:771049112957:function:decisiontree-alpha-staging-api:*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:DescribeLogStreams",
+        "logs:PutRetentionPolicy",
+        "logs:DeleteLogGroup",
+        "logs:TagResource",
+        "logs:UntagResource"
+      ],
+      "Resource": [
+        "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/engent-platform-alpha-api",
+        "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/engent-platform-alpha-api:*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cognito-idp:DescribeUserPool",
+        "cognito-idp:UpdateUserPool",
+        "cognito-idp:CreateUserPoolDomain",
+        "cognito-idp:UpdateUserPoolDomain",
+        "cognito-idp:DeleteUserPoolDomain",
+        "cognito-idp:CreateUserPoolClient",
+        "cognito-idp:DescribeUserPoolClient",
+        "cognito-idp:UpdateUserPoolClient",
+        "cognito-idp:DeleteUserPoolClient",
+        "cognito-idp:CreateManagedLoginBranding",
+        "cognito-idp:DescribeManagedLoginBranding",
+        "cognito-idp:UpdateManagedLoginBranding",
+        "cognito-idp:DeleteManagedLoginBranding"
+      ],
+      "Resource": "arn:aws:cognito-idp:us-east-1:771049112957:userpool/us-east-1_CipTwwDZb"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "apigateway:GET",
+      "Resource": "arn:aws:apigateway:us-east-1::/apis/8qmgd1ghdi"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "apigateway:GET",
+      "Resource": "arn:aws:apigateway:us-east-1::/apis/8qmgd1ghdi/stages/$default"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "apigateway:GET",
+        "apigateway:POST",
+        "apigateway:PATCH",
+        "apigateway:DELETE"
+      ],
+      "Resource": [
+        "arn:aws:apigateway:us-east-1::/apis/8qmgd1ghdi/routes",
+        "arn:aws:apigateway:us-east-1::/apis/8qmgd1ghdi/routes/*",
+        "arn:aws:apigateway:us-east-1::/apis/8qmgd1ghdi/integrations",
+        "arn:aws:apigateway:us-east-1::/apis/8qmgd1ghdi/integrations/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudfront:CreateFunction",
+        "cloudfront:DescribeFunction",
+        "cloudfront:GetFunction",
+        "cloudfront:UpdateFunction",
+        "cloudfront:PublishFunction",
+        "cloudfront:DeleteFunction"
+      ],
+      "Resource": "arn:aws:cloudfront::771049112957:function/engent-release-a-alpha-explore"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudfront:GetDistribution",
+        "cloudfront:GetDistributionConfig",
+        "cloudfront:UpdateDistribution",
+        "cloudfront:CreateInvalidation",
+        "cloudfront:GetInvalidation"
+      ],
+      "Resource": "arn:aws:cloudfront::771049112957:distribution/E1C4AJI9FUE47B"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cognito-idp:DescribeUserPoolDomain",
+        "logs:DescribeLogGroups"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "us-east-1"
+        }
+      }
+    }
+  ]
+}

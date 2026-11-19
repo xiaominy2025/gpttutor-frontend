@@ -1,0 +1,150 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "PROPOSAL ONLY. Release A sustained-public monitoring; no new topic, role, Lambda or automatic data writes.",
+  "Parameters": {
+    "OperatorEmail": {
+      "Type": "String",
+      "NoEcho": true,
+      "AllowedPattern": "[^\\s@]+@[^\\s@]+\\.[^\\s@]+",
+      "Description": "Owner-authorized operator mailbox only; confirmation and actual alarm email receipt are mandatory."
+    }
+  },
+  "Resources": {
+    "GuardAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmName": "engent-release-a-prod-guard-invocation-failure",
+        "AlarmDescription": "Investigate immediately. Expected public-client guard denials also count as Errors; never automatically roll back solely on this alarm. No user data in notifications.",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "Threshold": 1,
+        "EvaluationPeriods": 1,
+        "DatapointsToAlarm": 1,
+        "TreatMissingData": "notBreaching",
+        "Metrics": [
+          {
+            "Id": "errors",
+            "ReturnData": false,
+            "MetricStat": {
+              "Metric": {
+                "Namespace": "AWS/Lambda",
+                "MetricName": "Errors",
+                "Dimensions": [
+                  {
+                    "Name": "FunctionName",
+                    "Value": "engent-release-a-prod-registration"
+                  }
+                ]
+              },
+              "Period": 60,
+              "Stat": "Sum"
+            }
+          },
+          {
+            "Id": "throttles",
+            "ReturnData": false,
+            "MetricStat": {
+              "Metric": {
+                "Namespace": "AWS/Lambda",
+                "MetricName": "Throttles",
+                "Dimensions": [
+                  {
+                    "Name": "FunctionName",
+                    "Value": "engent-release-a-prod-registration"
+                  }
+                ]
+              },
+              "Period": 60,
+              "Stat": "Sum"
+            }
+          },
+          {
+            "Id": "failures",
+            "Expression": "FILL(errors,0)+FILL(throttles,0)",
+            "Label": "Invocation failures or throttles",
+            "ReturnData": true
+          }
+        ],
+        "AlarmActions": [
+          "arn:aws:sns:us-east-1:771049112957:decisiontree-prod-AlarmTopic-aTZwTdkMddZO"
+        ],
+        "OKActions": [
+          "arn:aws:sns:us-east-1:771049112957:decisiontree-prod-AlarmTopic-aTZwTdkMddZO"
+        ],
+        "ActionsEnabled": true
+      }
+    },
+    "BffAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmName": "engent-release-a-prod-bff-invocation-failure",
+        "AlarmDescription": "Investigate immediately. Expected public-client guard denials also count as Errors; never automatically roll back solely on this alarm. No user data in notifications.",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "Threshold": 1,
+        "EvaluationPeriods": 1,
+        "DatapointsToAlarm": 1,
+        "TreatMissingData": "notBreaching",
+        "Metrics": [
+          {
+            "Id": "errors",
+            "ReturnData": false,
+            "MetricStat": {
+              "Metric": {
+                "Namespace": "AWS/Lambda",
+                "MetricName": "Errors",
+                "Dimensions": [
+                  {
+                    "Name": "FunctionName",
+                    "Value": "engent-platform-prod-api"
+                  }
+                ]
+              },
+              "Period": 60,
+              "Stat": "Sum"
+            }
+          },
+          {
+            "Id": "throttles",
+            "ReturnData": false,
+            "MetricStat": {
+              "Metric": {
+                "Namespace": "AWS/Lambda",
+                "MetricName": "Throttles",
+                "Dimensions": [
+                  {
+                    "Name": "FunctionName",
+                    "Value": "engent-platform-prod-api"
+                  }
+                ]
+              },
+              "Period": 60,
+              "Stat": "Sum"
+            }
+          },
+          {
+            "Id": "failures",
+            "Expression": "FILL(errors,0)+FILL(throttles,0)",
+            "Label": "Invocation failures or throttles",
+            "ReturnData": true
+          }
+        ],
+        "AlarmActions": [
+          "arn:aws:sns:us-east-1:771049112957:decisiontree-prod-AlarmTopic-aTZwTdkMddZO"
+        ],
+        "OKActions": [
+          "arn:aws:sns:us-east-1:771049112957:decisiontree-prod-AlarmTopic-aTZwTdkMddZO"
+        ],
+        "ActionsEnabled": true
+      }
+    },
+    "OperatorSubscription": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "TopicArn": "arn:aws:sns:us-east-1:771049112957:decisiontree-prod-AlarmTopic-aTZwTdkMddZO",
+        "Protocol": "email",
+        "Endpoint": {
+          "Ref": "OperatorEmail"
+        }
+      }
+    }
+  }
+}
