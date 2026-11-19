@@ -1,8 +1,8 @@
 import React,{useEffect,useState} from 'react';
 const tree='https://decisiontree.engentlabs.com/';
-export default function ReleaseAAccess(){
+export default function ReleaseAAccess({onSharedLaunch}={}){
  const [account,setAccount]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false);
- useEffect(()=>{const c=new AbortController();fetch('/api/platform/session',{signal:c.signal}).then(async r=>{if(!r.ok)throw Error();setAccount(await r.json());}).catch(e=>{if(e.name!=='AbortError')setError('Sign-in is temporarily unavailable. You can still register or sign in directly with Decision Tree Coach.');});return()=>c.abort();},[]);
+ useEffect(()=>{const c=new AbortController();fetch('/api/platform/session',{signal:c.signal}).then(async r=>{if(!r.ok)throw Error();const a=await r.json();setAccount(a);onSharedLaunch?.(a.signedIn&&a.treeLoginUrl===tree+'api/shared/login'?a.treeLoginUrl:null);}).catch(e=>{if(e.name!=='AbortError'){onSharedLaunch?.(null);setError('Sign-in is temporarily unavailable. You can still register or sign in directly with Decision Tree Coach.');}});return()=>c.abort();},[onSharedLaunch]);
  async function logout(){setBusy(true);try{const r=await fetch('/api/platform/logout',{method:'POST'});if(!r.ok)throw Error();const result=await r.json();const url=new URL(result.logoutUrl);if(url.protocol!=='https:'||url.hostname!=='engent-platform-prod-771049112957.auth.us-east-1.amazoncognito.com'||url.pathname!=='/logout')throw Error();window.location.assign(url.href);}catch{setError('Sign-out could not be completed. Please try again.');setBusy(false);}}
  const launch=account?.treeLoginUrl===tree+'api/shared/login'?account.treeLoginUrl:null;
  return <section aria-label="Engent Labs account" className="platform-access">

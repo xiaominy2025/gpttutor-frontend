@@ -1,0 +1,64 @@
+{
+  "status": "PROPOSAL_ONLY_NO_PRODUCTION_WRITE_AUTHORIZED",
+  "account": "771049112957",
+  "region": "us-east-1",
+  "entry": "https://www.engentlabs.com/explore",
+  "tree": "https://decisiontree.engentlabs.com/",
+  "stacks": {
+    "guard": "engent-release-a-prod-registration",
+    "auth": "engent-release-a-prod"
+  },
+  "initialExpectedResources": {
+    "guardAdds": 7,
+    "authDeclared": 15,
+    "authTransformedAdds": 17,
+    "totalInitialCfnResources": 24
+  },
+  "sourceOnlyTools": [
+    "scripts/release-a-production-template.mjs",
+    "scripts/release-a-production-patches.mjs",
+    "scripts/release-a-production-cloudfront.mjs",
+    "scripts/release-a-asset-metadata.mjs"
+  ],
+  "writePrerequisites": [
+    "Explicit single production milestone authorization",
+    "Clean pinned source/artifacts",
+    "Fresh account/region, ETag, alias/config revision, pool/client/role/boundary receipts",
+    "Guard code/invoke/read policies verified before any public client creation",
+    "Actual Add-only CREATE change sets and bounded phase UPDATE diffs reviewed",
+    "Existing pre-provisioned verified Advanced acceptance account only"
+  ],
+  "protectedUnchanged": [
+    "Original confidential OTP client",
+    "Production registration enabled and AllowAdminCreateUserOnly=false",
+    "Separate Administrator MFA",
+    "User entitlements and projects",
+    "Homepage design/animations/podcasts",
+    "Alpha/staging",
+    "Existing AI credentials and budgets"
+  ],
+  "prohibited": [
+    "PR merge",
+    "DNS/Namecheap writes",
+    "Production user creation/deletion or entitlement edits",
+    "Project writes, autosave or recovery-sync in test browser",
+    "Paid AI calls and Navigator",
+    "New alarms/recipients or fixed-cost services",
+    "S3 destructive sync or original index overwrite"
+  ],
+  "pilot": {
+    "type": "attended",
+    "minutes": 30,
+    "automaticNotifications": false,
+    "defaultEndPolicy": "disable-shared-auth-and-restore-public-site-if-continuation-not-explicitly-authorized",
+    "continuePolicyRequires": "Owner explicitly accepts limited manual monitoring and response responsibility; no unattended alert claim",
+    "rollbackImmediatelyOn": [
+      "Registration regression or guard read/invoke failure",
+      "Wrong identity, privilege, issuer/audience or cookie host scope",
+      "Unexpected project-write/AI request forwarded",
+      "Persistent auth/session/callback 5xx or IAM denial",
+      "Unreviewed infrastructure drift, replacement or cost expansion"
+    ]
+  },
+  "actualChangeSetsCreated": false
+}

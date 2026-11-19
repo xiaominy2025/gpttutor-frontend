@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: 'PROPOSAL ONLY: production auth-only reuse; requires validated registration guard before public clients. No deployment authorized.'
+Description: 'SOURCE ONLY: render pinned literal phase with release-a-production-template.mjs; guard must be verified before clients. No deployment authorized.'
 Parameters:
   RegistrationGuardAttachedBeforeExecution:
     Type: String
@@ -63,6 +63,7 @@ Resources:
     Properties: {UserPoolId: us-east-1_Ilf34btQ0, ClientId: !Ref TreeClient, UseCognitoProvidedValues: true}
   Logs:
     Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
     Properties: {LogGroupName: /aws/lambda/engent-platform-prod-api, RetentionInDays: 14}
   RuntimeBoundary:
     Type: AWS::IAM::ManagedPolicy
