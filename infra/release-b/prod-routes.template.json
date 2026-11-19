@@ -1,0 +1,112 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "SOURCE ONLY: bounded Release B route and inline policy proposal. No execution authorization.",
+  "Metadata": {
+    "Account": "771049112957",
+    "Region": "us-east-1",
+    "Stage": "prod",
+    "RELEASE_B_EMAIL_ENABLED": "false",
+    "RequiresBoundaryAppendBeforeEnablement": true
+  },
+  "Resources": {
+    "EmailStartRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "eoszayfkqd",
+        "RouteKey": "POST /internal/platform/email/start",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/9gaznns"
+      }
+    },
+    "EmailFinishRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "eoszayfkqd",
+        "RouteKey": "POST /internal/platform/email/finish",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/9gaznns"
+      }
+    },
+    "EmailSessionRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "eoszayfkqd",
+        "RouteKey": "POST /internal/platform/email/session",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/9gaznns"
+      }
+    },
+    "EmailHandoffRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "eoszayfkqd",
+        "RouteKey": "POST /internal/platform/email/handoff",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/9gaznns"
+      }
+    },
+    "EmailAdvancedRequestRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "eoszayfkqd",
+        "RouteKey": "POST /internal/platform/email/advanced-request",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/9gaznns"
+      }
+    },
+    "BffInvoke": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "release-b-email-bffinvoke",
+        "Roles": [
+          "engent-platform-prod-runtime"
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "execute-api:Invoke",
+              "Resource": [
+                "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/start",
+                "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/finish",
+                "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/session",
+                "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/handoff",
+                "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/advanced-request"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "TreeLeaseCheck": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "release-b-email-treeleasecheck",
+        "Roles": [
+          "decisiontree-prod-ApiRole-vGwUeXNVhAHY"
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "dynamodb:ConditionCheckItem",
+              "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+              "Condition": {
+                "Null": {
+                  "dynamodb:LeadingKeys": "false"
+                },
+                "ForAllValues:StringLike": {
+                  "dynamodb:LeadingKeys": [
+                    "SHARED#EMAIL-LEASE#*"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

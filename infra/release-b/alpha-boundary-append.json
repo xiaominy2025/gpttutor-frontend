@@ -1,0 +1,30 @@
+{
+  "reviewOnly": true,
+  "appendNeverReplace": true,
+  "BffBoundaryStatement": {
+    "Effect": "Allow",
+    "Action": "execute-api:Invoke",
+    "Resource": [
+      "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/start",
+      "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/finish",
+      "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/session",
+      "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/handoff",
+      "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/advanced-request"
+    ]
+  },
+  "TreeBoundaryStatement": {
+    "Effect": "Allow",
+    "Action": "dynamodb:ConditionCheckItem",
+    "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "Condition": {
+      "Null": {
+        "dynamodb:LeadingKeys": "false"
+      },
+      "ForAllValues:StringLike": {
+        "dynamodb:LeadingKeys": [
+          "SHARED#EMAIL-LEASE#*"
+        ]
+      }
+    }
+  }
+}
