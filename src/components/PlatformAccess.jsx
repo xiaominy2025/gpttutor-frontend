@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {ArrowRightIcon, FlagIcon, MagnifyingGlassIcon, ScaleIcon} from '@heroicons/react/24/outline';
+import {ArrowPathIcon, ArrowRightIcon, ArrowUpIcon, FlagIcon, MagnifyingGlassIcon, ScaleIcon, XMarkIcon} from '@heroicons/react/24/outline';
 import NavigatorArtwork from './NavigatorArtwork';
 
 const paths={
@@ -78,6 +78,7 @@ export default function PlatformAccess({renderHeader=account=>account}) {
    const result=await response.json();window.location.assign(result.logoutUrl);
   } catch(error) {setError(error.message);setBusy(false);}
  }
+ const sendLabel=history.length?'Send follow-up':'Send decision';
  const accountAccess=<section aria-label="Engent Labs account" className="platform-access">
   <p>{account?.signedIn?'Signed in to Engent Labs.':'Browse as a Guest, or sign in with your existing Engent Labs account.'}</p>
   {account?.signedIn?<button type="button" disabled={busy} onClick={logout}>Sign out of this tool</button>
@@ -95,14 +96,14 @@ export default function PlatformAccess({renderHeader=account=>account}) {
      <h2 id="navigator-intro-title">AI Decision Navigator</h2>
      <p className="navigator-tagline">See the bigger picture before making your decision.</p>
      <p>Describe a decision you're facing. Navigator helps you clarify what matters, recognize what needs analysis, and understand where human judgment comes in—so you can develop a clearer mental map before deciding how to proceed.</p>
-     <button type="button" className="engent-button navigator-open" ref={openButton} aria-haspopup="dialog"
+     <button type="button" className="engent-text-link navigator-open" ref={openButton} aria-haspopup="dialog"
       onClick={()=>{dialog.current.showModal();scrollToLatest();}}>Open Navigator <ArrowRightIcon aria-hidden="true" /></button>
     </div>
    <dialog ref={dialog} className="navigator-dialog" aria-labelledby="navigator-title"
     onClose={()=>openButton.current?.focus()}>
     <header className="navigator-dialog-header">
      <h2 id="navigator-title">AI Navigator</h2>
-     <button type="button" className="navigator-secondary" onClick={()=>dialog.current.close()}>Close</button>
+     <button type="button" className="navigator-icon-action" aria-label="Close Navigator" title="Close Navigator" onClick={()=>dialog.current.close()}><XMarkIcon aria-hidden="true" /></button>
     </header>
     <form className="navigator-dialog-form" onSubmit={ask}>
      <div role="log" aria-label="Navigator conversation" className="navigator-log" ref={log} tabIndex={history.length?0:-1}>
@@ -132,11 +133,12 @@ export default function PlatformAccess({renderHeader=account=>account}) {
       <textarea disabled={busy} id="navigator-message" maxLength={2000} value={message} onChange={event=>setMessage(event.target.value)} required />
      </>}
      <div className="navigator-actions">
-      {!done && <button className="engent-button" disabled={busy||!message.trim()}>
-       {busy?'Thinking…':history.length?'Continue':'Ask Navigator'}
+      {!done && <button type="submit" className="navigator-icon-action" aria-label={sendLabel} title={sendLabel} disabled={busy||!message.trim()}>
+       <ArrowUpIcon aria-hidden="true" />
       </button>}
-      {(history.length>0||navigatorError) && <button type="button" className="navigator-secondary" disabled={busy}
-       onClick={resetDecision}>Start New Decision</button>}
+      {(history.length>0||navigatorError) && <button type="button" className="navigator-icon-action" disabled={busy}
+       aria-label="Start New Decision" title="Start New Decision" onClick={resetDecision}><ArrowPathIcon aria-hidden="true" /></button>}
+      <span role="status">{busy?'Thinking…':''}</span>
      </div>
     </form>
    </dialog>

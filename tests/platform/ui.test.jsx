@@ -32,10 +32,11 @@ it('keeps Explore public and handles the optional Guest Navigator without browse
   expect(within(dialog).getByRole('heading',{name:'Welcome to AI Navigator'})).toBeVisible();
   expect(round).toBe(0);
   fireEvent.change(screen.getByLabelText('Your decision'),{target:{value:messages[0]}});
-  fireEvent.click(screen.getByRole('button',{name:'Ask Navigator'}));
+  fireEvent.click(screen.getByRole('button',{name:'Send decision'}));
   await screen.findByRole('textbox',{name:'Your follow-up (optional)'});
   expect(within(dialog).getByRole('log')).toHaveTextContent('The options expose you to different risks.');
-  fireEvent.click(within(dialog).getByRole('button',{name:'Close'}));
+  expect(dialog.querySelector('.navigator-message.assistant p').textContent).toBe(replies[0]);
+  fireEvent.click(within(dialog).getByRole('button',{name:'Close Navigator'}));
   expect(screen.queryByRole('dialog')).toBeNull();
   expect(open).toHaveFocus();
   fireEvent.click(open);
@@ -47,7 +48,7 @@ it('keeps Explore public and handles the optional Guest Navigator without browse
   expect(within(followUps).queryByRole('button',{name:/^Objectives/})).toBeNull();
   expect(within(followUps).getAllByRole('button')).toHaveLength(2);
   fireEvent.change(screen.getByLabelText('Your follow-up (optional)'),{target:{value:messages[2]}});
-  fireEvent.click(screen.getByRole('button',{name:'Continue'}));
+  fireEvent.click(screen.getByRole('button',{name:'Send follow-up'}));
   await screen.findByText(replies[2]);
   fireEvent.click(within(dialog).getByRole('button',{name:/^Human Judgment/}));
   await screen.findByText(replies[3]);
