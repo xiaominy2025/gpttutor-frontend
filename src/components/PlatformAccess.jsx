@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {FlagIcon, MagnifyingGlassIcon, ScaleIcon} from '@heroicons/react/24/outline';
+import {ArrowRightIcon, FlagIcon, MagnifyingGlassIcon, ScaleIcon} from '@heroicons/react/24/outline';
+import NavigatorArtwork from './NavigatorArtwork';
 
 const paths={
  objectives:{label:'Objectives',Icon:FlagIcon},
@@ -89,12 +90,14 @@ export default function PlatformAccess({renderHeader=account=>account}) {
   {renderHeader(accountAccess)}
   {account?.navigator && <>
    <section className="engent-wrap navigator-intro" aria-labelledby="navigator-intro-title">
-    <div>
-     <h2 id="navigator-intro-title">AI Navigator</h2>
-     <p>Explore what matters, weigh your options, and decide how to approach your decision.</p>
+    <NavigatorArtwork />
+    <div className="navigator-intro-copy">
+     <h2 id="navigator-intro-title">AI Decision Navigator</h2>
+     <p className="navigator-tagline">See the bigger picture before making your decision.</p>
+     <p>Describe a decision you're facing. Navigator helps you clarify what matters, recognize what needs analysis, and understand where human judgment comes in—so you can develop a clearer mental map before deciding how to proceed.</p>
+     <button type="button" className="engent-button navigator-open" ref={openButton} aria-haspopup="dialog"
+      onClick={()=>{dialog.current.showModal();scrollToLatest();}}>Open Navigator <ArrowRightIcon aria-hidden="true" /></button>
     </div>
-    <button type="button" className="engent-button" ref={openButton} aria-haspopup="dialog"
-     onClick={()=>{dialog.current.showModal();scrollToLatest();}}>Open Navigator</button>
    <dialog ref={dialog} className="navigator-dialog" aria-labelledby="navigator-title"
     onClose={()=>openButton.current?.focus()}>
     <header className="navigator-dialog-header">
