@@ -119,20 +119,14 @@ it.each(refinementCases)('returns a mock decision map and leaves a voluntary fol
  }
 
  const request=generate.mock.calls[0][1];
- expect(request.instructions).toContain('a sound decision can still turn out badly');
- expect(request.instructions).toContain('whether waiting would bring useful information or merely postpone the choice');
- expect(request.instructions).toContain('Treat acting and waiting as alternatives');
- expect(request.instructions).toContain('reversibility, staged commitments, feedback');
  expect(request.instructions).toContain('Objectives → Analysis → Human Judgment');
- expect(request.instructions).toContain('tolerance for risk');
- expect(request.instructions).toContain('how relevant alternatives serve competing objectives');
- expect(request.instructions).toContain('only if helpful');
- expect(request.instructions).toContain('without ranking, recommending, or favoring one');
- expect(request.instructions).toContain('Use conditional comparisons');
- expect(request.instructions).toContain('Do not infer a weakness simply because a detail is absent');
- expect(request.instructions).toContain('two to four short natural paragraphs');
- expect(request.instructions).toContain('leave the choice with the student');
- expect(request.instructions).toContain('Verify factual and numerical claims');
+ expect(request.instructions).toContain('without ranking, recommending, or choosing one');
+ expect(request.instructions).toContain('Distinguish hard constraints from preferences');
+ expect(request.instructions).toContain('a reversible way to learn');
+ expect(request.instructions).toContain('Waiting can help if useful information arrives in time');
+ expect(request.instructions).toContain('A sound decision can still turn out badly');
+ expect(request.instructions).toContain('distinguish equal costs from savings');
+ expect(request.instructions).toContain('Ask at most one optional question');
  expect(request.text.format.schema.required).toEqual(['kind','reply']);
  expect(result).toMatchObject({statusCode:200,done:false,continuation:expect.any(String),reply:guidance});
  expect(generate).toHaveBeenCalledTimes(clarification?2:1);
