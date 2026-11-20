@@ -1,5 +1,6 @@
 import {createHash,randomUUID} from 'node:crypto';
 export const approvedManifest='61c0f66ab9e641d0165bf79e0d5f0de95ed4d0cc8a523521419e29afdeb3c5f9';
+export const awsProcessEnv=(operation,env)=>['s3api/put-object','cloudfront/create-invalidation'].includes(operation)?{...env,AWS_MAX_ATTEMPTS:'1',AWS_RETRY_MODE:'standard'}:env;
 export const sha=b=>createHash('sha256').update(b).digest('hex');
 export function canonical(x){return JSON.stringify(sort(x));}function sort(x){return Array.isArray(x)?x.map(sort):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,sort(x[k])])):x;}
 export function normalizeProtected(id,value){
