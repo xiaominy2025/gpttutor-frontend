@@ -1,0 +1,19 @@
+[
+  {
+    "label": "existing-advanced",
+    "cognitoMatches": 1,
+    "memberExists": true,
+    "accountType": "advanced",
+    "enabled": true,
+    "subjectMatches": true
+  },
+  {
+    "label": "canary-cleaned-up",
+    "cognitoMatches": 0,
+    "memberExists": false,
+    "accountType": null,
+    "enabled": null,
+    "subjectMatches": false,
+    "noLegacyInvite": true
+  }
+]

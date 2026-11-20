@@ -1,0 +1,10 @@
+{
+  "id": "a-launch-directory",
+  "action": "launch-via-explore",
+  "result": {
+    "treeOpened": true,
+    "account": "Student · Decision Tree Advanced",
+    "emailStarts": 1,
+    "finishes": 1
+  }
+}

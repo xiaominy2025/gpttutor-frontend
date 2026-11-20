@@ -1,0 +1,7 @@
+{
+  "onlyOwnedCanaryDeleted": true,
+  "conditionalMemberAndPendingRequestDeleted": true,
+  "noProjectObjectsVersionsOrDeleteMarkers": true,
+  "existingAccountsModified": false,
+  "poolClosed": true
+}

@@ -1,0 +1,8 @@
+{
+  "id": "404636e26b02478fbde853fcfe1d8e46",
+  "action": "request-canary-advanced",
+  "result": {
+    "http": 200,
+    "requestStatus": "pending"
+  }
+}

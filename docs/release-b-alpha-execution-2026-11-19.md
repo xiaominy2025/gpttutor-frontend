@@ -73,3 +73,8 @@ Local same-origin Alpha HTTPS tests isolate original403, referrer-only CSP failu
 Costs: no fixed-charge infrastructure added; only actual on-demand Lambda/API/DynamoDB/log/email, cache-invalidation and retained artifact-storage usage. No paid AI. Dollar spend is not yet measured; the approved $1–3/month small-pilot allowance remains an estimate, not a cap. Proposed amendment adds no service or fixed cost.
 
 Specific approval needed: this exact three-field Alpha-only security-policy amendment and retry of the existing bounded Alpha package with the already designated accounts/consent, fresh inventory and the same stop/rollback gates. No production authorization is requested.
+
+## Subsequent approved Alpha execution
+
+Owner subsequently approved the bounded header amendment and retry. Authenticated Advanced/Student, coordinated logout, independent-browser preservation and Administrator MFA checks completed; exact rollback restored Release A. See [final attended acceptance report](release-b-alpha-acceptance-2026-11-19.md). Earlier pending/no-go statements above are historical. Production remains a separate approval gate.
+

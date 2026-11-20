@@ -1,0 +1,16 @@
+{
+  "id": "529706592c7e4079bc66ae3b7d8e5b48",
+  "action": "check-tabs",
+  "result": {
+    "tabs": [
+      {
+        "account": 401,
+        "projects": 401
+      },
+      {
+        "account": 401,
+        "projects": 401
+      }
+    ]
+  }
+}

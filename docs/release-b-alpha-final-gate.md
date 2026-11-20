@@ -48,3 +48,8 @@ NO-GO for Alpha execution now: explicit bounded approval and designated inboxes/
 ## Verification for this review
 
 Local regression totals: frontend103 tests/24 files; Tree333 tests/57 files. Desktop and mobile local HTTPS fixture runs include response loss after logout commit on BOTH headers, original source OAuth retirement, original target OAuth/native mixed-cookie same-subject retirement and different-subject conflict, pending recovery, cross-tab protected denial and unrelated-device preservation. Providers/stores/inboxes are synthetic. Builds and exact source receipts are reported in Issue11; no live acceptance is implied. Original screenshot commit9142859 remains valid appearance evidence because no header CSS/JSX or visual assets changed in this follow-up; actual built-page review is rerun independently.
+
+## Subsequent approved Alpha execution
+
+Owner subsequently approved the bounded header amendment and retry. Authenticated Advanced/Student, coordinated logout, independent-browser preservation and Administrator MFA checks completed; exact rollback restored Release A. See [final attended acceptance report](release-b-alpha-acceptance-2026-11-19.md). Earlier pending/no-go statements above are historical. Production remains a separate approval gate.
+

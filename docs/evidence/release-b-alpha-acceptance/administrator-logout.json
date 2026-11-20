@@ -1,0 +1,8 @@
+{
+  "id": "2d479952f8e24ce38981863724cd87c0",
+  "action": "logout-admin",
+  "result": {
+    "http": 200,
+    "ok": true
+  }
+}

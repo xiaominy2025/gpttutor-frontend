@@ -1,0 +1,29 @@
+{
+  "version": "3",
+  "results": [
+    {
+      "test": "closed-registration",
+      "rejected": true
+    },
+    {
+      "test": "wrong-region",
+      "rejected": true
+    },
+    {
+      "test": "wrong-pool",
+      "rejected": true
+    },
+    {
+      "test": "wrong-client",
+      "rejected": true
+    },
+    {
+      "test": "wrong-email",
+      "rejected": true
+    },
+    {
+      "test": "unsupported-trigger",
+      "rejected": true
+    }
+  ]
+}
