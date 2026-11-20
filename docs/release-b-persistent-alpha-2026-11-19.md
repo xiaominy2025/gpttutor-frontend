@@ -57,4 +57,3 @@ This recovery plan does not itself authorize broad session/data operations. Prio
 ## Future production gate
 
 See release-b-production-validation-plan.md. No production authorization is inferred from Alpha. Alpha remains enabled for development/testing while this separate plan is reviewed.
-
