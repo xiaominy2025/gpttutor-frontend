@@ -1,0 +1,75 @@
+{
+  "Changes": [
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "BffInvoke",
+        "ResourceType": "AWS::IAM::Policy",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "EmailAdvancedRequestRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "EmailFinishRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "EmailHandoffRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "EmailSessionRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "EmailStartRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "TreeLeaseCheck",
+        "ResourceType": "AWS::IAM::Policy",
+        "Scope": [],
+        "Details": []
+      }
+    }
+  ],
+  "Status": "CREATE_COMPLETE"
+}

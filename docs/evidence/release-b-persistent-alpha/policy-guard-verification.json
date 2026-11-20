@@ -1,0 +1,15 @@
+{
+  "guardFunctionAbsent": true,
+  "inlinePolicies": [
+    {
+      "policy": "release-b-email-bffinvoke",
+      "exactApprovedDocument": true,
+      "role": "engent-platform-alpha-runtime"
+    },
+    {
+      "policy": "release-b-email-treeleasecheck",
+      "exactApprovedDocument": true,
+      "role": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533"
+    }
+  ]
+}

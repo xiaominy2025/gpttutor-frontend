@@ -1,0 +1,164 @@
+[
+  {
+    "test": "root-or-lease-check",
+    "action": "dynamodb:ConditionCheckItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": [
+      "SESSION#fixture"
+    ],
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "root-or-lease-check",
+    "action": "dynamodb:ConditionCheckItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": [
+      "SHARED#EMAIL-LEASE#fixture"
+    ],
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "check-negative",
+    "action": "dynamodb:ConditionCheckItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": [
+      "SHARED#EMAIL-HANDOFF#fixture"
+    ],
+    "expected": "implicitDeny",
+    "actual": "implicitDeny"
+  },
+  {
+    "test": "check-negative",
+    "action": "dynamodb:ConditionCheckItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": [
+      "PROJECT#fixture"
+    ],
+    "expected": "implicitDeny",
+    "actual": "implicitDeny"
+  },
+  {
+    "test": "check-negative",
+    "action": "dynamodb:ConditionCheckItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": [
+      "MEMBER#fixture"
+    ],
+    "expected": "implicitDeny",
+    "actual": "implicitDeny"
+  },
+  {
+    "test": "check-negative",
+    "action": "dynamodb:ConditionCheckItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": null,
+    "expected": "implicitDeny",
+    "actual": "implicitDeny"
+  },
+  {
+    "test": "production-negative",
+    "action": "dynamodb:ConditionCheckItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+    "keys": [
+      "SESSION#fixture"
+    ],
+    "expected": "implicitDeny",
+    "actual": "implicitDeny"
+  },
+  {
+    "test": "delete-required",
+    "action": "dynamodb:DeleteItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": [
+      "SESSION#fixture"
+    ],
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "delete-required",
+    "action": "dynamodb:DeleteItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": [
+      "SHARED#EMAIL-LEASE#fixture"
+    ],
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "delete-required",
+    "action": "dynamodb:DeleteItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": [
+      "SHARED#EMAIL-HANDOFF#fixture"
+    ],
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "delete-required",
+    "action": "dynamodb:DeleteItem",
+    "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "keys": [
+      "SHARED#SESSION#fixture"
+    ],
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "bff-invoke",
+    "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/start",
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "bff-invoke",
+    "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/finish",
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "bff-invoke",
+    "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/session",
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "bff-invoke",
+    "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/handoff",
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "bff-invoke",
+    "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/advanced-request",
+    "expected": "allowed",
+    "actual": "allowed"
+  },
+  {
+    "test": "bff-invoke",
+    "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/GET/internal/platform/email/start",
+    "expected": "implicitDeny",
+    "actual": "implicitDeny"
+  },
+  {
+    "test": "bff-invoke",
+    "resource": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/start",
+    "expected": "implicitDeny",
+    "actual": "implicitDeny"
+  },
+  {
+    "test": "bff-invoke",
+    "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/prod/POST/internal/platform/email/start",
+    "expected": "implicitDeny",
+    "actual": "implicitDeny"
+  },
+  {
+    "test": "bff-invoke",
+    "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/start-unknown",
+    "expected": "implicitDeny",
+    "actual": "implicitDeny"
+  }
+]

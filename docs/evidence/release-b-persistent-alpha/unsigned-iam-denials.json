@@ -1,0 +1,27 @@
+[
+  {
+    "path": "/internal/platform/email/start",
+    "method": "POST",
+    "unsignedStatus": 403
+  },
+  {
+    "path": "/internal/platform/email/finish",
+    "method": "POST",
+    "unsignedStatus": 403
+  },
+  {
+    "path": "/internal/platform/email/session",
+    "method": "POST",
+    "unsignedStatus": 403
+  },
+  {
+    "path": "/internal/platform/email/handoff",
+    "method": "POST",
+    "unsignedStatus": 403
+  },
+  {
+    "path": "/internal/platform/email/advanced-request",
+    "method": "POST",
+    "unsignedStatus": 403
+  }
+]

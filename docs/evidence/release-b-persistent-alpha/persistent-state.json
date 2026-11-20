@@ -1,0 +1,85 @@
+{
+  "region": "us-east-1",
+  "routes": {
+    "iamInternalRoutes": [
+      {
+        "RouteKey": "POST /internal/platform/email/handoff",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      },
+      {
+        "RouteKey": "POST /internal/platform/email/start",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      },
+      {
+        "RouteKey": "POST /internal/platform/email/advanced-request",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      },
+      {
+        "RouteKey": "POST /internal/platform/email/finish",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      },
+      {
+        "RouteKey": "POST /internal/platform/email/session",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      }
+    ],
+    "originalUnchanged": 3,
+    "total": 8
+  },
+  "resources": {
+    "added": 7,
+    "inlinePolicies": 2,
+    "temporaryGuardResources": 0,
+    "iamRoutes": 5,
+    "newPoolsTablesDomainsDistributionsBuckets": 0
+  },
+  "captured": "2026-11-20T00:57:56.2279206Z",
+  "account": "771049112957",
+  "persistent": true,
+  "cloudfront": {
+    "id": "E1C4AJI9FUE47B",
+    "status": "Deployed",
+    "exactEnabledConfiguration": true
+  },
+  "boundary": {
+    "exactApprovedAppend": true,
+    "originalDefaultRetained": "v2",
+    "arn": "arn:aws:iam::771049112957:policy/decisiontree-alpha-staging-runtime-boundary",
+    "default": "v7"
+  },
+  "functions": [
+    {
+      "shared": true,
+      "live": "4",
+      "name": "engent-platform-alpha-api",
+      "codeSha256": "C1nteA1j7IfdKAn23eyf0x0q63/FSQ3t1yqS/HREwRA=",
+      "releaseB": true
+    },
+    {
+      "shared": true,
+      "live": "15",
+      "name": "decisiontree-alpha-staging-api",
+      "codeSha256": "MTni6obXX1J47FAiIDxW4JVqdtGjDJJN731x6fC1fVs=",
+      "releaseB": true
+    }
+  ],
+  "headers": {
+    "onlyApprovedThreeFieldsChanged": true,
+    "id": "b5d73939-4c3d-4a75-aca8-45d6bb7b1f7e",
+    "cspOverride": false,
+    "referrerOverride": false,
+    "referrer": "strict-origin"
+  },
+  "registration": {
+    "cognitoSelfSignupClosed": true,
+    "flagRevision": 6,
+    "allPoolSettingsUnchanged": true,
+    "guardAbsent": true,
+    "applicationAdmissionClosed": true
+  }
+}
