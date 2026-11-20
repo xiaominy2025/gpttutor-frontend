@@ -15,10 +15,10 @@ const logo = '/assets/Engent Labs Transparent.png';
 const treeUrl = import.meta.env.VITE_VERIFIED_DECISION_TREE_URL;
 
 function MarketingLayout({ explore, coachNav, children, onSharedLaunch }) {
-  const { hash, pathname } = useLocation();
+  const { hash, pathname, search } = useLocation();
   const [headerAccount,setHeaderAccount]=useState(null);
   const bHeader=import.meta.env.VITE_RELEASE_B_EMAIL_ENABLED==='true';
-  const accountStatus=headerAccount?.unavailable?'Account unavailable':headerAccount?.pendingSignIn?'Sign-in pending':headerAccount?.signedIn?(headerAccount.entitlements?.tree?.advanced?'Student · Decision Tree Advanced':'Student'):'Guest';
+  const accountStatus=headerAccount?.unavailable?'Account unavailable':headerAccount?.pendingSignIn?'Sign-in pending':headerAccount?.signedIn?(headerAccount.entitlements?.tree?.advanced?'Student · Tree Advanced':'Student'):'Guest';
   useEffect(() => {
     document.title = explore ? 'Explore Decision Coaches | Engent Labs' : 'Engent Labs | Interactive Decision Coaching';
     return () => { document.title = 'Engent Labs | Interactive Decision Coaching'; };
@@ -31,7 +31,7 @@ function MarketingLayout({ explore, coachNav, children, onSharedLaunch }) {
 
   return <div className="engent-site">
     <a className="engent-skip" href="#engent-main">Skip to content</a>
-    {bHeader?<EngentHeader homeUrl={treeUrl==='https://d6owpirihdsus.cloudfront.net/'?'/engent-alpha/':'https://www.engentlabs.com/'} logoUrl={logo} pageName={explore?(pathname.includes('/cases')?'Business Case Podcasts':'Explore Decision Coaches'):'Interactive Decision Coaching'} status={accountStatus} navigation={pathname.replace(/\/+$/,'')!=='/explore'?(coachNav??<Link to="/explore">Explore Coaches</Link>):null}><ReleaseBAccess onAccountState={setHeaderAccount} onSharedLaunch={onSharedLaunch}/></EngentHeader>:<header className="engent-header">
+    {bHeader?<EngentHeader homeUrl={treeUrl==='https://d6owpirihdsus.cloudfront.net/'?'/engent-alpha/':'https://www.engentlabs.com/'} logoUrl={logo} pageName={explore?(pathname.includes('/cases')?'Business Case Podcasts':'Explore Decision Coaches'):'Interactive Decision Coaching'} status={accountStatus} navigation={pathname.replace(/\/+$/,'')!=='/explore'?(coachNav??<Link to="/explore">Explore Coaches</Link>):null}><ReleaseBAccess entryRequest={pathname+search} onAccountState={setHeaderAccount} onSharedLaunch={onSharedLaunch}/></EngentHeader>:<header className="engent-header">
       <div className="engent-wrap engent-header-row">
         <Link to="/" aria-label="Engent Labs home"><img src={logo} alt="Engent Labs" width="152" height="48" /></Link>
         {pathname.replace(/\/+$/, '') !== '/explore' &&
