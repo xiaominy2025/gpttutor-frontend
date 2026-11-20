@@ -2,6 +2,12 @@
 
 Implements the owner-approved minimal plan from frontend Issue #11, comment 7051413012. No deployment is included. Existing published Alpha remains the rollback baseline (frontend `0dc4258`, Tree `4384f65`; platform Lambda 4 and Tree Lambda 17).
 
+## Source pins
+
+- Frontend runtime implementation: `bea0ba24e4e9dc1634ef1924659a19966719fd25`, branch `codex/issue-11-email-bridge`, draft PR #12.
+- Tree implementation: `ffda73eb69bcd4ea4517fa575c8859be086459c6`, draft PR #16.
+- Subsequent frontend documentation/evidence commits do not alter runtime source.
+
 ## Changes and contract
 
 Homepage/Explore uses the compact `Advanced` status. The account menu says `Decision Tree access: Advanced`; approved-request chatter is hidden for Advanced, while Student access requests and pending status remain available.
@@ -17,6 +23,7 @@ Decision Tree owns its scoped menu and notification integration in draft PR #16.
 - `npx vitest run tests/platform --maxWorkers=2`: 88 tests in 23 files passed, including eight new notification/race/menu/throttle cases.
 - `npm run build`: passed. The final Alpha-enabled local build also passed using the existing build-release-b convention and a separate ignored output directory.
 - `node scripts/test-release-b-account-sync.mjs <frontend-web> <tree-web>`: four paired flows passed (Student and Advanced at desktop 1365x900/mobile 390x844). Real browser channel delivery updated hidden Explore after Tree logout without focus or timer; role-specific menus, automatic Guest entry, synthetic sign-in return, and same-page logout passed. All requests were fulfilled from local assets/fixtures: zero real emails or forwarded AWS requests.
+- Tree owner verification: 343 unit tests, 23 built-bundle browser tests, TypeScript and production-mode build passed. The initial concurrent unit run had a backend initialization timeout; the isolated full rerun passed.
 - Shared JSX SHA256: `a6a21e110313f53b4274c3b9e2d15c2a8913b404124cf125e3cc74340e579459`; CSS: `3047654a78e263cebe4f50eb8956ea0a25edc1514989f2bc1eb7908052b17510`.
 - Paired browser receipt: [paired-browser.json](evidence/release-b-account-ux-20261120/paired-browser.json).
 
