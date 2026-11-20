@@ -1,0 +1,622 @@
+{
+  "manifest": "703abb1db3027b0fba158327c62d415887929d815a0acc19a79911bdb06a70de",
+  "rows": [
+    {
+      "owner": "platform",
+      "file": "assets/index-B7L293Du.js",
+      "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/index-B7L293Du.js",
+      "body": "C:\\Users\\xmkya\\.codex\\visualizations\\2026\\11\\13\\01a1d68a-af2d-7b72-8e11-e2dfff64d23e\\release-preparation\\paired-alpha-account-ux-20261120\\frontend\\source\\.artifacts\\release-b-alpha-enabled\\web\\assets\\index-B7L293Du.js",
+      "sha256": "bf44aaa3262e6a830379bdaec2f4b96610dfee051262db9c96d0c52a347c59c7",
+      "contentType": "application/javascript; charset=utf-8",
+      "cacheControl": "public,max-age=31536000,immutable",
+      "action": "stage-if-absent",
+      "baselineVersion": null,
+      "baselineEtag": null
+    },
+    {
+      "owner": "platform",
+      "file": "index.html",
+      "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/index.html",
+      "body": "C:\\Users\\xmkya\\.codex\\visualizations\\2026\\11\\13\\01a1d68a-af2d-7b72-8e11-e2dfff64d23e\\release-preparation\\paired-alpha-account-ux-20261120\\frontend\\source\\.artifacts\\release-b-alpha-enabled\\web\\index.html",
+      "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+      "contentType": "text/html; charset=utf-8",
+      "cacheControl": "no-cache,max-age=0,must-revalidate",
+      "action": "conditional-promote",
+      "baselineVersion": "t1dDfwRpS5HMGmcVShsPbu2WRtHDvVPG",
+      "baselineEtag": "\"f2e159ce216a6ae109acf3a83103ed78\"",
+      "baselineBody": "C:\\Users\\xmkya\\.codex\\worktrees\\tree-shared-auth\\ai-decision-tree\\.artifacts\\paired-alpha-account-ux-20261120\\private\\platform-web\\index.html",
+      "baselineSha256": "1c5ea23ee1dd6524d37b99bf603a3287eca371ac1a2e338ec29c3b6e8c29896c",
+      "baselineContentType": "text/html; charset=utf-8",
+      "baselineCacheControl": "no-cache,max-age=0,must-revalidate",
+      "baselineMetadata": {
+        "sha256": "1c5ea23ee1dd6524d37b99bf603a3287eca371ac1a2e338ec29c3b6e8c29896c",
+        "engent-release-id": "paired-alpha-ux-edb39ec5-bb84-4190-b3ad-d2a02561d221",
+        "engent-write-id": "f256b6e4-05c5-4454-9c84-d48698d819f8"
+      }
+    },
+    {
+      "owner": "tree",
+      "file": "assets/Administrator-B57GUtAg.js",
+      "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/Administrator-B57GUtAg.js",
+      "body": "C:\\Users\\xmkya\\.codex\\worktrees\\tree-shared-auth\\ai-decision-tree\\.artifacts\\paired-alpha-account-ux-20261120\\tree\\web\\assets\\Administrator-B57GUtAg.js",
+      "sha256": "23a805b16c32f3abfb14b48604cb83f31b34e9c90784baf7c9c758967303684a",
+      "contentType": "application/javascript; charset=utf-8",
+      "cacheControl": "public,max-age=31536000,immutable",
+      "action": "stage-if-absent",
+      "baselineVersion": null,
+      "baselineEtag": null
+    },
+    {
+      "owner": "tree",
+      "file": "assets/index-BmZghFIk.js",
+      "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/index-BmZghFIk.js",
+      "body": "C:\\Users\\xmkya\\.codex\\worktrees\\tree-shared-auth\\ai-decision-tree\\.artifacts\\paired-alpha-account-ux-20261120\\tree\\web\\assets\\index-BmZghFIk.js",
+      "sha256": "71956e949a57ed7a6c60bbb8bcc8f833d09b525c57c3a983a7d9655b196b12ea",
+      "contentType": "application/javascript; charset=utf-8",
+      "cacheControl": "public,max-age=31536000,immutable",
+      "action": "stage-if-absent",
+      "baselineVersion": null,
+      "baselineEtag": null
+    },
+    {
+      "owner": "tree",
+      "file": "index.html",
+      "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/index.html",
+      "body": "C:\\Users\\xmkya\\.codex\\worktrees\\tree-shared-auth\\ai-decision-tree\\.artifacts\\paired-alpha-account-ux-20261120\\tree\\web\\index.html",
+      "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+      "contentType": "text/html; charset=utf-8",
+      "cacheControl": "no-cache,max-age=0,must-revalidate",
+      "action": "conditional-promote",
+      "baselineVersion": "SMkkMePw87Wm_GBiA6v2F8tJsdmkyzeI",
+      "baselineEtag": "\"03b6e58188f7b018a7af88534e833f65\"",
+      "baselineBody": "C:\\Users\\xmkya\\.codex\\worktrees\\tree-shared-auth\\ai-decision-tree\\.artifacts\\paired-alpha-account-ux-20261120\\tree\\receipt\\frontend\\index.html",
+      "baselineSha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb",
+      "baselineContentType": "text/html; charset=utf-8",
+      "baselineCacheControl": "no-cache,max-age=0,must-revalidate",
+      "baselineMetadata": {
+        "sha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb",
+        "engent-release-id": "paired-alpha-ux-edb39ec5-bb84-4190-b3ad-d2a02561d221",
+        "engent-write-id": "1cdf4206-9ee5-4d34-9a8f-733555735613"
+      }
+    },
+    {
+      "owner": "tree",
+      "file": "admin",
+      "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin",
+      "body": "C:\\Users\\xmkya\\.codex\\worktrees\\tree-shared-auth\\ai-decision-tree\\.artifacts\\paired-alpha-account-ux-20261120\\tree\\web\\index.html",
+      "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+      "contentType": "text/html; charset=utf-8",
+      "cacheControl": "no-cache,max-age=0,must-revalidate",
+      "action": "conditional-promote",
+      "baselineVersion": "yevzylQ4I2k2PNkjwM.1_9T_x1DvANBC",
+      "baselineEtag": "\"03b6e58188f7b018a7af88534e833f65\"",
+      "baselineBody": "C:\\Users\\xmkya\\.codex\\worktrees\\tree-shared-auth\\ai-decision-tree\\.artifacts\\paired-alpha-account-ux-20261120\\tree\\receipt\\frontend\\admin",
+      "baselineSha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb",
+      "baselineContentType": "text/html; charset=utf-8",
+      "baselineCacheControl": "no-cache,max-age=0,must-revalidate",
+      "baselineMetadata": {
+        "sha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb",
+        "engent-release-id": "paired-alpha-ux-edb39ec5-bb84-4190-b3ad-d2a02561d221",
+        "engent-write-id": "02d97773-bfc0-48f5-82df-fcdbe2f52a87"
+      }
+    },
+    {
+      "owner": "tree",
+      "file": "admin/",
+      "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin/",
+      "body": "C:\\Users\\xmkya\\.codex\\worktrees\\tree-shared-auth\\ai-decision-tree\\.artifacts\\paired-alpha-account-ux-20261120\\tree\\web\\index.html",
+      "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+      "contentType": "text/html; charset=utf-8",
+      "cacheControl": "no-cache,max-age=0,must-revalidate",
+      "action": "conditional-promote",
+      "baselineVersion": "mlBetVwmVN3rP3LpwvpewrYE6ciMQucE",
+      "baselineEtag": "\"03b6e58188f7b018a7af88534e833f65\"",
+      "baselineBody": "C:\\Users\\xmkya\\.codex\\worktrees\\tree-shared-auth\\ai-decision-tree\\.artifacts\\paired-alpha-account-ux-20261120\\tree\\receipt\\frontend\\admin__",
+      "baselineSha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb",
+      "baselineContentType": "text/html; charset=utf-8",
+      "baselineCacheControl": "no-cache,max-age=0,must-revalidate",
+      "baselineMetadata": {
+        "sha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb",
+        "engent-release-id": "paired-alpha-ux-edb39ec5-bb84-4190-b3ad-d2a02561d221",
+        "engent-write-id": "4a7ce1c2-f605-4a6a-8f5f-6bf222fe5a8c"
+      }
+    }
+  ],
+  "references": [
+    {
+      "file": "assets/01_American_Airlines-CgIFmZHL.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/01_American_Airlines-CgIFmZHL.mp3",
+      "baselineVersion": "lnQ1aeJAECtD1.3jnhpz9A3EIXH.l0sh",
+      "baselineEtag": "\"e969e50d729ba081c00f27ddd0895226\""
+    },
+    {
+      "file": "assets/01_Mon_Klarna_The_AI_Efficiency_Trap-CqMfc8rY.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-CqMfc8rY.mp3",
+      "baselineVersion": "I66GxH1KyauZndkrIkvDqMJBKTGrGmgD",
+      "baselineEtag": "\"def13b7dbe71fccad60ea54ea8314f8e\""
+    },
+    {
+      "file": "assets/01_Mon_Klarna_The_AI_Efficiency_Trap-DDc6qR7Z.txt",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-DDc6qR7Z.txt",
+      "baselineVersion": "S3JydHtG8qx868AQXEb45lW6mdQap_sI",
+      "baselineEtag": "\"89e03af4bbf8504f484fb504e75168ed\""
+    },
+    {
+      "file": "assets/02_Zara-Dth55lmH.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/02_Zara-Dth55lmH.mp3",
+      "baselineVersion": "l53lQpYe3HLckAvKKKCowSPlhAdOd3.P",
+      "baselineEtag": "\"4503e1401792555f621cd229752e783a\""
+    },
+    {
+      "file": "assets/03_UPS-Ds_mxdf2.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/03_UPS-Ds_mxdf2.mp3",
+      "baselineVersion": "HVNHgHB8KXBl8pD5OXZNgshPkUCVaiBX",
+      "baselineEtag": "\"7aa6f6394ea648eec1466e742a3bb12c\""
+    },
+    {
+      "file": "assets/04_Lockheed_Martin_F35_Supply_Chain-9IAdgaVZ.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/04_Lockheed_Martin_F35_Supply_Chain-9IAdgaVZ.mp3",
+      "baselineVersion": "bEpZkJ._.kkjO2ItzhFIFZC2kYiX.lnY",
+      "baselineEtag": "\"8f17fdd65b0f066c8144718710ef37ff\""
+    },
+    {
+      "file": "assets/04_Lockheed_Martin_F35_Supply_Chain-CDXIYOui.txt",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/04_Lockheed_Martin_F35_Supply_Chain-CDXIYOui.txt",
+      "baselineVersion": "Qepc7UMbQKsUBqH5aTcDz1YZx1jV2vLi",
+      "baselineEtag": "\"46a8cd41d64330eeb4e4457a11ed132a\""
+    },
+    {
+      "file": "assets/04_Thu_Intuitive_The_Installed_Base_Engine-93QS8sZE.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/04_Thu_Intuitive_The_Installed_Base_Engine-93QS8sZE.mp3",
+      "baselineVersion": "gs0fFr8V6jcH.D0I8Q65LYFPPHPe6d1w",
+      "baselineEtag": "\"42783ab1cbc4c53f917b34e30ddb0707\""
+    },
+    {
+      "file": "assets/04_Thu_Intuitive_The_Installed_Base_Engine-DaXeXltS.txt",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/04_Thu_Intuitive_The_Installed_Base_Engine-DaXeXltS.txt",
+      "baselineVersion": "QzwFHlOFqWaVB4Df1YQyCyBQaSsoHxcV",
+      "baselineEtag": "\"800f383b26e56a824a1ea0b292b13d51\""
+    },
+    {
+      "file": "assets/05_Chevron-BgstojSx.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/05_Chevron-BgstojSx.mp3",
+      "baselineVersion": "tO4iPedFgl27hnTNwhYTqN5gexYosXvj",
+      "baselineEtag": "\"810a630a275f12a15cb3b33ec0d70df5\""
+    },
+    {
+      "file": "assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-BrLOCXbt.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-BrLOCXbt.mp3",
+      "baselineVersion": "fhybH7f4j1ESuqcqu10Fn.YKE.hIsMpp",
+      "baselineEtag": "\"bb5443e7e49ba6e350eeae6ec59e0d2b\""
+    },
+    {
+      "file": "assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-g8LUerjA.txt",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-g8LUerjA.txt",
+      "baselineVersion": "ym1NO8W2l2lXVUAWgq7jyHdE8XSaxKZ.",
+      "baselineEtag": "\"6f1e7cd44525dafbc90f0200dbb0880f\""
+    },
+    {
+      "file": "assets/06_Los_Alamos-D7hdSHvj.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/06_Los_Alamos-D7hdSHvj.mp3",
+      "baselineVersion": "a7Fqjto6O8KgQjGvGOszvfT4Xhcp0Pc4",
+      "baselineEtag": "\"a987c0ab4a5582cbfb1fcaac987f505e\""
+    },
+    {
+      "file": "assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-1BPefrVc.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-1BPefrVc.mp3",
+      "baselineVersion": "OuzFIUdLoCHBWjhTv.lj6bL7FwbMENBz",
+      "baselineEtag": "\"1eeed09ea4a3d2313ae8a8251c61fbc8\""
+    },
+    {
+      "file": "assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-DZN36p4S.txt",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-DZN36p4S.txt",
+      "baselineVersion": "Q9weBI4fEM_Qnvh9INOeywo4g2j.RGyb",
+      "baselineEtag": "\"a077ce44e4936c817c0038f1f7a6ebff\""
+    },
+    {
+      "file": "assets/coach-paper-BizU8FEU.webp",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/coach-paper-BizU8FEU.webp",
+      "baselineVersion": "l0s6NHViy5BDHWlzmBhr8ZBFhe8DoGuk",
+      "baselineEtag": "\"972fdefbf89c7f0c28f700f5a611b72d\""
+    },
+    {
+      "file": "assets/decision-framework-Df8AjjeR.webp",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/decision-framework-Df8AjjeR.webp",
+      "baselineVersion": "KxaAdOgayT_vQnos.2oFG_1NfOUwKkL6",
+      "baselineEtag": "\"bb7cc0be078c842a08a79409f5523a05\""
+    },
+    {
+      "file": "assets/decision-making-demo.png",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/decision-making-demo.png",
+      "baselineVersion": "6RF.Pi0VtWMjweTSWObRJ0_V9TQ7Wlyr",
+      "baselineEtag": "\"0633bbb0998cbba7abd2312530bce6aa\""
+    },
+    {
+      "file": "assets/Engent Labs Transparent.png",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/Engent Labs Transparent.png",
+      "baselineVersion": ".3HGACpM9g1uEiGrHrPHBkhHWqzZz5sY",
+      "baselineEtag": "\"8d4da4f56cacddb74753c60b49b353a5\""
+    },
+    {
+      "file": "assets/Engent Labs.mp4",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/Engent Labs.mp4",
+      "baselineVersion": "I7xpcOc1Ppj_SjSic44quBys25e8HDVF",
+      "baselineEtag": "\"beaba64b59cc2f506cd9f780a7f26dbe\""
+    },
+    {
+      "file": "assets/index-lUlSxSql.css",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/index-lUlSxSql.css",
+      "baselineVersion": "rDeJWx6uKpDVv5.qsOkLdi6RsvYOGVyJ",
+      "baselineEtag": "\"f8ff1f098ecbe2867fdd438f1c479e1b\""
+    },
+    {
+      "file": "assets/Logo-13TNTF-a.png",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/Logo-13TNTF-a.png",
+      "baselineVersion": "0pSHHA1_xvJR7bR_1i_QyAbXIAuEfJk0",
+      "baselineEtag": "\"ef9ad7ba18abb601237bace0298dc16a\""
+    },
+    {
+      "file": "assets/logo-CNq5NF33.png",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/logo-CNq5NF33.png",
+      "baselineVersion": "hYj2tf8xyYZFRbpDpC4tkVRfEjzaUqLC",
+      "baselineEtag": "\"ef9ad7ba18abb601237bace0298dc16a\""
+    },
+    {
+      "file": "assets/LogoSplash-BuLNSCWs.png",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/LogoSplash-BuLNSCWs.png",
+      "baselineVersion": "zeo1zpHbAl.rlFUIrPdcxgxsRgpKP8or",
+      "baselineEtag": "\"378a95100c6e87efc307fb768d9d39fd\""
+    },
+    {
+      "file": "assets/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring-DiHXWmz0.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring-DiHXWmz0.mp3",
+      "baselineVersion": "a1rLxFQhj5aAZ1owzDZ5r2fTHq96ZAJk",
+      "baselineEtag": "\"db2c1d77202111d22a5a10972787d23d\""
+    },
+    {
+      "file": "assets/Session_6_Simulation_02_Lockheed_Schedule_Risk-CbPjqUSa.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/Session_6_Simulation_02_Lockheed_Schedule_Risk-CbPjqUSa.mp3",
+      "baselineVersion": "Rp.1ZQpvgXiv4eriQs5UzM.RAIYCiRP5",
+      "baselineEtag": "\"08db6c34a195c52d57f2477c2c327e27\""
+    },
+    {
+      "file": "assets/Session_6_Simulation_03_Energy_Investment_Real_Options-SRmctJ3A.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/Session_6_Simulation_03_Energy_Investment_Real_Options-SRmctJ3A.mp3",
+      "baselineVersion": "BQ2kG267VQOUp8_xU8CeEIDu4Jddkktz",
+      "baselineEtag": "\"994525e92da36b26fd7295bc973485a5\""
+    },
+    {
+      "file": "assets/Session_6_Simulation_04_NREL_Grid_Reliability-BovZRlxA.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/Session_6_Simulation_04_NREL_Grid_Reliability-BovZRlxA.mp3",
+      "baselineVersion": "b1AqaPh5VEsXXw0XapwdQI6KESAx1DQ2",
+      "baselineEtag": "\"51a22f7654ff7f23f79246f8d39c872a\""
+    },
+    {
+      "file": "assets/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo-aqQrshqL.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo-aqQrshqL.mp3",
+      "baselineVersion": "WeZAA3xMc1qcF1wWLjvsEq_Hx1QBgMRY",
+      "baselineEtag": "\"25456b14bd8f3c5acccf84396a561351\""
+    },
+    {
+      "file": "assets/Session_6_Simulation_06_Pfizer_Drug_Development-C4BRYLHe.mp3",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/Session_6_Simulation_06_Pfizer_Drug_Development-C4BRYLHe.mp3",
+      "baselineVersion": "ra5wgb.0sNyo9ykTswLKkZZ02rujynl5",
+      "baselineEtag": "\"c712a7665247b09806f356436484bbb4\""
+    },
+    {
+      "file": "assets/User by Country.png",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/User by Country.png",
+      "baselineVersion": "fkkUM3EebTXu8aVbsIk1AhPt1tp7UQqS",
+      "baselineEtag": "\"0a6138e6c5a7e0de918a89556c16b813\""
+    },
+    {
+      "file": "assets/vendor-BYOhtk1D.js",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/vendor-BYOhtk1D.js",
+      "baselineVersion": "qSrm0tniZhE5m3W72YDixo4Rthzw_dfT",
+      "baselineEtag": "\"14c60b31f20659b7c73e519327641d68\""
+    },
+    {
+      "file": "courses/decision/ui_metadata.json",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/courses/decision/ui_metadata.json",
+      "baselineVersion": "OhVDHk7e4Igthm2bGJ0zzBws.G.Q1lx9",
+      "baselineEtag": "\"c303081d85497f857a6a5c937dfda6cc\""
+    },
+    {
+      "file": "frontend_diagnostic.js",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/frontend_diagnostic.js",
+      "baselineVersion": "M6n18HxXvVLudUFRCpN3JUnKsEHz20Ly",
+      "baselineEtag": "\"996c974377fe10e6212324f024b8263d\""
+    },
+    {
+      "file": "vite.svg",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/vite.svg",
+      "baselineVersion": "h8LgZXj9ZQCFg8juGQqaGvUZsL6OxUxJ",
+      "baselineEtag": "\"8e3a10e157f75ada21ab742c022d5430\""
+    },
+    {
+      "file": "assets/engent-labs-logo-13TNTF-a.png",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/engent-labs-logo-13TNTF-a.png",
+      "baselineVersion": "G2mDvecR4GU7XRrYqGvvpYypyuxivMSQ",
+      "baselineEtag": "\"ef9ad7ba18abb601237bace0298dc16a\""
+    },
+    {
+      "file": "assets/index-D_KkOX1u.css",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/index-D_KkOX1u.css",
+      "baselineVersion": "no3b0FeMixzUJKDB24TMDz9Akj9Eo0LV",
+      "baselineEtag": "\"349e0adbfb673cd971b543720e47c96a\""
+    },
+    {
+      "file": "assets/passwordless-B6nlmfQo.js",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/passwordless-B6nlmfQo.js",
+      "baselineVersion": "Ep3ZpOj2Kxkk4wyz7r0Q8dAcB9xbof6B",
+      "baselineEtag": "\"7da03d1ec1e0a6f91516a15078547405\""
+    }
+  ],
+  "protectedJobs": [
+    {
+      "id": "platform-live",
+      "input": {
+        "FunctionName": "engent-platform-alpha-api",
+        "Qualifier": "live"
+      },
+      "operation": "get-function-configuration",
+      "service": "lambda",
+      "sha256": "c38e357ce27160ea60f27b05ccfcef88fd87cebd2b3a1c1731a274e9512434f0"
+    },
+    {
+      "id": "platform-latest",
+      "input": {
+        "FunctionName": "engent-platform-alpha-api"
+      },
+      "operation": "get-function-configuration",
+      "service": "lambda",
+      "sha256": "8ad8bb3fe3c972bead903070fb04817ba7358e4f7122c2ffa11a31f6eb0fb378"
+    },
+    {
+      "id": "platform-alias",
+      "input": {
+        "Name": "live",
+        "FunctionName": "engent-platform-alpha-api"
+      },
+      "operation": "get-alias",
+      "service": "lambda",
+      "sha256": "f8b7bcebe5834d9fc80e53ccbf12491f13dcb42e33397f0e3cc6f234351b3297"
+    },
+    {
+      "id": "tree-live",
+      "input": {
+        "FunctionName": "decisiontree-alpha-staging-api",
+        "Qualifier": "live"
+      },
+      "operation": "get-function-configuration",
+      "service": "lambda",
+      "sha256": "29f08ff2d3ff116c0683c0622d0dd8e8d0c5bc985d3088e7685e37c1cacae6e0"
+    },
+    {
+      "id": "tree-latest",
+      "input": {
+        "FunctionName": "decisiontree-alpha-staging-api"
+      },
+      "operation": "get-function-configuration",
+      "service": "lambda",
+      "sha256": "b216f0bb8d4d829953c80115ee5bad5fe1c180a25ba8ebde1215e6ccb9edca9d"
+    },
+    {
+      "id": "tree-alias",
+      "input": {
+        "Name": "live",
+        "FunctionName": "decisiontree-alpha-staging-api"
+      },
+      "operation": "get-alias",
+      "service": "lambda",
+      "sha256": "4cc5bfd06d36048d4349bd666501f176f02e5d0d9010ce8ab6aaeb74e15c7bd7"
+    },
+    {
+      "id": "cloudfront",
+      "input": {
+        "Id": "E1C4AJI9FUE47B"
+      },
+      "operation": "get-distribution-config",
+      "service": "cloudfront",
+      "sha256": "63f3e02b1201f851512b202ace5051c53a4e4a41b5d0974de8b5cb6b5f834e15"
+    },
+    {
+      "id": "headers",
+      "input": {
+        "Id": "b5d73939-4c3d-4a75-aca8-45d6bb7b1f7e"
+      },
+      "operation": "get-response-headers-policy",
+      "service": "cloudfront",
+      "sha256": "7347fec1141146768bb0dcacf4ac9678b58b2f17068b2635a9a5ef8a27792c87"
+    },
+    {
+      "id": "student-pool",
+      "input": {
+        "UserPoolId": "us-east-1_CipTwwDZb"
+      },
+      "operation": "describe-user-pool",
+      "service": "cognito-idp",
+      "sha256": "f3dffacea8d40e657a7315af81698b9771ce0f5d0a680ca28a793fcfa7710548"
+    },
+    {
+      "id": "admin-pool",
+      "input": {
+        "UserPoolId": "us-east-1_b65OCB64G"
+      },
+      "operation": "describe-user-pool",
+      "service": "cognito-idp",
+      "sha256": "c668df94c943f3179127ad073b8bbc334a406d5651eb51db9236a9c2d5ad1fb3"
+    },
+    {
+      "id": "registration",
+      "input": {
+        "ConsistentRead": true,
+        "Key": {
+          "sk": {
+            "S": "STATE"
+          },
+          "pk": {
+            "S": "REGISTRATION#CONFIG"
+          }
+        },
+        "TableName": "decisiontree-alpha-staging-Data-JH4B4OFXWER5"
+      },
+      "operation": "get-item",
+      "service": "dynamodb",
+      "sha256": "e36b0364221c12f0f9d7e742a87a8917a0b64873009a7ee9bc196686c584de8c"
+    },
+    {
+      "id": "routes",
+      "input": {
+        "ApiId": "8qmgd1ghdi"
+      },
+      "operation": "get-routes",
+      "service": "apigatewayv2",
+      "sha256": "49ec09d35610ffe1fd3336e2b9120d828561520e8e726c73739d4faa8479e0b2"
+    },
+    {
+      "id": "engent-platform-alpha-runtime-role",
+      "input": {
+        "RoleName": "engent-platform-alpha-runtime"
+      },
+      "operation": "get-role",
+      "service": "iam",
+      "sha256": "63529940ce4f4460adffac2f5b4f4567a310de3dbbe12b477b0df18f33647e74"
+    },
+    {
+      "id": "engent-platform-alpha-runtime-policies-list",
+      "input": {
+        "RoleName": "engent-platform-alpha-runtime"
+      },
+      "operation": "list-role-policies",
+      "service": "iam",
+      "sha256": "cda3505b9bcff710365337fd25eb8d0148275834f0fde130a4a7cf5fbb938b47"
+    },
+    {
+      "id": "engent-platform-alpha-runtime-attached",
+      "input": {
+        "RoleName": "engent-platform-alpha-runtime"
+      },
+      "operation": "list-attached-role-policies",
+      "service": "iam",
+      "sha256": "224c4a306a9376c727b8135b830121794bc589c004187e07ca3163971f6a58ce"
+    },
+    {
+      "id": "engent-platform-alpha-runtime-inline-release-a-auth-only",
+      "input": {
+        "RoleName": "engent-platform-alpha-runtime",
+        "PolicyName": "release-a-auth-only"
+      },
+      "operation": "get-role-policy",
+      "service": "iam",
+      "sha256": "dae5d07542726ec68978b54c941bf188271fd3a3ff60b48b81a6b9f9135c6b7f"
+    },
+    {
+      "id": "engent-platform-alpha-runtime-inline-release-b-email-bffinvoke",
+      "input": {
+        "RoleName": "engent-platform-alpha-runtime",
+        "PolicyName": "release-b-email-bffinvoke"
+      },
+      "operation": "get-role-policy",
+      "service": "iam",
+      "sha256": "88f800c1361fe1445d2faecf01a2276917484350ccb5842821b04f71882c0abd"
+    },
+    {
+      "id": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533-role",
+      "input": {
+        "RoleName": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533"
+      },
+      "operation": "get-role",
+      "service": "iam",
+      "sha256": "46d53cc74a967e23f1f51457083529369bff459c228f0e4c7c537d8b059adf20"
+    },
+    {
+      "id": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533-policies-list",
+      "input": {
+        "RoleName": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533"
+      },
+      "operation": "list-role-policies",
+      "service": "iam",
+      "sha256": "8c5e437d76550f377e275063a0a6de255b39de647d089cb44432271f92583b60"
+    },
+    {
+      "id": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533-attached",
+      "input": {
+        "RoleName": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533"
+      },
+      "operation": "list-attached-role-policies",
+      "service": "iam",
+      "sha256": "224c4a306a9376c727b8135b830121794bc589c004187e07ca3163971f6a58ce"
+    },
+    {
+      "id": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533-inline-isolated-runtime",
+      "input": {
+        "RoleName": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533",
+        "PolicyName": "isolated-runtime"
+      },
+      "operation": "get-role-policy",
+      "service": "iam",
+      "sha256": "bc5b62c985321befb7c1697207416078d77a451ce47227345fa7e660d7f837fb"
+    },
+    {
+      "id": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533-inline-release-a-shared-session-delete",
+      "input": {
+        "RoleName": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533",
+        "PolicyName": "release-a-shared-session-delete"
+      },
+      "operation": "get-role-policy",
+      "service": "iam",
+      "sha256": "98c431d52360ae64671c80b6fe4319b82ffcccae43cc87a90011ec6cad78486c"
+    },
+    {
+      "id": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533-inline-release-b-email-treeleasecheck",
+      "input": {
+        "RoleName": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533",
+        "PolicyName": "release-b-email-treeleasecheck"
+      },
+      "operation": "get-role-policy",
+      "service": "iam",
+      "sha256": "70b0520675db4cdfa44c751d43154b95dd8982c980f83a9d20cdcc24dcfaf3e7"
+    },
+    {
+      "id": "tree-boundary-policy",
+      "input": {
+        "PolicyArn": "arn:aws:iam::771049112957:policy/decisiontree-alpha-staging-runtime-boundary"
+      },
+      "operation": "get-policy",
+      "service": "iam",
+      "sha256": "5895ddf30de8b8c4d4dd79dadacd730c61ce8d536cc16196e7f1a7c5f5d537bb"
+    },
+    {
+      "id": "tree-boundary-version",
+      "input": {
+        "PolicyArn": "arn:aws:iam::771049112957:policy/decisiontree-alpha-staging-runtime-boundary",
+        "VersionId": "v7"
+      },
+      "operation": "get-policy-version",
+      "service": "iam",
+      "sha256": "02fd23e8060357764313bf434325db546e1a5332dad1e9d8fc2d89e8a9aad387"
+    },
+    {
+      "id": "tree-boundary-versions",
+      "input": {
+        "PolicyArn": "arn:aws:iam::771049112957:policy/decisiontree-alpha-staging-runtime-boundary"
+      },
+      "operation": "list-policy-versions",
+      "service": "iam",
+      "sha256": "14f67810d0e7b2e612186cc5b908bd9f325e0467dc52609eb3c3df61a23d1f63"
+    }
+  ],
+  "viewer": {
+    "name": "engent-release-a-alpha-explore",
+    "etag": "E3AEGXETSR30VB",
+    "sha256": "72874804997909c1cd2293f7c420bd0648d56b9bc4f192da784807723c08ef93"
+  }
+}
