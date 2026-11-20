@@ -1,0 +1,7 @@
+{
+  "id": "admin-verify-completed",
+  "action": "admin-status",
+  "result": {
+    "http": 200
+  }
+}

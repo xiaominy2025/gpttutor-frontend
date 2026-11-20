@@ -1,0 +1,148 @@
+[
+  {
+    "viewport": "desktop",
+    "guestDirect": true,
+    "toggleOutsideEscape": true,
+    "emailAutoOpenedFocused": true,
+    "treeReturnIntent": true,
+    "logoutStayedOnPage": true,
+    "failedLogoutRetainsState": true,
+    "noOverflow": true,
+    "requests": [
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/email/bootstrap",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/email/start",
+        "method": "POST"
+      },
+      {
+        "path": "/api/platform/email/finish",
+        "method": "POST"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/logout",
+        "method": "POST"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/logout",
+        "method": "POST"
+      }
+    ],
+    "externalRequestsForwarded": 0
+  },
+  {
+    "viewport": "mobile",
+    "guestDirect": true,
+    "toggleOutsideEscape": true,
+    "emailAutoOpenedFocused": true,
+    "treeReturnIntent": true,
+    "logoutStayedOnPage": true,
+    "failedLogoutRetainsState": true,
+    "noOverflow": true,
+    "requests": [
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/email/bootstrap",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/email/start",
+        "method": "POST"
+      },
+      {
+        "path": "/api/platform/email/finish",
+        "method": "POST"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/logout",
+        "method": "POST"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/session",
+        "method": "GET"
+      },
+      {
+        "path": "/api/platform/logout",
+        "method": "POST"
+      }
+    ],
+    "externalRequestsForwarded": 0
+  }
+]

@@ -1,0 +1,130 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "SOURCE ONLY: bounded Release B route and inline policy proposal. No execution authorization.",
+  "Metadata": {
+    "Account": "771049112957",
+    "Region": "us-east-1",
+    "Stage": "alpha",
+    "RELEASE_B_EMAIL_ENABLED": "false",
+    "RequiresBoundaryAppendBeforeEnablement": true
+  },
+  "Resources": {
+    "EmailStartRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "8qmgd1ghdi",
+        "RouteKey": "POST /internal/platform/email/start",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      }
+    },
+    "EmailFinishRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "8qmgd1ghdi",
+        "RouteKey": "POST /internal/platform/email/finish",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      }
+    },
+    "EmailSessionRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "8qmgd1ghdi",
+        "RouteKey": "POST /internal/platform/email/session",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      }
+    },
+    "EmailHandoffRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "8qmgd1ghdi",
+        "RouteKey": "POST /internal/platform/email/handoff",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      }
+    },
+    "EmailAdvancedRequestRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "8qmgd1ghdi",
+        "RouteKey": "POST /internal/platform/email/advanced-request",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/1xwneaq"
+      }
+    },
+    "BffInvoke": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "release-b-email-bffinvoke",
+        "Roles": [
+          "engent-platform-alpha-runtime"
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "execute-api:Invoke",
+              "Resource": [
+                "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/start",
+                "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/finish",
+                "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/session",
+                "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/handoff",
+                "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/advanced-request"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "TreeLeaseCheck": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "release-b-email-treeleasecheck",
+        "Roles": [
+          "decisiontree-alpha-staging-ApiRole-tmQtkTYts533"
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "dynamodb:ConditionCheckItem",
+              "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+              "Condition": {
+                "Null": {
+                  "dynamodb:LeadingKeys": "false"
+                },
+                "ForAllValues:StringLike": {
+                  "dynamodb:LeadingKeys": [
+                    "SHARED#EMAIL-LEASE#*",
+                    "SESSION#*"
+                  ]
+                }
+              }
+            },
+            {
+              "Effect": "Allow",
+              "Action": "dynamodb:DeleteItem",
+              "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+              "Condition": {
+                "Null": {
+                  "dynamodb:LeadingKeys": "false"
+                },
+                "ForAllValues:StringLike": {
+                  "dynamodb:LeadingKeys": [
+                    "SHARED#EMAIL-LEASE#*",
+                    "SHARED#EMAIL-HANDOFF#*",
+                    "SHARED#SESSION#*"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

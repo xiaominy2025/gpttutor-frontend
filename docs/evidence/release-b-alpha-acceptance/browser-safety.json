@@ -1,0 +1,26 @@
+{
+  "notes": [
+    "Both runs used context-wide interception before visiting Tree.",
+    "First Student start preceded admission opening and returned generic 200; form was reset before successful start.",
+    "Blocked project writes include autosave/recovery attempts; no project-save acceptance claimed."
+  ],
+  "browserClosed": true,
+  "existingAccountRun": {
+    "blockedProjectWrites": 359,
+    "blockedPaidAi": 6,
+    "blockedOther": 9,
+    "forwardedProjectWrites": 0,
+    "forwardedPaidAi": 0,
+    "emailStarts": 2,
+    "finishes": 2
+  },
+  "studentRun": {
+    "blockedProjectWrites": 15,
+    "blockedPaidAi": 6,
+    "blockedOther": 4,
+    "forwardedProjectWrites": 0,
+    "forwardedPaidAi": 0,
+    "emailStarts": 3,
+    "finishes": 2
+  }
+}

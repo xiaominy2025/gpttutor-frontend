@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "status": "PROPOSED_NOT_APPLIED",
+  "authority": "Issue11 execution7023638164 stopped on unexpected security-header override; separate bounded amendment required",
+  "account": "771049112957",
+  "region": "us-east-1",
+  "policyId": "b5d73939-4c3d-4a75-aca8-45d6bb7b1f7e",
+  "policyName": "decisiontree-alpha-staging-security",
+  "capturedETag": "E13V1IB3VIYZZH",
+  "onlyDistribution": "E1C4AJI9FUE47B",
+  "runtimePins": {
+    "frontend": "5658560a879d1d032fba38330d3f913a2fd107a7",
+    "tree": "9e64a6889d041007ffd40e5738db3f9b07987224"
+  },
+  "changes": [
+    {
+      "path": "SecurityHeadersConfig.ReferrerPolicy.ReferrerPolicy",
+      "before": "no-referrer",
+      "after": "strict-origin"
+    },
+    {
+      "path": "SecurityHeadersConfig.ReferrerPolicy.Override",
+      "before": true,
+      "after": false
+    },
+    {
+      "path": "SecurityHeadersConfig.ContentSecurityPolicy.Override",
+      "before": true,
+      "after": false
+    }
+  ],
+  "preserve": "All other fields including static fallback CSP text, HSTS, HTTPS, frame/nosniff headers, CORS/cache/methods/cookies, authentication/Origin checks, MFA and permissions.",
+  "operatorAction": {
+    "action": "cloudfront:UpdateResponseHeadersPolicy",
+    "resource": "arn:aws:cloudfront::771049112957:response-headers-policy/b5d73939-4c3d-4a75-aca8-45d6bb7b1f7e",
+    "automaticIamGrant": false
+  },
+  "preconditions": [
+    "Fresh ETag and complete config snapshot",
+    "Revalidate policy associated only with Alpha distribution",
+    "Exact three-field diff; no null-Origin exception",
+    "Backend form responses remain no-store, nonce-bound and target-specific",
+    "Reapply only existing approved 13-resource Alpha package after amendment approval"
+  ],
+  "rollback": "Restore these three fields from captured full policy using fresh ETag, propagate and invalidate Alpha only; restore original aliases/configs/guard/admission/boundary and remove only owned stacks.",
+  "newAwsResources": 0,
+  "additionalFixedMonthlyCost": 0,
+  "productionAuthorized": false
+}

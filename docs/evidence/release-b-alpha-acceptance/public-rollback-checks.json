@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "originalS3ArtifactMatches": true,
+    "sha256": "839bd668ac8afa39648446bb20be4ad93426a495ff5d0155fe696ce2d8bf4c7f"
+  },
+  {
+    "path": "/explore",
+    "status": 200,
+    "originalS3ArtifactMatches": true,
+    "sha256": "cb16e21c4e93e969eba59317ee089263abf8f1117507b7038c9f61aa6c6cc4dc"
+  },
+  {
+    "path": "/api/health",
+    "status": 200
+  },
+  {
+    "path": "/api/platform/session",
+    "status": 410
+  },
+  {
+    "path": "/admin",
+    "status": 200
+  },
+  {
+    "path": "/admin/",
+    "status": 200
+  }
+]

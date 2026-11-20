@@ -1,0 +1,7 @@
+{
+  "id": "0f6f0e494ccc4262b3badb550656d7b3",
+  "action": "admin-status",
+  "result": {
+    "http": 401
+  }
+}

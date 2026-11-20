@@ -1,0 +1,66 @@
+{
+  "staticAssets": "deployed Alpha fetched read-only",
+  "api": "all intercepted fixtures",
+  "results": [
+    {
+      "viewport": "desktop",
+      "role": "Student",
+      "compactLabel": true,
+      "scopedMenu": true,
+      "studentAccessAction": true,
+      "treeSignoutStays": true,
+      "hiddenExploreRevalidated": true,
+      "rateLimitGuidance": true,
+      "mockedEmailStarts": 1,
+      "unknownApiBlocked": 0,
+      "realAuthRequests": 0,
+      "realEmails": 0,
+      "awsWrites": 0
+    },
+    {
+      "viewport": "desktop",
+      "role": "Advanced",
+      "compactLabel": true,
+      "scopedMenu": true,
+      "studentAccessAction": false,
+      "treeSignoutStays": true,
+      "hiddenExploreRevalidated": true,
+      "rateLimitGuidance": true,
+      "mockedEmailStarts": 1,
+      "unknownApiBlocked": 0,
+      "realAuthRequests": 0,
+      "realEmails": 0,
+      "awsWrites": 0
+    },
+    {
+      "viewport": "mobile",
+      "role": "Student",
+      "compactLabel": true,
+      "scopedMenu": true,
+      "studentAccessAction": true,
+      "treeSignoutStays": true,
+      "hiddenExploreRevalidated": true,
+      "rateLimitGuidance": true,
+      "mockedEmailStarts": 1,
+      "unknownApiBlocked": 0,
+      "realAuthRequests": 0,
+      "realEmails": 0,
+      "awsWrites": 0
+    },
+    {
+      "viewport": "mobile",
+      "role": "Advanced",
+      "compactLabel": true,
+      "scopedMenu": true,
+      "studentAccessAction": false,
+      "treeSignoutStays": true,
+      "hiddenExploreRevalidated": true,
+      "rateLimitGuidance": true,
+      "mockedEmailStarts": 1,
+      "unknownApiBlocked": 0,
+      "realAuthRequests": 0,
+      "realEmails": 0,
+      "awsWrites": 0
+    }
+  ]
+}

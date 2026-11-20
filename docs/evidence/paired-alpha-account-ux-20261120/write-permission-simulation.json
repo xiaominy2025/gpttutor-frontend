@@ -1,0 +1,52 @@
+{
+  "cloudfront": {
+    "action": "cloudfront:CreateInvalidation",
+    "resource": "arn:aws:cloudfront::771049112957:distribution/E1C4AJI9FUE47B",
+    "decision": "allowed",
+    "missing": []
+  },
+  "s3": [
+    {
+      "decision": "allowed",
+      "missing": null,
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/index-B7L293Du.js"
+    },
+    {
+      "decision": "allowed",
+      "missing": null,
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/index.html"
+    },
+    {
+      "decision": "allowed",
+      "missing": null,
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/Administrator-B57GUtAg.js"
+    },
+    {
+      "decision": "allowed",
+      "missing": null,
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/index-BmZghFIk.js"
+    },
+    {
+      "decision": "allowed",
+      "missing": null,
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/index.html"
+    },
+    {
+      "decision": "allowed",
+      "missing": null,
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin"
+    },
+    {
+      "decision": "allowed",
+      "missing": null,
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin/"
+    }
+  ]
+}

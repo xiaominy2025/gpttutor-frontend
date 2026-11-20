@@ -1,0 +1,13 @@
+{
+  "phase": "pre-write",
+  "passed": true,
+  "manifest": "703abb1db3027b0fba158327c62d415887929d815a0acc19a79911bdb06a70de",
+  "executionPlan": "b5cc2f8931679b92aec92c47ab519b384dffeb9c1ddef4a2a70da982f950df60",
+  "guardTestsPassed": 33,
+  "protectedFingerprints": 26,
+  "viewerBytesUnchanged": true,
+  "immutableReferences": 38,
+  "versionedRollbackBodiesVerified": 4,
+  "writePermissions": "7 exact S3 keys plus existing Alpha invalidation allowed by read-only simulation",
+  "awsWritesPerformed": 0
+}

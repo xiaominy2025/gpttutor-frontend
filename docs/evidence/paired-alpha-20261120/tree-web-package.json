@@ -1,0 +1,14 @@
+{
+  "file": "tree-web-4384f65.zip",
+  "sha256": "4bb362561d738c67739625dfa381e40fca4482ec0187e3b68e196e5ed41e4713",
+  "bytes": 991073,
+  "physicalFiles": 6,
+  "s3Objects": 8,
+  "htmlAliasMapping": [
+    "index.html",
+    "admin",
+    "admin/"
+  ],
+  "commit": "4384f652f9624fe136b337bed680ada99c83ab72",
+  "apiExcluded": true
+}

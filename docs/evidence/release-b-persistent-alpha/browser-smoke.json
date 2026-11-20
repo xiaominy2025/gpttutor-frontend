@@ -1,0 +1,198 @@
+{
+  "results": [
+    {
+      "viewport": "desktop",
+      "label": "home",
+      "path": "/engent-alpha/",
+      "http": 200,
+      "guestHeader": true,
+      "account": "Guest",
+      "overflow": false,
+      "referrer": "strict-origin",
+      "cspPresent": true
+    },
+    {
+      "viewport": "desktop",
+      "label": "explore",
+      "path": "/explore",
+      "http": 200,
+      "guestHeader": true,
+      "account": "Guest",
+      "overflow": false,
+      "referrer": "strict-origin",
+      "cspPresent": true
+    },
+    {
+      "viewport": "desktop",
+      "label": "cases",
+      "path": "/explore/tree/cases",
+      "http": 200,
+      "guestHeader": true,
+      "account": "Guest",
+      "overflow": false,
+      "referrer": "strict-origin",
+      "cspPresent": true
+    },
+    {
+      "viewport": "desktop",
+      "label": "tree",
+      "path": "/",
+      "http": 200,
+      "guestHeader": true,
+      "account": "Guest",
+      "overflow": false,
+      "referrer": "strict-origin",
+      "cspPresent": true
+    },
+    {
+      "viewport": "desktop",
+      "api": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200,
+          "signedIn": false,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "path": "/api/shared/email/status",
+          "status": 200,
+          "signedIn": false,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "path": "/api/account",
+          "status": 401,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "path": "/api/projects",
+          "status": 401,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "path": "/api/admin/settings",
+          "status": 401,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "path": "/api/platform/email/authorize",
+          "status": 401,
+          "referrer": "no-referrer",
+          "csp": "default-src 'none'; base-uri 'none'; frame-ancestors 'none'"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "label": "home",
+      "path": "/engent-alpha/",
+      "http": 200,
+      "guestHeader": true,
+      "account": "Guest",
+      "overflow": false,
+      "referrer": "strict-origin",
+      "cspPresent": true
+    },
+    {
+      "viewport": "mobile",
+      "label": "explore",
+      "path": "/explore",
+      "http": 200,
+      "guestHeader": true,
+      "account": "Guest",
+      "overflow": false,
+      "referrer": "strict-origin",
+      "cspPresent": true
+    },
+    {
+      "viewport": "mobile",
+      "label": "cases",
+      "path": "/explore/tree/cases",
+      "http": 200,
+      "guestHeader": true,
+      "account": "Guest",
+      "overflow": false,
+      "referrer": "strict-origin",
+      "cspPresent": true
+    },
+    {
+      "viewport": "mobile",
+      "label": "tree",
+      "path": "/",
+      "http": 200,
+      "guestHeader": true,
+      "account": "Guest",
+      "overflow": false,
+      "referrer": "strict-origin",
+      "cspPresent": true
+    },
+    {
+      "viewport": "mobile",
+      "api": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200,
+          "signedIn": false,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "path": "/api/shared/email/status",
+          "status": 200,
+          "signedIn": false,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "path": "/api/account",
+          "status": 401,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "path": "/api/projects",
+          "status": 401,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "path": "/api/admin/settings",
+          "status": 401,
+          "referrer": "no-referrer",
+          "csp": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "path": "/api/platform/email/authorize",
+          "status": 401,
+          "referrer": "no-referrer",
+          "csp": "default-src 'none'; base-uri 'none'; frame-ancestors 'none'"
+        }
+      ]
+    }
+  ],
+  "safety": {
+    "blockedWrites": 0,
+    "blockedPaidAi": 0,
+    "blockedPreauthBootstrap": 0,
+    "forwardedWrites": 0,
+    "emailRequests": 0
+  },
+  "noCodesRequested": true
+}

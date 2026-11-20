@@ -1,0 +1,9 @@
+{
+  "expectedAdditionalResources": 7,
+  "allBaselineChecksPassed": true,
+  "policyAlphaOnly": true,
+  "guardAbsent": true,
+  "poolClosed": true,
+  "account": "771049112957",
+  "region": "us-east-1"
+}

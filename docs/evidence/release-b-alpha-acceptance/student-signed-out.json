@@ -1,0 +1,22 @@
+{
+  "id": "5bc992c2593c403a8f0aaa04f682a20c",
+  "action": "sessions",
+  "result": {
+    "source": {
+      "http": 200,
+      "signedIn": false,
+      "pending": false,
+      "role": null,
+      "advanced": false,
+      "requestStatus": null
+    },
+    "tree": {
+      "http": 200,
+      "signedIn": false,
+      "pending": false,
+      "role": null,
+      "advanced": false,
+      "requestStatus": null
+    }
+  }
+}

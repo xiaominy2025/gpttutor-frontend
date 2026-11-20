@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "viewport": "desktop",
+      "role": "Student",
+      "homeExploreGuestTree": true,
+      "guestAutomaticAndIdempotent": true,
+      "oneSyntheticCode": true,
+      "treeOriginReturn": true,
+      "signOutStaysTree": true,
+      "guestAfterSignOut": true,
+      "treeBroadcastUpdatesExplore": true,
+      "roleMenuCorrect": true,
+      "backend": "mock-only",
+      "awsRequestsForwarded": 0
+    },
+    {
+      "viewport": "desktop",
+      "role": "Advanced",
+      "homeExploreGuestTree": true,
+      "guestAutomaticAndIdempotent": true,
+      "oneSyntheticCode": true,
+      "treeOriginReturn": true,
+      "signOutStaysTree": true,
+      "guestAfterSignOut": true,
+      "treeBroadcastUpdatesExplore": true,
+      "roleMenuCorrect": true,
+      "backend": "mock-only",
+      "awsRequestsForwarded": 0
+    },
+    {
+      "viewport": "mobile",
+      "role": "Student",
+      "homeExploreGuestTree": true,
+      "guestAutomaticAndIdempotent": true,
+      "oneSyntheticCode": true,
+      "treeOriginReturn": true,
+      "signOutStaysTree": true,
+      "guestAfterSignOut": true,
+      "treeBroadcastUpdatesExplore": true,
+      "roleMenuCorrect": true,
+      "backend": "mock-only",
+      "awsRequestsForwarded": 0
+    },
+    {
+      "viewport": "mobile",
+      "role": "Advanced",
+      "homeExploreGuestTree": true,
+      "guestAutomaticAndIdempotent": true,
+      "oneSyntheticCode": true,
+      "treeOriginReturn": true,
+      "signOutStaysTree": true,
+      "guestAfterSignOut": true,
+      "treeBroadcastUpdatesExplore": true,
+      "roleMenuCorrect": true,
+      "backend": "mock-only",
+      "awsRequestsForwarded": 0
+    }
+  ],
+  "sourceFrontend": "local-working-source",
+  "sourceTree": "local-working-source",
+  "sharedHeader": "1.1.0",
+  "realEmails": 0,
+  "awsWrites": 0
+}

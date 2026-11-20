@@ -1,0 +1,22 @@
+{
+  "id": "dc539900612247ec8537af9cdcd58da8",
+  "action": "sessions",
+  "result": {
+    "source": {
+      "http": 200,
+      "signedIn": true,
+      "pending": false,
+      "role": "student",
+      "advanced": false,
+      "requestStatus": null
+    },
+    "tree": {
+      "http": 200,
+      "signedIn": true,
+      "pending": false,
+      "role": null,
+      "advanced": false,
+      "requestStatus": null
+    }
+  }
+}

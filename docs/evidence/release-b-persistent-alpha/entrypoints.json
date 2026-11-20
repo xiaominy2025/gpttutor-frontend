@@ -1,0 +1,34 @@
+[
+  {
+    "path": "/admin",
+    "status": 200
+  },
+  {
+    "path": "/admin/",
+    "status": 200
+  },
+  {
+    "path": "/explore/process/cases",
+    "status": 200
+  },
+  {
+    "path": "/explore/forecast/cases",
+    "status": 200
+  },
+  {
+    "path": "/explore/scenario/cases",
+    "status": 200
+  },
+  {
+    "path": "/explore/tree/cases",
+    "status": 200
+  },
+  {
+    "path": "/explore/simulation/cases",
+    "status": 200
+  },
+  {
+    "path": "/explore/optimization/cases",
+    "status": 200
+  }
+]

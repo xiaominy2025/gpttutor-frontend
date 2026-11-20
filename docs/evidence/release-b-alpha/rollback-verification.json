@@ -1,0 +1,72 @@
+{
+  "TemporaryStacks": [
+    {
+      "Id": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-release-b-alpha-routes/c56b0b80-e466-11f1-8e2c-0affdd2e1987",
+      "Status": "DELETE_COMPLETE"
+    },
+    {
+      "Id": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-release-b-alpha-registration/5d87b5b0-e469-11f1-8ca0-12ffdd11603f",
+      "Status": "DELETE_COMPLETE"
+    }
+  ],
+  "Registration": {
+    "ExactOriginalItem": true,
+    "SelfSignupStillClosed": true,
+    "Revision": "5",
+    "Enabled": true
+  },
+  "Pool": {
+    "AllMutableSettingsRestored": true,
+    "LambdaConfig": {},
+    "Closed": true,
+    "MFA": "OFF"
+  },
+  "Captured": "2026-11-19T23:12:58.1589639Z",
+  "ViewerCodeRestored": true,
+  "Region": "us-east-1",
+  "Api": {
+    "OriginalRoutesRestored": true,
+    "Count": 3
+  },
+  "Boundary": {
+    "Default": "v2",
+    "OnlyOriginalVersions": true
+  },
+  "Roles": [
+    {
+      "OriginalInlinePoliciesRestored": true,
+      "Name": "engent-platform-alpha-runtime"
+    },
+    {
+      "OriginalInlinePoliciesRestored": true,
+      "Name": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533"
+    }
+  ],
+  "Functions": [
+    {
+      "LiveShared": "false",
+      "LiveVersion": "1",
+      "LatestCodeAndEnvironmentRestored": true,
+      "LiveB": null,
+      "Name": "engent-platform-alpha-api",
+      "LiveCodeAndEnvironmentRestored": true
+    },
+    {
+      "LiveShared": "false",
+      "LiveVersion": "11",
+      "LatestCodeAndEnvironmentRestored": true,
+      "LiveB": null,
+      "Name": "decisiontree-alpha-staging-api",
+      "LiveCodeAndEnvironmentRestored": true
+    }
+  ],
+  "NoProjectOrPaidAiForwarded": true,
+  "Edge": {
+    "FullOriginalConfig": true,
+    "Id": "E1C4AJI9FUE47B",
+    "Status": "Deployed",
+    "ETag": "E1X6FK5RDHNB96"
+  },
+  "NoProductionOrDnsWrites": true,
+  "Account": "771049112957"
+}

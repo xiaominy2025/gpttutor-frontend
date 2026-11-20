@@ -1,0 +1,72 @@
+{
+  "Api": {
+    "Count": 3,
+    "OriginalRoutesRestored": true
+  },
+  "Registration": {
+    "Enabled": true,
+    "Revision": "5",
+    "ExactOriginalItem": true,
+    "SelfSignupStillClosed": true
+  },
+  "Functions": [
+    {
+      "LiveCodeAndEnvironmentRestored": true,
+      "LiveShared": "false",
+      "LiveVersion": "1",
+      "LatestCodeAndEnvironmentRestored": true,
+      "LiveB": null,
+      "Name": "engent-platform-alpha-api"
+    },
+    {
+      "LiveCodeAndEnvironmentRestored": true,
+      "LiveShared": "false",
+      "LiveVersion": "11",
+      "LatestCodeAndEnvironmentRestored": true,
+      "LiveB": null,
+      "Name": "decisiontree-alpha-staging-api"
+    }
+  ],
+  "Account": "771049112957",
+  "Pool": {
+    "Closed": true,
+    "MFA": "OFF",
+    "AllMutableSettingsRestored": true,
+    "LambdaConfig": {}
+  },
+  "Roles": [
+    {
+      "OriginalInlinePoliciesRestored": true,
+      "Name": "engent-platform-alpha-runtime"
+    },
+    {
+      "OriginalInlinePoliciesRestored": true,
+      "Name": "decisiontree-alpha-staging-ApiRole-tmQtkTYts533"
+    }
+  ],
+  "NoProjectOrPaidAiForwarded": true,
+  "NoProductionOrDnsWrites": true,
+  "Boundary": {
+    "OnlyOriginalVersions": true,
+    "Default": "v2"
+  },
+  "Edge": {
+    "Status": "Deployed",
+    "ETag": "E3I3CR3NPZFVHY",
+    "Id": "E1C4AJI9FUE47B",
+    "FullOriginalConfig": true
+  },
+  "TemporaryStacks": [
+    {
+      "Status": "DELETE_COMPLETE",
+      "Id": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-release-b-alpha-routes/017342b0-e47a-11f1-9452-0e2664dbbd93"
+    },
+    {
+      "Status": "DELETE_COMPLETE",
+      "Id": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-release-b-alpha-registration/03cbb1a0-e47a-11f1-ae63-0affe1e500c9"
+    }
+  ],
+  "ViewerCodeRestored": true,
+  "Region": "us-east-1",
+  "Captured": "2026-11-20T00:42:43.2536120Z"
+}

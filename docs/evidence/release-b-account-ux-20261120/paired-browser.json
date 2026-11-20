@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "viewport": "desktop",
+      "role": "Student",
+      "homeExploreGuestTree": true,
+      "guestAutomaticAndIdempotent": true,
+      "oneSyntheticCode": true,
+      "treeOriginReturn": true,
+      "signOutStaysTree": true,
+      "guestAfterSignOut": true,
+      "treeBroadcastUpdatesExplore": true,
+      "roleMenuCorrect": true,
+      "backend": "mock-only",
+      "awsRequestsForwarded": 0
+    },
+    {
+      "viewport": "desktop",
+      "role": "Advanced",
+      "homeExploreGuestTree": true,
+      "guestAutomaticAndIdempotent": true,
+      "oneSyntheticCode": true,
+      "treeOriginReturn": true,
+      "signOutStaysTree": true,
+      "guestAfterSignOut": true,
+      "treeBroadcastUpdatesExplore": true,
+      "roleMenuCorrect": true,
+      "backend": "mock-only",
+      "awsRequestsForwarded": 0
+    },
+    {
+      "viewport": "mobile",
+      "role": "Student",
+      "homeExploreGuestTree": true,
+      "guestAutomaticAndIdempotent": true,
+      "oneSyntheticCode": true,
+      "treeOriginReturn": true,
+      "signOutStaysTree": true,
+      "guestAfterSignOut": true,
+      "treeBroadcastUpdatesExplore": true,
+      "roleMenuCorrect": true,
+      "backend": "mock-only",
+      "awsRequestsForwarded": 0
+    },
+    {
+      "viewport": "mobile",
+      "role": "Advanced",
+      "homeExploreGuestTree": true,
+      "guestAutomaticAndIdempotent": true,
+      "oneSyntheticCode": true,
+      "treeOriginReturn": true,
+      "signOutStaysTree": true,
+      "guestAfterSignOut": true,
+      "treeBroadcastUpdatesExplore": true,
+      "roleMenuCorrect": true,
+      "backend": "mock-only",
+      "awsRequestsForwarded": 0
+    }
+  ],
+  "sourceFrontend": "bea0ba24e4e9dc1634ef1924659a19966719fd25",
+  "sourceTree": "ffda73eb69bcd4ea4517fa575c8859be086459c6",
+  "sharedHeader": "1.1.0",
+  "realEmails": 0,
+  "awsWrites": 0
+}

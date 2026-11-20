@@ -1,0 +1,44 @@
+[
+  {
+    "app": "platform",
+    "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/index-D-POU7Hs.js",
+    "action": "s3:PutObject",
+    "decision": "allowed"
+  },
+  {
+    "app": "platform",
+    "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/index.html",
+    "action": "s3:PutObject",
+    "decision": "allowed"
+  },
+  {
+    "app": "tree",
+    "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/Administrator-R0H6Hlas.js",
+    "action": "s3:PutObject",
+    "decision": "allowed"
+  },
+  {
+    "app": "tree",
+    "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/index-BojFpFxi.js",
+    "action": "s3:PutObject",
+    "decision": "allowed"
+  },
+  {
+    "app": "tree",
+    "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/index.html",
+    "action": "s3:PutObject",
+    "decision": "allowed"
+  },
+  {
+    "app": "tree",
+    "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin",
+    "action": "s3:PutObject",
+    "decision": "allowed"
+  },
+  {
+    "app": "tree",
+    "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin/",
+    "action": "s3:PutObject",
+    "decision": "allowed"
+  }
+]

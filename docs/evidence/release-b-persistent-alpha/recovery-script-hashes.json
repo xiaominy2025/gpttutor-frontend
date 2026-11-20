@@ -1,0 +1,26 @@
+[
+  {
+    "executed": false,
+    "sha256": "b60c332fbe78b6cf2d6d34760635e0e20df8a40f6191fdd92d2069454f051cbc",
+    "syntaxChecked": true,
+    "file": "start-rollback.ps1"
+  },
+  {
+    "executed": false,
+    "sha256": "3b31a6c45a0aefcd06f94b86a8fc6b0c86a79d438e914259ae162c2b8b1020f8",
+    "syntaxChecked": true,
+    "file": "rollback-owned.ps1"
+  },
+  {
+    "executed": false,
+    "sha256": "db29cc4d95435bc52235394da05192a89a27998afc2d4f6d538097b81c6aba5f",
+    "syntaxChecked": true,
+    "file": "finish-rollback.ps1"
+  },
+  {
+    "executed": false,
+    "sha256": "4f7f3f70c6d2c8109078dd67e1c55e2563257c7008ef0000d293d21fc562b94d",
+    "syntaxChecked": true,
+    "file": "verify-rollback.ps1"
+  }
+]

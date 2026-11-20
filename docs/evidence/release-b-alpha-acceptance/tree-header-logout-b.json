@@ -1,0 +1,19 @@
+{
+  "id": "814199ec56fb453ea34cde52248117b3",
+  "action": "logout-tree-ui",
+  "result": {
+    "clicked": true,
+    "http": 200,
+    "ok": true,
+    "scope": "participating-browser",
+    "safety": {
+      "blockedProjectWrites": 359,
+      "blockedPaidAi": 6,
+      "blockedOther": 8,
+      "forwardedProjectWrites": 0,
+      "forwardedPaidAi": 0,
+      "emailStarts": 2,
+      "finishes": 2
+    }
+  }
+}
