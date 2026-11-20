@@ -1,0 +1,19 @@
+{
+  "region": "us-east-1",
+  "headerPolicy": "b5d73939-4c3d-4a75-aca8-45d6bb7b1f7e",
+  "treeVersion": "17",
+  "adminMfaOn": true,
+  "status": "Deployed",
+  "fiveInternalRoutesIam": true,
+  "account": "771049112957",
+  "distribution": "E1C4AJI9FUE47B",
+  "captured": "2026-11-20T19:16:50.1226233Z",
+  "platformVersion": "4",
+  "closedApplicationAdmission": true,
+  "bothBSharedOn": true,
+  "awsWrites": 0,
+  "headerConfigETag": "E3JWKAKR8XB7XF",
+  "guardAbsent": true,
+  "closedStudentSelfSignup": true,
+  "distributionETag": "E2X3YF2TXT154O"
+}

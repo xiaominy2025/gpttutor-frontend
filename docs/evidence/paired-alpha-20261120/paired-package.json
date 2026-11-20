@@ -1,0 +1,13 @@
+{
+  "file": "paired-alpha-ux-20261120.zip",
+  "sha256": "020bb21b141d7ef36533da46ea763f24272753f523d9e53fbaed3bef38983d36",
+  "bytes": 63472277,
+  "contents": [
+    "platform-web-0dc4258.zip",
+    "tree-web-4384f65.zip",
+    "paired-manifest.json",
+    "approval-write-set.json"
+  ],
+  "containsSecretsOrBaselines": false,
+  "webOnly": true
+}

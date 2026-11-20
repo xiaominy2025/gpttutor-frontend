@@ -1,0 +1,19 @@
+[
+  {
+    "decision": "allowed",
+    "resource": "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/index-D-POU7Hs.js",
+    "action": "s3:PutObject",
+    "missingContext": []
+  },
+  {
+    "decision": "allowed",
+    "resource": "arn:aws:s3:::decisiontree-alpha-staging-frontend-vnhhrwadnpad/releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/index.html",
+    "action": "s3:PutObject",
+    "missingContext": []
+  },
+  {
+    "decision": "allowed",
+    "resource": "arn:aws:cloudfront::771049112957:distribution/E1C4AJI9FUE47B",
+    "action": "cloudfront:CreateInvalidation"
+  }
+]

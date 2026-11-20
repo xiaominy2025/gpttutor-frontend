@@ -1,0 +1,15 @@
+{
+  "name": "engent-platform-alpha-api",
+  "liveVersion": "4",
+  "liveZipCodeSha256": "C1nteA1j7IfdKAn23eyf0x0q63/FSQ3t1yqS/HREwRA=",
+  "liveBundleSha256": "3261047de976827edf1c2dc09642e60d4590c225c97397fdaa8857af051f8be7",
+  "candidateBundleSha256": "697ed0e4b7b5db5da266eb8e113df5eeb6405818aa4af43427f95e892f3873c6",
+  "identicalBundle": false,
+  "sourceBackendAndDependenciesUnchanged": true,
+  "lambdaWriteRequired": false,
+  "archiveDependencyPathPrefixes": [
+    "../../../../node_modules/"
+  ],
+  "identicalAfterArchiveDependencyPathNormalization": false,
+  "normalizedCandidateSha256": "6cbbc46007c0bbe19f68a54a49b52e1947862272b6688aa0994f2890bdb80309"
+}

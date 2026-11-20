@@ -1,0 +1,48 @@
+{
+  "versionedBaselineReadable": true,
+  "baselineIndexVersion": "syTBXxxzxdE1cYplXmAxWL7h7qg7u1XP",
+  "baselineIndexSha256": "5d545c6d5ad279da98fac9185cea782a6cab7776524f6d836f408154d833a967",
+  "publicChecks": [
+    {
+      "path": "/engent-alpha/",
+      "status": 200,
+      "baselineIndexMatches": true
+    },
+    {
+      "path": "/explore",
+      "status": 200,
+      "baselineIndexMatches": true
+    },
+    {
+      "path": "/explore/process/cases",
+      "status": 200,
+      "baselineIndexMatches": true
+    },
+    {
+      "path": "/explore/forecast/cases",
+      "status": 200,
+      "baselineIndexMatches": true
+    },
+    {
+      "path": "/explore/scenario/cases",
+      "status": 200,
+      "baselineIndexMatches": true
+    },
+    {
+      "path": "/explore/tree/cases",
+      "status": 200,
+      "baselineIndexMatches": true
+    },
+    {
+      "path": "/explore/simulation/cases",
+      "status": 200,
+      "baselineIndexMatches": true
+    },
+    {
+      "path": "/explore/optimization/cases",
+      "status": 200,
+      "baselineIndexMatches": true
+    }
+  ],
+  "awsWrites": 0
+}

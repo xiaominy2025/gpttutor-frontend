@@ -1,0 +1,92 @@
+{
+  "platformSource": "0dc4258b95a28bc93373cc1a5f2ba61e7e262a0c",
+  "treeSource": "4384f652f9624fe136b337bed680ada99c83ab72",
+  "sharedHeaderBlob": "5600dfdb00b30364fb1c2699a8f58af68f72c3f7",
+  "distribution": "E1C4AJI9FUE47B",
+  "backendVersions": {
+    "platform": "4",
+    "tree": "17"
+  },
+  "stageAssets": 3,
+  "promoteHtml": 4,
+  "mutableHtmlKeys": [
+    "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/index.html",
+    "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/index.html",
+    "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin",
+    "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin/"
+  ],
+  "invalidationPaths": [
+    "/",
+    "/index.html",
+    "/admin",
+    "/admin/",
+    "/engent-alpha*",
+    "/explore*"
+  ],
+  "writes": [
+    {
+      "app": "platform",
+      "file": "assets/index-D-POU7Hs.js",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/index-D-POU7Hs.js",
+      "action": "stage-if-absent",
+      "sha256": "a218487b63e29b4361e541714cb6da31d9f64a475c4d9aab7d98ea5c4ebc7ebe",
+      "baselineVersion": null,
+      "baselineEtag": null
+    },
+    {
+      "app": "platform",
+      "file": "index.html",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/index.html",
+      "action": "conditional-promote",
+      "sha256": "1c5ea23ee1dd6524d37b99bf603a3287eca371ac1a2e338ec29c3b6e8c29896c",
+      "baselineVersion": "syTBXxxzxdE1cYplXmAxWL7h7qg7u1XP",
+      "baselineEtag": "\"c9ae311962d8461579d7ce2a0fc65311\""
+    },
+    {
+      "app": "tree",
+      "file": "assets/Administrator-R0H6Hlas.js",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/Administrator-R0H6Hlas.js",
+      "action": "stage-if-absent",
+      "sha256": "3bb84f6c44eb365681ab190670b891ae1888e7fe4fff6338b8fe8f60a61fe2fc",
+      "baselineVersion": null,
+      "baselineEtag": null
+    },
+    {
+      "app": "tree",
+      "file": "assets/index-BojFpFxi.js",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/index-BojFpFxi.js",
+      "action": "stage-if-absent",
+      "sha256": "d0a9f1a23954c1f240b7c3b2aefc1d05d14020fd1e844f99163dcd364ffb970b",
+      "baselineVersion": null,
+      "baselineEtag": null
+    },
+    {
+      "app": "tree",
+      "file": "index.html",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/index.html",
+      "action": "conditional-promote",
+      "sha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb",
+      "baselineVersion": "xndM60XvylhgJBHKu7ftsZlkbsOmbYlu",
+      "baselineEtag": "\"dea48a9882802ad7cd6e9af2b4ce7a9a\""
+    },
+    {
+      "app": "tree",
+      "file": "admin",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin",
+      "action": "conditional-promote",
+      "sha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb",
+      "baselineVersion": "daOIoGNAw95Vql.sEdcEilEkNNR8iWfO",
+      "baselineEtag": "\"dea48a9882802ad7cd6e9af2b4ce7a9a\""
+    },
+    {
+      "app": "tree",
+      "file": "admin/",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin/",
+      "action": "conditional-promote",
+      "sha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb",
+      "baselineVersion": "NecXxfvB2VoXm7txZAwXPfKukWGT69lX",
+      "baselineEtag": "\"dea48a9882802ad7cd6e9af2b4ce7a9a\""
+    }
+  ],
+  "awsWritesPerformed": 0
+}
