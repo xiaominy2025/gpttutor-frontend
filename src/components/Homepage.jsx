@@ -18,7 +18,7 @@ function MarketingLayout({ explore, coachNav, children, onSharedLaunch }) {
   const { hash, pathname, search } = useLocation();
   const [headerAccount,setHeaderAccount]=useState(null);
   const bHeader=import.meta.env.VITE_RELEASE_B_EMAIL_ENABLED==='true';
-  const accountStatus=headerAccount?.unavailable?'Account unavailable':headerAccount?.pendingSignIn?'Sign-in pending':headerAccount?.signedIn?(headerAccount.entitlements?.tree?.advanced?'Student · Tree Advanced':'Student'):'Guest';
+  const accountStatus=headerAccount?.unavailable?'Account unavailable':headerAccount?.pendingSignIn?'Sign-in pending':headerAccount?.signedIn?(headerAccount.entitlements?.tree?.advanced?'Advanced':'Student'):'Guest';
   useEffect(() => {
     document.title = explore ? 'Explore Decision Coaches | Engent Labs' : 'Engent Labs | Interactive Decision Coaching';
     return () => { document.title = 'Engent Labs | Interactive Decision Coaching'; };
