@@ -1,0 +1,51 @@
+{
+  "releaseId": "paired-alpha-account-ux-374689af-5919-4879-9c64-f52f91da7c88",
+  "manifest": "703abb1db3027b0fba158327c62d415887929d815a0acc19a79911bdb06a70de",
+  "executionPlan": "b5cc2f8931679b92aec92c47ab519b384dffeb9c1ddef4a2a70da982f950df60",
+  "sources": {
+    "frontendRuntime": "bea0ba24e4e9dc1634ef1924659a19966719fd25",
+    "frontendDocumentation": "112fae602a8f61f864591553a454f267d6b88ef7",
+    "tree": "ffda73eb69bcd4ea4517fa575c8859be086459c6"
+  },
+  "lambdaVersions": {
+    "platform": "4",
+    "tree": "17"
+  },
+  "invalidation": {
+    "id": "I39YI7QJ4MYMDGFWEQC8L1WIY1",
+    "status": "Completed",
+    "callerReference": "paired-alpha-account-ux-374689af-5919-4879-9c64-f52f91da7c88-publish",
+    "paths": [
+      "/",
+      "/index.html",
+      "/admin",
+      "/admin/",
+      "/engent-alpha*",
+      "/explore*"
+    ]
+  },
+  "writes": {
+    "assets": 3,
+    "html": 4,
+    "deletes": 0,
+    "newAssetBytes": 1159591
+  },
+  "publicHtml": 12,
+  "newJsAssets": 3,
+  "guestViewports": 2,
+  "guestPages": 8,
+  "guestNavigationPassed": true,
+  "deployedMockedAccountFlows": 4,
+  "protectedStateAndRollbackCheckPassed": true,
+  "pendingWrites": 0,
+  "rollbackPerformed": false,
+  "liveCodesRequested": 0,
+  "projectWrites": 0,
+  "paidAiCalls": 0,
+  "productionChanges": 0,
+  "notes": [
+    "Authenticated UI tests used fixtures for every API; not a new live Cognito acceptance",
+    "Basic Student live permission testing remains separate",
+    "No unsaved owner tab forcibly refreshed"
+  ]
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "path": "/engent-alpha/",
+    "status": 200,
+    "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/explore",
+    "status": 200,
+    "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/explore/process/cases",
+    "status": 200,
+    "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/explore/forecast/cases",
+    "status": 200,
+    "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/explore/scenario/cases",
+    "status": 200,
+    "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/explore/tree/cases",
+    "status": 200,
+    "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/explore/simulation/cases",
+    "status": 200,
+    "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/explore/optimization/cases",
+    "status": 200,
+    "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/",
+    "status": 200,
+    "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/index.html",
+    "status": 200,
+    "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+    "matches": true,
+    "xCache": "Hit from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/admin",
+    "status": 200,
+    "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/admin/",
+    "status": 200,
+    "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+    "matches": true,
+    "xCache": "Miss from cloudfront",
+    "age": null
+  },
+  {
+    "path": "/engent-alpha/assets/index-B7L293Du.js",
+    "status": 200,
+    "sha256": "bf44aaa3262e6a830379bdaec2f4b96610dfee051262db9c96d0c52a347c59c7",
+    "matches": true
+  },
+  {
+    "path": "/assets/Administrator-B57GUtAg.js",
+    "status": 200,
+    "sha256": "23a805b16c32f3abfb14b48604cb83f31b34e9c90784baf7c9c758967303684a",
+    "matches": true
+  },
+  {
+    "path": "/assets/index-BmZghFIk.js",
+    "status": 200,
+    "sha256": "71956e949a57ed7a6c60bbb8bcc8f833d09b525c57c3a983a7d9655b196b12ea",
+    "matches": true
+  }
+]

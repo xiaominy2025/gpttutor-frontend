@@ -1,0 +1,86 @@
+{
+  "releaseId": "paired-alpha-account-ux-374689af-5919-4879-9c64-f52f91da7c88",
+  "approvalComment": 7052169854,
+  "frontendRuntime": "bea0ba24e4e9dc1634ef1924659a19966719fd25",
+  "frontendSource": "112fae602a8f61f864591553a454f267d6b88ef7",
+  "treeSource": "ffda73eb69bcd4ea4517fa575c8859be086459c6",
+  "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+  "distribution": "E1C4AJI9FUE47B",
+  "lambdaVersions": {
+    "platform": "4",
+    "tree": "17"
+  },
+  "newAssetBytes": 1159591,
+  "objects": [
+    {
+      "owner": "platform",
+      "file": "assets/index-B7L293Du.js",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/assets/index-B7L293Du.js",
+      "sha256": "bf44aaa3262e6a830379bdaec2f4b96610dfee051262db9c96d0c52a347c59c7",
+      "version": "3OYFBSGvWbExTlL9B91V7OKl.vZ_MBNT",
+      "etag": "\"0e78b9b8c23e216c05dc0cbbc0695d07\"",
+      "baselineVersion": null,
+      "baselineSha256": null
+    },
+    {
+      "owner": "platform",
+      "file": "index.html",
+      "key": "releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled/index.html",
+      "sha256": "b32bea4b7ffb85f9967e9e62c1100109134de996771025ffebc8ea3b1ccb8499",
+      "version": "VAIhzC8a3QhXOvBTWX8VUgSUJ0Nzlqzx",
+      "etag": "\"d96fec07a1f04aadbdb7d3ab5a8818d2\"",
+      "baselineVersion": "t1dDfwRpS5HMGmcVShsPbu2WRtHDvVPG",
+      "baselineSha256": "1c5ea23ee1dd6524d37b99bf603a3287eca371ac1a2e338ec29c3b6e8c29896c"
+    },
+    {
+      "owner": "tree",
+      "file": "assets/Administrator-B57GUtAg.js",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/Administrator-B57GUtAg.js",
+      "sha256": "23a805b16c32f3abfb14b48604cb83f31b34e9c90784baf7c9c758967303684a",
+      "version": "zuMVyzuDWwoKVQCfMy0MjiWGojtlXCKy",
+      "etag": "\"21097126df30b49199880f1ee04fd365\"",
+      "baselineVersion": null,
+      "baselineSha256": null
+    },
+    {
+      "owner": "tree",
+      "file": "assets/index-BmZghFIk.js",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/assets/index-BmZghFIk.js",
+      "sha256": "71956e949a57ed7a6c60bbb8bcc8f833d09b525c57c3a983a7d9655b196b12ea",
+      "version": "hmzfLnJ6uc6mjIBLcKlnVdl1efd_WOFx",
+      "etag": "\"310f602e3c8e34fa652631defc862154\"",
+      "baselineVersion": null,
+      "baselineSha256": null
+    },
+    {
+      "owner": "tree",
+      "file": "index.html",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/index.html",
+      "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+      "version": "zwnDzv8RfZLmcqYNz1ByKNeIxi3Z4gjn",
+      "etag": "\"cd62d9da33d6443ead3e1732b6f07b26\"",
+      "baselineVersion": "SMkkMePw87Wm_GBiA6v2F8tJsdmkyzeI",
+      "baselineSha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb"
+    },
+    {
+      "owner": "tree",
+      "file": "admin",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin",
+      "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+      "version": "eNVJCCjgGHnsjqJkEWRsiLQypUD4R_o5",
+      "etag": "\"cd62d9da33d6443ead3e1732b6f07b26\"",
+      "baselineVersion": "yevzylQ4I2k2PNkjwM.1_9T_x1DvANBC",
+      "baselineSha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb"
+    },
+    {
+      "owner": "tree",
+      "file": "admin/",
+      "key": "releases/engent-release-b-alpha/tree/9e64a6889d041007ffd40e5738db3f9b07987224-enabled/admin/",
+      "sha256": "c931269e813a3d2e0199ece1a8cb2bfa41eca85d6a70e2bf943ab7c6501b23ec",
+      "version": "Vbz42xOtneEgwyiwpV75jMjp353VIKj9",
+      "etag": "\"cd62d9da33d6443ead3e1732b6f07b26\"",
+      "baselineVersion": "mlBetVwmVN3rP3LpwvpewrYE6ciMQucE",
+      "baselineSha256": "c747c72dbffdefcd84a8ceb165795be38a0f75d010a3cbbd0df264eb2525aacb"
+    }
+  ]
+}

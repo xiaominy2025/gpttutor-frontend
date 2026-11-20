@@ -1,0 +1,26 @@
+[
+  {
+    "viewport": "desktop",
+    "headerContract": "1.1.0",
+    "homeExploreTree": true,
+    "treeGuestAutomatic": true,
+    "guestTwicePreservesMountedWorkspace": true,
+    "guestDismisses": true,
+    "casesNavigation": true,
+    "blockedWrites": 0,
+    "forwardedWrites": 0,
+    "realEmails": 0
+  },
+  {
+    "viewport": "mobile",
+    "headerContract": "1.1.0",
+    "homeExploreTree": true,
+    "treeGuestAutomatic": true,
+    "guestTwicePreservesMountedWorkspace": true,
+    "guestDismisses": true,
+    "casesNavigation": true,
+    "blockedWrites": 0,
+    "forwardedWrites": 0,
+    "realEmails": 0
+  }
+]
