@@ -1,0 +1,58 @@
+{
+  "Changes": [
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "ProcessSessionInvokePermission",
+        "ResourceType": "AWS::Lambda::Permission",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "ProcessSessionRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      }
+    }
+  ],
+  "ChangeSetName": "first-alpha-20261121-43a29b1",
+  "ChangeSetId": "arn:aws:cloudformation:us-east-1:771049112957:changeSet/first-alpha-20261121-43a29b1/c3655f29-0e8d-4ee2-ac3c-20c99d2bf786",
+  "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-process-alpha-shared/5f528460-e54a-11f1-a678-12ffcc20418f",
+  "StackName": "engent-process-alpha-shared",
+  "Description": "Owner-authorized first controlled Alpha; Process AI disabled; source 43a29b11ba903070cd5da24e90b9995c8078a52f",
+  "Parameters": null,
+  "CreationTime": "2026-11-21T01:25:01.545000+00:00",
+  "ExecutionStatus": "AVAILABLE",
+  "Status": "CREATE_COMPLETE",
+  "StatusReason": null,
+  "NotificationARNs": [],
+  "RollbackConfiguration": {},
+  "Capabilities": [
+    "CAPABILITY_NAMED_IAM"
+  ],
+  "Tags": [
+    {
+      "Key": "Environment",
+      "Value": "alpha"
+    },
+    {
+      "Key": "ReleaseCommit",
+      "Value": "43a29b11ba903070cd5da24e90b9995c8078a52f"
+    },
+    {
+      "Key": "Application",
+      "Value": "DecisionProcessCoach"
+    }
+  ],
+  "ParentChangeSetId": null,
+  "IncludeNestedStacks": false,
+  "RootChangeSetId": null,
+  "OnStackFailure": null,
+  "ImportExistingResources": null
+}

@@ -1,0 +1,96 @@
+{
+  "processStack": "arn:aws:cloudformation:us-east-1:771049112957:stack/decisionprocess-alpha/5e55add0-e54a-11f1-8d0c-12ffd3ecc213",
+  "processStatus": "ROLLBACK_COMPLETE",
+  "sharedStack": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-process-alpha-shared/5f528460-e54a-11f1-a678-12ffcc20418f",
+  "sharedStatus": "CREATE_COMPLETE",
+  "failure": {
+    "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/decisionprocess-alpha/5e55add0-e54a-11f1-8d0c-12ffd3ecc213",
+    "EventId": "ProcessForwarding-CREATE_FAILED-2026-11-21T01:25:49.377Z",
+    "StackName": "decisionprocess-alpha",
+    "LogicalResourceId": "ProcessForwarding",
+    "PhysicalResourceId": "",
+    "ResourceType": "AWS::CloudFront::OriginRequestPolicy",
+    "Timestamp": "2026-11-21T01:25:49.377000+00:00",
+    "ResourceStatus": "CREATE_FAILED",
+    "ResourceStatusReason": "Resource handler returned message: \"Invalid request provided: AWS::CloudFront::OriginRequestPolicy: The parameter Headers contains x-amz-content-sha256 that is not allowed. (Service: CloudFront, Status Code: 400, Request ID: b415c6c1-f80b-4828-9865-4672d6a0d43c) (SDK Attempt Count: 1)\" (RequestToken: eb1742bf-3d6e-4b8f-4432-0908d584b40e, HandlerErrorCode: InvalidRequest)",
+    "ResourceProperties": "{\"OriginRequestPolicyConfig\":{\"HeadersConfig\":{\"Headers\":[\"Origin\",\"Content-Type\",\"Sec-Fetch-Site\",\"x-amz-content-sha256\",\"x-process-request-id\"],\"HeaderBehavior\":\"whitelist\"},\"CookiesConfig\":{\"Cookies\":[\"__Host-engent-email\"],\"CookieBehavior\":\"whitelist\"},\"QueryStringsConfig\":{\"QueryStringBehavior\":\"none\"},\"Name\":\"decisionprocess-alpha-api-only\"}}",
+    "ClientRequestToken": "9929cd85-69f0-4982-b628-bd271b3ca6aa"
+  },
+  "sharedResources": [
+    {
+      "LogicalResourceId": "ProcessSessionInvokePermission",
+      "PhysicalResourceId": "engent-process-alpha-shared-ProcessSessionInvokePermission-VxWD9VfS8Gvz",
+      "ResourceType": "AWS::Lambda::Permission",
+      "LastUpdatedTimestamp": "2026-11-21T01:25:51.690000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "LogicalResourceId": "ProcessSessionRoute",
+      "PhysicalResourceId": "db6s346",
+      "ResourceType": "AWS::ApiGatewayV2::Route",
+      "LastUpdatedTimestamp": "2026-11-21T01:25:51.881000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    }
+  ],
+  "processResources": [
+    {
+      "LogicalResourceId": "LogGroup",
+      "PhysicalResourceId": "/aws/lambda/decisionprocess-alpha-api",
+      "ResourceType": "AWS::Logs::LogGroup",
+      "LastUpdatedTimestamp": "2026-11-21T01:25:53.315000+00:00",
+      "ResourceStatus": "DELETE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "LogicalResourceId": "ProcessEntry",
+      "PhysicalResourceId": "arn:aws:cloudfront::771049112957:function/decisionprocess-alpha-entry",
+      "ResourceType": "AWS::CloudFront::Function",
+      "LastUpdatedTimestamp": "2026-11-21T01:25:55.648000+00:00",
+      "ResourceStatus": "DELETE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "LogicalResourceId": "ProcessForwarding",
+      "ResourceType": "AWS::CloudFront::OriginRequestPolicy",
+      "LastUpdatedTimestamp": "2026-11-21T01:28:07.040000+00:00",
+      "ResourceStatus": "DELETE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "LogicalResourceId": "ProcessOAC",
+      "PhysicalResourceId": "E2IAK3ZLADQJHD",
+      "ResourceType": "AWS::CloudFront::OriginAccessControl",
+      "LastUpdatedTimestamp": "2026-11-21T01:25:53.759000+00:00",
+      "ResourceStatus": "DELETE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "LogicalResourceId": "Usage",
+      "PhysicalResourceId": "decisionprocess-alpha-usage",
+      "ResourceType": "AWS::DynamoDB::Table",
+      "LastUpdatedTimestamp": "2026-11-21T01:25:52.877000+00:00",
+      "ResourceStatus": "DELETE_SKIPPED",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    }
+  ],
+  "stagedObjects": 50,
+  "stagedBytes": 66151502,
+  "paidAICost": 0,
+  "credentialProvisioned": false
+}

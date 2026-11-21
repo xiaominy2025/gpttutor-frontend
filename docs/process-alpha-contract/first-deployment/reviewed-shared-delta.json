@@ -1,0 +1,44 @@
+{
+  "homepageSource": "b097a787d652d093bfb72f0f70303518b06ec876",
+  "processSource": "43a29b11ba903070cd5da24e90b9995c8078a52f",
+  "existingBff": {
+    "name": "engent-platform-alpha-api",
+    "handler": "index.handlerEntry",
+    "liveVersion": "4",
+    "aliasRevision": "a4e49b75-4837-4cff-ae03-0e808f6c1059",
+    "latestRevision": "c4843ad5-7afd-4bee-82f3-1f2a38e92e2f",
+    "codeHash": "jZ+/SUTVIm9I6PE/efVvJa4yeXj4ScuPe+2Y6mihUoY="
+  },
+  "bffDelta": {
+    "code": "reviewed Homepage api.zip",
+    "preserveHandler": "index.handlerEntry",
+    "preserveAllOtherConfiguration": true,
+    "environmentAppend": {
+      "PROCESS_SESSION_ENABLED": "true"
+    },
+    "publishVersion": true,
+    "conditionallyMoveLiveAlias": true
+  },
+  "cloudfrontDelta": {
+    "sourceETag": "E2X3YF2TXT154O",
+    "platformOriginId": "engent-release-a-alpha",
+    "oldPlatformPrefix": "/releases/engent-release-b-alpha/platform/5658560a879d1d032fba38330d3f913a2fd107a7-enabled",
+    "newPlatformPrefix": "/releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled",
+    "appendOrigins": 2,
+    "prependBehaviors": 3,
+    "preserveAllOtherFields": true
+  },
+  "processFlags": {
+    "AI_ENABLED": "false",
+    "SESSION_CONTRACT_VERIFIED": "false"
+  },
+  "credential": "NOT PROVISIONED: owner instructed no key reuse",
+  "treeUnchanged": {
+    "AliasArn": "arn:aws:lambda:us-east-1:771049112957:function:decisiontree-alpha-staging-api:live",
+    "Name": "live",
+    "FunctionVersion": "17",
+    "Description": "Shared auth disabled after owner-Ready gate 6991785041",
+    "RevisionId": "3b1b3819-af7a-41b7-af34-307c37427a23"
+  },
+  "metadataCorrection": "Homepage package manifest says index.handler; actual bundle exports handlerEntry. Preserve existing live index.handlerEntry; no runtime source change."
+}

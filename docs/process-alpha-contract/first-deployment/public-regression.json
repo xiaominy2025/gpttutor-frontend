@@ -1,0 +1,42 @@
+{
+  "noCodes": true,
+  "noPaidAI": true,
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 412
+    },
+    {
+      "path": "/explore",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 975
+    },
+    {
+      "path": "/engent-alpha/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 975
+    },
+    {
+      "path": "/api/platform/session",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 18,
+      "guest": true
+    },
+    {
+      "path": "/api/shared/email/status",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 18,
+      "guest": true
+    },
+    {
+      "path": "/internal/coaches/process/session",
+      "unsignedDenied": 403
+    }
+  ]
+}

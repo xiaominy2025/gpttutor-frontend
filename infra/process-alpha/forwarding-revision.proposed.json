@@ -1,0 +1,33 @@
+{
+  "status": "PROPOSAL_ONLY_REQUIRES_OWNER_APPROVAL",
+  "reason": "CloudFront service rejects x-amz-content-sha256 in the strict header allowlist",
+  "unchanged": [
+    "AWS_IAM Function URL",
+    "OAC always-sign",
+    "only __Host-engent-email cookie forwarded",
+    "no API cache",
+    "viewer computes SHA256 of exact UTF-8 body",
+    "server independently verifies body hash",
+    "no paid AI",
+    "no live email tests",
+    "Tree unchanged"
+  ],
+  "proposedHeaderPolicy": {
+    "HeaderBehavior": "allExcept",
+    "Headers": [
+      "Host",
+      "Authorization"
+    ]
+  },
+  "materialDifference": "Forwards other viewer headers rather than a strict five-header allowlist. Explicit approval required before service validation or applying this revised policy.",
+  "resourceCount": 12,
+  "resourceCountChange": 0,
+  "verificationRequired": [
+    "CloudFront accepts policy",
+    "valid hashed POST reaches fail-closed application with AI disabled",
+    "tampered/missing payload hash rejected",
+    "direct origin denied",
+    "only named cookie forwarded"
+  ],
+  "recovery": "Do not delete the failed stack, any retained table, staged objects, or shared additions automatically. Reconcile final rollback and ownership before a separately reviewed retry."
+}
