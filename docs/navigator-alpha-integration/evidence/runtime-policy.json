@@ -1,0 +1,66 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "NavigatorState",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:DeleteItem"
+      ],
+      "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "Condition": {
+        "ForAllValues:StringLike": {
+          "dynamodb:LeadingKeys": [
+            "NAVIGATOR#*"
+          ]
+        },
+        "Null": {
+          "dynamodb:LeadingKeys": "false"
+        }
+      }
+    },
+    {
+      "Sid": "ReadSharedPaidAiMaster",
+      "Effect": "Allow",
+      "Action": "dynamodb:GetItem",
+      "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "Condition": {
+        "ForAllValues:StringEquals": {
+          "dynamodb:LeadingKeys": [
+            "AI#CONFIG"
+          ],
+          "dynamodb:Attributes": [
+            "pk",
+            "sk",
+            "suspended",
+            "revision"
+          ]
+        },
+        "Null": {
+          "dynamodb:LeadingKeys": "false",
+          "dynamodb:Attributes": "false"
+        }
+      }
+    },
+    {
+      "Sid": "NavigatorParameters",
+      "Effect": "Allow",
+      "Action": "ssm:GetParameter",
+      "Resource": [
+        "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/openai-api-key",
+        "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/hmac-secret"
+      ]
+    },
+    {
+      "Sid": "NavigatorLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/decisionnavigator-alpha-api:log-stream:*"
+    }
+  ]
+}
