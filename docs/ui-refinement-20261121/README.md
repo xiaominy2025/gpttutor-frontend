@@ -1,6 +1,6 @@
 # Coordinated frontend refinement — 2026-11-21
 
-Prepared only. No deployment, AWS mutation, authentication change or paid AI call has occurred. Owner approval is required before publication.
+This is the historical preparation record. The owner subsequently approved the bounded paired Alpha publication. See [completed publication and hosted verification](PUBLICATION.md) for current status. The preparation results and original approval boundary below are retained for traceability.
 
 ## Changes
 

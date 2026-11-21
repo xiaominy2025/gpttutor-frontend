@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "releaseId": "paired-alpha-ui-e44eb926-aaf4-4601-9b8f-65c311077eb1",
+  "checks": [
+    {
+      "path": "/engent-alpha/",
+      "status": 200,
+      "sha256": "d73a7ca2bf60193b750be41b3c529d812969b0c91279a7b0000100d836d51d38"
+    },
+    {
+      "path": "/explore",
+      "status": 200,
+      "sha256": "d73a7ca2bf60193b750be41b3c529d812969b0c91279a7b0000100d836d51d38"
+    },
+    {
+      "path": "/engent-alpha/assets/index-BE9DTgyc.css",
+      "status": 200,
+      "sha256": "de9865a455afd5126a08ebc3fb39c95e3b257277bd8ff500d1fdf634f97a471c"
+    },
+    {
+      "path": "/engent-alpha/assets/index-C7EyrWlb.js",
+      "status": 200,
+      "sha256": "0993cb773d1710ea02ca2c54ac24ca4756a0ed073ba95dd6cfa2675fe3dfcf74"
+    },
+    {
+      "path": "/process/",
+      "status": 200,
+      "sha256": "e4595594f65f7b4e74a20d2c1b108ea2aca5d1d9c9441bbf56182445660d1e3d"
+    },
+    {
+      "path": "/process/assets/decision-pdf-dz8Gyj82.js",
+      "status": 200,
+      "sha256": "122f61fb63bc70060cdd031858a67a11259c004a4e2740d9a095c3e441bd02f1"
+    },
+    {
+      "path": "/process/assets/index-BOTcVSfR.css",
+      "status": 200,
+      "sha256": "2220f5bf7b62760fadc97c4fba5410c7573b7fc2ba87879961288e845f039bbd"
+    },
+    {
+      "path": "/process/assets/index-CxOuJS-b.js",
+      "status": 200,
+      "sha256": "b028079e9c7254a0b71731f17bada3c116687652e6e8600ff08e091eb8fd8949"
+    },
+    {
+      "path": "/process/assets/index.es-B0STP7WZ.js",
+      "status": 200,
+      "sha256": "b396e924c3799d1574bf0117a5580177af729f879ff9f2016f5d6e598c8259ae"
+    }
+  ]
+}

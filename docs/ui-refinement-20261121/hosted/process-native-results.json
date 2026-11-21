@@ -1,0 +1,105 @@
+{
+  "postInvalidation": "I4QU9PLWL94821C8QVXO3LT2RV",
+  "nativeWindowBounds": true,
+  "viewportEmulation": false,
+  "results": [
+    {
+      "inner": 1440,
+      "outer": 1464,
+      "client": 1425,
+      "scroll": 1425,
+      "cards": 3,
+      "stage": 0
+    },
+    {
+      "inner": 1440,
+      "outer": 1464,
+      "client": 1425,
+      "scroll": 1425,
+      "cards": 3,
+      "stage": 1
+    },
+    {
+      "inner": 1440,
+      "outer": 1464,
+      "client": 1425,
+      "scroll": 1425,
+      "cards": 3,
+      "stage": 2
+    },
+    {
+      "inner": 1024,
+      "outer": 1048,
+      "client": 1009,
+      "scroll": 1009,
+      "cards": 3,
+      "stage": 0
+    },
+    {
+      "inner": 1024,
+      "outer": 1048,
+      "client": 1009,
+      "scroll": 1009,
+      "cards": 3,
+      "stage": 1
+    },
+    {
+      "inner": 1024,
+      "outer": 1048,
+      "client": 1009,
+      "scroll": 1009,
+      "cards": 3,
+      "stage": 2
+    },
+    {
+      "inner": 768,
+      "outer": 792,
+      "client": 753,
+      "scroll": 753,
+      "cards": 3,
+      "stage": 0
+    },
+    {
+      "inner": 768,
+      "outer": 792,
+      "client": 753,
+      "scroll": 753,
+      "cards": 3,
+      "stage": 1
+    },
+    {
+      "inner": 768,
+      "outer": 792,
+      "client": 753,
+      "scroll": 753,
+      "cards": 3,
+      "stage": 2
+    },
+    {
+      "inner": 1440,
+      "outer": 1464,
+      "client": 1425,
+      "scroll": 1425,
+      "cards": 3,
+      "stage": 0
+    },
+    {
+      "inner": 1440,
+      "outer": 1464,
+      "client": 1425,
+      "scroll": 1425,
+      "cards": 3,
+      "stage": 1
+    },
+    {
+      "inner": 1440,
+      "outer": 1464,
+      "client": 1425,
+      "scroll": 1425,
+      "cards": 3,
+      "stage": 2
+    }
+  ],
+  "blocked": [],
+  "errors": []
+}

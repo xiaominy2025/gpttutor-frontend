@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "label": "Explore 1440",
+      "width": 1440,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 1160
+    },
+    {
+      "label": "Podcasts 1440",
+      "width": 1440,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 1160
+    },
+    {
+      "label": "Return Explore 1440",
+      "width": 1440,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 1160
+    },
+    {
+      "label": "Explore 1024",
+      "width": 1024,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 953
+    },
+    {
+      "label": "Podcasts 1024",
+      "width": 1024,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 953
+    },
+    {
+      "label": "Return Explore 1024",
+      "width": 1024,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 953
+    },
+    {
+      "label": "Explore 768",
+      "width": 768,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 697
+    },
+    {
+      "label": "Podcasts 768",
+      "width": 768,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 697
+    },
+    {
+      "label": "Return Explore 768",
+      "width": 768,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 697
+    },
+    {
+      "label": "Explore 390",
+      "width": 390,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 343
+    },
+    {
+      "label": "Podcasts 390",
+      "width": 390,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 343
+    },
+    {
+      "label": "Return Explore 390",
+      "width": 390,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 343
+    },
+    {
+      "label": "Native desktop Explore 1440",
+      "width": 1440,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 1160
+    },
+    {
+      "label": "Native desktop Explore 1024",
+      "width": 1024,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 953
+    },
+    {
+      "label": "Native desktop Explore 768",
+      "width": 768,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 697
+    },
+    {
+      "label": "Native desktop Explore 1440",
+      "width": 1440,
+      "horizontal": false,
+      "nested": [],
+      "contentWidth": 1160
+    }
+  ],
+  "hosted": true,
+  "guestOnly": true,
+  "liveCodeRequests": 0,
+  "paidCalls": 0,
+  "serverWrites": 0,
+  "blockedRequests": 0,
+  "podcastPlayback": true,
+  "navigation": true,
+  "directRefresh": true,
+  "nativeDesktopResize": true,
+  "saveOpenRecovery": "Process owner separately verifies synthetic projects"
+}

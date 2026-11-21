@@ -1,0 +1,84 @@
+{
+  "readOnly": true,
+  "sourceUnchanged": true,
+  "baselineSource": "31ed7bb488a1055c3c9cd308a9b12fd1b06cc4c0",
+  "candidateSource": "10e1d9ccafa561dea736333bd763bb1538969876",
+  "toolchain": {
+    "node": "v22.17.1",
+    "vite": "6.4.5"
+  },
+  "dependencyOrViteConfigDiff": "",
+  "method": "Exact emitted filenames replaced with logical filename tokens only; every JavaScript byte otherwise compared.",
+  "cause": "CSS changes preload/reference filenames; main, PDF and index.es have circular generated import references so all three JS filenames cascade.",
+  "results": [
+    {
+      "logical": "decision-pdf-HASH.js",
+      "baseline": "decision-pdf-CYVfgbWO.js",
+      "candidate": "decision-pdf-dz8Gyj82.js",
+      "baselineSha256": "355bf07b37a6e19b929374bdd14c0f5e6741d42504ee26c842077ddb0aa4bff0",
+      "candidateSha256": "122f61fb63bc70060cdd031858a67a11259c004a4e2740d9a095c3e441bd02f1",
+      "byteIdentical": false,
+      "onlyGeneratedAssetReferencesChanged": true,
+      "normalizedSha256": "7ec9d67c56ce3bb21005df0450c966bde0aca12be30c909a655c729f32babba7"
+    },
+    {
+      "logical": "engent-labs-mark-13TNTF-a.png",
+      "baseline": "engent-labs-mark-13TNTF-a.png",
+      "candidate": "engent-labs-mark-13TNTF-a.png",
+      "baselineSha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
+      "candidateSha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
+      "byteIdentical": true
+    },
+    {
+      "logical": "html2canvas.esm-HASH.js",
+      "baseline": "html2canvas.esm-QH1iLAAe.js",
+      "candidate": "html2canvas.esm-QH1iLAAe.js",
+      "baselineSha256": "061c08e50c0dc57b8d5e6531f0b8237a52a68b233260d49ab2f2c2906ad112c4",
+      "candidateSha256": "061c08e50c0dc57b8d5e6531f0b8237a52a68b233260d49ab2f2c2906ad112c4",
+      "byteIdentical": true,
+      "onlyGeneratedAssetReferencesChanged": true,
+      "normalizedSha256": "061c08e50c0dc57b8d5e6531f0b8237a52a68b233260d49ab2f2c2906ad112c4"
+    },
+    {
+      "logical": "index-HASH.css",
+      "baseline": "index-CXwgA_o3.css",
+      "candidate": "index-BOTcVSfR.css",
+      "baselineSha256": "6fb32f42fcb8f45d01db0cb5c9c69e5aa17c3b2cfc9242ac1604c986254d446b",
+      "candidateSha256": "2220f5bf7b62760fadc97c4fba5410c7573b7fc2ba87879961288e845f039bbd",
+      "byteIdentical": false,
+      "baselineBytes": 30303,
+      "candidateBytes": 30782,
+      "baselineCssPrefixPreserved": true
+    },
+    {
+      "logical": "index-HASH.js",
+      "baseline": "index-D26eH_wZ.js",
+      "candidate": "index-CxOuJS-b.js",
+      "baselineSha256": "806820705dc8854e46cf70c24f443cc9861bab8a897d8e27bea6b95352c28894",
+      "candidateSha256": "b028079e9c7254a0b71731f17bada3c116687652e6e8600ff08e091eb8fd8949",
+      "byteIdentical": false,
+      "onlyGeneratedAssetReferencesChanged": true,
+      "normalizedSha256": "4d6505211d45a41d0dcb36b40b7b904ca168dca3325d80ff74b0e62f5338b083"
+    },
+    {
+      "logical": "index.es-HASH.js",
+      "baseline": "index.es-DtQVP66f.js",
+      "candidate": "index.es-B0STP7WZ.js",
+      "baselineSha256": "5f2ff0c37741fd55214683678a63c81fdd33074fddf5c0f5a1daa615041e9cbb",
+      "candidateSha256": "b396e924c3799d1574bf0117a5580177af729f879ff9f2016f5d6e598c8259ae",
+      "byteIdentical": false,
+      "onlyGeneratedAssetReferencesChanged": true,
+      "normalizedSha256": "6cad1debd8cce7c4bc869324185b254a8e2feee60590d3a90246c31b7e489058"
+    },
+    {
+      "logical": "purify.es-HASH.js",
+      "baseline": "purify.es-BhqXAQOW.js",
+      "candidate": "purify.es-BhqXAQOW.js",
+      "baselineSha256": "be12e68fef1d969a33240fba1e96cc51243ebf3fcb5805e05fb6ace4ca378834",
+      "candidateSha256": "be12e68fef1d969a33240fba1e96cc51243ebf3fcb5805e05fb6ace4ca378834",
+      "byteIdentical": true,
+      "onlyGeneratedAssetReferencesChanged": true,
+      "normalizedSha256": "be12e68fef1d969a33240fba1e96cc51243ebf3fcb5805e05fb6ace4ca378834"
+    }
+  ]
+}
