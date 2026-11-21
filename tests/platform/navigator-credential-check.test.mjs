@@ -1,5 +1,5 @@
 import {describe,it,expect,vi} from 'vitest';
-import {credentialChecker} from '../../server/platform/navigator-credential-check.mjs';
+import {credentialChecker,inspectCredentialFormat} from '../../server/platform/navigator-credential-check.mjs';
 const context={invokedFunctionArn:'arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:$LATEST'};
 const event={operation:'verify-credential'},environment={STAGE:'alpha',NAVIGATOR_ENABLED:'false'};
 const secret='sk-private_test_value_not_a_real_key';
@@ -9,6 +9,28 @@ function setup(overrides={}) {
  return {readParameter,metadataFetch,run:credentialChecker({readParameter,metadataFetch,environment,...overrides})};
 }
 describe('private credential verification',()=>{
+ it.each([
+  [secret,'raw-token',true],[' '+secret+'\r\n','surrounding-whitespace',false],['\uFEFF'+secret,'surrounding-whitespace',false],
+  [JSON.stringify({apiKey:secret}),'json-object',false],[JSON.stringify(secret),'json-string',false],
+  ["'"+secret+"'",'single-quoted',false],['Bearer '+secret,'bearer-prefix',false],
+  ['OPENAI_API_KEY='+secret,'environment-assignment',false],
+  [Buffer.from(secret).toString('base64'),'base64-encoded',false],['%73'+secret.slice(1),'url-encoded',false],
+  ['not-a-real-credential','unrecognized',false]
+ ])('classifies without returning input: %s', (value,format,valid)=>{
+  const result=inspectCredentialFormat(value);
+  expect(result).toMatchObject({format,rawFormatValid:valid});
+  expect(JSON.stringify(result)).not.toContain(secret);expect(JSON.stringify(result)).not.toContain(value);
+ });
+ it.each(['inspect-credential-format','verify-credential-format'])('does not contact OpenAI for %s',async operation=>{
+  const s=setup({readParameter:async()=>({Value:JSON.stringify({secret}),Type:'SecureString',Version:2})});
+  expect(await s.run({operation},context)).toMatchObject({verified:false,format:'json-object',parameterVersion:2,providerRequests:0});
+  expect(s.metadataFetch).not.toHaveBeenCalled();
+ });
+ it('accepts corrected SecureString versions without contacting the provider',async()=>{
+  const s=setup({readParameter:async()=>({Value:secret,Type:'SecureString',Version:2})});
+  expect(await s.run({operation:'verify-credential-format'},context)).toMatchObject({verified:true,parameterVersion:2,rawFormatValid:true,providerRequests:0});
+  expect(s.metadataFetch).not.toHaveBeenCalled();
+ });
  it('checks metadata once without generation or returning key material',async()=>{
   const s=setup(),result=await s.run(event,context);
   expect(result.verified).toBe(true);expect(JSON.stringify(result)).not.toContain(secret);
