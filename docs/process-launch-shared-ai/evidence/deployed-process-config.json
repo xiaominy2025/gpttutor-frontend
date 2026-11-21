@@ -1,0 +1,10 @@
+{
+    "function": "decisionprocess-alpha-api",
+    "version": "1",
+    "codeSha256": "e2MqVSKh+151cleYIBqLUOJwLeGyNm1PUMWAuHF8V/A=",
+    "timeout": 80,
+    "memory": 512,
+    "role": "arn:aws:iam::771049112957:role/decisionprocess-alpha-runtime",
+    "aiEnabled": "false",
+    "sessionContractVerified": "false"
+}

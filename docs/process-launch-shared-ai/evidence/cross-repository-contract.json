@@ -1,0 +1,45 @@
+{
+  "hashes": {
+    "paid-ai-master.mjs": {
+      "canonicalLf": "5e84db7fbbdfbb5c5b5f3b5d6bacf72b8a1be4aec24a0540be343ba6b0c5d50e",
+      "workingBytes": [
+        "2cf9e79ecf1f61ecd3ebd2aecb943d037d2f3fcf256b1fdc1e75b4bdfc64422a",
+        "2cf9e79ecf1f61ecd3ebd2aecb943d037d2f3fcf256b1fdc1e75b4bdfc64422a",
+        "5e84db7fbbdfbb5c5b5f3b5d6bacf72b8a1be4aec24a0540be343ba6b0c5d50e"
+      ]
+    },
+    "paid-ai-master.d.mts": {
+      "canonicalLf": "675858460cc8884f8fce8c4a39f2b22ae6204de3334e4db1681b114d3e65d8e1",
+      "workingBytes": [
+        "dcc82e8f582b8d47ae10d73bb8cbde6879fad5d55d13fad68686db57bc24cbc9",
+        "dcc82e8f582b8d47ae10d73bb8cbde6879fad5d55d13fad68686db57bc24cbc9",
+        "675858460cc8884f8fce8c4a39f2b22ae6204de3334e4db1681b114d3e65d8e1"
+      ]
+    }
+  },
+  "results": [
+    {
+      "repo": "frontend",
+      "allowOnlyExplicitOn": true,
+      "noAllowCache": true,
+      "offErrorAndTimeoutDeny": true,
+      "providerCalls": 0
+    },
+    {
+      "repo": "tree",
+      "allowOnlyExplicitOn": true,
+      "noAllowCache": true,
+      "offErrorAndTimeoutDeny": true,
+      "providerCalls": 0
+    },
+    {
+      "repo": "process",
+      "allowOnlyExplicitOn": true,
+      "noAllowCache": true,
+      "offErrorAndTimeoutDeny": true,
+      "providerCalls": 0
+    }
+  ],
+  "awsWrites": 0,
+  "paidCalls": 0
+}

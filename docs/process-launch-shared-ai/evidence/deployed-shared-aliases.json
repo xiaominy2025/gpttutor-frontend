@@ -1,0 +1,10 @@
+[
+  {
+    "version": "5",
+    "function": "engent-platform-alpha-api"
+  },
+  {
+    "version": "17",
+    "function": "decisiontree-alpha-staging-api"
+  }
+]
