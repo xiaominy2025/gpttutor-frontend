@@ -1,0 +1,52 @@
+{
+  "paidAI": false,
+  "liveEmail": false,
+  "results": [
+    {
+      "width": 1280,
+      "hosted": true,
+      "automaticGuest": true,
+      "AIButtonsDisabled": true,
+      "saveOpen": true,
+      "refreshRecovery": true,
+      "threeStageNavigation": true,
+      "pdfExport": true,
+      "fonts": [
+        {
+          "url": "https://d6owpirihdsus.cloudfront.net/process/fonts/NotoSans-Regular.ttf",
+          "status": 200
+        }
+      ],
+      "deepLinkRefresh": true,
+      "mobileNoOverflow": true,
+      "exploreComingSoonPreserved": true,
+      "treeDecisionMap": true,
+      "blockedPosts": 0,
+      "errors": [],
+      "bad": []
+    },
+    {
+      "width": 390,
+      "hosted": true,
+      "automaticGuest": true,
+      "AIButtonsDisabled": true,
+      "saveOpen": true,
+      "refreshRecovery": true,
+      "threeStageNavigation": true,
+      "pdfExport": true,
+      "fonts": [
+        {
+          "url": "https://d6owpirihdsus.cloudfront.net/process/fonts/NotoSans-Regular.ttf",
+          "status": 200
+        }
+      ],
+      "deepLinkRefresh": true,
+      "mobileNoOverflow": true,
+      "exploreComingSoonPreserved": true,
+      "treeDecisionMap": true,
+      "blockedPosts": 0,
+      "errors": [],
+      "bad": []
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "requestedResource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionprocess-alpha/openai-api-key",
+    "response": {
+      "EvaluationResults": [
+        {
+          "EvalActionName": "ssm:GetParameter",
+          "EvalResourceName": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionprocess-alpha/openai-api-key",
+          "EvalDecision": "allowed",
+          "MatchedStatements": [
+            {
+              "SourcePolicyId": "role_decisionprocess-alpha-runtime_ProcessAlphaOnly",
+              "SourcePolicyType": "IAM Policy",
+              "StartPosition": {
+                "Line": 1,
+                "Column": 416
+              },
+              "EndPosition": {
+                "Line": 1,
+                "Column": 558
+              }
+            }
+          ],
+          "MissingContextValues": [],
+          "EvalDecisionDetails": {},
+          "ResourceSpecificResults": [
+            {
+              "EvalResourceName": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionprocess-alpha/openai-api-key",
+              "EvalResourceDecision": "allowed",
+              "MatchedStatements": [
+                {
+                  "SourcePolicyId": "role_decisionprocess-alpha-runtime_ProcessAlphaOnly",
+                  "SourcePolicyType": "IAM Policy",
+                  "StartPosition": {
+                    "Line": 1,
+                    "Column": 416
+                  },
+                  "EndPosition": {
+                    "Line": 1,
+                    "Column": 558
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requestedResource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisiontree-alpha/openai-api-key",
+    "response": {
+      "EvaluationResults": [
+        {
+          "EvalActionName": "ssm:GetParameter",
+          "EvalResourceName": "arn:aws:ssm:us-east-1:771049112957:parameter/decisiontree-alpha/openai-api-key",
+          "EvalDecision": "implicitDeny",
+          "MatchedStatements": [],
+          "MissingContextValues": [],
+          "EvalDecisionDetails": {},
+          "ResourceSpecificResults": [
+            {
+              "EvalResourceName": "arn:aws:ssm:us-east-1:771049112957:parameter/decisiontree-alpha/openai-api-key",
+              "EvalResourceDecision": "implicitDeny"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';import{pathToFileURL}from'node:url';import{resolve}from'node:path';import{execFileSync}from'node:child_process';import{createHash}from'node:crypto';import{mkdirSync,writeFileSync}from'node:fs';
 import{processSession,PROCESS_SESSION_PATH}from'../server/platform/process-session.mjs';import{emailPlatform}from'../server/platform/release-b-app.mjs';
 const [processRoot,treeRoot]=process.argv.slice(2);if(!processRoot||!treeRoot)throw Error('Supply Process and Tree source checkouts; no AWS calls.');
-const pin=p=>execFileSync('git',['-C',p,'rev-parse','HEAD'],{encoding:'utf8'}).trim();assert.equal(pin(processRoot),'43a29b11ba903070cd5da24e90b9995c8078a52f');assert.equal(pin(treeRoot),'ffda73eb69bcd4ea4517fa575c8859be086459c6');
+const pin=p=>execFileSync('git',['-C',p,'rev-parse','HEAD'],{encoding:'utf8'}).trim();assert.equal(pin(processRoot),'db4a554248fef3fd601401370e6c98797163b22c');assert.equal(pin(treeRoot),'ffda73eb69bcd4ea4517fa575c8859be086459c6');
 const{sessionVerifier}=await import(pathToFileURL(resolve(processRoot,'server/hosted/session.mjs')));const{fixture,memoryStore}=await import(pathToFileURL(resolve(treeRoot,'server/releaseB/test-fixture.mjs')));
 const origin='https://d6owpirihdsus.cloudfront.net';
 function event(path,body={},jar='',method='POST'){return{rawPath:path,body:JSON.stringify(body),headers:{'content-type':'application/json',origin,cookie:jar},requestContext:{http:{method}}};}

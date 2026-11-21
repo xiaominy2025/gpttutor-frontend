@@ -1,0 +1,82 @@
+{
+  "paidAI": false,
+  "liveEmail": false,
+  "requestBodyBytes": 1207,
+  "payloadHash": "340d2f42ae5379b51223b9fd873effb1d0be75343bd84e8fed9539e00783a27a",
+  "results": [
+    {
+      "name": "Guest status",
+      "status": 200,
+      "expected": [
+        200
+      ],
+      "body": "{\"mode\":\"live\",\"model\":\"gpt-6-luna\",\"access\":\"guest\",\"aiEnabled\":false}"
+    },
+    {
+      "name": "valid UTF8 hashed POST remains unauthorized",
+      "status": 401,
+      "expected": [
+        401
+      ],
+      "body": "{\"error\":\"Sign in with Email to use AI assistance.\"}"
+    },
+    {
+      "name": "missing payload hash rejected",
+      "status": 403,
+      "expected": [
+        400,
+        403
+      ],
+      "body": "{\"message\":\"The request signature we calculated does not match the signature you provided. Check your AWS Secret Access Key and signing method. Consult the service documentation for details.\"}"
+    },
+    {
+      "name": "tampered payload rejected",
+      "status": 403,
+      "expected": [
+        400,
+        403
+      ],
+      "body": "{\"message\":\"The request signature we calculated does not match the signature you provided. Check your AWS Secret Access Key and signing method. Consult the service documentation for details.\"}"
+    },
+    {
+      "name": "forged identity metadata does not authorize",
+      "status": 401,
+      "expected": [
+        401
+      ],
+      "body": "{\"error\":\"Sign in with Email to use AI assistance.\"}"
+    },
+    {
+      "name": "cross-origin denied",
+      "status": 403,
+      "expected": [
+        403
+      ],
+      "body": "{\"error\":\"Use the Engent Labs Alpha origin.\"}"
+    },
+    {
+      "name": "direct Function URL GET denied",
+      "status": 403,
+      "expected": [
+        403
+      ],
+      "body": "{\"Message\":\"Forbidden\"}"
+    },
+    {
+      "name": "direct Function URL POST denied",
+      "status": 403,
+      "expected": [
+        403
+      ],
+      "body": "{\"Message\":\"Forbidden\"}"
+    },
+    {
+      "name": "shared IAM endpoint unsigned denied",
+      "status": 403,
+      "expected": [
+        403
+      ],
+      "body": "{\"message\":\"Forbidden\"}"
+    }
+  ]
+}

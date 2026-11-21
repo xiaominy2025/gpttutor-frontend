@@ -1,0 +1,305 @@
+{
+  "capturedAt": "2026-11-21T01:55:02.876Z",
+  "stackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/decisionprocess-alpha/d8f62040-e54c-11f1-9b3d-12ffe237e6cb",
+  "stackStatus": "CREATE_COMPLETE",
+  "resources": {
+    "StackResourceSummaries": [
+      {
+        "LogicalResourceId": "FunctionURL",
+        "PhysicalResourceId": "arn:aws:lambda:us-east-1:771049112957:function:decisionprocess-alpha-api:live",
+        "ResourceType": "AWS::Lambda::Url",
+        "LastUpdatedTimestamp": "2026-11-21T01:44:14.022000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "FunctionVersion",
+        "PhysicalResourceId": "arn:aws:lambda:us-east-1:771049112957:function:decisionprocess-alpha-api:1",
+        "ResourceType": "AWS::Lambda::Version",
+        "LastUpdatedTimestamp": "2026-11-21T01:44:09.800000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "InvokePermission",
+        "PhysicalResourceId": "decisionprocess-alpha-InvokePermission-TJdyssq9aJZJ",
+        "ResourceType": "AWS::Lambda::Permission",
+        "LastUpdatedTimestamp": "2026-11-21T01:44:13.544000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "LiveAlias",
+        "PhysicalResourceId": "arn:aws:lambda:us-east-1:771049112957:function:decisionprocess-alpha-api:live",
+        "ResourceType": "AWS::Lambda::Alias",
+        "LastUpdatedTimestamp": "2026-11-21T01:44:11.827000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "LogGroup",
+        "PhysicalResourceId": "/aws/lambda/decisionprocess-alpha-api",
+        "ResourceType": "AWS::Logs::LogGroup",
+        "LastUpdatedTimestamp": "2026-11-21T01:43:33.751000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "ProcessEntry",
+        "PhysicalResourceId": "arn:aws:cloudfront::771049112957:function/decisionprocess-alpha-entry",
+        "ResourceType": "AWS::CloudFront::Function",
+        "LastUpdatedTimestamp": "2026-11-21T01:43:27.162000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "ProcessForwarding",
+        "PhysicalResourceId": "5b3427df-a863-4910-aefa-0fc34d69c444",
+        "ResourceType": "AWS::CloudFront::OriginRequestPolicy",
+        "LastUpdatedTimestamp": "2026-11-21T01:43:25.397000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "ProcessFunction",
+        "PhysicalResourceId": "decisionprocess-alpha-api",
+        "ResourceType": "AWS::Lambda::Function",
+        "LastUpdatedTimestamp": "2026-11-21T01:44:07.622000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "ProcessOAC",
+        "PhysicalResourceId": "E20HAUVZUE4EYS",
+        "ResourceType": "AWS::CloudFront::OriginAccessControl",
+        "LastUpdatedTimestamp": "2026-11-21T01:43:25.469000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "RuntimeRole",
+        "PhysicalResourceId": "decisionprocess-alpha-runtime",
+        "ResourceType": "AWS::IAM::Role",
+        "LastUpdatedTimestamp": "2026-11-21T01:43:57.602000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "URLPermission",
+        "PhysicalResourceId": "decisionprocess-alpha-URLPermission-Fwd5Gy8kngf9",
+        "ResourceType": "AWS::Lambda::Permission",
+        "LastUpdatedTimestamp": "2026-11-21T01:44:13.692000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "Usage",
+        "PhysicalResourceId": "decisionprocess-alpha-usage",
+        "ResourceType": "AWS::DynamoDB::Table",
+        "LastUpdatedTimestamp": "2026-11-21T01:43:38.224000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      }
+    ]
+  },
+  "shared": {
+    "StackResourceSummaries": [
+      {
+        "LogicalResourceId": "ProcessSessionInvokePermission",
+        "PhysicalResourceId": "engent-process-alpha-shared-ProcessSessionInvokePermission-VxWD9VfS8Gvz",
+        "ResourceType": "AWS::Lambda::Permission",
+        "LastUpdatedTimestamp": "2026-11-21T01:25:51.690000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      },
+      {
+        "LogicalResourceId": "ProcessSessionRoute",
+        "PhysicalResourceId": "db6s346",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "LastUpdatedTimestamp": "2026-11-21T01:25:51.881000+00:00",
+        "ResourceStatus": "CREATE_COMPLETE",
+        "DriftInformation": {
+          "StackResourceDriftStatus": "NOT_CHECKED"
+        }
+      }
+    ]
+  },
+  "distribution": {
+    "id": "E1C4AJI9FUE47B",
+    "status": "Deployed",
+    "etag": "E1JYRMDPD0WRC1",
+    "onlyReviewedDelta": true
+  },
+  "function": {
+    "Name": "decisionprocess-alpha-api",
+    "Arn": "arn:aws:lambda:us-east-1:771049112957:function:decisionprocess-alpha-api:live",
+    "Version": "1",
+    "Role": "arn:aws:iam::771049112957:role/decisionprocess-alpha-runtime",
+    "Memory": 512,
+    "Timeout": 80,
+    "Flags": {
+      "DEPLOYMENT_ENV": "alpha",
+      "SESSION_CONTRACT_VERIFIED": "false",
+      "USAGE_TABLE": "decisionprocess-alpha-usage",
+      "AI_ENABLED": "false",
+      "APP_ORIGIN": "https://d6owpirihdsus.cloudfront.net"
+    },
+    "Hash": "e2MqVSKh+151cleYIBqLUOJwLeGyNm1PUMWAuHF8V/A="
+  },
+  "bff": {
+    "AliasArn": "arn:aws:lambda:us-east-1:771049112957:function:engent-platform-alpha-api:live",
+    "Name": "live",
+    "FunctionVersion": "5",
+    "Description": "Process Alpha shared-session contract b097a787; existing Release B preserved",
+    "RevisionId": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+  },
+  "tree": {
+    "AliasArn": "arn:aws:lambda:us-east-1:771049112957:function:decisiontree-alpha-staging-api:live",
+    "Name": "live",
+    "FunctionVersion": "17",
+    "Description": "Shared auth disabled after owner-Ready gate 6991785041",
+    "RevisionId": "3b1b3819-af7a-41b7-af34-307c37427a23"
+  },
+  "parameter": [
+    {
+      "Name": "/decisionprocess-alpha/openai-api-key",
+      "Type": "SecureString",
+      "Tier": "Standard",
+      "KeyId": "alias/aws/ssm",
+      "Version": 1
+    }
+  ],
+  "rolePolicy": {
+    "RoleName": "decisionprocess-alpha-runtime",
+    "PolicyName": "ProcessAlphaOnly",
+    "PolicyDocument": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Action": [
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
+          ],
+          "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/decisionprocess-alpha-api:*",
+          "Effect": "Allow"
+        },
+        {
+          "Action": [
+            "dynamodb:GetItem",
+            "dynamodb:PutItem",
+            "dynamodb:UpdateItem",
+            "dynamodb:ConditionCheckItem"
+          ],
+          "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisionprocess-alpha-usage",
+          "Effect": "Allow"
+        },
+        {
+          "Action": "ssm:GetParameter",
+          "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionprocess-alpha/openai-api-key",
+          "Effect": "Allow"
+        },
+        {
+          "Action": "execute-api:Invoke",
+          "Resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/coaches/process/session",
+          "Effect": "Allow"
+        },
+        {
+          "Condition": {
+            "StringEquals": {
+              "kms:ViaService": "ssm.us-east-1.amazonaws.com",
+              "kms:EncryptionContext:PARAMETER_ARN": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionprocess-alpha/openai-api-key"
+            }
+          },
+          "Action": "kms:Decrypt",
+          "Resource": "arn:aws:kms:us-east-1:771049112957:key/a0855899-814e-4607-9f66-6a08ffc1a304",
+          "Effect": "Allow"
+        }
+      ]
+    }
+  },
+  "attached": {
+    "AttachedPolicies": []
+  },
+  "credentialSimulation": [
+    {
+      "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionprocess-alpha/openai-api-key",
+      "Decision": "allowed"
+    },
+    {
+      "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisiontree-alpha/openai-api-key",
+      "Decision": "implicitDeny"
+    }
+  ],
+  "forwarding": {
+    "ETag": "E23ZP02F085DFQ",
+    "OriginRequestPolicy": {
+      "Id": "5b3427df-a863-4910-aefa-0fc34d69c444",
+      "LastModifiedTime": "2026-11-21T01:43:24.642000+00:00",
+      "OriginRequestPolicyConfig": {
+        "Name": "decisionprocess-alpha-api-only",
+        "HeadersConfig": {
+          "HeaderBehavior": "allExcept",
+          "Headers": {
+            "Quantity": 2,
+            "Items": [
+              "Authorization",
+              "Host"
+            ]
+          }
+        },
+        "CookiesConfig": {
+          "CookieBehavior": "whitelist",
+          "Cookies": {
+            "Quantity": 1,
+            "Items": [
+              "__Host-engent-email"
+            ]
+          }
+        },
+        "QueryStringsConfig": {
+          "QueryStringBehavior": "none"
+        }
+      }
+    }
+  },
+  "url": {
+    "FunctionUrl": "https://xfn2ffdvfjtycxmdwp4dvwqbne0gyzsc.lambda-url.us-east-1.on.aws/",
+    "FunctionArn": "arn:aws:lambda:us-east-1:771049112957:function:decisionprocess-alpha-api:live",
+    "AuthType": "AWS_IAM",
+    "CreationTime": "2026-11-21T01:44:13.140559929Z",
+    "LastModifiedTime": "2026-11-21T01:44:13.140559929Z",
+    "InvokeMode": "BUFFERED"
+  },
+  "permission": {
+    "Policy": "{\"Version\":\"2012-10-17\",\"Id\":\"default\",\"Statement\":[{\"Sid\":\"decisionprocess-alpha-InvokePermission-TJdyssq9aJZJ\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:771049112957:function:decisionprocess-alpha-api:live\",\"Condition\":{\"Bool\":{\"lambda:InvokedViaFunctionUrl\":\"true\"},\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::771049112957:distribution/E1C4AJI9FUE47B\"}}},{\"Sid\":\"decisionprocess-alpha-URLPermission-Fwd5Gy8kngf9\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Action\":\"lambda:InvokeFunctionUrl\",\"Resource\":\"arn:aws:lambda:us-east-1:771049112957:function:decisionprocess-alpha-api:live\",\"Condition\":{\"StringEquals\":{\"lambda:FunctionUrlAuthType\":\"AWS_IAM\"},\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::771049112957:distribution/E1C4AJI9FUE47B\"}}}]}",
+    "RevisionId": "57c22fb8-cf96-460b-83ec-4c73da73e5cd"
+  },
+  "secretValueRetrieved": false,
+  "paidAICalls": 0
+}

@@ -1,0 +1,187 @@
+{
+  "Changes": [
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "FunctionURL",
+        "ResourceType": "AWS::Lambda::Url",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "FunctionVersion",
+        "ResourceType": "AWS::Lambda::Version",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "InvokePermission",
+        "ResourceType": "AWS::Lambda::Permission",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "LiveAlias",
+        "ResourceType": "AWS::Lambda::Alias",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "LogGroup",
+        "ResourceType": "AWS::Logs::LogGroup",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "ProcessEntry",
+        "ResourceType": "AWS::CloudFront::Function",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "ProcessForwarding",
+        "ResourceType": "AWS::CloudFront::OriginRequestPolicy",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "ProcessFunction",
+        "ResourceType": "AWS::Lambda::Function",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "ProcessOAC",
+        "ResourceType": "AWS::CloudFront::OriginAccessControl",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "RuntimeRole",
+        "ResourceType": "AWS::IAM::Role",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "URLPermission",
+        "ResourceType": "AWS::Lambda::Permission",
+        "Scope": [],
+        "Details": []
+      }
+    },
+    {
+      "Type": "Resource",
+      "ResourceChange": {
+        "Action": "Add",
+        "LogicalResourceId": "Usage",
+        "ResourceType": "AWS::DynamoDB::Table",
+        "Scope": [],
+        "Details": []
+      }
+    }
+  ],
+  "ChangeSetName": "retry-alpha-20261121-db4a554",
+  "ChangeSetId": "arn:aws:cloudformation:us-east-1:771049112957:changeSet/retry-alpha-20261121-db4a554/d816bcbf-a24d-4f79-8a9e-b15062f6e8e5",
+  "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/decisionprocess-alpha/d8f62040-e54c-11f1-9b3d-12ffe237e6cb",
+  "StackName": "decisionprocess-alpha",
+  "Description": null,
+  "Parameters": [
+    {
+      "ParameterKey": "ArtifactBucket",
+      "ParameterValue": "decisiontree-alpha-staging-frontend-vnhhrwadnpad"
+    },
+    {
+      "ParameterKey": "ArtifactKey",
+      "ParameterValue": "artifacts/decisionprocess-alpha/db4a554248fef3fd601401370e6c98797163b22c/api.zip"
+    },
+    {
+      "ParameterKey": "ArtifactVersion",
+      "ParameterValue": "DnhXWDQL4xNDzUnXoZU6IgTfCNTT18IU"
+    },
+    {
+      "ParameterKey": "SessionContractVerified",
+      "ParameterValue": "false"
+    },
+    {
+      "ParameterKey": "AIEnabled",
+      "ParameterValue": "false"
+    },
+    {
+      "ParameterKey": "CodeSha256",
+      "ParameterValue": "e2MqVSKh+151cleYIBqLUOJwLeGyNm1PUMWAuHF8V/A="
+    },
+    {
+      "ParameterKey": "ReleaseCommit",
+      "ParameterValue": "db4a554248fef3fd601401370e6c98797163b22c"
+    }
+  ],
+  "CreationTime": "2026-11-21T01:42:44.633000+00:00",
+  "ExecutionStatus": "AVAILABLE",
+  "Status": "CREATE_COMPLETE",
+  "StatusReason": null,
+  "NotificationARNs": [],
+  "RollbackConfiguration": {},
+  "Capabilities": [
+    "CAPABILITY_NAMED_IAM"
+  ],
+  "Tags": [
+    {
+      "Key": "Environment",
+      "Value": "alpha"
+    },
+    {
+      "Key": "ReleaseCommit",
+      "Value": "db4a554248fef3fd601401370e6c98797163b22c"
+    },
+    {
+      "Key": "Application",
+      "Value": "DecisionProcessCoach"
+    }
+  ],
+  "ParentChangeSetId": null,
+  "IncludeNestedStacks": false,
+  "RootChangeSetId": null,
+  "OnStackFailure": null,
+  "ImportExistingResources": null
+}
