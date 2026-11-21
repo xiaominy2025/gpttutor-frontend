@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "customPolicyOnly": false,
+  "effectiveRoleExists": true,
+  "kmsAccessVerified": false,
+  "templateSha256": "4decf69983f693b70a491c9b583d6983df13620b6259c4623bee56c60ba576c6",
+  "results": [
+    {
+      "label": "navigator-read",
+      "action": "dynamodb:GetItem",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "allowed",
+      "actual": "allowed",
+      "passed": true
+    },
+    {
+      "label": "navigator-write",
+      "action": "dynamodb:PutItem",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "allowed",
+      "actual": "allowed",
+      "passed": true
+    },
+    {
+      "label": "navigator-replay-delete",
+      "action": "dynamodb:DeleteItem",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "allowed",
+      "actual": "allowed",
+      "passed": true
+    },
+    {
+      "label": "deny-session-write",
+      "action": "dynamodb:PutItem",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "implicitDeny",
+      "actual": "implicitDeny",
+      "passed": true
+    },
+    {
+      "label": "deny-project-read",
+      "action": "dynamodb:GetItem",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "implicitDeny",
+      "actual": "implicitDeny",
+      "passed": true
+    },
+    {
+      "label": "master-projected-read",
+      "action": "dynamodb:GetItem",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "allowed",
+      "actual": "allowed",
+      "passed": true
+    },
+    {
+      "label": "deny-master-unprojected-read",
+      "action": "dynamodb:GetItem",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "implicitDeny",
+      "actual": "implicitDeny",
+      "passed": true
+    },
+    {
+      "label": "deny-master-extra-attribute",
+      "action": "dynamodb:GetItem",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "implicitDeny",
+      "actual": "implicitDeny",
+      "passed": true
+    },
+    {
+      "label": "deny-master-write",
+      "action": "dynamodb:PutItem",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "implicitDeny",
+      "actual": "implicitDeny",
+      "passed": true
+    },
+    {
+      "label": "deny-scan",
+      "action": "dynamodb:Scan",
+      "resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "expected": "implicitDeny",
+      "actual": "implicitDeny",
+      "passed": true
+    },
+    {
+      "label": "dedicated-openai",
+      "action": "ssm:GetParameter",
+      "resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/openai-api-key",
+      "expected": "allowed",
+      "actual": "allowed",
+      "passed": true
+    },
+    {
+      "label": "dedicated-signing",
+      "action": "ssm:GetParameter",
+      "resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/hmac-secret",
+      "expected": "allowed",
+      "actual": "allowed",
+      "passed": true
+    },
+    {
+      "label": "deny-process-key",
+      "action": "ssm:GetParameter",
+      "resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionprocess-alpha/openai-api-key",
+      "expected": "implicitDeny",
+      "actual": "implicitDeny",
+      "passed": true
+    },
+    {
+      "label": "deny-production-key",
+      "action": "ssm:GetParameter",
+      "resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/openai-api-key",
+      "expected": "implicitDeny",
+      "actual": "implicitDeny",
+      "passed": true
+    }
+  ]
+}

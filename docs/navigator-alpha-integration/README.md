@@ -1,5 +1,7 @@
 # Navigator + Explore Alpha integration package — 2026-11-21
 
+Update: the owner subsequently approved the default-OFF infrastructure installation and non-paid hosted testing. See [installation and hosted-results report](INSTALLATION.md). The preparation record below describes the state before that approval. Paid testing and public activation remain closed.
+
 **Source preparation and local validation only. No deployment, AWS resource/IAM change, credential-value read, master-control change, paid request or PR merge occurred.** The current working Alpha and Production are unchanged. Hosted Navigator acceptance has not passed: no Navigator Lambda is installed yet. This package is ready for engineering/approval review, not public activation.
 
 ## Reconciled source

@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "url": "https://d6owpirihdsus.cloudfront.net/api/platform/navigator/session",
+      "origin": "https://d6owpirihdsus.cloudfront.net",
+      "status": 503,
+      "noCookie": true,
+      "noStore": true
+    },
+    {
+      "url": "https://d6owpirihdsus.cloudfront.net/api/platform/navigator",
+      "origin": "https://d6owpirihdsus.cloudfront.net",
+      "status": 503,
+      "noCookie": true,
+      "noStore": true
+    },
+    {
+      "url": "https://d6owpirihdsus.cloudfront.net/api/platform/navigator/session",
+      "origin": "https://unrelated.invalid",
+      "status": 503,
+      "noCookie": true,
+      "noStore": true
+    },
+    {
+      "url": "https://8qmgd1ghdi.execute-api.us-east-1.amazonaws.com/api/platform/navigator/session",
+      "origin": "https://d6owpirihdsus.cloudfront.net",
+      "status": 503,
+      "noCookie": true,
+      "noStore": true
+    },
+    {
+      "url": "https://8qmgd1ghdi.execute-api.us-east-1.amazonaws.com/api/platform/navigator",
+      "origin": "https://d6owpirihdsus.cloudfront.net",
+      "status": 503,
+      "noCookie": true,
+      "noStore": true
+    }
+  ],
+  "paidCalls": 0,
+  "publicActivated": false,
+  "bootstrapBrowserAcceptance": false,
+  "clientIpAttributionVerified": false
+}
