@@ -1,0 +1,192 @@
+{
+  "status": "OFFLINE_PROPOSAL_NOT_EXECUTABLE",
+  "sourceETag": "E2X3YF2TXT154O",
+  "distributionId": "E1C4AJI9FUE47B",
+  "appendOrigins": [
+    {
+      "Id": "process-web",
+      "DomainName": "decisiontree-alpha-staging-frontend-vnhhrwadnpad.s3.us-east-1.amazonaws.com",
+      "OriginPath": "/releases/decisionprocess-alpha/web",
+      "CustomHeaders": {
+        "Quantity": 0
+      },
+      "S3OriginConfig": {
+        "OriginAccessIdentity": "",
+        "OriginReadTimeout": 30
+      },
+      "ConnectionAttempts": 3,
+      "ConnectionTimeout": 10,
+      "OriginShield": {
+        "Enabled": false
+      },
+      "OriginAccessControlId": "E13FXUT5PZ1TLZ"
+    },
+    {
+      "Id": "process-api",
+      "DomainName": "<FunctionURL_HOST_ONLY>",
+      "OriginPath": "",
+      "CustomHeaders": {
+        "Quantity": 0
+      },
+      "ConnectionAttempts": 1,
+      "ConnectionTimeout": 5,
+      "OriginAccessControlId": "<ProcessOAC.Id>",
+      "CustomOriginConfig": {
+        "HTTPPort": 80,
+        "HTTPSPort": 443,
+        "OriginProtocolPolicy": "https-only",
+        "OriginSslProtocols": {
+          "Quantity": 1,
+          "Items": [
+            "TLSv1.2"
+          ]
+        },
+        "OriginReadTimeout": 90,
+        "OriginKeepaliveTimeout": 5
+      },
+      "ResponseCompletionTimeout": 90
+    }
+  ],
+  "prependBehaviors": [
+    {
+      "ViewerProtocolPolicy": "redirect-to-https",
+      "TrustedSigners": {
+        "Enabled": false,
+        "Quantity": 0
+      },
+      "TrustedKeyGroups": {
+        "Enabled": false,
+        "Quantity": 0
+      },
+      "Compress": true,
+      "SmoothStreaming": false,
+      "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+      "ResponseHeadersPolicyId": "b5d73939-4c3d-4a75-aca8-45d6bb7b1f7e",
+      "LambdaFunctionAssociations": {
+        "Quantity": 0
+      },
+      "FieldLevelEncryptionId": "",
+      "PathPattern": "/api/process/workbook/*",
+      "TargetOriginId": "process-api",
+      "AllowedMethods": {
+        "Quantity": 7,
+        "Items": [
+          "GET",
+          "HEAD",
+          "OPTIONS",
+          "PUT",
+          "PATCH",
+          "POST",
+          "DELETE"
+        ],
+        "CachedMethods": {
+          "Quantity": 2,
+          "Items": [
+            "GET",
+            "HEAD"
+          ]
+        }
+      },
+      "OriginRequestPolicyId": "<ProcessForwarding.Id>",
+      "FunctionAssociations": {
+        "Quantity": 0
+      }
+    },
+    {
+      "ViewerProtocolPolicy": "redirect-to-https",
+      "TrustedSigners": {
+        "Enabled": false,
+        "Quantity": 0
+      },
+      "TrustedKeyGroups": {
+        "Enabled": false,
+        "Quantity": 0
+      },
+      "Compress": true,
+      "SmoothStreaming": false,
+      "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+      "ResponseHeadersPolicyId": "b5d73939-4c3d-4a75-aca8-45d6bb7b1f7e",
+      "LambdaFunctionAssociations": {
+        "Quantity": 0
+      },
+      "FieldLevelEncryptionId": "",
+      "PathPattern": "/process",
+      "TargetOriginId": "process-web",
+      "AllowedMethods": {
+        "Quantity": 2,
+        "Items": [
+          "GET",
+          "HEAD"
+        ],
+        "CachedMethods": {
+          "Quantity": 2,
+          "Items": [
+            "GET",
+            "HEAD"
+          ]
+        }
+      },
+      "FunctionAssociations": {
+        "Quantity": 1,
+        "Items": [
+          {
+            "EventType": "viewer-request",
+            "FunctionARN": "<ProcessEntry.FunctionARN>"
+          }
+        ]
+      }
+    },
+    {
+      "ViewerProtocolPolicy": "redirect-to-https",
+      "TrustedSigners": {
+        "Enabled": false,
+        "Quantity": 0
+      },
+      "TrustedKeyGroups": {
+        "Enabled": false,
+        "Quantity": 0
+      },
+      "Compress": true,
+      "SmoothStreaming": false,
+      "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+      "ResponseHeadersPolicyId": "b5d73939-4c3d-4a75-aca8-45d6bb7b1f7e",
+      "LambdaFunctionAssociations": {
+        "Quantity": 0
+      },
+      "FieldLevelEncryptionId": "",
+      "PathPattern": "/process/*",
+      "TargetOriginId": "process-web",
+      "AllowedMethods": {
+        "Quantity": 2,
+        "Items": [
+          "GET",
+          "HEAD"
+        ],
+        "CachedMethods": {
+          "Quantity": 2,
+          "Items": [
+            "GET",
+            "HEAD"
+          ]
+        }
+      },
+      "FunctionAssociations": {
+        "Quantity": 1,
+        "Items": [
+          {
+            "EventType": "viewer-request",
+            "FunctionARN": "<ProcessEntry.FunctionARN>"
+          }
+        ]
+      }
+    }
+  ],
+  "preserveAllOtherConfig": true,
+  "requiredOutputs": [
+    "FunctionURL_HOST_ONLY",
+    "ProcessOAC.Id",
+    "ProcessForwarding.Id",
+    "ProcessEntry.FunctionARN"
+  ],
+  "existingDefaultOriginUnchanged": "frontend"
+}

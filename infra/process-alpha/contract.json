@@ -1,0 +1,20 @@
+{
+ "version":"process-alpha-session-v1",
+ "status":"LOCALLY_CONFIRMED_NOT_DEPLOYED",
+ "processSource":"43a29b11ba903070cd5da24e90b9995c8078a52f",
+ "homepageBase":"c59408fba049637becdd80b5f64bda5fc9b2c834",
+ "authoritySource":"ffda73eb69bcd4ea4517fa575c8859be086459c6",
+ "method":"POST","path":"/internal/coaches/process/session",
+ "apiId":"8qmgd1ghdi","stage":"$default","authorization":"AWS_IAM",
+ "callerRole":"arn:aws:iam::771049112957:role/decisionprocess-alpha-runtime",
+ "request":{"sessionId":"opaque __Host-engent-email value (43 base64url characters)"},
+ "response":{"active":true,"subject":"stable existing sub","expiresAt":"min(wrapper, lease/root expiry), Unix seconds","audience":"process-alpha"},
+ "deny":["pending","revoked","disabled","expired","wrong caller","identity mismatch"],
+ "outageStatus":503,"noCredentialsInResponse":true,"processAdvanced":false,
+ "signinEntry":"/explore?entry=email&return=process",
+ "brokerReturn":"explore","finalReturn":"/process/",
+ "navigationIntent":"BFF preauth/session wrapper, ten minutes, atomic one-time consume; no browser storage",
+ "publicReturnEndpoint":"POST /api/platform/email/return",
+ "featureFlag":"PROCESS_SESSION_ENABLED", "default":"false",
+ "newSharedResources":2,"newIdentityOrProjectResources":0
+}

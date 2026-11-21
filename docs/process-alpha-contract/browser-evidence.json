@@ -1,0 +1,127 @@
+{
+  "offline": true,
+  "results": [
+    {
+      "width": 1280,
+      "syntheticCodeRequests": 1,
+      "oneTimeReturn": true,
+      "blockedSessionStorage": true,
+      "explorePlaceholderPreserved": true,
+      "treeBrokerReturn": "explore",
+      "externalRequestsForwarded": 0,
+      "blockedExternalRequests": 3,
+      "pageErrors": [],
+      "trace": [
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/bootstrap",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/start",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/finish",
+          "status": 200
+        },
+        {
+          "path": "/api/shared/email/login",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/authorize",
+          "status": 200
+        },
+        {
+          "path": "/api/shared/email/callback",
+          "status": 303
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/return",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "syntheticCodeRequests": 1,
+      "oneTimeReturn": true,
+      "blockedSessionStorage": true,
+      "explorePlaceholderPreserved": true,
+      "treeBrokerReturn": "explore",
+      "externalRequestsForwarded": 0,
+      "blockedExternalRequests": 3,
+      "pageErrors": [],
+      "trace": [
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/bootstrap",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/start",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/finish",
+          "status": 200
+        },
+        {
+          "path": "/api/shared/email/login",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/authorize",
+          "status": 200
+        },
+        {
+          "path": "/api/shared/email/callback",
+          "status": 303
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/email/return",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        },
+        {
+          "path": "/api/platform/session",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}

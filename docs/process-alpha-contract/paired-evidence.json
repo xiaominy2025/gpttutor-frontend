@@ -1,0 +1,19 @@
+{
+  "offline": true,
+  "networkCalls": 0,
+  "paidAI": 0,
+  "liveEmail": 0,
+  "processSource": "43a29b11ba903070cd5da24e90b9995c8078a52f",
+  "authoritySource": "ffda73eb69bcd4ea4517fa575c8859be086459c6",
+  "checks": [
+    "pending denied",
+    "signed Process adapter -> actual BFF -> actual unchanged Tree lease/root/account authority",
+    "handoff Explore unchanged",
+    "Student only despite Advanced",
+    "root-capped expiry",
+    "atomic one-use Process return",
+    "fresh revocation denied",
+    "fresh disabled account denied"
+  ],
+  "signedLocalTransports": 6
+}

@@ -4,18 +4,26 @@ export function signInReturnIntent(pathname='/',search=''){
  const cases=pathname.match(/^\/explore\/(process|forecast|scenario|tree|simulation|optimization)\/cases\/?$/);
  if(cases)return 'cases:'+cases[1];
  if(new URLSearchParams(search).get('return')==='tree')return 'tree';
+ if(new URLSearchParams(search).get('return')==='process')return 'explore';
  return pathname.replace(/\/+$/,'')==='/explore'?'explore':'home';
 }
 const tree=import.meta.env.VITE_VERIFIED_DECISION_TREE_URL==='https://d6owpirihdsus.cloudfront.net/'?'https://d6owpirihdsus.cloudfront.net/':'https://decisiontree.engentlabs.com/';
-export default function ReleaseBAccess({onSharedLaunch,onAccountState,entryRequest=location.pathname+location.search}){
+export default function ReleaseBAccess({onSharedLaunch,onAccountState,entryRequest=location.pathname+location.search,navigateProcess=()=>location.assign('/process/')}){
+ const processReturns=import.meta.env.VITE_PROCESS_RETURN_ENABLED==='true';
  const {openMenu,closeMenu}=useEngentAccountMenu();
  useEffect(()=>{if(new URLSearchParams(location.search).get('entry')==='email'){setChoice('email');openMenu();}},[entryRequest,openMenu]);
- const accountRequest=useRef(0);
+ const accountRequest=useRef(0),returning=useRef(false);
  const returnIntent=signInReturnIntent(location.pathname,location.search);
  const [account,setAccount]=useState(null),[choice,setChoice]=useState(()=>new URLSearchParams(location.search).get('entry')==='email'?'email':''),[email,setEmail]=useState(''),[code,setCode]=useState(''),[csrf,setCsrf]=useState(''),[sent,setSent]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[reason,setReason]=useState('');
  useEffect(()=>{if(choice==='email'&&new URLSearchParams(location.search).get('entry')==='email')openMenu({focusFirst:true});},[entryRequest,choice,openMenu]);
  // Only the newest authoritative check may update account state. Revocation hints carry no identity.
- async function load(){const request=++accountRequest.current;try{const r=await fetch('/api/platform/session',{cache:'no-store'});if(!r.ok)throw Error();const a=await r.json();if(typeof a?.signedIn!=='boolean')throw Error();if(request!==accountRequest.current)return;setAccount(a);onAccountState?.(a);onSharedLaunch?.(a.emailBridge&&a.treeLaunchUrl===tree+'api/shared/email/login'?a.treeLaunchUrl:a.treeLoginUrl===tree+'api/shared/login'?a.treeLoginUrl:null);}catch(error){if(request===accountRequest.current)throw error;}}
+ async function load(){const request=++accountRequest.current;try{const r=await fetch('/api/platform/session',{cache:'no-store'});if(!r.ok)throw Error();const a=await r.json();if(typeof a?.signedIn!=='boolean')throw Error();if(request!==accountRequest.current)return;
+ if(processReturns&&a.signedIn===true&&a.emailBridge===true&&location.pathname.replace(/\/+$/,'')==='/explore'&&!returning.current&&(a.processReturnAvailable===true||new URLSearchParams(location.search).get('return')==='process')){
+  returning.current=true;
+  try{if(a.processReturnAvailable===true){const destination=await post('email/return',{});if(destination.destination!=='/process/')throw Error('Invalid return destination');}if(request===accountRequest.current){navigateProcess();return;}}
+  catch{setError('Sign-in succeeded, but returning to Process Coach could not finish. Open Process Coach to continue.');}
+ }
+ if(request!==accountRequest.current)return;setAccount(a);onAccountState?.(a);onSharedLaunch?.(a.emailBridge&&a.treeLaunchUrl===tree+'api/shared/email/login'?a.treeLaunchUrl:a.treeLoginUrl===tree+'api/shared/login'?a.treeLoginUrl:null);}catch(error){if(request===accountRequest.current)throw error;}}
  useEffect(()=>{
   let active=true;const refresh=(force=false)=>{if(!active||!force&&document.visibilityState==='hidden')return;load().catch(()=>{if(active){setError('Account status unavailable. Try again.');onAccountState?.({unavailable:true});}});};
   const focus=()=>refresh();refresh();const timer=setInterval(()=>{if(account?.signedIn)refresh();},30000);window.addEventListener('focus',focus);document.addEventListener('visibilitychange',focus);
@@ -24,7 +32,7 @@ export default function ReleaseBAccess({onSharedLaunch,onAccountState,entryReque
  },[account?.signedIn]);
  async function post(path,data){const r=await fetch('/api/platform/'+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw Error(r.status===429?(path==='email/start'?'Code requests are limited to three per email per 15-minute window. Please wait before requesting another code.':'Too many attempts. Try again later.'):'Unable to complete sign-in. Request a new code explicitly to retry.');return r.json();}
  function finishHandoff(){const form=document.createElement('form');form.method='POST';form.action=tree+'api/shared/email/login';const i=document.createElement('input');i.type='hidden';i.name='returnTo';i.value=returnIntent;form.append(i);document.body.append(form);form.submit();}
- async function submit(e){e.preventDefault();setBusy(true);setError('');try{if(sent){const r=await post('email/finish',{code,csrf});setCode('');setCsrf('');if(r.needsHandoff!==true)throw Error('Secure sign-in confirmation unavailable.');finishHandoff();}else{const b=await fetch('/api/platform/email/bootstrap');if(!b.ok)throw Error('Sign-in unavailable.');const t=await b.json();await post('email/start',{email,csrf:t.csrf});setCsrf(t.csrf);setSent(true);}}catch(e){setCode('');setCsrf('');setSent(false);setError(e.message);}finally{setBusy(false);}}
+ async function submit(e){e.preventDefault();setBusy(true);setError('');try{if(sent){const r=await post('email/finish',{code,csrf});setCode('');setCsrf('');if(r.needsHandoff!==true)throw Error('Secure sign-in confirmation unavailable.');finishHandoff();}else{const b=await fetch('/api/platform/email/bootstrap'+(processReturns&&new URLSearchParams(location.search).get('return')==='process'?'?return=process':''));if(!b.ok)throw Error('Sign-in unavailable.');const t=await b.json();await post('email/start',{email,csrf:t.csrf});setCsrf(t.csrf);setSent(true);}}catch(e){setCode('');setCsrf('');setSent(false);setError(e.message);}finally{setBusy(false);}}
  async function logout(){setBusy(true);setError('');try{const r=await post('logout',{});if(r.ok!==true||r.scope!=='participating-browser')throw Error('Incomplete sign-out');++accountRequest.current;setAccount({signedIn:false});onAccountState?.({signedIn:false});try{if(typeof BroadcastChannel!=='undefined'){const c=new BroadcastChannel('engent-browser-session');try{c.postMessage('revoked');}finally{c.close();}}}catch{/* A notification failure must not undo successful backend sign-out. */}onSharedLaunch?.(null);setChoice('');setCode('');setCsrf('');setSent(false);closeMenu();}catch{setError('Sign-out is incomplete. Please retry.');}finally{setBusy(false);}}
  return <div className="engent-account-controls">
  {account?.signedIn?<><p>Decision Tree access: <strong>{account.entitlements?.tree?.advanced?'Advanced':'Student'}</strong>.</p>

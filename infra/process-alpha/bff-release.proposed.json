@@ -1,0 +1,14 @@
+{
+ "status":"LOCAL_PREPARATION_ONLY",
+ "account":"771049112957","region":"us-east-1",
+ "function":"engent-platform-alpha-api","alias":"live","handler":"index.handler",
+ "sourceStage":"alpha","preserveAllOtherEnvironmentAndConfiguration":true,
+ "environmentDelta":{"PROCESS_SESSION_ENABLED":"false"},
+ "enableOnlyAfter":"separate deployment approval and signed contract/return acceptance",
+ "existingRequiredFlags":{"RELEASE_B_EMAIL_ENABLED":"true","SHARED_AUTH_ENABLED":"true"},
+ "frontendBase":"/engent-alpha/","frontendProcessReturnEnabled":true,
+ "treeSourceAndAliasChanges":false,"exploreActivation":false,
+ "apiArtifactKey":"artifacts/engent-release-b-alpha/platform/<homepage-source-commit>/api.zip",
+ "frontendOriginPath":"/releases/engent-release-b-alpha/platform/<homepage-source-commit>-enabled",
+ "deploymentGuards":["fresh identity/account and region","captured BFF alias RevisionId and published version","fresh shared CloudFront ETag merged with Process overlay","no production aliases or whole-config rollback","immutable artifact hashes and S3 versions"]
+}

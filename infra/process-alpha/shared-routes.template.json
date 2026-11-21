@@ -1,0 +1,53 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "PREPARATION ONLY: Process Alpha IAM session route and exact BFF invoke permission; no deploy authority.",
+  "Resources": {
+    "ProcessSessionRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": "8qmgd1ghdi",
+        "RouteKey": "POST /internal/coaches/process/session",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/pnnbk27"
+      }
+    },
+    "ProcessSessionInvokePermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": "arn:aws:lambda:us-east-1:771049112957:function:engent-platform-alpha-api:live",
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceAccount": "771049112957",
+        "SourceArn": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/coaches/process/session"
+      }
+    }
+  },
+  "Rules": {
+    "AlphaAccountAndRegion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Equals": [
+              {
+                "Ref": "AWS::AccountId"
+              },
+              "771049112957"
+            ]
+          },
+          "AssertDescription": "Only approved Alpha account."
+        },
+        {
+          "Assert": {
+            "Fn::Equals": [
+              {
+                "Ref": "AWS::Region"
+              },
+              "us-east-1"
+            ]
+          },
+          "AssertDescription": "Only us-east-1."
+        }
+      ]
+    }
+  }
+}
