@@ -1,0 +1,31 @@
+{
+  "status": "SOURCE_ONLY_NOT_APPLIED",
+  "existingRole": "decisionprocess-alpha-runtime",
+  "existingTable": "decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+  "newResources": 0,
+  "newWriters": 0,
+  "statement": {
+    "Sid": "ReadSharedPaidAiMaster",
+    "Effect": "Allow",
+    "Action": "dynamodb:GetItem",
+    "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+    "Condition": {
+      "Null": {
+        "dynamodb:LeadingKeys": "false",
+        "dynamodb:Attributes": "false"
+      },
+      "ForAllValues:StringEquals": {
+        "dynamodb:LeadingKeys": [
+          "AI#CONFIG"
+        ],
+        "dynamodb:Attributes": [
+          "pk",
+          "sk",
+          "suspended",
+          "revision"
+        ]
+      }
+    }
+  },
+  "sortKeyLimitation": "IAM LeadingKeys restricts partition key, not sort key; adapter hardcodes STATE and projection limits readable attributes."
+}
