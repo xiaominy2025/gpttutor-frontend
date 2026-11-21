@@ -43,10 +43,12 @@ function MarketingLayout({ explore, coachNav, children, onSharedLaunch }) {
 }
 
 function canLaunch(coach) {
+  if (coach.id === 'process') return import.meta.env.VITE_PROCESS_COACH_ENABLED === 'true';
   return coach.id === 'tree' && (treeUrl === 'https://decisiontree.engentlabs.com/' || (import.meta.env.VITE_RELEASE_B_EMAIL_ENABLED === 'true' && treeUrl === 'https://d6owpirihdsus.cloudfront.net/'));
 }
 
 function Availability({ coach, sharedLaunch }) {
+  if (coach.id === 'process' && canLaunch(coach)) return <a href="/process/" className="engent-button">Launch Decision Process Coach</a>;
   if (canLaunch(coach)) {
     const destination = sharedLaunch === 'https://decisiontree.engentlabs.com/api/shared/login' ? sharedLaunch : treeUrl;
     return <a href={destination} className="engent-button">Launch Decision Tree Coach</a>;

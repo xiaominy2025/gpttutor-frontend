@@ -1,0 +1,23 @@
+{
+  "test": "local static UI / fixture route; not hosted Process acceptance",
+  "results": [
+    {
+      "viewport": "desktop",
+      "launchHref": "/process/",
+      "matchesTreeGreen": true,
+      "podcastsPreserved": true,
+      "overflow": false,
+      "fixtureNavigation": true,
+      "realAuthOrApiCalls": 0
+    },
+    {
+      "viewport": "mobile",
+      "launchHref": "/process/",
+      "matchesTreeGreen": true,
+      "podcastsPreserved": true,
+      "overflow": false,
+      "fixtureNavigation": true,
+      "realAuthOrApiCalls": 0
+    }
+  ]
+}
