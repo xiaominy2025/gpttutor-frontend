@@ -1,0 +1,136 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Navigator Alpha source-only proposal. No Release B, Tree, Process, or CloudFront resource updates.
+Parameters:
+  CodeBucket:
+    Type: String
+    AllowedValues: [decisiontree-alpha-artifacts-771049112957-us-east-1]
+  CodeKey:
+    Type: String
+    AllowedPattern: 'releases/decisionnavigator-alpha/[0-9a-f]{40}/navigator-alpha-[0-9a-f]{64}\.zip'
+    Description: Navigator-specific release key containing the source commit and hex ZIP digest.
+  CodeVersion:
+    Type: String
+    AllowedPattern: '(?!null$)\S+'
+    Description: Exact S3 object version of the reviewed Lambda ZIP.
+  ArtifactSha256:
+    Type: String
+    AllowedPattern: '[A-Za-z0-9+/]{43}='
+    Description: Base64 SHA-256 of the exact reviewed Lambda zip.
+Resources:
+  RuntimeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: decisionnavigator-alpha-runtime
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: {Service: lambda.amazonaws.com}
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: navigator-alpha-runtime
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: NavigatorState
+                Effect: Allow
+                Action: [dynamodb:GetItem, dynamodb:PutItem, dynamodb:DeleteItem]
+                Resource: arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5
+                Condition:
+                  'ForAllValues:StringLike': {'dynamodb:LeadingKeys': ['NAVIGATOR#*']}
+                  'Null': {'dynamodb:LeadingKeys': 'false'}
+              - Sid: ReadSharedPaidAiMaster
+                Effect: Allow
+                Action: dynamodb:GetItem
+                Resource: arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5
+                Condition:
+                  'ForAllValues:StringEquals':
+                    'dynamodb:LeadingKeys': ['AI#CONFIG']
+                    'dynamodb:Attributes': [pk, sk, suspended, revision]
+                  'Null': {'dynamodb:LeadingKeys': 'false', 'dynamodb:Attributes': 'false'}
+              - Sid: NavigatorParameters
+                Effect: Allow
+                Action: ssm:GetParameter
+                Resource:
+                  - arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/openai-api-key
+                  - arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/hmac-secret
+              - Sid: NavigatorLogs
+                Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents]
+                Resource: arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/decisionnavigator-alpha-api:log-stream:*
+  Logs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/decisionnavigator-alpha-api
+      RetentionInDays: 14
+  NavigatorFunction:
+    Type: AWS::Lambda::Function
+    DependsOn: Logs
+    Properties:
+      FunctionName: decisionnavigator-alpha-api
+      Runtime: nodejs22.x
+      Handler: index.handlerEntry
+      Role: !GetAtt RuntimeRole.Arn
+      Timeout: 29
+      ReservedConcurrentExecutions: 2
+      MemorySize: 256
+      Environment:
+        Variables:
+          STAGE: alpha
+          NAVIGATOR_ENABLED: 'false'
+      Code:
+        S3Bucket: !Ref CodeBucket
+        S3Key: !Ref CodeKey
+        S3ObjectVersion: !Ref CodeVersion
+  NavigatorVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName: !Ref NavigatorFunction
+      CodeSha256: !Ref ArtifactSha256
+  NavigatorAlias:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName: !Ref NavigatorFunction
+      FunctionVersion: !GetAtt NavigatorVersion.Version
+      Name: live
+  NavigatorIntegration:
+    Type: AWS::ApiGatewayV2::Integration
+    DependsOn: NavigatorAlias
+    Properties:
+      ApiId: 8qmgd1ghdi
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !Sub '${NavigatorFunction.Arn}:live'
+      PayloadFormatVersion: '2.0'
+      TimeoutInMillis: 29000
+  NavigatorSessionRoute:
+    Type: AWS::ApiGatewayV2::Route
+    DependsOn: NavigatorSessionPermission
+    Properties:
+      ApiId: 8qmgd1ghdi
+      RouteKey: POST /api/platform/navigator/session
+      AuthorizationType: NONE
+      Target: !Sub 'integrations/${NavigatorIntegration}'
+  NavigatorTurnRoute:
+    Type: AWS::ApiGatewayV2::Route
+    DependsOn: NavigatorTurnPermission
+    Properties:
+      ApiId: 8qmgd1ghdi
+      RouteKey: POST /api/platform/navigator
+      AuthorizationType: NONE
+      Target: !Sub 'integrations/${NavigatorIntegration}'
+  NavigatorSessionPermission:
+    Type: AWS::Lambda::Permission
+    DependsOn: NavigatorAlias
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Sub '${NavigatorFunction.Arn}:live'
+      Principal: apigateway.amazonaws.com
+      SourceArn: arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/api/platform/navigator/session
+  NavigatorTurnPermission:
+    Type: AWS::Lambda::Permission
+    DependsOn: NavigatorAlias
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Sub '${NavigatorFunction.Arn}:live'
+      Principal: apigateway.amazonaws.com
+      SourceArn: arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/api/platform/navigator

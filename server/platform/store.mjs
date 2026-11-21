@@ -1,7 +1,6 @@
 import {GetCommand, PutCommand, DeleteCommand, TransactWriteCommand} from '@aws-sdk/lib-dynamodb';
 import {PlatformError} from './oauth.mjs';
-export function dynamoStore(db, table) {
- const key = id => ({pk:id});
+export function dynamoStore(db, table, key = id => ({pk:id})) {
  const conditional = error => ['ConditionalCheckFailedException','TransactionCanceledException'].includes(error?.name);
  const put = (id, version, data) => ({
   TableName:table,Item:{...data,...key(id),version:version+1},
