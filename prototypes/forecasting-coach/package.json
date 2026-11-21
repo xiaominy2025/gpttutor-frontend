@@ -1,0 +1,17 @@
+{
+  "name": "forecasting-coach-prototype",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "exceljs": "4.4.0",
+    "gpttutor-frontend": "file:../.."
+  },
+  "devDependencies": {
+    "vite": "7.3.1"
+  }
+}

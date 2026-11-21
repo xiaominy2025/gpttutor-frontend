@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Forecasting Coach | Engent Labs</title></head>
+<body><header class="mast"><div class="brand">ENGENT LABS</div><div class="lab">Interactive Decision Coaching</div></header>
+<main>
+  <section class="intro"><h1>Forecasting Coach</h1><p>Use historical data to forecast what may happen next and decide how to respond.</p></section>
+  <ol class="steps" aria-label="Workflow"><li aria-current="step">Upload</li><li>Define Goal</li><li>Forecast</li><li>Interpret and Decide</li></ol>
+  <div class="workspace">
+    <aside>
+      <section class="card"><h2>Upload data</h2><label for="file">Excel workbook</label><input id="file" type="file" accept=".xlsx"><p id="file-status" role="status">Files are processed in your browser.</p>
+        <fieldset id="mapping" disabled><label>Worksheet<select id="sheet"></select></label><div class="pair"><label>Time column<select id="date"></select></label><label>Target variable<select id="target"></select></label></div><label>Observations begin on row<input id="row" type="number" min="2" max="5000" value="2"></label></fieldset>
+      </section>
+      <form class="card" id="goal-form"><h2>Define goal</h2><label>What decision are you making?<input id="goal" maxlength="250" placeholder="e.g. How much stock should we order?"></label>
+        <label>Measurement units<input id="unit" maxlength="50" placeholder="e.g. thousands of dollars"></label>
+        <label>Cadence<select id="cadence"><option value="monthly">Monthly dates</option><option value="weekly">Weekly dates</option><option value="daily">Daily dates</option><option value="periods">Consecutive numbers</option></select></label>
+        <div class="pair"><label>Forecast horizon<input id="horizon" type="number" min="1" max="60" value="6" required></label><label>Moving window<input id="window" type="number" min="2" max="120" value="3" required></label></div>
+        <label class="check"><input id="seasonality" type="checkbox"> Consider monthly seasonality</label>
+        <button id="run" disabled>Generate forecast</button>
+      </form>
+    </aside>
+    <div class="results">
+      <section class="card" id="preview"><h2>Data preview</h2><div id="preview-body"><p>Choose an Excel workbook to preview your data.</p></div></section>
+      <p class="error" id="error" role="alert" hidden></p>
+      <section id="results" hidden>
+        <section class="card"><div class="section-top"><h2>Forecast</h2><button id="export" class="secondary">Export Excel</button></div><label class="method-label">Forecasting method<select id="method"></select></label><p id="recommendation"></p><div id="chart"></div><div id="prediction-table"></div></section>
+        <section class="card"><h2>Accuracy</h2><div id="accuracy"></div></section>
+        <section class="card"><h2>Runs test</h2><div id="runs"></div></section>
+        <section class="card"><h2>Interpret and decide</h2><div id="interpretation"></div><label>What result or threshold would change your decision?<textarea id="reflection" rows="2" maxlength="500"></textarea></label></section>
+      </section>
+    </div>
+  </div>
+</main><script type="module" src="/app.js"></script></body></html>
