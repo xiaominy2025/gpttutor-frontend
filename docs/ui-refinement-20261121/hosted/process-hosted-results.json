@@ -1,0 +1,57 @@
+{
+  "source": "10e1d9ccafa561dea736333bd763bb1538969876",
+  "results": [
+    {
+      "width": 1440,
+      "guest": true,
+      "newBundle": true,
+      "stages": 3,
+      "noPageOverflow": true,
+      "saveOpenRecovery": true,
+      "blocked": [],
+      "errors": [],
+      "badAssets": [],
+      "realAI": false,
+      "authWrites": false
+    },
+    {
+      "width": 1024,
+      "guest": true,
+      "newBundle": true,
+      "stages": 3,
+      "noPageOverflow": true,
+      "saveOpenRecovery": true,
+      "blocked": [],
+      "errors": [],
+      "badAssets": [],
+      "realAI": false,
+      "authWrites": false
+    },
+    {
+      "width": 768,
+      "guest": true,
+      "newBundle": true,
+      "stages": 3,
+      "noPageOverflow": true,
+      "saveOpenRecovery": true,
+      "blocked": [],
+      "errors": [],
+      "badAssets": [],
+      "realAI": false,
+      "authWrites": false
+    },
+    {
+      "width": 390,
+      "guest": true,
+      "newBundle": true,
+      "stages": 3,
+      "noPageOverflow": true,
+      "saveOpenRecovery": true,
+      "blocked": [],
+      "errors": [],
+      "badAssets": [],
+      "realAI": false,
+      "authWrites": false
+    }
+  ]
+}

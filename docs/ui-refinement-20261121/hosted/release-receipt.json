@@ -1,0 +1,114 @@
+{
+  "releaseId": "paired-alpha-ui-e44eb926-aaf4-4601-9b8f-65c311077eb1",
+  "manifestSha256": "d323caef123fece2e2f797fecdf83779c5ac90f73cecce1af0b5b8adaa0a15cc",
+  "source": {
+    "website": "a9ebc7a9e56b5aeb9df54d7260b6058c43c7ee7c",
+    "process": "10e1d9ccafa561dea736333bd763bb1538969876"
+  },
+  "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+  "distribution": "E1C4AJI9FUE47B",
+  "invalidation": {
+    "id": "I4QU9PLWL94821C8QVXO3LT2RV",
+    "status": "Completed",
+    "paths": [
+      "/engent-alpha/*",
+      "/explore",
+      "/explore/*",
+      "/process",
+      "/process/*"
+    ]
+  },
+  "html": [
+    {
+      "app": "website",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/index.html",
+      "sha256": "d73a7ca2bf60193b750be41b3c529d812969b0c91279a7b0000100d836d51d38",
+      "version": "WCRidCoVSP8bibymptKxPZ6XWtdKAQUS",
+      "etag": "\"215f398df428a3ea88631dfaa35a97d3\"",
+      "rollback": {
+        "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/index.html",
+        "version": "CG8zJEaxZ0r8s8RRVyRyRc9bFmswtpzf",
+        "etag": "\"59216bcc903a82446c615ecdbd5b38e3\"",
+        "metadata": {
+          "sha256": "e35451c7344852487c74d73f3fa1f8dee4dec7baa35d74c63adc29e99752da18",
+          "engent-release-id": "process-alpha-launch-787fb40f-adbd-42e3-9fa7-ecfbcacd0e13"
+        },
+        "contentType": "text/html; charset=utf-8",
+        "cacheControl": "no-cache,no-store,must-revalidate",
+        "sha256": "e35451c7344852487c74d73f3fa1f8dee4dec7baa35d74c63adc29e99752da18"
+      }
+    },
+    {
+      "app": "process",
+      "key": "releases/decisionprocess-alpha/web/process/index.html",
+      "sha256": "e4595594f65f7b4e74a20d2c1b108ea2aca5d1d9c9441bbf56182445660d1e3d",
+      "version": "OkuPZc3xyU.shza5hbTTBqCg.Oxm.Gw0",
+      "etag": "\"37531095f71fcdb05897c4a539aa6119\"",
+      "rollback": {
+        "key": "releases/decisionprocess-alpha/web/process/index.html",
+        "version": "UZrpgJWz8doFwS2gY_bQAuPIElm0iXbe",
+        "etag": "\"90fa6ac93521730ea0ea2907ce16d43a\"",
+        "metadata": {
+          "source-sha256": "93ef568811a355831018b33c2d13d051ea8c68d6e7c6d616411bf2d37beacee8"
+        },
+        "contentType": "text/html; charset=utf-8",
+        "cacheControl": "no-cache, no-store, must-revalidate",
+        "sha256": "93ef568811a355831018b33c2d13d051ea8c68d6e7c6d616411bf2d37beacee8"
+      }
+    }
+  ],
+  "newAssets": [
+    {
+      "app": "website",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BE9DTgyc.css",
+      "sha256": "de9865a455afd5126a08ebc3fb39c95e3b257277bd8ff500d1fdf634f97a471c",
+      "version": "vwUTnB7rY2QMn6xYuTnsLyXbCx2ksXW3"
+    },
+    {
+      "app": "website",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-C7EyrWlb.js",
+      "sha256": "0993cb773d1710ea02ca2c54ac24ca4756a0ed073ba95dd6cfa2675fe3dfcf74",
+      "version": "nt7BXBRELDTTF3dLrAOkmidK4wAx8J7v"
+    },
+    {
+      "app": "process",
+      "key": "releases/decisionprocess-alpha/web/process/assets/decision-pdf-dz8Gyj82.js",
+      "sha256": "122f61fb63bc70060cdd031858a67a11259c004a4e2740d9a095c3e441bd02f1",
+      "version": "zHRWiCYYBRJAPl0dFcZP_hFStvo_cTPy"
+    },
+    {
+      "app": "process",
+      "key": "releases/decisionprocess-alpha/web/process/assets/index-BOTcVSfR.css",
+      "sha256": "2220f5bf7b62760fadc97c4fba5410c7573b7fc2ba87879961288e845f039bbd",
+      "version": "0Y888nqMOHL8KqxR6KEedEMVI.pyYM.7"
+    },
+    {
+      "app": "process",
+      "key": "releases/decisionprocess-alpha/web/process/assets/index-CxOuJS-b.js",
+      "sha256": "b028079e9c7254a0b71731f17bada3c116687652e6e8600ff08e091eb8fd8949",
+      "version": "FRauX6JuyGEOb_5RESD39IdRTfjgR_3R"
+    },
+    {
+      "app": "process",
+      "key": "releases/decisionprocess-alpha/web/process/assets/index.es-B0STP7WZ.js",
+      "sha256": "b396e924c3799d1574bf0117a5580177af729f879ff9f2016f5d6e598c8259ae",
+      "version": "0CchQ94UVuIDl0SKwyrabmzHE86XFVi8"
+    }
+  ],
+  "protectedState": {
+    "backendAliases": {
+      "engent-platform-alpha-api": "5",
+      "decisiontree-alpha-staging-api": "18",
+      "decisionprocess-alpha-api": "6"
+    },
+    "masterAiOn": true,
+    "masterRevision": 9,
+    "cloudfrontConfigurationUnchanged": true
+  },
+  "writeCounts": {
+    "immutableAssets": 6,
+    "html": 2,
+    "invalidation": 1
+  },
+  "rollbackPerformed": false
+}
