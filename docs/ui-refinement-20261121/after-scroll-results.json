@@ -1,0 +1,130 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "label": "Explore 1440",
+      "width": 1440,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 1160
+    },
+    {
+      "label": "Podcasts 1440",
+      "width": 1440,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 1160
+    },
+    {
+      "label": "Explore 1024",
+      "width": 1024,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 953
+    },
+    {
+      "label": "Podcasts 1024",
+      "width": 1024,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 953
+    },
+    {
+      "label": "Explore 768",
+      "width": 768,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 697
+    },
+    {
+      "label": "Podcasts 768",
+      "width": 768,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 697
+    },
+    {
+      "label": "Explore 390",
+      "width": 390,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 343
+    },
+    {
+      "label": "Podcasts 390",
+      "width": 390,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 343
+    },
+    {
+      "label": "Homepage",
+      "width": 390,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 343
+    },
+    {
+      "label": "Native desktop resize 1440",
+      "width": 1440,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 1160
+    },
+    {
+      "label": "Native desktop resize 1024",
+      "width": 1024,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 953
+    },
+    {
+      "label": "Native desktop resize 768",
+      "width": 768,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 697
+    },
+    {
+      "label": "Native desktop resize 1440",
+      "width": 1440,
+      "height": 900,
+      "horizontalOverflow": false,
+      "rootScrollports": [],
+      "documentScrollable": true,
+      "contentWidth": 1160
+    }
+  ],
+  "podcastPlayback": true,
+  "accountForm": true,
+  "hashNavigation": true,
+  "legacyStylesPreserved": true,
+  "nativeDesktopResizing": true,
+  "independentProcessNavigationFixture": true,
+  "realApiCalls": 0,
+  "paidCalls": 0
+}

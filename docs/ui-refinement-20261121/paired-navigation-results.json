@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "width": 1440,
+      "exploreLaunch": true,
+      "realProcessFrontend": true,
+      "reloadRecovery": true,
+      "returnToExplore": true,
+      "recoveryAfterReturn": true,
+      "horizontalOverflow": false,
+      "nestedExploreScroll": false
+    },
+    {
+      "width": 1024,
+      "exploreLaunch": true,
+      "realProcessFrontend": true,
+      "reloadRecovery": true,
+      "returnToExplore": true,
+      "recoveryAfterReturn": true,
+      "horizontalOverflow": false,
+      "nestedExploreScroll": false
+    },
+    {
+      "width": 768,
+      "exploreLaunch": true,
+      "realProcessFrontend": true,
+      "reloadRecovery": true,
+      "returnToExplore": true,
+      "recoveryAfterReturn": true,
+      "horizontalOverflow": false,
+      "nestedExploreScroll": false
+    },
+    {
+      "width": 390,
+      "exploreLaunch": true,
+      "realProcessFrontend": true,
+      "reloadRecovery": true,
+      "returnToExplore": true,
+      "recoveryAfterReturn": true,
+      "horizontalOverflow": false,
+      "nestedExploreScroll": false
+    }
+  ],
+  "navigationConfirmations": 4,
+  "realApiCalls": 0,
+  "paidCalls": 0,
+  "ownerFilesUsed": false
+}

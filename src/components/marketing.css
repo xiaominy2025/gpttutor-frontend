@@ -1,3 +1,9 @@
+/* Marketing pages scroll with the document. The legacy shell's fixed heights
+   and overflow-x:hidden otherwise create separate body and #root scrollports.
+   Keep this scoped so legacy applications and intentional menu scrolling stay intact. */
+html:has(.engent-site),body:has(.engent-site),#root:has(.engent-site){height:auto;overflow:visible}
+html:has(.engent-site){min-height:100%;overflow-x:clip}
+body:has(.engent-site),#root:has(.engent-site){min-height:100vh}
 .engent-site{--paper:#fafaf7;--slate:#263b43;--blue:#467fa8;--gold:#d9a441;--green:#267456;--line:#dce3df;background:var(--paper);color:var(--slate);font-family:Inter,system-ui,sans-serif;line-height:1.55}
 .engent-wrap{width:min(1160px,calc(100% - 56px));margin-inline:auto}
 .engent-header{border-bottom:1px solid var(--line);background:var(--paper)}
