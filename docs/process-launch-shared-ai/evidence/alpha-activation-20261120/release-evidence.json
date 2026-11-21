@@ -1,0 +1,113 @@
+{
+  "scope": "Alpha only; production unchanged",
+  "ownerAuthorization": "https://github.com/xiaominy2025/gpttutor-frontend/issues/11#issuecomment-7056260650",
+  "reportDate": "2026-11-20 America/Chicago",
+  "versions": {
+    "platform": 5,
+    "tree": 18,
+    "process": 6
+  },
+  "sources": {
+    "frontend": "df70a6d704a03c82d687f6967d0f1b720ef28904",
+    "frontendImplementation": "9477a25ec1dcdd67b930c859b3aca224ca39d307",
+    "tree": "44defa71593b08317203d5c464fc7c79b402b6b0",
+    "processRuntime": "31ed7bb488a1055c3c9cd308a9b12fd1b06cc4c0",
+    "processOperations": "3b9c426d843dcdfed95c9f5b278ac991ecce7a78"
+  },
+  "publication": {
+    "releaseId": "process-alpha-launch-787fb40f-adbd-42e3-9fa7-ecfbcacd0e13",
+    "awsWrites": 3,
+    "distribution": "E1C4AJI9FUE47B",
+    "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+    "prefix": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/",
+    "htmlVersion": "CG8zJEaxZ0r8s8RRVyRyRc9bFmswtpzf",
+    "htmlEtag": "\"59216bcc903a82446c615ecdbd5b38e3\"",
+    "invalidation": "I59MZ7YOI0PI7CUFTL1AN3GSYU",
+    "success": true
+  },
+  "aiAcceptance": {
+    "passed": true,
+    "aiEnabled": true,
+    "canaryAccepted": true,
+    "meteringReconciled": true,
+    "acceptedRequests": 1,
+    "plannedSlotsNotRun": 3,
+    "processVersion": "6",
+    "processCodeSha256": "07YyCjaVUpeMPc1drHsEI3PHFeIcOAUflwgwZwZVqc0=",
+    "master": {
+      "suspended": false,
+      "revision": 9
+    },
+    "projectWrites": 0,
+    "totalReservedNano": 64000000,
+    "bothStoppedLedgersPreserved": true,
+    "parentSha256": "db76861d5f67125bd4f49af02259514c310ec9469307630fad0d87d970008450",
+    "childSha256": "2bc1d77e4ae19cde80e1ef730795373c8a3d5a6e114615dc51fd1c08c25e4c6d",
+    "conservativeMeteredNano": 1119500,
+    "retainedServerHoldNano": 5269750,
+    "serverChargedNano": 6389250,
+    "providerAttempts": 1,
+    "inputTokens": 1500,
+    "outputTokens": 1864,
+    "paidCallsExecutedByReconciliation": 0
+  },
+  "tests": {
+    "frontendPlatformPassed": 149,
+    "treeUnitPassed": 359,
+    "processOfflinePassed": 249,
+    "realDynamoDbCasesPassed": 10,
+    "guestBrowser": {
+      "passed": true,
+      "results": [
+        {
+          "viewport": "desktop",
+          "processGreenLaunch": true,
+          "podcastPlayback": true,
+          "processDirectAndRefresh": true,
+          "guestAccess": true,
+          "guestAiDenied": true,
+          "treeGuest": true,
+          "homepage200": true,
+          "overflow": false,
+          "forwardedWrites": 0,
+          "blockedWrites": 0
+        },
+        {
+          "viewport": "mobile",
+          "processGreenLaunch": true,
+          "podcastPlayback": true,
+          "processDirectAndRefresh": true,
+          "guestAccess": true,
+          "guestAiDenied": true,
+          "treeGuest": true,
+          "homepage200": true,
+          "overflow": false,
+          "forwardedWrites": 0,
+          "blockedWrites": 0
+        }
+      ],
+      "paidCalls": 0
+    },
+    "genuineStudentSignInReturnRefresh": true,
+    "publishedAuthenticatedLaunchWithoutNewCode": true,
+    "coordinatedSignOutProtectedApis401": true,
+    "administratorMfa": "ON",
+    "administratorLogout401": true,
+    "allProtectedSessionsRevokedAtEnd": true,
+    "projectWrites": 0
+  },
+  "rollback": {
+    "frontendPreviousHtmlVersion": ".mLQlLouvfnyozMnVrkEROMGqjAgqPwc",
+    "frontendPreviousHtmlSha256": "0031b26cc2344d9d6a5dca638ab9a15a88d4d10b4727fcdb8c844522a7035c52",
+    "processAiOffVersion": 5,
+    "treePreviousVersion": 17,
+    "actualProcessFlagRollbackExercised": "version4 to3, then credential-fixed version5 prepared before final6",
+    "webGuardReviewFixtures": 14,
+    "webCrashWindowChecks": 2
+  },
+  "limitations": [
+    "One successful hosted AI interaction; both local canary ledgers remain stopped and preserved; three planned slots were not run. No five-success claim.",
+    "Hard Lambda termination can leave a fail-closed concurrency lock requiring evidence-based manual reconciliation; no forced live hard-kill test.",
+    "Metered amounts are conservative accounting estimates, not a provider invoice; the prior unknown hold is retained."
+  ]
+}

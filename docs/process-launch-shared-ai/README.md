@@ -1,3 +1,5 @@
+> **Alpha execution complete:** Process AI is ON and Explore launch is active. See [the 20 November release report](./ALPHA-ACTIVATION-20261120.md). Production is unchanged. The preparation record below is historical.
+
 # Engent Labs paid AI master contract — preparation only
 
 The existing Administrator AI switch remains the only writer and UI. It uses the existing audited, optimistic-concurrency-controlled `AI#CONFIG / STATE` record in Tree's Alpha DynamoDB table `decisiontree-alpha-staging-Data-JH4B4OFXWER5`. No duplicate flags, API, dashboard, table, credential, or new per-Coach Administrator switch is proposed.
