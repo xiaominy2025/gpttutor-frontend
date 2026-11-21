@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import CoachArtwork from './CoachArtwork';
 import EngentHeader from '../shared/EngentHeader';
@@ -13,6 +13,9 @@ import './marketing.css';
 
 const logo = '/assets/Engent Labs Transparent.png';
 const treeUrl = import.meta.env.VITE_VERIFIED_DECISION_TREE_URL;
+// Separate Alpha opt-in; existing Release B and production builds exclude Navigator.
+const DecisionNavigator = import.meta.env.VITE_NAVIGATOR_ALPHA_ENABLED === 'true'
+  ? lazy(() => import('./DecisionNavigator')) : null;
 
 function MarketingLayout({ explore, coachNav, children, onSharedLaunch }) {
   const { hash, pathname, search } = useLocation();
@@ -130,6 +133,7 @@ export function ExplorePage() {
       <p className="engent-lede">Find the right coach for your decision.</p>
       <nav aria-label="Coaches" className="engent-coach-nav">{coaches.map(coach => <a href={`#${coach.id}`} key={coach.id}>{coach.name}</a>)}</nav>
     </div></section>
+    {DecisionNavigator && <Suspense fallback={null}><DecisionNavigator /></Suspense>}
     <section className="engent-wrap engent-explore-list" aria-label="Decision coaches">
       {coaches.map(coach => <ExploreCoach key={coach.id} coach={coach} sharedLaunch={sharedLaunch} />)}
     </section>
