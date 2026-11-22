@@ -1,5 +1,7 @@
 # Coach and Navigator podcast review candidate
 
+**Publication update:** owner-approved source `501f2b5` is now deployed to Alpha. See [final deployed versions, hosted tests and rollback evidence](publication/README.md). The reviewed preparation record below is retained as history.
+
 Draft PR #18, branch codex/six-coach-podcasts-launch-controls. Latest implementation **2547486**. **Not deployed or merged.**
 
 ## Owner follow-up completed
