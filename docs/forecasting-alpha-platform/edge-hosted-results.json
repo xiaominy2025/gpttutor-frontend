@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "at": "2026-11-22T20:32:01.989Z",
+  "rows": [
+    {
+      "path": "/engent-alpha/forecasting/",
+      "status": 200,
+      "sha256": "5e5b4b4756a298fd15eaf0362310a947d77d0866b20705c374f1e036f0a5010f"
+    },
+    {
+      "path": "/engent-alpha/forecasting/index.html",
+      "status": 200,
+      "sha256": "5e5b4b4756a298fd15eaf0362310a947d77d0866b20705c374f1e036f0a5010f"
+    },
+    {
+      "path": "/engent-alpha/forecasting",
+      "status": 301
+    },
+    {
+      "path": "engent-logo-13TNTF-a.png",
+      "status": 200
+    },
+    {
+      "path": "index-BKF8svX-.css",
+      "status": 200
+    },
+    {
+      "path": "index-DWIAFOcg.js",
+      "status": 200
+    },
+    {
+      "missingAssetStatus": 403
+    },
+    {
+      "path": "/explore",
+      "unchangedSha256": "7b7fd829db9f7570e7e92737ccf0f91da9f695ee0097742ea0ba9a57ccef382a"
+    }
+  ],
+  "paidAiCalls": 0
+}

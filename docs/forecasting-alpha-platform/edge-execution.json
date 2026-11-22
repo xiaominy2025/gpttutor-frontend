@@ -1,0 +1,27 @@
+{
+  "source": "21854b3ec77ef70da510eea5b56c17194e102388",
+  "name": "engent-release-a-alpha-explore",
+  "oldSha256": "72874804997909c1cd2293f7c420bd0648d56b9bc4f192da784807723c08ef93",
+  "candidateSha256": "ea0533f41e25a034a146c5bc7ef319d713f0f67735bf3bac020f1c3a07544c66",
+  "oldLiveEtag": "E3AEGXETSR30VB",
+  "oldDevEtag": "E3AEGXETSR30VB",
+  "config": {
+    "Comment": "Alpha Explore prefix isolation only",
+    "Runtime": "cloudfront-js-2.0"
+  },
+  "writes": [
+    {
+      "op": "update-function",
+      "at": "2026-11-22T20:29:56.538Z",
+      "ifMatch": "E3AEGXETSR30VB",
+      "etag": "E3P5ROKL5A1OLE"
+    },
+    {
+      "op": "publish-function",
+      "at": "2026-11-22T20:30:07.829Z",
+      "ifMatch": "E3P5ROKL5A1OLE"
+    }
+  ],
+  "updatedEtag": "E3P5ROKL5A1OLE",
+  "verifiedAt": "2026-11-22T20:30:12.388Z"
+}

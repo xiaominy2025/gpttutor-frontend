@@ -1,0 +1,420 @@
+{
+  "assets": {
+    "web/assets/DecisionNavigator-CFTRBaB6.js": "821b867d5f1369ed6b39328055b355e79f7bb2d3eaa10be4a4b401df84e83883",
+    "web/assets/index-BC7wcYy4.js": "c7edcc8fdfc84f08fa36d57d4393aa6605af16413c831123457409d80b052e4b"
+  },
+  "reusedAssets": [
+    {
+      "file": "web/assets/01_American_Airlines-CgIFmZHL.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_American_Airlines-CgIFmZHL.mp3",
+      "sha256": "f83cfaf48da1c15387a4326ad0042041ef67e12e8dd598e4627a5a16f7457123",
+      "bytes": 2013770,
+      "baselineEtag": "\"e969e50d729ba081c00f27ddd0895226\""
+    },
+    {
+      "file": "web/assets/01_Bayer_Plasmin-8lIXnupg.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Bayer_Plasmin-8lIXnupg.mp3",
+      "sha256": "461e82b773b82cc610da4af4cdf9d1a4c7d4d80d18a262e1d34a45b8f44a5223",
+      "bytes": 4427066,
+      "baselineEtag": "\"c35f35811f3f0d3e1e570a2387ddba7b\""
+    },
+    {
+      "file": "web/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-CqMfc8rY.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-CqMfc8rY.mp3",
+      "sha256": "ed9c048307437ad2ea28af78e094aca75e206dbd8a33f03921450f2e1b28eaa6",
+      "bytes": 5406345,
+      "baselineEtag": "\"def13b7dbe71fccad60ea54ea8314f8e\""
+    },
+    {
+      "file": "web/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-DDc6qR7Z.txt",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-DDc6qR7Z.txt",
+      "sha256": "3239989f6e43cacd481034c8a8c0668fcd3d6f1051654167672033b0d5a3d6e2",
+      "bytes": 6850,
+      "baselineEtag": "\"89e03af4bbf8504f484fb504e75168ed\""
+    },
+    {
+      "file": "web/assets/01_Morgan_Stanley-B-Xb184d.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Morgan_Stanley-B-Xb184d.mp3",
+      "sha256": "da94116ddd784a8ff1a4e2da575d7012552799d2ac7a473ee14e562f2b77ccca",
+      "bytes": 4488506,
+      "baselineEtag": "\"14d343226eb50ff554ecbcd38b8da1ab\""
+    },
+    {
+      "file": "web/assets/01_Pressure_D_Day-CPtYvoJh.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Pressure_D_Day-CPtYvoJh.mp3",
+      "sha256": "d7d7d5f2ca43b1aa1eadbdcdca4a81e92cb343be27cdb1b09ae46ffcfdb7e233",
+      "bytes": 3908797,
+      "baselineEtag": "\"44c39609930befe3c3b1f20118f5f923\""
+    },
+    {
+      "file": "web/assets/01_Shell_Oil_Shock-CyJ6KOlg.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Shell_Oil_Shock-CyJ6KOlg.mp3",
+      "sha256": "944dba3d71edebf26035a1a0cd33f0b42828ddb1cc0c54cdb91f6929c397c08e",
+      "bytes": 4416617,
+      "baselineEtag": "\"e2bc437de04cca7c4f766a0709f07b7f\""
+    },
+    {
+      "file": "web/assets/02_Airbnb_Travel_Collapse-B0M6RMFr.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Airbnb_Travel_Collapse-B0M6RMFr.mp3",
+      "sha256": "a8486680f18dd86fd29846e1cfc922ebb31b81414078539260212a8e5dcef0bd",
+      "bytes": 4386106,
+      "baselineEtag": "\"978b0cf27dc3af09eb51d3b0139245d6\""
+    },
+    {
+      "file": "web/assets/02_Dominos_Friday_Rush-dSC9kCZz.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Dominos_Friday_Rush-dSC9kCZz.mp3",
+      "sha256": "23a9b22be1fa3fd358e83f807821c5876a118d5b40a1048b3ff2bfbfcc6f1643",
+      "bytes": 4058844,
+      "baselineEtag": "\"627354380fd6a6745877032ecb4d86f3\""
+    },
+    {
+      "file": "web/assets/02_Intuit_SnapTax-CvUXCJ4u.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Intuit_SnapTax-CvUXCJ4u.mp3",
+      "sha256": "b808772d9156ecba8c62e763d89864a65b452a946e0c90f80961c7284e023216",
+      "bytes": 3900856,
+      "baselineEtag": "\"0cf74a8df48418fb39ee04f6b578d6e3\""
+    },
+    {
+      "file": "web/assets/02_Netflix-Bnhqnhz0.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Netflix-Bnhqnhz0.mp3",
+      "sha256": "de7b4eaf75e8b5ae79003183cc5a1e994a629877462e7f0adedee27a5ebdce43",
+      "bytes": 4383598,
+      "baselineEtag": "\"3d071600589ca99dd4f8fe8baa9ab40d\""
+    },
+    {
+      "file": "web/assets/02_Tue_Fastenal_The_Vending_Machine_Moat-CBxkzdGh.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Tue_Fastenal_The_Vending_Machine_Moat-CBxkzdGh.mp3",
+      "sha256": "86bf30d2c927ea32c60a8fa3786dc2a0614df57362e5d7d3f8a9d62e671a399e",
+      "bytes": 5326096,
+      "baselineEtag": "\"95e3cb92f912358b97a3979ec5d1c7e7\""
+    },
+    {
+      "file": "web/assets/02_Zara-Dth55lmH.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Zara-Dth55lmH.mp3",
+      "sha256": "9e49329d95bade48896ae4880243750dd19686b59582ac6e7c70b7b8422b29c5",
+      "bytes": 2036758,
+      "baselineEtag": "\"4503e1401792555f621cd229752e783a\""
+    },
+    {
+      "file": "web/assets/03_Amazon_HQ2-BFJ9bzCv.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Amazon_HQ2-BFJ9bzCv.mp3",
+      "sha256": "62fe5c2c323f9f380d5e23f60f183383fc06b5bb1ec933c4ab1cfd4dc2effd3c",
+      "bytes": 3732418,
+      "baselineEtag": "\"a3094f1e5dabc3171a7366e6fb2f74c0\""
+    },
+    {
+      "file": "web/assets/03_Ford_EV_Choices-CJ92vQzj.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Ford_EV_Choices-CJ92vQzj.mp3",
+      "sha256": "1e3006b0898b416adab06df14dba590111b390979fb82ef6e2636b4229b295f7",
+      "bytes": 4475550,
+      "baselineEtag": "\"b536bd2f1bea4dbf6df33fc995d4d1f5\""
+    },
+    {
+      "file": "web/assets/03_UPS-Ds_mxdf2.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_UPS-Ds_mxdf2.mp3",
+      "sha256": "c28bcacde14575809bd063e2bb1f27c8fd48b0b9748d488d570cb0cf7c4cd89a",
+      "bytes": 1972810,
+      "baselineEtag": "\"7aa6f6394ea648eec1466e742a3bb12c\""
+    },
+    {
+      "file": "web/assets/03_Walmart_Weather-Fvv0Rbnw.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Walmart_Weather-Fvv0Rbnw.mp3",
+      "sha256": "4eba489440a49753d8de811f2f785dee401818c9ec4adb9220b178d3fbec8443",
+      "bytes": 3698563,
+      "baselineEtag": "\"e28bac443a37e919b7bd943c6a7dc52d\""
+    },
+    {
+      "file": "web/assets/03_Wed_Uniqlo_The_Fabric_Innovation_Partnership-Ctxisc4b.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Wed_Uniqlo_The_Fabric_Innovation_Partnership-Ctxisc4b.mp3",
+      "sha256": "431ac0e766576d24e2435e5aaaea3622d83ce1a649aeb04b42d7167a582f4f7d",
+      "bytes": 5437274,
+      "baselineEtag": "\"1457c0d645702197955b07a0e9ba63c7\""
+    },
+    {
+      "file": "web/assets/03_Zillow-CUh3_BcG.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Zillow-CUh3_BcG.mp3",
+      "sha256": "2c3438b23e2783379158e3b8dcc7f96cdd14b2f03a2e1157bb2f322a25f8108a",
+      "bytes": 4653182,
+      "baselineEtag": "\"77ddcf4b4b780989245507279192d807\""
+    },
+    {
+      "file": "web/assets/04_Hershey_Halloween-CBKWOnb1.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Hershey_Halloween-CBKWOnb1.mp3",
+      "sha256": "89fea2139634e2a55e84d30dbf6fac51a20497aa27c39db5622cf7be2b173176",
+      "bytes": 3459073,
+      "baselineEtag": "\"c6dafeba2fde1d842b1721d83ed2b43d\""
+    },
+    {
+      "file": "web/assets/04_Lockheed_Martin_F35_Supply_Chain-9IAdgaVZ.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Lockheed_Martin_F35_Supply_Chain-9IAdgaVZ.mp3",
+      "sha256": "5febbbeacabe07d657d961262b87c2baa59675d2f61d45147c133ed927e84392",
+      "bytes": 5548451,
+      "baselineEtag": "\"8f17fdd65b0f066c8144718710ef37ff\""
+    },
+    {
+      "file": "web/assets/04_Lockheed_Martin_F35_Supply_Chain-CDXIYOui.txt",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Lockheed_Martin_F35_Supply_Chain-CDXIYOui.txt",
+      "sha256": "abf7eab3f61efe2802ed014e3dc492151935390f864036d5c2555f4d3256a40c",
+      "bytes": 6874,
+      "baselineEtag": "\"46a8cd41d64330eeb4e4457a11ed132a\""
+    },
+    {
+      "file": "web/assets/04_Netflix_Streaming-DdkED1ei.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Netflix_Streaming-DdkED1ei.mp3",
+      "sha256": "76f4e296bbbc5e704a71a62cc0d291ddfb692bb99a0d16470c9650adbf57d373",
+      "bytes": 3826877,
+      "baselineEtag": "\"4d2fbdee18279bcb4ce280734311f5ca\""
+    },
+    {
+      "file": "web/assets/04_Thu_Intuitive_The_Installed_Base_Engine-93QS8sZE.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Thu_Intuitive_The_Installed_Base_Engine-93QS8sZE.mp3",
+      "sha256": "806f067bdcdab0bd594e167e0114dd9eec86cd5cdd5d2aff57376780ea702ce1",
+      "bytes": 5532150,
+      "baselineEtag": "\"42783ab1cbc4c53f917b34e30ddb0707\""
+    },
+    {
+      "file": "web/assets/04_Thu_Intuitive_The_Installed_Base_Engine-DaXeXltS.txt",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Thu_Intuitive_The_Installed_Base_Engine-DaXeXltS.txt",
+      "sha256": "df37853160d5c475a4083017047cf6d11ac77fd3c49c945b0201d7dc2f098352",
+      "bytes": 6792,
+      "baselineEtag": "\"800f383b26e56a824a1ea0b292b13d51\""
+    },
+    {
+      "file": "web/assets/04_Unilever_Climate_Costs-D5iDsNE1.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Unilever_Climate_Costs-D5iDsNE1.mp3",
+      "sha256": "cea3eb614c1c7f97bc9e2ab0f55249a6f52966053169ce9eb69eb507f18c7be2",
+      "bytes": 4773554,
+      "baselineEtag": "\"1723fcd5677b8be1ff25a191ef0f2eae\""
+    },
+    {
+      "file": "web/assets/04_UPS-Bxw3qaMU.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_UPS-Bxw3qaMU.mp3",
+      "sha256": "9b8dd234a67d0e63dc11805f667039680f958853cdc0571b0dec14e076b66077",
+      "bytes": 4123628,
+      "baselineEtag": "\"661d6f242e5cf7d5333e00a282e7508d\""
+    },
+    {
+      "file": "web/assets/05_Airbus_Twenty_Years-C4yi2x63.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Airbus_Twenty_Years-C4yi2x63.mp3",
+      "sha256": "a92db389061447d7c7f64a0eff38749016f4f0db947125d819cf6a984e19b97f",
+      "bytes": 3600761,
+      "baselineEtag": "\"b845c85ef917bcbaee7bcbd80a93386a\""
+    },
+    {
+      "file": "web/assets/05_Chevron-BgstojSx.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Chevron-BgstojSx.mp3",
+      "sha256": "f08904a2ddc08ca4344b41ccc2cdda8dd3e67fd1e1fae719642b7f50e1ccc13a",
+      "bytes": 1941881,
+      "baselineEtag": "\"810a630a275f12a15cb3b33ec0d70df5\""
+    },
+    {
+      "file": "web/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-BrLOCXbt.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-BrLOCXbt.mp3",
+      "sha256": "19fa8590fb3814bbf557b9d9fd3ebef12b1d470d81ffc2ae18134cdf83e49d1b",
+      "bytes": 5224950,
+      "baselineEtag": "\"bb5443e7e49ba6e350eeae6ec59e0d2b\""
+    },
+    {
+      "file": "web/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-g8LUerjA.txt",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-g8LUerjA.txt",
+      "sha256": "4dfdc6fc55ea5aecf58060af4605260b08f65f3cb5dd460b3e86ad1ecc480438",
+      "bytes": 6467,
+      "baselineEtag": "\"6f1e7cd44525dafbc90f0200dbb0880f\""
+    },
+    {
+      "file": "web/assets/05_NASA_Mars-BXsk85pE.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_NASA_Mars-BXsk85pE.mp3",
+      "sha256": "a48d4c5ecac4fd52a68f7ce24cb456d48071d2c704869529181f63b2e3763998",
+      "bytes": 3873688,
+      "baselineEtag": "\"c3fa728214fd28e9b3fec7140084e82b\""
+    },
+    {
+      "file": "web/assets/06_Duke_Energy_Tomorrows_Load-C4--B_xq.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/06_Duke_Energy_Tomorrows_Load-C4--B_xq.mp3",
+      "sha256": "9457ad4f3112d14388609950a20967d79394137047b9e041585fc53ed03d7d7f",
+      "bytes": 3483314,
+      "baselineEtag": "\"78b1e39d581776fda09593c9643de119\""
+    },
+    {
+      "file": "web/assets/06_Los_Alamos-D7hdSHvj.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/06_Los_Alamos-D7hdSHvj.mp3",
+      "sha256": "bfcab0a7400fea8c6cf11c392a76acd97f4580777964751d941f0c66b3312058",
+      "bytes": 2105721,
+      "baselineEtag": "\"a987c0ab4a5582cbfb1fcaac987f505e\""
+    },
+    {
+      "file": "web/assets/06_Sat_Caterpillar_The_Part_That_Comes_Back-C7nwv9o5.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/06_Sat_Caterpillar_The_Part_That_Comes_Back-C7nwv9o5.mp3",
+      "sha256": "e320198d5a9b14e38a336712d3af775a0c460af73907a782a314c045a18c976f",
+      "bytes": 5110847,
+      "baselineEtag": "\"f5d899d0a095decb5c15d89ec1c397de\""
+    },
+    {
+      "file": "web/assets/07_Hospital_Emergency_Department-CHnk7elX.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/07_Hospital_Emergency_Department-CHnk7elX.mp3",
+      "sha256": "35a3be2249911d091ac89b408d46c1f9ede428560e4403f3ccfd8fdf7215b7bc",
+      "bytes": 3686861,
+      "baselineEtag": "\"45a3f17a80d5da47efad9b1a29a69810\""
+    },
+    {
+      "file": "web/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-1BPefrVc.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-1BPefrVc.mp3",
+      "sha256": "d32062d5f4ddfcca2dc66d2b12c6711a2a4932857b53a1ea5b7d7d8e11b69ac8",
+      "bytes": 5932555,
+      "baselineEtag": "\"1eeed09ea4a3d2313ae8a8251c61fbc8\""
+    },
+    {
+      "file": "web/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-DZN36p4S.txt",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-DZN36p4S.txt",
+      "sha256": "51c413228c6f9734e2d360f6b7188d25043286ab7c21121008926b3036c3b540",
+      "bytes": 7207,
+      "baselineEtag": "\"a077ce44e4936c817c0038f1f7a6ebff\""
+    },
+    {
+      "file": "web/assets/coach-paper-BizU8FEU.webp",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/coach-paper-BizU8FEU.webp",
+      "sha256": "700d26882d76eae812bbc4d0f3792cad05e55b676d2b610d71478cd1aa9c9bbd",
+      "bytes": 6118,
+      "baselineEtag": "\"972fdefbf89c7f0c28f700f5a611b72d\""
+    },
+    {
+      "file": "web/assets/decision-framework-Df8AjjeR.webp",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/decision-framework-Df8AjjeR.webp",
+      "sha256": "53fc3b3b878b154ff8de7acafbcdc1a6248443278ff4ce44c1ff8d55921aca85",
+      "bytes": 21712,
+      "baselineEtag": "\"bb7cc0be078c842a08a79409f5523a05\""
+    },
+    {
+      "file": "web/assets/decision-making-demo.png",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/decision-making-demo.png",
+      "sha256": "1faaa0a0e0e9c26f8d308adcc4f1231fe979c15a019540f2009b75b2c8cf7e8b",
+      "bytes": 119350,
+      "baselineEtag": "\"0633bbb0998cbba7abd2312530bce6aa\""
+    },
+    {
+      "file": "web/assets/DecisionNavigator-DMHAUxRD.css",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-DMHAUxRD.css",
+      "sha256": "e5cfe04e83b2c7611e252d331be3e9faaedf1c832241de95d4b2ddcfee586d44",
+      "bytes": 5564,
+      "baselineEtag": "\"36671f0ed50a803c500644915bacc23a\""
+    },
+    {
+      "file": "web/assets/Engent Labs Transparent.png",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Engent Labs Transparent.png",
+      "sha256": "3d0f9ba51ad68f3cd4c90ef3cf6bb3f104451daa97d09acc4cdb19e00e036cc9",
+      "bytes": 312551,
+      "baselineEtag": "\"8d4da4f56cacddb74753c60b49b353a5\""
+    },
+    {
+      "file": "web/assets/Engent Labs.mp4",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Engent Labs.mp4",
+      "sha256": "ff7973f02011a2b5162f55bc378f4bde16c00eab48c8ba7232dfa95eae71f4ac",
+      "bytes": 3523820,
+      "baselineEtag": "\"beaba64b59cc2f506cd9f780a7f26dbe\""
+    },
+    {
+      "file": "web/assets/index-DoNK6u0-.css",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-DoNK6u0-.css",
+      "sha256": "4749cf4f3119b50dde81218e45ee279fb9ce8ae8e6d35021c488444c383564f2",
+      "bytes": 56343,
+      "baselineEtag": "\"94d2d8a0f272ba155371c391a702f8be\""
+    },
+    {
+      "file": "web/assets/Logo-13TNTF-a.png",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Logo-13TNTF-a.png",
+      "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
+      "bytes": 195801,
+      "baselineEtag": "\"ef9ad7ba18abb601237bace0298dc16a\""
+    },
+    {
+      "file": "web/assets/logo-CNq5NF33.png",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/logo-CNq5NF33.png",
+      "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
+      "bytes": 195801,
+      "baselineEtag": "\"ef9ad7ba18abb601237bace0298dc16a\""
+    },
+    {
+      "file": "web/assets/LogoSplash-BuLNSCWs.png",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/LogoSplash-BuLNSCWs.png",
+      "sha256": "8bfb75b4035a24cfd89246eca8fe62440f73526074158df20ff253d73b244816",
+      "bytes": 209565,
+      "baselineEtag": "\"378a95100c6e87efc307fb768d9d39fd\""
+    },
+    {
+      "file": "web/assets/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring-DiHXWmz0.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring-DiHXWmz0.mp3",
+      "sha256": "fa66c59d8d46adbde8e94177598bcb8164c8464583b019aac01ced1cfffb12af",
+      "bytes": 3416441,
+      "baselineEtag": "\"db2c1d77202111d22a5a10972787d23d\""
+    },
+    {
+      "file": "web/assets/Session_6_Simulation_02_Lockheed_Schedule_Risk-CbPjqUSa.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_02_Lockheed_Schedule_Risk-CbPjqUSa.mp3",
+      "sha256": "58979b98b7cf88cf7ef604001eda1a7c9921f056394348a362b1f306780e3588",
+      "bytes": 3136408,
+      "baselineEtag": "\"08db6c34a195c52d57f2477c2c327e27\""
+    },
+    {
+      "file": "web/assets/Session_6_Simulation_03_Energy_Investment_Real_Options-SRmctJ3A.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_03_Energy_Investment_Real_Options-SRmctJ3A.mp3",
+      "sha256": "e37bc20fa078f522ff3a6440ebc88340fa728983bb02b76aad4ec484bfc317cf",
+      "bytes": 3261378,
+      "baselineEtag": "\"994525e92da36b26fd7295bc973485a5\""
+    },
+    {
+      "file": "web/assets/Session_6_Simulation_04_NREL_Grid_Reliability-BovZRlxA.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_04_NREL_Grid_Reliability-BovZRlxA.mp3",
+      "sha256": "9d08953ece3505ddb63aaf6fa83ad9f3612faecd86c97352c354231b0e9bcd07",
+      "bytes": 3243406,
+      "baselineEtag": "\"51a22f7654ff7f23f79246f8d39c872a\""
+    },
+    {
+      "file": "web/assets/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo-aqQrshqL.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo-aqQrshqL.mp3",
+      "sha256": "a733e7734d9de2cc9ef3377f215fd4a93e73d2a90ebf066e681632b985424e4e",
+      "bytes": 3168591,
+      "baselineEtag": "\"25456b14bd8f3c5acccf84396a561351\""
+    },
+    {
+      "file": "web/assets/Session_6_Simulation_06_Pfizer_Drug_Development-C4BRYLHe.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_06_Pfizer_Drug_Development-C4BRYLHe.mp3",
+      "sha256": "4eaa26342d92e7b2449eb57a584bd5393700f01ecf08a0c554a65122b354dde9",
+      "bytes": 3326580,
+      "baselineEtag": "\"c712a7665247b09806f356436484bbb4\""
+    },
+    {
+      "file": "web/assets/User by Country.png",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/User by Country.png",
+      "sha256": "78ef1580ce5f690a1a3d837649acb700a601e87d57dcc7d04d5100fea3fe00a9",
+      "bytes": 29601,
+      "baselineEtag": "\"0a6138e6c5a7e0de918a89556c16b813\""
+    },
+    {
+      "file": "web/assets/vendor-BYOhtk1D.js",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/vendor-BYOhtk1D.js",
+      "sha256": "89c15775bd50bad4576f0bef9389b4384b889402cfe1b887abf4fc03b0aa2f48",
+      "bytes": 11355,
+      "baselineEtag": "\"14c60b31f20659b7c73e519327641d68\""
+    }
+  ],
+  "htmlSha256": "2d7c420d3b0c2df4f4eeb06b7d83c61b3dc52a1db326f5a406ef5361813d1c65",
+  "previous": {
+    "html": {
+      "AcceptRanges": "bytes",
+      "LastModified": "2026-11-22T19:42:53+00:00",
+      "ContentLength": 975,
+      "ETag": "\"059f328f357dd4a9f917a828ba0cc303\"",
+      "VersionId": "7aE0ONKjdIIUTLSRZDtDIFI9hstUvTrF",
+      "CacheControl": "no-cache,no-store,must-revalidate",
+      "ContentType": "text/html; charset=utf-8",
+      "ServerSideEncryption": "AES256",
+      "Metadata": {
+        "sha256": "7b7fd829db9f7570e7e92737ccf0f91da9f695ee0097742ea0ba9a57ccef382a",
+        "engent-release-id": "navigator-input-86169e5",
+        "engent-write-id": "fd2c8f92-8a30-44a5-99ae-1b280651f897"
+      },
+      "writeId": "fd2c8f92-8a30-44a5-99ae-1b280651f897",
+      "sha256": "7b7fd829db9f7570e7e92737ccf0f91da9f695ee0097742ea0ba9a57ccef382a"
+    }
+  }
+}

@@ -47,11 +47,13 @@ function MarketingLayout({ explore, coachNav, children, onSharedLaunch }) {
 }
 
 function canLaunch(coach) {
+  if (coach.id === 'forecast') return import.meta.env.VITE_FORECAST_COACH_ENABLED === 'true';
   if (coach.id === 'process') return import.meta.env.VITE_PROCESS_COACH_ENABLED === 'true';
   return coach.id === 'tree' && (treeUrl === 'https://decisiontree.engentlabs.com/' || (import.meta.env.VITE_RELEASE_B_EMAIL_ENABLED === 'true' && treeUrl === 'https://d6owpirihdsus.cloudfront.net/'));
 }
 
 function Availability({ coach, sharedLaunch }) {
+  if (coach.id === 'forecast' && canLaunch(coach)) return <CoachLaunchControl href="/engent-alpha/forecasting/" label="Launch Forecasting Coach" />;
   if (coach.id === 'process' && canLaunch(coach)) return <CoachLaunchControl href="/process/" label="Launch Decision Process Coach" />;
   if (canLaunch(coach)) {
     const destination = sharedLaunch === 'https://decisiontree.engentlabs.com/api/shared/login' ? sharedLaunch : treeUrl;

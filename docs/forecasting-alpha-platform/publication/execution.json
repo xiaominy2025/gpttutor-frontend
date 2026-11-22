@@ -1,0 +1,103 @@
+{
+  "release": "forecast-explore-1157c59",
+  "source": "1157c59645de1670fe934bf2f730e9ae821c696d",
+  "assets": [
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-CFTRBaB6.js",
+      "writeId": "509a2e95-43f4-4e64-bd2a-d1af15ef127c",
+      "VersionId": "0Tny5qP3d0kDWUrOTpzs345Sh0pqe8nc",
+      "ETag": "\"fc54b134d2a168eee928c34e75ee3766\"",
+      "sha256": "821b867d5f1369ed6b39328055b355e79f7bb2d3eaa10be4a4b401df84e83883"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BC7wcYy4.js",
+      "writeId": "3fca2b91-9412-4146-a21b-38b17f470d6a",
+      "VersionId": "RkD6SrsyHGF545E9zolqoKDzCBv8dBtH",
+      "ETag": "\"877f06bce1537f39494e47331fdae899\"",
+      "sha256": "c7edcc8fdfc84f08fa36d57d4393aa6605af16413c831123457409d80b052e4b"
+    }
+  ],
+  "writes": [
+    {
+      "service": "s3api",
+      "operation": "put-object",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-CFTRBaB6.js",
+      "condition": "*",
+      "startedAt": "2026-11-22T20:47:59.281Z",
+      "result": {
+        "ETag": "\"fc54b134d2a168eee928c34e75ee3766\"",
+        "ChecksumCRC64NVME": "17sCcm1WlqU=",
+        "ChecksumType": "FULL_OBJECT",
+        "ServerSideEncryption": "AES256",
+        "VersionId": "0Tny5qP3d0kDWUrOTpzs345Sh0pqe8nc"
+      }
+    },
+    {
+      "service": "s3api",
+      "operation": "put-object",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BC7wcYy4.js",
+      "condition": "*",
+      "startedAt": "2026-11-22T20:48:03.633Z",
+      "result": {
+        "ETag": "\"877f06bce1537f39494e47331fdae899\"",
+        "ChecksumCRC64NVME": "ShMDEsKKakU=",
+        "ChecksumType": "FULL_OBJECT",
+        "ServerSideEncryption": "AES256",
+        "VersionId": "RkD6SrsyHGF545E9zolqoKDzCBv8dBtH"
+      }
+    },
+    {
+      "service": "s3api",
+      "operation": "put-object",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/index.html",
+      "condition": "\"059f328f357dd4a9f917a828ba0cc303\"",
+      "startedAt": "2026-11-22T20:48:21.406Z",
+      "result": {
+        "ETag": "\"d0e9dace98b8b6ba9a0bb95e2aa9bb37\"",
+        "ChecksumCRC64NVME": "zteVgN/hLoQ=",
+        "ChecksumType": "FULL_OBJECT",
+        "ServerSideEncryption": "AES256",
+        "VersionId": "5kvb16lAupU03HGA82vpmk0IcLLgZ2.3"
+      }
+    },
+    {
+      "service": "cloudfront",
+      "operation": "create-invalidation",
+      "startedAt": "2026-11-22T20:48:25.638Z",
+      "result": {
+        "Location": "https://cloudfront.amazonaws.com/2020-05-31/distribution/E1C4AJI9FUE47B/invalidation/I95R4STQE3PK09VVJNGUPSCODM",
+        "Invalidation": {
+          "Id": "I95R4STQE3PK09VVJNGUPSCODM",
+          "Status": "InProgress",
+          "CreateTime": "2026-11-22T20:48:26.937000+00:00",
+          "InvalidationBatch": {
+            "Paths": {
+              "Quantity": 3,
+              "Items": [
+                "/explore/*",
+                "/engent-alpha/*",
+                "/explore"
+              ]
+            },
+            "CallerReference": "forecast-explore-1157c59-publish"
+          }
+        }
+      }
+    }
+  ],
+  "preflight": {
+    "at": "2026-11-22T20:47:24.858Z",
+    "passed": true
+  },
+  "html": {
+    "VersionId": "5kvb16lAupU03HGA82vpmk0IcLLgZ2.3",
+    "ETag": "\"d0e9dace98b8b6ba9a0bb95e2aa9bb37\"",
+    "writeId": "b95908e4-f05f-4c65-9ef0-b550857c326e",
+    "sha256": "2d7c420d3b0c2df4f4eeb06b7d83c61b3dc52a1db326f5a406ef5361813d1c65"
+  },
+  "invalidation": {
+    "id": "I95R4STQE3PK09VVJNGUPSCODM",
+    "status": "Completed"
+  },
+  "verifiedAt": "2026-11-22T20:49:02.016Z"
+}
