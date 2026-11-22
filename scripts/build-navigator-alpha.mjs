@@ -10,7 +10,6 @@ const root='.artifacts/navigator-alpha-integration',base='/engent-alpha/';
 await mkdir(root,{recursive:true});
 await build({base,build:{outDir:root+'/web',emptyOutDir:true},define:{
  'import.meta.env.VITE_FORECAST_COACH_ENABLED':JSON.stringify(forecastingIntegration?'true':'false'),
- 'import.meta.env.VITE_FORECAST_RETURN_ENABLED':JSON.stringify(forecastingIntegration?'true':'false'),
  'import.meta.env.VITE_NAVIGATOR_ALPHA_ENABLED':JSON.stringify('true'),
  'import.meta.env.VITE_PROCESS_COACH_ENABLED':JSON.stringify('true'),
  'import.meta.env.VITE_PROCESS_RETURN_ENABLED':JSON.stringify('true'),
