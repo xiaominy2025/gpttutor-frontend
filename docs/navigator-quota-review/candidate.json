@@ -1,0 +1,17 @@
+{
+  "preparedOnly": true,
+  "source": "2fe440fe8c36593765ee80fd845e4d2731c17391",
+  "runtimeBundleSha256": "ce01fff2c94072c70ca12324f78083161a897e456e5417e1e93a67d8d76f6c2e",
+  "runtimeArtifactNote": "Local index.cjs hash; deployment ZIP must be packaged and verified separately before approved publication.",
+  "changedWebFiles": {
+    "web/assets/DecisionNavigator-Dgzw0JXh.js": "8440f01bb9dffca3e3e584f87f2f7c6d82eaa1893650409b9c9403725ccb08d8",
+    "web/assets/index-Dc5-rbaC.js": "196973fbffed6a9cc1b3b406516242658e41b8cdf3f45cb920ae810d34b169ef",
+    "web/index.html": "f97b9a2e965d33aa643e6846e4f4afa3088ad5f36f48b2788912ed3f2417ccd0"
+  },
+  "recordingsUnchanged": 39,
+  "currentRollbackRuntimeVersion": "3",
+  "expectedBaselineRootHtmlVersion": "5kvb16lAupU03HGA82vpmk0IcLLgZ2.3",
+  "approvalRequired": true,
+  "testFiles": 8,
+  "testsPassed": 64
+}
