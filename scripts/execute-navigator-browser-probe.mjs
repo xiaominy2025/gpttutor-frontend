@@ -26,8 +26,8 @@ function save(){const fd=openSync(journal+'.tmp','w');try{writeFileSync(fd,JSON.
 function note(event,data={}){j.events.push({event,at:new Date().toISOString(),...data});save();console.log(JSON.stringify({event,...data}));}
 function preservePendingForRestore(){if(j.pending){j.interruptedOperations??=[];j.interruptedOperations.push({...j.pending,action:'stop-without-retry; restore-owned-state-only'});delete j.pending;save();}}
 function aws(service,operation,input={}){
- try{return JSON.parse(execFileSync('aws',[service,operation,'--cli-input-json',JSON.stringify(input),'--profile','default','--region','us-east-1','--output','json','--no-cli-pager'],
-  {encoding:'utf8',stdio:['ignore','pipe','pipe'],maxBuffer:8000000,env:{...process.env,AWS_MAX_ATTEMPTS:'1',AWS_RETRY_MODE:'standard'}}));}
+ try{const output=execFileSync('aws',[service,operation,'--cli-input-json',JSON.stringify(input),'--profile','default','--region','us-east-1','--output','json','--no-cli-pager'],
+  {encoding:'utf8',stdio:['ignore','pipe','pipe'],maxBuffer:8000000,env:{...process.env,AWS_MAX_ATTEMPTS:'1',AWS_RETRY_MODE:'standard'}});return output.trim()?JSON.parse(output):{};}
  catch(error){const code=String(error.stderr??'').match(/\(([A-Za-z0-9_.-]+)\) when calling/)?.[1]??'uncertain';
   throw Object.assign(Error('AWS operation failed'),{safeCode:'aws-'+service+'-'+operation+'-'+code});}
 }
