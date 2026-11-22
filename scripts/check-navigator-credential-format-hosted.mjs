@@ -4,17 +4,19 @@ import {readFileSync,writeFileSync,existsSync,openSync,closeSync,fsyncSync,renam
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 const mode=process.argv[2],afterOwnerUpdate=process.argv[3]==='--after-owner-update';
-if(process.argv.length>4||(process.argv[3]&&!afterOwnerUpdate))throw Error('Unexpected arguments');
+const versionArgument=process.argv[4];
+const expectedVersion=versionArgument&&/^--expected-version=(?:[2-9]|[1-9][0-9]+)$/.test(versionArgument)?Number(versionArgument.split('=')[1]):undefined;
+if(process.argv.length>5||(process.argv[3]&&!afterOwnerUpdate)||(versionArgument&&(!afterOwnerUpdate||!Number.isSafeInteger(expectedVersion))))throw Error('Unexpected arguments');
 const fn='decisionnavigator-alpha-api',dir=resolve('.artifacts/navigator-credential-format-20261121');
-const run=afterOwnerUpdate?'credential-after-owner-update':'credential';
+const run=afterOwnerUpdate?'credential-after-owner-update'+(expectedVersion?'-v'+expectedVersion:''):'credential';
 const zip=dir+'/credential-check.zip',journal=dir+'/'+run+'-journal.json';
 if(!['check','install','ready','invoke','restore','verify'].includes(mode))throw Error('Invalid operation');
 const original='HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=';
 const bytes=readFileSync(zip),hash=createHash('sha256').update(bytes).digest('base64');
 const expected='c39b8feac98366e5421e38c0523c587761a8bc79a348af64e5ee64f0a563c56e';
 if(createHash('sha256').update(bytes).digest('hex')!==expected)throw Error('Unreviewed credential bundle');
-let j=existsSync(journal)?JSON.parse(readFileSync(journal)):{hash,createdAt:new Date().toISOString(),afterOwnerUpdate};
-if(j.hash!==hash||Boolean(j.afterOwnerUpdate)!==afterOwnerUpdate)throw Error('Journal mismatch');
+let j=existsSync(journal)?JSON.parse(readFileSync(journal)):{hash,createdAt:new Date().toISOString(),afterOwnerUpdate,...(expectedVersion?{expectedVersion}:{})};
+if(j.hash!==hash||Boolean(j.afterOwnerUpdate)!==afterOwnerUpdate||j.expectedVersion!==expectedVersion)throw Error('Journal mismatch');
 function save(){const f=openSync(journal+'.tmp','w');try{writeFileSync(f,JSON.stringify(j,null,2));fsyncSync(f);}finally{closeSync(f);}renameSync(journal+'.tmp',journal);}
 function aws(service,operation,flags=[]){
  try{return JSON.parse(execFileSync('aws',[service,operation,...flags,'--profile','default','--region','us-east-1','--output','json','--no-cli-pager'],
@@ -48,7 +50,8 @@ if(mode==='check'){
  if(afterOwnerUpdate){
   const metadata=aws('ssm','describe-parameters',['--parameter-filters','Key=Name,Option=Equals,Values=/decisionnavigator-alpha/openai-api-key',
    '--query','Parameters[0].{Version:Version,Type:Type,Tier:Tier}']);
-  if(metadata?.Type!=='SecureString'||metadata?.Tier!=='Standard'||!Number.isInteger(metadata.Version)||metadata.Version<=1)
+  if(metadata?.Type!=='SecureString'||metadata?.Tier!=='Standard'||!Number.isInteger(metadata.Version)||metadata.Version<=1||
+    (expectedVersion&&metadata.Version!==expectedVersion))
    throw Error('Owner update not observed in parameter metadata');
   j.parameterVersion=metadata.Version;
  }

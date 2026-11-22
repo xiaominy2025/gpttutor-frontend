@@ -1,8 +1,16 @@
 # Navigator Alpha credential format diagnosis
 
-Base: `4a0d503bb9d91c4746eba1bf463d69b4b808a09d`. Status: **cause confirmed; owner SecureString correction pending**. No secret has been changed by the agent, and Navigator remains OFF. This is not paid-test or public-activation approval.
+Base: `4a0d503bb9d91c4746eba1bf463d69b4b808a09d`. Status: **raw-key format verified at owner-corrected version 3**. No secret has been changed by the agent, and Navigator remains OFF. This is not paid-test or public-activation approval.
 
-## Owner update and version-2 verification
+## Version 3 passed — latest status
+
+After the owner requested another check, metadata confirmed SecureString/Standard **version 3**. A fresh version-bound one-use journal preserved the completed version-1/version-2 runs. One format-only direct runtime invocation returned `verified:true`, `rawFormatValid:true`, `format:raw-token`, `parameterVersion:3`, `providerRequests:0`, `generationCalls:0`. The JSON wrapper and surrounding-whitespace blockers are resolved. This is syntax verification, **not** proof of OpenAI validity/model access or permission for paid traffic.
+
+Original private runtime code was conditionally restored and verified at `2026-11-22T00:40:05.452Z`; public Navigator remains OFF version1, existing master ON revision9. Full sanitized result and restored revision/hash: `final-acceptance-evidence/credential-version3-check.json`. No agent secret write, IAM/configuration change, public application deployment or paid request occurred.
+
+Resume the previously prepared **approval sequence** for the confined cookie/IP probe, coordinated master window, guarded canary and final Alpha activation. Do not execute those scopes without their required approval. No need to repeat the successful format check against unchanged version 3.
+
+## Historical owner update and version-2 verification
 
 After the owner confirmed the update, a fresh approved format-only runtime check observed **version 2**. The JSON wrapper is removed, but **surrounding whitespace remains**. The contained trimmed string matches the raw-key syntax; the exact stored value still fails it. No BOM, internal whitespace or non-ASCII character was detected in the trimmed value. The diagnostic does not reveal which boundary or the characters themselves. Provider requests and generation calls remain zero.
 
@@ -49,4 +57,4 @@ After owner confirmation, use the fresh `--after-owner-update` run of `scripts/c
 
 The diagnosis bundle SHA-256 is `c39b8feac98366e5421e38c0523c587761a8bc79a348af64e5ee64f0a563c56e`. Its direct invocation returned only the sanitized format classification. Original private code restored successfully: hash `HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=`, revision `fab22e04-7966-4f99-9696-77a3cbead3b6`, verified at `2026-11-21T23:33:50.457Z`. Public OFF alias version 1/revision `40267485-ed37-4a71-adbc-4a6c36ebb483`; master ON/revision 9. No configuration/IAM/SSM/route/frontend changes.
 
-Until the owner corrects the value, do not rerun against the same known JSON input. Once raw syntax passes, resume **approval preparation**, not automatic execution, for the existing confined cookie/IP probe, coordinated master test, bounded four-call/$0.03 canary and final Alpha activation. Model permissions/key validity are distinct from syntax and remain acceptance gates. No paid calls or deployments/publication are authorized by this report.
+Raw syntax has passed at version 3. Do not repeat that successful check against the unchanged value. Resume **approval preparation**, not automatic execution, for the existing confined cookie/IP probe, coordinated master test, bounded four-call/$0.03 canary and final Alpha activation. Model permissions/key validity are distinct from syntax and remain acceptance gates. No paid calls or deployments/publication are authorized by this report.
