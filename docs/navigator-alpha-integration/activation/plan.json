@@ -1,0 +1,307 @@
+{
+  "status": "PREPARED_FOR_OWNER_APPROVAL_NOT_EXECUTED",
+  "releaseId": "navigator-alpha-activation-116740a7-85c4-4d22-8ecb-16476bb1fc3d",
+  "preparedAt": "2026-11-22T04:10:13.501Z",
+  "source": {
+    "acceptedRuntime": "934f2fd837423c45d77082566ba5f55a50df4771",
+    "acceptedWeb": "934f2fd837423c45d77082566ba5f55a50df4771",
+    "frontendImplementation": "97193e26dcd1261a2db9a3dd31ac031b6293f852",
+    "acceptedCanaryEvidence": "e8929f5",
+    "sourceBlobs": {
+      "server/platform/navigator-alpha-entry.mjs": "c4eedd2a895cd2eaa14431f578e7fb0d59a72755",
+      "server/platform/navigator-runtime.mjs": "ac76daae72bdd7ffba37e193034cd774067f94bb",
+      "server/platform/navigator.mjs": "1c89cf909361e9385af965a86ec9cc4fb35880bb",
+      "server/platform/budget.mjs": "e229cdbfcf039281308151a49ff15be249119237",
+      "server/platform/store.mjs": "5ca1b56a1f0acc792d69290744b3b2fe0f10aa16",
+      "server/shared/paid-ai-master.mjs": "44ac7cd3241507b09f70867a5c5170966fafba0f",
+      "src/components/Homepage.jsx": "e8561cb8e0fe8c57510f43e8bc1bb7e1c99829c8",
+      "src/components/DecisionNavigator.jsx": "e49950387dc36364c2f4b3ddfc18fc7be3f06e12",
+      "src/components/NavigatorArtwork.jsx": "abc8d99abd20af068afbb736815e8b9a9c15e2d7",
+      "src/components/Navigator.css": "238fa880392b897abc5896334993ac216171bd97",
+      "src/components/marketing.css": "0fa2e0877a06684ae227e490746da3770fca2390",
+      "src/components/ReleaseBAccess.jsx": "d21e241529bc3331c0ac72264cb3e20e9eb8c08d",
+      "src/shared/EngentHeader.jsx": "5600dfdb00b30364fb1c2699a8f58af68f72c3f7",
+      "src/shared/EngentHeader.css": "79225a55bb37e7a7dfe3b1adc57b931f2a0f38a7",
+      "src/components/ApplicationLibrary.jsx": "ec415dbb348ccc6839ab65b5a239384b110befe7",
+      "src/components/coaches.js": "107d5de6a96d84066d6e6bab1a7660248d409647",
+      "scripts/build-navigator-alpha.mjs": "edf1d0689bc8b64e054846e1b02abb23c3d8bc76"
+    }
+  },
+  "account": "771049112957",
+  "region": "us-east-1",
+  "urls": {
+    "explore": "https://d6owpirihdsus.cloudfront.net/explore",
+    "homepage": "https://d6owpirihdsus.cloudfront.net/engent-alpha/"
+  },
+  "runtime": {
+    "function": "decisionnavigator-alpha-api",
+    "codeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+    "baselineRevision": "489a5853-ae73-480a-8192-2fee5d84a27b",
+    "baselineConfigurationHash": "e9e7af1b2c1560560dea073e00ab2268738540454a59ab39581fa86bb4184349",
+    "enabledConfigurationHash": "ba9aa36b9460df90001794ac94687aba6ebb9be5d9015c82318486ad695e0872",
+    "enabledEnvironment": {
+      "STAGE": "alpha",
+      "NAVIGATOR_ENABLED": "true"
+    },
+    "alias": "live",
+    "baselineAliasVersion": "1",
+    "baselineAliasRevision": "9545575c-3a9c-4163-96cd-98f747a769e0",
+    "publishedVersion": "AWS_ASSIGNED_ONLY_AFTER_APPROVAL",
+    "reservedConcurrency": 2,
+    "role": "arn:aws:iam::771049112957:role/decisionnavigator-alpha-runtime",
+    "credentialParameter": "/decisionnavigator-alpha/openai-api-key",
+    "credentialVersion": 3,
+    "hmacParameter": "/decisionnavigator-alpha/hmac-secret",
+    "hmacVersion": 1,
+    "master": {
+      "table": "decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "pk": "AI#CONFIG",
+      "sk": "STATE",
+      "suspended": false,
+      "revision": 11
+    },
+    "budget": {
+      "month": "2026-11",
+      "ceilingMicros": 10000000,
+      "spentMicros": 1315,
+      "reservedMicros": 0
+    },
+    "visitorLimits": {
+      "guestMinute": 2,
+      "guestDaily": 5,
+      "guestConcurrent": 1,
+      "ipDaily": 20,
+      "globalConcurrent": 2
+    },
+    "sharedSpendingPool": "DEFERRED_UNTIL_NEXT_COACH",
+    "sharedVisitorLimits": "DEFERRED_UNTIL_NEXT_COACH"
+  },
+  "website": {
+    "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+    "prefix": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled",
+    "assets": [
+      {
+        "file": ".artifacts/navigator-alpha-integration/web/assets/DecisionNavigator-C2VSI8RY.js",
+        "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-C2VSI8RY.js",
+        "sha256": "82541fc2db092b410beb56920fec8c399d15d06f3abebcd2e31199597a34e28b",
+        "bytes": 13208,
+        "action": "create-if-absent",
+        "condition": {
+          "IfNoneMatch": "*"
+        },
+        "cacheControl": "public,max-age=31536000,immutable",
+        "contentType": "application/javascript; charset=utf-8"
+      },
+      {
+        "file": ".artifacts/navigator-alpha-integration/web/assets/DecisionNavigator-DnK5WxPW.css",
+        "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-DnK5WxPW.css",
+        "sha256": "81b235e1ed84dfa0007a94633b1497b16465b312c94bb8c77df004c86e14490a",
+        "bytes": 6171,
+        "action": "create-if-absent",
+        "condition": {
+          "IfNoneMatch": "*"
+        },
+        "cacheControl": "public,max-age=31536000,immutable",
+        "contentType": "text/css; charset=utf-8"
+      },
+      {
+        "file": ".artifacts/navigator-alpha-integration/web/assets/index-BFU71KGq.css",
+        "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BFU71KGq.css",
+        "sha256": "de3f8f5a81a2268072d040f892cb95a1365208248ed7d9a0443a4efc266617cd",
+        "bytes": 54849,
+        "action": "create-if-absent",
+        "condition": {
+          "IfNoneMatch": "*"
+        },
+        "cacheControl": "public,max-age=31536000,immutable",
+        "contentType": "text/css; charset=utf-8"
+      },
+      {
+        "file": ".artifacts/navigator-alpha-integration/web/assets/index-CAQrafnX.js",
+        "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-CAQrafnX.js",
+        "sha256": "97914c889fbe443c48208f0cf70bb6a39ec98324067ba291b2f8e28257eb7c41",
+        "bytes": 442338,
+        "action": "create-if-absent",
+        "condition": {
+          "IfNoneMatch": "*"
+        },
+        "cacheControl": "public,max-age=31536000,immutable",
+        "contentType": "application/javascript; charset=utf-8"
+      }
+    ],
+    "reusedAssetCount": 31,
+    "reusedAssetEtagsVerified": true,
+    "html": {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/index.html",
+      "file": ".artifacts/navigator-alpha-integration/web/index.html",
+      "sha256": "dc03888c13a04bfe922ea3fe54bb55e0dd1e0761f6f9dbd13a942f4bca27b7e7",
+      "baseline": {
+        "version": "WCRidCoVSP8bibymptKxPZ6XWtdKAQUS",
+        "etag": "\"215f398df428a3ea88631dfaa35a97d3\"",
+        "sha256": "d73a7ca2bf60193b750be41b3c529d812969b0c91279a7b0000100d836d51d38",
+        "metadata": {
+          "sha256": "d73a7ca2bf60193b750be41b3c529d812969b0c91279a7b0000100d836d51d38",
+          "engent-release-id": "paired-alpha-ui-e44eb926-aaf4-4601-9b8f-65c311077eb1"
+        },
+        "cacheControl": "no-cache,no-store,must-revalidate",
+        "contentType": "text/html; charset=utf-8"
+      },
+      "condition": {
+        "IfMatch": "\"215f398df428a3ea88631dfaa35a97d3\""
+      },
+      "metadata": {
+        "engent-release-id": "navigator-alpha-activation-116740a7-85c4-4d22-8ecb-16476bb1fc3d",
+        "sha256": "dc03888c13a04bfe922ea3fe54bb55e0dd1e0761f6f9dbd13a942f4bca27b7e7"
+      },
+      "contentType": "text/html; charset=utf-8",
+      "cacheControl": "no-cache,no-store,must-revalidate",
+      "ownership": {
+        "releaseId": "navigator-alpha-activation-116740a7-85c4-4d22-8ecb-16476bb1fc3d",
+        "writeId": "Allocate once and fsync before dispatch; never reuse on an uncertain write",
+        "guard": "Require current acknowledged VersionId, ETag, release/write metadata and exact body hash before rollback"
+      }
+    },
+    "invalidation": {
+      "distribution": "E1C4AJI9FUE47B",
+      "configurationEtag": "E1JYRMDPD0WRC1",
+      "configurationHash": "20d8abc2d9c5a434544a6f022f86f24ff56ff6e090a275a1d82a98105c147224",
+      "paths": [
+        "/engent-alpha/*",
+        "/explore",
+        "/explore/*"
+      ],
+      "maximumNormalPublicationRequests": 1
+    }
+  },
+  "existingApi": {
+    "id": "8qmgd1ghdi",
+    "integration": "5wsf6z0",
+    "routeIds": [
+      {
+        "id": "gs0ljeu",
+        "key": "POST /api/platform/navigator/session"
+      },
+      {
+        "id": "m2ova17",
+        "key": "POST /api/platform/navigator"
+      }
+    ],
+    "changes": 0
+  },
+  "protectedApps": {
+    "engent-platform-alpha-api": {
+      "version": "5",
+      "revision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+    },
+    "decisiontree-alpha-staging-api": {
+      "version": "18",
+      "revision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc"
+    },
+    "decisionprocess-alpha-api": {
+      "version": "6",
+      "revision": "9c51c343-ea67-444a-9133-45853b39d81f"
+    }
+  },
+  "plannedMutations": [
+    {
+      "operation": "s3api/put-object",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-C2VSI8RY.js",
+      "condition": "If-None-Match:*"
+    },
+    {
+      "operation": "s3api/put-object",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-DnK5WxPW.css",
+      "condition": "If-None-Match:*"
+    },
+    {
+      "operation": "s3api/put-object",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BFU71KGq.css",
+      "condition": "If-None-Match:*"
+    },
+    {
+      "operation": "s3api/put-object",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-CAQrafnX.js",
+      "condition": "If-None-Match:*"
+    },
+    {
+      "operation": "lambda/update-function-configuration",
+      "function": "decisionnavigator-alpha-api",
+      "condition": "exact current RevisionId; change NAVIGATOR_ENABLED only"
+    },
+    {
+      "operation": "lambda/publish-version",
+      "function": "decisionnavigator-alpha-api",
+      "condition": "verified completed enabled RevisionId + exact CodeSha256"
+    },
+    {
+      "operation": "lambda/update-alias",
+      "function": "decisionnavigator-alpha-api:live",
+      "condition": "baseline alias RevisionId; new owned immutable enabled version only"
+    },
+    {
+      "operation": "s3api/put-object",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/index.html",
+      "condition": "baseline If-Match + VersionId ownership guard"
+    },
+    {
+      "operation": "cloudfront/create-invalidation",
+      "paths": [
+        "/engent-alpha/*",
+        "/explore",
+        "/explore/*"
+      ]
+    }
+  ],
+  "rollback": {
+    "first": "conditionally restore release-owned Navigator live alias to OFF version1",
+    "second": "conditionally restore captured baseline HTML bytes/metadata only if current version is release-owned",
+    "third": "restore private enabled flag to false only if private RevisionId/configuration remain release-owned",
+    "fourth": "one scoped rollback invalidation if HTML was restored",
+    "keep": [
+      "all hashed assets",
+      "all immutable versions",
+      "HMAC and dedicated credential",
+      "canary and stopped journals",
+      "canonical spent/holds",
+      "master ON; Tree/Process/Production unchanged"
+    ],
+    "htmlBackupSha256": "d73a7ca2bf60193b750be41b3c529d812969b0c91279a7b0000100d836d51d38",
+    "localHtmlBackup": ".artifacts/navigator-alpha-activation-116740a7-85c4-4d22-8ecb-16476bb1fc3d/rollback-index.html",
+    "objectBaselineVersion": "WCRidCoVSP8bibymptKxPZ6XWtdKAQUS"
+  },
+  "hostedAcceptance": {
+    "afterApprovalOnly": true,
+    "isolatedAnonymousBrowser": true,
+    "widths": [
+      1440,
+      1024,
+      768,
+      390
+    ],
+    "checks": [
+      "Navigator immediately before Process; all six coaches and launch/status links retained",
+      "six initial Play controls bottom-right; play/pause, keyboard, reduced motion",
+      "dialog focus/Escape/open/close; responsive overflow checks",
+      "Explore/homepage/direct-refresh navigation, one existing podcast playback spot check",
+      "Tree/Process Guest landing/back-navigation only; no authentication/account/project writes",
+      "one real anonymous Navigator bootstrap and bounded first-turn AI response; no follow-up sends"
+    ],
+    "paidSmoke": {
+      "maximumPaidRequests": 1,
+      "automaticRetries": 0,
+      "maximumIncrementalMicros": 3000,
+      "expectedReservationMicros": 1500,
+      "providerRequestBytes": 4975,
+      "maximumOutputTokens": 1500,
+      "clientBody": {
+        "message": "I am deciding whether to attend a professional workshop this summer. Help me frame what matters before deciding.",
+        "history": []
+      },
+      "browserGuard": "Allow only one exact Navigator turn POST, no follow-up/retry/reset send; block other mutations and paid Coach routes",
+      "metering": "Strong reads before/after; reconcile normal Navigator spending/reservations; stop on error, uncertain usage, hold or competing/ambiguous traffic; never reset/retry"
+    },
+    "completedFourCallCanary": "REUSE_EVIDENCE_DO_NOT_REPEAT"
+  },
+  "noWritesThisPreparation": true,
+  "approvalScope": "one coordinated Alpha activation, focused UI/bootstrap/one paid smoke, conditional rollback if needed; no public Production activation, PR merge, DNS/IAM/API/Cognito changes or new resources beyond one immutable Lambda release version"
+}

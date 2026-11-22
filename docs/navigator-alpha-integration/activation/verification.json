@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-22T04:14:29.745Z",
+  "planSha256": "3fb84063ec2a5e8a32f50f44233796d6e5113da3df10f4e447685fbfd9853c2a",
+  "acceptedSourceBlobsMatch": true,
+  "frozenWebFilesVerified": 40,
+  "reusedAssetEtagsMatch": 31,
+  "newAssetsAbsentAtPreflight": 4,
+  "baselineHtmlDownloadedByVersionAndSha256Verified": true,
+  "sourceReview": "Navigator development chat confirmed no source drift/material runtime blocker",
+  "priorEvidence": [
+    "PAID_CANARY_ACCEPTANCE.md",
+    "BROWSER_ACCEPTANCE.md",
+    "MASTER_CONTROL_ACCEPTANCE.md",
+    "evidence/browser-results.json"
+  ],
+  "hostedActivationChecksPending": true,
+  "awsMutations": 0,
+  "paidRequests": 0,
+  "plannedPublicationMutations": 9,
+  "lambdaReleasePermissionSimulation": {
+    "UpdateFunctionConfiguration": "allowed",
+    "PublishVersion": "allowed",
+    "UpdateAlias": "allowed",
+    "resources": [
+      "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api",
+      "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live"
+    ],
+    "readOnly": true,
+    "policyChanges": 0
+  }
+}
