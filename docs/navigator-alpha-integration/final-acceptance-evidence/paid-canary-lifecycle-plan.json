@@ -1,0 +1,95 @@
+{
+  "status": "PREPARED_FOR_REVIEW_NOT_AUTHORIZED",
+  "source": "d86d193e58279553b7e1f48e24ede93c809db058",
+  "sourceBlobs": {
+    "scripts/execute-navigator-paid-canary.mjs": "d4fcc494c9d28eefcc7b67cc1b15a028983119e6",
+    "scripts/navigator-paid-canary-operator.mjs": "28f5b0acd0dd7378403f8beae8963c8195d1a12c",
+    "scripts/navigator-canary-execution-guards.mjs": "720b70ebc6956f45f2f24100059486bb34761736",
+    "scripts/build-navigator-paid-canary.mjs": "5af5fe8b3d03da7a223482f124cdf34d4041de12",
+    "server/platform/navigator-paid-canary.mjs": "24faefb108af7163b59162af3d2d693c501e65d9",
+    "server/platform/navigator-paid-guard.mjs": "bc4d67162d86ed6af844c5acf91e22ab651a3455",
+    "server/platform/navigator-canary-journal.mjs": "7f869be7fd99ccd38130f4e9fd9e1513ec976b98",
+    "server/platform/navigator-runtime.mjs": "ac76daae72bdd7ffba37e193034cd774067f94bb",
+    "server/platform/navigator.mjs": "1c89cf909361e9385af965a86ec9cc4fb35880bb",
+    "server/platform/budget.mjs": "e229cdbfcf039281308151a49ff15be249119237",
+    "server/platform/store.mjs": "5ca1b56a1f0acc792d69290744b3b2fe0f10aa16",
+    "server/shared/paid-ai-master.mjs": "44ac7cd3241507b09f70867a5c5170966fafba0f"
+  },
+  "account": "771049112957",
+  "region": "us-east-1",
+  "function": "decisionnavigator-alpha-api",
+  "baseline": {
+    "masterRevision": 11,
+    "aliasVersion": "1",
+    "aliasRevision": "9545575c-3a9c-4163-96cd-98f747a769e0",
+    "privateRevision": "0e61fca1-fde3-490f-8b58-e16f51c90f8b",
+    "publicCodeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+    "credentialVersion": 3,
+    "configurationHash": "e9e7af1b2c1560560dea073e00ab2268738540454a59ab39581fa86bb4184349"
+  },
+  "manifest": {
+    "source": "934f2fd837423c45d77082566ba5f55a50df4771",
+    "approval": "navigator-paid-review-7c321f0f-da80-48a5-8f5c-ea5f91986861",
+    "startsAt": 1795319235405,
+    "endsAt": 1795322835405
+  },
+  "manifestSha256": "c65c921eea122f9c64d4efe5ccfb3ffc5d717664983f4549fade704fffb61846",
+  "artifact": {
+    "path": ".artifacts/navigator-paid-review-7c321f0f-da80-48a5-8f5c-ea5f91986861/canary.zip",
+    "sha256": "bfd8303847cca24f5473487bc885ea6a50255d593fb7d7702c58f8614e0d06d6",
+    "sha256Base64": "v9gwOEfMok9Uc0h7yIXqalAlXVk/t9dwLFj4YU4NBtY=",
+    "bytes": 311804
+  },
+  "lifecycleVersion": 2,
+  "executionJournalDirectory": ".artifacts/navigator-paid-canary/alpha-reviewed-lifecycle-execution",
+  "preservedStoppedJournal": {
+    "path": ".artifacts/navigator-paid-canary/alpha-initial-execution/execution-journal.json",
+    "sha256": "fd938f8134976794f62f71c236d755cbe155c19eadb6a15186bb3e9a4477960a"
+  },
+  "limits": {
+    "paidCalls": 4,
+    "automaticRetries": 0,
+    "incrementalCeilingMicros": 30000,
+    "requestBytes": 12000,
+    "outputTokens": 1500,
+    "monthlyMicros": 10000000,
+    "guestPerMinute": 2,
+    "guestPerDay": 5,
+    "ipPerDay": 20,
+    "globalConcurrency": 2,
+    "actorConcurrency": 1
+  },
+  "provider": {
+    "url": "https://api.openai.com/v1/responses",
+    "method": "POST",
+    "model": "gpt-6-luna",
+    "serviceTier": "default",
+    "store": false,
+    "inputUSDPerMillion": 0.125,
+    "outputUSDPerMillion": 0.5
+  },
+  "directInvocations": 5,
+  "bootstrapCalls": 1,
+  "paidGenerationCallsMaximum": 4,
+  "credentialParameter": "/decisionnavigator-alpha/openai-api-key",
+  "writeSet": [
+    "conditional Navigator $LATEST code install",
+    "one bootstrap and at most4 sequential direct private Lambda calls",
+    "reviewed NAVIGATOR# operational/budget/guard records only",
+    "conditional original-code restoration"
+  ],
+  "forbidden": [
+    "public alias/version/HTML publication",
+    "master toggle",
+    "IAM/Cognito/DNS/other coaches/Production changes",
+    "key output or mutation",
+    "retry/reset/refund on uncertainty"
+  ],
+  "restore": {
+    "bucket": "decisiontree-alpha-artifacts-771049112957-us-east-1",
+    "key": "releases/decisionnavigator-alpha/934f2fd837423c45d77082566ba5f55a50df4771/navigator-alpha-1d1d2a0823bcc268b1dc564d076f02f8275af3eb1136a626055f643c2514f9ac.zip",
+    "version": "qdp7G4h0ECzo9XgfE.YCJYpvcqqsq20n",
+    "codeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw="
+  },
+  "remainingRisk": "Provider authentication/model access and coaching quality are unproven; first approved paid call tests these. Abort without retry on denial, usage mismatch or uncertainty."
+}
