@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "hosted": true,
+  "widths": [
+    {
+      "width": 1440,
+      "copy": true,
+      "styleMatchesProcess": true,
+      "layout": true,
+      "animationPauseResume": true,
+      "reducedMotion": true,
+      "modalDraftFocus": true,
+      "podcastLinkAndPage": true,
+      "podcastPlayback": false,
+      "noOverflow": true
+    },
+    {
+      "width": 1024,
+      "copy": true,
+      "styleMatchesProcess": true,
+      "layout": true,
+      "animationPauseResume": true,
+      "reducedMotion": true,
+      "modalDraftFocus": true,
+      "podcastLinkAndPage": true,
+      "podcastPlayback": false,
+      "noOverflow": true
+    },
+    {
+      "width": 768,
+      "copy": true,
+      "styleMatchesProcess": true,
+      "layout": true,
+      "animationPauseResume": true,
+      "reducedMotion": true,
+      "modalDraftFocus": true,
+      "podcastLinkAndPage": true,
+      "podcastPlayback": false,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "copy": true,
+      "styleMatchesProcess": true,
+      "layout": true,
+      "animationPauseResume": true,
+      "reducedMotion": true,
+      "modalDraftFocus": true,
+      "podcastLinkAndPage": true,
+      "podcastPlayback": true,
+      "noOverflow": true
+    }
+  ],
+  "resizes": [
+    1440,
+    1024,
+    900,
+    800,
+    768,
+    680,
+    600,
+    1440
+  ],
+  "blockedExternalReads": 0,
+  "projectAuthWrites": 0,
+  "paidAiCalls": 0,
+  "pageErrors": []
+}

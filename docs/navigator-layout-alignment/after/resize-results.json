@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "nativeWidths": [
+    1440,
+    1024,
+    900,
+    800,
+    768,
+    680,
+    600,
+    1440
+  ],
+  "realApiCalls": 0,
+  "paidAiCalls": 0
+}
