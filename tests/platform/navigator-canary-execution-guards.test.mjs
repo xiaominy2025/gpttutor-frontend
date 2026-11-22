@@ -131,3 +131,17 @@ describe('CloudTrail exact function write matching',()=>{
  });
  it('fails closed on malformed audit data',()=>{expect(()=>deploymentWriteEvents([{CloudTrailEvent:'not JSON'}],functionArn)).toThrow();});
 });
+
+describe('flag-only configuration deployment uses the same ownership lifecycle',()=>{
+ it.each([false,true])('verifies the configuration event and completed revision (same=%s)',async sameRevision=>{
+  const f=deploymentFixture({sameRevision});f.options.operation='configuration';
+  f.readWriteEvents.mockResolvedValue([{...f.event,event:'UpdateFunctionConfiguration20150331v2',publish:undefined}]);
+  await expect(completedDeployment(f.options)).resolves.toMatchObject({acknowledgedRevision:owned,readyRevision:sameRevision?owned:other});
+ });
+ it('rejects a code event when configuration ownership is required',async()=>{
+  const f=deploymentFixture();f.options.operation='configuration';await expect(completedDeployment(f.options)).rejects.toThrow('ownership');
+ });
+ it('does not authorize any other mutation type',async()=>{
+  const f=deploymentFixture();f.options.operation='unreviewed';await expect(completedDeployment(f.options)).rejects.toThrow('Unreviewed');expect(f.readConfiguration).not.toHaveBeenCalled();
+ });
+});

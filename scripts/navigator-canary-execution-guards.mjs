@@ -58,7 +58,9 @@ export function deploymentWriteEvents(records,functionArn){
 // completed revision is accepted only with two stable reads and exact CloudTrail ownership.
 export async function completedDeployment({acknowledgement:ack,priorRevision,expectedHash,configurationHash,
  functionArn,principal,startedAt,readConfiguration,readWriteEvents,now=Date.now,sleep,
- timeoutMs=600000,pollMs=15000}){
+ timeoutMs=600000,pollMs=15000,operation='code'}){
+ if(!['code','configuration'].includes(operation))throw Error('Unreviewed Lambda operation');
+ const eventName=operation==='code'?'UpdateFunctionCode20150331v2':'UpdateFunctionConfiguration20150331v2';
  const acknowledgedRevision=acknowledgedInstallRevision(ack,expectedHash,priorRevision);
  const modified=Date.parse(ack.LastModified);
  let candidateRevision;
@@ -86,8 +88,8 @@ export async function completedDeployment({acknowledgement:ack,priorRevision,exp
    if(events.length>1)throw Error('Concurrent Lambda writes detected; reconcile without overwriting');
    if(events.length===1){
     const e=events[0];
-    if(e.event!=='UpdateFunctionCode20150331v2'||e.principal!==principal||e.error||
-       e.functionArn!==functionArn||e.priorRevision!==priorRevision||e.publish!==false||
+    if(e.event!==eventName||e.principal!==principal||e.error||
+       e.functionArn!==functionArn||e.priorRevision!==priorRevision||(operation==='code'?e.publish!==false:e.publish!==undefined)||
        e.acknowledgedRevision!==acknowledgedRevision||e.hash!==expectedHash||
        Math.floor(Date.parse(e.at)/1000)!==Math.floor(modified/1000)||typeof e.eventId!=='string'||!uuid.test(e.eventId))
      throw Error('CloudTrail does not establish exact deployment ownership');
