@@ -132,7 +132,7 @@ export default function DecisionNavigator() {
        <span role="status">{busy?'Thinking…':''}</span>
       </div>
       <div className="navigator-composer">
-       <textarea disabled={busy} id="navigator-message" maxLength={2000} value={message} onChange={event=>setMessage(event.target.value)} required />
+       <textarea disabled={busy} id="navigator-message" rows={4} maxLength={2000} value={message} onChange={event=>setMessage(event.target.value)} required />
        <button type="submit" className="navigator-icon-action" aria-label={sendLabel} title={sendLabel} disabled={busy||!message.trim()}>
         <ArrowUpIcon aria-hidden="true" />
        </button>
