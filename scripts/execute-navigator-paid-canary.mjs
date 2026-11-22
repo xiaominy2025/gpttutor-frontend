@@ -107,7 +107,7 @@ if(prepare){
    const observed=latest();j.requiresReadOnlyReconciliation=true;j.observedPrivate={hash:observed.CodeSha256,revision:observed.RevisionId,state:observed.State,update:observed.LastUpdateStatus};save();
   }
  }
- let restored;for(let i=0;i<10;i++){restored=latest();config(restored);check(restored.CodeSha256===original,'restored-code-drift');if(restored.State==='Active'&&restored.LastUpdateStatus==='Successful')break;await delay(1000);}
+ let restored;for(let i=0;i<10;i++){restored=latest();config(restored);assertOwnedPrivateRevision(restored,original,j.restoration?.revision);if(restored.State==='Active'&&restored.LastUpdateStatus==='Successful')break;await delay(1000);}
  check(restored.State==='Active'&&restored.LastUpdateStatus==='Successful','restored-code-not-ready');
  const finalAlias=aws('lambda','get-alias',{FunctionName:fn,Name:'live'});
  check(finalAlias.FunctionVersion==='1'&&finalAlias.RevisionId===aliasRevision&&!Object.keys(finalAlias.RoutingConfig?.AdditionalVersionWeights??{}).length,'public-alias-changed');

@@ -103,6 +103,7 @@ export function createNavigatorCanaryOperator({
   return {spent,reserved,paused:Item.paused?.BOOL===true};
  }
 
+ const capabilities=new Set();
  let cookie,history=[],secondCompletedAt,baseline,lastTransportResult;
  const journal=openCanaryJournal({directory,manifest,artifactSha256,now,
   transport:async({binding,step,previous})=>{
@@ -135,10 +136,20 @@ export function createNavigatorCanaryOperator({
     body:JSON.stringify(event),timeout:35000});
    if(step===2)secondCompletedAt=monotonic();
    lastTransportResult=result;
+   for(const value of [result.cookie,result.result?.continuation,result.canary?.receipt])if(typeof value==='string'){
+    capabilities.add(value);if(value.startsWith('__Host-engent-navigator='))capabilities.add(value.split('=')[1]);
+   }
    return result;
   }
  });
- function clear(){cookie=undefined;history=[];lastTransportResult=undefined;}
+ function clear(){cookie=undefined;history=[];lastTransportResult=undefined;capabilities.clear();}
+ function safeSyntheticEvidence(value){
+  const text=JSON.stringify(value);
+  if([...capabilities].some(capability=>text.includes(capability))||
+     /__Host-engent-navigator=|[A-Za-z0-9_-]{43}\.\d{10}\.[A-Za-z0-9_-]{43}|\d{13}\.[a-f0-9]{24}\.[a-f0-9]{64}/.test(text))
+   throw Error('Capability-shaped response cannot be saved');
+  return value;
+ }
  async function run(){
   const receipts=[];
   try{
@@ -146,8 +157,8 @@ export function createNavigatorCanaryOperator({
     const acknowledged=await journal.runStep();receipts.push(acknowledged);
     // Explicit owner-authorized evidence for this synthetic case only, after durable validation.
     // Never pass bootstrap cookies, continuations, raw receipts or the full provider response.
-    if(i>0&&observeResponse)await observeResponse({step:i,status:200,syntheticPrompt:messages[i-1],reply:lastTransportResult.result.reply,
-     followUps:lastTransportResult.result.followUps.map(({dimension,question})=>({dimension,question})),done:lastTransportResult.result.done,usage:acknowledged});
+    if(i>0&&observeResponse)await observeResponse(safeSyntheticEvidence({step:i,status:200,syntheticPrompt:messages[i-1],reply:lastTransportResult.result.reply,
+     followUps:lastTransportResult.result.followUps.map(({dimension,question})=>({dimension,question})),done:lastTransportResult.result.done,usage:acknowledged}));
     lastTransportResult=undefined;
    }
    await preflight();

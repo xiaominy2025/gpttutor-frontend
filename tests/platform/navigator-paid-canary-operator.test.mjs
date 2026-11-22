@@ -27,7 +27,7 @@ function config(version){
 function http(value,{status=200,headers={}}={}){
  return {status,headers:new Map(Object.entries(headers)),json:async()=>value};
 }
-function fixture({drift,failInvokeAt,finalBalance=112,observeResponse}={}){
+function fixture({drift,failInvokeAt,finalBalance=112,observeResponse,embeddedCapability}={}){
  const directory=mkdtempSync(join(tmpdir(),'navigator-operator-'));
  dirs.push(directory);
  let monotonic=0,turns=0;
@@ -76,7 +76,7 @@ function fixture({drift,failInvokeAt,finalBalance=112,observeResponse}={}){
   turns++;
   return http({status:200,canary:{state:turns===4?'complete':'ready',spentMicros:turns*28,
    usage:{step:turns,inputs:100,outputs:30,cost:28,bytes:1000,requestHash:'f'.repeat(64),withinBounds:true},
-   ...(turns<4?{receipt:receipt(turns)}:{})},result:{reply:privateReply,followUps:[],done:turns===4,
+   ...(turns<4?{receipt:receipt(turns)}:{})},result:{reply:embeddedCapability?.field==='reply'?privateReply+embeddedCapability.value:privateReply,followUps:embeddedCapability?.field==='followUps'?[{dimension:'objectives',question:embeddedCapability.value}]:[],done:turns===4,
     continuation:turns===4?null:continuation}},
   {headers:{'x-amz-executed-version':drift==='executed-version'?'1':'$LATEST'}});
  });
@@ -130,4 +130,10 @@ it('stops without another provider step if successful-response evidence cannot b
 it('never observes a response with an uncertain transport result',async()=>{
  const observeResponse=vi.fn();const f=fixture({observeResponse,failInvokeAt:1});
  await expect(f.operator.run()).rejects.toThrow('Do not retry');expect(observeResponse).not.toHaveBeenCalled();
+});
+it.each([['reply',cookie],['reply',continuation],['reply',receipt(1)],['followUps',cookie],['followUps',continuation],['followUps',receipt(1)]])('stops before saving a capability embedded in %s',async(field,value)=>{
+ const observeResponse=vi.fn();const f=fixture({observeResponse,embeddedCapability:{field,value}});
+ await expect(f.operator.run()).rejects.toThrow('Do not retry');
+ expect(f.sent.map(x=>x.step)).toEqual([0,1]);expect(observeResponse).not.toHaveBeenCalled();
+ expect(readFileSync(f.operator.filename,'utf8')).not.toContain(value);
 });
