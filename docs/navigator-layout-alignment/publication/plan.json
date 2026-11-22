@@ -1,0 +1,69 @@
+{
+  "release": "navigator-layout-6ef1c6e",
+  "source": "6ef1c6e4b8e5cfdaf8733bb7a92d5a9f05f39aa4",
+  "at": "2026-11-22T18:30:24.860Z",
+  "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+  "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/index.html",
+  "distribution": "E1C4AJI9FUE47B",
+  "paths": [
+    "/engent-alpha/*",
+    "/explore",
+    "/explore/*"
+  ],
+  "baseline": {
+    "AcceptRanges": "bytes",
+    "LastModified": "2026-11-22T17:40:18+00:00",
+    "ContentLength": 975,
+    "ETag": "\"1a29d7b10df3ca43a405e36b80fab8fa\"",
+    "VersionId": "7l9Gd8Oxe7TbHEbGhSarWDtjhoZ54Fjx",
+    "CacheControl": "no-cache,no-store,must-revalidate",
+    "ContentType": "text/html; charset=utf-8",
+    "ServerSideEncryption": "AES256",
+    "Metadata": {
+      "sha256": "438c8ce47959c553a4d5b22e4246d89eea0401b9fd3b973ebc32c78fd1cdcc5f",
+      "engent-release-id": "podcasts39-501f2b5",
+      "engent-write-id": "f50c1764-1488-4e76-b97a-2f7114ffaaeb"
+    }
+  },
+  "baselineSha256": "438c8ce47959c553a4d5b22e4246d89eea0401b9fd3b973ebc32c78fd1cdcc5f",
+  "htmlSha256": "237eae504b810491d5fbbd62128407d2bcad31e394ece5043fb42c630e5705ea",
+  "assets": [
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/DecisionNavigator-BYTq4Wym.css",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-BYTq4Wym.css",
+      "sha256": "3262a894bf4a47091d23e0e9168d304330883a9e6ec9d0889681ac9e0b64c6ee",
+      "contentType": "text/css"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/DecisionNavigator-DAviwrzx.js",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-DAviwrzx.js",
+      "sha256": "376553566893d23d95cf861f168bc8d491bbc0c512d319a619f5b629425ad1b5",
+      "contentType": "application/javascript"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/index-BxSk6t1x.js",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BxSk6t1x.js",
+      "sha256": "5370bd04c33c9874e39d78c1470a34eb52b7c68b8e3aef7161700c5128777652",
+      "contentType": "application/javascript"
+    }
+  ],
+  "state": {
+    "masterOnRevision": 11,
+    "navigatorVersion": "3",
+    "protectedApps": {
+      "engent-platform-alpha-api": {
+        "version": "5",
+        "revision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+      },
+      "decisiontree-alpha-staging-api": {
+        "version": "18",
+        "revision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc"
+      },
+      "decisionprocess-alpha-api": {
+        "version": "6",
+        "revision": "9c51c343-ea67-444a-9133-45853b39d81f"
+      }
+    },
+    "cloudfrontEtag": "E1JYRMDPD0WRC1"
+  }
+}

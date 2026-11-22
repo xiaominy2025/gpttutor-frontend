@@ -1,5 +1,7 @@
 # Navigator layout alignment - review candidate
 
+Publication update: owner-approved source `6ef1c6e` is now deployed to Alpha. See [deployed versions, hosted results and rollback evidence](publication/README.md). Preparation record below is retained as reviewed.
+
 Branch `codex/navigator-layout-alignment`; implementation `397e8376aaa39a078cd8e9c316365f7b3eb01970`. Based on the published 39-episode release and its documentation head 39c1ef4. **Not deployed.**
 
 Navigator's title, subtitle and description now precede the illustration/action grid. It reuses Process Coach's engent-coach-heading, engent-coach-content, engent-coach-actions and subtitle classes, replacing the old Navigator-specific grid/heading overrides. Scoped Navigator rules match Process's typography and paragraph spacing. The watercolor remains left and Podcasts/Meet Your Coach right; the shared 680px breakpoint stacks them naturally.
