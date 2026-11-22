@@ -1,0 +1,2 @@
+# Preserve exact versioned S3 rollback bytes, including original mixed line endings.
+rollback-index.html binary
