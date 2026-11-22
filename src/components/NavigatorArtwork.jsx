@@ -1,5 +1,5 @@
 import React, {useId, useState} from 'react';
-import {PauseIcon, PlayIcon} from '@heroicons/react/24/outline';
+import AnimationPlaybackIcon from './AnimationPlaybackIcon';
 
 const outlines = [
  'M-10 1C-11-4-7-10-1-10C4-11 9-7 10-2C12 4 7 10 2 10C-5 12-10 7-10 1Z',
@@ -34,7 +34,6 @@ const clusters = [
 export default function NavigatorArtwork() {
  const titleId=useId();
  const [paused,setPaused]=useState(false);
- const PlaybackIcon=paused?PlayIcon:PauseIcon;
  return <div className="navigator-art" data-paused={paused}>
   <svg viewBox="0 0 420 170" role="img" aria-labelledby={titleId}>
    <title id={titleId}>Scattered watercolor marks gather into Objectives, Analysis, and Human Judgment.</title>
@@ -54,9 +53,9 @@ export default function NavigatorArtwork() {
     <text className="navigator-art-label" x={labelX} y={labelY} fill={ink} textAnchor="middle">{label}</text>
    </g>)}
   </svg>
-  <button type="button" className="navigator-art-playback" onClick={()=>setPaused(value=>!value)}
+  <button type="button" className="navigator-art-playback engent-animation-control" onClick={()=>setPaused(value=>!value)}
    aria-label={paused?'Play illustration':'Pause illustration'}>
-   <PlaybackIcon aria-hidden="true" />
+   <AnimationPlaybackIcon playing={!paused} />
   </button>
  </div>;
 }

@@ -1,0 +1,14 @@
+{
+  "status": "PREPARED_NOT_DEPLOYED",
+  "source": "182faf6b74e36453da4c9662354c20d66a553352",
+  "assets": {
+    "web/assets/DecisionNavigator-BLedplZi.js": "c3f3e8d62580b7a9675a26908841726d3f3e3b27a8da374d6ca37f154ca9e351",
+    "web/assets/DecisionNavigator-WHOSqT1O.css": "cc9dfe4b02d683a7dfa4b0641c4a36f040dfb6b94814f33c36ea46da3bf641e5",
+    "web/assets/index-BNouqn29.css": "12312bd8857845ad9d696a11609984fc56b5cba58bb959c0c7f81d9b3c162d5d",
+    "web/assets/index-BY72FO0M.js": "1d92e13e8e3106d3934cabdc118229b7fdd301cf70f9ac96407bc773d1f503c0"
+  },
+  "html": {
+    "sha256": "719f810995f3c6a27ff791a86d659cdc261a5b5ea57bbdc034a74effb335d2e1"
+  },
+  "preserveAllOtherAssets": true
+}

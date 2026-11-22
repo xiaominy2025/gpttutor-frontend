@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import CoachDiagram from './CoachDiagram';
 import MediaProgress from './MediaProgress';
 import PlaybackIcon from './PlaybackIcon';
+import AnimationPlaybackIcon from './AnimationPlaybackIcon';
 import { coaches } from './coaches';
 import poster from '../assets/coach-intro-poster.svg';
 
@@ -102,8 +103,8 @@ export default function CoachIntro({ coach, thumbnail, autoplay = false }) {
           {atStart && (thumbnail ? <div className="coach-thumbnail">{thumbnail}</div> : <img className="coach-poster" src={poster} alt="" width="960" height="540" />)}
           {!atStart && <Workspace coach={scenes[index]} opacity={reduced ? 1 : Math.min(fadeIn, fadeOut)} progress={reduced ? 1 : clamp(position / .87)} />}
         </div>
-        {coach && <button type="button" className="coach-overlay" aria-describedby={`${coach.id}-media-description`} aria-label={reduced ? (atStart ? 'Show illustration still' : 'Show poster') : action} onClick={play}>
-          <PlaybackIcon playing={playing} ended={elapsed >= total} />
+        {coach && <button type="button" className="coach-overlay engent-animation-control" aria-describedby={`${coach.id}-media-description`} aria-label={reduced ? (atStart ? 'Show illustration still' : 'Show poster') : action} onClick={play}>
+          <AnimationPlaybackIcon playing={playing} ended={elapsed >= total} />
         </button>}
       </div>
       {(!coach || !atStart) && <div className="coach-controls">

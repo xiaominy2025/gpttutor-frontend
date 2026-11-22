@@ -1,0 +1,216 @@
+{
+  "phase": "after",
+  "source": "refined local Alpha candidate; network fixtures only",
+  "realApiCalls": 0,
+  "paidCalls": 0,
+  "results": [
+    {
+      "label": "homepage 1440",
+      "width": 1440,
+      "visibleWidth": 1425,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "explore 1440",
+      "width": 1440,
+      "visibleWidth": 1425,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "podcast 1440",
+      "width": 1440,
+      "visibleWidth": 1425,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "homepage 1024",
+      "width": 1024,
+      "visibleWidth": 1009,
+      "scrollWidth": 1009,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "explore 1024",
+      "width": 1024,
+      "visibleWidth": 1009,
+      "scrollWidth": 1009,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "podcast 1024",
+      "width": 1024,
+      "visibleWidth": 1009,
+      "scrollWidth": 1009,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "homepage 768",
+      "width": 768,
+      "visibleWidth": 753,
+      "scrollWidth": 753,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "explore 768",
+      "width": 768,
+      "visibleWidth": 753,
+      "scrollWidth": 753,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "podcast 768",
+      "width": 768,
+      "visibleWidth": 753,
+      "scrollWidth": 753,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "homepage 390",
+      "width": 390,
+      "visibleWidth": 375,
+      "scrollWidth": 375,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "explore 390",
+      "width": 390,
+      "visibleWidth": 375,
+      "scrollWidth": 375,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "podcast 390",
+      "width": 390,
+      "visibleWidth": 375,
+      "scrollWidth": 375,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 1440",
+      "width": 1440,
+      "visibleWidth": 1425,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 1024",
+      "width": 1024,
+      "visibleWidth": 1009,
+      "scrollWidth": 1009,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 900",
+      "width": 900,
+      "visibleWidth": 885,
+      "scrollWidth": 885,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 800",
+      "width": 800,
+      "visibleWidth": 785,
+      "scrollWidth": 785,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 768",
+      "width": 768,
+      "visibleWidth": 753,
+      "scrollWidth": 753,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 600",
+      "width": 600,
+      "visibleWidth": 585,
+      "scrollWidth": 585,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 1440",
+      "width": 1440,
+      "visibleWidth": 1425,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 1440",
+      "width": 1440,
+      "visibleWidth": 1425,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 1024",
+      "width": 1024,
+      "visibleWidth": 1009,
+      "scrollWidth": 1009,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 900",
+      "width": 900,
+      "visibleWidth": 885,
+      "scrollWidth": 885,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 800",
+      "width": 800,
+      "visibleWidth": 785,
+      "scrollWidth": 785,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 768",
+      "width": 768,
+      "visibleWidth": 753,
+      "scrollWidth": 753,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 600",
+      "width": 600,
+      "visibleWidth": 585,
+      "scrollWidth": 585,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 1440",
+      "width": 1440,
+      "visibleWidth": 1425,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    }
+  ]
+}
