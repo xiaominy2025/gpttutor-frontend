@@ -1,0 +1,24 @@
+[
+  {
+    "run": "navigator-browser-83e533f0-a336-4ea2-bc44-9b85ff0a6364",
+    "source": "95ff1eac60342fe632f2df66c753a31731497684",
+    "reason": "Successful empty CLI read for absent budget row was not parsed",
+    "manifestCreated": false,
+    "mutationPending": false,
+    "awsWrites": 0,
+    "liveProbeRequests": 0,
+    "resolution": "Read-only reconciliation confirmed exit0/empty stdout/empty stderr/no item; parser corrected",
+    "probeVersionPublished": false
+  },
+  {
+    "run": "navigator-browser-1f039afc-d47f-4639-9328-7719bb26ec92",
+    "source": "52683f60315c4d6de26c26a2397dfee015b2de26",
+    "reason": "Bundled Playwright browser absent; system Chrome available",
+    "manifestCreated": false,
+    "mutationPending": false,
+    "awsWrites": 0,
+    "liveProbeRequests": 0,
+    "resolution": "System Chrome launch and isolated IPv4 GET-only navigation validated before proceeding",
+    "probeVersionPublished": false
+  }
+]
