@@ -1,0 +1,203 @@
+{
+  "run": "navigator-master-bae30077-3fff-472c-b799-39dcef378a35",
+  "source": "301723d0a8094ba43db788bfc5927782501aa0f0",
+  "result": "passed",
+  "ownerEnteredAuthentication": true,
+  "authentication": {
+    "/api/platform/email/finish": 200,
+    "/api/shared/email/callback": 303,
+    "/api/admin/finish": 200
+  },
+  "existingAccountRole": "student",
+  "networkGuardVerified": true,
+  "blocked": {
+    "project": 3,
+    "paid": 3,
+    "other": 2
+  },
+  "settingsActions": [
+    {
+      "enabled": false,
+      "at": "2026-11-22T01:38:13.181Z"
+    },
+    {
+      "enabled": true,
+      "at": "2026-11-22T01:38:32.253Z"
+    }
+  ],
+  "settingsAcknowledgements": [
+    {
+      "enabled": false,
+      "status": 200,
+      "at": "2026-11-22T01:38:13.565Z"
+    },
+    {
+      "enabled": true,
+      "status": 200,
+      "at": "2026-11-22T01:38:32.986Z"
+    }
+  ],
+  "masterBefore": {
+    "suspended": false,
+    "revision": 9
+  },
+  "masterOff": {
+    "suspended": true,
+    "revision": 10
+  },
+  "masterRestored": {
+    "suspended": false,
+    "revision": 11
+  },
+  "pauseRequestedAt": "2026-11-22T01:38:13.091Z",
+  "restoredAt": "2026-11-22T01:38:34.348Z",
+  "conservativeOffWindowMs": 21257,
+  "navigatorBefore": {
+    "observed": {
+      "suspended": false,
+      "revision": 9
+    },
+    "status": 200,
+    "providerStubCalls": 1,
+    "syntheticAdmissions": 1,
+    "syntheticSettlements": 1,
+    "providerTransport": "absent",
+    "realWrites": 0,
+    "paidCalls": 0,
+    "verified": true
+  },
+  "offResults": [
+    {
+      "coach": "Tree",
+      "status": 503,
+      "expectedError": true
+    },
+    {
+      "coach": "Process",
+      "status": 503,
+      "expectedError": true
+    },
+    {
+      "coach": "Navigator",
+      "observed": {
+        "suspended": true,
+        "revision": 10
+      },
+      "status": 503,
+      "providerStubCalls": 0,
+      "syntheticAdmissions": 1,
+      "syntheticSettlements": 1,
+      "providerTransport": "absent",
+      "realWrites": 0,
+      "paidCalls": 0,
+      "verified": true
+    },
+    {
+      "coach": "ProcessStatus",
+      "status": 200,
+      "access": "student",
+      "aiEnabled": false
+    }
+  ],
+  "navigatorAfter": {
+    "observed": {
+      "suspended": false,
+      "revision": 11
+    },
+    "status": 200,
+    "providerStubCalls": 1,
+    "syntheticAdmissions": 1,
+    "syntheticSettlements": 1,
+    "providerTransport": "absent",
+    "realWrites": 0,
+    "paidCalls": 0,
+    "verified": true
+  },
+  "processBefore": {
+    "status": 200,
+    "access": "student",
+    "aiEnabled": true
+  },
+  "processAfter": {
+    "status": 200,
+    "access": "student",
+    "aiEnabled": true
+  },
+  "balancesBefore": {
+    "treeStateSha256": "b25a79ff7d39c650c81eea32237116d3e096a520c3ba869d29b0a1f25aced573",
+    "treeReserved": 0,
+    "processGlobal": 0,
+    "processUser": 0,
+    "processRequestAbsent": true,
+    "processMonthSha256": "a4dd175e74ab5e24b72c9cb8abb24511839b8a0f4a88659add362e0e0424ba49",
+    "processDaySha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "navigatorBudgetSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "balancesAfter": {
+    "treeStateSha256": "b25a79ff7d39c650c81eea32237116d3e096a520c3ba869d29b0a1f25aced573",
+    "treeReserved": 0,
+    "processGlobal": 0,
+    "processUser": 0,
+    "processRequestAbsent": true,
+    "processMonthSha256": "a4dd175e74ab5e24b72c9cb8abb24511839b8a0f4a88659add362e0e0424ba49",
+    "processDaySha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "navigatorBudgetSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "balancesAndRequestStateUnchanged": true,
+  "protectedBefore": {
+    "decisiontree-alpha-staging-api": {
+      "version": "18",
+      "aliasRevision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc",
+      "configurationHash": "6b42a60b9d8522c91c61c429774512e5ad8393698c3697fd5d16b911c7a971bc"
+    },
+    "decisionprocess-alpha-api": {
+      "version": "6",
+      "aliasRevision": "9c51c343-ea67-444a-9133-45853b39d81f",
+      "configurationHash": "6e81232768f6908f517585741031c7c39fbd6cb8f7ce129b2f49222752ed9f07"
+    },
+    "platform": {
+      "version": "5",
+      "aliasRevision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+    }
+  },
+  "protectedAfter": {
+    "decisiontree-alpha-staging-api": {
+      "version": "18",
+      "aliasRevision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc",
+      "configurationHash": "6b42a60b9d8522c91c61c429774512e5ad8393698c3697fd5d16b911c7a971bc"
+    },
+    "decisionprocess-alpha-api": {
+      "version": "6",
+      "aliasRevision": "9c51c343-ea67-444a-9133-45853b39d81f",
+      "configurationHash": "6e81232768f6908f517585741031c7c39fbd6cb8f7ce129b2f49222752ed9f07"
+    },
+    "platform": {
+      "version": "5",
+      "aliasRevision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+    }
+  },
+  "protectedConfigurationsUnchanged": true,
+  "registrationUnchanged": true,
+  "adminSettingsRestoredOn": true,
+  "privateChecker": {
+    "sha256": "3290349c72ada5091776ccafae49bd94a6d20d8301db454bad110acbcd1e8a9a",
+    "sha256Base64": "MpA0nHKtpQkXdsyvrkm9lKbSDYMB20VLrREKy80eipo=",
+    "originalRevision": "af771ffd-0d82-426c-af4e-c37bf8a2faa4"
+  },
+  "privateCodeRestored": {
+    "revision": "1dee8842-b467-4aa4-8ea0-2fe808d644c1",
+    "hash": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw="
+  },
+  "navPublicVersion": "1",
+  "navAliasRevision": "9545575c-3a9c-4163-96cd-98f747a769e0",
+  "paidProviderCalls": 0,
+  "projectWrites": 0,
+  "secretValuesCaptured": false,
+  "accountOrEntitlementChangesByAgent": false,
+  "sessionNote": "Existing Student and independent Administrator sessions remained valid. Normal authentication/session timestamp refresh may occur; no logout or revocation was performed.",
+  "evidenceLimits": [
+    "Tree generic503 admission denial corroborated with pinned code/masterOFF/account eligibility/unchanged controls; not a mid-flight per-dispatch-hook test",
+    "Process exactPaused503 denied before createBudget/getSecret",
+    "Navigator ON calls used only in-memory stub, never paid provider transport"
+  ]
+}
