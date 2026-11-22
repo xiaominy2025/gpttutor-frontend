@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {ArrowPathIcon, ArrowUpIcon, FlagIcon, MagnifyingGlassIcon, ScaleIcon, XMarkIcon} from '@heroicons/react/24/outline';
 import NavigatorArtwork from './NavigatorArtwork';
+import CoachLaunchControl from './CoachLaunchControl';
 import './Navigator.css';
 
 const paths={
@@ -77,8 +78,11 @@ export default function DecisionNavigator() {
      <h2 id="navigator-intro-title">AI Decision Navigator</h2>
      <p className="navigator-tagline">See the bigger picture before making your decision.</p>
      <p>Describe a decision you're facing. Navigator helps you clarify what matters, recognize what needs analysis, and understand where human judgment comes in—so you can develop a clearer mental map before deciding how to proceed.</p>
-     <button type="button" className="engent-button navigator-open" ref={openButton} aria-haspopup="dialog"
-      onClick={()=>{dialog.current.showModal();scrollToLatest();}}>Open Decision Navigator</button>
+     <section className="navigator-launch" aria-label="Meet Your Coach">
+      <h3>Meet Your Coach</h3>
+      <CoachLaunchControl label="Open Decision Navigator" ref={openButton} aria-haspopup="dialog"
+       onClick={()=>{dialog.current.showModal();scrollToLatest();}} />
+     </section>
     </div>
    <dialog ref={dialog} className="navigator-dialog" aria-labelledby="navigator-title" aria-describedby="navigator-subtitle"
     onClose={()=>openButton.current?.focus()}>

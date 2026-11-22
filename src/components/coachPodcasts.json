@@ -1,0 +1,195 @@
+{
+  "tree": {
+    "title": "Decision Tree",
+    "cases": [
+      {
+        "id": "01_Bayer_Plasmin",
+        "asset": "tree/01_Bayer_Plasmin",
+        "title": "The Drug Investment Decision That Became a Tree",
+        "context": "Bayer",
+        "seconds": 277
+      },
+      {
+        "id": "02_Intuit_SnapTax",
+        "asset": "tree/02_Intuit_SnapTax",
+        "title": "The Tax App That Earned Its Next Step",
+        "context": "Intuit",
+        "seconds": 244
+      },
+      {
+        "id": "03_Amazon_HQ2",
+        "asset": "tree/03_Amazon_HQ2",
+        "title": "When the Next Decision Changes the First",
+        "context": "Amazon HQ2",
+        "seconds": 233
+      },
+      {
+        "id": "04_Netflix_Streaming",
+        "asset": "tree/04_Netflix_Streaming",
+        "title": "When to Build the Next Business",
+        "context": "Netflix",
+        "seconds": 239
+      },
+      {
+        "id": "05_NASA_Mars",
+        "asset": "tree/05_NASA_Mars",
+        "title": "The Mars Mission That Begins with What We Don't Know",
+        "context": "NASA",
+        "seconds": 242
+      }
+    ]
+  },
+  "forecast": {
+    "title": "Forecasting",
+    "cases": [
+      {
+        "id": "01_Pressure_D_Day",
+        "asset": "forecast/01_Pressure_D_Day",
+        "title": "The Weather Window That Changed D-Day",
+        "context": "Pressure",
+        "seconds": 244
+      },
+      {
+        "id": "02_Dominos_Friday_Rush",
+        "asset": "forecast/02_Dominos_Friday_Rush",
+        "title": "How Many Pizzas Will Friday Need?",
+        "context": "Domino's",
+        "seconds": 254
+      },
+      {
+        "id": "03_Walmart_Weather",
+        "asset": "forecast/03_Walmart_Weather",
+        "title": "When the Weather Changes the Shopping List",
+        "context": "Walmart",
+        "seconds": 231
+      },
+      {
+        "id": "04_Hershey_Halloween",
+        "asset": "forecast/04_Hershey_Halloween",
+        "title": "The Halloween Chocolate Clock",
+        "context": "Hershey",
+        "seconds": 216
+      },
+      {
+        "id": "05_Airbus_Twenty_Years",
+        "asset": "forecast/05_Airbus_Twenty_Years",
+        "title": "A Twenty-Year Bet on the Sky",
+        "context": "Airbus",
+        "seconds": 225
+      },
+      {
+        "id": "06_Duke_Energy_Tomorrows_Load",
+        "asset": "forecast/06_Duke_Energy_Tomorrows_Load",
+        "title": "Predicting Tomorrow's Electricity Demand",
+        "context": "Duke Energy",
+        "seconds": 218
+      },
+      {
+        "id": "07_Hospital_Emergency_Department",
+        "asset": "forecast/07_Hospital_Emergency_Department",
+        "title": "Can You Forecast the Unexpected?",
+        "context": "The Emergency Room",
+        "seconds": 230
+      }
+    ]
+  },
+  "scenario": {
+    "title": "Scenario Analysis",
+    "cases": [
+      {
+        "id": "01_Shell_Oil_Shock",
+        "asset": "scenario/01_Shell_Oil_Shock",
+        "title": "The Future That Broke the Forecast",
+        "context": "Shell",
+        "seconds": 276
+      },
+      {
+        "id": "02_Airbnb_Travel_Collapse",
+        "asset": "scenario/02_Airbnb_Travel_Collapse",
+        "title": "How Long Can the Business Hold On?",
+        "context": "Airbnb",
+        "seconds": 274
+      },
+      {
+        "id": "03_Ford_EV_Choices",
+        "asset": "scenario/03_Ford_EV_Choices",
+        "title": "How Big a Bet on Electric Vehicles?",
+        "context": "Ford",
+        "seconds": 280
+      },
+      {
+        "id": "04_Unilever_Climate_Costs",
+        "asset": "scenario/04_Unilever_Climate_Costs",
+        "title": "What If the Cost of Everything Changes?",
+        "context": "Unilever",
+        "seconds": 298
+      }
+    ]
+  },
+  "process": {
+    "title": "Decision Process",
+    "cases": [
+      {
+        "id": "episode-1",
+        "asset": "decision-process/decision-process/01_Mon_Klarna_The_AI_Efficiency_Trap",
+        "title": "The AI Efficiency Trap",
+        "context": "Klarna",
+        "seconds": 338,
+        "question": "Which objectives should guide AI adoption alongside efficiency?",
+        "art": "M49 99h204M59 86l49-22 54-19 71-17M60 69l48 9 54-15 71 7",
+        "decision": "M177 26v78"
+      },
+      {
+        "id": "02_Tue_Fastenal_The_Vending_Machine_Moat",
+        "asset": "decision-process/02_Tue_Fastenal_The_Vending_Machine_Moat",
+        "title": "Fastenal",
+        "question": "How Industrial Vending Transformed Supply Chain Management",
+        "seconds": 333
+      },
+      {
+        "id": "03_Wed_Uniqlo_The_Fabric_Innovation_Partnership",
+        "asset": "decision-process/03_Wed_Uniqlo_The_Fabric_Innovation_Partnership",
+        "title": "Uniqlo",
+        "question": "How Simplicity and Innovation Built a Global Fashion Brand",
+        "seconds": 340
+      },
+      {
+        "id": "episode-4",
+        "asset": "decision-process/decision-process/04_Thu_Intuitive_The_Installed_Base_Engine",
+        "title": "The Robot Is Only the Beginning",
+        "context": "Intuitive Surgical",
+        "seconds": 346,
+        "question": "How should a business weigh long-term utilization against the initial sale?",
+        "art": "M39 102h224M54 98V83h28v15m19 0V70h28v28m19 0V56h28v42m19 0V41h28v57",
+        "decision": "M62 68Q153 65 231 24"
+      },
+      {
+        "id": "episode-3",
+        "asset": "decision-process/decision-process/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels",
+        "title": "The Hotel Company That Doesn’t Need to Own the Hotel",
+        "context": "Hilton",
+        "seconds": 326,
+        "question": "How does separating ownership from operations change who bears risk?",
+        "art": "M39 111V55l49-25 49 25v56zm149 0V44h64v67zm-51-29h51",
+        "decision": "M87 61v50m128-52v38"
+      },
+      {
+        "id": "06_Sat_Caterpillar_The_Part_That_Comes_Back",
+        "asset": "decision-process/06_Sat_Caterpillar_The_Part_That_Comes_Back",
+        "title": "Caterpillar",
+        "question": "How Predictive Maintenance Turned Equipment Data into Customer Value",
+        "seconds": 319
+      },
+      {
+        "id": "episode-2",
+        "asset": "decision-process/decision-process/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers",
+        "title": "The Power of Not Competing with Your Customers",
+        "context": "TSMC",
+        "seconds": 371,
+        "question": "How can strategic boundaries strengthen customer trust?",
+        "art": "M46 57h51v42H46zM199 57h51v42h-51zM97 78h102",
+        "decision": "M117 66l25-22 33 22m-58 28 25 22 33-22"
+      }
+    ]
+  }
+}

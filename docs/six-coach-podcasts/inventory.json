@@ -1,0 +1,1308 @@
+{
+  "sourceRoot": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs",
+  "baselineCommit": "68e201c",
+  "readOnlyPublishedInspection": true,
+  "coaches": [
+    {
+      "coach": "navigator",
+      "name": "Decision Navigator",
+      "sourceFolder": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Navigator",
+      "mp3Count": 4,
+      "playlistFiles": [
+        "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Navigator\\Outputs\\Human-AI Partner for Decision Making.txt"
+      ],
+      "playlistHasSeparateDescriptions": false,
+      "playlistRows": [
+        "1. Morgan Stanley — An AI Investment Research Partner, Not an AI Advisor.",
+        "2. Netflix — When Viewers Become Part of the Algorithm",
+        "3. Zillow — When a Price Estimate Became a Business Bet",
+        "4. UPS — The Route the Computer Couldn't See"
+      ],
+      "episodes": [
+        {
+          "filename": "01_Morgan_Stanley.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Navigator\\Outputs\\01_Morgan_Stanley.mp3",
+          "bytes": 4488506,
+          "durationSeconds": 280.457483,
+          "sha256": "da94116ddd784a8ff1a4e2da575d7012552799d2ac7a473ee14e562f2b77ccca",
+          "playlistSequence": 1,
+          "playlistText": "1. Morgan Stanley — An AI Investment Research Partner, Not an AI Advisor.",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "excluded-no-navigator-podcasts"
+        },
+        {
+          "filename": "02_Netflix.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Navigator\\Outputs\\02_Netflix.mp3",
+          "bytes": 4383598,
+          "durationSeconds": 273.900748,
+          "sha256": "de7b4eaf75e8b5ae79003183cc5a1e994a629877462e7f0adedee27a5ebdce43",
+          "playlistSequence": 2,
+          "playlistText": "2. Netflix — When Viewers Become Part of the Algorithm",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "excluded-no-navigator-podcasts"
+        },
+        {
+          "filename": "03_Zillow.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Navigator\\Outputs\\03_Zillow.mp3",
+          "bytes": 4653182,
+          "durationSeconds": 290.749728,
+          "sha256": "2c3438b23e2783379158e3b8dcc7f96cdd14b2f03a2e1157bb2f322a25f8108a",
+          "playlistSequence": 3,
+          "playlistText": "3. Zillow — When a Price Estimate Became a Business Bet",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "excluded-no-navigator-podcasts"
+        },
+        {
+          "filename": "04_UPS.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Navigator\\Outputs\\04_UPS.mp3",
+          "bytes": 4123628,
+          "durationSeconds": 257.652585,
+          "sha256": "9b8dd234a67d0e63dc11805f667039680f958853cdc0571b0dec14e076b66077",
+          "playlistSequence": 4,
+          "playlistText": "4. UPS — The Route the Computer Couldn't See",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "excluded-no-navigator-podcasts"
+        }
+      ],
+      "playlistSources": [
+        {
+          "path": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Navigator\\Outputs\\Human-AI Partner for Decision Making.txt",
+          "sha256": "cd8169f0d2a80ab7a58cad40eebd405caec23f942c30160c58d3c473668e4ab1"
+        }
+      ],
+      "websiteEpisodeCount": 0
+    },
+    {
+      "coach": "tree",
+      "name": "Decision Tree Coach",
+      "sourceFolder": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Tree Coach",
+      "mp3Count": 5,
+      "playlistFiles": [
+        "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Tree Coach\\Outputs\\Decision Tree Podcasts Subtitles.txt"
+      ],
+      "playlistHasSeparateDescriptions": false,
+      "playlistRows": [
+        "Bayer — The Drug Investment Decision That Became a Tree",
+        "Intuit — The Tax App That Earned Its Next Step",
+        "Amazon HQ2 — When the Next Decision Changes the First",
+        "Netflix — When to Build the Next Business",
+        "NASA — The Mars Mission That Begins with What We Don't Know"
+      ],
+      "episodes": [
+        {
+          "filename": "01_Bayer_Plasmin.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Tree Coach\\Outputs\\01_Bayer_Plasmin.mp3",
+          "bytes": 4427066,
+          "durationSeconds": 276.617483,
+          "sha256": "461e82b773b82cc610da4af4cdf9d1a4c7d4d80d18a262e1d34a45b8f44a5223",
+          "playlistSequence": 1,
+          "playlistText": "Bayer — The Drug Investment Decision That Became a Tree",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/tree/01_Bayer_Plasmin.mp3",
+          "candidateSequence": 1,
+          "candidateTitle": "The Drug Investment Decision That Became a Tree",
+          "candidateContext": "Bayer",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "02_Intuit_SnapTax.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Tree Coach\\Outputs\\02_Intuit_SnapTax.mp3",
+          "bytes": 3900856,
+          "durationSeconds": 243.72932,
+          "sha256": "b808772d9156ecba8c62e763d89864a65b452a946e0c90f80961c7284e023216",
+          "playlistSequence": 2,
+          "playlistText": "Intuit — The Tax App That Earned Its Next Step",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/tree/02_Intuit_SnapTax.mp3",
+          "candidateSequence": 2,
+          "candidateTitle": "The Tax App That Earned Its Next Step",
+          "candidateContext": "Intuit",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "03_Amazon_HQ2.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Tree Coach\\Outputs\\03_Amazon_HQ2.mp3",
+          "bytes": 3732418,
+          "durationSeconds": 233.212132,
+          "sha256": "62fe5c2c323f9f380d5e23f60f183383fc06b5bb1ec933c4ab1cfd4dc2effd3c",
+          "playlistSequence": 3,
+          "playlistText": "Amazon HQ2 — When the Next Decision Changes the First",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/tree/03_Amazon_HQ2.mp3",
+          "candidateSequence": 3,
+          "candidateTitle": "When the Next Decision Changes the First",
+          "candidateContext": "Amazon HQ2",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "04_Netflix_Streaming.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Tree Coach\\Outputs\\04_Netflix_Streaming.mp3",
+          "bytes": 3826877,
+          "durationSeconds": 239.105646,
+          "sha256": "76f4e296bbbc5e704a71a62cc0d291ddfb692bb99a0d16470c9650adbf57d373",
+          "playlistSequence": 4,
+          "playlistText": "Netflix — When to Build the Next Business",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/tree/04_Netflix_Streaming.mp3",
+          "candidateSequence": 4,
+          "candidateTitle": "When to Build the Next Business",
+          "candidateContext": "Netflix",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "05_NASA_Mars.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Tree Coach\\Outputs\\05_NASA_Mars.mp3",
+          "bytes": 3873688,
+          "durationSeconds": 242.031361,
+          "sha256": "a48d4c5ecac4fd52a68f7ce24cb456d48071d2c704869529181f63b2e3763998",
+          "playlistSequence": 5,
+          "playlistText": "NASA — The Mars Mission That Begins with What We Don't Know",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/tree/05_NASA_Mars.mp3",
+          "candidateSequence": 5,
+          "candidateTitle": "The Mars Mission That Begins with What We Don't Know",
+          "candidateContext": "NASA",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        }
+      ],
+      "playlistSources": [
+        {
+          "path": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Decision Tree Coach\\Outputs\\Decision Tree Podcasts Subtitles.txt",
+          "sha256": "4653709f56cdbe1c437e35dea7d5fe9fb29ff507c94016b70d2b7c8b09a301d5"
+        }
+      ],
+      "websiteEpisodeCount": 5
+    },
+    {
+      "coach": "forecast",
+      "name": "Forecasting Coach",
+      "sourceFolder": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach",
+      "mp3Count": 7,
+      "playlistFiles": [
+        "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach\\outputs\\Forecasting podcase subtitle.txt"
+      ],
+      "playlistHasSeparateDescriptions": false,
+      "playlistRows": [
+        "Pressure — The Weather Window That Changed D-Day",
+        "Domino's — How Many Pizzas Will Friday Need?",
+        "Walmart — When the Weather Changes the Shopping List",
+        "Hershey — The Halloween Chocolate Clock",
+        "Airbus — A Twenty-Year Bet on the Sky",
+        "Duke Energy — Predicting Tomorrow's Electricity Demand",
+        "The Emergency Room — Can You Forecast the Unexpected?"
+      ],
+      "episodes": [
+        {
+          "filename": "01_Pressure_D_Day.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach\\outputs\\01_Pressure_D_Day.mp3",
+          "bytes": 3908797,
+          "durationSeconds": 244.225646,
+          "sha256": "d7d7d5f2ca43b1aa1eadbdcdca4a81e92cb343be27cdb1b09ae46ffcfdb7e233",
+          "playlistSequence": 1,
+          "playlistText": "Pressure — The Weather Window That Changed D-Day",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/forecast/01_Pressure_D_Day.mp3",
+          "candidateSequence": 1,
+          "candidateTitle": "The Weather Window That Changed D-Day",
+          "candidateContext": "Pressure",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "02_Dominos_Friday_Rush.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach\\outputs\\02_Dominos_Friday_Rush.mp3",
+          "bytes": 4058844,
+          "durationSeconds": 253.603605,
+          "sha256": "23a9b22be1fa3fd358e83f807821c5876a118d5b40a1048b3ff2bfbfcc6f1643",
+          "playlistSequence": 2,
+          "playlistText": "Domino's — How Many Pizzas Will Friday Need?",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/forecast/02_Dominos_Friday_Rush.mp3",
+          "candidateSequence": 2,
+          "candidateTitle": "How Many Pizzas Will Friday Need?",
+          "candidateContext": "Domino's",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "03_Walmart_Weather.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach\\outputs\\03_Walmart_Weather.mp3",
+          "bytes": 3698563,
+          "durationSeconds": 231.096213,
+          "sha256": "4eba489440a49753d8de811f2f785dee401818c9ec4adb9220b178d3fbec8443",
+          "playlistSequence": 3,
+          "playlistText": "Walmart — When the Weather Changes the Shopping List",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/forecast/03_Walmart_Weather.mp3",
+          "candidateSequence": 3,
+          "candidateTitle": "When the Weather Changes the Shopping List",
+          "candidateContext": "Walmart",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "04_Hershey_Halloween.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach\\outputs\\04_Hershey_Halloween.mp3",
+          "bytes": 3459073,
+          "durationSeconds": 216.12805,
+          "sha256": "89fea2139634e2a55e84d30dbf6fac51a20497aa27c39db5622cf7be2b173176",
+          "playlistSequence": 4,
+          "playlistText": "Hershey — The Halloween Chocolate Clock",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/forecast/04_Hershey_Halloween.mp3",
+          "candidateSequence": 4,
+          "candidateTitle": "The Halloween Chocolate Clock",
+          "candidateContext": "Hershey",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "05_Airbus_Twenty_Years.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach\\outputs\\05_Airbus_Twenty_Years.mp3",
+          "bytes": 3600761,
+          "durationSeconds": 224.98356,
+          "sha256": "a92db389061447d7c7f64a0eff38749016f4f0db947125d819cf6a984e19b97f",
+          "playlistSequence": 5,
+          "playlistText": "Airbus — A Twenty-Year Bet on the Sky",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/forecast/05_Airbus_Twenty_Years.mp3",
+          "candidateSequence": 5,
+          "candidateTitle": "A Twenty-Year Bet on the Sky",
+          "candidateContext": "Airbus",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "06_Duke_Energy_Tomorrows_Load.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach\\outputs\\06_Duke_Energy_Tomorrows_Load.mp3",
+          "bytes": 3483314,
+          "durationSeconds": 217.643152,
+          "sha256": "9457ad4f3112d14388609950a20967d79394137047b9e041585fc53ed03d7d7f",
+          "playlistSequence": 6,
+          "playlistText": "Duke Energy — Predicting Tomorrow's Electricity Demand",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/forecast/06_Duke_Energy_Tomorrows_Load.mp3",
+          "candidateSequence": 6,
+          "candidateTitle": "Predicting Tomorrow's Electricity Demand",
+          "candidateContext": "Duke Energy",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "07_Hospital_Emergency_Department.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach\\outputs\\07_Hospital_Emergency_Department.mp3",
+          "bytes": 3686861,
+          "durationSeconds": 230.364785,
+          "sha256": "35a3be2249911d091ac89b408d46c1f9ede428560e4403f3ccfd8fdf7215b7bc",
+          "playlistSequence": 7,
+          "playlistText": "The Emergency Room — Can You Forecast the Unexpected?",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/forecast/07_Hospital_Emergency_Department.mp3",
+          "candidateSequence": 7,
+          "candidateTitle": "Can You Forecast the Unexpected?",
+          "candidateContext": "The Emergency Room",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        }
+      ],
+      "playlistSources": [
+        {
+          "path": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Forecasting Coach\\outputs\\Forecasting podcase subtitle.txt",
+          "sha256": "787f3dec9a1d0c45c673919cefb133f2c01faacfd754cd4109df65c82c774adc"
+        }
+      ],
+      "websiteEpisodeCount": 7
+    },
+    {
+      "coach": "optimization",
+      "name": "Optimization Coach",
+      "sourceFolder": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Optimization Coach",
+      "mp3Count": 6,
+      "playlistFiles": [],
+      "playlistHasSeparateDescriptions": null,
+      "playlistRows": [],
+      "episodes": [
+        {
+          "filename": "01_American_Airlines.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Optimization Coach\\outputs\\01_American_Airlines.mp3",
+          "bytes": 2013770,
+          "durationSeconds": 125.796621,
+          "sha256": "f83cfaf48da1c15387a4326ad0042041ef67e12e8dd598e4627a5a16f7457123",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/optimization/01_American_Airlines.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-1",
+              "asset": "optimization/01_American_Airlines",
+              "title": "The Seat Worth Saving",
+              "context": "American Airlines",
+              "seconds": 126,
+              "question": "Which seats should an airline reserve for later demand?",
+              "art": "M36 90l130-60 24 8-38 38 72 18-12 12-91-12-44 22-18-10 28-23",
+              "decision": "M153 75l44-12 25 10"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_American_Airlines-CgIFmZHL.mp3",
+              "LastModified": "2026-11-21T01:23:52+00:00",
+              "ETag": "\"e969e50d729ba081c00f27ddd0895226\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 2013770,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "f83cfaf48da1c15387a4326ad0042041ef67e12e8dd598e4627a5a16f7457123",
+          "status": "published-reuse",
+          "candidateTitle": "The Seat Worth Saving",
+          "description": "Which seats should an airline reserve for later demand?",
+          "candidateContext": "American Airlines",
+          "candidateRepoPath": "src/assets/podcasts/optimization/01_American_Airlines.mp3",
+          "candidateSequence": 1
+        },
+        {
+          "filename": "02_Zara.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Optimization Coach\\outputs\\02_Zara.mp3",
+          "bytes": 2036758,
+          "durationSeconds": 127.233356,
+          "sha256": "9e49329d95bade48896ae4880243750dd19686b59582ac6e7c70b7b8422b29c5",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/optimization/02_Zara.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-2",
+              "asset": "optimization/02_Zara",
+              "title": "The Inventory Allocation Puzzle",
+              "context": "Zara",
+              "seconds": 127,
+              "question": "How should limited inventory be allocated across stores?",
+              "art": "M40 61h52v42H40zM126 27h45v31h-45zM220 62h44v38h-44zM92 75l35-32m45 0 48 33",
+              "decision": "M107 61l19-18m67 12 27 22"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Zara-Dth55lmH.mp3",
+              "LastModified": "2026-11-21T01:23:58+00:00",
+              "ETag": "\"4503e1401792555f621cd229752e783a\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 2036758,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "9e49329d95bade48896ae4880243750dd19686b59582ac6e7c70b7b8422b29c5",
+          "status": "published-reuse",
+          "candidateTitle": "The Inventory Allocation Puzzle",
+          "description": "How should limited inventory be allocated across stores?",
+          "candidateContext": "Zara",
+          "candidateRepoPath": "src/assets/podcasts/optimization/02_Zara.mp3",
+          "candidateSequence": 2
+        },
+        {
+          "filename": "03_UPS.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Optimization Coach\\outputs\\03_UPS.mp3",
+          "bytes": 1972810,
+          "durationSeconds": 123.236621,
+          "sha256": "c28bcacde14575809bd063e2bb1f27c8fd48b0b9748d488d570cb0cf7c4cd89a",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/optimization/03_UPS.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-3",
+              "asset": "optimization/03_UPS",
+              "title": "The Million-Mile Decision",
+              "context": "UPS",
+              "seconds": 123,
+              "question": "How can delivery routes meet service constraints while reducing miles?",
+              "art": "M35 100h225M58 35v82M120 29v88M190 38v79M246 40v77M37 62h220",
+              "decision": "M58 100V62h62v38h70V62h56"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_UPS-Ds_mxdf2.mp3",
+              "LastModified": "2026-11-21T01:23:59+00:00",
+              "ETag": "\"7aa6f6394ea648eec1466e742a3bb12c\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 1972810,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "c28bcacde14575809bd063e2bb1f27c8fd48b0b9748d488d570cb0cf7c4cd89a",
+          "status": "published-reuse",
+          "candidateTitle": "The Million-Mile Decision",
+          "description": "How can delivery routes meet service constraints while reducing miles?",
+          "candidateContext": "UPS",
+          "candidateRepoPath": "src/assets/podcasts/optimization/03_UPS.mp3",
+          "candidateSequence": 3
+        },
+        {
+          "filename": "04_Lockheed_Martin_F35_Supply_Chain.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Optimization Coach\\outputs\\04_Lockheed_Martin_F35_Supply_Chain.mp3",
+          "bytes": 5548451,
+          "durationSeconds": 346.704014,
+          "sha256": "5febbbeacabe07d657d961262b87c2baa59675d2f61d45147c133ed927e84392",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/optimization/04_Lockheed_Martin_F35_Supply_Chain.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-4",
+              "asset": "optimization/04_Lockheed_Martin_F35_Supply_Chain",
+              "title": "The F-35 Supply Chain Puzzle",
+              "context": "Lockheed Martin",
+              "seconds": 347,
+              "question": "Which supply and scheduling bottlenecks should teams address first?",
+              "art": "M43 38h96m-96 25h156m-132 25h171m-129 25h137",
+              "decision": "M139 38l60 25 39 25m0 0v25"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Lockheed_Martin_F35_Supply_Chain-9IAdgaVZ.mp3",
+              "LastModified": "2026-11-21T01:24:01+00:00",
+              "ETag": "\"8f17fdd65b0f066c8144718710ef37ff\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 5548451,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "5febbbeacabe07d657d961262b87c2baa59675d2f61d45147c133ed927e84392",
+          "status": "published-reuse",
+          "candidateTitle": "The F-35 Supply Chain Puzzle",
+          "description": "Which supply and scheduling bottlenecks should teams address first?",
+          "candidateContext": "Lockheed Martin",
+          "candidateRepoPath": "src/assets/podcasts/optimization/04_Lockheed_Martin_F35_Supply_Chain.mp3",
+          "candidateSequence": 4
+        },
+        {
+          "filename": "05_Chevron.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Optimization Coach\\outputs\\05_Chevron.mp3",
+          "bytes": 1941881,
+          "durationSeconds": 121.287596,
+          "sha256": "f08904a2ddc08ca4344b41ccc2cdda8dd3e67fd1e1fae719642b7f50e1ccc13a",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/optimization/05_Chevron.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-5",
+              "asset": "optimization/05_Chevron",
+              "title": "The Billion-Dollar Refinery Decision",
+              "context": "Chevron",
+              "seconds": 121,
+              "question": "Which refinery operating plan balances input costs and production constraints?",
+              "art": "M40 51h39v55H40zM126 34h40v72h-40zM217 54h39v52h-39zM78 65h48m40 15h51",
+              "decision": "M79 89h47m40-33h51"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Chevron-BgstojSx.mp3",
+              "LastModified": "2026-11-21T01:24:12+00:00",
+              "ETag": "\"810a630a275f12a15cb3b33ec0d70df5\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 1941881,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "f08904a2ddc08ca4344b41ccc2cdda8dd3e67fd1e1fae719642b7f50e1ccc13a",
+          "status": "published-reuse",
+          "candidateTitle": "The Billion-Dollar Refinery Decision",
+          "description": "Which refinery operating plan balances input costs and production constraints?",
+          "candidateContext": "Chevron",
+          "candidateRepoPath": "src/assets/podcasts/optimization/05_Chevron.mp3",
+          "candidateSequence": 5
+        },
+        {
+          "filename": "06_Los_Alamos.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Optimization Coach\\outputs\\06_Los_Alamos.mp3",
+          "bytes": 2105721,
+          "durationSeconds": 131.54356,
+          "sha256": "bfcab0a7400fea8c6cf11c392a76acd97f4580777964751d941f0c66b3312058",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/optimization/06_Los_Alamos.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-6",
+              "asset": "optimization/06_Los_Alamos",
+              "title": "Keeping the Grid Running",
+              "context": "Los Alamos",
+              "seconds": 132,
+              "question": "How should generation be scheduled to meet demand within operating limits?",
+              "art": "M40 107h223M44 91l49-22 48 11 55-43 58 21M44 103l49-22 48-4 55-15 58 8",
+              "decision": "M195 37v25m-8-17 8-8 8 8"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/06_Los_Alamos-D7hdSHvj.mp3",
+              "LastModified": "2026-11-21T01:24:21+00:00",
+              "ETag": "\"a987c0ab4a5582cbfb1fcaac987f505e\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 2105721,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "bfcab0a7400fea8c6cf11c392a76acd97f4580777964751d941f0c66b3312058",
+          "status": "published-reuse",
+          "candidateTitle": "Keeping the Grid Running",
+          "description": "How should generation be scheduled to meet demand within operating limits?",
+          "candidateContext": "Los Alamos",
+          "candidateRepoPath": "src/assets/podcasts/optimization/06_Los_Alamos.mp3",
+          "candidateSequence": 6
+        }
+      ],
+      "playlistSources": [],
+      "websiteEpisodeCount": 6
+    },
+    {
+      "coach": "process",
+      "name": "Process Coach",
+      "sourceFolder": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Process Coach",
+      "mp3Count": 7,
+      "playlistFiles": [],
+      "playlistHasSeparateDescriptions": null,
+      "playlistRows": [],
+      "episodes": [
+        {
+          "filename": "01_Mon_Klarna_The_AI_Efficiency_Trap.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Process Coach\\Ouputs\\01_Mon_Klarna_The_AI_Efficiency_Trap.mp3",
+          "bytes": 5406345,
+          "durationSeconds": 337.822381,
+          "sha256": "ed9c048307437ad2ea28af78e094aca75e206dbd8a33f03921450f2e1b28eaa6",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/decision-process/decision-process/01_Mon_Klarna_The_AI_Efficiency_Trap.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-1",
+              "asset": "decision-process/decision-process/01_Mon_Klarna_The_AI_Efficiency_Trap",
+              "title": "The AI Efficiency Trap",
+              "context": "Klarna",
+              "seconds": 338,
+              "question": "Which objectives should guide AI adoption alongside efficiency?",
+              "art": "M49 99h204M59 86l49-22 54-19 71-17M60 69l48 9 54-15 71 7",
+              "decision": "M177 26v78"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-CqMfc8rY.mp3",
+              "LastModified": "2026-11-21T01:23:54+00:00",
+              "ETag": "\"def13b7dbe71fccad60ea54ea8314f8e\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 5406345,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "ed9c048307437ad2ea28af78e094aca75e206dbd8a33f03921450f2e1b28eaa6",
+          "status": "published-reuse",
+          "candidateSequence": 1,
+          "candidateTitle": "The AI Efficiency Trap",
+          "description": "Which objectives should guide AI adoption alongside efficiency?",
+          "candidateContext": "Klarna",
+          "candidateRepoPath": "src/assets/podcasts/decision-process/decision-process/01_Mon_Klarna_The_AI_Efficiency_Trap.mp3"
+        },
+        {
+          "filename": "02_Tue_Fastenal_The_Vending_Machine_Moat.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Process Coach\\Ouputs\\02_Tue_Fastenal_The_Vending_Machine_Moat.mp3",
+          "bytes": 5326096,
+          "durationSeconds": 332.806871,
+          "sha256": "86bf30d2c927ea32c60a8fa3786dc2a0614df57362e5d7d3f8a9d62e671a399e",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/decision-process/02_Tue_Fastenal_The_Vending_Machine_Moat.mp3",
+          "candidateTitle": "Fastenal",
+          "description": "How Industrial Vending Transformed Supply Chain Management",
+          "metadataAuthority": "Owner response in this task, November 22, 2026",
+          "candidateSequence": 2
+        },
+        {
+          "filename": "03_Wed_Uniqlo_The_Fabric_Innovation_Partnership.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Process Coach\\Ouputs\\03_Wed_Uniqlo_The_Fabric_Innovation_Partnership.mp3",
+          "bytes": 5437274,
+          "durationSeconds": 339.755442,
+          "sha256": "431ac0e766576d24e2435e5aaaea3622d83ce1a649aeb04b42d7167a582f4f7d",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/decision-process/03_Wed_Uniqlo_The_Fabric_Innovation_Partnership.mp3",
+          "candidateTitle": "Uniqlo",
+          "description": "How Simplicity and Innovation Built a Global Fashion Brand",
+          "metadataAuthority": "Owner response in this task, November 22, 2026",
+          "candidateSequence": 3
+        },
+        {
+          "filename": "04_Thu_Intuitive_The_Installed_Base_Engine.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Process Coach\\Ouputs\\04_Thu_Intuitive_The_Installed_Base_Engine.mp3",
+          "bytes": 5532150,
+          "durationSeconds": 345.685238,
+          "sha256": "806f067bdcdab0bd594e167e0114dd9eec86cd5cdd5d2aff57376780ea702ce1",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/decision-process/decision-process/04_Thu_Intuitive_The_Installed_Base_Engine.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-4",
+              "asset": "decision-process/decision-process/04_Thu_Intuitive_The_Installed_Base_Engine",
+              "title": "The Robot Is Only the Beginning",
+              "context": "Intuitive Surgical",
+              "seconds": 346,
+              "question": "How should a business weigh long-term utilization against the initial sale?",
+              "art": "M39 102h224M54 98V83h28v15m19 0V70h28v28m19 0V56h28v42m19 0V41h28v57",
+              "decision": "M62 68Q153 65 231 24"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Thu_Intuitive_The_Installed_Base_Engine-93QS8sZE.mp3",
+              "LastModified": "2026-11-21T01:24:05+00:00",
+              "ETag": "\"42783ab1cbc4c53f917b34e30ddb0707\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 5532150,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "806f067bdcdab0bd594e167e0114dd9eec86cd5cdd5d2aff57376780ea702ce1",
+          "status": "published-reuse",
+          "candidateSequence": 4,
+          "candidateTitle": "The Robot Is Only the Beginning",
+          "description": "How should a business weigh long-term utilization against the initial sale?",
+          "candidateContext": "Intuitive Surgical",
+          "candidateRepoPath": "src/assets/podcasts/decision-process/decision-process/04_Thu_Intuitive_The_Installed_Base_Engine.mp3"
+        },
+        {
+          "filename": "05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Process Coach\\Ouputs\\05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels.mp3",
+          "bytes": 5224950,
+          "durationSeconds": 326.485238,
+          "sha256": "19fa8590fb3814bbf557b9d9fd3ebef12b1d470d81ffc2ae18134cdf83e49d1b",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/decision-process/decision-process/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-3",
+              "asset": "decision-process/decision-process/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels",
+              "title": "The Hotel Company That Doesn’t Need to Own the Hotel",
+              "context": "Hilton",
+              "seconds": 326,
+              "question": "How does separating ownership from operations change who bears risk?",
+              "art": "M39 111V55l49-25 49 25v56zm149 0V44h64v67zm-51-29h51",
+              "decision": "M87 61v50m128-52v38"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-BrLOCXbt.mp3",
+              "LastModified": "2026-11-21T01:24:15+00:00",
+              "ETag": "\"bb5443e7e49ba6e350eeae6ec59e0d2b\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 5224950,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "19fa8590fb3814bbf557b9d9fd3ebef12b1d470d81ffc2ae18134cdf83e49d1b",
+          "status": "published-reuse",
+          "candidateSequence": 5,
+          "candidateTitle": "The Hotel Company That Doesn’t Need to Own the Hotel",
+          "description": "How does separating ownership from operations change who bears risk?",
+          "candidateContext": "Hilton",
+          "candidateRepoPath": "src/assets/podcasts/decision-process/decision-process/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels.mp3"
+        },
+        {
+          "filename": "06_Sat_Caterpillar_The_Part_That_Comes_Back.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Process Coach\\Ouputs\\06_Sat_Caterpillar_The_Part_That_Comes_Back.mp3",
+          "bytes": 5110847,
+          "durationSeconds": 319.35381,
+          "sha256": "e320198d5a9b14e38a336712d3af775a0c460af73907a782a314c045a18c976f",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/decision-process/06_Sat_Caterpillar_The_Part_That_Comes_Back.mp3",
+          "candidateTitle": "Caterpillar",
+          "description": "How Predictive Maintenance Turned Equipment Data into Customer Value",
+          "metadataAuthority": "Owner response in this task, November 22, 2026",
+          "candidateSequence": 6
+        },
+        {
+          "filename": "07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Process Coach\\Ouputs\\07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers.mp3",
+          "bytes": 5932555,
+          "durationSeconds": 370.726508,
+          "sha256": "d32062d5f4ddfcca2dc66d2b12c6711a2a4932857b53a1ea5b7d7d8e11b69ac8",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/decision-process/decision-process/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "id": "episode-2",
+              "asset": "decision-process/decision-process/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers",
+              "title": "The Power of Not Competing with Your Customers",
+              "context": "TSMC",
+              "seconds": 371,
+              "question": "How can strategic boundaries strengthen customer trust?",
+              "art": "M46 57h51v42H46zM199 57h51v42h-51zM97 78h102",
+              "decision": "M117 66l25-22 33 22m-58 28 25 22 33-22"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-1BPefrVc.mp3",
+              "LastModified": "2026-11-21T01:24:23+00:00",
+              "ETag": "\"1eeed09ea4a3d2313ae8a8251c61fbc8\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 5932555,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "d32062d5f4ddfcca2dc66d2b12c6711a2a4932857b53a1ea5b7d7d8e11b69ac8",
+          "status": "published-reuse",
+          "candidateSequence": 7,
+          "candidateTitle": "The Power of Not Competing with Your Customers",
+          "description": "How can strategic boundaries strengthen customer trust?",
+          "candidateContext": "TSMC",
+          "candidateRepoPath": "src/assets/podcasts/decision-process/decision-process/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers.mp3"
+        }
+      ],
+      "metadataAuthority": "Existing four entries retained; owner supplied Fastenal/Uniqlo/Caterpillar titles and descriptions; numbered MP3 filenames supply Monday-Sunday order because no Process playlist TXT exists.",
+      "playlistSources": [],
+      "websiteEpisodeCount": 7
+    },
+    {
+      "coach": "scenario",
+      "name": "Scenario Analysis Coach",
+      "sourceFolder": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Scenario Analysis Coach",
+      "mp3Count": 4,
+      "playlistFiles": [
+        "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Scenario Analysis Coach\\Outputs\\Scenario Analysis Podcasts Subtitles.txt"
+      ],
+      "playlistHasSeparateDescriptions": false,
+      "playlistRows": [
+        "Shell — The Future That Broke the Forecast",
+        "Airbnb — How Long Can the Business Hold On?",
+        "Ford — How Big a Bet on Electric Vehicles?",
+        "Unilever — What If the Cost of Everything Changes?"
+      ],
+      "episodes": [
+        {
+          "filename": "01_Shell_Oil_Shock.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Scenario Analysis Coach\\Outputs\\01_Shell_Oil_Shock.mp3",
+          "bytes": 4416617,
+          "durationSeconds": 275.964422,
+          "sha256": "944dba3d71edebf26035a1a0cd33f0b42828ddb1cc0c54cdb91f6929c397c08e",
+          "playlistSequence": 1,
+          "playlistText": "Shell — The Future That Broke the Forecast",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/scenario/01_Shell_Oil_Shock.mp3",
+          "candidateSequence": 1,
+          "candidateTitle": "The Future That Broke the Forecast",
+          "candidateContext": "Shell",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "02_Airbnb_Travel_Collapse.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Scenario Analysis Coach\\Outputs\\02_Airbnb_Travel_Collapse.mp3",
+          "bytes": 4386106,
+          "durationSeconds": 274.057483,
+          "sha256": "a8486680f18dd86fd29846e1cfc922ebb31b81414078539260212a8e5dcef0bd",
+          "playlistSequence": 2,
+          "playlistText": "Airbnb — How Long Can the Business Hold On?",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/scenario/02_Airbnb_Travel_Collapse.mp3",
+          "candidateSequence": 2,
+          "candidateTitle": "How Long Can the Business Hold On?",
+          "candidateContext": "Airbnb",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "03_Ford_EV_Choices.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Scenario Analysis Coach\\Outputs\\03_Ford_EV_Choices.mp3",
+          "bytes": 4475550,
+          "durationSeconds": 279.647687,
+          "sha256": "1e3006b0898b416adab06df14dba590111b390979fb82ef6e2636b4229b295f7",
+          "playlistSequence": 3,
+          "playlistText": "Ford — How Big a Bet on Electric Vehicles?",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/scenario/03_Ford_EV_Choices.mp3",
+          "candidateSequence": 3,
+          "candidateTitle": "How Big a Bet on Electric Vehicles?",
+          "candidateContext": "Ford",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        },
+        {
+          "filename": "04_Unilever_Climate_Costs.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Scenario Analysis Coach\\Outputs\\04_Unilever_Climate_Costs.mp3",
+          "bytes": 4773554,
+          "durationSeconds": 298.272993,
+          "sha256": "cea3eb614c1c7f97bc9e2ab0f55249a6f52966053169ce9eb69eb507f18c7be2",
+          "playlistSequence": 4,
+          "playlistText": "Unilever — What If the Cost of Everything Changes?",
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/scenario/04_Unilever_Climate_Costs.mp3",
+          "candidateSequence": 4,
+          "candidateTitle": "What If the Cost of Everything Changes?",
+          "candidateContext": "Unilever",
+          "description": null,
+          "descriptionGap": "No separate description in supplied playlist TXT; no text invented."
+        }
+      ],
+      "playlistSources": [
+        {
+          "path": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Scenario Analysis Coach\\Outputs\\Scenario Analysis Podcasts Subtitles.txt",
+          "sha256": "b82e7f88ae753608823ac9c4e52189c87f721450470c02a30905d7bc0c9ceef4"
+        }
+      ],
+      "websiteEpisodeCount": 4
+    },
+    {
+      "coach": "simulation",
+      "name": "Simulation Coach",
+      "sourceFolder": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Simulation Coach",
+      "mp3Count": 7,
+      "playlistFiles": [],
+      "playlistHasSeparateDescriptions": null,
+      "playlistRows": [],
+      "episodes": [
+        {
+          "filename": "Module8_Simulation_Mark_Charlotte_REDOWNLOAD.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Simulation Coach\\outputs\\Module8_Simulation_Mark_Charlotte_REDOWNLOAD.mp3",
+          "bytes": 6405685,
+          "durationSeconds": 400.29161,
+          "sha256": "9a505820d6dea1595a58cf3760206e7e75392e176e8841b6392e16de29a65e1c",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [],
+          "existingMetadata": [],
+          "publishedAssets": [],
+          "publishedSha256": null,
+          "status": "unmapped-extra"
+        },
+        {
+          "filename": "Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Simulation Coach\\outputs\\Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring.mp3",
+          "bytes": 3416441,
+          "durationSeconds": 213.452948,
+          "sha256": "fa66c59d8d46adbde8e94177598bcb8164c8464583b019aac01ced1cfffb12af",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/simulation/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "seconds": 213,
+              "asset": "simulation/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring",
+              "id": "groundwater",
+              "title": "Groundwater monitoring",
+              "context": "Los Alamos National Laboratory",
+              "question": "Where should a limited number of monitoring wells go when groundwater flow is uncertain?",
+              "art": "M25 75Q85 51 145 76T275 79M25 91Q94 68 156 95T275 99M25 109Q92 87 148 115T275 114",
+              "decision": "M76 30V106m69-76v85m61-85v77M67 32h18m51 0h18m43 0h18"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring-DiHXWmz0.mp3",
+              "LastModified": "2026-11-21T01:24:49+00:00",
+              "ETag": "\"db2c1d77202111d22a5a10972787d23d\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 3416441,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "fa66c59d8d46adbde8e94177598bcb8164c8464583b019aac01ced1cfffb12af",
+          "status": "published-reuse",
+          "candidateTitle": "Groundwater monitoring",
+          "description": "Where should a limited number of monitoring wells go when groundwater flow is uncertain?",
+          "candidateContext": "Los Alamos National Laboratory",
+          "candidateRepoPath": "src/assets/podcasts/simulation/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring.mp3",
+          "candidateSequence": 1
+        },
+        {
+          "filename": "Session_6_Simulation_02_Lockheed_Schedule_Risk.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Simulation Coach\\outputs\\Session_6_Simulation_02_Lockheed_Schedule_Risk.mp3",
+          "bytes": 3136408,
+          "durationSeconds": 195.94585,
+          "sha256": "58979b98b7cf88cf7ef604001eda1a7c9921f056394348a362b1f306780e3588",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/simulation/Session_6_Simulation_02_Lockheed_Schedule_Risk.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "seconds": 196,
+              "asset": "simulation/Session_6_Simulation_02_Lockheed_Schedule_Risk",
+              "id": "schedule",
+              "title": "Aerospace schedule risk",
+              "context": "Lockheed Martin",
+              "question": "Which tasks deserve contingency time when several delays could push a delivery date?",
+              "art": "M38 36h113M69 57h122M108 78h87M127 99h119",
+              "decision": "M208 26v93m-11-11 11 11 11-11M151 36l40 21m0 0 4 21"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_02_Lockheed_Schedule_Risk-CbPjqUSa.mp3",
+              "LastModified": "2026-11-21T01:24:51+00:00",
+              "ETag": "\"08db6c34a195c52d57f2477c2c327e27\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 3136408,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "58979b98b7cf88cf7ef604001eda1a7c9921f056394348a362b1f306780e3588",
+          "status": "published-reuse",
+          "candidateTitle": "Aerospace schedule risk",
+          "description": "Which tasks deserve contingency time when several delays could push a delivery date?",
+          "candidateContext": "Lockheed Martin",
+          "candidateRepoPath": "src/assets/podcasts/simulation/Session_6_Simulation_02_Lockheed_Schedule_Risk.mp3",
+          "candidateSequence": 2
+        },
+        {
+          "filename": "Session_6_Simulation_03_Energy_Investment_Real_Options.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Simulation Coach\\outputs\\Session_6_Simulation_03_Energy_Investment_Real_Options.mp3",
+          "bytes": 3261378,
+          "durationSeconds": 203.775374,
+          "sha256": "e37bc20fa078f522ff3a6440ebc88340fa728983bb02b76aad4ec484bfc317cf",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/simulation/Session_6_Simulation_03_Energy_Investment_Real_Options.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "seconds": 204,
+              "asset": "simulation/Session_6_Simulation_03_Energy_Investment_Real_Options",
+              "id": "drilling",
+              "title": "Drill now or wait?",
+              "context": "Oil and gas investment",
+              "question": "Does delaying a drilling investment preserve enough flexibility to justify waiting?",
+              "art": "M40 99l42-69 42 69M61 64h42M53 80h58M82 30v91M123 73h30l50-33m-50 33 50 30",
+              "decision": "M203 40h45m-45 63h45m-12-8 12 8-12 8"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_03_Energy_Investment_Real_Options-SRmctJ3A.mp3",
+              "LastModified": "2026-11-21T01:24:54+00:00",
+              "ETag": "\"994525e92da36b26fd7295bc973485a5\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 3261378,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "e37bc20fa078f522ff3a6440ebc88340fa728983bb02b76aad4ec484bfc317cf",
+          "status": "published-reuse",
+          "candidateTitle": "Drill now or wait?",
+          "description": "Does delaying a drilling investment preserve enough flexibility to justify waiting?",
+          "candidateContext": "Oil and gas investment",
+          "candidateRepoPath": "src/assets/podcasts/simulation/Session_6_Simulation_03_Energy_Investment_Real_Options.mp3",
+          "candidateSequence": 3
+        },
+        {
+          "filename": "Session_6_Simulation_04_NREL_Grid_Reliability.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Simulation Coach\\outputs\\Session_6_Simulation_04_NREL_Grid_Reliability.mp3",
+          "bytes": 3243406,
+          "durationSeconds": 202.632902,
+          "sha256": "9d08953ece3505ddb63aaf6fa83ad9f3612faecd86c97352c354231b0e9bcd07",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/simulation/Session_6_Simulation_04_NREL_Grid_Reliability.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "seconds": 203,
+              "asset": "simulation/Session_6_Simulation_04_NREL_Grid_Reliability",
+              "id": "grid",
+              "title": "Electric-grid reliability",
+              "context": "National Renewable Energy Laboratory",
+              "question": "How much backup capacity would keep the grid reliable across plausible demand and supply conditions?",
+              "art": "M30 104h246M41 88l40-15 44 5 51-39 48 31 43-16M42 100l40-5 43 2 51-19 48 10 43-7",
+              "decision": "M177 43v34m-8-26 8-8 8 8m-8 18-8-8m8 8 8-8"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_04_NREL_Grid_Reliability-BovZRlxA.mp3",
+              "LastModified": "2026-11-21T01:24:57+00:00",
+              "ETag": "\"51a22f7654ff7f23f79246f8d39c872a\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 3243406,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "9d08953ece3505ddb63aaf6fa83ad9f3612faecd86c97352c354231b0e9bcd07",
+          "status": "published-reuse",
+          "candidateTitle": "Electric-grid reliability",
+          "description": "How much backup capacity would keep the grid reliable across plausible demand and supply conditions?",
+          "candidateContext": "National Renewable Energy Laboratory",
+          "candidateRepoPath": "src/assets/podcasts/simulation/Session_6_Simulation_04_NREL_Grid_Reliability.mp3",
+          "candidateSequence": 4
+        },
+        {
+          "filename": "Session_6_Simulation_05_FannieMae_AWS_MonteCarlo.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Simulation Coach\\outputs\\Session_6_Simulation_05_FannieMae_AWS_MonteCarlo.mp3",
+          "bytes": 3168591,
+          "durationSeconds": 197.980998,
+          "sha256": "a733e7734d9de2cc9ef3377f215fd4a93e73d2a90ebf066e681632b985424e4e",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/simulation/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "seconds": 198,
+              "asset": "simulation/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo",
+              "id": "mortgage",
+              "title": "Mortgage portfolio risk",
+              "context": "Fannie Mae and AWS",
+              "question": "What reserve would cover plausible portfolio losses when defaults and recoveries vary together?",
+              "art": "M31 105h244M53 105V92h19v13m7 0V75h19v30m7 0V53h19v52m7 0V44h19v61m7 0V65h19v40m7 0V80h19v25m7 0V92h19v13",
+              "decision": "M207 35v72m4-72h39m-13 53h27m-8-7 8 7-8 7"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo-aqQrshqL.mp3",
+              "LastModified": "2026-11-21T01:24:59+00:00",
+              "ETag": "\"25456b14bd8f3c5acccf84396a561351\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 3168591,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "a733e7734d9de2cc9ef3377f215fd4a93e73d2a90ebf066e681632b985424e4e",
+          "status": "published-reuse",
+          "candidateTitle": "Mortgage portfolio risk",
+          "description": "What reserve would cover plausible portfolio losses when defaults and recoveries vary together?",
+          "candidateContext": "Fannie Mae and AWS",
+          "candidateRepoPath": "src/assets/podcasts/simulation/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo.mp3",
+          "candidateSequence": 5
+        },
+        {
+          "filename": "Session_6_Simulation_06_Pfizer_Drug_Development.mp3",
+          "sourcePath": "C:\\Users\\xmkya\\Documents\\Xiaomin Folder\\Podcast projects\\Engent Labs\\Simulation Coach\\outputs\\Session_6_Simulation_06_Pfizer_Drug_Development.mp3",
+          "bytes": 3326580,
+          "durationSeconds": 207.83254,
+          "sha256": "4eaa26342d92e7b2449eb57a584bd5393700f01ecf08a0c554a65122b354dde9",
+          "playlistSequence": null,
+          "playlistText": null,
+          "repoPaths": [
+            "src/assets/podcasts/simulation/Session_6_Simulation_06_Pfizer_Drug_Development.mp3"
+          ],
+          "existingMetadata": [
+            {
+              "seconds": 208,
+              "asset": "simulation/Session_6_Simulation_06_Pfizer_Drug_Development",
+              "id": "drug",
+              "title": "Drug development investment",
+              "context": "Pfizer",
+              "question": "When should a team fund the next trial if clinical results, costs, and timelines are uncertain?",
+              "art": "M32 76h53l48-35m-48 35 48 32m0-67h62l51-19m-51 19 51 23m-113 44h47",
+              "decision": "M118 63h14v14h-14zM177 87h14v14h-14zM200 105h50"
+            }
+          ],
+          "publishedAssets": [
+            {
+              "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_06_Pfizer_Drug_Development-C4BRYLHe.mp3",
+              "LastModified": "2026-11-21T01:25:01+00:00",
+              "ETag": "\"c712a7665247b09806f356436484bbb4\"",
+              "ChecksumAlgorithm": [
+                "CRC64NVME"
+              ],
+              "ChecksumType": "FULL_OBJECT",
+              "Size": 3326580,
+              "StorageClass": "STANDARD"
+            }
+          ],
+          "publishedSha256": "4eaa26342d92e7b2449eb57a584bd5393700f01ecf08a0c554a65122b354dde9",
+          "status": "published-reuse",
+          "candidateTitle": "Drug development investment",
+          "description": "When should a team fund the next trial if clinical results, costs, and timelines are uncertain?",
+          "candidateContext": "Pfizer",
+          "candidateRepoPath": "src/assets/podcasts/simulation/Session_6_Simulation_06_Pfizer_Drug_Development.mp3",
+          "candidateSequence": 6
+        }
+      ],
+      "playlistSources": [],
+      "websiteEpisodeCount": 6
+    }
+  ],
+  "gaps": [
+    "Resolved by owner: add all three Fastenal, Uniqlo and Caterpillar recordings with owner-provided titles/descriptions. Process playlist TXT still absent; numbered MP3 order documented.",
+    "Forecast, Scenario and Tree TXT files provide ordered subtitles only; no separate descriptions. Do not invent descriptions.",
+    "Simulation has one unmatched Module8 recording; retain six published cases. Simulation/Optimization have no output playlist TXT; preserve existing published metadata.",
+    "Decision Navigator four local recordings intentionally excluded."
+  ]
+}

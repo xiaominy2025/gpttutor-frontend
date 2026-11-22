@@ -7,7 +7,6 @@
 .navigator-dialog-header p{margin-top:5px;color:#486356;overflow-wrap:anywhere}
 .navigator-intro-copy p{margin-top:8px;max-width:55ch}
 .navigator-tagline{font-weight:650}
-.navigator-open{min-height:44px;margin-top:8px;border:0;font-size:inherit;line-height:inherit;cursor:pointer}
 .navigator-art{position:relative;aspect-ratio:16 / 9;border:1px solid #d4ddd4;border-radius:12px;background:#f8f4eb url('../assets/coach-paper.webp') center/cover}
 .navigator-art>svg{display:block;width:100%;height:100%}
 .navigator-art-label{font-size:13px;font-weight:600}
@@ -68,3 +67,5 @@
 .navigator-follow-ups strong{font-size:.75rem;color:var(--green)}
 .navigator-follow-ups .analysis{color:#2b5c80}
 .navigator-follow-ups .judgment{color:#79520e}
+.navigator-launch{margin-top:18px}
+.engent-site .navigator-launch h3{font-size:1.05rem;margin:0}

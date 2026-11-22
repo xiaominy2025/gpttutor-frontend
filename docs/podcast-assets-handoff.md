@@ -1,15 +1,9 @@
-# Engent Labs podcast asset handoff
+# Engent Labs podcast assets
 
-PR #3 includes the 16 recordings and 10 transcripts supplied in `engent_podcast_assets_all.zip`. Vite publishes them as fingerprinted static assets. The shared player requests audio on playback and transcripts when opened.
+The November 22 six-Coach candidate maps 35 recordings: Process 7, Forecasting 7, Scenario Analysis 4, Decision Tree 5, Simulation 6, Optimization 6. Reuses 16 published MP3s and prepares 19 new files (79,583,162 bytes). Existing player, controls and ten transcript assets are retained; Navigator has no podcast section.
 
-## Collections
+Complete local paths, hashes, authoritative playlist copies, owner-supplied Process metadata, published media keys and exclusions: [inventory](six-coach-podcasts/inventory.json) and [review report](six-coach-podcasts/README.md).
 
-- Simulation: six MP3s, `simulation_podcast_audio_six_episodes.zip` (provided in ChatGPT)
-- Optimization: six MP3s + six transcripts, `optimization_business_case_podcasts.zip` (provided in ChatGPT)
-- Decision Process: four selected existing MP3s + four transcripts, `decision_process_podcast_assets.zip` (provided in ChatGPT); two further business cases and the process introduction are planned but not recorded.
+Forecasting/Scenario/Tree output TXT files provide ordered subtitles but no standalone descriptions. No descriptions were invented. Process has seven recordings, not six: the owner supplied Fastenal, Uniqlo and Caterpillar titles/descriptions; numbered filenames establish Monday-Sunday order. Simulation's extra Module8 recording is excluded because it does not match the six approved cases. Existing Simulation/Optimization cases are unchanged.
 
-## Pending content
-
-The bundle contains Simulation audio only. Simulation transcripts, two planned Decision Process business cases, and the separate Decision Process introduction remain pending.
-
-**Do not merge/deploy without owner approval.** Avoid publishing these media to a separate podcast feed; these assets are for the Engent Labs website.
+This is a preparation candidate. Do not merge or deploy without owner approval.

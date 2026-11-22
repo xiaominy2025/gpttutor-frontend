@@ -1,3 +1,5 @@
+import additionalPodcasts from './coachPodcasts.json';
+
 const simulationCases = [
   { seconds: 213, asset: 'simulation/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring', id: 'groundwater', title: 'Groundwater monitoring', context: 'Los Alamos National Laboratory', question: 'Where should a limited number of monitoring wells go when groundwater flow is uncertain?', art: 'M25 75Q85 51 145 76T275 79M25 91Q94 68 156 95T275 99M25 109Q92 87 148 115T275 114', decision: 'M76 30V106m69-76v85m61-85v77M67 32h18m51 0h18m43 0h18' },
   { seconds: 196, asset: 'simulation/Session_6_Simulation_02_Lockheed_Schedule_Risk', id: 'schedule', title: 'Aerospace schedule risk', context: 'Lockheed Martin', question: 'Which tasks deserve contingency time when several delays could push a delivery date?', art: 'M38 36h113M69 57h122M108 78h87M127 99h119', decision: 'M208 26v93m-11-11 11 11 11-11M151 36l40 21m0 0 4 21' },
@@ -8,6 +10,7 @@ const simulationCases = [
 ];
 
 export const podcastCollections = {
+  ...additionalPodcasts,
   simulation: { title: 'Simulation', cases: simulationCases },
   optimization: { title: 'Optimization', cases: [
   {
@@ -71,58 +74,7 @@ export const podcastCollections = {
     "decision": "M195 37v25m-8-17 8-8 8 8"
   }
 ] },
-  process: { title: 'Decision Process', cases: [
-  {
-    "id": "episode-1",
-    "asset": "decision-process/decision-process/01_Mon_Klarna_The_AI_Efficiency_Trap",
-    "title": "The AI Efficiency Trap",
-    "context": "Klarna",
-    "seconds": 338,
-    "question": "Which objectives should guide AI adoption alongside efficiency?",
-    "art": "M49 99h204M59 86l49-22 54-19 71-17M60 69l48 9 54-15 71 7",
-    "decision": "M177 26v78"
-  },
-  {
-    "id": "episode-2",
-    "asset": "decision-process/decision-process/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers",
-    "title": "The Power of Not Competing with Your Customers",
-    "context": "TSMC",
-    "seconds": 371,
-    "question": "How can strategic boundaries strengthen customer trust?",
-    "art": "M46 57h51v42H46zM199 57h51v42h-51zM97 78h102",
-    "decision": "M117 66l25-22 33 22m-58 28 25 22 33-22"
-  },
-  {
-    "id": "episode-3",
-    "asset": "decision-process/decision-process/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels",
-    "title": "The Hotel Company That Doesn’t Need to Own the Hotel",
-    "context": "Hilton",
-    "seconds": 326,
-    "question": "How does separating ownership from operations change who bears risk?",
-    "art": "M39 111V55l49-25 49 25v56zm149 0V44h64v67zm-51-29h51",
-    "decision": "M87 61v50m128-52v38"
-  },
-  {
-    "id": "episode-4",
-    "asset": "decision-process/decision-process/04_Thu_Intuitive_The_Installed_Base_Engine",
-    "title": "The Robot Is Only the Beginning",
-    "context": "Intuitive Surgical",
-    "seconds": 346,
-    "question": "How should a business weigh long-term utilization against the initial sale?",
-    "art": "M39 102h224M54 98V83h28v15m19 0V70h28v28m19 0V56h28v42m19 0V41h28v57",
-    "decision": "M62 68Q153 65 231 24"
-  },
-  {
-    "id": "analysis-planned",
-    "title": "Finding a Better Alternative",
-    "question": "How can structured analysis reveal an option the team had overlooked?"
-  },
-  {
-    "id": "judgment-planned",
-    "title": "When Analysis Is Inconclusive",
-    "question": "How can a team apply human judgment when the evidence does not settle the decision?"
-  }
-] },
+
 };
 
 const audio = import.meta.glob('../assets/podcasts/**/*.mp3', { eager:true, query:'?url', import:'default' });
