@@ -1,6 +1,14 @@
 # Navigator Alpha credential format diagnosis
 
-Base: `4a0d503bb9d91c4746eba1bf463d69b4b808a09d`. Status: **cause confirmed; owner SecureString correction pending**. No secret has been changed and Navigator remains OFF. This is not paid-test or public-activation approval.
+Base: `4a0d503bb9d91c4746eba1bf463d69b4b808a09d`. Status: **cause confirmed; owner SecureString correction pending**. No secret has been changed by the agent, and Navigator remains OFF. This is not paid-test or public-activation approval.
+
+## Owner update and version-2 verification
+
+After the owner confirmed the update, a fresh approved format-only runtime check observed **version 2**. The JSON wrapper is removed, but **surrounding whitespace remains**. The contained trimmed string matches the raw-key syntax; the exact stored value still fails it. No BOM, internal whitespace or non-ASCII character was detected in the trimmed value. The diagnostic does not reveal which boundary or the characters themselves. Provider requests and generation calls remain zero.
+
+Owner action: edit the same parameter once more, remove only leading/trailing spaces or line breaks (do not alter the key), preserve existing SecureString/Standard/KMS settings and save. Confirm only “updated,” without the key/screenshot. Do not automatically trim or rewrite the secret in application code. A new fresh one-use verification journal is required after the next owner correction; the completed version-2 journal must not be reset or reused.
+
+The private runtime was restored again and verified at `2026-11-22T00:28:58.137Z`: Navigator OFF version1 and master ON revision9 unchanged. The exact restored revision/hash are in `final-acceptance-evidence/credential-version2-check.json`. Raw-format verification remains **failed/pending correction**, not passed. Earlier JSON-object findings below describe version 1, not version 2.
 
 ## Exact contract and confirmed cause
 
