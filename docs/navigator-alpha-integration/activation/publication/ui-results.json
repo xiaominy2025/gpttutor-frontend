@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "hosted": true,
+  "results": [
+    {
+      "width": 1440,
+      "horizontal": false,
+      "nested": [],
+      "navigatorBeforeProcess": true,
+      "coaches": 6,
+      "bottomRightTransparentPlayControls": 6,
+      "keyboardPlayback": true,
+      "dialogFocusEscape": true,
+      "directRefresh": true,
+      "reducedMotion": "checked at390",
+      "podcastPlayback": false,
+      "guestCoachNavigation": true
+    },
+    {
+      "width": 1024,
+      "horizontal": false,
+      "nested": [],
+      "navigatorBeforeProcess": true,
+      "coaches": 6,
+      "bottomRightTransparentPlayControls": 6,
+      "keyboardPlayback": true,
+      "dialogFocusEscape": true,
+      "directRefresh": true,
+      "reducedMotion": "checked at390",
+      "podcastPlayback": false,
+      "guestCoachNavigation": false
+    },
+    {
+      "width": 768,
+      "horizontal": false,
+      "nested": [],
+      "navigatorBeforeProcess": true,
+      "coaches": 6,
+      "bottomRightTransparentPlayControls": 6,
+      "keyboardPlayback": true,
+      "dialogFocusEscape": true,
+      "directRefresh": true,
+      "reducedMotion": "checked at390",
+      "podcastPlayback": false,
+      "guestCoachNavigation": false
+    },
+    {
+      "width": 390,
+      "horizontal": false,
+      "nested": [],
+      "navigatorBeforeProcess": true,
+      "coaches": 6,
+      "bottomRightTransparentPlayControls": 6,
+      "keyboardPlayback": true,
+      "dialogFocusEscape": true,
+      "directRefresh": true,
+      "reducedMotion": "passed",
+      "podcastPlayback": true,
+      "guestCoachNavigation": false
+    }
+  ],
+  "paidRequests": 0,
+  "bootstraps": 0,
+  "blockedRequests": 2,
+  "projectAccountAuthWrites": 0,
+  "pageErrors": []
+}

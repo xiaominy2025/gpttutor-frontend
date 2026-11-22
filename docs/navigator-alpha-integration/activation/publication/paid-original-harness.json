@@ -1,0 +1,23 @@
+{
+  "startedAt": "2026-11-22T04:51:36.830Z",
+  "maximumPaidRequests": 1,
+  "maximumIncrementalMicros": 3000,
+  "expectedReservationMicros": 1500,
+  "paidRequestCount": 1,
+  "bootstrapCount": 1,
+  "retries": 0,
+  "before": {
+    "at": "2026-11-22T04:51:38.926Z",
+    "spent": 1315,
+    "reserved": 0,
+    "paused": false,
+    "version": 8,
+    "leases": 0
+  },
+  "dispatch": "terminal-response",
+  "dispatchedAt": "2026-11-22T04:51:42.132Z",
+  "http": 200,
+  "passed": false,
+  "stoppedAt": "2026-11-22T04:52:17.568Z",
+  "reason": "Hosted smoke stopped; do not retry; reconcile receipt and ledger"
+}

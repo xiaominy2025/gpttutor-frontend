@@ -1,0 +1,55 @@
+{
+  "at": "2026-11-22T04:59:57.213Z",
+  "verified": {
+    "at": "2026-11-22T04:56:01.583Z",
+    "runtimeVersion": "3",
+    "privateReadyRevision": "05003427-52b9-4e03-857f-42f602cfde86",
+    "configurationHash": "ba9aa36b9460df90001794ac94687aba6ebb9be5d9015c82318486ad695e0872",
+    "htmlVersion": "PXUt3Uha5gZ2wAcc4ZJg6k55AI9qRMSd",
+    "masterOnRevision": 11,
+    "protectedApps": {
+      "engent-platform-alpha-api": {
+        "version": "5",
+        "revision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+      },
+      "decisiontree-alpha-staging-api": {
+        "version": "18",
+        "revision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc"
+      },
+      "decisionprocess-alpha-api": {
+        "version": "6",
+        "revision": "9c51c343-ea67-444a-9133-45853b39d81f"
+      }
+    }
+  },
+  "publicationWrites": 9,
+  "globalLeaseCount": 0,
+  "master": {
+    "suspended": false,
+    "revision": 11
+  },
+  "canary": {
+    "phase": "complete",
+    "spent": 1315,
+    "hold": 0,
+    "nextStep": 5
+  },
+  "offVersion": {
+    "version": "1",
+    "hash": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+    "enabled": "false"
+  },
+  "parameters": [
+    {
+      "name": "/decisionnavigator-alpha/hmac-secret",
+      "type": "SecureString",
+      "version": 1
+    },
+    {
+      "name": "/decisionnavigator-alpha/openai-api-key",
+      "type": "SecureString",
+      "version": 3
+    }
+  ],
+  "rollbackReady": true
+}

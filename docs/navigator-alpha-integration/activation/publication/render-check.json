@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "hostedClient": true,
+  "providerBlocked": true,
+  "realPaidRequests": 0,
+  "mockedTurns": 1,
+  "fixtureSource": "accepted prior canary response1, not the new hosted paid reply",
+  "fullReplyRendered": true,
+  "paragraphWhitespacePreserved": true,
+  "followUpButtons": 3,
+  "originalPartialParagraphSelectorMatches": 0,
+  "diagnosis": "The UI renders one paragraph element containing the full multi-paragraph reply; an exact first-paragraph-only locator cannot match it. No application code correction required."
+}

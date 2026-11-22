@@ -1,0 +1,116 @@
+{
+  "status": "ALPHA_PUBLISHED_WITH_DOCUMENTED_POST_RESPONSE_CAPTURE_LIMITATION",
+  "releaseId": "navigator-alpha-activation-116740a7-85c4-4d22-8ecb-16476bb1fc3d",
+  "approvedPackageCommit": "84f619c",
+  "acceptedApplicationSource": "934f2fd837423c45d77082566ba5f55a50df4771",
+  "deploymentGuardCommit": "66c9bcd",
+  "planSha256": "3fb84063ec2a5e8a32f50f44233796d6e5113da3df10f4e447685fbfd9853c2a",
+  "publicationMutations": 9,
+  "runtimeVersion": "3",
+  "aliasRevision": "6e6a8e54-8791-4e84-a4f9-f2a199daa444",
+  "privateRevision": "05003427-52b9-4e03-857f-42f602cfde86",
+  "publishedVersionRevision": "becb48a6-3c2e-4de4-88fa-54a43ab92bcb",
+  "codeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+  "enabledConfigurationHash": "ba9aa36b9460df90001794ac94687aba6ebb9be5d9015c82318486ad695e0872",
+  "html": {
+    "VersionId": "PXUt3Uha5gZ2wAcc4ZJg6k55AI9qRMSd",
+    "ETag": "\"7894d9dd7268c13a2961976ee3bfde39\"",
+    "writeId": "3fc571b9-0acf-43b3-8b30-c6641f887c63",
+    "sha256": "dc03888c13a04bfe922ea3fe54bb55e0dd1e0761f6f9dbd13a942f4bca27b7e7"
+  },
+  "assets": [
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-C2VSI8RY.js",
+      "writeId": "83eac731-6767-41a6-806a-ceb481e866bf",
+      "VersionId": "TEoWludTP1Sj11zZ4Cb_Rvd6pLc8b9ZX",
+      "ETag": "\"8df05d48e242e5c510ee2bea30ca5263\"",
+      "sha256": "82541fc2db092b410beb56920fec8c399d15d06f3abebcd2e31199597a34e28b"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-DnK5WxPW.css",
+      "writeId": "91d8c249-040b-4389-a86c-b4c907d164b4",
+      "VersionId": "ZK7ER942Wok_kbdvP05n7wk2TCqghiOQ",
+      "ETag": "\"7c49eab9cf9e411d0b2e63a8acc2f064\"",
+      "sha256": "81b235e1ed84dfa0007a94633b1497b16465b312c94bb8c77df004c86e14490a"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BFU71KGq.css",
+      "writeId": "7010ed0a-7d77-4a77-a727-2081c65029c1",
+      "VersionId": "adivrHZDq_QkE7moo0yuMTGNovuO.edQ",
+      "ETag": "\"ac3855926e2a4bb06daf98d10ad797e4\"",
+      "sha256": "de3f8f5a81a2268072d040f892cb95a1365208248ed7d9a0443a4efc266617cd"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-CAQrafnX.js",
+      "writeId": "19f35a7d-1243-40b8-9b4b-e02eec29897f",
+      "VersionId": "Rh_I9fKN4j3cL5.NDkjZzbOtQ8Mn1qFP",
+      "ETag": "\"8871646cabe3ee2de613dcf18c93a2ef\"",
+      "sha256": "97914c889fbe443c48208f0cf70bb6a39ec98324067ba291b2f8e28257eb7c41"
+    }
+  ],
+  "invalidation": {
+    "id": "I5S5O6MIK6P2OQ6X6UHLP5WH1R",
+    "status": "Completed"
+  },
+  "uiChecks": {
+    "passed": true,
+    "widths": [
+      1440,
+      1024,
+      768,
+      390
+    ],
+    "initialPlayControlsBottomRight": 6,
+    "keyboardReducedMotionDialog": true,
+    "navigationRefreshPodcast": true,
+    "paidRequests": 0
+  },
+  "paidSmoke": {
+    "http": 200,
+    "requests": 1,
+    "retries": 0,
+    "conservativeIncrementalUSD": 0.000288,
+    "approvedMaximumUSD": 0.003,
+    "monthlyTotalUSD": 0.001603,
+    "reservedMicros": 0,
+    "globalLeases": 0,
+    "invoiceReconciled": false,
+    "automaticPostResponseCaptureComplete": false,
+    "limitation": "Live response text and post-response screenshot were not saved before the harness stopped. No paid request was repeated."
+  },
+  "masterOnRevision": 11,
+  "protectedApps": {
+    "engent-platform-alpha-api": {
+      "version": "5",
+      "revision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+    },
+    "decisiontree-alpha-staging-api": {
+      "version": "18",
+      "revision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc"
+    },
+    "decisionprocess-alpha-api": {
+      "version": "6",
+      "revision": "9c51c343-ea67-444a-9133-45853b39d81f"
+    }
+  },
+  "credentialsUnchanged": [
+    {
+      "name": "/decisionnavigator-alpha/hmac-secret",
+      "type": "SecureString",
+      "version": 1
+    },
+    {
+      "name": "/decisionnavigator-alpha/openai-api-key",
+      "type": "SecureString",
+      "version": 3
+    }
+  ],
+  "rollbackReady": true,
+  "rollbackExecuted": false,
+  "noPrMerge": true,
+  "productionUnchanged": true,
+  "noNewInfrastructureBeyondApprovedVersion": true,
+  "sharedPoolDeferred": true,
+  "artifactOperatorSha256": "94274058ee455252985a2d995e8abd7bbbc725d3f40767855f4baaf5a6e66a70",
+  "publishReconciliationSha256": "fa438fddbabcb8525fc4824cd2f379305b0643e1526ffc2cab5a265e925be286"
+}

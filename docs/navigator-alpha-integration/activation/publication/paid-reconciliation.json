@@ -1,0 +1,58 @@
+{
+  "at": "2026-11-22T04:57:11.947Z",
+  "paidRequests": 1,
+  "bootstrapRequests": 1,
+  "retries": 0,
+  "anonymous": true,
+  "http": 200,
+  "conservativeChargeMicros": 288,
+  "conservativeChargeUSD": 0.000288,
+  "ceilingMicros": 3000,
+  "before": {
+    "at": "2026-11-22T04:51:38.926Z",
+    "spent": 1315,
+    "reserved": 0,
+    "paused": false,
+    "version": 8,
+    "leases": 0
+  },
+  "after": {
+    "at": "2026-11-22T04:53:06.400Z",
+    "spent": 1603,
+    "reserved": 0,
+    "paused": false,
+    "version": 10,
+    "leases": 0
+  },
+  "current": {
+    "at": "2026-11-22T04:57:11.943Z",
+    "spent": 1603,
+    "reserved": 0,
+    "paused": false,
+    "version": 10,
+    "leases": 0
+  },
+  "securityOrMeteringFailureObserved": false,
+  "heldReservations": 0,
+  "automaticPaidHarnessCompleted": false,
+  "originalFailedHarnessReceiptPreserved": true,
+  "limitation": "Live response text and post-response screenshot were not saved before the harness stopped. No paid request was repeated.",
+  "renderDiagnosis": {
+    "passed": true,
+    "hostedClient": true,
+    "providerBlocked": true,
+    "realPaidRequests": 0,
+    "mockedTurns": 1,
+    "fixtureSource": "accepted prior canary response1, not the new hosted paid reply",
+    "fullReplyRendered": true,
+    "paragraphWhitespacePreserved": true,
+    "followUpButtons": 3,
+    "originalPartialParagraphSelectorMatches": 0,
+    "diagnosis": "The UI renders one paragraph element containing the full multi-paragraph reply; an exact first-paragraph-only locator cannot match it. No application code correction required."
+  },
+  "result": "Live API and spending verified; hosted non-paid UI passes; post-response automation limitation recorded",
+  "publicRuntimeVersion": "3",
+  "masterOnRevision": 11,
+  "rollbackRequired": false,
+  "providerInvoiceReconciled": false
+}
