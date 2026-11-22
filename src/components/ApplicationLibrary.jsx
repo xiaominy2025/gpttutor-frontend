@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { podcastAsset } from './podcastCollections';
 import MediaProgress from './MediaProgress';
 import PlaybackIcon from './PlaybackIcon';
+import CoachArtwork from './CoachArtwork';
 
 function CaseCover({ item }) {
   const wash = useId();
@@ -124,9 +125,9 @@ export default function ApplicationLibrary({ title, cases, coachId }) {
   const selected = cases.find(item => item.id === selectedId);
   const illustrative = coachId === 'simulation' || !selected.asset;
   const source = coachId === 'optimization' ? optimizationSources[selected.id] : undefined;
-  const classification = illustrative ? null
+  const classification = illustrative || !selected.question ? null
     : source ? 'Documented Business Case'
-      : coachId === 'process' ? 'Business Strategy Analysis' : 'Research case';
+      : coachId === 'process' ? 'Business Strategy Analysis' : null;
   return <section id="simulation-applications" className="engent-case-library" aria-labelledby="simulation-applications-title">
     <div className="engent-wrap engent-section">
       <h1 id="simulation-applications-title">{title} Business Case Podcasts</h1>
@@ -134,11 +135,11 @@ export default function ApplicationLibrary({ title, cases, coachId }) {
       <div className="engent-case-selection">
         <article className="engent-case-detail" id="case-preview" aria-live="polite">
           <div className="engent-selected-episode">
-            {selected.art && <CaseCover item={selected} />}
+            {selected.art ? <CaseCover item={selected} /> : selected.asset ? <div className="engent-case-cover"><CoachArtwork kind={coachId === 'navigator' ? 'process' : coachId} /></div> : null}
             <div>
               <h2>{selected.title}</h2>
               {selected.context && <p>{selected.context}</p>}
-              <p>{classification && <><span className="engent-status">{classification}</span>{' '}</>}{selected.question}</p>
+              {(classification || selected.question) && <p>{classification && <><span className="engent-status">{classification}</span>{' '}</>}{selected.question}</p>}
             </div>
           </div>
           <EpisodeMedia key={selected.id} episode={selected} />

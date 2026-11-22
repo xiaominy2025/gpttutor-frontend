@@ -1,0 +1,133 @@
+{
+  "at": "2026-11-22T17:42:22.882Z",
+  "media": [
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_American_Airlines-CgIFmZHL.mp3",
+      "VersionId": "V.SJL_9RL4AA4InBerrtqMbHg8csIV5G",
+      "ETag": "\"e969e50d729ba081c00f27ddd0895226\"",
+      "bytes": 2013770,
+      "sha256": "f83cfaf48da1c15387a4326ad0042041ef67e12e8dd598e4627a5a16f7457123",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-CqMfc8rY.mp3",
+      "VersionId": "zSktorDlqJI5XoxgyfcJSd.hVrNeNVrL",
+      "ETag": "\"def13b7dbe71fccad60ea54ea8314f8e\"",
+      "bytes": 5406345,
+      "sha256": "ed9c048307437ad2ea28af78e094aca75e206dbd8a33f03921450f2e1b28eaa6",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Zara-Dth55lmH.mp3",
+      "VersionId": "OFfTnf28KJk_zjv7w_8cg1tSYA30JReP",
+      "ETag": "\"4503e1401792555f621cd229752e783a\"",
+      "bytes": 2036758,
+      "sha256": "9e49329d95bade48896ae4880243750dd19686b59582ac6e7c70b7b8422b29c5",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_UPS-Ds_mxdf2.mp3",
+      "VersionId": "JUZOx8pT7XUCToa.dz7ysi_ER2NutDk3",
+      "ETag": "\"7aa6f6394ea648eec1466e742a3bb12c\"",
+      "bytes": 1972810,
+      "sha256": "c28bcacde14575809bd063e2bb1f27c8fd48b0b9748d488d570cb0cf7c4cd89a",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Lockheed_Martin_F35_Supply_Chain-9IAdgaVZ.mp3",
+      "VersionId": "_uM_Gvg8BaBDcfsKtHLROpFdAT0xP_xM",
+      "ETag": "\"8f17fdd65b0f066c8144718710ef37ff\"",
+      "bytes": 5548451,
+      "sha256": "5febbbeacabe07d657d961262b87c2baa59675d2f61d45147c133ed927e84392",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Thu_Intuitive_The_Installed_Base_Engine-93QS8sZE.mp3",
+      "VersionId": "xa1qOzjeoOJwSOy_bk4QgglmfVGTxXSI",
+      "ETag": "\"42783ab1cbc4c53f917b34e30ddb0707\"",
+      "bytes": 5532150,
+      "sha256": "806f067bdcdab0bd594e167e0114dd9eec86cd5cdd5d2aff57376780ea702ce1",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Chevron-BgstojSx.mp3",
+      "VersionId": "QFU47S5SukRdjQceMZdRiiKZIPdTDHrj",
+      "ETag": "\"810a630a275f12a15cb3b33ec0d70df5\"",
+      "bytes": 1941881,
+      "sha256": "f08904a2ddc08ca4344b41ccc2cdda8dd3e67fd1e1fae719642b7f50e1ccc13a",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-BrLOCXbt.mp3",
+      "VersionId": "mgXdusrCKXe5.Qoedd5PUH45ENsCjXMZ",
+      "ETag": "\"bb5443e7e49ba6e350eeae6ec59e0d2b\"",
+      "bytes": 5224950,
+      "sha256": "19fa8590fb3814bbf557b9d9fd3ebef12b1d470d81ffc2ae18134cdf83e49d1b",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/06_Los_Alamos-D7hdSHvj.mp3",
+      "VersionId": "nduBZ1V4ig7C.i8gF3S69rByVwC4dhsl",
+      "ETag": "\"a987c0ab4a5582cbfb1fcaac987f505e\"",
+      "bytes": 2105721,
+      "sha256": "bfcab0a7400fea8c6cf11c392a76acd97f4580777964751d941f0c66b3312058",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-1BPefrVc.mp3",
+      "VersionId": "us3ku1rTSVFDEoWFttMDPp2aWvHxvrXm",
+      "ETag": "\"1eeed09ea4a3d2313ae8a8251c61fbc8\"",
+      "bytes": 5932555,
+      "sha256": "d32062d5f4ddfcca2dc66d2b12c6711a2a4932857b53a1ea5b7d7d8e11b69ac8",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring-DiHXWmz0.mp3",
+      "VersionId": "m5SVm42kkmj59pwf5pSDUx4oaqu81K4Q",
+      "ETag": "\"db2c1d77202111d22a5a10972787d23d\"",
+      "bytes": 3416441,
+      "sha256": "fa66c59d8d46adbde8e94177598bcb8164c8464583b019aac01ced1cfffb12af",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_02_Lockheed_Schedule_Risk-CbPjqUSa.mp3",
+      "VersionId": "vO.HqOAKGSXneCFkGQso6fSjX0Q23ChK",
+      "ETag": "\"08db6c34a195c52d57f2477c2c327e27\"",
+      "bytes": 3136408,
+      "sha256": "58979b98b7cf88cf7ef604001eda1a7c9921f056394348a362b1f306780e3588",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_03_Energy_Investment_Real_Options-SRmctJ3A.mp3",
+      "VersionId": "Qszf3lImxoGFMrcZ6RXWhWYwewIU1Gxr",
+      "ETag": "\"994525e92da36b26fd7295bc973485a5\"",
+      "bytes": 3261378,
+      "sha256": "e37bc20fa078f522ff3a6440ebc88340fa728983bb02b76aad4ec484bfc317cf",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_04_NREL_Grid_Reliability-BovZRlxA.mp3",
+      "VersionId": "mRQGnGn.1ZWDP1HHj3ex0vi5RZ4sicG9",
+      "ETag": "\"51a22f7654ff7f23f79246f8d39c872a\"",
+      "bytes": 3243406,
+      "sha256": "9d08953ece3505ddb63aaf6fa83ad9f3612faecd86c97352c354231b0e9bcd07",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo-aqQrshqL.mp3",
+      "VersionId": "42v1CWZDBBYqj3Fhqe5ScXya5W8BbB48",
+      "ETag": "\"25456b14bd8f3c5acccf84396a561351\"",
+      "bytes": 3168591,
+      "sha256": "a733e7734d9de2cc9ef3377f215fd4a93e73d2a90ebf066e681632b985424e4e",
+      "action": "reused-unchanged"
+    },
+    {
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_06_Pfizer_Drug_Development-C4BRYLHe.mp3",
+      "VersionId": "W3O4EqatcuIQ4I08Pq3b.0a.hcmK8GdP",
+      "ETag": "\"c712a7665247b09806f356436484bbb4\"",
+      "bytes": 3326580,
+      "sha256": "4eaa26342d92e7b2449eb57a584bd5393700f01ecf08a0c554a65122b354dde9",
+      "action": "reused-unchanged"
+    }
+  ]
+}

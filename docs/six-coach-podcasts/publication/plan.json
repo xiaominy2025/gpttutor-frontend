@@ -1,0 +1,213 @@
+{
+  "release": "podcasts39-501f2b5",
+  "source": "501f2b53216c643228b7e0997582e97fe178d885",
+  "at": "2026-11-22T17:35:37.713Z",
+  "bucket": "decisiontree-alpha-staging-frontend-vnhhrwadnpad",
+  "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/index.html",
+  "distribution": "E1C4AJI9FUE47B",
+  "paths": [
+    "/engent-alpha/*",
+    "/explore",
+    "/explore/*"
+  ],
+  "baseline": {
+    "AcceptRanges": "bytes",
+    "LastModified": "2026-11-22T14:12:51+00:00",
+    "ContentLength": 975,
+    "ETag": "\"ff8f7c8c4349f8d860c25c7906bd06bf\"",
+    "VersionId": "wCdDDWNmMOHhNQmA4SNGt0oCfVndyjef",
+    "CacheControl": "no-cache,no-store,must-revalidate",
+    "ContentType": "text/html; charset=utf-8",
+    "ServerSideEncryption": "AES256",
+    "Metadata": {
+      "sha256": "719f810995f3c6a27ff791a86d659cdc261a5b5ea57bbdc034a74effb335d2e1",
+      "engent-release-id": "ui-consistency-475913c",
+      "engent-write-id": "0677aff9-f5ff-44e8-9ed1-c39798c17c71"
+    }
+  },
+  "baselineSha256": "719f810995f3c6a27ff791a86d659cdc261a5b5ea57bbdc034a74effb335d2e1",
+  "htmlSha256": "438c8ce47959c553a4d5b22e4246d89eea0401b9fd3b973ebc32c78fd1cdcc5f",
+  "assets": [
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/01_Bayer_Plasmin-8lIXnupg.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Bayer_Plasmin-8lIXnupg.mp3",
+      "sha256": "461e82b773b82cc610da4af4cdf9d1a4c7d4d80d18a262e1d34a45b8f44a5223",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/01_Morgan_Stanley-B-Xb184d.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Morgan_Stanley-B-Xb184d.mp3",
+      "sha256": "da94116ddd784a8ff1a4e2da575d7012552799d2ac7a473ee14e562f2b77ccca",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/01_Pressure_D_Day-CPtYvoJh.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Pressure_D_Day-CPtYvoJh.mp3",
+      "sha256": "d7d7d5f2ca43b1aa1eadbdcdca4a81e92cb343be27cdb1b09ae46ffcfdb7e233",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/01_Shell_Oil_Shock-CyJ6KOlg.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Shell_Oil_Shock-CyJ6KOlg.mp3",
+      "sha256": "944dba3d71edebf26035a1a0cd33f0b42828ddb1cc0c54cdb91f6929c397c08e",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/02_Airbnb_Travel_Collapse-B0M6RMFr.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Airbnb_Travel_Collapse-B0M6RMFr.mp3",
+      "sha256": "a8486680f18dd86fd29846e1cfc922ebb31b81414078539260212a8e5dcef0bd",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/02_Dominos_Friday_Rush-dSC9kCZz.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Dominos_Friday_Rush-dSC9kCZz.mp3",
+      "sha256": "23a9b22be1fa3fd358e83f807821c5876a118d5b40a1048b3ff2bfbfcc6f1643",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/02_Intuit_SnapTax-CvUXCJ4u.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Intuit_SnapTax-CvUXCJ4u.mp3",
+      "sha256": "b808772d9156ecba8c62e763d89864a65b452a946e0c90f80961c7284e023216",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/02_Netflix-Bnhqnhz0.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Netflix-Bnhqnhz0.mp3",
+      "sha256": "de7b4eaf75e8b5ae79003183cc5a1e994a629877462e7f0adedee27a5ebdce43",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/02_Tue_Fastenal_The_Vending_Machine_Moat-CBxkzdGh.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Tue_Fastenal_The_Vending_Machine_Moat-CBxkzdGh.mp3",
+      "sha256": "86bf30d2c927ea32c60a8fa3786dc2a0614df57362e5d7d3f8a9d62e671a399e",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/03_Amazon_HQ2-BFJ9bzCv.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Amazon_HQ2-BFJ9bzCv.mp3",
+      "sha256": "62fe5c2c323f9f380d5e23f60f183383fc06b5bb1ec933c4ab1cfd4dc2effd3c",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/03_Ford_EV_Choices-CJ92vQzj.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Ford_EV_Choices-CJ92vQzj.mp3",
+      "sha256": "1e3006b0898b416adab06df14dba590111b390979fb82ef6e2636b4229b295f7",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/03_Walmart_Weather-Fvv0Rbnw.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Walmart_Weather-Fvv0Rbnw.mp3",
+      "sha256": "4eba489440a49753d8de811f2f785dee401818c9ec4adb9220b178d3fbec8443",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/03_Wed_Uniqlo_The_Fabric_Innovation_Partnership-Ctxisc4b.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Wed_Uniqlo_The_Fabric_Innovation_Partnership-Ctxisc4b.mp3",
+      "sha256": "431ac0e766576d24e2435e5aaaea3622d83ce1a649aeb04b42d7167a582f4f7d",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/03_Zillow-CUh3_BcG.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_Zillow-CUh3_BcG.mp3",
+      "sha256": "2c3438b23e2783379158e3b8dcc7f96cdd14b2f03a2e1157bb2f322a25f8108a",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/04_Hershey_Halloween-CBKWOnb1.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Hershey_Halloween-CBKWOnb1.mp3",
+      "sha256": "89fea2139634e2a55e84d30dbf6fac51a20497aa27c39db5622cf7be2b173176",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/04_Netflix_Streaming-DdkED1ei.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Netflix_Streaming-DdkED1ei.mp3",
+      "sha256": "76f4e296bbbc5e704a71a62cc0d291ddfb692bb99a0d16470c9650adbf57d373",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/04_Unilever_Climate_Costs-D5iDsNE1.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Unilever_Climate_Costs-D5iDsNE1.mp3",
+      "sha256": "cea3eb614c1c7f97bc9e2ab0f55249a6f52966053169ce9eb69eb507f18c7be2",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/04_UPS-Bxw3qaMU.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_UPS-Bxw3qaMU.mp3",
+      "sha256": "9b8dd234a67d0e63dc11805f667039680f958853cdc0571b0dec14e076b66077",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/05_Airbus_Twenty_Years-C4yi2x63.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Airbus_Twenty_Years-C4yi2x63.mp3",
+      "sha256": "a92db389061447d7c7f64a0eff38749016f4f0db947125d819cf6a984e19b97f",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/05_NASA_Mars-BXsk85pE.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_NASA_Mars-BXsk85pE.mp3",
+      "sha256": "a48d4c5ecac4fd52a68f7ce24cb456d48071d2c704869529181f63b2e3763998",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/06_Duke_Energy_Tomorrows_Load-C4--B_xq.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/06_Duke_Energy_Tomorrows_Load-C4--B_xq.mp3",
+      "sha256": "9457ad4f3112d14388609950a20967d79394137047b9e041585fc53ed03d7d7f",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/06_Sat_Caterpillar_The_Part_That_Comes_Back-C7nwv9o5.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/06_Sat_Caterpillar_The_Part_That_Comes_Back-C7nwv9o5.mp3",
+      "sha256": "e320198d5a9b14e38a336712d3af775a0c460af73907a782a314c045a18c976f",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/07_Hospital_Emergency_Department-CHnk7elX.mp3",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/07_Hospital_Emergency_Department-CHnk7elX.mp3",
+      "sha256": "35a3be2249911d091ac89b408d46c1f9ede428560e4403f3ccfd8fdf7215b7bc",
+      "contentType": "audio/mpeg"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/DecisionNavigator-D24WBkND.css",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-D24WBkND.css",
+      "sha256": "6a8dc2421478ffb9b40009d5b30f6629199dbbe37cdb1946123c1ea33bb4d4f0",
+      "contentType": "text/css"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/DecisionNavigator-DfjP8MBS.js",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-DfjP8MBS.js",
+      "sha256": "600a561e2ad8f5788614e2183cfd0721f3096b7dff071e18918dc25a6564b7df",
+      "contentType": "application/javascript"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/index-DoNK6u0-.css",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-DoNK6u0-.css",
+      "sha256": "4749cf4f3119b50dde81218e45ee279fb9ce8ae8e6d35021c488444c383564f2",
+      "contentType": "text/css"
+    },
+    {
+      "file": ".artifacts/navigator-alpha-integration/web/assets/index-LSiAEllf.js",
+      "key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-LSiAEllf.js",
+      "sha256": "2a898f150799c26fb0faf173b3c0a0e273f6adaa7e37df01ca5fd9a4bb35874a",
+      "contentType": "application/javascript"
+    }
+  ],
+  "state": {
+    "masterOnRevision": 11,
+    "navigatorVersion": "3",
+    "protectedApps": {
+      "engent-platform-alpha-api": {
+        "version": "5",
+        "revision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+      },
+      "decisiontree-alpha-staging-api": {
+        "version": "18",
+        "revision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc"
+      },
+      "decisionprocess-alpha-api": {
+        "version": "6",
+        "revision": "9c51c343-ea67-444a-9133-45853b39d81f"
+      }
+    },
+    "cloudfrontEtag": "E1JYRMDPD0WRC1"
+  }
+}

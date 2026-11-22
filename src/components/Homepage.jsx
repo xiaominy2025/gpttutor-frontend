@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import CoachArtwork from './CoachArtwork';
+import CoachLaunchControl from './CoachLaunchControl';
 import EngentHeader from '../shared/EngentHeader';
 import ReleaseBAccess from './ReleaseBAccess';
 import PlatformAccess from './PlatformAccess';
@@ -51,10 +52,10 @@ function canLaunch(coach) {
 }
 
 function Availability({ coach, sharedLaunch }) {
-  if (coach.id === 'process' && canLaunch(coach)) return <a href="/process/" className="engent-button">Launch Decision Process Coach</a>;
+  if (coach.id === 'process' && canLaunch(coach)) return <CoachLaunchControl href="/process/" label="Launch Decision Process Coach" />;
   if (canLaunch(coach)) {
     const destination = sharedLaunch === 'https://decisiontree.engentlabs.com/api/shared/login' ? sharedLaunch : treeUrl;
-    return <a href={destination} className="engent-button">Launch Decision Tree Coach</a>;
+    return <CoachLaunchControl href={destination} label="Launch Decision Tree Coach" />;
   }
   return <span className="engent-status">Coming Soon</span>;
 }
@@ -144,7 +145,7 @@ export function CoachCasesPage() {
   const { coachId } = useParams();
   if (!Object.hasOwn(podcastCollections, coachId)) return <Navigate to="/explore" replace />;
   const collection = podcastCollections[coachId];
-  return <MarketingLayout explore coachNav={<Link to={`/explore#${coachId}`}>{collection.title} Coach</Link>}>
+  return <MarketingLayout explore coachNav={<Link to={coachId === 'navigator' ? '/explore#navigator-intro-title' : `/explore#${coachId}`}>{collection.title}{coachId === 'navigator' ? '' : ' Coach'}</Link>}>
     <ApplicationLibrary key={coachId} {...collection} coachId={coachId} />
   </MarketingLayout>;
 }

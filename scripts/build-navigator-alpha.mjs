@@ -20,7 +20,7 @@ await build({base,build:{outDir:root+'/web',emptyOutDir:true},define:{
  if(!id.replaceAll('\\','/').endsWith('/src/components/Homepage.jsx'))return;
  const logo="const logo = '/assets/Engent Labs Transparent.png';";
  if(!code.includes(logo)||!code.includes('  if (canLaunch(coach)) {'))throw Error('Release B source baseline changed');
- return code.replace(logo,`const logo = '${base}assets/Engent Labs Transparent.png';`).replace('  if (canLaunch(coach)) {',`  if (coach.id === 'tree' && sharedLaunch === 'https://d6owpirihdsus.cloudfront.net/api/shared/email/login') return <form method="post" action={sharedLaunch}><button className="engent-button">Launch Decision Tree Coach</button></form>;
+ return code.replace(logo,`const logo = '${base}assets/Engent Labs Transparent.png';`).replace('  if (canLaunch(coach)) {',`  if (coach.id === 'tree' && sharedLaunch === 'https://d6owpirihdsus.cloudfront.net/api/shared/email/login') return <form method="post" action={sharedLaunch}><CoachLaunchControl type="submit" label="Launch Decision Tree Coach" /></form>;
   if (canLaunch(coach)) {`);
 }}]});
 const files={};

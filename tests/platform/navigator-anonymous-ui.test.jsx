@@ -1,6 +1,7 @@
 import React from 'react';
 import {afterEach,beforeEach,expect,it,vi} from 'vitest';
 import {cleanup,fireEvent,render,screen,waitFor} from '@testing-library/react';
+import {MemoryRouter} from 'react-router-dom';
 import DecisionNavigator from '../../src/components/DecisionNavigator';
 
 beforeEach(()=>{
@@ -16,7 +17,7 @@ function replies(){let turn=0;return vi.fn(async(path,options)=>{
  if(turn>1)expect(body.continuation).toBe('fixture-'+(turn-1));
  return{ok:true,json:async()=>({reply:'Fixture reasoning '+turn,done:turn===4,continuation:turn===4?null:'fixture-'+turn,followUps:turn===4?[]:[{dimension:'analysis',question:'How can I test an assumption?'}]})};
 });}
-function open(){render(<DecisionNavigator/>);fireEvent.click(screen.getByRole('button',{name:'Open Decision Navigator'}));}
+function open(){render(<MemoryRouter><DecisionNavigator/></MemoryRouter>);fireEvent.click(screen.getByRole('button',{name:'Open Decision Navigator'}));}
 it('opens anonymously without account lookups, registration, or a paid welcome request',()=>{
  const fetch=replies();vi.stubGlobal('fetch',fetch);open();
  expect(screen.getByRole('heading',{name:'Welcome to AI Navigator'})).toBeTruthy();

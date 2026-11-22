@@ -1,0 +1,66 @@
+{
+  "url": "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/s3/USD/current/s3.json",
+  "manifest": {
+    "serviceId": "s3",
+    "accessType": "publish",
+    "esIndex": "plc-s3-usd-20261121172919",
+    "hawkFilePublicationDate": "2026-11-21T17:29:19Z",
+    "ETLIngestionTriggerDate": "2026-11-21T17:29:19Z",
+    "currencyCode": "USD",
+    "source": "s3",
+    "isMapped": "true"
+  },
+  "region": "US East (N. Virginia)",
+  "rows": [
+    {
+      "rateCode": "D44ANS9DERJUGN3R.JRTCKXETXF.PGHJ3S3EYE",
+      "price": "0.0230000000",
+      "RegionlessRateCode": "9eyzOb_cbSnbqG9ShQhZ4idAs-yFsvz4_aILTQSuhsE"
+    },
+    {
+      "rateCode": "M9D34X8ZHECCKKRU.JRTCKXETXF.QUZRP4P8Y4",
+      "price": "0.0236000000",
+      "RegionlessRateCode": "gbY9iS0mDmkAQbzlwq3MT7giw-HkWWskCW5mwUtlPo8"
+    },
+    {
+      "rateCode": "WP9ANXZGBYYSGJEA.JRTCKXETXF.PGHJ3S3EYE",
+      "price": "0.0230000000",
+      "RegionlessRateCode": "p4bzR3TnNAZ1pIxclJhB2U2uxj0OxddXC0xTvc2xErU"
+    },
+    {
+      "rateCode": "M9D34X8ZHECCKKRU.JRTCKXETXF.D42MF2PVJS",
+      "price": "0.0232000000",
+      "RegionlessRateCode": "uwxQ2vI2Sl5IxpKf1zCiAR9XLHfVZQcme3_-7rCtBpQ"
+    },
+    {
+      "rateCode": "T5CD4UDRVV44YE2T.JRTCKXETXF.PGHJ3S3EYE",
+      "price": "0.0230000000",
+      "RegionlessRateCode": "w2Wp3sXTN7-lpnAWDCXz48tQmJu39RMQ1GnDa8Zk0-U"
+    },
+    {
+      "rateCode": "KMKCKYYEKJBZ7B3F.JRTCKXETXF.6YS6EN2CT7",
+      "price": "0.0230000000",
+      "RegionlessRateCode": "yFgGhD6AmgI-T2n6x9Y1MoRfueTgPq1U8v-j5Xqoz84"
+    },
+    {
+      "rateCode": "M9D34X8ZHECCKKRU.JRTCKXETXF.QUZRP4P8Y4",
+      "price": "0.0236000000",
+      "RegionlessRateCode": "gbY9iS0mDmkAQbzlwq3MT7giw-HkWWskCW5mwUtlPo8"
+    },
+    {
+      "rateCode": "WP9ANXZGBYYSGJEA.JRTCKXETXF.PGHJ3S3EYE",
+      "price": "0.0230000000",
+      "RegionlessRateCode": "p4bzR3TnNAZ1pIxclJhB2U2uxj0OxddXC0xTvc2xErU"
+    },
+    {
+      "rateCode": "M9D34X8ZHECCKKRU.JRTCKXETXF.D42MF2PVJS",
+      "price": "0.0232000000",
+      "RegionlessRateCode": "uwxQ2vI2Sl5IxpKf1zCiAR9XLHfVZQcme3_-7rCtBpQ"
+    },
+    {
+      "rateCode": "T5CD4UDRVV44YE2T.JRTCKXETXF.PGHJ3S3EYE",
+      "price": "0.0230000000",
+      "RegionlessRateCode": "w2Wp3sXTN7-lpnAWDCXz48tQmJu39RMQ1GnDa8Zk0-U"
+    }
+  ]
+}

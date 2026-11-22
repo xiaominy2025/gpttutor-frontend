@@ -1,0 +1,276 @@
+{
+  "passed": true,
+  "hosted": true,
+  "paidAiCalls": 0,
+  "projectAuthWrites": 0,
+  "blockedRequests": 4,
+  "uniquePlayableAssets": 39,
+  "nativeResize": true,
+  "results": [
+    {
+      "width": 1440,
+      "compactControls": 3,
+      "tooltipsHoverFocusEscape": true,
+      "modalDraftAndFocusPreserved": true,
+      "directLaunch": true,
+      "noOverflow": true,
+      "podcasts": [
+        {
+          "coach": "process",
+          "episodes": 7,
+          "playbackTested": 7,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "forecast",
+          "episodes": 7,
+          "playbackTested": 7,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "scenario",
+          "episodes": 4,
+          "playbackTested": 4,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "tree",
+          "episodes": 5,
+          "playbackTested": 5,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "simulation",
+          "episodes": 6,
+          "playbackTested": 6,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "optimization",
+          "episodes": 6,
+          "playbackTested": 6,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "navigator",
+          "episodes": 4,
+          "playbackTested": 4,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "compactControls": 3,
+      "tooltipsHoverFocusEscape": true,
+      "modalDraftAndFocusPreserved": true,
+      "directLaunch": true,
+      "noOverflow": true,
+      "podcasts": [
+        {
+          "coach": "process",
+          "episodes": 7,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "forecast",
+          "episodes": 7,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "scenario",
+          "episodes": 4,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "tree",
+          "episodes": 5,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "simulation",
+          "episodes": 6,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "optimization",
+          "episodes": 6,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "navigator",
+          "episodes": 4,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "compactControls": 3,
+      "tooltipsHoverFocusEscape": true,
+      "modalDraftAndFocusPreserved": true,
+      "directLaunch": true,
+      "noOverflow": true,
+      "podcasts": [
+        {
+          "coach": "process",
+          "episodes": 7,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "forecast",
+          "episodes": 7,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "scenario",
+          "episodes": 4,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "tree",
+          "episodes": 5,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "simulation",
+          "episodes": 6,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "optimization",
+          "episodes": 6,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "navigator",
+          "episodes": 4,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "compactControls": 3,
+      "tooltipsHoverFocusEscape": true,
+      "modalDraftAndFocusPreserved": true,
+      "directLaunch": true,
+      "noOverflow": true,
+      "podcasts": [
+        {
+          "coach": "process",
+          "episodes": 7,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "forecast",
+          "episodes": 7,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "scenario",
+          "episodes": 4,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "tree",
+          "episodes": 5,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "simulation",
+          "episodes": 6,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "optimization",
+          "episodes": 6,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "navigator",
+          "episodes": 4,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        }
+      ]
+    }
+  ],
+  "pageErrors": []
+}

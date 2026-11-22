@@ -1,0 +1,490 @@
+{
+    "Contents": [
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_American_Airlines-CgIFmZHL.mp3",
+            "LastModified": "2026-11-21T01:23:52+00:00",
+            "ETag": "\"e969e50d729ba081c00f27ddd0895226\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 2013770,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-CqMfc8rY.mp3",
+            "LastModified": "2026-11-21T01:23:54+00:00",
+            "ETag": "\"def13b7dbe71fccad60ea54ea8314f8e\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 5406345,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/01_Mon_Klarna_The_AI_Efficiency_Trap-DDc6qR7Z.txt",
+            "LastModified": "2026-11-21T01:23:56+00:00",
+            "ETag": "\"89e03af4bbf8504f484fb504e75168ed\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 6850,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/02_Zara-Dth55lmH.mp3",
+            "LastModified": "2026-11-21T01:23:58+00:00",
+            "ETag": "\"4503e1401792555f621cd229752e783a\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 2036758,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/03_UPS-Ds_mxdf2.mp3",
+            "LastModified": "2026-11-21T01:23:59+00:00",
+            "ETag": "\"7aa6f6394ea648eec1466e742a3bb12c\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 1972810,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Lockheed_Martin_F35_Supply_Chain-9IAdgaVZ.mp3",
+            "LastModified": "2026-11-21T01:24:01+00:00",
+            "ETag": "\"8f17fdd65b0f066c8144718710ef37ff\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 5548451,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Lockheed_Martin_F35_Supply_Chain-CDXIYOui.txt",
+            "LastModified": "2026-11-21T01:24:03+00:00",
+            "ETag": "\"46a8cd41d64330eeb4e4457a11ed132a\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 6874,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Thu_Intuitive_The_Installed_Base_Engine-93QS8sZE.mp3",
+            "LastModified": "2026-11-21T01:24:05+00:00",
+            "ETag": "\"42783ab1cbc4c53f917b34e30ddb0707\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 5532150,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/04_Thu_Intuitive_The_Installed_Base_Engine-DaXeXltS.txt",
+            "LastModified": "2026-11-21T01:24:10+00:00",
+            "ETag": "\"800f383b26e56a824a1ea0b292b13d51\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 6792,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Chevron-BgstojSx.mp3",
+            "LastModified": "2026-11-21T01:24:12+00:00",
+            "ETag": "\"810a630a275f12a15cb3b33ec0d70df5\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 1941881,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-BrLOCXbt.mp3",
+            "LastModified": "2026-11-21T01:24:15+00:00",
+            "ETag": "\"bb5443e7e49ba6e350eeae6ec59e0d2b\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 5224950,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/05_Fri_Hilton_The_Hotel_Company_That_Does_Not_Need_To_Own_Hotels-g8LUerjA.txt",
+            "LastModified": "2026-11-21T01:24:20+00:00",
+            "ETag": "\"6f1e7cd44525dafbc90f0200dbb0880f\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 6467,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/06_Los_Alamos-D7hdSHvj.mp3",
+            "LastModified": "2026-11-21T01:24:21+00:00",
+            "ETag": "\"a987c0ab4a5582cbfb1fcaac987f505e\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 2105721,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-1BPefrVc.mp3",
+            "LastModified": "2026-11-21T01:24:23+00:00",
+            "ETag": "\"1eeed09ea4a3d2313ae8a8251c61fbc8\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 5932555,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers-DZN36p4S.txt",
+            "LastModified": "2026-11-21T01:24:26+00:00",
+            "ETag": "\"a077ce44e4936c817c0038f1f7a6ebff\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 7207,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-BLedplZi.js",
+            "LastModified": "2026-11-22T14:12:23+00:00",
+            "ETag": "\"c74efe8edbdf48f1454679996348387e\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 11234,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-C2VSI8RY.js",
+            "LastModified": "2026-11-22T04:36:40+00:00",
+            "ETag": "\"8df05d48e242e5c510ee2bea30ca5263\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 13208,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-DnK5WxPW.css",
+            "LastModified": "2026-11-22T04:36:44+00:00",
+            "ETag": "\"7c49eab9cf9e411d0b2e63a8acc2f064\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 6171,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/DecisionNavigator-WHOSqT1O.css",
+            "LastModified": "2026-11-22T14:12:27+00:00",
+            "ETag": "\"7527a3fa678fa1e7c55261527ae5bee7\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 5638,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Engent Labs Transparent.png",
+            "LastModified": "2026-11-21T01:24:34+00:00",
+            "ETag": "\"8d4da4f56cacddb74753c60b49b353a5\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 312551,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Engent Labs.mp4",
+            "LastModified": "2026-11-21T01:24:36+00:00",
+            "ETag": "\"beaba64b59cc2f506cd9f780a7f26dbe\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 3523820,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Logo-13TNTF-a.png",
+            "LastModified": "2026-11-21T01:24:43+00:00",
+            "ETag": "\"ef9ad7ba18abb601237bace0298dc16a\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 195801,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/LogoSplash-BuLNSCWs.png",
+            "LastModified": "2026-11-21T01:24:47+00:00",
+            "ETag": "\"378a95100c6e87efc307fb768d9d39fd\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 209565,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_01_LANL_Uncertainty_and_Monitoring-DiHXWmz0.mp3",
+            "LastModified": "2026-11-21T01:24:49+00:00",
+            "ETag": "\"db2c1d77202111d22a5a10972787d23d\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 3416441,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_02_Lockheed_Schedule_Risk-CbPjqUSa.mp3",
+            "LastModified": "2026-11-21T01:24:51+00:00",
+            "ETag": "\"08db6c34a195c52d57f2477c2c327e27\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 3136408,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_03_Energy_Investment_Real_Options-SRmctJ3A.mp3",
+            "LastModified": "2026-11-21T01:24:54+00:00",
+            "ETag": "\"994525e92da36b26fd7295bc973485a5\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 3261378,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_04_NREL_Grid_Reliability-BovZRlxA.mp3",
+            "LastModified": "2026-11-21T01:24:57+00:00",
+            "ETag": "\"51a22f7654ff7f23f79246f8d39c872a\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 3243406,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_05_FannieMae_AWS_MonteCarlo-aqQrshqL.mp3",
+            "LastModified": "2026-11-21T01:24:59+00:00",
+            "ETag": "\"25456b14bd8f3c5acccf84396a561351\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 3168591,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/Session_6_Simulation_06_Pfizer_Drug_Development-C4BRYLHe.mp3",
+            "LastModified": "2026-11-21T01:25:01+00:00",
+            "ETag": "\"c712a7665247b09806f356436484bbb4\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 3326580,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/User by Country.png",
+            "LastModified": "2026-11-21T01:25:03+00:00",
+            "ETag": "\"0a6138e6c5a7e0de918a89556c16b813\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 29601,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/coach-paper-BizU8FEU.webp",
+            "LastModified": "2026-11-21T01:24:28+00:00",
+            "ETag": "\"972fdefbf89c7f0c28f700f5a611b72d\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 6118,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/decision-framework-Df8AjjeR.webp",
+            "LastModified": "2026-11-21T01:24:30+00:00",
+            "ETag": "\"bb7cc0be078c842a08a79409f5523a05\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 21712,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/decision-making-demo.png",
+            "LastModified": "2026-11-21T01:24:32+00:00",
+            "ETag": "\"0633bbb0998cbba7abd2312530bce6aa\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 119350,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BA9KSL7X.js",
+            "LastModified": "2026-11-21T01:24:39+00:00",
+            "ETag": "\"fc2fbec5b6d4de9c8027dea3225b69ff\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 440721,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BE9DTgyc.css",
+            "LastModified": "2026-11-21T15:09:00+00:00",
+            "ETag": "\"e137799ce8d62eedd9bf23a2e4e1665a\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 54813,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BFU71KGq.css",
+            "LastModified": "2026-11-22T04:36:48+00:00",
+            "ETag": "\"ac3855926e2a4bb06daf98d10ad797e4\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 54849,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BNouqn29.css",
+            "LastModified": "2026-11-22T14:12:31+00:00",
+            "ETag": "\"3127262ca9e43b2e1619adfd0fc20b4d\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 55305,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-BY72FO0M.js",
+            "LastModified": "2026-11-22T14:12:35+00:00",
+            "ETag": "\"205eea45efb5e37ee99199e5c286338a\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 444011,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-C7EyrWlb.js",
+            "LastModified": "2026-11-21T15:09:06+00:00",
+            "ETag": "\"83e9c1eda60c644efc1b26c758f6e888\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 440872,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-CAQrafnX.js",
+            "LastModified": "2026-11-22T04:36:51+00:00",
+            "ETag": "\"8871646cabe3ee2de613dcf18c93a2ef\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 442338,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-D8vk8vwg.js",
+            "LastModified": "2026-11-21T04:29:48+00:00",
+            "ETag": "\"83e9c1eda60c644efc1b26c758f6e888\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 440872,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/index-lUlSxSql.css",
+            "LastModified": "2026-11-21T01:24:41+00:00",
+            "ETag": "\"f8ff1f098ecbe2867fdd438f1c479e1b\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 54595,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/logo-CNq5NF33.png",
+            "LastModified": "2026-11-21T01:24:45+00:00",
+            "ETag": "\"ef9ad7ba18abb601237bace0298dc16a\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 195801,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/vendor-BYOhtk1D.js",
+            "LastModified": "2026-11-21T01:25:05+00:00",
+            "ETag": "\"14c60b31f20659b7c73e519327641d68\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 11355,
+            "StorageClass": "STANDARD"
+        }
+    ],
+    "RequestCharged": null,
+    "Prefix": "releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled/assets/"
+}

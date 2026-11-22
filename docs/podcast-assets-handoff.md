@@ -1,15 +1,7 @@
-# Engent Labs podcast asset handoff
+# Engent Labs podcasts
 
-PR #3 includes the 16 recordings and 10 transcripts supplied in `engent_podcast_assets_all.zip`. Vite publishes them as fingerprinted static assets. The shared player requests audio on playback and transcripts when opened.
+Current draft PR #18 prepares 39 episodes across the six Coaches plus Navigator: Process7, Forecast7, Scenario4, Tree5, Simulation6, Optimization6, Navigator4. Reuses 16 published recordings and adds 23 unique MP3s (97,232,076 bytes). Existing player, episode controls and ten transcripts retained.
 
-## Collections
+Owner clarified the full Fastenal/Uniqlo/Caterpillar phrases are titles, with company context beneath. Navigator now has an Explore Cases link and `/explore/navigator/cases`, superseding its earlier exclusion. Source TXT order is preserved; missing separate descriptions are not invented. Simulation's unmatched Module8 recording remains excluded.
 
-- Simulation: six MP3s, `simulation_podcast_audio_six_episodes.zip` (provided in ChatGPT)
-- Optimization: six MP3s + six transcripts, `optimization_business_case_podcasts.zip` (provided in ChatGPT)
-- Decision Process: four selected existing MP3s + four transcripts, `decision_process_podcast_assets.zip` (provided in ChatGPT); two further business cases and the process introduction are planned but not recorded.
-
-## Pending content
-
-The bundle contains Simulation audio only. Simulation transcripts, two planned Decision Process business cases, and the separate Decision Process introduction remain pending.
-
-**Do not merge/deploy without owner approval.** Avoid publishing these media to a separate podcast feed; these assets are for the Engent Labs website.
+See [inventory and review report](six-coach-podcasts/README.md), [episode mapping](six-coach-podcasts/episode-mapping.md), [manifest](six-coach-podcasts/publication-plan.json). Preparation only; no deployment or merge without owner approval.
