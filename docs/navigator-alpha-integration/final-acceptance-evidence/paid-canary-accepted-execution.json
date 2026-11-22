@@ -1,0 +1,193 @@
+{
+  "planSha256": "017012735932d876a3d5e032aa0c24fe69754c00f8d142816f0957c9591524a3",
+  "artifactSha256": "a8139f80e9c1950c8448f567e41d2c3b1070dbcee61b897223ef689c3febb5c2",
+  "startedAt": "2026-11-22T03:53:12.169Z",
+  "events": [],
+  "installAcknowledgement": {
+    "revision": "2ea44cb9-b054-4652-8760-c42ca48402eb",
+    "hash": "qBOfgOnBlQyESPVn5B0sOxBw287mG4lyI+9onD/rtcI=",
+    "status": "InProgress"
+  },
+  "install": {
+    "acknowledgedRevision": "2ea44cb9-b054-4652-8760-c42ca48402eb",
+    "readyRevision": "954834ea-6a12-4611-9bdc-1e13b640334a",
+    "hash": "qBOfgOnBlQyESPVn5B0sOxBw287mG4lyI+9onD/rtcI=",
+    "configurationHash": "e9e7af1b2c1560560dea073e00ab2268738540454a59ab39581fa86bb4184349",
+    "lastModified": "2026-11-22T03:53:14.000+0000",
+    "cloudTrailEventId": "2771aa41-feba-4077-8117-9b0636a6278e"
+  },
+  "lastInvocation": {
+    "startedAt": "2026-11-22T03:57:06.813Z",
+    "outcome": "terminal-lambda-payload-received",
+    "http": 200
+  },
+  "responses": [
+    {
+      "step": 1,
+      "status": 200,
+      "syntheticPrompt": "I study chemistry and am weighing an industry internship against summer research. I want to learn what suits me before deciding whether to pursue graduate school.",
+      "reply": "You’re treating the summer as a way to learn about your fit for graduate school. It may help to separate two questions: what you want this summer to provide in its own right—such as income, skills, experience, or other commitments—and what you hope it will teach you about longer-term study. Those aims may overlap, but neither has to be primary by assumption.\n\nOnce you clarify the aims and their relative importance, you can examine what each experience would actually let you do, observe, and learn, rather than relying only on its label. Consider the evidence each might provide about day-to-day work, the kinds of problems you enjoy, and the conditions in which you thrive; also note what remains uncertain and how transferable the experience would be. The key reasoning move is to connect each possibility to the questions you want the summer to answer, while recognizing that one summer cannot settle every question about graduate school.\n\nThe evidence can inform your judgment, but it cannot make it for you. You’ll still need to weigh competing aims, practical limits, and how much uncertainty you’re comfortable carrying. You can treat the summer choice as a useful next step rather than a final verdict: later feedback or changed circumstances may give you reason to revisit your longer-term view.",
+      "followUps": [
+        {
+          "dimension": "objectives",
+          "question": "How can I tell whether the goals I have for the summer reflect what I genuinely want to learn, rather than assumptions about what I should do before graduate school?"
+        },
+        {
+          "dimension": "analysis",
+          "question": "What would help me test whether an internship or research experience would give me meaningful evidence about the work and environment I’m curious about?"
+        },
+        {
+          "dimension": "judgment",
+          "question": "How can I decide what level of uncertainty is acceptable when a short summer experience may inform, but not settle, a longer-term choice?"
+        }
+      ],
+      "done": false,
+      "usage": {
+        "step": 1,
+        "state": "ready",
+        "bytes": 5025,
+        "inputs": 868,
+        "outputs": 389,
+        "costMicros": 303,
+        "spentMicros": 303,
+        "requestHash": "62330e7758ead39616fe3ea370fc624787f1371d6d03fe3d2d07a908302f7784"
+      }
+    },
+    {
+      "step": 2,
+      "status": 200,
+      "syntheticPrompt": "How can I tell which objectives the summer should serve?",
+      "reply": "A useful starting point is to separate objectives you would value even if the summer taught you nothing about graduate school from objectives that serve mainly as clues about that longer-term choice. For example, learning a particular skill or having a needed income may matter in its own right; learning whether you enjoy a certain kind of work may matter because it could inform what comes next. Neither kind is automatically more important.\n\nTo tell which objectives the summer should serve, ask what would make the summer feel worthwhile across more than one plausible future—not only the future in which you pursue graduate school. Then distinguish nonnegotiable needs or constraints from preferences, and make any tradeoffs explicit. This helps because an experience can be informative yet fail to meet an important practical need, or be worthwhile in itself without resolving the larger question.\n\nYou don’t need certainty about your future goals before setting summer objectives. Aim for objectives that are clear enough to guide the choice and flexible enough to remain useful if your plans change. How you weight them is a judgment call shaped by your circumstances and values; you can revisit it if what you learn changes your understanding of what matters.",
+      "followUps": [
+        {
+          "dimension": "analysis",
+          "question": "What would help me assess whether a summer experience can meet the objectives I care about, rather than merely sound relevant?"
+        },
+        {
+          "dimension": "judgment",
+          "question": "How can I make a reasonable tradeoff when the summer objectives I care about cannot all be served equally?"
+        }
+      ],
+      "done": false,
+      "usage": {
+        "step": 2,
+        "state": "ready",
+        "bytes": 7414,
+        "inputs": 1306,
+        "outputs": 345,
+        "costMicros": 336,
+        "spentMicros": 639,
+        "requestHash": "82bb76453b72ab47ff8b579bf8478f5949f03045464f60d105739c49f7ffd4c7"
+      }
+    },
+    {
+      "step": 3,
+      "status": 200,
+      "syntheticPrompt": "How could I compare what I might actually learn from the two experiences?",
+      "reply": "You’re now asking about the quality of the learning each experience could offer, not just whether its label sounds relevant. Start from the questions you hope the summer will help answer—such as what kinds of chemistry problems, work routines, or ways of collaborating you find engaging. Then trace how each experience might expose you to those things: what you would actually do, what you could observe, and what feedback or reflection would help you learn from it.\n\nSeparate what is known from what you’re assuming. A description of an opportunity may establish the setting or planned activities, but not how much responsibility, mentorship, or exposure you would actually get. Identify the assumptions that matter to your learning goals, and consider what information could test them. It’s useful to seek information when it could change your picture of what you’d learn; pursuing certainty about every detail is unlikely to help.\n\nThe comparison is not only about quantity of learning. Different experiences may teach different things, and some lessons may transfer while others are specific to that setting. Your judgment comes in when deciding which learning would be useful for your purposes, given practical constraints and the fact that neither experience can fully predict what graduate school would be like.",
+      "followUps": [
+        {
+          "dimension": "judgment",
+          "question": "How can I tell which kinds of learning would matter most for the next decision about graduate school?"
+        }
+      ],
+      "done": false,
+      "usage": {
+        "step": 3,
+        "state": "ready",
+        "bytes": 8553,
+        "inputs": 1507,
+        "outputs": 294,
+        "costMicros": 336,
+        "spentMicros": 975,
+        "requestHash": "8551417cec23c9059e363c17008d93dde811d8b3dcefafff37729fc35c4a70ad"
+      }
+    },
+    {
+      "step": 4,
+      "status": 200,
+      "syntheticPrompt": "How can I weigh what I learn against practical constraints without treating it as a final verdict?",
+      "reply": "Treat the summer choice as a bounded decision about what to do next, not a verdict on whether graduate school suits you. First identify the practical constraints that genuinely limit what is possible—such as finances, location, schedule, or other commitments—and distinguish those from preferences you could trade off. Then consider what learning each feasible experience could provide toward the questions you care about, including what it would not tell you. This keeps practical needs visible without letting one summer’s evidence stand in for a much larger decision.\n\nWhen weighing them, ask whether the expected learning is worth the practical cost to you, given your priorities and tolerance for uncertainty. You might also consider whether there are ways to preserve learning despite a constraint—for instance, what you could observe, ask, or reflect on within the experience you choose. The goal isn’t to maximize information at any price, but to choose a useful next step that is workable for your circumstances.\n\nAfterward, treat what you learn as evidence, not a verdict: notice what you enjoyed or found difficult, and whether that seems tied to the work itself or to the particular setting and support. Reconsider your graduate-school judgment if later experience, feedback, or changed circumstances meaningfully shifts that picture. For now, the summer only needs to serve objectives you consider worthwhile and feasible; the longer-term judgment remains yours.",
+      "followUps": [],
+      "done": true,
+      "usage": {
+        "step": 4,
+        "state": "complete",
+        "bytes": 8816,
+        "inputs": 1533,
+        "outputs": 295,
+        "costMicros": 340,
+        "spentMicros": 1315,
+        "requestHash": "2f6f043a39a7b06dcf5794e1aa903e65bdb7ba0963a7c900c99eb06a45ccd7d4"
+      }
+    }
+  ],
+  "result": {
+    "status": "reconciled",
+    "requests": 4,
+    "spentMicros": 1315,
+    "receipts": [
+      {
+        "step": 1,
+        "state": "ready",
+        "bytes": 5025,
+        "inputs": 868,
+        "outputs": 389,
+        "costMicros": 303,
+        "spentMicros": 303,
+        "requestHash": "62330e7758ead39616fe3ea370fc624787f1371d6d03fe3d2d07a908302f7784"
+      },
+      {
+        "step": 2,
+        "state": "ready",
+        "bytes": 7414,
+        "inputs": 1306,
+        "outputs": 345,
+        "costMicros": 336,
+        "spentMicros": 639,
+        "requestHash": "82bb76453b72ab47ff8b579bf8478f5949f03045464f60d105739c49f7ffd4c7"
+      },
+      {
+        "step": 3,
+        "state": "ready",
+        "bytes": 8553,
+        "inputs": 1507,
+        "outputs": 294,
+        "costMicros": 336,
+        "spentMicros": 975,
+        "requestHash": "8551417cec23c9059e363c17008d93dde811d8b3dcefafff37729fc35c4a70ad"
+      },
+      {
+        "step": 4,
+        "state": "complete",
+        "bytes": 8816,
+        "inputs": 1533,
+        "outputs": 295,
+        "costMicros": 340,
+        "spentMicros": 1315,
+        "requestHash": "2f6f043a39a7b06dcf5794e1aa903e65bdb7ba0963a7c900c99eb06a45ccd7d4"
+      }
+    ]
+  },
+  "status": "reconciled",
+  "restoreAcknowledgement": {
+    "revision": "be10abe2-adf0-4357-8736-85693bfe3e5c",
+    "hash": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+    "status": "InProgress"
+  },
+  "restoration": {
+    "acknowledgedRevision": "be10abe2-adf0-4357-8736-85693bfe3e5c",
+    "readyRevision": "489a5853-ae73-480a-8192-2fee5d84a27b",
+    "hash": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+    "configurationHash": "e9e7af1b2c1560560dea073e00ab2268738540454a59ab39581fa86bb4184349",
+    "lastModified": "2026-11-22T03:57:15.000+0000",
+    "cloudTrailEventId": "b494c024-cdea-40d6-b144-9dbc6dfd3e8d"
+  },
+  "restorationVerified": {
+    "at": "2026-11-22T03:59:58.018Z",
+    "latestRevision": "489a5853-ae73-480a-8192-2fee5d84a27b",
+    "privateCodeOriginal": true,
+    "publicOff": true,
+    "masterOnRevision": 11
+  }
+}

@@ -1,0 +1,11 @@
+{"event":"run","run":"alpha-initial","manifestHash":"e7da01087a961dc7c3f6a91004a9c828545d01a3df58be3ee77c993f9e5ebf38","artifactSha256":"a8139f80e9c1950c8448f567e41d2c3b1070dbcee61b897223ef689c3febb5c2","source":"934f2fd837423c45d77082566ba5f55a50df4771","approval":"navigator-paid-review-35375a23-05ba-4ad1-b61c-8a6a8c33e327"}
+{"event":"pending","step":0}
+{"event":"acknowledged","step":0}
+{"event":"pending","step":1}
+{"event":"acknowledged","step":1,"bytes":5025,"inputs":868,"outputs":389,"costMicros":303,"spentMicros":303,"requestHash":"62330e7758ead39616fe3ea370fc624787f1371d6d03fe3d2d07a908302f7784"}
+{"event":"pending","step":2}
+{"event":"acknowledged","step":2,"bytes":7414,"inputs":1306,"outputs":345,"costMicros":336,"spentMicros":639,"requestHash":"82bb76453b72ab47ff8b579bf8478f5949f03045464f60d105739c49f7ffd4c7"}
+{"event":"pending","step":3}
+{"event":"acknowledged","step":3,"bytes":8553,"inputs":1507,"outputs":294,"costMicros":336,"spentMicros":975,"requestHash":"8551417cec23c9059e363c17008d93dde811d8b3dcefafff37729fc35c4a70ad"}
+{"event":"pending","step":4}
+{"event":"acknowledged","step":4,"bytes":8816,"inputs":1533,"outputs":295,"costMicros":340,"spentMicros":1315,"requestHash":"2f6f043a39a7b06dcf5794e1aa903e65bdb7ba0963a7c900c99eb06a45ccd7d4"}

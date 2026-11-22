@@ -1,0 +1,61 @@
+{
+  "result": "PASS",
+  "source": "895b862452b4c6e70a39cd534d7edbc7d9d34670",
+  "approvedOperatorSource": "d86d193e58279553b7e1f48e24ede93c809db058",
+  "coreRuntimeSource": "934f2fd837423c45d77082566ba5f55a50df4771",
+  "package": "navigator-paid-review-35375a23-05ba-4ad1-b61c-8a6a8c33e327",
+  "planSha256": "017012735932d876a3d5e032aa0c24fe69754c00f8d142816f0957c9591524a3",
+  "manifestSha256": "ccb2e31cb63f803438f20aa8383aa6580646ead32227675ab4e0d5ce84d32230",
+  "artifactSha256": "a8139f80e9c1950c8448f567e41d2c3b1070dbcee61b897223ef689c3febb5c2",
+  "focusedTests": 74,
+  "independentPackageReview": "PASS",
+  "bootstrapInvocations": 1,
+  "paidRequests": 4,
+  "retries": 0,
+  "providerReturnedTokens": {
+    "input": 5214,
+    "output": 1323
+  },
+  "conservativeLedgerCostMicros": 1315,
+  "conservativeLedgerCostUSD": 0.001315,
+  "providerInvoiceReconciled": false,
+  "ceilingUSD": 0.03,
+  "monthlyCeilingUSD": 10,
+  "canaryHold": 0,
+  "canonicalReserved": 0,
+  "canonicalLeaseCount": 0,
+  "globalLeaseCount": 0,
+  "coachingFollowUpCounts": [
+    3,
+    2,
+    1,
+    0
+  ],
+  "finalTurnClosed": true,
+  "originalPrivateCodeRestored": true,
+  "publicOffVersion": "1",
+  "masterOnRevision": 11,
+  "restoredReadyRevision": "489a5853-ae73-480a-8192-2fee5d84a27b",
+  "configurationHash": "e9e7af1b2c1560560dea073e00ab2268738540454a59ab39581fa86bb4184349",
+  "protectedApps": {
+    "engent-platform-alpha-api": {
+      "version": "5",
+      "revision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+    },
+    "decisiontree-alpha-staging-api": {
+      "version": "18",
+      "revision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc"
+    },
+    "decisionprocess-alpha-api": {
+      "version": "6",
+      "revision": "9c51c343-ea67-444a-9133-45853b39d81f"
+    }
+  },
+  "historicalJournalPreserved": true,
+  "spendingRecordsPreserved": true,
+  "publicActivation": false,
+  "productionChanges": false,
+  "prMerges": false,
+  "secretValuesCaptured": false,
+  "rawCookiesIpsOrReceiptsCaptured": false
+}
