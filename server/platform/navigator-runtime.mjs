@@ -1,4 +1,5 @@
 import {createHmac, randomBytes, timingSafeEqual} from 'node:crypto';
+import {NavigatorLimitError} from './budget.mjs';
 import {cookie, digest, PlatformError} from './oauth.mjs';
 import {readConversation, makeContinuation, navigatorRequest, readNavigatorReply, maxTurns, maxReplyLength, maxMessageLength, maxRequestBytes} from './navigator.mjs';
 
@@ -10,7 +11,7 @@ const reply=(statusCode,body,cookies=[])=>({statusCode,cookies,headers:{
  'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'
 },body:JSON.stringify(body)});
 
-export function anonymousNavigator({origin, enabled=false, signingSecret, credential, price, controls, conversationStore, master, generate, now=Date.now}) {
+export function anonymousNavigator({origin, enabled=false, signingSecret, credential, price, controls, conversationStore, master, generate, onLimit=()=>{}, now=Date.now}) {
  const sign=(value,secret)=>createHmac('sha256',secret).update('navigator-session#'+value).digest();
  function readIdentity(value,secret) {
   const match=/^([A-Za-z0-9_-]{43})\.(\d{10})\.([A-Za-z0-9_-]{43})$/.exec(value??'');
@@ -90,6 +91,15 @@ export function anonymousNavigator({origin, enabled=false, signingSecret, creden
     throw error;
    }
   } catch(error) {
+   if(error instanceof NavigatorLimitError) {
+    // Reason-only telemetry: never include actor, IP, cookie, prompt or continuation.
+    try { onLimit(error.code); } catch { /* Logging must not change admission decisions. */ }
+    const retryAfterSeconds=error.retryAt==null?null:Math.max(1,Math.ceil((error.retryAt-now())/1000));
+    const response=reply(error.status,{error:error.message,code:error.code,
+     ...(retryAfterSeconds==null?{}:{retryAt:new Date(error.retryAt).toISOString(),retryAfterSeconds})});
+    if(retryAfterSeconds!=null)response.headers['Retry-After']=String(retryAfterSeconds);
+    return response;
+   }
    return reply(error instanceof PlatformError?error.status:503,{error:error instanceof PlatformError?error.message:'Navigator is temporarily unavailable.'});
   }
  };

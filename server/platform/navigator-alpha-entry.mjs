@@ -38,6 +38,7 @@ function createHandler() {
  }});
  return anonymousNavigator({enabled:true,origin,master,conversationStore:store,
   controls:navigatorControls(store),
+  onLimit:code=>console.info(JSON.stringify({event:'navigator_limit',code})),
   signingSecret:secureParameter(ssm,'/decisionnavigator-alpha/hmac-secret',32),
   credential:secureParameter(ssm,'/decisionnavigator-alpha/openai-api-key',10),
   // Conservatively charge every input token at the highest Standard input rate (cache write).

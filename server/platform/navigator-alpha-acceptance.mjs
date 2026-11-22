@@ -99,17 +99,16 @@ export async function runNavigatorAcceptance(suite,{makeStore,signingSecret,read
  if(suite==='limits'){
   const visitor=makeScenario('visitor');
   const cookie=await visitor.newCookie();
-  for(let n=0;n<5;n++){
-   if(n===2){
+  for(let n=0;n<pilot.guestDaily;n++){
+   if(n>0&&n%pilot.guestMinute===0){
     status(await visitor.turn(cookie),429,'per-minute-denial');
     visitor.advance();
    }
-   if(n===4)visitor.advance();
    status(await visitor.turn(cookie),200,'within-visitor-limit');
   }
   visitor.advance();
   status(await visitor.turn(cookie),429,'per-visitor-daily-denial');
-  check(visitor.calls()===5,'visitor-limit-provider-block');
+  check(visitor.calls()===pilot.guestDaily,'visitor-limit-provider-block');
 
   const address=makeScenario('ip');
   const cutoff=Date.now();

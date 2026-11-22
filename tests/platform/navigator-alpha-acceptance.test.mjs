@@ -1,4 +1,5 @@
 import {expect,it,vi} from 'vitest';
+import {pilot} from '../../server/platform/budget.mjs';
 import {handlerEntry,runNavigatorAcceptance} from '../../server/platform/navigator-alpha-acceptance.mjs';
 
 function makeStore(prefix){
@@ -28,7 +29,7 @@ it.each(['protocol','limits','master-and-outcomes'])('runs the %s suite with syn
  const readMaster=vi.fn(async()=>({suspended:false,revision:9}));
  const result=await runNavigatorAcceptance(suite,{makeStore,readMaster,signingSecret:async()=>'synthetic-signing-secret-for-offline-test'});
  expect(result).toEqual({suite,passed:true,providerTransport:'absent',canonicalWrites:false});
- expect(readMaster).toHaveBeenCalledTimes({protocol:4,limits:6,'master-and-outcomes':2}[suite]);
+ expect(readMaster).toHaveBeenCalledTimes({protocol:4,limits:pilot.guestDaily+1,'master-and-outcomes':2}[suite]);
 });
 
 it('refuses aliases, numbered versions, wrong event shape and wrong environment before AWS setup',async()=>{
