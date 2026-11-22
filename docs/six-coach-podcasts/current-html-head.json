@@ -1,0 +1,15 @@
+{
+    "AcceptRanges": "bytes",
+    "LastModified": "2026-11-22T14:12:51+00:00",
+    "ContentLength": 975,
+    "ETag": "\"ff8f7c8c4349f8d860c25c7906bd06bf\"",
+    "VersionId": "wCdDDWNmMOHhNQmA4SNGt0oCfVndyjef",
+    "CacheControl": "no-cache,no-store,must-revalidate",
+    "ContentType": "text/html; charset=utf-8",
+    "ServerSideEncryption": "AES256",
+    "Metadata": {
+        "sha256": "719f810995f3c6a27ff791a86d659cdc261a5b5ea57bbdc034a74effb335d2e1",
+        "engent-release-id": "ui-consistency-475913c",
+        "engent-write-id": "0677aff9-f5ff-44e8-9ed1-c39798c17c71"
+    }
+}

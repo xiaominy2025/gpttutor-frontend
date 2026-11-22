@@ -1,0 +1,340 @@
+{
+  "blocked": 67,
+  "blockedPaths": [
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtag/js"
+    }
+  ]
+}
