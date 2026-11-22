@@ -25,3 +25,15 @@ For the edge function, original bytes are edge-live.js. Before restoring, requir
 No authorized Forecasting-specific model credential or scoped runtime IAM has been confirmed. Never reuse Navigator, Process or Tree credentials. Proposed owner-provisioned SecureString is /forecasting-alpha/openai-api-key. Dedicated guest HMAC, durable isolated $1 ledger, concurrency two and fresh fail-closed master read are runtime-owner responsibilities. Verify provider-blocked cookie and requestContext.http.sourceIp on the actual route before paid dispatch. No paid calls made by this platform workstream.
 
 Coordination: frontend Issue #11 comment 7085460691.
+
+## Published Explore launch
+
+Source 1157c59645de1670fe934bf2f730e9ae821c696d, draft PR #20. Exactly two immutable JS files and one conditional root HTML replacement were published; invalidation I95R4STQE3PK09VVJNGUPSCODM completed. Root HTML VersionId 5kvb16lAupU03HGA82vpmk0IcLLgZ2.3, ETag d0e9dace98b8b6ba9a0bb95e2aa9bb37, SHA256 2d7c420d3b0c2df4f4eeb06b7d83c61b3dc52a1db326f5a406ef5361813d1c65. Prior HTML is captured for guarded rollback; no deletion.
+
+The preflight initially stopped on a changed distribution ETag. Complete distribution configuration was identical, LIVE edge code and ownership matched, CloudTrail returned no UpdateDistribution events, and the workspace owner confirmed no edge changes. Reconciled current ETag E1U5RCOVU0NYF2 while retaining the unchanged complete configuration hash. Subsequent publication and verification passed. No drift guards removed.
+
+Hosted Chrome passed Explore launch and Forecasting hard refresh at 1440, 1024, 768 and 390px, with no horizontal overflow or page errors. All six sections, seven case links and Tree/Process launch destinations retained. Browser blocked external traffic and all non-GET/HEAD requests; no sign-in codes or AI calls. The first smoke run counted links before Navigator's existing lazy load completed; the test was corrected to wait for the Navigator button. No product change was required.
+
+All 39 MP3 recordings reused without uploads, and 56 reused immutable assets verified. AWS postflight confirms master ON revision 11, Navigator Lambda3, BFF5, Tree18 and Process6 unchanged. Forecasting owner advanced only their independently owned workspace HTML for seasonal typography; this platform publication does not own or roll back it. AI remains a separate blocked runtime milestone.
+
+Publication evidence, exact operator, original HTML, asset hashes and screenshots are in publication/. The archived operator points to its original .artifacts paths: restore those reviewed evidence files there if needed, inspect current ownership read-only, and invoke only rollback. Never replay publish or overwrite newer HTML. No rollback was necessary or executed.

@@ -1,0 +1,34 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "launch": true,
+      "refresh": true,
+      "overflow": false,
+      "pageErrors": 0
+    },
+    {
+      "width": 1024,
+      "launch": true,
+      "refresh": true,
+      "overflow": false,
+      "pageErrors": 0
+    },
+    {
+      "width": 768,
+      "launch": true,
+      "refresh": true,
+      "overflow": false,
+      "pageErrors": 0
+    },
+    {
+      "width": 390,
+      "launch": true,
+      "refresh": true,
+      "overflow": false,
+      "pageErrors": 0
+    }
+  ],
+  "noAuthenticationRequests": true,
+  "noPaidCalls": true
+}
