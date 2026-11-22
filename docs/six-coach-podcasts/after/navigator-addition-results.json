@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "widths": [
+    1440,
+    1024,
+    768,
+    390
+  ],
+  "navigatorCaseLinkAndReturn": true,
+  "processFullTitlesAndCompanyContext": true,
+  "realApiCalls": 0,
+  "paidCalls": 0
+}

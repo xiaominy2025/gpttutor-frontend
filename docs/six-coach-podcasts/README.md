@@ -1,70 +1,62 @@
-# Six-Coach podcasts and launch-control candidate
+# Coach and Navigator podcast review candidate
 
-Prepared on branch `codex/six-coach-podcasts-launch-controls`; implementation `7159053`, based on the published UI release 475913c and its documentation head 68e201c. **Not deployed or merged.**
+Draft PR #18, branch codex/six-coach-podcasts-launch-controls. Latest implementation **2547486**. **Not deployed or merged.**
 
-## Inventory and mapping
+## Owner follow-up completed
 
-Local source: `C:\Users\xmkya\Documents\Xiaomin Folder\Podcast projects\Engent Labs`.
+The three Process episodes now use the supplied full phrases as their titles in both the list and selected heading, with the company shown beneath:
 
-- Decision Process: 7 recordings, 4 reused + 3 added. The initial two-missing estimate was corrected by the owner: **Fastenal, Uniqlo and Caterpillar**. Their supplied descriptions are used verbatim. Existing four metadata entries and MP3s remain unchanged. Numbered filenames give Monday-Sunday order; no Process playlist TXT exists.
-- Forecasting: 7 recordings, ordered exactly by its supplied TXT subtitles.
-- Scenario Analysis: 4 recordings, ordered exactly by its supplied TXT subtitles.
-- Decision Tree: 5 recordings, ordered exactly by its supplied TXT subtitles.
-- Simulation: all 6 published cases unchanged. One extra local `Module8_Simulation_Mark_Charlotte_REDOWNLOAD.mp3` is unmatched and excluded.
-- Optimization: all 6 published cases unchanged.
-- Navigator: 4 local recordings inventoried but excluded, as requested. No podcast section added.
+- Fastenal: **How Industrial Vending Transformed Supply Chain Management**
+- Uniqlo: **How Simplicity and Innovation Built a Global Fashion Brand**
+- Caterpillar: **How Predictive Maintenance Turned Equipment Data into Customer Value**
 
-Total: **35 playable episodes**, **16 published MP3s reused**, **19 new MP3s**, **79,583,162 bytes (75.90 MiB)** added. All 35 content hashes are unique. The local source files were read/copied only, never edited. Existing ten transcript assets remain intact; no new transcript/notes architecture.
+Navigator now has Business Case Podcasts and an Explore Cases link above Meet Your Coach. Its new page at `/explore/navigator/cases` uses the same ApplicationLibrary player/list, four recordings in supplied TXT order, and a return link to Explore. This owner request supersedes the earlier exclusion of Navigator podcasts. No Navigator AI or conversation runtime changes.
 
-Titles, descriptions, episode order and actual MP3 filenames: [readable mapping](episode-mapping.md). Absolute Windows paths, duration measurements, SHA256s and current published keys: [complete inventory](inventory.json). Original [playlist TXT copies](playlists/) and [owner Process metadata](process-owner-metadata.json) preserve provenance.
+## Inventory
 
-Content gaps: Forecasting/Scenario/Tree TXT files contain titles, not separate descriptions. Their title/context is shown without invented summaries. Simulation/Optimization also lack output playlist TXT files; existing approved metadata is preserved. There is no missing MP3 among the 35 integrated episodes. The unmatched Simulation file and Navigator recordings are intentionally not integrated.
+39 playable episodes: Process 7, Forecasting 7, Scenario Analysis 4, Decision Tree 5, Simulation 6, Optimization 6, Navigator 4. Reuse 16 published MP3s; prepare 23 new MP3s. Added audio: **97,232,076 bytes (92.73 MiB)**. All 39 hashes are unique. Source library read/copied only; no original files edited.
 
-## Minimal implementation
+[Complete inventory](inventory.json) provides local Windows paths, MP3 filenames, durations, hashes, published keys and provenance. [Episode mapping](episode-mapping.md), [original playlists](playlists/), and [owner Process title clarification](process-owner-metadata.json) provide titles/order. Navigator's four cases are Morgan Stanley, Netflix, Zillow and UPS.
 
-Reuse the existing ApplicationLibrary/EpisodeMedia, player controls, episode list, responsive styles and lazy audio loading. Additional collection data lives in coachPodcasts.json. New cases reuse each Coach's existing watercolor artwork rather than introducing new illustrations. Unrecorded Process placeholders are replaced by the three real supplied recordings.
+Simulation/Optimization entries and four existing Process entries remain unchanged. Process's seven recordings follow numbered Monday-Sunday order. Process has no playlist TXT; the owner supplied the three missing titles. Forecasting/Scenario/Tree/Navigator TXT files contain ordered subtitles but no separate descriptions: none were invented. Simulation's unmatched Module8 recording remains excluded. There is no missing MP3 among the 39 integrated episodes. Ten existing transcript assets are retained.
 
-One shared CoachLaunchControl supplies a 44x44 native link/button, light background, subtle border and green launch icon. No permanent text inside the control. Full accessible action name and the same hover/keyboard-focus tooltip; Escape dismisses it. Tree and Process retain existing destinations, and the signed-in Tree POST handoff retains its native submit semantics. Navigator retains its modal, focus-return reference, draft and conversation handlers, with the control under Meet Your Coach. Four unavailable Coaches retain Coming Soon and have no active launch control.
+## UI and tests
 
-No backend/authentication/AI/Admin/shared-header/Coach-app source changes. No dependency additions, new player, infrastructure or deployment tooling.
+Three shared light 44px icon launch controls retain hover/focus tooltips, screen-reader action names and direct mobile activation. Four unavailable Coaches retain Coming Soon. Tree/Process navigation and signed-in Tree native POST, Navigator modal/focus/draft/continuation behavior and six animation controls remain intact.
 
-## Tests and screenshots
+- Latest build passed (614 modules).
+- Latest focused tests: **13 passed across 3 files**, covering Navigator dialog, all collection mappings/content preservation, owner full titles/company context, seven collections/39 unique assets and native launch semantics. Prior full suite: 319 passed across 41 files before this follow-up.
+- All **39 MP3s** decoded and played in the browser; pause, episode switching/old-audio stop, episode order, keyboard selection and seven direct routes/refresh passed.
+- Responsive/media/launch checks at 1440/1024/768/390 and native desktop resizing passed. Navigator addition/display smoke checks verified its Explore link, page, return navigation, and all three Process full titles/companies at all four widths. Final rendering uses the same tested audio bytes.
+- All tests use intercepted local traffic: no live email codes, user/project writes or paid AI. Analytics requests blocked. No backend/authentication source or AWS configuration changed.
 
-- Alpha build passed (610 modules).
-- Platform suite: **319 tests across 41 files passed**. Covers exact playlist order, title punctuation, owner descriptions, preservation of existing cases, all media URLs/files, unique audio hashes, icon accessibility/dismissal, native submit behavior and existing authentication/session regressions.
-- Podcast/launch browser checks passed at **1440/1024/768/390**: all 35 actual MP3s decoded and played, pause and episode switching (including stopping prior audio), keyboard episode selection, duration sanity, six direct podcast routes/refresh, three 44px launch controls, hover/focus/Escape tooltips, direct mobile taps, Navigator modal/draft/focus return, launch destinations, no missing assets/page errors/horizontal or nested root scrollbars.
-- Native Chrome desktop resizing passed through 1440/1024/900/800/768/600/1440 on Homepage and Explore. 390px uses viewport emulation because Chrome has a minimum desktop-window width.
-- Navigator regression passed at all four widths: six animation play/pause/replay controls, reduced motion, account UI dismissal, four-turn mocked dialog/continuation/reset/draft behavior. Real email, project writes and paid AI calls: **zero**. Analytics requests were blocked locally; no third-party test data was sent.
-- Baseline preservation tests caught a punctuation encoding mismatch during preparation; it was corrected and the complete final suites passed. The old launch-style assertion was narrowed from hidden button font metrics to the visible icon control's dimensions/colors/border; no UI behavior was changed to satisfy it.
+[Playback/layout results](after/results.json), [Navigator addition/title checks](after/navigator-addition-results.json), and [Navigator/animation regression](navigator-animation-results.json) contain evidence. The separate descriptions absent from TXT files are a content gap, not fabricated copy.
 
-Evidence: [podcast/launch results](after/results.json), [animation/Navigator results](navigator-animation-results.json), [baseline layout](before/layout.json).
+## Preview and screenshots
 
-Full-page Homepage/Explore screenshots at four widths: [before](before/) / [after](after/). Each Coach's podcast page has desktop/mobile screenshots in after/.
+- [Local Explore](http://127.0.0.1:5261/explore)
+- [Local Navigator podcasts](http://127.0.0.1:5261/explore/navigator/cases)
+- [Local Process podcasts](http://127.0.0.1:5261/explore/process/cases)
 
-- [Explore desktop before](before/explore-1440.png) / [after](after/explore-1440.png)
-- [Explore mobile before](before/explore-390.png) / [after](after/explore-390.png)
-- [Navigator tooltip desktop](after/launch-navigator-focus-1440.png) / [mobile](after/launch-navigator-focus-390.png)
-- [Process tooltip desktop](after/launch-process-focus-1440.png) / [mobile](after/launch-process-focus-390.png)
-- [New Process episode desktop](after/podcasts-process-1440.png) / [mobile](after/podcasts-process-390.png)
+Preview is read-only: email, project and AI calls are not forwarded. Coach launches use existing Alpha destinations. Hosted Alpha is unchanged.
 
-Local read-only review: http://127.0.0.1:5261/explore (Homepage: /engent-alpha/). It blocks email, AI and project API calls and external analytics. Coach launches use the existing Alpha destinations. The candidate is not on the hosted Alpha site yet.
+- [Explore desktop](after/explore-1440.png) / [mobile](after/explore-390.png)
+- [Process titles desktop](after/podcasts-process-1440.png) / [mobile](after/podcasts-process-390.png)
+- [Navigator podcasts desktop](after/podcasts-navigator-1440.png) / [mobile](after/podcasts-navigator-390.png)
+- [Icon tooltip desktop](after/launch-process-focus-1440.png) / [mobile](after/launch-process-focus-390.png)
 
-## Incremental cost estimate
+Full-page before/after Homepage/Explore images at all four widths: [before](before/) / [after](after/). Other Coach pages have desktop/mobile images in after/.
 
-No new resources or fixed fees. At S3 Standard US-East first-tier $0.023/GB-month, added MP3 storage is approximately **$0.0017/month**; allow less than $0.01/month including changed bundles/versioned HTML. [AWS public current rate evidence](s3-storage-rate.json), published November 21, and [S3 pricing](https://aws.amazon.com/s3/pricing/).
+## Costs and prepared publication
 
-A mean new episode is 4.19 MB. 1,000 complete new-episode listens transfer roughly 4 GB: approximately **$0.35** at the US/Canada CloudFront $0.085/GB pay-as-you-go tier outside applicable free allowance, plus small request charges. Geography, replay/range requests and the account's shared allowances change actual charges; this is a model, not a billing forecast. CloudFront currently lists 1 TB/month and 10M requests in its allowance; no assumption that this account has unused allowance. [AWS CloudFront pricing](https://aws.amazon.com/cloudfront/pricing/pay-as-you-go/). No AI spending or AI budget changes.
+No new resources or fixed fees. Added MP3 storage is about **$0.0021/month** at the US-East S3 Standard first-tier $0.023/GB-month; under $0.01/month including changed bundles/HTML. [Current public S3 rate evidence](s3-storage-rate.json), [AWS S3 pricing](https://aws.amazon.com/s3/pricing/).
 
-## Proposed publication and rollback - owner approval required
+A mean new episode is about 4.23 MB. Roughly $0.35 per 1,000 complete new-episode plays at the US/Canada CloudFront $0.085/GB tier outside applicable allowance, plus small request costs; geography, replay/range requests and account allowances affect actual billing. [AWS CloudFront pricing](https://aws.amazon.com/cloudfront/pricing/pay-as-you-go/). No AI spending or budget changes.
 
-[Exact candidate file hashes and reuse plan](publication-plan.json): **23 immutable uploads = 19 MP3s + 4 JS/CSS**, one conditional HTML replacement, one scoped invalidation. All 16 existing MP3 keys and unchanged vendor/artwork/transcripts are reused. No destructive sync or media re-encoding.
+[Publication manifest](publication-plan.json): **27 immutable uploads = 23 MP3s + 4 JS/CSS**, one conditional HTML replacement, one scoped invalidation. Reuse existing media/vendor/artwork/transcripts; no destructive synchronization or re-encoding. Owner approval required before any execution.
 
-Target is the existing Alpha bucket `decisiontree-alpha-staging-frontend-vnhhrwadnpad`, prefix `releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled`, distribution E1C4AJI9FUE47B. Paths: /engent-alpha/*, /explore, /explore/*. Production untouched.
+Use existing Alpha bucket `decisiontree-alpha-staging-frontend-vnhhrwadnpad`, prefix `releases/engent-release-b-alpha/platform/b097a787d652d093bfb72f0f70303518b06ec876-enabled`, distribution E1C4AJI9FUE47B; invalidation paths /engent-alpha/*, /explore, /explore/*.
 
-Fresh read-only inspection confirmed current HTML VersionId `wCdDDWNmMOHhNQmA4SNGt0oCfVndyjef`, ETag `"ff8f7c8c4349f8d860c25c7906bd06bf"`, SHA256 `719f810995f3c6a27ff791a86d659cdc261a5b5ea57bbdc034a74effb335d2e1`. [Metadata](current-html-head.json) and [exact rollback bytes](rollback-index.html) captured. Recheck ownership, VersionId and ETag immediately before any approved publication; stop on drift.
+Captured current baseline: HTML VersionId `wCdDDWNmMOHhNQmA4SNGt0oCfVndyjef`, ETag `"ff8f7c8c4349f8d860c25c7906bd06bf"`, SHA256 `719f810995f3c6a27ff791a86d659cdc261a5b5ea57bbdc034a74effb335d2e1`. [Metadata](current-html-head.json), [exact rollback bytes](rollback-index.html). Recheck ownership/version/ETag at execution and stop on drift.
 
-After approval: rebuild the source pin and match hashes; stage missing immutable files with If-None-Match:* (reuse any verified identical existing object); conditionally promote HTML against current ownership/ETag; one scoped invalidation; hosted Guest media/launch/layout smoke checks without codes, projects or paid AI.
-
-On failure: restore only this release-owned HTML, conditional on the future receipt VersionId/ETag/ownership, using captured bytes and original metadata; stop on conflicting ownership. Invalidate the same paths and verify previous working UI/media. Retain immutable assets and spending records. Do not restore the older pre-UI HTML or touch Navigator/master settings, Tree, Process, authentication or Production.
-
-Navigator AI and Administrator master ON configuration remain untouched. No AWS writes or PR merges have occurred in this task. This plan grants no deployment authority.
+After approval: rebuild pinned source/hash-check, stage only missing immutable assets conditionally, promote one HTML with If-Match, scoped invalidation and hosted Guest UI/media checks. On failure, restore only receipt-owned HTML conditionally with captured bytes/metadata, invalidate same paths and verify. Stop if another release owns HTML. Retain immutable assets, runtimes and spending records. Navigator AI/master ON, Tree/Process backends, authentication and Production remain untouched.

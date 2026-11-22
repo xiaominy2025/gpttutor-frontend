@@ -3,7 +3,7 @@
   "localFixturesOnly": true,
   "realApiCalls": 0,
   "paidAiCalls": 0,
-  "uniquePlayableAssets": 35,
+  "uniquePlayableAssets": 39,
   "nativeResize": true,
   "results": [
     {
@@ -61,6 +61,14 @@
           "episodeSwitch": true,
           "keyboard": true,
           "directRefresh": true
+        },
+        {
+          "coach": "navigator",
+          "episodes": 4,
+          "playbackTested": 4,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
         }
       ]
     },
@@ -115,6 +123,14 @@
         {
           "coach": "optimization",
           "episodes": 6,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "navigator",
+          "episodes": 4,
           "playbackTested": 2,
           "episodeSwitch": true,
           "keyboard": true,
@@ -177,6 +193,14 @@
           "episodeSwitch": true,
           "keyboard": true,
           "directRefresh": true
+        },
+        {
+          "coach": "navigator",
+          "episodes": 4,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
         }
       ]
     },
@@ -231,6 +255,14 @@
         {
           "coach": "optimization",
           "episodes": 6,
+          "playbackTested": 2,
+          "episodeSwitch": true,
+          "keyboard": true,
+          "directRefresh": true
+        },
+        {
+          "coach": "navigator",
+          "episodes": 4,
           "playbackTested": 2,
           "episodeSwitch": true,
           "keyboard": true,
