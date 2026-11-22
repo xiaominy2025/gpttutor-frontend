@@ -2,17 +2,18 @@
   "source": "Owner response November 22, 2026",
   "episodes": [
     {
-      "title": "Fastenal",
-      "description": "How Industrial Vending Transformed Supply Chain Management"
+      "context": "Fastenal",
+      "title": "How Industrial Vending Transformed Supply Chain Management"
     },
     {
-      "title": "Uniqlo",
-      "description": "How Simplicity and Innovation Built a Global Fashion Brand"
+      "context": "Uniqlo",
+      "title": "How Simplicity and Innovation Built a Global Fashion Brand"
     },
     {
-      "title": "Caterpillar",
-      "description": "How Predictive Maintenance Turned Equipment Data into Customer Value"
+      "context": "Caterpillar",
+      "title": "How Predictive Maintenance Turned Equipment Data into Customer Value"
     }
   ],
-  "order": "numbered local filenames; four existing metadata entries retained"
+  "order": "numbered local filenames; four existing metadata entries retained",
+  "clarification": "Owner confirmed these phrases are episode titles, with company shown separately."
 }

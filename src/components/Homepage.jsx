@@ -145,7 +145,7 @@ export function CoachCasesPage() {
   const { coachId } = useParams();
   if (!Object.hasOwn(podcastCollections, coachId)) return <Navigate to="/explore" replace />;
   const collection = podcastCollections[coachId];
-  return <MarketingLayout explore coachNav={<Link to={`/explore#${coachId}`}>{collection.title} Coach</Link>}>
+  return <MarketingLayout explore coachNav={<Link to={coachId === 'navigator' ? '/explore#navigator-intro-title' : `/explore#${coachId}`}>{collection.title}{coachId === 'navigator' ? '' : ' Coach'}</Link>}>
     <ApplicationLibrary key={coachId} {...collection} coachId={coachId} />
   </MarketingLayout>;
 }

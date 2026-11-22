@@ -31,7 +31,11 @@
           "existingMetadata": [],
           "publishedAssets": [],
           "publishedSha256": null,
-          "status": "excluded-no-navigator-podcasts"
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/navigator/01_Morgan_Stanley.mp3",
+          "candidateSequence": 1,
+          "candidateTitle": "An AI Investment Research Partner, Not an AI Advisor.",
+          "candidateContext": "Morgan Stanley"
         },
         {
           "filename": "02_Netflix.mp3",
@@ -45,7 +49,11 @@
           "existingMetadata": [],
           "publishedAssets": [],
           "publishedSha256": null,
-          "status": "excluded-no-navigator-podcasts"
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/navigator/02_Netflix.mp3",
+          "candidateSequence": 2,
+          "candidateTitle": "When Viewers Become Part of the Algorithm",
+          "candidateContext": "Netflix"
         },
         {
           "filename": "03_Zillow.mp3",
@@ -59,7 +67,11 @@
           "existingMetadata": [],
           "publishedAssets": [],
           "publishedSha256": null,
-          "status": "excluded-no-navigator-podcasts"
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/navigator/03_Zillow.mp3",
+          "candidateSequence": 3,
+          "candidateTitle": "When a Price Estimate Became a Business Bet",
+          "candidateContext": "Zillow"
         },
         {
           "filename": "04_UPS.mp3",
@@ -73,7 +85,11 @@
           "existingMetadata": [],
           "publishedAssets": [],
           "publishedSha256": null,
-          "status": "excluded-no-navigator-podcasts"
+          "status": "prepared-new-media",
+          "candidateRepoPath": "src/assets/podcasts/navigator/04_UPS.mp3",
+          "candidateSequence": 4,
+          "candidateTitle": "The Route the Computer Couldn't See",
+          "candidateContext": "UPS"
         }
       ],
       "playlistSources": [
@@ -82,7 +98,7 @@
           "sha256": "cd8169f0d2a80ab7a58cad40eebd405caec23f942c30160c58d3c473668e4ab1"
         }
       ],
-      "websiteEpisodeCount": 0
+      "websiteEpisodeCount": 4
     },
     {
       "coach": "tree",
@@ -722,10 +738,11 @@
           "publishedSha256": null,
           "status": "prepared-new-media",
           "candidateRepoPath": "src/assets/podcasts/decision-process/02_Tue_Fastenal_The_Vending_Machine_Moat.mp3",
-          "candidateTitle": "Fastenal",
-          "description": "How Industrial Vending Transformed Supply Chain Management",
+          "candidateTitle": "How Industrial Vending Transformed Supply Chain Management",
+          "description": null,
           "metadataAuthority": "Owner response in this task, November 22, 2026",
-          "candidateSequence": 2
+          "candidateSequence": 2,
+          "candidateContext": "Fastenal"
         },
         {
           "filename": "03_Wed_Uniqlo_The_Fabric_Innovation_Partnership.mp3",
@@ -741,10 +758,11 @@
           "publishedSha256": null,
           "status": "prepared-new-media",
           "candidateRepoPath": "src/assets/podcasts/decision-process/03_Wed_Uniqlo_The_Fabric_Innovation_Partnership.mp3",
-          "candidateTitle": "Uniqlo",
-          "description": "How Simplicity and Innovation Built a Global Fashion Brand",
+          "candidateTitle": "How Simplicity and Innovation Built a Global Fashion Brand",
+          "description": null,
           "metadataAuthority": "Owner response in this task, November 22, 2026",
-          "candidateSequence": 3
+          "candidateSequence": 3,
+          "candidateContext": "Uniqlo"
         },
         {
           "filename": "04_Thu_Intuitive_The_Installed_Base_Engine.mp3",
@@ -848,10 +866,11 @@
           "publishedSha256": null,
           "status": "prepared-new-media",
           "candidateRepoPath": "src/assets/podcasts/decision-process/06_Sat_Caterpillar_The_Part_That_Comes_Back.mp3",
-          "candidateTitle": "Caterpillar",
-          "description": "How Predictive Maintenance Turned Equipment Data into Customer Value",
+          "candidateTitle": "How Predictive Maintenance Turned Equipment Data into Customer Value",
+          "description": null,
           "metadataAuthority": "Owner response in this task, November 22, 2026",
-          "candidateSequence": 6
+          "candidateSequence": 6,
+          "candidateContext": "Caterpillar"
         },
         {
           "filename": "07_Sun_TSMC_The_Power_Of_Not_Competing_With_Your_Customers.mp3",
@@ -1302,7 +1321,6 @@
   "gaps": [
     "Resolved by owner: add all three Fastenal, Uniqlo and Caterpillar recordings with owner-provided titles/descriptions. Process playlist TXT still absent; numbered MP3 order documented.",
     "Forecast, Scenario and Tree TXT files provide ordered subtitles only; no separate descriptions. Do not invent descriptions.",
-    "Simulation has one unmatched Module8 recording; retain six published cases. Simulation/Optimization have no output playlist TXT; preserve existing published metadata.",
-    "Decision Navigator four local recordings intentionally excluded."
+    "Simulation has one unmatched Module8 recording; retain six published cases. Simulation/Optimization have no output playlist TXT; preserve existing published metadata."
   ]
 }

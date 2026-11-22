@@ -142,16 +142,16 @@
       {
         "id": "02_Tue_Fastenal_The_Vending_Machine_Moat",
         "asset": "decision-process/02_Tue_Fastenal_The_Vending_Machine_Moat",
-        "title": "Fastenal",
-        "question": "How Industrial Vending Transformed Supply Chain Management",
-        "seconds": 333
+        "title": "How Industrial Vending Transformed Supply Chain Management",
+        "seconds": 333,
+        "context": "Fastenal"
       },
       {
         "id": "03_Wed_Uniqlo_The_Fabric_Innovation_Partnership",
         "asset": "decision-process/03_Wed_Uniqlo_The_Fabric_Innovation_Partnership",
-        "title": "Uniqlo",
-        "question": "How Simplicity and Innovation Built a Global Fashion Brand",
-        "seconds": 340
+        "title": "How Simplicity and Innovation Built a Global Fashion Brand",
+        "seconds": 340,
+        "context": "Uniqlo"
       },
       {
         "id": "episode-4",
@@ -176,9 +176,9 @@
       {
         "id": "06_Sat_Caterpillar_The_Part_That_Comes_Back",
         "asset": "decision-process/06_Sat_Caterpillar_The_Part_That_Comes_Back",
-        "title": "Caterpillar",
-        "question": "How Predictive Maintenance Turned Equipment Data into Customer Value",
-        "seconds": 319
+        "title": "How Predictive Maintenance Turned Equipment Data into Customer Value",
+        "seconds": 319,
+        "context": "Caterpillar"
       },
       {
         "id": "episode-2",
@@ -189,6 +189,39 @@
         "question": "How can strategic boundaries strengthen customer trust?",
         "art": "M46 57h51v42H46zM199 57h51v42h-51zM97 78h102",
         "decision": "M117 66l25-22 33 22m-58 28 25 22 33-22"
+      }
+    ]
+  },
+  "navigator": {
+    "title": "AI Decision Navigator",
+    "cases": [
+      {
+        "id": "01_Morgan_Stanley",
+        "asset": "navigator/01_Morgan_Stanley",
+        "title": "An AI Investment Research Partner, Not an AI Advisor.",
+        "context": "Morgan Stanley",
+        "seconds": 280
+      },
+      {
+        "id": "02_Netflix",
+        "asset": "navigator/02_Netflix",
+        "title": "When Viewers Become Part of the Algorithm",
+        "context": "Netflix",
+        "seconds": 274
+      },
+      {
+        "id": "03_Zillow",
+        "asset": "navigator/03_Zillow",
+        "title": "When a Price Estimate Became a Business Bet",
+        "context": "Zillow",
+        "seconds": 291
+      },
+      {
+        "id": "04_UPS",
+        "asset": "navigator/04_UPS",
+        "title": "The Route the Computer Couldn't See",
+        "context": "UPS",
+        "seconds": 258
       }
     ]
   }

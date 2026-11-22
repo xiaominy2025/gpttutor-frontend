@@ -69,3 +69,7 @@
 .navigator-follow-ups .judgment{color:#79520e}
 .navigator-launch{margin-top:18px}
 .engent-site .navigator-launch h3{font-size:1.05rem;margin:0}
+
+.navigator-podcasts{margin-top:18px}
+.engent-site .navigator-podcasts h3{font-size:1.05rem;margin:0}
+.navigator-launch{padding-top:16px;border-top:1px solid var(--line)}

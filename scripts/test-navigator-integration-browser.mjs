@@ -18,7 +18,7 @@ try{for(const width of[1440,1024,768,390]){
   const file=existsSync(root+'/'+relative)&&extname(relative)?root+'/'+relative:root+'/index.html',mime={'.js':'application/javascript','.css':'text/css','.html':'text/html','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.mp3':'audio/mpeg','.txt':'text/plain'}[extname(file)];return r.fulfill({body:readFileSync(file),contentType:mime??'application/octet-stream'});
  });
  const p=await c.newPage();p.setDefaultTimeout(10000);await p.goto(origin+'/explore');const nav=p.getByRole('heading',{name:'AI Decision Navigator',exact:true}).first();await nav.waitFor();
- assert.equal(await p.locator('.engent-explore-coach').count(),6);assert.equal(await p.locator('.navigator-intro a').count(),0);assert.equal(await p.locator('.navigator-art-mark').count(),33);
+ assert.equal(await p.locator('.engent-explore-coach').count(),6);assert.equal(await p.getByRole('link',{name:'Explore Cases: AI Decision Navigator'}).getAttribute('href'),'/explore/navigator/cases');assert.equal(await p.locator('.navigator-art-mark').count(),33);
  assert(await nav.evaluate(n=>n.compareDocumentPosition(document.querySelector('#process'))&Node.DOCUMENT_POSITION_FOLLOWING));
  assert.equal(await p.getByRole('link',{name:'Launch Decision Process Coach',exact:true}).getAttribute('href'),'/process/');assert.equal(await p.getByRole('link',{name:'Launch Decision Tree Coach',exact:true}).getAttribute('href'),origin+'/');
  assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
