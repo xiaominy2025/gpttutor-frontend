@@ -27,7 +27,7 @@ function config(version){
 function http(value,{status=200,headers={}}={}){
  return {status,headers:new Map(Object.entries(headers)),json:async()=>value};
 }
-function fixture({drift,failInvokeAt,finalBalance=112}={}){
+function fixture({drift,failInvokeAt,finalBalance=112,observeResponse}={}){
  const directory=mkdtempSync(join(tmpdir(),'navigator-operator-'));
  dirs.push(directory);
  let monotonic=0,turns=0;
@@ -82,7 +82,7 @@ function fixture({drift,failInvokeAt,finalBalance=112}={}){
  });
  const operator=createNavigatorCanaryOperator({directory,manifest,artifactSha256,publicCodeSha256,latestRevision,aliasRevision,
   masterRevision:11,credentials:{accessKeyId:'AKIDEXAMPLE',secretAccessKey:'fixture-only'},fetchOnce,now:()=>epoch,
-  monotonic:()=>monotonic,sleep});
+  monotonic:()=>monotonic,sleep,observeResponse});
  return {operator,sent,reads,sleep};
 }
 it('signs each direct fetch, preflights each invoke, paces turns, and reconciles sanitized evidence',async()=>{
@@ -110,4 +110,24 @@ it.each(['lost-response','executed-version','reconciliation'])('never sends anot
  await expect(f.operator.run()).rejects.toThrow('Do not retry');
  expect(f.sent.map(event=>event.step)).toEqual(mode==='lost-response'?[0,1,2]:mode==='executed-version'?[0,1]:[0,1,2,3,4]);
  await expect(f.operator.run()).rejects.toThrow('already started');
+});
+it('reports only explicitly selected synthetic responses after durable acknowledgement',async()=>{
+ const observed=[];let f;
+ f=fixture({observeResponse:async response=>{
+  const last=JSON.parse(readFileSync(f.operator.filename,'utf8').trim().split('\n').at(-1));
+  expect(last).toMatchObject({event:'acknowledged',step:response.step});observed.push(response);
+ }});
+ await f.operator.run();expect(observed.map(x=>x.step)).toEqual([1,2,3,4]);
+ expect(observed[0].reply).toBe(privateReply);
+ for(const secret of [cookie,continuation,receipt(3)])expect(JSON.stringify(observed)).not.toContain(secret);
+ expect(readFileSync(f.operator.filename,'utf8')).not.toContain(privateReply);
+});
+it('stops without another provider step if successful-response evidence cannot be saved',async()=>{
+ const observeResponse=vi.fn(async()=>{throw Error('Evidence storage failed');});
+ const f=fixture({observeResponse});await expect(f.operator.run()).rejects.toThrow('Do not retry');
+ expect(f.sent.map(x=>x.step)).toEqual([0,1]);expect(observeResponse).toHaveBeenCalledTimes(1);
+});
+it('never observes a response with an uncertain transport result',async()=>{
+ const observeResponse=vi.fn();const f=fixture({observeResponse,failInvokeAt:1});
+ await expect(f.operator.run()).rejects.toThrow('Do not retry');expect(observeResponse).not.toHaveBeenCalled();
 });

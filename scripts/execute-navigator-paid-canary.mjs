@@ -7,11 +7,12 @@ import {fileURLToPath} from 'node:url';
 import {setTimeout as delay} from 'node:timers/promises';
 import {fromIni} from '@aws-sdk/credential-provider-ini';
 import {createNavigatorCanaryOperator} from './navigator-paid-canary-operator.mjs';
+import {acknowledgedInstallRevision,assertOwnedPrivateRevision,observeTerminalLambdaResponse} from './navigator-canary-execution-guards.mjs';
 
 const root=fileURLToPath(new URL('..',import.meta.url)),fn='decisionnavigator-alpha-api';
 const original='HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=';
 const aliasRevision='9545575c-3a9c-4163-96cd-98f747a769e0',originalRevision='1dee8842-b467-4aa4-8ea0-2fe808d644c1';
-const files=['scripts/execute-navigator-paid-canary.mjs','scripts/navigator-paid-canary-operator.mjs','scripts/build-navigator-paid-canary.mjs',
+const files=['scripts/execute-navigator-paid-canary.mjs','scripts/navigator-paid-canary-operator.mjs','scripts/navigator-canary-execution-guards.mjs','scripts/build-navigator-paid-canary.mjs',
  'server/platform/navigator-paid-canary.mjs','server/platform/navigator-paid-guard.mjs','server/platform/navigator-canary-journal.mjs',
  'server/platform/navigator-runtime.mjs','server/platform/navigator.mjs','server/platform/budget.mjs','server/platform/store.mjs','server/shared/paid-ai-master.mjs'];
 const sha=value=>createHash('sha256').update(value).digest('hex');
@@ -75,28 +76,35 @@ if(prepare){
  const folder=localPath(p.executionJournalDirectory);mkdirSync(folder,{recursive:true});const jp=folder+'/execution-journal.json';
  const fd=openSync(jp,'wx',0o600);closeSync(fd);const j={planSha256:args[2],artifactSha256:p.artifact.sha256,startedAt:new Date().toISOString(),events:[]};
  function save(){const f=openSync(jp+'.tmp','w');try{writeFileSync(f,JSON.stringify(j,null,2));fsyncSync(f);}finally{closeSync(f);}renameSync(jp+'.tmp',jp);}
- let owned=false,lastInvokeStarted=0,lastInvokeUnknown=false;
+ let owned=false,ownedRevision,lastInvokeStarted=0,lastInvokeUnknown=false;
  try{
-  j.pending={operation:'install-private',revision:originalRevision};save();owned=true;
+  j.pending={operation:'install-private',revision:originalRevision};save();
   const installed=aws('lambda','update-function-code',{FunctionName:fn,RevisionId:originalRevision,Publish:false},['--zip-file','fileb://'+zip]);
-  check(installed.CodeSha256===p.artifact.sha256Base64,'installed-code-mismatch');j.install={revision:installed.RevisionId,hash:installed.CodeSha256};delete j.pending;save();
-  let c;for(let i=0;i<10;i++){c=latest();config(c);check(c.CodeSha256===p.artifact.sha256Base64,'private-code-drift');if(c.LastUpdateStatus==='Successful'&&c.State==='Active')break;await delay(1000);}check(c.LastUpdateStatus==='Successful','private-code-not-ready');
+  ownedRevision=acknowledgedInstallRevision(installed,p.artifact.sha256Base64,originalRevision);owned=true;
+  j.install={revision:ownedRevision,hash:installed.CodeSha256};delete j.pending;save();
+  let c;for(let i=0;i<10;i++){c=latest();config(c);assertOwnedPrivateRevision(c,p.artifact.sha256Base64,ownedRevision);if(c.LastUpdateStatus==='Successful'&&c.State==='Active')break;await delay(1000);}check(c.LastUpdateStatus==='Successful','private-code-not-ready');
   j.installedReadyRevision=c.RevisionId;save();
   const operator=createNavigatorCanaryOperator({directory:folder,manifest:p.manifest,artifactSha256:p.artifact.sha256,publicCodeSha256:original,
-   latestRevision:c.RevisionId,aliasRevision,masterRevision:11,credentialVersion:3,credentials:fromIni({profile:'default'}),
+   latestRevision:ownedRevision,aliasRevision,masterRevision:11,credentialVersion:3,credentials:fromIni({profile:'default'}),
+   observeResponse:async response=>{j.responses??=[];j.responses.push(response);save();},
    fetchOnce:async(url,options)=>{const invoke=new URL(url).pathname.endsWith('/invocations');
     if(invoke){lastInvokeStarted=Date.now();lastInvokeUnknown=true;j.lastInvocation={startedAt:new Date(lastInvokeStarted).toISOString(),outcome:'pending'};save();}
-    const response=await fetch(url,options);if(invoke){lastInvokeUnknown=false;j.lastInvocation.outcome='headers-received';j.lastInvocation.http=response.status;save();}return response;
+    const response=await fetch(url,options);
+    if(!invoke)return response;
+    return observeTerminalLambdaResponse(response,async()=>{lastInvokeUnknown=false;j.lastInvocation.outcome='terminal-lambda-payload-received';j.lastInvocation.http=response.status;save();});
    }});
   j.result=await operator.run();j.status='reconciled';save();
  }catch(error){j.status='stopped';j.failure=error.safeCode??'unknown-or-validation-failure';save();process.exitCode=1;}
  finally{
   if(lastInvokeUnknown){const remaining=lastInvokeStarted+65000-Date.now();if(remaining>0)await delay(remaining);}
-  if(owned){const current=latest();config(current);check(current.CodeSha256===p.artifact.sha256Base64||current.CodeSha256===original,'private-code-ownership-lost');
-   if(current.CodeSha256!==original){if(j.pending){j.interruptedOperation=j.pending;delete j.pending;}j.pending={operation:'restore-private',revision:current.RevisionId};save();
-    const r=aws('lambda','update-function-code',{FunctionName:fn,RevisionId:current.RevisionId,Publish:false,S3Bucket:p.restore.bucket,S3Key:p.restore.key,S3ObjectVersion:p.restore.version});
+  if(owned){const current=latest();config(current);assertOwnedPrivateRevision(current,p.artifact.sha256Base64,ownedRevision);
+   {if(j.pending){j.interruptedOperation=j.pending;delete j.pending;}j.pending={operation:'restore-private',revision:ownedRevision};save();
+    const r=aws('lambda','update-function-code',{FunctionName:fn,RevisionId:ownedRevision,Publish:false,S3Bucket:p.restore.bucket,S3Key:p.restore.key,S3ObjectVersion:p.restore.version});
     check(r.CodeSha256===original,'restored-code-mismatch');j.restoration={revision:r.RevisionId,hash:r.CodeSha256};delete j.pending;save();
    }
+  }
+  else if(j.pending?.operation==='install-private'){
+   const observed=latest();j.requiresReadOnlyReconciliation=true;j.observedPrivate={hash:observed.CodeSha256,revision:observed.RevisionId,state:observed.State,update:observed.LastUpdateStatus};save();
   }
  }
  let restored;for(let i=0;i<10;i++){restored=latest();config(restored);check(restored.CodeSha256===original,'restored-code-drift');if(restored.State==='Active'&&restored.LastUpdateStatus==='Successful')break;await delay(1000);}

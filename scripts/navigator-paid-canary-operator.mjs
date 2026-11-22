@@ -36,13 +36,14 @@ function configurationMatches(value,version,digest,revision){
 
 export function createNavigatorCanaryOperator({
  directory,manifest,artifactSha256,publicCodeSha256,latestRevision,aliasRevision,masterRevision,credentialVersion=3,
- credentials,fetchOnce=globalThis.fetch,now=Date.now,monotonic=()=>performance.now(),sleep=delay
+ credentials,fetchOnce=globalThis.fetch,now=Date.now,monotonic=()=>performance.now(),sleep=delay,observeResponse
 }){
  const pin=validateCanaryManifest(manifest);
  if(typeof artifactSha256!=='string'||!sha256.test(artifactSha256)||
     typeof publicCodeSha256!=='string'||!sha256Base64.test(publicCodeSha256)||
     !uuid.test(latestRevision??'')||!uuid.test(aliasRevision??'')||
-    !Number.isSafeInteger(masterRevision)||masterRevision<1||!Number.isSafeInteger(credentialVersion)||credentialVersion<1||!credentials||typeof fetchOnce!=='function')
+    !Number.isSafeInteger(masterRevision)||masterRevision<1||!Number.isSafeInteger(credentialVersion)||credentialVersion<1||!credentials||typeof fetchOnce!=='function'||
+    (observeResponse!==undefined&&typeof observeResponse!=='function'))
   throw Error('Invalid operator pins');
  const installedDigest=Buffer.from(artifactSha256,'hex').toString('base64');
  if(installedDigest===publicCodeSha256)throw Error('Private canary and public OFF artifacts must differ');
@@ -102,7 +103,7 @@ export function createNavigatorCanaryOperator({
   return {spent,reserved,paused:Item.paused?.BOOL===true};
  }
 
- let cookie,history=[],secondCompletedAt,baseline;
+ let cookie,history=[],secondCompletedAt,baseline,lastTransportResult;
  const journal=openCanaryJournal({directory,manifest,artifactSha256,now,
   transport:async({binding,step,previous})=>{
    if(binding.artifactSha256!==artifactSha256)throw Error('Journal artifact mismatch');
@@ -133,14 +134,22 @@ export function createNavigatorCanaryOperator({
     headers:{'content-type':'application/json','x-amz-invocation-type':'RequestResponse','x-amz-log-type':'None'},
     body:JSON.stringify(event),timeout:35000});
    if(step===2)secondCompletedAt=monotonic();
+   lastTransportResult=result;
    return result;
   }
  });
- function clear(){cookie=undefined;history=[];}
+ function clear(){cookie=undefined;history=[];lastTransportResult=undefined;}
  async function run(){
   const receipts=[];
   try{
-   for(let i=0;i<=4;i++)receipts.push(await journal.runStep());
+   for(let i=0;i<=4;i++){
+    const acknowledged=await journal.runStep();receipts.push(acknowledged);
+    // Explicit owner-authorized evidence for this synthetic case only, after durable validation.
+    // Never pass bootstrap cookies, continuations, raw receipts or the full provider response.
+    if(i>0&&observeResponse)await observeResponse({step:i,status:200,syntheticPrompt:messages[i-1],reply:lastTransportResult.result.reply,
+     followUps:lastTransportResult.result.followUps.map(({dimension,question})=>({dimension,question})),done:lastTransportResult.result.done,usage:acknowledged});
+    lastTransportResult=undefined;
+   }
    await preflight();
    const budget=await getBudget();
    const paidReceipts=receipts.slice(1);
