@@ -1,5 +1,7 @@
 # Homepage / Explore refinement
 
+Update: the owner-approved Alpha publication of source `475913c` is complete. See [deployed results and rollback evidence](publication/README.md). The preparation record below is retained as reviewed.
+
 Implementation: `182faf6`, branch `codex/home-explore-ui-consistency`, based on `eb96acb`. NOT DEPLOYED.
 
 ## Changes
