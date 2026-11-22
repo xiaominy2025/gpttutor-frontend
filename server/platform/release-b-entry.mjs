@@ -9,10 +9,12 @@ import {releaseAConfig,releaseAStore,handlerEntry as productionFallback} from '.
 import {handlerEntry as alphaFallback,releaseAConfig as alphaConfig,releaseAStore as alphaStore} from './release-b-alpha-fallback.mjs';
 import {emailPlatform} from './release-b-app.mjs';
 import {processSession,PROCESS_SESSION_PATH} from './process-session.mjs';
+import {forecastingSession,FORECASTING_SESSION_PATH} from './forecasting-session.mjs';
 let app;
 export async function handlerEntry(event){
  const alpha=process.env.STAGE==='alpha',fallback=alpha?alphaFallback:productionFallback;
  if(event.rawPath===PROCESS_SESSION_PATH&&(process.env.STAGE!=='alpha'||process.env.PROCESS_SESSION_ENABLED!=='true'||process.env.RELEASE_B_EMAIL_ENABLED!=='true'||process.env.SHARED_AUTH_ENABLED!=='true'))return {statusCode:503,headers:{'Cache-Control':'no-store'},body:'Process session verification unavailable.'};
+ if(event.rawPath===FORECASTING_SESSION_PATH&&(!alpha||process.env.FORECASTING_SESSION_ENABLED!=='true'||process.env.RELEASE_B_EMAIL_ENABLED!=='true'||process.env.SHARED_AUTH_ENABLED!=='true'))return {statusCode:503,headers:{'Cache-Control':'no-store'},body:'Forecasting session verification unavailable.'};
  if(process.env.RELEASE_B_EMAIL_ENABLED!=='true')return fallback(event);
  if(process.env.SHARED_AUTH_ENABLED!=='true')return {statusCode:503,headers:{'Cache-Control':'no-store'},body:'Shared session configuration unavailable.'};
  if(!app){
@@ -25,9 +27,11 @@ export async function handlerEntry(event){
   const invoke=async(action,data)=>{if(!['start','finish','session','handoff','advanced-request'].includes(action))throw Error('Invalid action');const hostname=config.api+'.execute-api.us-east-1.amazonaws.com',path='/internal/platform/email/'+action;
    const r=await signer.sign(new HttpRequest({protocol:'https:',hostname,path,method:'POST',headers:{host:hostname,'content-type':'application/json'},body:JSON.stringify(data)}));const response=await fetch('https://'+hostname+path,{method:'POST',headers:r.headers,body:r.body,signal:AbortSignal.timeout(10000),redirect:'error'});if(!response.ok)throw Object.assign(Error('Email service unavailable'),{status:response.status});return response.json();};
   const processEnabled=alpha&&process.env.PROCESS_SESSION_ENABLED==='true';
-  const publicApp=emailPlatform({store,invoke,origin:config.origin,treeOrigin:config.treeOrigin,fallback,enabled:true,processEnabled});
+  const forecastingEnabled=alpha&&process.env.FORECASTING_SESSION_ENABLED==='true';
+  const publicApp=emailPlatform({store,invoke,origin:config.origin,treeOrigin:config.treeOrigin,fallback,enabled:true,processEnabled,forecastingEnabled});
   const privateApp=processSession({store,invoke,enabled:processEnabled});
-  app=e=>e.rawPath===PROCESS_SESSION_PATH?privateApp(e):publicApp(e);
+  const forecastingApp=forecastingSession({store,invoke,enabled:forecastingEnabled});
+  app=e=>e.rawPath===FORECASTING_SESSION_PATH?forecastingApp(e):e.rawPath===PROCESS_SESSION_PATH?privateApp(e):publicApp(e);
  }
  return app(event);
 }

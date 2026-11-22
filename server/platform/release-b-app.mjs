@@ -7,7 +7,7 @@ const response=(statusCode,body,cookies=[])=>({statusCode,cookies,headers:{'Cont
 function cookies(e){const a=(e.cookies??[e.headers?.cookie??'']).join(';').split(';').map(x=>x.trim()).filter(Boolean).map(x=>x.split('='));if(a.some(x=>x.length!==2)||new Set(a.map(x=>x[0])).size!==a.length)throw error();return Object.fromEntries(a);}
 function body(e,fields,form=false){const raw=e.isBase64Encoded?Buffer.from(e.body??'','base64').toString():e.body??'';if(Buffer.byteLength(raw)>8192)throw error(413);if(e.headers?.['content-type']?.split(';')[0]!== (form?'application/x-www-form-urlencoded':'application/json'))throw error(400);let v;try{if(form){const a=[...new URLSearchParams(raw)];if(new Set(a.map(x=>x[0])).size!==a.length)throw Error();v=Object.fromEntries(a);}else v=JSON.parse(raw);}catch{throw error(400);}if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).sort().join(',')!==[...fields].sort().join(','))throw error(400);return v;}
 function form(url,data){const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),nonce=random();return {statusCode:200,headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Referrer-Policy':'strict-origin','Content-Security-Policy':`default-src 'none'; script-src 'nonce-${nonce}'; form-action ${new URL(url).origin}; base-uri 'none'; frame-ancestors 'none'`},body:`<!doctype html><title>Continuing sign-in</title><form method="post" action="${esc(url)}">${Object.entries(data).map(([k,v])=>`<input type="hidden" name="${esc(k)}" value="${esc(v)}">`).join('')}<button>Continue</button></form><script nonce="${nonce}">document.forms[0].submit()</script>`};}
-export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=false,processEnabled=false,now=()=>Math.floor(Date.now()/1000)}){
+export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=false,processEnabled=false,forecastingEnabled=false,now=()=>Math.floor(Date.now()/1000)}){
  const key=id=>'EMAIL#'+hash(id);
  return async e=>{const p=e.rawPath??'',method=e.requestContext?.http?.method,isNew=p.startsWith('/api/platform/email/');
  if(!enabled)return isNew?response(410,{}):fallback(e);
@@ -21,8 +21,8 @@ export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=f
  const session=async(allowPending=false)=>{if(!live||live.kind!=='session')throw error();const a=await invoke('session',{lease:live.lease,action:'read'});if(a.active!==true&&!(allowPending&&a.pending===true))throw error();return a;};
  if(p==='/api/platform/email/bootstrap'&&method==='GET'){
   const intent=e.queryStringParameters?.return;
-  if(intent!==undefined&&(!processEnabled||intent!=='process'||origin!=='https://d6owpirihdsus.cloudfront.net'))throw error(400);
-  const id=random(),csrf=random();await store.create(key(id),{csrf,expiresAt:now()+600,kind:'preauth',...(intent==='process'?{processReturnUntil:now()+600}:{})});return response(200,{csrf},[cookie(txName,id,600)]);
+  if(intent!==undefined&&(!((intent==='process'&&processEnabled)||(intent==='forecasting'&&forecastingEnabled))||origin!=='https://d6owpirihdsus.cloudfront.net'))throw error(400);
+  const id=random(),csrf=random();await store.create(key(id),{csrf,expiresAt:now()+600,kind:'preauth',...(intent==='process'?{processReturnUntil:now()+600}:{}),...(intent==='forecasting'?{forecastingReturnUntil:now()+600}:{})});return response(200,{csrf},[cookie(txName,id,600)]);
  }
  const fromTree=p==='/api/platform/email/authorize';
  if(method!=='POST'&&p!=='/api/platform/session')throw error(405);
@@ -42,12 +42,12 @@ export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=f
   if(!await store.remove(key(id),t.version))throw error();
   const result=await invoke('finish',{email:t.email,challenge:t.challenge,code:v.code});if(!opaque(result.lease)||!result.sub||!Number.isSafeInteger(result.expiresAt)||result.expiresAt<=now())throw error(503);
   if(c['__Host-engent-platform']){const retired=await fallback({...e,rawPath:'/api/platform/logout',body:'{}'});if(retired.statusCode!==200)throw error(503);}
-  const id2=random();await store.create(key(id2),{kind:'session',lease:result.lease,sub:result.sub,expiresAt:result.expiresAt,...(processEnabled&&t.processReturnUntil>now()?{processReturnUntil:t.processReturnUntil}:{})});
+  const id2=random();await store.create(key(id2),{kind:'session',lease:result.lease,sub:result.sub,expiresAt:result.expiresAt,...(processEnabled&&t.processReturnUntil>now()?{processReturnUntil:t.processReturnUntil}:{}),...(forecastingEnabled&&t.forecastingReturnUntil>now()?{forecastingReturnUntil:t.forecastingReturnUntil}:{})});
   return response(200,{signedIn:false,needsHandoff:true},[cookie(sessionName,id2,result.expiresAt-now()),cookie(txName,'',0),cookie('__Host-engent-platform','',0)]);
  }
  if(p==='/api/platform/session'&&method==='GET'){
   let a;try{a=await session(true);}catch(err){if(err.status!==401&&err.status!==403)throw err;return response(200,{signedIn:false},[cookie(sessionName,'',0)]);}
-  if(a.sub!==live.sub)throw error();if(a.pending)return response(200,{signedIn:false,pendingSignIn:true,role:'guest'});return response(200,{signedIn:true,role:'student',emailBridge:true,entitlements:{tree:{advanced:a.advanced===true,requestStatus:a.requestStatus}},treeLaunchUrl:treeOrigin+'/api/shared/email/login',...(processEnabled&&live.processReturnUntil>now()?{processReturnAvailable:true}:{})});
+  if(a.sub!==live.sub)throw error();if(a.pending)return response(200,{signedIn:false,pendingSignIn:true,role:'guest'});return response(200,{signedIn:true,role:'student',emailBridge:true,entitlements:{tree:{advanced:a.advanced===true,requestStatus:a.requestStatus}},treeLaunchUrl:treeOrigin+'/api/shared/email/login',...(processEnabled&&live.processReturnUntil>now()?{processReturnAvailable:true}:{}),...(forecastingEnabled&&live.forecastingReturnUntil>now()?{forecastingReturnAvailable:true}:{})});
  }
  if(p==='/api/platform/email/return'){
   if(!processEnabled||origin!=='https://d6owpirihdsus.cloudfront.net')throw error(410);
@@ -55,6 +55,13 @@ export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=f
   const {processReturnUntil,...rest}=live;
   if(!await store.replace(key(sid),live.version,rest))throw error(409);
   return response(200,{destination:'/process/'});
+ }
+ if(p==='/api/platform/email/forecasting-return'){
+  if(!forecastingEnabled||origin!=='https://d6owpirihdsus.cloudfront.net')throw error(410);
+  body(e,[]);const a=await session();if(a.sub!==live.sub||!(live.forecastingReturnUntil>now()))throw error();
+  const {forecastingReturnUntil,...rest}=live;
+  if(!await store.replace(key(sid),live.version,rest))throw error(409);
+  return response(200,{destination:'/engent-alpha/forecasting/'});
  }
  if(p==='/api/platform/email/authorize'){
   const v=body(e,['state','challenge'],true),a=await session(true);if(a.sub!==live.sub)throw error();

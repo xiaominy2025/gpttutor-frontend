@@ -8,7 +8,8 @@ export function signInReturnIntent(pathname='/',search=''){
  return pathname.replace(/\/+$/,'')==='/explore'?'explore':'home';
 }
 const tree=import.meta.env.VITE_VERIFIED_DECISION_TREE_URL==='https://d6owpirihdsus.cloudfront.net/'?'https://d6owpirihdsus.cloudfront.net/':'https://decisiontree.engentlabs.com/';
-export default function ReleaseBAccess({onSharedLaunch,onAccountState,entryRequest=location.pathname+location.search,navigateProcess=()=>location.assign('/process/')}){
+export default function ReleaseBAccess({onSharedLaunch,onAccountState,entryRequest=location.pathname+location.search,navigateProcess=()=>location.assign('/process/'),navigateForecasting=()=>location.assign('/engent-alpha/forecasting/')}){
+ const forecastingReturns=import.meta.env.VITE_FORECAST_RETURN_ENABLED==='true';
  const processReturns=import.meta.env.VITE_PROCESS_RETURN_ENABLED==='true';
  const {openMenu,closeMenu}=useEngentAccountMenu();
  useEffect(()=>{if(new URLSearchParams(location.search).get('entry')==='email'){setChoice('email');openMenu();}},[entryRequest,openMenu]);
@@ -18,6 +19,11 @@ export default function ReleaseBAccess({onSharedLaunch,onAccountState,entryReque
  useEffect(()=>{if(choice==='email'&&new URLSearchParams(location.search).get('entry')==='email')openMenu({focusFirst:true});},[entryRequest,choice,openMenu]);
  // Only the newest authoritative check may update account state. Revocation hints carry no identity.
  async function load(){const request=++accountRequest.current;try{const r=await fetch('/api/platform/session',{cache:'no-store'});if(!r.ok)throw Error();const a=await r.json();if(typeof a?.signedIn!=='boolean')throw Error();if(request!==accountRequest.current)return;
+ if(forecastingReturns&&a.signedIn===true&&a.emailBridge===true&&location.pathname.replace(/\/+$/,'')==='/explore'&&!returning.current&&(a.forecastingReturnAvailable===true||new URLSearchParams(location.search).get('return')==='forecasting')){
+  returning.current=true;
+  try{if(a.forecastingReturnAvailable===true){const destination=await post('email/forecasting-return',{});if(destination.destination!=='/engent-alpha/forecasting/')throw Error('Invalid return destination');}if(request===accountRequest.current){navigateForecasting();return;}}
+  catch{setError('Sign-in succeeded, but returning to Forecasting Coach could not finish. Open Forecasting Coach to continue.');}
+ }
  if(processReturns&&a.signedIn===true&&a.emailBridge===true&&location.pathname.replace(/\/+$/,'')==='/explore'&&!returning.current&&(a.processReturnAvailable===true||new URLSearchParams(location.search).get('return')==='process')){
   returning.current=true;
   try{if(a.processReturnAvailable===true){const destination=await post('email/return',{});if(destination.destination!=='/process/')throw Error('Invalid return destination');}if(request===accountRequest.current){navigateProcess();return;}}
@@ -32,7 +38,7 @@ export default function ReleaseBAccess({onSharedLaunch,onAccountState,entryReque
  },[account?.signedIn]);
  async function post(path,data){const r=await fetch('/api/platform/'+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw Error(r.status===429?(path==='email/start'?'Code requests are limited to three per email per 15-minute window. Please wait before requesting another code.':'Too many attempts. Try again later.'):'Unable to complete sign-in. Request a new code explicitly to retry.');return r.json();}
  function finishHandoff(){const form=document.createElement('form');form.method='POST';form.action=tree+'api/shared/email/login';const i=document.createElement('input');i.type='hidden';i.name='returnTo';i.value=returnIntent;form.append(i);document.body.append(form);form.submit();}
- async function submit(e){e.preventDefault();setBusy(true);setError('');try{if(sent){const r=await post('email/finish',{code,csrf});setCode('');setCsrf('');if(r.needsHandoff!==true)throw Error('Secure sign-in confirmation unavailable.');finishHandoff();}else{const b=await fetch('/api/platform/email/bootstrap'+(processReturns&&new URLSearchParams(location.search).get('return')==='process'?'?return=process':''));if(!b.ok)throw Error('Sign-in unavailable.');const t=await b.json();await post('email/start',{email,csrf:t.csrf});setCsrf(t.csrf);setSent(true);}}catch(e){setCode('');setCsrf('');setSent(false);setError(e.message);}finally{setBusy(false);}}
+ async function submit(e){e.preventDefault();setBusy(true);setError('');try{if(sent){const r=await post('email/finish',{code,csrf});setCode('');setCsrf('');if(r.needsHandoff!==true)throw Error('Secure sign-in confirmation unavailable.');finishHandoff();}else{const b=await fetch('/api/platform/email/bootstrap'+(forecastingReturns&&new URLSearchParams(location.search).get('return')==='forecasting'?'?return=forecasting':processReturns&&new URLSearchParams(location.search).get('return')==='process'?'?return=process':''));if(!b.ok)throw Error('Sign-in unavailable.');const t=await b.json();await post('email/start',{email,csrf:t.csrf});setCsrf(t.csrf);setSent(true);}}catch(e){setCode('');setCsrf('');setSent(false);setError(e.message);}finally{setBusy(false);}}
  async function logout(){setBusy(true);setError('');try{const r=await post('logout',{});if(r.ok!==true||r.scope!=='participating-browser')throw Error('Incomplete sign-out');++accountRequest.current;setAccount({signedIn:false});onAccountState?.({signedIn:false});try{if(typeof BroadcastChannel!=='undefined'){const c=new BroadcastChannel('engent-browser-session');try{c.postMessage('revoked');}finally{c.close();}}}catch{/* A notification failure must not undo successful backend sign-out. */}onSharedLaunch?.(null);setChoice('');setCode('');setCsrf('');setSent(false);closeMenu();}catch{setError('Sign-out is incomplete. Please retry.');}finally{setBusy(false);}}
  return <div className="engent-account-controls">
  {account?.signedIn?<><p>Decision Tree access: <strong>{account.entitlements?.tree?.advanced?'Advanced':'Student'}</strong>.</p>
