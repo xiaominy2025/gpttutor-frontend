@@ -1,0 +1,88 @@
+{
+  "status": "PREPARED_FOR_REVIEW_NOT_AUTHORIZED",
+  "source": "e7df18b50c67d3f3a495a2755957a36a11867173",
+  "sourceBlobs": {
+    "scripts/execute-navigator-paid-canary.mjs": "122196c4619a39e6a0c40840c07257f3f08baddf",
+    "scripts/navigator-paid-canary-operator.mjs": "449fe88149d3c250c820035091286572a3a491e8",
+    "scripts/build-navigator-paid-canary.mjs": "5af5fe8b3d03da7a223482f124cdf34d4041de12",
+    "server/platform/navigator-paid-canary.mjs": "24faefb108af7163b59162af3d2d693c501e65d9",
+    "server/platform/navigator-paid-guard.mjs": "bc4d67162d86ed6af844c5acf91e22ab651a3455",
+    "server/platform/navigator-canary-journal.mjs": "7f869be7fd99ccd38130f4e9fd9e1513ec976b98",
+    "server/platform/navigator-runtime.mjs": "ac76daae72bdd7ffba37e193034cd774067f94bb",
+    "server/platform/navigator.mjs": "1c89cf909361e9385af965a86ec9cc4fb35880bb",
+    "server/platform/budget.mjs": "e229cdbfcf039281308151a49ff15be249119237",
+    "server/platform/store.mjs": "5ca1b56a1f0acc792d69290744b3b2fe0f10aa16",
+    "server/shared/paid-ai-master.mjs": "44ac7cd3241507b09f70867a5c5170966fafba0f"
+  },
+  "account": "771049112957",
+  "region": "us-east-1",
+  "function": "decisionnavigator-alpha-api",
+  "baseline": {
+    "masterRevision": 11,
+    "aliasVersion": "1",
+    "aliasRevision": "9545575c-3a9c-4163-96cd-98f747a769e0",
+    "privateRevision": "1dee8842-b467-4aa4-8ea0-2fe808d644c1",
+    "publicCodeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+    "credentialVersion": 3
+  },
+  "manifest": {
+    "source": "934f2fd837423c45d77082566ba5f55a50df4771",
+    "approval": "navigator-paid-review-0c65ff78-c369-47ad-983f-ecf1a7bd9a8b",
+    "startsAt": 1795312266234,
+    "endsAt": 1795315866234
+  },
+  "manifestSha256": "cd07edb4288266a8548e5d709cdb1f1868421d8323b6c8ef7ee02f064721da64",
+  "artifact": {
+    "path": ".artifacts/navigator-paid-review-0c65ff78-c369-47ad-983f-ecf1a7bd9a8b/canary.zip",
+    "sha256": "89f6991ea83ed7a793c78276c1b0255bbd006e623c571739a1227b0b6bf91530",
+    "sha256Base64": "ifaZHqg+16eTx4J2wbAlW70AbmI8Vxc5oSJ7C2v5FTA=",
+    "bytes": 311806
+  },
+  "executionJournalDirectory": ".artifacts/navigator-paid-canary/alpha-initial-execution",
+  "limits": {
+    "paidCalls": 4,
+    "automaticRetries": 0,
+    "incrementalCeilingMicros": 30000,
+    "requestBytes": 12000,
+    "outputTokens": 1500,
+    "monthlyMicros": 10000000,
+    "guestPerMinute": 2,
+    "guestPerDay": 5,
+    "ipPerDay": 20,
+    "globalConcurrency": 2,
+    "actorConcurrency": 1
+  },
+  "provider": {
+    "url": "https://api.openai.com/v1/responses",
+    "method": "POST",
+    "model": "gpt-6-luna",
+    "serviceTier": "default",
+    "store": false,
+    "inputUSDPerMillion": 0.125,
+    "outputUSDPerMillion": 0.5
+  },
+  "directInvocations": 5,
+  "bootstrapCalls": 1,
+  "paidGenerationCallsMaximum": 4,
+  "credentialParameter": "/decisionnavigator-alpha/openai-api-key",
+  "writeSet": [
+    "conditional Navigator $LATEST code install",
+    "one bootstrap and at most4 sequential direct private Lambda calls",
+    "reviewed NAVIGATOR# operational/budget/guard records only",
+    "conditional original-code restoration"
+  ],
+  "forbidden": [
+    "public alias/version/HTML publication",
+    "master toggle",
+    "IAM/Cognito/DNS/other coaches/Production changes",
+    "key output or mutation",
+    "retry/reset/refund on uncertainty"
+  ],
+  "restore": {
+    "bucket": "decisiontree-alpha-artifacts-771049112957-us-east-1",
+    "key": "releases/decisionnavigator-alpha/934f2fd837423c45d77082566ba5f55a50df4771/navigator-alpha-1d1d2a0823bcc268b1dc564d076f02f8275af3eb1136a626055f643c2514f9ac.zip",
+    "version": "qdp7G4h0ECzo9XgfE.YCJYpvcqqsq20n",
+    "codeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw="
+  },
+  "remainingRisk": "Provider authentication/model access and coaching quality are unproven; first approved paid call tests these. Abort without retry on denial, usage mismatch or uncertainty."
+}

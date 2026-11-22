@@ -1,6 +1,6 @@
 # Navigator Alpha paid canary operator transport
 
-Candidate source only. Base bf18b83c5102bcd53f53d6d52134c670a9b77a75. There is no armed manifest, invocation, or approval to spend. The separate master OFF/ON acceptance is outside this operator.
+Source base bf18b83c5102bcd53f53d6d52134c670a9b77a75. The master OFF/ON test has now passed. An exact local review artifact/manifest is recorded in `navigator-alpha-integration/PAID_CANARY_FINAL_REVIEW.md`; no invocation or approval to spend. The master test remains outside this operator.
 
 ## Operator binding
 
