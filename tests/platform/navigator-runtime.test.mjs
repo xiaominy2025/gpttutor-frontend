@@ -1,12 +1,13 @@
 import {describe,expect,it,vi} from 'vitest';
 import {anonymousNavigator,NAVIGATOR_PATH,NAVIGATOR_SESSION_PATH} from '../../server/platform/navigator-runtime.mjs';
 import {createPaidAiMasterGate} from '../../server/shared/paid-ai-master.mjs';
+import {NavigatorLimitError} from '../../server/platform/budget.mjs';
 import {dynamoStore} from '../../server/platform/store.mjs';
 import {handlerEntry} from '../../server/platform/navigator-alpha-entry.mjs';
 
 const origin='https://d6owpirihdsus.cloudfront.net';
 const message='How should I think about expanding capacity?';
-function fixture({readState=async()=>({suspended:false,revision:9}),timeoutMs,enabled=true}={}) {
+function fixture({readState=async()=>({suspended:false,revision:9}),timeoutMs,enabled=true,onLimit=vi.fn()}={}) {
  const claims=new Set();
  const controls={admit:vi.fn(async()=>({reservation:900})),settle:vi.fn(async()=>{})};
  const read=vi.fn(readState);
@@ -23,7 +24,7 @@ function fixture({readState=async()=>({suspended:false,revision:9}),timeoutMs,en
   replace:vi.fn(async id=>{if(claims.has(id))return false;claims.add(id);return true;}),
   remove:vi.fn(async id=>claims.delete(id))
  };
- const app=anonymousNavigator({origin,enabled,signingSecret,credential,controls,generate,conversationStore,
+ const app=anonymousNavigator({origin,enabled,signingSecret,credential,controls,generate,conversationStore,onLimit,
   master:createPaidAiMasterGate({readState:read,timeoutMs}),price:{model:'gpt-6-luna',input:.125,output:.5}});
  const request=async(path,body,cookies=[],headers={origin})=>{
   const response=await app({rawPath:path,headers,cookies,requestContext:{http:{method:'POST',sourceIp:'192.0.2.1'}},body:JSON.stringify(body)});
@@ -31,7 +32,7 @@ function fixture({readState=async()=>({suspended:false,revision:9}),timeoutMs,en
  };
  const bootstrap=async(cookies)=>request(NAVIGATOR_SESSION_PATH,{},cookies);
  const turn=(cookie,input={message,history:[]})=>request(NAVIGATOR_PATH,input,cookie?[cookie]:[]);
- return {request,bootstrap,turn,read,credential,signingSecret,generate,controls,conversationStore};
+ return {request,bootstrap,turn,read,credential,signingSecret,generate,controls,conversationStore,onLimit};
 }
 const cookieValue=response=>response.cookies[0].split(';')[0];
 
@@ -181,3 +182,5 @@ it('reserves against UTF-8 bytes rather than JavaScript character count',async()
  expect(bytes).toBeGreaterThan(request.length);
  expect(f.controls.admit.mock.calls[0][3]).toBe(Math.ceil((bytes+1024)*.125+1500*.50));
 });
+
+it('returns reason-coded quota errors and reliable Retry-After without provider dispatch',async()=>{const f=fixture();const cookie=cookieValue(await f.bootstrap());const retry=Date.now()+60000;f.controls.admit.mockRejectedValueOnce(new NavigatorLimitError('NAVIGATOR_VISITOR_RATE','Please wait.',retry));const response=await f.turn(cookie);expect(response.statusCode).toBe(429);expect(response.json).toMatchObject({error:'Please wait.',code:'NAVIGATOR_VISITOR_RATE',retryAt:new Date(retry).toISOString()});expect(Number(response.headers['Retry-After'])).toBeGreaterThan(0);expect(f.generate).not.toHaveBeenCalled();expect(f.onLimit).toHaveBeenCalledWith('NAVIGATOR_VISITOR_RATE');f.onLimit.mockImplementation(()=>{throw Error('Logging unavailable');});f.controls.admit.mockRejectedValueOnce(new NavigatorLimitError('NAVIGATOR_GLOBAL_CAPACITY','At capacity.'));const capacity=await f.turn(cookie);expect(capacity.json.retryAt).toBeUndefined();expect(capacity.headers['Retry-After']).toBeUndefined();});

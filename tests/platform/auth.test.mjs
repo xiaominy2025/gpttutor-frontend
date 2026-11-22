@@ -65,9 +65,9 @@ it('reserves atomically across concurrent requests and charges uncertain calls t
 });
 it('enforces guest daily and IP allowances and conservatively retains crashed reservations',async()=>{
  const store=memory();let time=Date.parse('2026-11-18T12:00:00Z');const controls=navigatorControls(store,{now:()=>time});
- for(let i=0;i<5;i++) {const lease=await controls.admit('one','ip',true,100);await controls.settle(lease,10);time+=61000;}
+ for(let i=0;i<20;i++) {const lease=await controls.admit('one','ip',true,100);await controls.settle(lease,10);time+=61000;}
  await expect(controls.admit('one','ip',true,100)).rejects.toThrow();
- for(let i=0;i<15;i++){const lease=await controls.admit('other'+i,'ip',true,100);await controls.settle(lease,10);time+=61000;}
+ for(let i=0;i<80;i++){const lease=await controls.admit('other'+i,'ip',true,100);await controls.settle(lease,10);time+=61000;}
  await expect(controls.admit('another','ip',true,100)).rejects.toThrow();
 });
 it('denies foreign origins and suspended accounts before paid generation',async()=>{

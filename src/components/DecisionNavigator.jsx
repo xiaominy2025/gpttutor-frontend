@@ -55,7 +55,12 @@ export default function DecisionNavigator() {
    const response=await fetch('/api/platform/navigator',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({message:text,history,...(continuation?{continuation}:{}),...(dimension?{dimension}:{})})});
    const result=await response.json();
-   if(!response.ok) throw Error(result.error);
+   if(!response.ok) {
+    const retry=Date.parse(result.retryAt);
+    const retryText=Number.isFinite(retry)&&retry>Date.now()&&retry-Date.now()<=32*86400000
+     ? ' Try again at '+new Date(retry).toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'})+'.' : '';
+    throw Error((result.error||'Navigator is temporarily unavailable.')+retryText);
+   }
    setHistory(rows=>[...rows,{role:'user',text},{role:'assistant',text:result.reply}]);
    if(!dimension||result.done)setMessage('');
    setFollowUps(result.followUps??[]);

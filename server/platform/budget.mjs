@@ -1,13 +1,18 @@
 import {randomUUID} from 'node:crypto';
 import {PlatformError} from './oauth.mjs';
 
-export const pilot = Object.freeze({monthlyMicros:10000000,guestDaily:5,guestMinute:2,guestConcurrent:1,
- ipDaily:20,accountDaily:20,accountMinute:5,accountConcurrent:1,globalConcurrent:2});
+export const pilot = Object.freeze({monthlyMicros:10000000,guestDaily:20,guestMinute:6,guestConcurrent:1,
+ ipDaily:100,accountDaily:20,accountMinute:5,accountConcurrent:1,globalConcurrent:2});
+export class NavigatorLimitError extends PlatformError {
+ constructor(code,message,retryAt=null,status=429) {
+  super(status,message);this.code=code;this.retryAt=retryAt;
+ }
+}
 export function navigatorControls(store, {limits=pilot, now=()=>Date.now(), alert=async()=>{}}={}) {
- const fail = () => new PlatformError(429,'Navigator limit reached. Please try again later.');
+ const fail = (code,message,retryAt=null,status=429) => new NavigatorLimitError(code,message,retryAt,status);
  const expiry = () => Math.floor(now()/1000)+40*86400;
  async function admit(actor,ip,guest,reservation) {
-  if(!Number.isSafeInteger(reservation)||reservation<=0||reservation>limits.monthlyMicros) throw fail();
+  if(!Number.isSafeInteger(reservation)||reservation<=0||reservation>limits.monthlyMicros) throw new PlatformError(503,'Navigator usage could not be verified.');
   const date=new Date(now()).toISOString(),day=date.slice(0,10),month=day.slice(0,7),minute=Math.floor(now()/60000);
   const ids=['BUDGET#'+month,'NAVIGATOR#GLOBAL','ACTOR#'+actor+'#'+day,...(guest?['IP#'+ip+'#'+day]:[])];
   for(let attempt=0;attempt<8;attempt++) {
@@ -18,14 +23,20 @@ export function navigatorControls(store, {limits=pilot, now=()=>Date.now(), aler
    const minuteCount=user?.minute===minute?user.minuteCount:0;
    if(state.spent+state.reserved+reservation>limits.monthlyMicros) {
     if((state.alerted??0)<100){await alert(100,state.spent+state.reserved);await store.replace(ids[0],state.version,{...state,alerted:100});}
-    throw fail();
+    throw fail('NAVIGATOR_MONTHLY_BUDGET','Navigator’s monthly AI allowance cannot cover this request.',state.reserved===0?Date.UTC(Number(day.slice(0,4)),Number(day.slice(5,7)),1):null);
    }
-   if(state.paused ||
-      Object.keys(activeGlobal).length>=limits.globalConcurrent ||
-      (user?.daily??0)>=(guest?limits.guestDaily:limits.accountDaily) ||
-      minuteCount>=(guest?limits.guestMinute:limits.accountMinute) ||
-      activeUser>=(guest?limits.guestConcurrent:limits.accountConcurrent) ||
-      (guest && (address?.daily??0)>=limits.ipDaily)) throw fail();
+   if(state.paused) throw fail('NAVIGATOR_USAGE_UNAVAILABLE','Navigator AI is temporarily unavailable while usage is verified.',null,503);
+   const nextDay=Date.parse(day+'T00:00:00Z')+86400000;
+   if((user?.daily??0)>=(guest?limits.guestDaily:limits.accountDaily))
+    throw fail('NAVIGATOR_VISITOR_DAILY','You’ve reached today’s Navigator allowance.',nextDay);
+   if(guest && (address?.daily??0)>=limits.ipDaily)
+    throw fail('NAVIGATOR_NETWORK_DAILY','This network has reached today’s Navigator allowance.',nextDay);
+   if(minuteCount>=(guest?limits.guestMinute:limits.accountMinute))
+    throw fail('NAVIGATOR_VISITOR_RATE','You’re sending Navigator requests too quickly.',(minute+1)*60000);
+   if(activeUser>=(guest?limits.guestConcurrent:limits.accountConcurrent))
+    throw fail('NAVIGATOR_VISITOR_CAPACITY','Your previous Navigator request is still running. Please wait for it to finish.');
+   if(Object.keys(activeGlobal).length>=limits.globalConcurrent)
+    throw fail('NAVIGATOR_GLOBAL_CAPACITY','Navigator is at capacity. Please try again shortly.');
    const id=randomUUID(),expires=now()+60000;
    const updates=[
     {id:ids[0],previous:budget,value:{...state,reserved:state.reserved+reservation,leases:{...state.leases,[id]:reservation},expiresAt:expiry()}},
@@ -35,7 +46,7 @@ export function navigatorControls(store, {limits=pilot, now=()=>Date.now(), aler
    ];
    if(await store.transaction(updates)) {await report(ids[0]);return {id,month,ids,reservation};}
   }
-  throw new PlatformError(503,'Navigator is busy. Please try again.');
+  throw fail('NAVIGATOR_BUSY','Navigator is temporarily busy. Please try again shortly.',null,503);
  }
  async function settle(lease,cost,uncertain=false) {
   // Ambiguous provider outcomes retain the entire reservation. Expired leases never refund money.
