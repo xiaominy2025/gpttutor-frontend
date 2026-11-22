@@ -1,0 +1,12 @@
+{
+  "planSha256": "285dc5c4643b014c5e5fd3ee7adff5e693aac5be397d83942811ef07a3e8ac67",
+  "artifactSha256": "29dee7645c3e3e6f740fb40887bb12d327c814315698bac5cbdce137e5e0bbf6",
+  "startedAt": "2026-11-22T02:53:32.484Z",
+  "events": [],
+  "install": {
+    "revision": "b7b1ca72-1b36-4df0-9c2c-5de846752aa1",
+    "hash": "Kd7nZFw+Pm90D7QIh7sS0yfIFDFWmLrFy9zhN+Xgu/Y="
+  },
+  "status": "stopped",
+  "failure": "unknown-or-validation-failure"
+}

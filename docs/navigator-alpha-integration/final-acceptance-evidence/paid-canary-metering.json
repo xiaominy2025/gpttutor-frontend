@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-22T02:57:33.401Z",
+  "items": {
+    "NAVIGATOR#CANARY#ALPHA-INITIAL": {
+      "present": false
+    },
+    "NAVIGATOR#BUDGET#2026-11": {
+      "present": false
+    }
+  },
+  "invocationsStarted": 0,
+  "paidRequests": 0,
+  "providerUsage": null,
+  "openAiCostUSD": 0,
+  "retainedHolds": 0
+}

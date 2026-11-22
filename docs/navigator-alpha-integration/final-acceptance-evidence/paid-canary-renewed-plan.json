@@ -1,0 +1,89 @@
+{
+  "status": "PREPARED_FOR_REVIEW_NOT_AUTHORIZED",
+  "source": "617fa98e51be40e84ca64e6bc6dd8da961b97051",
+  "sourceBlobs": {
+    "scripts/execute-navigator-paid-canary.mjs": "49e2f7783ec99a67f8d8dc1845e94378fd6df582",
+    "scripts/navigator-paid-canary-operator.mjs": "28f5b0acd0dd7378403f8beae8963c8195d1a12c",
+    "scripts/navigator-canary-execution-guards.mjs": "c8b6651652bbade3b99981f85cc74f85b04472fb",
+    "scripts/build-navigator-paid-canary.mjs": "5af5fe8b3d03da7a223482f124cdf34d4041de12",
+    "server/platform/navigator-paid-canary.mjs": "24faefb108af7163b59162af3d2d693c501e65d9",
+    "server/platform/navigator-paid-guard.mjs": "bc4d67162d86ed6af844c5acf91e22ab651a3455",
+    "server/platform/navigator-canary-journal.mjs": "7f869be7fd99ccd38130f4e9fd9e1513ec976b98",
+    "server/platform/navigator-runtime.mjs": "ac76daae72bdd7ffba37e193034cd774067f94bb",
+    "server/platform/navigator.mjs": "1c89cf909361e9385af965a86ec9cc4fb35880bb",
+    "server/platform/budget.mjs": "e229cdbfcf039281308151a49ff15be249119237",
+    "server/platform/store.mjs": "5ca1b56a1f0acc792d69290744b3b2fe0f10aa16",
+    "server/shared/paid-ai-master.mjs": "44ac7cd3241507b09f70867a5c5170966fafba0f"
+  },
+  "account": "771049112957",
+  "region": "us-east-1",
+  "function": "decisionnavigator-alpha-api",
+  "baseline": {
+    "masterRevision": 11,
+    "aliasVersion": "1",
+    "aliasRevision": "9545575c-3a9c-4163-96cd-98f747a769e0",
+    "privateRevision": "1dee8842-b467-4aa4-8ea0-2fe808d644c1",
+    "publicCodeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+    "credentialVersion": 3
+  },
+  "manifest": {
+    "source": "934f2fd837423c45d77082566ba5f55a50df4771",
+    "approval": "navigator-paid-review-d675b7da-7d99-4e39-af2b-0aacc5d2e4fa",
+    "startsAt": 1795315938934,
+    "endsAt": 1795319538934
+  },
+  "manifestSha256": "87922d3eaa13b65854bedc980fda5e5e7af7d7feded93fda01975344605cef6f",
+  "artifact": {
+    "path": ".artifacts/navigator-paid-review-d675b7da-7d99-4e39-af2b-0aacc5d2e4fa/canary.zip",
+    "sha256": "29dee7645c3e3e6f740fb40887bb12d327c814315698bac5cbdce137e5e0bbf6",
+    "sha256Base64": "Kd7nZFw+Pm90D7QIh7sS0yfIFDFWmLrFy9zhN+Xgu/Y=",
+    "bytes": 311803
+  },
+  "executionJournalDirectory": ".artifacts/navigator-paid-canary/alpha-initial-execution",
+  "limits": {
+    "paidCalls": 4,
+    "automaticRetries": 0,
+    "incrementalCeilingMicros": 30000,
+    "requestBytes": 12000,
+    "outputTokens": 1500,
+    "monthlyMicros": 10000000,
+    "guestPerMinute": 2,
+    "guestPerDay": 5,
+    "ipPerDay": 20,
+    "globalConcurrency": 2,
+    "actorConcurrency": 1
+  },
+  "provider": {
+    "url": "https://api.openai.com/v1/responses",
+    "method": "POST",
+    "model": "gpt-6-luna",
+    "serviceTier": "default",
+    "store": false,
+    "inputUSDPerMillion": 0.125,
+    "outputUSDPerMillion": 0.5
+  },
+  "directInvocations": 5,
+  "bootstrapCalls": 1,
+  "paidGenerationCallsMaximum": 4,
+  "credentialParameter": "/decisionnavigator-alpha/openai-api-key",
+  "writeSet": [
+    "conditional Navigator $LATEST code install",
+    "one bootstrap and at most4 sequential direct private Lambda calls",
+    "reviewed NAVIGATOR# operational/budget/guard records only",
+    "conditional original-code restoration"
+  ],
+  "forbidden": [
+    "public alias/version/HTML publication",
+    "master toggle",
+    "IAM/Cognito/DNS/other coaches/Production changes",
+    "key output or mutation",
+    "retry/reset/refund on uncertainty"
+  ],
+  "restore": {
+    "bucket": "decisiontree-alpha-artifacts-771049112957-us-east-1",
+    "key": "releases/decisionnavigator-alpha/934f2fd837423c45d77082566ba5f55a50df4771/navigator-alpha-1d1d2a0823bcc268b1dc564d076f02f8275af3eb1136a626055f643c2514f9ac.zip",
+    "version": "qdp7G4h0ECzo9XgfE.YCJYpvcqqsq20n",
+    "codeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw="
+  },
+  "remainingRisk": "Provider authentication/model access and coaching quality are unproven; first approved paid call tests these. Abort without retry on denial, usage mismatch or uncertainty."
+}

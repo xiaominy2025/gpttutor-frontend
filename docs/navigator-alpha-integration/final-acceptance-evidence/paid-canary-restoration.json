@@ -1,0 +1,21 @@
+{
+  "purpose": "restoration only; canary stopped without invocation",
+  "at": "2026-11-22T02:56:41.341Z",
+  "reconciledOwnedRevision": "f8ed31f5-e702-4818-9ceb-42705868de21",
+  "cloudTrailEvent": "49c1fc3c-64a1-485c-9219-c4b4a7d3f67c",
+  "acknowledgement": {
+    "revision": "9c9f3edd-5aaf-409c-8f18-05ecc0909edd",
+    "hash": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+    "status": "InProgress"
+  },
+  "verified": {
+    "at": "2026-11-22T02:56:52.311Z",
+    "readyRevision": "0e61fca1-fde3-490f-8b58-e16f51c90f8b",
+    "hash": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+    "lastModified": "2026-11-22T02:56:43.000+0000",
+    "publicOffVersion": "1",
+    "masterOnRevision": 11,
+    "invocations": 0,
+    "paidRequests": 0
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "at": "2026-11-22T02:55:31.341Z",
+  "events": [
+    {
+      "at": "2026-11-22T02:53:34Z",
+      "event": "UpdateFunctionCode20150331v2",
+      "eventId": "49c1fc3c-64a1-485c-9219-c4b4a7d3f67c",
+      "principal": "arn:aws:iam::771049112957:user/engentlabs-cli",
+      "request": {
+        "function": "decisionnavigator-alpha-api",
+        "revision": "1dee8842-b467-4aa4-8ea0-2fe808d644c1",
+        "publish": false
+      },
+      "response": {
+        "revision": "b7b1ca72-1b36-4df0-9c2c-5de846752aa1",
+        "hash": "Kd7nZFw+Pm90D7QIh7sS0yfIFDFWmLrFy9zhN+Xgu/Y=",
+        "status": "InProgress"
+      }
+    }
+  ],
+  "qualified": {
+    "arn": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:$LATEST",
+    "hash": "Kd7nZFw+Pm90D7QIh7sS0yfIFDFWmLrFy9zhN+Xgu/Y=",
+    "revision": "f8ed31f5-e702-4818-9ceb-42705868de21",
+    "at": "2026-11-22T02:53:34.000+0000",
+    "state": "Active",
+    "status": "Successful",
+    "role": "arn:aws:iam::771049112957:role/decisionnavigator-alpha-runtime",
+    "runtime": "nodejs22.x",
+    "handler": "index.handlerEntry",
+    "timeout": 29,
+    "memory": 256,
+    "environmentMatches": true
+  },
+  "unqualified": {
+    "arn": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api",
+    "hash": "Kd7nZFw+Pm90D7QIh7sS0yfIFDFWmLrFy9zhN+Xgu/Y=",
+    "revision": "f8ed31f5-e702-4818-9ceb-42705868de21",
+    "at": "2026-11-22T02:53:34.000+0000",
+    "state": "Active",
+    "status": "Successful",
+    "role": "arn:aws:iam::771049112957:role/decisionnavigator-alpha-runtime",
+    "runtime": "nodejs22.x",
+    "handler": "index.handlerEntry",
+    "timeout": 29,
+    "memory": 256,
+    "environmentMatches": true
+  }
+}
