@@ -1,0 +1,162 @@
+{
+  "phase": "before",
+  "source": "frozen accepted Alpha build before edits; local network fixtures only",
+  "realApiCalls": 0,
+  "paidCalls": 0,
+  "results": [
+    {
+      "label": "homepage 1440",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "explore 1440",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "homepage 1024",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "explore 1024",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "homepage 768",
+      "width": 768,
+      "scrollWidth": 753,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "explore 768",
+      "width": 768,
+      "scrollWidth": 753,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "homepage 390",
+      "width": 390,
+      "scrollWidth": 375,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "explore 390",
+      "width": 390,
+      "scrollWidth": 375,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 1440",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 1024",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 900",
+      "width": 900,
+      "scrollWidth": 885,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 800",
+      "width": 800,
+      "scrollWidth": 785,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 768",
+      "width": 768,
+      "scrollWidth": 753,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 600",
+      "width": 600,
+      "scrollWidth": 585,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /engent-alpha/ 1440",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 1440",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 1024",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 900",
+      "width": 900,
+      "scrollWidth": 885,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 800",
+      "width": 800,
+      "scrollWidth": 785,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 768",
+      "width": 768,
+      "scrollWidth": 753,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 600",
+      "width": 600,
+      "scrollWidth": 585,
+      "rootScrollports": [],
+      "issues": []
+    },
+    {
+      "label": "native /explore 1440",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "rootScrollports": [],
+      "issues": []
+    }
+  ]
+}
