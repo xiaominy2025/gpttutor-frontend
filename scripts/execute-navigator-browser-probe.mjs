@@ -93,7 +93,7 @@ async function prepare(expectedIp){
 }
 
 let browser,context,page,baselineAlias,probeHash,ownedPrivate=false,publicStarted=false,token,expectedIp;
-let failed;
+let failed,phase='source-and-aws-preflight';
 try{
  for(const path of ['server/platform/navigator-browser-probe.mjs','scripts/build-navigator-browser-probe.mjs','scripts/test-navigator-confined-browser.mjs']){
   ensure(execFileSync('git',['hash-object','--path='+path,path],{encoding:'utf8'}).trim()===execFileSync('git',['rev-parse',pin+':'+path],{encoding:'utf8'}).trim(),'reviewed-probe-source-drift');
@@ -107,7 +107,8 @@ try{
   ensure(r.EvaluationResults?.some(x=>x.EvalDecision==='allowed'),'operator-permission-not-confirmed');
  }
  const cf=(await resolve4('d6owpirihdsus.cloudfront.net'))[0],check=(await resolve4('checkip.amazonaws.com'))[0];
- browser=await chromium.launch({headless:true,args:['--no-proxy-server','--disable-quic','--host-resolver-rules=MAP d6owpirihdsus.cloudfront.net '+cf+', MAP checkip.amazonaws.com '+check]});
+ phase='browser-launch';
+ browser=await chromium.launch({channel:'chrome',headless:true,args:['--no-proxy-server','--disable-quic','--host-resolver-rules=MAP d6owpirihdsus.cloudfront.net '+cf+', MAP checkip.amazonaws.com '+check]});
  context=await browser.newContext({serviceWorkers:'block'});
  await context.route('**/*',async route=>{
   const req=route.request(),url=new URL(req.url());
@@ -115,10 +116,12 @@ try{
    req.method()==='POST'&&url.origin===base&&url.pathname===bootstrap&&token&&req.headers()['x-engent-navigator-probe']===token;
   await(allowed?route.continue():route.abort('blockedbyclient'));
  });
+ phase='controlled-network-check';
  page=await context.newPage();await page.goto('https://checkip.amazonaws.com/',{waitUntil:'domcontentloaded',timeout:15000});
  expectedIp=(await page.textContent('body')).trim();ensure(/^(?:\d{1,3}\.){3}\d{1,3}$/.test(expectedIp),'controlled-ipv4-unavailable');
  await page.goto(base+'/explore',{waitUntil:'domcontentloaded',timeout:15000});
  note('preflight-passed',{controlledNetworks:1,proxyDisabled:true,ipv4Pinned:true});
+ phase='freeze-manifest-and-artifact';
  const startsAt=Date.now(),manifest={run,startsAt,endsAt:startsAt+300000};ensure(manifest.endsAt-manifest.startsAt<=300000,'manifest-window');
  writeFileSync(dir+'/manifest.json',JSON.stringify(manifest,null,2),{flag:'wx'});j.manifest=manifest;j.manifestSha256=sha(readFileSync(dir+'/manifest.json'));
  execFileSync(process.execPath,['scripts/build-navigator-browser-probe.mjs','--manifest',dir+'/manifest.json'],{stdio:'pipe'});
@@ -130,15 +133,16 @@ try{
  ensure(Date.now()<manifest.endsAt-90000,'insufficient-probe-window');
  const beforeInstall=latest();ensure(beforeInstall.RevisionId===c.RevisionId&&beforeInstall.CodeSha256===original,'private-state-drift-before-install');
  // Ownership is reconciled by code hash if an acknowledgement is lost.
- ownedPrivate=true;
+ phase='install-owned-private-probe';ownedPrivate=true;
  mutate('update-function-code',{FunctionName:fn,RevisionId:c.RevisionId,Publish:false},['--zip-file','fileb://'+zip]);
  const installed=await ready(probeHash);note('private-probe-installed');
- token=await prepare(expectedIp);note('one-use-challenge-prepared');
+ phase='prepare-private-challenge';token=await prepare(expectedIp);note('one-use-challenge-prepared');
+ phase='publish-provider-free-version';
  const published=mutate('publish-version',{FunctionName:fn,CodeSha256:probeHash,RevisionId:installed.RevisionId,Description:run});
  ensure(/^\d+$/.test(published.Version)&&published.Version!=='1'&&published.CodeSha256===probeHash,'published-version-mismatch');j.probeVersion=published.Version;save();
  ensure(JSON.stringify(alias())===JSON.stringify(baselineAlias),'alias-drift-before-transition');
  ensure(Date.now()<manifest.endsAt-60000,'insufficient-public-window');
- publicStarted=true;
+ phase='conditional-alias-transition';publicStarted=true;
  const changed=mutate('update-alias',{FunctionName:fn,Name:'live',FunctionVersion:published.Version,RevisionId:baselineAlias.RevisionId,Description:run});
  ensure(changed.FunctionVersion===published.Version,'alias-transition-mismatch');j.activeAliasRevision=changed.RevisionId;j.aliasActivatedAt=new Date().toISOString();save();
  note('probe-alias-active',{version:published.Version});
@@ -146,11 +150,13 @@ try{
   const response=await fetch(path,{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','x-engent-navigator-probe':token},body:JSON.stringify({network:'a',action})});
   return {status:response.status,body:await response.json()};
  },{token,path:bootstrap,action});
+ phase='browser-bootstrap';
  const boot=await post('bootstrap');j.bootstrap={status:boot.status,...(boot.status===200?{sourceIpMatchesExpectedViewer:boot.body.sourceIpMatchesExpectedViewer,requestId:boot.body.requestId}:{})};save();
  ensure(boot.status===200&&boot.body.providerTransport==='absent','browser-bootstrap-failed');
  const cookies=(await context.cookies(base)).filter(x=>x.name==='__Host-engent-navigator');
  const cookie=cookies[0];ensure(cookies.length===1&&cookie.secure&&cookie.httpOnly&&cookie.sameSite==='Strict'&&cookie.path==='/'&&cookie.domain==='d6owpirihdsus.cloudfront.net','browser-cookie-flags-failed');
  ensure(!await page.evaluate(()=>document.cookie.split(';').some(v=>v.trim().startsWith('__Host-engent-navigator='))),'cookie-exposed-to-javascript');
+ phase='browser-cookie-return';
  const verified=await post('verify');ensure(verified.status===200&&verified.body.providerTransport==='absent','browser-cookie-return-failed');
  j.browser={cookieAccepted:verified.body.cookieAccepted===true,secure:true,httpOnly:true,sameSite:'Strict',hostOnly:true,path:'/',javascriptCannotRead:true,
   sourceIpMatchesExpectedViewer:boot.body.sourceIpMatchesExpectedViewer===true&&verified.body.sourceIpMatchesExpectedViewer===true,requestId:verified.body.requestId,networksUsed:1};save();
@@ -158,7 +164,7 @@ try{
  ensure(j.browser.cookieAccepted,'browser-cookie-validation-failed');
  if(!j.browser.sourceIpMatchesExpectedViewer)failed='viewer-ip-mismatch';
  note('browser-pair-completed',j.browser);
-}catch(error){failed=error.safeCode??'unexpected-or-ambiguous-outcome';j.failure=failed;save();}
+}catch(error){failed=error.safeCode??'unexpected-or-ambiguous-'+phase;j.failure=failed;save();}
 finally{
  // Restore public routing first, even after a failed or uncertain request.
  if(publicStarted){try{
