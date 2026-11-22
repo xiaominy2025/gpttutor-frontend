@@ -2,7 +2,7 @@
    and overflow-x:hidden otherwise create separate body and #root scrollports.
    Keep this scoped so legacy applications and intentional menu scrolling stay intact. */
 html:has(.engent-site),body:has(.engent-site),#root:has(.engent-site){height:auto;overflow:visible}
-html:has(.engent-site){min-height:100%;overflow-x:clip}
+html:has(.engent-site){min-height:100%}
 body:has(.engent-site),#root:has(.engent-site){min-height:100vh}
 .engent-site{--paper:#fafaf7;--slate:#263b43;--blue:#467fa8;--gold:#d9a441;--green:#267456;--line:#dce3df;background:var(--paper);color:var(--slate);font-family:Inter,system-ui,sans-serif;line-height:1.55}
 .engent-wrap{width:min(1160px,calc(100% - 56px));margin-inline:auto}
@@ -16,7 +16,10 @@ body:has(.engent-site),#root:has(.engent-site){min-height:100vh}
 .engent-skip{position:absolute;z-index:5;left:12px;top:12px;padding:10px 14px;background:white;transform:translateY(-180%)}
 .engent-skip:focus{transform:none}
 .engent-hero{padding:clamp(48px,7vw,106px) 0;background:#f4f5ee}
-.engent-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:clamp(24px,5vw,74px)}
+.engent-hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:clamp(24px,5vw,74px)}
+.engent-hero-grid>*,.engent-why>*,.engent-principles>*,.engent-coach-content>*,.navigator-intro>*{min-width:0}
+.engent-site :is(h1,h2,h3,p,figcaption,nav){overflow-wrap:anywhere}
+.engent-site .engent-button{max-width:100%;white-space:normal;text-align:center}
 .engent-site h1,.engent-site h2,.engent-site h3{font-weight:700;line-height:1.12;letter-spacing:-.034em}
 .engent-site h1{font-size:clamp(2.45rem,5.1vw,5.1rem);margin:10px 0 20px}
 .engent-site h1 span{color:var(--green)}
@@ -38,8 +41,8 @@ body:has(.engent-site),#root:has(.engent-site){min-height:100vh}
 .engent-section{padding-block:clamp(38px,6vw,80px)}
 .engent-section-head{margin-bottom:24px}
 .engent-section-head p,.engent-why h2{margin-top:7px}
-.engent-why{display:grid;grid-template-columns:.8fr 2.2fr;gap:24px}
-.engent-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.engent-why{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2.2fr);gap:24px}
+.engent-principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .engent-principles div{border-top:3px solid var(--gold);padding-top:12px}
 .engent-principles div:nth-child(2){border-color:var(--blue)}
 .engent-principles div:nth-child(3){border-color:var(--green)}
@@ -124,10 +127,13 @@ body:has(.engent-site),#root:has(.engent-site){min-height:100vh}
 .engent-coach-actions .engent-status,.engent-coach-actions .engent-text-link,.engent-coach-actions .engent-button{display:inline-flex;margin-top:8px}
 .coach-thumbnail{position:absolute;inset:0;display:grid;place-items:center;background:var(--paper) url('../assets/coach-paper.webp') center/cover}
 .coach-thumbnail svg{width:86%;height:88%}
-.coach-overlay{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;padding:0;background:transparent;color:#347a62;border:0;box-shadow:none}
-.coach-overlay:hover,.coach-overlay:focus,.coach-overlay:active{background:transparent;color:#347a62;box-shadow:none}
-.coach-overlay[aria-label="Pause"],.coach-overlay[aria-label="Resume"],.coach-overlay[aria-label="Replay"]{inset:auto 8px 8px auto;transform:none}
-.engent-explore-list .coach-overlay{inset:auto 8px 8px auto;transform:none}
+.coach-overlay{display:grid}
+/* Reuse Navigator's 34px circle; the transparent hit area remains 44px. */
+.engent-site .engent-animation-control{position:absolute;right:5px;bottom:5px;width:34px;height:34px;place-items:center;padding:0;border:1px solid var(--line);border-radius:50%;background:#fafaf7;color:var(--green);box-shadow:none;cursor:pointer}
+.engent-site .engent-animation-control::after{content:"";position:absolute;width:44px;height:44px;max-width:none;left:50%;top:50%;transform:translate(-50%,-50%)}
+.engent-site .engent-animation-control svg{display:block;width:16px;height:16px;flex:none}
+.engent-site .engent-animation-control:hover{background:#edf4ef}
+.engent-site .engent-animation-control:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 @media(max-width:680px){.engent-coach-content{grid-template-columns:minmax(0,1fr)}}
 .engent-case-selection{display:grid;gap:24px;margin-top:22px;max-width:860px}
 .engent-case-selection section h2{font-size:1.35rem}
