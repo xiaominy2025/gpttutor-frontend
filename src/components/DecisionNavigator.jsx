@@ -74,21 +74,25 @@ export default function DecisionNavigator() {
  const sendLabel=history.length?'Send follow-up':'Send decision';
  return (
    <section className="engent-wrap navigator-intro" aria-labelledby="navigator-intro-title">
-    <NavigatorArtwork />
-    <div className="navigator-intro-copy">
+    <header className="engent-coach-heading">
      <h2 id="navigator-intro-title">AI Decision Navigator</h2>
-     <p className="navigator-tagline">See the bigger picture before making your decision.</p>
-     <p>Describe a decision you're facing. Navigator helps you clarify what matters, recognize what needs analysis, and understand where human judgment comes in—so you can develop a clearer mental map before deciding how to proceed.</p>
-     <section className="navigator-podcasts" aria-label="Business Case Podcasts">
-      <h3>Business Case Podcasts</h3>
-      <p>Systematic decision-making in action.</p>
-      <Link className="engent-text-link" to="/explore/navigator/cases" aria-label="Explore Cases: AI Decision Navigator">Explore Cases</Link>
-     </section>
-     <section className="navigator-launch" aria-label="Meet Your Coach">
-      <h3>Meet Your Coach</h3>
-      <CoachLaunchControl label="Open Decision Navigator" ref={openButton} aria-haspopup="dialog"
-       onClick={()=>{dialog.current.showModal();scrollToLatest();}} />
-     </section>
+     <p className="engent-explore-subtitle">See the bigger picture before deciding.</p>
+     <p>Clarify your objectives, explore uncertainties, and recognize where human judgment matters.</p>
+    </header>
+    <div className="engent-coach-content">
+     <NavigatorArtwork />
+     <aside className="engent-coach-actions">
+      <section className="navigator-podcasts" aria-label="Business Case Podcasts">
+       <h3>Business Case Podcasts</h3>
+       <p>Systematic decision-making in action.</p>
+       <Link className="engent-text-link" to="/explore/navigator/cases" aria-label="Explore Cases: AI Decision Navigator">Explore Cases</Link>
+      </section>
+      <section className="navigator-launch" aria-label="Meet Your Coach">
+       <h3>Meet Your Coach</h3>
+       <CoachLaunchControl label="Open Decision Navigator" ref={openButton} aria-haspopup="dialog"
+        onClick={()=>{dialog.current.showModal();scrollToLatest();}} />
+      </section>
+     </aside>
     </div>
    <dialog ref={dialog} className="navigator-dialog" aria-labelledby="navigator-title" aria-describedby="navigator-subtitle"
     onClose={()=>openButton.current?.focus()}>

@@ -1,12 +1,10 @@
 /* Navigator PR #8 styles isolated from the newer marketing shell. */
-.navigator-intro{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:clamp(20px,4vw,54px)}
-@media(max-width:680px){.navigator-intro{grid-template-columns:minmax(0,1fr)}}
-.navigator-intro{align-items:center;padding-block:clamp(20px,4vw,44px);border-bottom:1px solid var(--line)}
-.engent-site .navigator-intro h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:0}
+.navigator-intro{padding:30px 0;border-bottom:1px solid var(--line)}
+.engent-site .navigator-intro>.engent-coach-heading h2{font-size:1.7rem}
+.navigator-intro>.engent-coach-heading p,.navigator-intro>.engent-coach-content p{margin-top:6px}
+.navigator-intro .engent-coach-actions h3{font-size:1rem;margin-top:0}
 .engent-site .navigator-dialog h2{font-size:clamp(1.35rem,3vw,1.8rem);margin:0}
 .navigator-dialog-header p{margin-top:5px;color:#486356;overflow-wrap:anywhere}
-.navigator-intro-copy p{margin-top:8px;max-width:55ch}
-.navigator-tagline{font-weight:650}
 .navigator-art{position:relative;aspect-ratio:16 / 9;border:1px solid #d4ddd4;border-radius:12px;background:#f8f4eb url('../assets/coach-paper.webp') center/cover}
 .navigator-art>svg{display:block;width:100%;height:100%}
 .navigator-art-label{font-size:13px;font-weight:600}
@@ -67,9 +65,4 @@
 .navigator-follow-ups strong{font-size:.75rem;color:var(--green)}
 .navigator-follow-ups .analysis{color:#2b5c80}
 .navigator-follow-ups .judgment{color:#79520e}
-.navigator-launch{margin-top:18px}
-.engent-site .navigator-launch h3{font-size:1.05rem;margin:0}
 
-.navigator-podcasts{margin-top:18px}
-.engent-site .navigator-podcasts h3{font-size:1.05rem;margin:0}
-.navigator-launch{padding-top:16px;border-top:1px solid var(--line)}
