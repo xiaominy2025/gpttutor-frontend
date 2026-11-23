@@ -1,5 +1,7 @@
 const day = 86400000;
 export const methods = { moving: "Moving average", trend: "Linear regression", seasonal: "Seasonal forecast" };
+const seasonalTrainingMonths = 24;
+const minimumHistoricalComparisons = 3;
 export const average = values => values.reduce((sum, value) => sum + value, 0) / values.length;
 
 function normalTail(z) {
@@ -59,27 +61,65 @@ export function seasonalFactors(points) {
 
 export function nextTime(time, cadence, steps) {
   if (typeof time === "number") return time + steps;
-  if (cadence === "monthly") return new Date(Date.UTC(time.getUTCFullYear(), time.getUTCMonth() + steps, 1));
+  const months = { monthly: 1, quarterly: 3, annual: 12 }[cadence];
+  if (months) return new Date(Date.UTC(time.getUTCFullYear(), time.getUTCMonth() + steps * months, 1));
   return new Date(time.getTime() + day * steps * (cadence === "weekly" ? 7 : 1));
 }
 
-export function forecast(points, cadence, horizon, window, allowSeasonal) {
+export function forecast(points, cadence, horizon, window, allowSeasonal, { student = false, method, windowEvaluationSize } = {}) {
   const last = points.at(-1).time;
   const future = Array.from({ length: horizon }, (_, i) => nextTime(last, cadence, i + 1));
   const values = points.map(point => point.value);
   const fit = linearFit(points);
-  const choices = ["trend", ...(points.length >= window ? ["moving"] : [])];
-  if (allowSeasonal && cadence === "monthly" && points.length >= 24 && values.every(value => value > 0)) choices.push("seasonal");
+  const choices = ["trend", ...(points.length >= window && (!student || horizon === 1) ? ["moving"] : [])];
+  if (allowSeasonal && cadence === "monthly" && points.length >= seasonalTrainingMonths && values.every(value => value > 0)) choices.push("seasonal");
 
   function predict(method, history, times) {
-    if (method === "moving") return movingAverage(history.map(point => point.value), window, times.length);
+    if (method === "moving") {
+      const values = history.map(point => point.value);
+      return student ? [average(values.slice(-window))] : movingAverage(values, window, times.length);
+    }
     const trend = linearFit(history);
     if (method === "trend") return times.map(trend.predict);
     const factors = seasonalFactors(history);
     return times.map(time => trend.predict(time) * factors[time.getUTCMonth()].factor);
   }
 
-  const minimum = Math.max(3, choices.includes("moving") ? window : 0, choices.includes("seasonal") ? 24 : 0);
+  if (method) {
+    const minimum = method === "seasonal" ? seasonalTrainingMonths : method === "moving" ? points.length - windowEvaluationSize : 3;
+    const originLimit = method === "moving" ? windowEvaluationSize : 48;
+    const errorsByLead = future.map(() => []);
+    const completeErrors = [];
+    const firstOrigin = Math.max(minimum, points.length - horizon - originLimit + 1);
+    for (let end = firstOrigin; end < points.length; end++) {
+      const actual = points.slice(end, end + horizon);
+      const estimates = predict(method, points.slice(0, end), actual.map(point => point.time));
+      estimates.forEach((value, i) => {
+        const error = value - actual[i].value;
+        if (end >= points.length - i - originLimit) errorsByLead[i].push(error);
+        if (actual.length === horizon) completeErrors.push(error);
+      });
+    }
+    const summarize = errors => ({ mae: average(errors.map(Math.abs)), mse: average(errors.map(error => error ** 2)) });
+    const scoredOrigins = completeErrors.length / horizon;
+    return {
+      future, scoredOrigins, runs: runsTest(values), slope: fit.slope,
+      scores: scoredOrigins >= 3 ? { [method]: summarize(completeErrors) } : {},
+      leadScores: errorsByLead.map(errors => errors.length >= minimumHistoricalComparisons
+        ? { ...summarize(errors), count: errors.length } : null),
+      ...(method === "seasonal" && { seasonalBacktest: {
+        trainingMonths: seasonalTrainingMonths,
+        minimumComparisons: minimumHistoricalComparisons,
+        comparisons: errorsByLead.map(errors => errors.length),
+        centeredObservations: points.length - 12
+      } }),
+      factors: method === "seasonal" ? seasonalFactors(points) : null,
+      predictions: { [method]: predict(method, points, future) }
+    };
+  }
+
+  const minimum = Math.max(3, choices.includes("moving") ? (student === "auto" ? 7 : window) : 0,
+    choices.includes("seasonal") ? seasonalTrainingMonths : 0);
   const origins = Math.max(0, points.length - minimum - horizon + 1);
   const scoredOrigins = Math.min(48, origins);
   const scores = {};
@@ -88,7 +128,15 @@ export function forecast(points, cadence, horizon, window, allowSeasonal) {
       const errors = [];
       for (let end = points.length - horizon - scoredOrigins + 1; end <= points.length - horizon; end++) {
         const actual = points.slice(end, end + horizon);
-        const predictions = predict(method, points.slice(0, end), actual.map(point => point.time));
+        const history = points.slice(0, end);
+        // Select automatic windows again using only the training history at each origin.
+        let predictions;
+        if (method === "moving" && student === "auto") {
+          const training = history.map(point => point.value);
+          predictions = [average(training.slice(-movingWindows(training).selected))];
+        } else {
+          predictions = predict(method, history, actual.map(point => point.time));
+        }
         errors.push(...predictions.map((value, i) => value - actual[i].value));
       }
       scores[method] = { mae: average(errors.map(Math.abs)), mse: average(errors.map(error => error ** 2)) };
@@ -102,6 +150,26 @@ export function forecast(points, cadence, horizon, window, allowSeasonal) {
     factors: choices.includes("seasonal") ? seasonalFactors(points) : null,
     predictions: Object.fromEntries(choices.map(method => [method, predict(method, points, future)]))
   };
+}
+
+export function planningScenarios(predictions, leadScores) {
+  return predictions.map((base, i) => {
+    const mae = leadScores[i]?.mae;
+    if (!Number.isFinite(base) || !Number.isFinite(mae) || mae < 0) return null;
+    const low = base - mae;
+    const high = base + mae;
+    return Number.isFinite(low) && Number.isFinite(high) ? { low, base, high } : null;
+  });
+}
+
+export function movingWindows(values, manualWindow) {
+  const largest = Math.min(12, Math.floor(values.length / 2), values.length - 5);
+  const eligible = Array.from({ length: Math.max(0, largest - 1) }, (_, i) => i + 2);
+  const mse = eligible.length ? workbookMovingMse(values, eligible) : [];
+  const candidates = eligible.map((window, i) => ({ window, mse: mse[i] }));
+  const selected = manualWindow ?? candidates.reduce((best, option) =>
+    !best || option.mse < best.mse ? option : best, null)?.window ?? Math.min(3, values.length);
+  return { candidates, selected, evaluationSize: eligible.length ? values.length - largest : 0 };
 }
 
 export function workbookMovingMse(values, windows) {

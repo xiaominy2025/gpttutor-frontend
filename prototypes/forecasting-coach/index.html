@@ -1,30 +1,83 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Forecasting Coach | Engent Labs</title></head>
-<body><header class="mast"><div class="brand">ENGENT LABS</div><div class="lab">Interactive Decision Coaching</div></header>
+<body><header class="mast">
+  <a class="brand" href="%VITE_FORECASTING_HOME%" aria-label="Engent Labs Home"><img src="./engent-logo.png" alt="" width="40" height="30"><span>Engent Labs</span></a>
+  <span class="lab">Forecasting Coach</span>
+  <nav aria-label="Engent Labs"><a href="%VITE_FORECASTING_HOME%">Home</a><a href="%VITE_FORECASTING_EXPLORE%">Explore Tools</a></nav>
+  <span class="session-state" role="status">Local preview · session unavailable</span>
+</header>
 <main>
   <section class="intro"><h1>Forecasting Coach</h1><p>Use historical data to forecast what may happen next and decide how to respond.</p></section>
-  <ol class="steps" aria-label="Workflow"><li aria-current="step">Upload</li><li>Define Goal</li><li>Forecast</li><li>Interpret and Decide</li></ol>
+  <div class="project-toolbar" role="group" aria-label="Project actions">
+    <button type="button" class="project-action" id="project-new" aria-label="New Project" data-project-icon="new"></button>
+    <button type="button" class="project-action" id="project-open" aria-label="Open Project" data-project-icon="open"></button>
+    <button type="button" class="project-action" id="project-save" aria-label="Save Project" data-project-icon="save"></button>
+    <input type="file" id="project-file" accept=".json,application/json" hidden>
+    <span id="project-status" role="status">Untitled project</span>
+    <span id="project-error" role="alert" hidden></span>
+  </div>
   <div class="workspace">
     <aside>
-      <section class="card"><h2>Upload data</h2><label for="file">Excel workbook</label><input id="file" type="file" accept=".xlsx"><p id="file-status" role="status">Files are processed in your browser.</p>
+      <section class="card"><h2>Upload Data</h2><div class="upload-area"><div class="upload-actions"><input id="file" type="file" accept=".xlsx" aria-label="Upload Excel workbook" aria-describedby="file-status"><label class="upload-action icon-action" for="file" data-icon="upload"></label><button type="button" id="sample">Try with sample data</button></div><p id="file-status" role="status">No Excel workbook loaded.</p></div>
         <fieldset id="mapping" disabled><label>Worksheet<select id="sheet"></select></label><div class="pair"><label>Time column<select id="date"></select></label><label>Target variable<select id="target"></select></label></div><label>Observations begin on row<input id="row" type="number" min="2" max="5000" value="2"></label></fieldset>
       </section>
-      <form class="card" id="goal-form"><h2>Define goal</h2><label>What decision are you making?<input id="goal" maxlength="250" placeholder="e.g. How much stock should we order?"></label>
-        <label>Measurement units<input id="unit" maxlength="50" placeholder="e.g. thousands of dollars"></label>
-        <label>Cadence<select id="cadence"><option value="monthly">Monthly dates</option><option value="weekly">Weekly dates</option><option value="daily">Daily dates</option><option value="periods">Consecutive numbers</option></select></label>
-        <div class="pair"><label>Forecast horizon<input id="horizon" type="number" min="1" max="60" value="6" required></label><label>Moving window<input id="window" type="number" min="2" max="120" value="3" required></label></div>
-        <label class="check"><input id="seasonality" type="checkbox"> Consider monthly seasonality</label>
-        <button id="run" disabled>Generate forecast</button>
+      <section class="card" id="goal-panel" aria-labelledby="goal-heading"><h2 id="goal-heading">Define Forecast</h2>
+        <dl class="goal-data"><dt><span data-term="Data Frequency"></span></dt><dd id="data-frequency">Upload data to detect frequency</dd></dl>
+        <div class="help-field"><label for="cadence">Forecast Frequency</label><span data-help="Forecast Frequency"></span><select id="cadence" disabled></select></div>
+        <label id="aggregation-field" hidden>Aggregation method<select id="aggregation"><option value="">Confirm an aggregation method</option><option value="sum">Sum</option><option value="average">Average</option><option value="last">Last Value</option></select></label>
+        <label id="unit-field">Measurement Units (optional)<input id="unit" maxlength="50" placeholder="e.g. thousands of dollars"></label>
+        <dl class="goal-data"><dt>Complete observations at forecast frequency</dt><dd id="complete-observations">—</dd></dl>
+        <p id="frequency-note" role="status"></p>
+      </section>
+      <form class="card" id="goal-form" aria-labelledby="approach-heading"><h2 id="approach-heading">Select Forecasting Approach</h2>
+        <label>Forecasting method<select id="approach"><option value="recommend">Recommend a method</option><option value="moving">Moving Average</option><option value="trend">Linear Regression</option><option value="seasonal">Seasonal Forecasting</option></select></label>
+        <div class="help-field" id="horizon-field"><label for="horizon">Forecast Horizon</label><span data-help="Forecast Horizon"></span><input id="horizon" type="number" min="1" max="60" value="6" required></div>
+        <section id="moving-settings" hidden>
+          <p><span data-term="Forecast Horizon"></span> · one period</p>
+          <label>Window selection<select id="window-mode"><option value="auto">Auto — Lowest Historical MSE</option><option value="manual">Manual</option></select></label>
+          <div class="help-field" id="manual-window" hidden><label for="window">Moving-average window</label><span data-help="Moving-average window"></span><select id="window"></select></div>
+          <section aria-labelledby="window-heading">
+            <h3 id="window-heading">Historical Window Comparison</h3>
+            <div id="window-comparison"></div>
+          </section>
+        </section>
+        <dl class="goal-data" id="seasonal-cycle" hidden><dt><span data-term="Seasonal Cycle"></span></dt><dd id="seasonal-cycle-value">12 months</dd></dl>
+        <p id="approach-note" role="status"></p>
+        <button id="run" class="icon-action" aria-label="Generate forecast" data-icon="forecast" disabled></button>
       </form>
     </aside>
     <div class="results">
-      <section class="card" id="preview"><h2>Data preview</h2><div id="preview-body"><p>Choose an Excel workbook to preview your data.</p></div></section>
+      <details class="card" id="preview" hidden><summary>Show Data Table</summary><div id="preview-body"></div></details>
+      <details class="card" id="patterns" hidden open><summary>Explore Historical Data</summary><div id="history-chart"></div>
+        <label>Inspect observation<input id="observation-index" type="range" min="1" step="1"></label>
+        <output id="observation-value" for="observation-index"></output>
+      </details>
       <p class="error" id="error" role="alert" hidden></p>
       <section id="results" hidden>
-        <section class="card"><div class="section-top"><h2>Forecast</h2><button id="export" class="secondary">Export Excel</button></div><label class="method-label">Forecasting method<select id="method"></select></label><p id="recommendation"></p><div id="chart"></div><div id="prediction-table"></div></section>
-        <section class="card"><h2>Accuracy</h2><div id="accuracy"></div></section>
-        <section class="card"><h2>Runs test</h2><div id="runs"></div></section>
-        <section class="card"><h2>Interpret and decide</h2><div id="interpretation"></div><label>What result or threshold would change your decision?<textarea id="reflection" rows="2" maxlength="500"></textarea></label></section>
+        <details class="card" id="forecast-panel" open>
+          <summary id="forecast-heading"><h2>Forecast</h2></summary>
+          <div class="section-top"><p id="recommendation"></p><button id="export" class="icon-action secondary" aria-label="Export forecast results to Excel" data-icon="export" disabled></button></div>
+          <div id="chart"></div><div id="prediction-table"></div>
+        </details>
+        <details class="card" id="trend-reliability" hidden>
+          <summary><h2>Historical Patterns &amp; Business Implications</h2></summary>
+          <div id="trend-evidence"></div>
+        </details>
+        <details class="card" id="decision-panel" open><summary><h2>Discover Key Insights</h2></summary><div id="interpretation"></div></details>
+        <section class="card" id="communicate-panel"><h2>Decide on Management Actions</h2>
+          <h3>Business Decision or Challenge</h3>
+          <label>What business decision or operational challenge will this forecast support?<textarea id="goal" rows="2" maxlength="250"></textarea></label>
+          <section class="advisor-status"><h3>AI Management Advisor</h3><p id="advisor-status" role="status">Unavailable in this preview. You can record your own actions below.</p><button id="advisor-run" class="icon-action" type="button" aria-label="Generate Management Insights" data-icon="advisor" hidden></button>
+            <div id="advisor-result" hidden><h4>AI Management Insight</h4><p id="advisor-text"></p></div>
+          </section>
+          <h3>Your Management Actions</h3>
+          <label>What should management continue, change, or prepare for? What should be monitored, and when should the plan be reconsidered?<textarea id="reflection" rows="2" maxlength="500"></textarea></label>
+        </section>
+        <details class="card" id="statistical-details"><summary>Statistical Details</summary>
+          <div id="method-statistics"></div>
+          <h3>Historical Forecast Accuracy</h3>
+          <div id="accuracy"></div>
+        </details>
       </section>
     </div>
   </div>

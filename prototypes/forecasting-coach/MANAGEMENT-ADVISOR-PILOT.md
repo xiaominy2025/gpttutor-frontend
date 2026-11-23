@@ -1,0 +1,49 @@
+# AI Management Advisor — local implementation and Alpha approval plan
+
+## Coordination status
+
+The [previous Issue #16 handoff](https://github.com/xiaominy2025/gpttutor-frontend/issues/16#issuecomment-7080796167) and the accepted [Navigator Alpha runtime contract](https://github.com/xiaominy2025/gpttutor-frontend/blob/934f2fd837423c45d77082566ba5f55a50df4771/docs/NAVIGATOR_ALPHA_RUNTIME_HANDOFF.md) were reviewed. [Navigator Alpha is published](https://github.com/xiaominy2025/gpttutor-frontend/issues/11#issuecomment-7074540663) with its own anonymous session, server-side credential scope, independent quota and ledger, and the platform master gate. No approval for the Forecasting route, auth integration, credential permission, or paid pilot was present in the reviewed Forecasting discussion.
+
+[Management Advisor follow-up and approval request in Issue #16](https://github.com/xiaominy2025/gpttutor-frontend/issues/16#issuecomment-7083418315)
+
+## Local acceptance
+
+Run `npm.cmd run dev -- --mode advisor-mock --port 4196 --strictPort` in the prototype directory after stopping any existing process on that port. Open http://127.0.0.1:4196/. Generate a forecast. Under **Decide on Management Actions**, add an optional challenge and select **Generate management insight**. This mode serves deterministic fixture text on loopback only. Regular dev and production builds keep the Advisor unavailable. Neither path uses provider credentials. The mock is an interaction and contract test; it does not validate the quality or prompt-injection resistance of actual model outputs.
+
+`node check-advisor.cjs` verifies origin and malformed request rejections, one-click mock requests, separately rendered responses, unchanged student text, and the 429 and unavailable UI. The workbook suite and `node check-interface.cjs` cover the analytical and project pathways. The project JSON retains its existing `goal` and `communication` keys. The Excel report includes the current objective and Your Management Actions.
+
+## Pending hosted contract
+
+Proposed same-origin **POST /api/platform/forecasting/communication**, pending platform approval. One JSON request and one response, no chat history. Request v1 has a maximum 4 KiB body, optional 250-character objective, bounded variable and units, method and frequency enums, horizon 1–60, a reference observation/fitted/forecast value, change with optional percent, up to three key forecast dates and paired historical accuracy, optional slope and runs-test evidence or seasonal extrema, and allowlisted limitations. Low/High must match the MAE for that lead. No raw observations, workbook, project, attachment or student action text. The validated summary is passed as JSON data alongside separate server-controlled developer instructions. The route determines the coach identity, authorization, model, and quotas.
+
+Success: `{"version":1,"requestId":"<opaque-id>","draft":"<plain-text narrative>"}`. Request a natural 100–130 word single narrative on operating considerations, monitoring and reconsideration conditions, and uncertainty. If context is ambiguous, clarify the missing meaning and use conditional language. Validate and display draft as text separately from the student field. Do not mutate forecasts or the student field. No tools or irreversible actions. Show distinct 400/413 validation, 401/403 session/Origin, 429 quota, and 503 unavailable states with safe messages and no automatic retries.
+
+## Proposed signed-in Alpha pilot and controls
+
+Five owner-designated test accounts with synthetic teaching scenarios, two days, up to ten requests per person per UTC day, no guests, one in-flight request per person, two globally, and a **$1.00 Forecasting-only model ledger**. The owner must select the actual accounts and approve the window. Request sizing and token accounting must enforce an approved upper bound, proposed 2,048 input and 512 billed output tokens. Use the stage-scoped shared server-side credential path approved by platform owners. Navigator's credential and anonymous cookie remain scoped to Navigator. Reuse the shared master gate and add a Forecasting-only default-off flag. Reserve before dispatch, settle against provider usage, keep the reserve on ambiguous outcomes, and fail closed on failed reads or accounting. Never replay ambiguous provider requests.
+
+Validate exact origin and authoritative current approved session server-side. Attribute spend and quota to Forecasting, with a separate coach namespace and a reviewed aggregate platform limit where applicable. Log only opaque request identifiers, coarse outcome and usage counters. Do not log request or draft content. Use Responses `store:false`, no shared conversational storage and no tool access. Review provider abuse-monitoring retention, disclosure and approval for user objective text. [OpenAI data controls](https://developers.openai.com/api/docs/guides/your-data)
+
+## Cost estimate
+
+At Navigator’s conservative Luna rates of $0.125 per million input and $0.50 per million billed output, 1,000–1,500 input and 300–500 output tokens cost roughly **$0.00028–$0.00044 per request**. At the proposed 2,048/512 cap this is **$0.000512** in model charges assuming the bound is enforced. For 100 pilot requests, approximately $0.028–$0.044 in model usage, excluding hosting. [Model pricing](https://developers.openai.com/api/docs/models/gpt-6-luna)
+
+AWS illustration if reusing an approved HTTP API and on-demand x86 Lambda: 1,000 invocations at 512 MB for four seconds each use 2,000 GB-s. At the illustrative list rates, compute, Lambda requests, and HTTP API requests total roughly **$0.035 per 1,000 requests** before free tiers, table operations, logs and data transfer. The exact route owner, region, storage rates, and ability to reuse existing resources are review dependencies. New fixed costs cannot be determined before placement is approved. [Lambda pricing](https://aws.amazon.com/lambda/pricing/) · [API Gateway pricing](https://aws.amazon.com/api-gateway/pricing/)
+
+## Deployment and rollback approval sequence
+
+1. Platform owner approves the exact route owner, Alpha origin/session boundary, model/credential configuration, per-tool ledger and role scope, master-gate behavior, and retention. Confirm that Navigator routes and IAM grants stay unchanged.
+2. Prepare a reviewable read-only diff with the actual Alpha integration ID, runtime alias and version pins, exact IAM and key namespaces, source and artifact hashes, flag defaults, quota config, and prior versions/route state. A default-off route, BFF integration, and scoped permission delta may be required. The placement is pending, so these resource IDs and permissions are intentionally unresolved.
+3. Owner approves the exact scoped Alpha changes and provider-blocked verification separately. Capture rollback evidence before changing anything. Validate invalid/missing sessions, wrong origins, fail-closed master gate, serialized reservations, quota errors, and safe logs without provider access.
+4. Owner separately names pilot users and approves time, limits and maximum paid spend before a single billed request. Start with one labeled request and reconcile reservation, settlement, and provider outcome before allowing the remainder of the pilot. Review the eight contextual cases and stop at the approved ceiling or end time.
+5. Roll back by disabling only Forecasting’s flag, then restoring the captured Forecasting route or alias and frontend artifact after checking ownership. Leave Navigator, Tree, Process, and the platform master unchanged. Verify Forecasting returns unavailable, manual work still functions, and no new provider dispatch occurs. Preserve ledger entries and ambiguous holds. Any production step requires fresh approval.
+
+## Pilot review cases
+
+The deterministic fixtures cover increasing and declining demand, seasonal inventory, next-period planning, weak direction, insufficient accuracy, missing objective, and ambiguous measure (“Monthly Left”). In an authorized pilot review the same cases for management value beyond the deterministic insights, no invented facts, practical operating considerations, meaningful monitoring and decision triggers, and accurate uncertainty. Treat the fixtures as acceptance cases, not evidence that a live provider passed.
+
+## Example mock narratives
+
+**Increasing demand / capacity:** Keep the current operating plan as a baseline and compare it with the forecast before making commitments. Discuss which activities can continue as planned and which adjustments could be staged if the projected change materializes. Check whether current resources could absorb a sustained increase, and identify contingency capacity before making fixed commitments. At each reporting period, compare the actual with the forecast and the assumptions behind the plan. Reconsider if misses persist in the same direction or business conditions change. Historical misses give a sense of scale, while future misses could be larger. Use the next review to agree who will monitor the measure and when management will revisit its decision.
+
+**Ambiguous “Monthly Left” / near-term planning:** Before changing the plan, clarify what this measure represents and which decision depends on it. If higher values mean more work, the forecast may affect capacity; if they mean unused stock or spare capacity, the implications could differ. Use the next-period estimate for near-term scheduling or replenishment. Keep longer commitments separate while more observations come in. At each reporting period, compare the actual with the forecast and the assumptions behind the plan. Reconsider if misses persist in the same direction or business conditions change. Historical misses give a sense of scale, while future misses could be larger. Use the next review to agree who will monitor the measure and when management will revisit its decision.

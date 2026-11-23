@@ -17,7 +17,7 @@ export function readSeries(sheet, dateColumn, valueColumn, cadence, firstRow = 2
     const value = cellValue(b);
     if (a.value == null && b.value == null) continue;
     let time;
-    if (cadence === "periods" && Number.isSafeInteger(x)) time = x;
+    if ((cadence === "periods" || cadence === "auto") && Number.isSafeInteger(x)) time = x;
     if (cadence !== "periods") {
       if (x instanceof Date && Number.isFinite(x.getTime())) time = new Date(Date.UTC(x.getUTCFullYear(), x.getUTCMonth(), x.getUTCDate()));
       if (typeof x === "string" && /^\d{4}-\d\d-\d\d$/.test(x)) {
@@ -34,6 +34,8 @@ export function readSeries(sheet, dateColumn, valueColumn, cadence, firstRow = 2
     if (points.length > 5000) throw Error("Choose a series with at most 5,000 observations.");
   }
   points.sort((a, b) => a.time - b.time);
+  if (!points.length) throw Error("Choose a column with historical observations.");
+  if (cadence === "auto") return { points, cached };
   if (points.length < 3) throw Error("Choose at least three observations.");
   for (let i = 1; i < points.length; i++) {
     const expected = nextTime(points[i - 1].time, cadence, 1);
@@ -42,20 +44,23 @@ export function readSeries(sheet, dateColumn, valueColumn, cadence, firstRow = 2
   return { points, cached };
 }
 
-import { methods, nextTime } from "./engine.js";
+import { methods, nextTime, planningScenarios } from "./engine.js";
 
-export function resultWorkbook(Excel, result, points, method, goal, cadence, window, unit) {
+export function resultWorkbook(Excel, result, points, method, goal, cadence, window, unit, headings) {
   const workbook = new Excel.Workbook();
   const series = workbook.addWorksheet("Series");
-  series.addRow(["Time", "Actual", "Forecast"]);
+  const titles = headings ? [headings.time, headings.target, `${headings.target} — forecast`] : ["Time", "Actual", "Forecast"];
+  series.addRow([...titles, "Low (MAE planning)", "High (MAE planning)"]);
   series.getColumn(1).numFmt = "yyyy-mm-dd";
   if (cadence === "periods") series.getColumn(1).numFmt = "0";
   points.forEach(point => series.addRow([point.time, point.value]));
-  result.future.forEach((time, i) => series.addRow([time, null, result.predictions[method][i]]));
+  const values = result.predictions[method];
+  const scenarios = planningScenarios(values, result.leadScores ?? []);
+  result.future.forEach((time, i) => series.addRow([time, null, values[i], scenarios[i]?.low ?? null, scenarios[i]?.high ?? null]));
   const setup = workbook.addWorksheet("Analysis");
   [
     ["Goal", goal], ["Units", unit], ["Cadence", cadence], ["Horizon", result.future.length], ["Method", methods[method]],
-    ["Moving window", window], ["Runs mean", result.runs.mean], ["Runs", result.runs.runs], ["At or above", result.runs.above],
+    ["Moving window", method === "moving" ? window : null], ["Runs mean", result.runs.mean], ["Runs", result.runs.runs], ["At or above", result.runs.above],
     ["Below", result.runs.below], ["Ties", result.runs.ties], ["Runs z", result.runs.z],
     ["Normal cumulative probability", result.runs.cumulative], ["Two-sided normal p", result.runs.p],
     ["Backtest origins used", Object.keys(result.scores).length ? result.scoredOrigins : 0]
@@ -72,6 +77,15 @@ export function resultWorkbook(Excel, result, points, method, goal, cadence, win
     sheet.getColumn(1).width = 34;
     sheet.getColumn(2).width = 24;
     sheet.getColumn(3).width = 24;
+  }
+  series.getColumn(4).width = 24;
+  series.getColumn(5).width = 24;
+  if (headings) {
+    series.getRow(1).eachCell((cell, columnNumber) => {
+      const column = series.getColumn(columnNumber);
+      column.width = Math.max(column.width, Math.min(65, cell.text.length + 2));
+      cell.alignment = { wrapText: true };
+    });
   }
   return workbook;
 }

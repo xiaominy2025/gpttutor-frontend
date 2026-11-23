@@ -51,6 +51,27 @@ test("seasonal factor aggregation, eligibility and insufficient common origins",
   assert.equal(forecast(zero, "monthly", 1, 3, true).factors, null);
 });
 
+test("seasonal reliability uses held-out actuals at matching leads after full annual training", () => {
+  const run = count => forecast(points(count), "monthly", 12, 3, true, { student: true, method: "seasonal" });
+  const cold = run(24);
+  assert.equal(cold.seasonalBacktest.centeredObservations,12);
+  assert.deepEqual(cold.seasonalBacktest.comparisons, Array(12).fill(0));
+  assert.equal(run(26).leadScores[0], null);
+  const eligible = run(27);
+  assert.deepEqual(eligible.seasonalBacktest.comparisons, [3,2,1,0,0,0,0,0,0,0,0,0]);
+  assert.equal(eligible.leadScores[0].count,3);
+  assert.ok(eligible.leadScores.slice(1).every(score => score === null));
+  const history = points(27);
+  const independent = [24,25,26].map(end => {
+    const training = history.slice(0,end);
+    const target = history[end];
+    const index = seasonalFactors(training)[target.time.getUTCMonth()].factor;
+    return Math.abs(linearFit(training).predict(target.time) * index - target.value);
+  });
+  near(eligible.leadScores[0].mae, independent.reduce((sum,error)=>sum+error,0)/3);
+  assert.equal(run(38).leadScores[11].count,3);
+});
+
 test("Excel mapping rejects missing periods and absent formula caches", () => {
   const sheet = new Excel.Workbook().addWorksheet("Source");
   sheet.addRows([["Date", "Sales"], [date(2024, 0), 0], [date(2024, 2), 4], [date(2024, 3), 5]]);
@@ -118,4 +139,6 @@ test("original Seasonal workbook, all factors and forecasts", workbookOptions, a
   }
   const fullPrecision = forecast(history, "monthly", 12, 3, true);
   near(fullPrecision.predictions.seasonal[0], 2982.3044666303904 * factors[0].factor);
+  assert.deepEqual(forecast(history, "monthly", 12, 3, true, { student: true, method: "seasonal" })
+    .seasonalBacktest.comparisons, Array(12).fill(0));
 });

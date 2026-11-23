@@ -1,0 +1,137 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Forecasting guest Advisor, Alpha only. Default off.
+Parameters:
+  CodeKey:
+    Type: String
+    AllowedPattern: 'releases/forecasting-alpha/[a-f0-9]{64}\.zip'
+  CodeVersion:
+    Type: String
+  PilotId:
+    Type: String
+    AllowedPattern: '[a-z0-9-]{1,35}'
+  AllowModelKey:
+    Type: String
+    AllowedValues: ['true', 'false']
+    Default: 'false'
+Conditions:
+  SharedModelApproved: !Equals [!Ref AllowModelKey, 'true']
+Resources:
+  Logs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/forecasting-alpha-api
+      RetentionInDays: 14
+  Role:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: forecasting-alpha-runtime
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: lambda.amazonaws.com }
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: forecasting-alpha-runtime
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents]
+                Resource: !Sub 'arn:aws:logs:us-east-1:${AWS::AccountId}:log-group:/aws/lambda/forecasting-alpha-api:log-stream:*'
+              - Effect: Allow
+                Action: ssm:GetParameter
+                Resource: !Sub 'arn:aws:ssm:us-east-1:${AWS::AccountId}:parameter/forecasting-alpha/hmac-secret'
+              - !If
+                - SharedModelApproved
+                - Effect: Allow
+                  Action: ssm:GetParameter
+                  Resource: !Sub 'arn:aws:ssm:us-east-1:${AWS::AccountId}:parameter/decisionnavigator-alpha/openai-api-key'
+                - !Ref AWS::NoValue
+              - Effect: Allow
+                Action: dynamodb:GetItem
+                Resource: !Sub 'arn:aws:dynamodb:us-east-1:${AWS::AccountId}:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5'
+                Condition:
+                  ForAllValues:StringEquals:
+                    dynamodb:LeadingKeys: ['AI#CONFIG']
+                  'Null': { 'dynamodb:LeadingKeys': 'false' }
+              - Effect: Allow
+                Action: [dynamodb:GetItem, dynamodb:PutItem]
+                Resource: !Sub 'arn:aws:dynamodb:us-east-1:${AWS::AccountId}:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5'
+                Condition:
+                  ForAllValues:StringEquals:
+                    dynamodb:LeadingKeys:
+                      - !Sub 'FORECASTING#PILOT#${PilotId}'
+                      - !Sub 'FORECASTING#PILOT#verify-${PilotId}'
+                  'Null': { 'dynamodb:LeadingKeys': 'false' }
+  Runtime:
+    Type: AWS::Lambda::Function
+    DependsOn: Logs
+    Properties:
+      FunctionName: forecasting-alpha-api
+      Runtime: nodejs22.x
+      Handler: alpha-advisor-lambda.handler
+      Role: !GetAtt Role.Arn
+      Timeout: 25
+      MemorySize: 256
+      ReservedConcurrentExecutions: 2
+      Code:
+        S3Bucket: decisiontree-alpha-artifacts-771049112957-us-east-1
+        S3Key: !Ref CodeKey
+        S3ObjectVersion: !Ref CodeVersion
+      Environment:
+        Variables:
+          FORECASTING_MODE: 'off'
+  OffVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName: !Ref Runtime
+  Live:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName: !Ref Runtime
+      FunctionVersion: !GetAtt OffVersion.Version
+      Name: live
+  Integration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: 8qmgd1ghdi
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !Ref Live
+      PayloadFormatVersion: '2.0'
+      TimeoutInMillis: 27000
+  BootstrapPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref Live
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub 'arn:aws:execute-api:us-east-1:${AWS::AccountId}:8qmgd1ghdi/$default/POST/api/platform/forecasting/session'
+  CommunicationPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref Live
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub 'arn:aws:execute-api:us-east-1:${AWS::AccountId}:8qmgd1ghdi/$default/POST/api/platform/forecasting/communication'
+  Bootstrap:
+    Type: AWS::ApiGatewayV2::Route
+    DependsOn: BootstrapPermission
+    Properties:
+      ApiId: 8qmgd1ghdi
+      RouteKey: POST /api/platform/forecasting/session
+      AuthorizationType: NONE
+      Target: !Sub 'integrations/${Integration}'
+  Communication:
+    Type: AWS::ApiGatewayV2::Route
+    DependsOn: CommunicationPermission
+    Properties:
+      ApiId: 8qmgd1ghdi
+      RouteKey: POST /api/platform/forecasting/communication
+      AuthorizationType: NONE
+      Target: !Sub 'integrations/${Integration}'
+Outputs:
+  OffVersion:
+    Value: !GetAtt OffVersion.Version
+  RuntimeRole:
+    Value: !GetAtt Role.Arn
