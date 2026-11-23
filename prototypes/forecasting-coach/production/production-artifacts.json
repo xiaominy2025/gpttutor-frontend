@@ -2,60 +2,60 @@
   "acceptedSource": "7e96a499f1bc7d55cdc2463e765e279565113c4d",
   "artifacts": [
     {
-      "sha256": "4743b803e399453bd134c08a58bcaa2c8a9a1524932c9a570dc67537559b23d3",
-      "path": "dist/forecasting-production-runtime.zip"
+      "sha256": "3664a1d57fd3adec6f3355d323b2744cbfe5b3151c62f3a0628f7d6e47186716",
+      "path": "dist/forecasting-production-shared-runtime.zip"
     },
     {
-      "sha256": "6b8ef26d179ebec9c3d706d6cbfd26f52a19e1a1da8a9293b68d5ffd1928f8d6",
+      "sha256": "cd544b9d7e58b4e08576d2df6c4b4858b1b27757dc11bf31ceb4427ae09d1837",
       "path": "production/stack.yaml"
     },
     {
-      "sha256": "1eb64e2d907fba6a3b891fe0b23e77d1fbaaca2de1ba453741e76efd0b04987d",
-      "path": "dist/production-off/index.html"
+      "sha256": "31433d08b367c9ec64a3118d1e8f516179d04a67354ef17e7c318a59862f7d65",
+      "path": "dist/production-off-header-check/index.html"
     },
     {
-      "sha256": "2b52d1efbd3bc6e91f5295b6c1f103f805dc719ae1582fbe8a51b391ac1ac965",
-      "path": "dist/production-advisor/index.html"
+      "sha256": "2461fbd6685fe92a5065d4d5ae5e8522986f70a55eb4997e1a798ec2a662f801",
+      "path": "dist/production-header-check/index.html"
     },
     {
-      "sha256": "714b0be415e7f8996997e4f80f34aac14c6687f0a3ae7e54210e0bc0a5b3dadd",
-      "path": "dist/production-off/assets/alpha-header-Bc424EVX.js"
-    },
-    {
-      "sha256": "33560ab3991a6f140f3e21c66721603f3f87c67f92c0acf8d70638b593b99876",
-      "path": "dist/production-off/assets/alpha-header-BsL9mC4Y.css"
-    },
-    {
-      "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
-      "path": "dist/production-off/assets/engent-logo-13TNTF-a.png"
-    },
-    {
-      "sha256": "8f2e9ca93be11690eddead3adf5aba7bc2fa38734d07903ae0f037d6ee18d23b",
-      "path": "dist/production-off/assets/index-_riSPuCQ.js"
-    },
-    {
-      "sha256": "0fd9dcd98700b6e2313d2d9de8d4cde5530c2367708c01953adde41226bcf74c",
-      "path": "dist/production-off/assets/index-V4JrjwxY.css"
+      "sha256": "c29acdb118cf719359a026180b28c1b03cf07b67a87eb512de4a2693e4fd7116",
+      "path": "dist/production-off-header-check/assets/alpha-header-B8C0kLp-.js"
     },
     {
       "sha256": "33560ab3991a6f140f3e21c66721603f3f87c67f92c0acf8d70638b593b99876",
-      "path": "dist/production-advisor/assets/alpha-header-BsL9mC4Y.css"
-    },
-    {
-      "sha256": "03f7d08036242b0c75a697c585fad61cdba4bc4bade2bedd212205395415e1b6",
-      "path": "dist/production-advisor/assets/alpha-header-CurUTWhn.js"
+      "path": "dist/production-off-header-check/assets/alpha-header-BsL9mC4Y.css"
     },
     {
       "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
-      "path": "dist/production-advisor/assets/engent-logo-13TNTF-a.png"
+      "path": "dist/production-off-header-check/assets/engent-logo-13TNTF-a.png"
     },
     {
-      "sha256": "d6813f8435a6b458b0753a510e1678e6deaebaa6e4abce42ea01639ad35d6cc1",
-      "path": "dist/production-advisor/assets/index-CqI-YzeF.js"
+      "sha256": "1affc45e2d310e7762eeb45a36e46a688c92d86818b66c52627df1e93c0b0876",
+      "path": "dist/production-off-header-check/assets/index-v09bJpPQ.js"
     },
     {
       "sha256": "0fd9dcd98700b6e2313d2d9de8d4cde5530c2367708c01953adde41226bcf74c",
-      "path": "dist/production-advisor/assets/index-V4JrjwxY.css"
+      "path": "dist/production-off-header-check/assets/index-V4JrjwxY.css"
+    },
+    {
+      "sha256": "33560ab3991a6f140f3e21c66721603f3f87c67f92c0acf8d70638b593b99876",
+      "path": "dist/production-header-check/assets/alpha-header-BsL9mC4Y.css"
+    },
+    {
+      "sha256": "c7d0bdde3641f482ff202d94a76f21369fd1c249f1986b235f7fff4a9eed5d74",
+      "path": "dist/production-header-check/assets/alpha-header-CJnJwEmV.js"
+    },
+    {
+      "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
+      "path": "dist/production-header-check/assets/engent-logo-13TNTF-a.png"
+    },
+    {
+      "sha256": "7edc950978edeb809924c565754e12362f2781e831b33f5b32b37f236c53819d",
+      "path": "dist/production-header-check/assets/index-DtDO6nym.js"
+    },
+    {
+      "sha256": "0fd9dcd98700b6e2313d2d9de8d4cde5530c2367708c01953adde41226bcf74c",
+      "path": "dist/production-header-check/assets/index-V4JrjwxY.css"
     }
   ]
 }

@@ -37,7 +37,7 @@ test("calendar rollover preserves prior holds and cross-month concurrency", asyn
   assert.equal(await ledger.settle("old", 400), true);
   assert.equal(await ledger.settle("old", 400), false);
   assert.equal(await take(ledger, next, "alice", "after-settlement"), true);
-  assert.deepEqual(state().months["2026-11"], { spent: monthlyBudgetMicros - 112, reserved: 0 });
+  assert.deepEqual(state().months["2026-11"], { spent: monthlyBudgetMicros - 112, reserved: 0, used: true });
   assert.equal(await take(ledger, old, "new-visitor", "stale"), false);
 });
 

@@ -32,7 +32,7 @@ function validateState(state) {
   }
 }
 
-export function monthlyLedger(store, { verification = false, canary = false } = {}) {
+export function monthlyLedger(store, { verification = false, canary = false, sharedBudget = false } = {}) {
   const key = verification ? verificationLedgerKey : productionLedgerKey;
   async function update(change) {
     for (let attempt = 0; attempt < 8; attempt++) {
@@ -41,7 +41,9 @@ export function monthlyLedger(store, { verification = false, canary = false } = 
       validateState(prior.value);
       const next = change(prior.value);
       if (!next) return false;
-      if (await store.replace(key, prior.revision, next)) return true;
+      const result = await store.replace(key, prior.revision, next.state, next.money);
+      if (result === "denied") return false;
+      if (result) return true;
     }
     throw Error("Forecasting production ledger contention.");
   }
@@ -62,14 +64,15 @@ export function monthlyLedger(store, { verification = false, canary = false } = 
         if (guest.minute > minute || guest.count >= pilotLimits.daily || recent >= pilotLimits.perMinute ||
             (requests[ipKey] ?? 0) >= pilotLimits.ipDaily || (requests.global ?? 0) >= pilotLimits.globalDaily ||
             active.length >= pilotLimits.concurrent || active.some(lease => lease.actor === actor) ||
-            total.spent + total.reserved + reservation > monthlyBudgetMicros) return null;
-        return {
+            (!sharedBudget && total.spent + total.reserved + reservation > monthlyBudgetMicros)) return null;
+        return { money: { month, id, reservation, minute, previouslyUsed: total.used === true ||
+          total.spent > 0 || total.reserved > 0 }, state: {
           ...state, day, canaryUsed: state.canaryUsed || canary,
-          months: { ...state.months, [month]: { ...total, reserved: total.reserved + reservation } },
+          months: { ...state.months, [month]: { ...total, used: true, reserved: total.reserved + reservation } },
           requests: { ...requests, [actorKey]: { count: guest.count + 1, minute, recent: recent + 1 },
             [ipKey]: (requests[ipKey] ?? 0) + 1, global: (requests.global ?? 0) + 1 },
           leases: { ...state.leases, [id]: { actor, month, reservation } }
-        };
+        } };
       });
     },
     async settle(id, cost, pause = false) {
@@ -80,10 +83,10 @@ export function monthlyLedger(store, { verification = false, canary = false } = 
         const leases = { ...state.leases };
         delete leases[id];
         const total = state.months[lease.month];
-        return {
+        return { money: { month: lease.month, id, reservation: lease.reservation, cost, pause }, state: {
           ...state, leases, paused: state.paused || pause || cost > lease.reservation,
-          months: { ...state.months, [lease.month]: { spent: total.spent + cost, reserved: total.reserved - lease.reservation } }
-        };
+          months: { ...state.months, [lease.month]: { ...total, spent: total.spent + cost, reserved: total.reserved - lease.reservation } }
+        } };
       });
     }
   };

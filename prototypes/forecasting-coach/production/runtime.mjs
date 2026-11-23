@@ -13,7 +13,7 @@ export const productionSigningParameter = "/forecasting-prod/hmac-secret";
 export const productionModelParameter = "/decisionnavigator-prod/openai-api-key";
 const unavailable = alphaAdvisorGateway(createForecastingAdvisor(), { origin: productionOrigin });
 
-export function productionRuntime({ mode, expectedViewerIp, startsAt, endsAt, getItem, putItem, getParameter,
+export function productionRuntime({ mode, expectedViewerIp, startsAt, endsAt, getItem, putItem, transactWrite, getParameter,
   fetcher, now = Date.now } = {}) {
   if (!["verify", "canary", "live"].includes(mode)) return unavailable;
   const verification = mode === "verify", canary = mode === "canary";
@@ -22,7 +22,8 @@ export function productionRuntime({ mode, expectedViewerIp, startsAt, endsAt, ge
       endsAt <= startsAt || endsAt - startsAt > 300_000)) return unavailable;
   const available = () => !restricted || (now() >= startsAt && now() < endsAt);
   const ledger = monthlyLedger(productionDynamoStore({ tableName: productionTable,
-    partition: verification ? verificationLedgerKey : productionLedgerKey, getItem, putItem }), { verification, canary });
+    partition: verification ? verificationLedgerKey : productionLedgerKey, getItem, putItem, transactWrite,
+    sharedBudget: !verification }), { verification, canary, sharedBudget: !verification });
   let session;
   async function secureParameter(Name) {
     const { Parameter } = await getParameter({ Name, WithDecryption: true });
