@@ -1,0 +1,87 @@
+{
+  "at": "2026-11-23T15:22:25.453Z",
+  "aliases": {
+    "engent-platform-prod-api": {
+      "version": "5",
+      "revision": "a495aed8-1f66-41dd-b6c8-5cafa5a410e6",
+      "codeSha256": "SqwEtX2zwa9L/nwxKj+EV6Zhqc6Vjt6fejY0Lt92F00="
+    },
+    "decisiontree-prod-api": {
+      "version": "6",
+      "revision": "12217af7-967f-45ee-8f54-bf86b80ecf6f",
+      "codeSha256": "JLONPCrMK/NaOoWbJU9BH4M6yBYGED83o6V5wIVQZoY="
+    },
+    "decisionprocess-prod-api": {
+      "version": "3",
+      "revision": "0522322a-acb7-4ea7-b652-38482ea26e78",
+      "codeSha256": "vNKvfwrBdxwSraLoKGnkYhtAVGyDZuYF7+Ad2s9LMdg="
+    },
+    "decisionnavigator-prod-api": {
+      "version": "3",
+      "revision": "bbaf9610-8925-4036-87c2-cf3cb6677cd9",
+      "codeSha256": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw="
+    },
+    "forecasting-prod-api": {
+      "version": "4",
+      "revision": "3e572a8d-b9e3-4afe-9871-cef0f605dd1d",
+      "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A="
+    }
+  },
+  "master": {
+    "suspended": false,
+    "revision": 1
+  },
+  "alpha": [
+    {
+      "name": "engent-platform-alpha-api",
+      "version": "5",
+      "baselineVersion": "5",
+      "unchanged": true
+    },
+    {
+      "name": "decisiontree-alpha-staging-api",
+      "version": "18",
+      "baselineVersion": "18",
+      "unchanged": true
+    },
+    {
+      "name": "decisionprocess-alpha-api",
+      "version": "6",
+      "baselineVersion": "6",
+      "unchanged": true
+    },
+    {
+      "name": "decisionnavigator-alpha-api",
+      "version": "3",
+      "baselineVersion": "3",
+      "unchanged": true
+    },
+    {
+      "name": "forecasting-alpha-api",
+      "version": "9",
+      "baselineVersion": "9",
+      "unchanged": true
+    }
+  ],
+  "headerPolicyPreserved": true,
+  "processAI": "ON",
+  "processBudgetUSD": 10,
+  "navigatorForecastCombinedBudgetUSD": 10,
+  "credentialFormat": "JSON",
+  "credentialReference": "/decisionprocess-prod/openai-api-key",
+  "operatorReadProviderSecret": false,
+  "canary": {
+    "inputTokens": 1254,
+    "outputTokens": 216,
+    "costNano": 264750,
+    "costUSD": 0.00026475,
+    "reservedNano": 5118750,
+    "retainedHolds": 0,
+    "globalConcurrency": 0,
+    "userConcurrency": 0
+  },
+  "invalidation": "Completed",
+  "projectWrites": 0,
+  "usersCreatedOrModified": 0,
+  "dnsChanges": 0
+}

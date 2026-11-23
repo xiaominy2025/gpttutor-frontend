@@ -1,0 +1,67 @@
+{
+  "writes": [
+    {
+      "service": "s3api",
+      "operation": "put-object",
+      "key": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/assets/DecisionNavigator-DbC1ENJ1.js",
+      "at": "2026-11-23T15:16:24.352Z",
+      "version": "fLNAAvH4fqjjELIKfOKB8.Ua00QN8pYQ",
+      "etag": "\"f376d9dfe5798966f238cca8a22ba4c7\""
+    },
+    {
+      "service": "s3api",
+      "operation": "put-object",
+      "key": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/assets/index-BCP4qqa_.js",
+      "at": "2026-11-23T15:16:26.445Z",
+      "version": "B4nfkYIcDANemyKNkaq6U6I_KFKYB9kB",
+      "etag": "\"4834263afa5e9468d1f6092aa234025c\""
+    },
+    {
+      "service": "s3api",
+      "operation": "put-object",
+      "key": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/index.html",
+      "at": "2026-11-23T15:16:30.538Z",
+      "version": "4DoPmpqaHxI0qY1vEL9WMclEOBDfXLq3",
+      "etag": "\"6ed4216c06ff70a6076949f149934f9e\""
+    },
+    {
+      "service": "cloudfront",
+      "operation": "create-invalidation",
+      "at": "2026-11-23T15:17:31.058Z"
+    }
+  ],
+  "source": "a2c206bb59932d5db612285f4c489b2bc0b28d0f",
+  "before": {
+    "version": "vvpGAQe3fQuL2u5othhEilqG.nYH__aj",
+    "etag": "\"4f6adcb97122ffd442eb5ee530d66570\"",
+    "metadata": {
+      "sha256": "247b5ebc593da002ec7844969fdcff03bf8ff538c82739fce4066500a2df7bc2",
+      "engent-release-id": "production-release-b",
+      "source": "5718484c4b494fbfc791e67834371ea30901fb76",
+      "engent-write-id": "74e8eb24-9925-4e55-9929-39a9061695cf"
+    },
+    "cacheControl": "no-cache,max-age=0,must-revalidate",
+    "contentType": "text/html; charset=utf-8"
+  },
+  "assets": [
+    {
+      "path": ".artifacts/coordinated-production/web/assets/DecisionNavigator-DbC1ENJ1.js",
+      "key": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/assets/DecisionNavigator-DbC1ENJ1.js",
+      "sha256": "122fdb5a7b513c142b19859239c3db90b499e3a2f1b55031412d21569f45cef1",
+      "version": "fLNAAvH4fqjjELIKfOKB8.Ua00QN8pYQ"
+    },
+    {
+      "path": ".artifacts/coordinated-production/web/assets/index-BCP4qqa_.js",
+      "key": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/assets/index-BCP4qqa_.js",
+      "sha256": "a9cd627d9843ff1f591e0c2a7182ee017892a4219f1956d1c23ca0e606a91ee2",
+      "version": "B4nfkYIcDANemyKNkaq6U6I_KFKYB9kB"
+    }
+  ],
+  "active": {
+    "version": "4DoPmpqaHxI0qY1vEL9WMclEOBDfXLq3",
+    "etag": "\"6ed4216c06ff70a6076949f149934f9e\"",
+    "writeId": "646d3220-8f12-49ab-aa27-3f50884730ac",
+    "sha256": "4ef4ac76aa02d766d5a5a10c16b8f8a17c9627607fc834f8295d8f1082dfb968"
+  },
+  "invalidation": "I2UGQTGGKRNXKTTMJHOTFFGGWC"
+}

@@ -6,7 +6,7 @@ const error=(status=401)=>Object.assign(Error('Email sign-in unavailable.'),{sta
 const response=(statusCode,body,cookies=[])=>({statusCode,cookies,headers:{'Content-Type':'application/json','Cache-Control':'no-store','Referrer-Policy':'no-referrer'},body:JSON.stringify(body)});
 function cookies(e){const a=(e.cookies??[e.headers?.cookie??'']).join(';').split(';').map(x=>x.trim()).filter(Boolean).map(x=>x.split('='));if(a.some(x=>x.length!==2)||new Set(a.map(x=>x[0])).size!==a.length)throw error();return Object.fromEntries(a);}
 function body(e,fields,form=false){const raw=e.isBase64Encoded?Buffer.from(e.body??'','base64').toString():e.body??'';if(Buffer.byteLength(raw)>8192)throw error(413);if(e.headers?.['content-type']?.split(';')[0]!== (form?'application/x-www-form-urlencoded':'application/json'))throw error(400);let v;try{if(form){const a=[...new URLSearchParams(raw)];if(new Set(a.map(x=>x[0])).size!==a.length)throw Error();v=Object.fromEntries(a);}else v=JSON.parse(raw);}catch{throw error(400);}if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).sort().join(',')!==[...fields].sort().join(','))throw error(400);return v;}
-function form(url,data){const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),nonce=random();return {statusCode:200,headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Referrer-Policy':'strict-origin','Content-Security-Policy':`default-src 'none'; script-src 'nonce-${nonce}'; form-action ${new URL(url).origin}; base-uri 'none'; frame-ancestors 'none'`},body:`<!doctype html><title>Continuing sign-in</title><form method="post" action="${esc(url)}">${Object.entries(data).map(([k,v])=>`<input type="hidden" name="${esc(k)}" value="${esc(v)}">`).join('')}<button>Continue</button></form><script nonce="${nonce}">document.forms[0].submit()</script>`};}
+function form(url,data){const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),nonce=random();return {statusCode:200,headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Referrer-Policy':'strict-origin','Content-Security-Policy':`default-src 'none'; script-src 'nonce-${nonce}'; form-action 'self' ${new URL(url).origin}; base-uri 'none'; frame-ancestors 'none'`},body:`<!doctype html><title>Continuing sign-in</title><form method="post" action="${esc(url)}">${Object.entries(data).map(([k,v])=>`<input type="hidden" name="${esc(k)}" value="${esc(v)}">`).join('')}<button>Continue</button></form><script nonce="${nonce}">document.forms[0].submit()</script>`};}
 export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=false,processEnabled=false,now=()=>Math.floor(Date.now()/1000)}){
  const key=id=>'EMAIL#'+hash(id);
  return async e=>{const p=e.rawPath??'',method=e.requestContext?.http?.method,isNew=p.startsWith('/api/platform/email/');
@@ -21,7 +21,7 @@ export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=f
  const session=async(allowPending=false)=>{if(!live||live.kind!=='session')throw error();const a=await invoke('session',{lease:live.lease,action:'read'});if(a.active!==true&&!(allowPending&&a.pending===true))throw error();return a;};
  if(p==='/api/platform/email/bootstrap'&&method==='GET'){
   const intent=e.queryStringParameters?.return;
-  if(intent!==undefined&&(!processEnabled||intent!=='process'||origin!=='https://d6owpirihdsus.cloudfront.net'))throw error(400);
+  if(intent!==undefined&&(!processEnabled||intent!=='process'||!['https://d6owpirihdsus.cloudfront.net','https://www.engentlabs.com'].includes(origin)))throw error(400);
   const id=random(),csrf=random();await store.create(key(id),{csrf,expiresAt:now()+600,kind:'preauth',...(intent==='process'?{processReturnUntil:now()+600}:{})});return response(200,{csrf},[cookie(txName,id,600)]);
  }
  const fromTree=p==='/api/platform/email/authorize';
@@ -50,7 +50,7 @@ export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=f
   if(a.sub!==live.sub)throw error();if(a.pending)return response(200,{signedIn:false,pendingSignIn:true,role:'guest'});return response(200,{signedIn:true,role:'student',emailBridge:true,entitlements:{tree:{advanced:a.advanced===true,requestStatus:a.requestStatus}},treeLaunchUrl:treeOrigin+'/api/shared/email/login',...(processEnabled&&live.processReturnUntil>now()?{processReturnAvailable:true}:{})});
  }
  if(p==='/api/platform/email/return'){
-  if(!processEnabled||origin!=='https://d6owpirihdsus.cloudfront.net')throw error(410);
+  if(!processEnabled||!['https://d6owpirihdsus.cloudfront.net','https://www.engentlabs.com'].includes(origin))throw error(410);
   body(e,[]);const a=await session();if(a.sub!==live.sub||!(live.processReturnUntil>now()))throw error();
   const {processReturnUntil,...rest}=live;
   if(!await store.replace(key(sid),live.version,rest))throw error(409);

@@ -57,7 +57,11 @@ function Availability({ coach, sharedLaunch }) {
   if (coach.id === 'forecast' && canLaunch(coach)) return <CoachLaunchControl href={forecastUrl} label="Launch Forecasting Coach" />;
   if (coach.id === 'process' && canLaunch(coach)) return <CoachLaunchControl href="/process/" label="Launch Decision Process Coach" />;
   if (canLaunch(coach)) {
-    const destination = sharedLaunch === 'https://decisiontree.engentlabs.com/api/shared/login' ? sharedLaunch : treeUrl;
+    const safePath = import.meta.env.VITE_RELEASE_B_EMAIL_ENABLED === 'true' ? 'api/shared/email/login' : 'api/shared/login';
+    const destination = sharedLaunch === treeUrl + safePath ? sharedLaunch : treeUrl;
+    if (import.meta.env.VITE_RELEASE_B_EMAIL_ENABLED === 'true' && destination === treeUrl + safePath) {
+      return <form method="post" action={destination}><CoachLaunchControl type="submit" label="Launch Decision Tree Coach" /></form>;
+    }
     return <CoachLaunchControl href={destination} label="Launch Decision Tree Coach" />;
   }
   return <span className="engent-status">Coming Soon</span>;

@@ -1,0 +1,26 @@
+{
+  "method": "Existing guarded browser; actual central logout and retained API-only Tree tab",
+  "before": {
+    "rootSignedIn": true,
+    "treeAdvanced": true,
+    "processAccess": "student",
+    "treeProtectedSessionAuthenticated": true
+  },
+  "logout": {
+    "acknowledged": true,
+    "scope": "participating-browser",
+    "source": "existing POST /api/platform/logout from short-lived same-origin UI"
+  },
+  "after": {
+    "rootSignedIn": false,
+    "processAccess": "guest",
+    "processAI": false,
+    "treeRetainedCookieSession": "Authentication required."
+  },
+  "revocationPassed": true,
+  "verificationCodesRequested": 0,
+  "cookieValuesReadOrExported": false,
+  "projectWrites": 0,
+  "paidCalls": 0,
+  "note": "Earlier owner-reported logout did not affect this context; actual sign-out was observed on the explicit test page. No UI-only success assumed."
+}

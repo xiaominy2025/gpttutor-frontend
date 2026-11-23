@@ -1,0 +1,18 @@
+{
+  "status": {
+    "op": "status",
+    "rootStatus": 200,
+    "signedIn": true,
+    "treeAdvanced": true,
+    "processStatus": 200,
+    "processAccess": "student",
+    "processAi": true,
+    "treeSignedIn": true,
+    "host": "www.engentlabs.com",
+    "path": "/process/"
+  },
+  "automaticCrossHostReturnVerified": true,
+  "newCodeRequestedForReturnTest": false,
+  "paidRequestsForFinalStatusCheck": 0,
+  "projectWrites": 0
+}

@@ -1,0 +1,43 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "universalGuestHeaders": true,
+      "navigatorDialog": true,
+      "processDirectRefresh": true,
+      "treeDirectRefresh": true,
+      "processGuestAIoff": true,
+      "pageErrors": 0
+    },
+    {
+      "width": 1024,
+      "universalGuestHeaders": true,
+      "navigatorDialog": true,
+      "processDirectRefresh": true,
+      "treeDirectRefresh": true,
+      "processGuestAIoff": true,
+      "pageErrors": 0
+    },
+    {
+      "width": 768,
+      "universalGuestHeaders": true,
+      "navigatorDialog": true,
+      "processDirectRefresh": true,
+      "treeDirectRefresh": true,
+      "processGuestAIoff": true,
+      "pageErrors": 0
+    },
+    {
+      "width": 390,
+      "universalGuestHeaders": true,
+      "navigatorDialog": true,
+      "processDirectRefresh": true,
+      "treeDirectRefresh": true,
+      "processGuestAIoff": true,
+      "pageErrors": 0
+    }
+  ],
+  "podcastRangeChecks": 39,
+  "paidCalls": 0,
+  "projectWrites": 0
+}

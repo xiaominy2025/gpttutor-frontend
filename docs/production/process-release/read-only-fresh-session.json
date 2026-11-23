@@ -1,0 +1,18 @@
+{
+  "readOnly": true,
+  "allBrowserWritesBlocked": true,
+  "paidCalls": 0,
+  "emailRequests": 0,
+  "pagesBefore": [
+    {
+      "origin": "https://www.engentlabs.com",
+      "path": "/api/platform/email/authorize"
+    }
+  ],
+  "processAfterDirectNavigationAndRefresh": "Student",
+  "rootSignedIn": true,
+  "treeAdvanced": true,
+  "treeApiAuthenticated": true,
+  "treeAccountType": "advanced",
+  "automaticReturnNotClaimed": true
+}

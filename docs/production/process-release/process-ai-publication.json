@@ -1,0 +1,30 @@
+{
+  "writes": [
+    {
+      "operation": "publish-version",
+      "at": "2026-11-23T15:15:05.126Z",
+      "priorRevision": "efd1dc8f-05c6-4203-83bc-c1f79eba5b6d",
+      "version": "3",
+      "revision": "c5af7c84-9c74-4a2a-9d36-a4edd753567a"
+    },
+    {
+      "operation": "update-alias",
+      "at": "2026-11-23T15:15:07.110Z",
+      "priorRevision": "94990a33-e73b-48c7-a9b3-526ee39ddd7d",
+      "version": "3",
+      "revision": "0522322a-acb7-4ea7-b652-38482ea26e78"
+    }
+  ],
+  "source": "c3111feeb13a8a632b82509048e9583e61e81084",
+  "codeSha256": "vNKvfwrBdxwSraLoKGnkYhtAVGyDZuYF7+Ad2s9LMdg=",
+  "rollback": {
+    "version": "2",
+    "aliasRevision": "94990a33-e73b-48c7-a9b3-526ee39ddd7d"
+  },
+  "costUSD": 0.00026475,
+  "version": "3",
+  "active": {
+    "version": "3",
+    "revision": "0522322a-acb7-4ea7-b652-38482ea26e78"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "source": "c3111feeb13a8a632b82509048e9583e61e81084",
+  "codeSha256": "vNKvfwrBdxwSraLoKGnkYhtAVGyDZuYF7+Ad2s9LMdg=",
+  "operatorSha256": "4e4830916f9a8bb5f48bb4ae6722e1f14f24caf182e51f69a87953b743213bc3",
+  "scope": "objectives",
+  "maxRequests": 1,
+  "noRetries": true,
+  "ceilingNano": 20000000,
+  "reservationUpperBoundNano": 12200000,
+  "baseline": {
+    "privateRevision": "a97eb6c0-6d23-4ca9-b8ce-933c924fd4af",
+    "configurationHash": "c3b9fa292c6064d0c88b3128617d77319478e6a5bb702562840e49a7746054f6",
+    "aliasRevision": "94990a33-e73b-48c7-a9b3-526ee39ddd7d"
+  },
+  "acknowledgedRevision": "b74794ce-25c0-492a-89ef-3ed558e4c4a4",
+  "ready": {
+    "revision": "efd1dc8f-05c6-4203-83bc-c1f79eba5b6d",
+    "eventId": "ce1c4c7a-cebe-4c3b-8528-cd07482bbe2f",
+    "configurationHash": "069bd4af57ed94c9eb84311c23e3d7218bae8ad8ab6d407b1d25023cc91eeb6d"
+  },
+  "expiresAt": 1795447673415,
+  "state": "private-ready-public-OFF2"
+}

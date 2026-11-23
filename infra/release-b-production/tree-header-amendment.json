@@ -1,0 +1,24 @@
+{
+  "status": "APPLIED_VERIFIED",
+  "reason": "Previous automatic-review block resolved by specific owner authorization",
+  "distribution": "EZIPB1HNL0GC8",
+  "policyId": "66465582-49eb-4537-bc5b-10b39aee71af",
+  "policyName": "decisiontree-prod-security",
+  "changes": [
+    {
+      "path": "SecurityHeadersConfig.ContentSecurityPolicy.Override",
+      "from": true,
+      "to": false
+    },
+    {
+      "path": "SecurityHeadersConfig.ReferrerPolicy.Override",
+      "from": true,
+      "to": false
+    }
+  ],
+  "unchanged": "All fallback policy strings, HSTS, nosniff, frame-denial, distribution associations and other fields",
+  "compensation": "Verified accepted Tree postForm supplies default-src none, unique script nonce, fixed WWW form-action, base-uri none, frame-ancestors none and strict-origin. Backend JSON keeps no-referrer. Edge fallback remains enforced where origin omits a header.",
+  "risk": "Origin becomes authoritative for explicit CSP/referrer response values. This matches tested Alpha design but changes current Production edge override ownership.",
+  "rollback": "Capture fresh ETag and full configuration; require exactly owned target, then conditional restore of the two flags only; stop on drift",
+  "authority": "Explicit owner authorization 2026-11-23 for these exact two flags; applied conditionally and verified through actual hosted nonce-CSP form"
+}

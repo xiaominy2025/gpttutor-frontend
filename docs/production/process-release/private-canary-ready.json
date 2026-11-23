@@ -1,0 +1,11 @@
+{
+  "ready": true,
+  "readyRevision": "efd1dc8f-05c6-4203-83bc-c1f79eba5b6d",
+  "source": "c3111feeb13a8a632b82509048e9583e61e81084",
+  "codeSha256": "vNKvfwrBdxwSraLoKGnkYhtAVGyDZuYF7+Ad2s9LMdg=",
+  "operatorSha256": "4e4830916f9a8bb5f48bb4ae6722e1f14f24caf182e51f69a87953b743213bc3",
+  "expiresAt": 1795447673415,
+  "maxRequests": 1,
+  "noRetries": true,
+  "ceilingNano": 20000000
+}

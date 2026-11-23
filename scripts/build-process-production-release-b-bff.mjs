@@ -1,0 +1,9 @@
+// Production Release B package only. Existing A versions remain rollback; no AWS calls.
+import{build}from'esbuild';import{mkdirSync,readFileSync,writeFileSync}from'node:fs';import{execFileSync}from'node:child_process';import{createHash}from'node:crypto';import assert from'node:assert/strict';
+assert.equal(execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim(),'','Commit source before packaging');
+const source=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),dir='.artifacts/process-production/release-b-bff';mkdirSync(dir,{recursive:true});
+const result=await build({entryPoints:['server/platform/release-b-entry.mjs'],bundle:true,platform:'node',target:'node22',format:'cjs',outfile:dir+'/index.cjs',metafile:true});
+const inputs=Object.keys(result.metafile.inputs);assert(!inputs.some(x=>/node_modules\/(openai|@aws-sdk\/client-(ssm|secrets-manager))\//.test(x)),'Authentication runtime cannot read model credentials');
+writeFileSync(dir+'/package.json',JSON.stringify({type:'commonjs'}));
+execFileSync('python',['-c',`from zipfile import ZipFile,ZipInfo,ZIP_DEFLATED\nfrom pathlib import Path\np=Path('${dir}')\nwith ZipFile(p/'runtime.zip','w',compression=ZIP_DEFLATED) as z:\n for name in ['index.cjs','package.json']:\n  i=ZipInfo(name,(2026,1,1,0,0,0));i.compress_type=ZIP_DEFLATED;z.writestr(i,(p/name).read_bytes())`]);
+const bytes=readFileSync(dir+'/runtime.zip');const receipt={source,entry:'server/platform/release-b-entry.mjs',productionOnly:true,codeSha256:createHash('sha256').update(bytes).digest('base64'),bundleSha256:createHash('sha256').update(readFileSync(dir+'/index.cjs')).digest('hex'),bytes:bytes.length,inputs,flags:{RELEASE_B_EMAIL_ENABLED:'true',PROCESS_SESSION_ENABLED:'true',SHARED_AUTH_ENABLED:'true'}};writeFileSync(dir+'/receipt.json',JSON.stringify(receipt,null,2));console.log(JSON.stringify({source,codeSha256:receipt.codeSha256,bytes:bytes.length,noDeployment:true}));

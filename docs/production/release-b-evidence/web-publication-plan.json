@@ -1,0 +1,84 @@
+{
+  "preparedAt": "2026-11-23T05:24:12.768Z",
+  "publicationHeld": "specific CloudFront security override authorization pending",
+  "sites": [
+    {
+      "id": "homepage",
+      "bucket": "engentlabs-frontend",
+      "prefix": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949",
+      "html": ".artifacts/coordinated-production/web/index.html",
+      "source": "5718484c4b494fbfc791e67834371ea30901fb76",
+      "baseline": {
+        "version": "Wt8RnFTCsaNKk8dlW._qHGDAB3Nn2fdt",
+        "etag": "\"c4339fb66417d921d7742d41a803448b\"",
+        "metadata": {
+          "sha256": "96b6af75546f6399526cf9ada9c4cb401d28d666cf0223a8710a7d1541ab07d8",
+          "engent-release-id": "prod-forecasting-20261122-final",
+          "engent-write-id": "f886c6eb-0e99-4f51-9759-f08d31fe8bec"
+        },
+        "cacheControl": "no-cache,max-age=0,must-revalidate",
+        "contentType": "text/html; charset=utf-8"
+      },
+      "htmlSha256": "247b5ebc593da002ec7844969fdcff03bf8ff538c82739fce4066500a2df7bc2"
+    },
+    {
+      "id": "tree",
+      "bucket": "decisiontree-prod-frontend-zydhridoxgoz",
+      "prefix": "releases/bab0d40e5ea3e5633bab3459ce5d52a599b7e6f6",
+      "html": ".artifacts/process-production/release-b/tree/web/index.html",
+      "source": "2b70c76d95e41caf0732b4844ebedfd039548699",
+      "baseline": {
+        "version": "ITDyAenbMU5qk6i2AWACbCC7rWWoBoSY",
+        "etag": "\"949db169b7228d980d606bc55eb3d81d\"",
+        "metadata": {
+          "sha256": "30ff76985fbdca3a54c67bf84749115fafc854ec547349fb290c8de83a4ea3c3"
+        },
+        "cacheControl": "no-cache,max-age=0,must-revalidate",
+        "contentType": "text/html; charset=utf-8"
+      },
+      "htmlSha256": "f486a8f1ddd367f747803a9f7b48aafcf6055e8032f89ea16faab9abc5b30c0b"
+    },
+    {
+      "id": "process",
+      "bucket": "engentlabs-frontend",
+      "prefix": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/process",
+      "html": ".artifacts/process-production/release-b/coach/web/index.html",
+      "source": "c3111feeb13a8a632b82509048e9583e61e81084",
+      "baseline": {
+        "version": "5R4z2rp8qeK49wGLqDxy6tVgYj72nE47",
+        "etag": "\"859f81b33ed2ee4212794bdd06463012\"",
+        "metadata": {
+          "sha256": "f84c992fba70776d3b424cff81f9d75e83d2173b8f3d9d8449bc3ffb1330dd43",
+          "engent-release-id": "prod-process",
+          "source": "edd5da3a6f337b62d1852e5746b7cf6f5a6eb38b",
+          "engent-write-id": "ca3c2ff9-257a-4483-a5fa-8c6faedfe856"
+        },
+        "cacheControl": "no-cache,max-age=0,must-revalidate",
+        "contentType": "text/html; charset=utf-8"
+      },
+      "htmlSha256": "920ce2f9ff43821a985103e1910f21aa227ee6741d9e4d235e92d21a5c260c71"
+    },
+    {
+      "id": "forecast",
+      "bucket": "engentlabs-frontend",
+      "prefix": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/forecasting",
+      "html": ".artifacts/process-production/release-b/forecast/web/index.html",
+      "source": "ee38cdf8f3e2fd259db97e836a04d6355bb546a1",
+      "baseline": {
+        "version": "I66YtzlVDvIxGdhfgfkP4V2K17wDY.Ft",
+        "etag": "\"77dfb4fb17539039ccad288560b94b1e\"",
+        "metadata": {
+          "sha256": "2461fbd6685fe92a5065d4d5ae5e8522986f70a55eb4997e1a798ec2a662f801",
+          "engent-release-id": "prod-forecasting-enabled",
+          "source": "9173933c15ef3ec1b96a3b6b2e7efbb3ebb6c7c7",
+          "engent-write-id": "f095ff54-e7d2-45b8-ae09-b2037e8a6da0"
+        },
+        "cacheControl": "no-cache,max-age=0,must-revalidate",
+        "contentType": "text/html; charset=utf-8"
+      },
+      "htmlSha256": "0ef840186f69065b74466ae884850818844c5a5e7184f2ec553de05b2198e65a"
+    }
+  ],
+  "processLaunch": false,
+  "noAWSWrites": true
+}

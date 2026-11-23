@@ -1,0 +1,102 @@
+{
+  "checks": [
+    {
+      "op": "status",
+      "rootStatus": 200,
+      "signedIn": false,
+      "treeAdvanced": false,
+      "processStatus": 200,
+      "processAccess": "guest",
+      "processAi": false,
+      "treeSignedIn": false,
+      "host": "www.engentlabs.com",
+      "path": "/explore"
+    },
+    {
+      "op": "status",
+      "rootStatus": 200,
+      "signedIn": false,
+      "treeAdvanced": false,
+      "processStatus": 200,
+      "processAccess": "guest",
+      "processAi": false,
+      "treeSignedIn": false,
+      "host": "www.engentlabs.com",
+      "path": "/explore"
+    },
+    {
+      "op": "status",
+      "rootStatus": 200,
+      "signedIn": true,
+      "treeAdvanced": true,
+      "processStatus": 200,
+      "processAccess": "student",
+      "processAi": false,
+      "treeSignedIn": true,
+      "host": "www.engentlabs.com",
+      "path": "/api/platform/email/authorize"
+    },
+    {
+      "op": "status",
+      "rootStatus": 200,
+      "signedIn": true,
+      "treeAdvanced": true,
+      "processStatus": 200,
+      "processAccess": "student",
+      "processAi": false,
+      "treeSignedIn": true,
+      "host": "www.engentlabs.com",
+      "path": "/api/platform/email/authorize"
+    },
+    {
+      "op": "status",
+      "rootStatus": 200,
+      "signedIn": true,
+      "treeAdvanced": true,
+      "processStatus": 200,
+      "processAccess": "student",
+      "processAi": false,
+      "treeSignedIn": true,
+      "host": "www.engentlabs.com",
+      "path": "/api/platform/email/authorize"
+    },
+    {
+      "op": "status",
+      "rootStatus": 200,
+      "signedIn": true,
+      "treeAdvanced": true,
+      "processStatus": 200,
+      "processAccess": "student",
+      "processAi": false,
+      "treeSignedIn": true,
+      "host": "decisiontree.engentlabs.com",
+      "path": "/"
+    },
+    {
+      "op": "status",
+      "rootStatus": 200,
+      "signedIn": true,
+      "treeAdvanced": true,
+      "processStatus": 200,
+      "processAccess": "student",
+      "processAi": false,
+      "treeSignedIn": true,
+      "host": "www.engentlabs.com",
+      "path": "/process/"
+    },
+    {
+      "op": "status",
+      "rootStatus": 200,
+      "signedIn": true,
+      "treeAdvanced": true,
+      "processStatus": 200,
+      "processAccess": "student",
+      "processAi": true,
+      "treeSignedIn": true,
+      "host": "www.engentlabs.com",
+      "path": "/process/"
+    }
+  ],
+  "projectWritesBlocked": true,
+  "paidAiBlocked": true
+}
