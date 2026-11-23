@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "noAWSWrites": true,
+  "results": [
+    {
+      "role": "engent-platform-prod-runtime",
+      "action": "execute-api:Invoke",
+      "scope": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/start",
+      "decision": "allowed"
+    },
+    {
+      "role": "engent-platform-prod-runtime",
+      "action": "execute-api:Invoke",
+      "scope": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/finish",
+      "decision": "allowed"
+    },
+    {
+      "role": "engent-platform-prod-runtime",
+      "action": "execute-api:Invoke",
+      "scope": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/session",
+      "decision": "allowed"
+    },
+    {
+      "role": "engent-platform-prod-runtime",
+      "action": "execute-api:Invoke",
+      "scope": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/handoff",
+      "decision": "allowed"
+    },
+    {
+      "role": "engent-platform-prod-runtime",
+      "action": "execute-api:Invoke",
+      "scope": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/platform/email/advanced-request",
+      "decision": "allowed"
+    },
+    {
+      "role": "engent-platform-prod-runtime",
+      "action": "execute-api:Invoke",
+      "scope": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/platform/email/session",
+      "decision": "implicitDeny"
+    },
+    {
+      "role": "decisiontree-prod-ApiRole-vGwUeXNVhAHY",
+      "action": "dynamodb:DeleteItem",
+      "scope": "SHARED#EMAIL-LEASE#synthetic",
+      "decision": "allowed"
+    },
+    {
+      "role": "decisiontree-prod-ApiRole-vGwUeXNVhAHY",
+      "action": "dynamodb:ConditionCheckItem",
+      "scope": "SESSION#synthetic",
+      "decision": "allowed"
+    },
+    {
+      "role": "decisiontree-prod-ApiRole-vGwUeXNVhAHY",
+      "action": "dynamodb:DeleteItem",
+      "scope": "MEMBERS",
+      "decision": "implicitDeny"
+    },
+    {
+      "role": "decisiontree-prod-ApiRole-vGwUeXNVhAHY",
+      "action": "dynamodb:ConditionCheckItem",
+      "scope": "PROCESS#synthetic",
+      "decision": "implicitDeny"
+    }
+  ]
+}

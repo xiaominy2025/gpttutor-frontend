@@ -1,0 +1,55 @@
+{
+  "writes": [
+    {
+      "operation": "create-policy-version",
+      "at": "2026-11-23T05:18:27.779Z",
+      "policyArn": "arn:aws:iam::771049112957:policy/engent-platform-prod-runtime-boundary",
+      "result": {
+        "PolicyVersion": {
+          "VersionId": "v2",
+          "IsDefaultVersion": false,
+          "CreateDate": "2026-11-23T05:18:29+00:00"
+        }
+      }
+    },
+    {
+      "operation": "set-default-policy-version",
+      "at": "2026-11-23T05:18:31.416Z",
+      "policyArn": "arn:aws:iam::771049112957:policy/engent-platform-prod-runtime-boundary",
+      "result": {}
+    },
+    {
+      "operation": "create-policy-version",
+      "at": "2026-11-23T05:18:44.603Z",
+      "policyArn": "arn:aws:iam::771049112957:policy/decisiontree-prod-runtime-boundary",
+      "result": {
+        "PolicyVersion": {
+          "VersionId": "v3",
+          "IsDefaultVersion": false,
+          "CreateDate": "2026-11-23T05:18:46+00:00"
+        }
+      }
+    },
+    {
+      "operation": "set-default-policy-version",
+      "at": "2026-11-23T05:18:48.297Z",
+      "policyArn": "arn:aws:iam::771049112957:policy/decisiontree-prod-runtime-boundary",
+      "result": {}
+    }
+  ],
+  "rollback": [
+    {
+      "role": "engent-platform-prod-runtime",
+      "policyArn": "arn:aws:iam::771049112957:policy/engent-platform-prod-runtime-boundary",
+      "oldDefault": "v1",
+      "newDefault": "v2"
+    },
+    {
+      "role": "decisiontree-prod-ApiRole-vGwUeXNVhAHY",
+      "policyArn": "arn:aws:iam::771049112957:policy/decisiontree-prod-runtime-boundary",
+      "oldDefault": "v2",
+      "newDefault": "v3"
+    }
+  ],
+  "complete": true
+}

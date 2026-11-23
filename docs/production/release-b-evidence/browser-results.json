@@ -1,0 +1,46 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "guest": true,
+      "anonymousNavigator": true,
+      "forecastLink": true,
+      "signedInTreePost": true,
+      "compactAdvancedHeader": true,
+      "overflow": false,
+      "pageErrors": 0
+    },
+    {
+      "width": 1024,
+      "guest": true,
+      "anonymousNavigator": true,
+      "forecastLink": true,
+      "signedInTreePost": true,
+      "compactAdvancedHeader": true,
+      "overflow": false,
+      "pageErrors": 0
+    },
+    {
+      "width": 768,
+      "guest": true,
+      "anonymousNavigator": true,
+      "forecastLink": true,
+      "signedInTreePost": true,
+      "compactAdvancedHeader": true,
+      "overflow": false,
+      "pageErrors": 0
+    },
+    {
+      "width": 390,
+      "guest": true,
+      "anonymousNavigator": true,
+      "forecastLink": true,
+      "signedInTreePost": true,
+      "compactAdvancedHeader": true,
+      "overflow": false,
+      "pageErrors": 0
+    }
+  ],
+  "allTrafficIntercepted": true,
+  "liveCalls": 0
+}

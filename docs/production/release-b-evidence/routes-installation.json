@@ -1,0 +1,78 @@
+{
+  "writes": [
+    {
+      "service": "cloudformation",
+      "operation": "create-change-set",
+      "at": "2026-11-23T05:16:40.311Z",
+      "result": {
+        "Id": "arn:aws:cloudformation:us-east-1:771049112957:changeSet/release-b-a08b09c4d8a3/a24c237b-2bde-44c6-ac7a-062a3562411b",
+        "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-release-b-prod-routes/11904d20-e6fd-11f1-a1e6-0affd44d7013"
+      }
+    },
+    {
+      "service": "cloudformation",
+      "operation": "execute-change-set",
+      "at": "2026-11-23T05:19:11.604Z",
+      "result": {}
+    }
+  ],
+  "source": "a08b09c4d8a3e5781d2d2a850d59b0ddd2915394",
+  "templateSha256": "1cbb7fec53e65282bf14ce274968219aff381ba3fca746e6c29b8d5e25cf3586",
+  "changeSet": {
+    "Id": "arn:aws:cloudformation:us-east-1:771049112957:changeSet/release-b-a08b09c4d8a3/a24c237b-2bde-44c6-ac7a-062a3562411b",
+    "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-release-b-prod-routes/11904d20-e6fd-11f1-a1e6-0affd44d7013"
+  },
+  "reviewed": [
+    {
+      "Action": "Add",
+      "LogicalResourceId": "BffInvoke",
+      "ResourceType": "AWS::IAM::Policy",
+      "Scope": [],
+      "Details": []
+    },
+    {
+      "Action": "Add",
+      "LogicalResourceId": "EmailAdvancedRequestRoute",
+      "ResourceType": "AWS::ApiGatewayV2::Route",
+      "Scope": [],
+      "Details": []
+    },
+    {
+      "Action": "Add",
+      "LogicalResourceId": "EmailFinishRoute",
+      "ResourceType": "AWS::ApiGatewayV2::Route",
+      "Scope": [],
+      "Details": []
+    },
+    {
+      "Action": "Add",
+      "LogicalResourceId": "EmailHandoffRoute",
+      "ResourceType": "AWS::ApiGatewayV2::Route",
+      "Scope": [],
+      "Details": []
+    },
+    {
+      "Action": "Add",
+      "LogicalResourceId": "EmailSessionRoute",
+      "ResourceType": "AWS::ApiGatewayV2::Route",
+      "Scope": [],
+      "Details": []
+    },
+    {
+      "Action": "Add",
+      "LogicalResourceId": "EmailStartRoute",
+      "ResourceType": "AWS::ApiGatewayV2::Route",
+      "Scope": [],
+      "Details": []
+    },
+    {
+      "Action": "Add",
+      "LogicalResourceId": "TreeLeaseCheck",
+      "ResourceType": "AWS::IAM::Policy",
+      "Scope": [],
+      "Details": []
+    }
+  ],
+  "executed": true,
+  "status": "CREATE_COMPLETE"
+}
