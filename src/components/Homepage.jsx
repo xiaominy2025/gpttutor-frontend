@@ -14,6 +14,7 @@ import './marketing.css';
 
 const logo = '/assets/Engent Labs Transparent.png';
 const treeUrl = import.meta.env.VITE_VERIFIED_DECISION_TREE_URL;
+const forecastUrl = import.meta.env.VITE_FORECAST_COACH_URL || '/engent-alpha/forecasting/';
 // Separate Alpha opt-in; existing Release B and production builds exclude Navigator.
 const DecisionNavigator = import.meta.env.VITE_NAVIGATOR_ALPHA_ENABLED === 'true'
   ? lazy(() => import('./DecisionNavigator')) : null;
@@ -53,7 +54,7 @@ function canLaunch(coach) {
 }
 
 function Availability({ coach, sharedLaunch }) {
-  if (coach.id === 'forecast' && canLaunch(coach)) return <CoachLaunchControl href="/engent-alpha/forecasting/" label="Launch Forecasting Coach" />;
+  if (coach.id === 'forecast' && canLaunch(coach)) return <CoachLaunchControl href={forecastUrl} label="Launch Forecasting Coach" />;
   if (coach.id === 'process' && canLaunch(coach)) return <CoachLaunchControl href="/process/" label="Launch Decision Process Coach" />;
   if (canLaunch(coach)) {
     const destination = sharedLaunch === 'https://decisiontree.engentlabs.com/api/shared/login' ? sharedLaunch : treeUrl;

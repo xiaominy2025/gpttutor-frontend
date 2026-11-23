@@ -1,0 +1,13 @@
+// Web-only publication build: retain accepted production Release A authentication.
+import{build}from'vite';import{resolve}from'node:path';import{readFile,readdir,mkdir,writeFile}from'node:fs/promises';import{createHash}from'node:crypto';import{execFileSync}from'node:child_process';
+const args=process.argv.slice(2);if(args.some(a=>a!=='--navigator'))throw Error('Unsupported production publication feature');const navigator=args.includes('--navigator'),root='.artifacts/coordinated-production';await mkdir(root,{recursive:true});
+await build({base:'/engent-release-a/',build:{outDir:root+'/web',emptyOutDir:true},define:{
+'import.meta.env.VITE_SHARED_AUTH_ENABLED':JSON.stringify('true'),
+'import.meta.env.VITE_VERIFIED_DECISION_TREE_URL':JSON.stringify('https://decisiontree.engentlabs.com/'),
+'import.meta.env.VITE_RELEASE_B_EMAIL_ENABLED':JSON.stringify('false'),
+'import.meta.env.VITE_PROCESS_COACH_ENABLED':JSON.stringify('false'),
+'import.meta.env.VITE_FORECAST_COACH_ENABLED':JSON.stringify('false'),
+'import.meta.env.VITE_FORECAST_COACH_URL':JSON.stringify('/forecasting/'),
+'import.meta.env.VITE_NAVIGATOR_ALPHA_ENABLED':JSON.stringify(navigator?'true':'false')
+},plugins:[{name:'preserve-production-release-a',enforce:'pre',resolveId(source,importer){if(source==='./PlatformAccess'&&importer?.replaceAll('\\','/').endsWith('/src/components/Homepage.jsx'))return resolve('src/components/ReleaseAAccess.jsx');},transform(code,id){if(!id.replaceAll('\\','/').endsWith('/src/components/Homepage.jsx'))return;const logo="const logo = '/assets/Engent Labs Transparent.png';";if(!code.includes(logo))throw Error('Branding source drift');return code.replace(logo,"const logo = '/engent-release-a/assets/Engent Labs Transparent.png';");}}]});
+const files={};async function inspect(dir){for(const e of await readdir(dir,{withFileTypes:true})){const p=dir+'/'+e.name;if(e.isDirectory())await inspect(p);else{const b=await readFile(p);if(/\.(js|html)$/.test(p)&&/d6owpirihdsus|decisionnavigator-alpha|decisionprocess-alpha|__Host-engent-email|forecasting-alpha/.test(b.toString()))throw Error('Alpha binding in production browser artifact');files[p.slice(root.length+1)]=createHash('sha256').update(b).digest('hex');}}}await inspect(root+'/web');await writeFile(root+'/build-receipt.json',JSON.stringify({source:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),dirty:!!execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim(),webOnly:true,authentication:'existing-production-ReleaseA',navigator,process:false,forecasting:false,files},null,2));console.log('Production web-only candidate built locally; no deployment.');
