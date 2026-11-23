@@ -2,8 +2,8 @@
   "acceptedSource": "7e96a499f1bc7d55cdc2463e765e279565113c4d",
   "artifacts": [
     {
-      "sha256": "3664a1d57fd3adec6f3355d323b2744cbfe5b3151c62f3a0628f7d6e47186716",
-      "path": "dist/forecasting-production-shared-runtime.zip"
+      "sha256": "14254f3bfaa1277464b0c69f96f5fdb817e1b1852707c3a3f8c93eeaf4dbf3f0",
+      "path": "dist/forecasting-production-shared-verified.zip"
     },
     {
       "sha256": "cd544b9d7e58b4e08576d2df6c4b4858b1b27757dc11bf31ceb4427ae09d1837",
