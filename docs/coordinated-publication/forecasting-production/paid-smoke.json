@@ -1,0 +1,27 @@
+{
+  "state": "passed",
+  "startedAt": "2026-11-23T03:53:34.470Z",
+  "maxPaidRequests": 1,
+  "ceilingMicros": 512,
+  "paidRequests": 1,
+  "retries": 0,
+  "before": {
+    "forecastSpentMicros": 0,
+    "sharedSpentMicros": 289,
+    "sharedReservedMicros": 0
+  },
+  "sentAt": "2026-11-23T03:53:47.896Z",
+  "httpStatus": 200,
+  "response": {
+    "requestId": "853b17a1-b215-420d-bd94-cfed6d7f6db5",
+    "draft": "Continue staffing to protect service reliability, with a modest, flexible increase in coverage rather than a major staffing expansion. Units sold are forecast to rise about 6% over six months, and the persistent upward pattern supports preparing for somewhat greater workload; however, the change is limited, so avoid locking in substantial fixed capacity. Use flexible shifts or cross-trained staff where feasible, and adjust schedules as monthly sales develop. Track units sold alongside service indicators such as wait times, fulfilment delays, and overtime. Increase coverage if workload and service strain persist; review the staffing plan if sales flatten or service indicators deteriorate despite added capacity."
+  },
+  "after": {
+    "forecastSpentMicros": 104,
+    "sharedSpentMicros": 393,
+    "sharedReservedMicros": 0,
+    "forecastReservedMicros": 0
+  },
+  "chargedMicros": 104,
+  "completedAt": "2026-11-23T03:53:54.692Z"
+}

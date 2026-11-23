@@ -1,0 +1,9 @@
+{
+  "initialized": true,
+  "keys": [
+    "FORECASTING#PROD",
+    "FORECASTING#PROD#VERIFY"
+  ],
+  "day": "2026-11-23",
+  "sharedBudgetUntouched": true
+}

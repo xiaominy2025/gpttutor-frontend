@@ -1,0 +1,193 @@
+{
+  "run": "navigator-prod-browser-29f40996-a1f1-4aa2-a27d-47b5eae5d627",
+  "source": "ccbb693b105e3cb650dbbedbfdb4a210f18b850f",
+  "probeSourcePin": "aa3aeb00717c4f448497e82126041d1c869028c8",
+  "startedAt": "2026-11-23T03:00:21.900Z",
+  "events": [
+    {
+      "event": "preflight-passed",
+      "at": "2026-11-23T03:00:40.874Z",
+      "controlledNetworks": 1,
+      "proxyDisabled": true,
+      "ipv4Pinned": true
+    },
+    {
+      "event": "manifest-frozen",
+      "at": "2026-11-23T03:00:43.359Z",
+      "manifestSha256": "c63efc44c5f59b1928f32a67dab8259bea64aa88bf124d42a854a3e5f8fc9c1d",
+      "zipSha256": "8a3cce63b8754d7dfad05e0b6d48d36cb688d8b3a0a9e91857c1ad51243b17a9",
+      "endsAt": "2026-11-23T03:05:40.878Z"
+    },
+    {
+      "event": "private-probe-installed",
+      "at": "2026-11-23T03:02:12.601Z"
+    },
+    {
+      "event": "one-use-challenge-prepared",
+      "at": "2026-11-23T03:02:13.986Z"
+    },
+    {
+      "event": "probe-alias-active",
+      "at": "2026-11-23T03:02:17.973Z",
+      "version": "2"
+    },
+    {
+      "event": "browser-pair-completed",
+      "at": "2026-11-23T03:02:19.644Z",
+      "cookieAccepted": true,
+      "secure": true,
+      "httpOnly": true,
+      "sameSite": "Strict",
+      "hostOnly": true,
+      "path": "/",
+      "javascriptCannotRead": true,
+      "sourceIpMatchesExpectedViewer": true,
+      "requestId": "HRftXj4YIAMEMjQ=",
+      "networksUsed": 1
+    },
+    {
+      "event": "public-alias-restored-off",
+      "at": "2026-11-23T03:02:22.390Z",
+      "version": "1"
+    },
+    {
+      "event": "private-code-restored",
+      "at": "2026-11-23T03:04:28.783Z"
+    },
+    {
+      "event": "completed",
+      "at": "2026-11-23T03:04:41.117Z",
+      "result": "passed",
+      "failure": null,
+      "restorationVerified": true,
+      "run": "navigator-prod-browser-29f40996-a1f1-4aa2-a27d-47b5eae5d627"
+    }
+  ],
+  "providerRequests": 0,
+  "before": {
+    "aliases": {
+      "engent-platform-prod-api": {
+        "version": "2",
+        "revision": "a60323bd-812b-4fbb-811c-f8fc0a0d8926"
+      },
+      "decisiontree-prod-api": {
+        "version": "5",
+        "revision": "e4742db0-2e41-42fb-a909-ab30056c3a86"
+      }
+    },
+    "edgeHash": "cd305c8bc5de7311cf68d342912da100c145bebc3e812cab38d8b90883bf5f34",
+    "stageHash": "a1c1a61a3015df8ab8f8f0a490e6e2330ed95b9a29d3a08e149fd4abc6cc7b48",
+    "master": {
+      "Item": {
+        "suspended": {
+          "BOOL": false
+        },
+        "revision": {
+          "N": "1"
+        }
+      }
+    },
+    "budget": {}
+  },
+  "aliasBefore": {
+    "AliasArn": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-prod-api:live",
+    "Name": "live",
+    "FunctionVersion": "1",
+    "Description": "",
+    "RevisionId": "6ff1d135-09ef-4ef5-b103-827a32ddf5f2"
+  },
+  "manifest": {
+    "run": "navigator-prod-browser-29f40996-a1f1-4aa2-a27d-47b5eae5d627",
+    "startsAt": 1795402840878,
+    "endsAt": 1795403140878
+  },
+  "manifestSha256": "c63efc44c5f59b1928f32a67dab8259bea64aa88bf124d42a854a3e5f8fc9c1d",
+  "zipSha256": "8a3cce63b8754d7dfad05e0b6d48d36cb688d8b3a0a9e91857c1ad51243b17a9",
+  "zipSha256Base64": "ijzOY7h1TX360F4LbUjTbLaI2LOgqekYV8GtUSQ7F6k=",
+  "lastCodeAcknowledgement": {
+    "revision": "18cee447-44a6-404b-9f2d-9508590921f3",
+    "hash": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw="
+  },
+  "lifecycleProofs": [
+    {
+      "acknowledgedRevision": "dda2e17a-6efc-4746-88b5-3157f21bcebc",
+      "readyRevision": "1672a3eb-21ef-49d1-8198-913f55026d12",
+      "hash": "ijzOY7h1TX360F4LbUjTbLaI2LOgqekYV8GtUSQ7F6k=",
+      "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6",
+      "lastModified": "2026-11-23T03:00:47.000+0000",
+      "cloudTrailEventId": "ae8ee4c1-01f3-47aa-a6df-d7f198e0cbe7"
+    },
+    {
+      "acknowledgedRevision": "18cee447-44a6-404b-9f2d-9508590921f3",
+      "readyRevision": "8116ff5d-6929-4de5-93a3-d139c1c1ed9b",
+      "hash": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+      "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6",
+      "lastModified": "2026-11-23T03:02:26.000+0000",
+      "cloudTrailEventId": "f3ad196d-9b8c-4bec-97fe-222aab3fd4a2"
+    }
+  ],
+  "probeVersion": "2",
+  "activeAliasRevision": "9fa04dd0-59d0-49ae-9c6f-df5e6da25f8a",
+  "aliasActivatedAt": "2026-11-23T03:02:17.971Z",
+  "bootstrap": {
+    "status": 200,
+    "sourceIpMatchesExpectedViewer": true,
+    "requestId": "HRftKgpIoAMEM5Q="
+  },
+  "browser": {
+    "cookieAccepted": true,
+    "secure": true,
+    "httpOnly": true,
+    "sameSite": "Strict",
+    "hostOnly": true,
+    "path": "/",
+    "javascriptCannotRead": true,
+    "sourceIpMatchesExpectedViewer": true,
+    "requestId": "HRftXj4YIAMEMjQ=",
+    "networksUsed": 1
+  },
+  "aliasRestored": {
+    "at": "2026-11-23T03:02:22.385Z",
+    "revision": "e5bd01e4-a4b0-4684-a805-459505289e80",
+    "version": "1"
+  },
+  "privateRestored": {
+    "revision": "8116ff5d-6929-4de5-93a3-d139c1c1ed9b",
+    "codeSha256": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw="
+  },
+  "after": {
+    "aliases": {
+      "engent-platform-prod-api": {
+        "version": "2",
+        "revision": "a60323bd-812b-4fbb-811c-f8fc0a0d8926"
+      },
+      "decisiontree-prod-api": {
+        "version": "5",
+        "revision": "e4742db0-2e41-42fb-a909-ab30056c3a86"
+      }
+    },
+    "edgeHash": "cd305c8bc5de7311cf68d342912da100c145bebc3e812cab38d8b90883bf5f34",
+    "stageHash": "a1c1a61a3015df8ab8f8f0a490e6e2330ed95b9a29d3a08e149fd4abc6cc7b48",
+    "master": {
+      "Item": {
+        "suspended": {
+          "BOOL": false
+        },
+        "revision": {
+          "N": "1"
+        }
+      }
+    },
+    "budget": {}
+  },
+  "restorationVerified": {
+    "at": "2026-11-23T03:04:41.110Z",
+    "navigatorOff": true,
+    "originalPrivateCode": true,
+    "protectedStateUnchanged": true,
+    "masterOn": true,
+    "canonicalBudgetUnchanged": true,
+    "publicStatus": 503
+  },
+  "result": "passed"
+}

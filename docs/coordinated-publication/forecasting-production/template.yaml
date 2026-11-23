@@ -1,0 +1,141 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Forecasting production Advisor runtime only, initially OFF. Platform owns route attachment.
+Parameters:
+  CodeKey:
+    Type: String
+    AllowedPattern: 'releases/forecasting-prod/[a-f0-9]{64}\.zip'
+  CodeVersion:
+    Type: String
+  ArtifactSha256:
+    Type: String
+    AllowedPattern: '[A-Za-z0-9+/]{43}='
+  AllowModelKey:
+    Type: String
+    AllowedValues: ['true', 'false']
+    Default: 'false'
+Conditions:
+  SharedModelApproved: !Equals [!Ref AllowModelKey, 'true']
+Resources:
+  Logs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/forecasting-prod-api
+      RetentionInDays: 14
+  Role:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: forecasting-prod-runtime
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: lambda.amazonaws.com }
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: forecasting-prod-runtime
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents]
+                Resource: !Sub 'arn:aws:logs:us-east-1:${AWS::AccountId}:log-group:/aws/lambda/forecasting-prod-api:log-stream:*'
+              - Effect: Allow
+                Action: ssm:GetParameter
+                Resource: !Sub 'arn:aws:ssm:us-east-1:${AWS::AccountId}:parameter/forecasting-prod/hmac-secret'
+              - !If
+                - SharedModelApproved
+                - Effect: Allow
+                  Action: ssm:GetParameter
+                  Resource: !Sub 'arn:aws:ssm:us-east-1:${AWS::AccountId}:parameter/decisionnavigator-prod/openai-api-key'
+                - !Ref AWS::NoValue
+              - Effect: Allow
+                Action: dynamodb:GetItem
+                Resource: !Sub 'arn:aws:dynamodb:us-east-1:${AWS::AccountId}:table/decisiontree-prod-data'
+                Condition:
+                  ForAllValues:StringEquals:
+                    dynamodb:LeadingKeys: ['AI#CONFIG']
+                    dynamodb:Attributes: [pk, sk, suspended, revision]
+                  'Null':
+                    dynamodb:LeadingKeys: 'false'
+                    dynamodb:Attributes: 'false'
+                  StringEqualsIfExists:
+                    dynamodb:Select: SPECIFIC_ATTRIBUTES
+              - Effect: Allow
+                Action: [dynamodb:GetItem, dynamodb:PutItem]
+                Resource: !Sub 'arn:aws:dynamodb:us-east-1:${AWS::AccountId}:table/decisiontree-prod-data'
+                Condition:
+                  ForAllValues:StringLike:
+                    dynamodb:LeadingKeys: ['FORECASTING#PROD', 'FORECASTING#PROD#VERIFY', 'NAVIGATOR#BUDGET#????-??']
+                  'Null': { 'dynamodb:LeadingKeys': 'false' }
+  Runtime:
+    Type: AWS::Lambda::Function
+    DependsOn: Logs
+    Properties:
+      FunctionName: forecasting-prod-api
+      Runtime: nodejs22.x
+      Handler: production/lambda.handler
+      Role: !GetAtt Role.Arn
+      Timeout: 25
+      MemorySize: 256
+      ReservedConcurrentExecutions: 2
+      Code:
+        S3Bucket: decisiontree-prod-artifacts-771049112957-us-east-1
+        S3Key: !Ref CodeKey
+        S3ObjectVersion: !Ref CodeVersion
+      Environment:
+        Variables:
+          FORECASTING_MODE: 'off'
+  OffVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName: !Ref Runtime
+      CodeSha256: !Ref ArtifactSha256
+  Live:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName: !Ref Runtime
+      FunctionVersion: !GetAtt OffVersion.Version
+      Name: live
+  BootstrapPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref Live
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub 'arn:aws:execute-api:us-east-1:${AWS::AccountId}:eoszayfkqd/$default/POST/api/platform/forecasting/session'
+  CommunicationPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref Live
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub 'arn:aws:execute-api:us-east-1:${AWS::AccountId}:eoszayfkqd/$default/POST/api/platform/forecasting/communication'
+  Integration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: eoszayfkqd
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !Sub '${Runtime.Arn}:live'
+      PayloadFormatVersion: '2.0'
+      TimeoutInMillis: 26000
+  SessionRoute:
+    Type: AWS::ApiGatewayV2::Route
+    DependsOn: BootstrapPermission
+    Properties:
+      ApiId: eoszayfkqd
+      RouteKey: POST /api/platform/forecasting/session
+      Target: !Join ['/', ['integrations', !Ref Integration]]
+  CommunicationRoute:
+    Type: AWS::ApiGatewayV2::Route
+    DependsOn: CommunicationPermission
+    Properties:
+      ApiId: eoszayfkqd
+      RouteKey: POST /api/platform/forecasting/communication
+      Target: !Join ['/', ['integrations', !Ref Integration]]
+Outputs:
+  OffVersion:
+    Value: !GetAtt OffVersion.Version
+  PlatformIntegrationTarget:
+    Value: !Ref Live
+  RuntimeRole:
+    Value: !GetAtt Role.Arn

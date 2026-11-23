@@ -1,0 +1,57 @@
+{
+  "source": "a74defc6fab03d164e32d7eb31eb5141bd8b9ecb",
+  "startedAt": "2026-11-23T03:42:43.437Z",
+  "events": [
+    {
+      "event": "ready-code",
+      "acknowledgedRevision": "4742b909-6e99-4bb6-925d-abe812cea199",
+      "readyRevision": "c02864d2-79ba-4be9-900b-98ba86dfd419",
+      "hash": "Kh88zZdG2FyIgXn3yjN+JwD75NKUKkbvmuljyKT9AiM=",
+      "configurationHash": "4da1cda03b7265aa77d8e1250dfc12c201a8625efd9b11cd305a447c4286d34c",
+      "lastModified": "2026-11-23T03:42:48.000+0000",
+      "cloudTrailEventId": "5d81c759-2896-441f-b5ed-cca7dfdeb917"
+    },
+    {
+      "event": "validation-result",
+      "label": "provider-free-shared-budget",
+      "result": {
+        "passed": true,
+        "providerCalls": 0,
+        "fixtureDispatches": 1,
+        "atomicAdmission": true,
+        "atomicSettlement": true,
+        "rawCredentialFormatVerified": true,
+        "masterDenialWithoutToggle": true,
+        "spentMicros": 289,
+        "reservedMicros": 0
+      }
+    },
+    {
+      "event": "ready-code",
+      "acknowledgedRevision": "35488874-3ab9-4135-b2c0-6a59ddb7671c",
+      "readyRevision": "d123fdf1-d47c-4359-9c05-95921527abed",
+      "hash": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A=",
+      "configurationHash": "4da1cda03b7265aa77d8e1250dfc12c201a8625efd9b11cd305a447c4286d34c",
+      "lastModified": "2026-11-23T03:43:39.000+0000",
+      "cloudTrailEventId": "6f3ad84c-9371-42f0-ae7e-844d132ab3f9"
+    }
+  ],
+  "providerCalls": 0,
+  "baseline": {
+    "aliasRevision": "9b8e7f49-c9dd-4223-9528-e8ef534160cf",
+    "version": "1",
+    "privateRevision": "0bc7dd6f-7c0e-4f67-a477-182edda7198c",
+    "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A=",
+    "configurationHash": "4da1cda03b7265aa77d8e1250dfc12c201a8625efd9b11cd305a447c4286d34c"
+  },
+  "restored": {
+    "acknowledgedRevision": "35488874-3ab9-4135-b2c0-6a59ddb7671c",
+    "readyRevision": "d123fdf1-d47c-4359-9c05-95921527abed",
+    "hash": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A=",
+    "configurationHash": "4da1cda03b7265aa77d8e1250dfc12c201a8625efd9b11cd305a447c4286d34c",
+    "lastModified": "2026-11-23T03:43:39.000+0000",
+    "cloudTrailEventId": "6f3ad84c-9371-42f0-ae7e-844d132ab3f9"
+  },
+  "complete": true,
+  "completedAt": "2026-11-23T03:45:41.964Z"
+}

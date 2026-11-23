@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-23T04:00:01.028Z",
+  "aliases": {
+    "forecasting-prod-api": {
+      "version": "4",
+      "revision": "3e572a8d-b9e3-4afe-9871-cef0f605dd1d"
+    },
+    "decisionnavigator-prod-api": {
+      "version": "3",
+      "revision": "bbaf9610-8925-4036-87c2-cf3cb6677cd9"
+    },
+    "decisiontree-prod-api": {
+      "version": "5",
+      "revision": "e4742db0-2e41-42fb-a909-ab30056c3a86"
+    },
+    "engent-platform-prod-api": {
+      "version": "2",
+      "revision": "a60323bd-812b-4fbb-811c-f8fc0a0d8926"
+    },
+    "forecasting-alpha-api": {
+      "version": "9",
+      "revision": "6ef913f6-6485-44c8-9dd7-a846d6c88859"
+    }
+  },
+  "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A=",
+  "mode": "live",
+  "master": {
+    "on": true,
+    "revision": 1
+  },
+  "sharedBudget": {
+    "month": "2026-11",
+    "ceilingMicros": 10000000,
+    "spentMicros": 393,
+    "reservedMicros": 0,
+    "paused": false
+  },
+  "forecasting": {
+    "spentMicros": 104,
+    "reservedMicros": 0,
+    "paused": false
+  },
+  "effectivePolicyMatches": true,
+  "policySha256": "655121d8b7ced654f30ac69f6123ee169a6a4565b7dbd79341054d16d7f9fe7f",
+  "distributionConfigUnchanged": true,
+  "distributionEtag": "E17BFMJZDE5XV1"
+}

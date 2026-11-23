@@ -1,0 +1,65 @@
+{
+  "source": "9173933c15ef3ec1b96a3b6b2e7efbb3ebb6c7c7",
+  "acceptedSource": "7e96a499f1bc7d55cdc2463e765e279565113c4d",
+  "runtimeSha256": "14254f3bfaa1277464b0c69f96f5fdb817e1b1852707c3a3f8c93eeaf4dbf3f0",
+  "templateSha256": "ef7a5c04447f3f904deb1c17276fe60f9d5b96328ebbea39863d69c8bd1558e5",
+  "moduleGitBlobMatches": 13,
+  "artifacts": [
+    {
+      "sha256": "14254f3bfaa1277464b0c69f96f5fdb817e1b1852707c3a3f8c93eeaf4dbf3f0",
+      "path": "dist/forecasting-production-shared-verified.zip"
+    },
+    {
+      "sha256": "cd544b9d7e58b4e08576d2df6c4b4858b1b27757dc11bf31ceb4427ae09d1837",
+      "path": "production/stack.yaml"
+    },
+    {
+      "sha256": "31433d08b367c9ec64a3118d1e8f516179d04a67354ef17e7c318a59862f7d65",
+      "path": "dist/production-off-header-check/index.html"
+    },
+    {
+      "sha256": "2461fbd6685fe92a5065d4d5ae5e8522986f70a55eb4997e1a798ec2a662f801",
+      "path": "dist/production-header-check/index.html"
+    },
+    {
+      "sha256": "c29acdb118cf719359a026180b28c1b03cf07b67a87eb512de4a2693e4fd7116",
+      "path": "dist/production-off-header-check/assets/alpha-header-B8C0kLp-.js"
+    },
+    {
+      "sha256": "33560ab3991a6f140f3e21c66721603f3f87c67f92c0acf8d70638b593b99876",
+      "path": "dist/production-off-header-check/assets/alpha-header-BsL9mC4Y.css"
+    },
+    {
+      "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
+      "path": "dist/production-off-header-check/assets/engent-logo-13TNTF-a.png"
+    },
+    {
+      "sha256": "1affc45e2d310e7762eeb45a36e46a688c92d86818b66c52627df1e93c0b0876",
+      "path": "dist/production-off-header-check/assets/index-v09bJpPQ.js"
+    },
+    {
+      "sha256": "0fd9dcd98700b6e2313d2d9de8d4cde5530c2367708c01953adde41226bcf74c",
+      "path": "dist/production-off-header-check/assets/index-V4JrjwxY.css"
+    },
+    {
+      "sha256": "33560ab3991a6f140f3e21c66721603f3f87c67f92c0acf8d70638b593b99876",
+      "path": "dist/production-header-check/assets/alpha-header-BsL9mC4Y.css"
+    },
+    {
+      "sha256": "c7d0bdde3641f482ff202d94a76f21369fd1c249f1986b235f7fff4a9eed5d74",
+      "path": "dist/production-header-check/assets/alpha-header-CJnJwEmV.js"
+    },
+    {
+      "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
+      "path": "dist/production-header-check/assets/engent-logo-13TNTF-a.png"
+    },
+    {
+      "sha256": "7edc950978edeb809924c565754e12362f2781e831b33f5b32b37f236c53819d",
+      "path": "dist/production-header-check/assets/index-DtDO6nym.js"
+    },
+    {
+      "sha256": "0fd9dcd98700b6e2313d2d9de8d4cde5530c2367708c01953adde41226bcf74c",
+      "path": "dist/production-header-check/assets/index-V4JrjwxY.css"
+    }
+  ]
+}

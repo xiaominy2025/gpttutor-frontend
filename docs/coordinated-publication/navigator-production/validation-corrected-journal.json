@@ -1,0 +1,47 @@
+{
+  "source": "aa3aeb00717c4f448497e82126041d1c869028c8",
+  "startedAt": "2026-11-23T02:53:13.983Z",
+  "events": [
+    {
+      "event": "ready-code",
+      "acknowledgedRevision": "dc54e421-9342-4a7a-8060-bd1abc20e8c9",
+      "readyRevision": "0c9e877f-bbc0-4bc3-a9d7-b33264d61c8c",
+      "hash": "ddYBEQYNRz6OjZ5ywtwRd5vNfvvQ2aoJSoVU64eqh7Y=",
+      "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6",
+      "lastModified": "2026-11-23T02:53:20.000+0000",
+      "cloudTrailEventId": "93cc353a-fdd1-46b3-8283-eb0c377a1dca"
+    },
+    {
+      "event": "ready-code",
+      "acknowledgedRevision": "6b39ca1f-aa86-455d-88ac-b4af8f2d73f8",
+      "readyRevision": "a703fe65-f9b5-4aa0-b6d6-eb033f205e87",
+      "hash": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+      "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6",
+      "lastModified": "2026-11-23T02:54:14.000+0000",
+      "cloudTrailEventId": "42580add-0e37-472e-9637-1ae067370d39"
+    }
+  ],
+  "providerCalls": 0,
+  "baseline": {
+    "aliasRevision": "6ff1d135-09ef-4ef5-b103-827a32ddf5f2",
+    "version": "1",
+    "privateRevision": "685b5d9c-148e-4709-85b7-aaa5075babbd",
+    "codeSha256": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+    "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6"
+  },
+  "failure": "AWS lambda/invoke failed/uncertain; no retry",
+  "interruptedOperation": {
+    "operation": "invoke-provider-free",
+    "label": "verify-configuration"
+  },
+  "restored": {
+    "acknowledgedRevision": "6b39ca1f-aa86-455d-88ac-b4af8f2d73f8",
+    "readyRevision": "a703fe65-f9b5-4aa0-b6d6-eb033f205e87",
+    "hash": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+    "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6",
+    "lastModified": "2026-11-23T02:54:14.000+0000",
+    "cloudTrailEventId": "42580add-0e37-472e-9637-1ae067370d39"
+  },
+  "complete": false,
+  "completedAt": "2026-11-23T02:55:38.470Z"
+}

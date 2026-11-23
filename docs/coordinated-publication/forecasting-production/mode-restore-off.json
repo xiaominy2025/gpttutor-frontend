@@ -1,0 +1,21 @@
+{
+  "mode": "restore-off",
+  "writes": [
+    {
+      "operation": "update-alias",
+      "priorRevision": "d375b6c8-441c-4e03-8cb5-985d2caa3820",
+      "at": "2026-11-23T03:49:04.623Z",
+      "revision": "e300876f-3d84-4628-b805-26f19362abfd",
+      "version": "1"
+    }
+  ],
+  "state": "off",
+  "priorAlias": {
+    "version": "2",
+    "revision": "d375b6c8-441c-4e03-8cb5-985d2caa3820"
+  },
+  "active": {
+    "version": "1",
+    "revision": "e300876f-3d84-4628-b805-26f19362abfd"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "source": "ccbb693b105e3cb650dbbedbfdb4a210f18b850f",
+  "writes": [
+    {
+      "operation": "update-function-configuration",
+      "at": "2026-11-23T03:06:31.039Z",
+      "priorRevision": "8116ff5d-6929-4de5-93a3-d139c1c1ed9b",
+      "revision": "b03ce6f8-e765-4c3e-959b-7e886b72f1f9",
+      "version": "$LATEST",
+      "hash": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw="
+    },
+    {
+      "operation": "publish-version",
+      "at": "2026-11-23T03:08:55.177Z",
+      "priorRevision": "91a4d7b1-c759-457b-85e5-d0d000de5583",
+      "revision": "6637f493-3028-4156-a1e5-c14c6e365edd",
+      "version": "3",
+      "hash": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw="
+    },
+    {
+      "operation": "update-alias",
+      "at": "2026-11-23T03:09:00.058Z",
+      "priorRevision": "e5bd01e4-a4b0-4684-a805-459505289e80",
+      "revision": "aa3b6bba-b39f-4b72-a694-716bcffcddc0",
+      "version": "3"
+    }
+  ],
+  "state": "active-awaiting-single-smoke",
+  "baseline": {
+    "alias": {
+      "AliasArn": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-prod-api:live",
+      "Name": "live",
+      "FunctionVersion": "1",
+      "Description": "",
+      "RevisionId": "e5bd01e4-a4b0-4684-a805-459505289e80"
+    },
+    "privateRevision": "8116ff5d-6929-4de5-93a3-d139c1c1ed9b",
+    "codeSha256": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+    "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6"
+  },
+  "ready": {
+    "acknowledgedRevision": "b03ce6f8-e765-4c3e-959b-7e886b72f1f9",
+    "readyRevision": "91a4d7b1-c759-457b-85e5-d0d000de5583",
+    "hash": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+    "configurationHash": "05e9cbd74804b6aeecaea4c3627cede95823d0a545a9f0f5677c1ec6bb32a63c",
+    "lastModified": "2026-11-23T03:06:32.000+0000",
+    "cloudTrailEventId": "b84bd1a0-2310-4f9f-a915-e8a7dce5ed5a"
+  },
+  "active": {
+    "version": "3",
+    "revision": "bbaf9610-8925-4036-87c2-cf3cb6677cd9"
+  },
+  "version": "3",
+  "preflightActivationHistory": [
+    {
+      "priorActive": {
+        "version": "3",
+        "revision": "aa3b6bba-b39f-4b72-a694-716bcffcddc0"
+      },
+      "rollback": {
+        "reason": "paid-preflight-budget-read",
+        "paidRequests": 0,
+        "offVersion": "1",
+        "aliasRevision": "7b490cf3-edd7-44f2-b89b-0e4b17aa48b8"
+      },
+      "reason": "AWS CLI empty successful read parsed incorrectly; zero provider requests"
+    }
+  ]
+}
