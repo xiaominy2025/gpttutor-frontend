@@ -1,0 +1,45 @@
+{
+  "rows": [
+    {
+      "width": 1440,
+      "directRefresh": true,
+      "sampleForecast": true,
+      "localJsonSaveOpen": true,
+      "resizing": true,
+      "noOverflow": true,
+      "pageErrors": 0,
+      "paidCalls": 0
+    },
+    {
+      "width": 1024,
+      "directRefresh": true,
+      "sampleForecast": true,
+      "localJsonSaveOpen": true,
+      "resizing": false,
+      "noOverflow": true,
+      "pageErrors": 0,
+      "paidCalls": 0
+    },
+    {
+      "width": 768,
+      "directRefresh": true,
+      "sampleForecast": true,
+      "localJsonSaveOpen": true,
+      "resizing": false,
+      "noOverflow": true,
+      "pageErrors": 0,
+      "paidCalls": 0
+    },
+    {
+      "width": 390,
+      "directRefresh": true,
+      "sampleForecast": true,
+      "localJsonSaveOpen": true,
+      "resizing": false,
+      "noOverflow": true,
+      "pageErrors": 0,
+      "paidCalls": 0
+    }
+  ],
+  "allMutationRequestsBlocked": true
+}

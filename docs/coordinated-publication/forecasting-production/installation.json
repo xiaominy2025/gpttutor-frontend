@@ -1,0 +1,140 @@
+{
+  "stack": "forecasting-prod",
+  "writes": [
+    {
+      "service": "ssm",
+      "operation": "PutParameter-create-only",
+      "at": "2026-11-23T03:39:47.185Z",
+      "result": {
+        "version": 1
+      }
+    },
+    {
+      "service": "s3api",
+      "operation": "put-object",
+      "at": "2026-11-23T03:39:47.547Z",
+      "result": {
+        "ETag": "\"95ecc866ac89e997087a49d0b2832293\"",
+        "ChecksumSHA256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A=",
+        "ChecksumType": "FULL_OBJECT",
+        "ServerSideEncryption": "AES256",
+        "VersionId": "Ral9Dbb2pNkNCCp5Gdq2U6tTwdTWeOv_"
+      }
+    },
+    {
+      "service": "cloudformation",
+      "operation": "create-change-set",
+      "at": "2026-11-23T03:39:48.868Z",
+      "result": {
+        "Id": "arn:aws:cloudformation:us-east-1:771049112957:changeSet/forecasting-prod-9173933c15ef/0f4b4979-63c6-46f4-8c3a-a927c3f69c6e",
+        "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/forecasting-prod/894b6d30-e6ef-11f1-ba4d-0e01f3038507"
+      }
+    },
+    {
+      "service": "cloudformation",
+      "operation": "execute-change-set",
+      "at": "2026-11-23T03:40:30.751Z",
+      "result": {}
+    }
+  ],
+  "source": "9173933c15ef3ec1b96a3b6b2e7efbb3ebb6c7c7",
+  "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A=",
+  "key": "releases/forecasting-prod/14254f3bfaa1277464b0c69f96f5fdb817e1b1852707c3a3f8c93eeaf4dbf3f0.zip",
+  "templateSha256": "ef7a5c04447f3f904deb1c17276fe60f9d5b96328ebbea39863d69c8bd1558e5",
+  "prepared": true,
+  "preparedAt": "2026-11-23T03:39:14.151Z",
+  "hmac": {
+    "name": "/forecasting-prod/hmac-secret",
+    "version": 1
+  },
+  "artifact": {
+    "VersionId": "Ral9Dbb2pNkNCCp5Gdq2U6tTwdTWeOv_",
+    "ETag": "\"95ecc866ac89e997087a49d0b2832293\""
+  },
+  "changeSet": {
+    "Id": "arn:aws:cloudformation:us-east-1:771049112957:changeSet/forecasting-prod-9173933c15ef/0f4b4979-63c6-46f4-8c3a-a927c3f69c6e",
+    "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/forecasting-prod/894b6d30-e6ef-11f1-ba4d-0e01f3038507"
+  },
+  "review": {
+    "at": "2026-11-23T03:40:24.392Z",
+    "changes": [
+      {
+        "Action": "Add",
+        "LogicalResourceId": "BootstrapPermission",
+        "ResourceType": "AWS::Lambda::Permission",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "CommunicationPermission",
+        "ResourceType": "AWS::Lambda::Permission",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "CommunicationRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "Integration",
+        "ResourceType": "AWS::ApiGatewayV2::Integration",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "Live",
+        "ResourceType": "AWS::Lambda::Alias",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "Logs",
+        "ResourceType": "AWS::Logs::LogGroup",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "OffVersion",
+        "ResourceType": "AWS::Lambda::Version",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "Role",
+        "ResourceType": "AWS::IAM::Role",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "Runtime",
+        "ResourceType": "AWS::Lambda::Function",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "SessionRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      }
+    ]
+  },
+  "executed": true,
+  "installed": {
+    "at": "2026-11-23T03:41:27.395Z",
+    "version": "1",
+    "aliasRevision": "9b8e7f49-c9dd-4223-9528-e8ef534160cf",
+    "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A="
+  }
+}

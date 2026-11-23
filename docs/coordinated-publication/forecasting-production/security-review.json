@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "findings": [],
+  "secrets": [
+    {
+      "path": "/decisionnavigator-prod/openai-api-key",
+      "decision": "allowed"
+    },
+    {
+      "path": "/forecasting-prod/hmac-secret",
+      "decision": "allowed"
+    },
+    {
+      "path": "/decisionnavigator-prod/hmac-secret",
+      "decision": "implicitDeny"
+    },
+    {
+      "path": "/decisionnavigator-alpha/openai-api-key",
+      "decision": "implicitDeny"
+    },
+    {
+      "path": "/decisiontree-prod/ai-credentials",
+      "decision": "implicitDeny"
+    },
+    {
+      "path": "/decisionprocess-prod/openai-api-key",
+      "decision": "implicitDeny"
+    }
+  ],
+  "writeRows": [
+    {
+      "key": "NAVIGATOR#BUDGET#2026-11",
+      "decision": "allowed"
+    },
+    {
+      "key": "NAVIGATOR#GUEST#example",
+      "decision": "implicitDeny"
+    },
+    {
+      "key": "NAVIGATOR#NAVIGATOR#GLOBAL",
+      "decision": "implicitDeny"
+    },
+    {
+      "key": "FORECASTING#PROD",
+      "decision": "allowed"
+    },
+    {
+      "key": "FORECASTING#PROD#VERIFY",
+      "decision": "allowed"
+    },
+    {
+      "key": "FORECASTING#PILOT#alpha",
+      "decision": "implicitDeny"
+    },
+    {
+      "key": "AI#CONFIG",
+      "decision": "implicitDeny"
+    }
+  ],
+  "roleOperator": [
+    {
+      "action": "iam:CreateRole",
+      "decision": "allowed"
+    },
+    {
+      "action": "iam:PutRolePolicy",
+      "decision": "allowed"
+    },
+    {
+      "action": "iam:PassRole",
+      "decision": "allowed"
+    }
+  ],
+  "existingRoutesUnchanged": true
+}

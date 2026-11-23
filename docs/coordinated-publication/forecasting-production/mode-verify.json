@@ -1,0 +1,50 @@
+{
+  "mode": "verify",
+  "writes": [
+    {
+      "operation": "update-function-configuration",
+      "priorRevision": "d123fdf1-d47c-4359-9c05-95921527abed",
+      "at": "2026-11-23T03:46:36.091Z",
+      "revision": "bcd25433-316b-45e3-9e21-93ea9477246f",
+      "version": "$LATEST",
+      "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A="
+    },
+    {
+      "operation": "publish-version",
+      "priorRevision": "90967a8a-9e77-4882-8867-e1106b42e5ef",
+      "at": "2026-11-23T03:48:26.554Z",
+      "revision": "f1b72cf0-e965-4770-80b0-ee58f1bf61e6",
+      "version": "2",
+      "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A="
+    },
+    {
+      "operation": "update-alias",
+      "priorRevision": "9b8e7f49-c9dd-4223-9528-e8ef534160cf",
+      "at": "2026-11-23T03:48:30.417Z",
+      "revision": "d375b6c8-441c-4e03-8cb5-985d2caa3820",
+      "version": "2"
+    }
+  ],
+  "state": "active",
+  "priorAlias": {
+    "version": "1",
+    "revision": "9b8e7f49-c9dd-4223-9528-e8ef534160cf"
+  },
+  "priorPrivateRevision": "d123fdf1-d47c-4359-9c05-95921527abed",
+  "window": {
+    "startsAt": 1795405596080,
+    "endsAt": 1795405896080
+  },
+  "ready": {
+    "acknowledgedRevision": "bcd25433-316b-45e3-9e21-93ea9477246f",
+    "readyRevision": "90967a8a-9e77-4882-8867-e1106b42e5ef",
+    "hash": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A=",
+    "configurationHash": "b34e62e173f52d74220dd9fcf25d832cc723c568265e969dd525cbb5f2022238",
+    "lastModified": "2026-11-23T03:46:37.000+0000",
+    "cloudTrailEventId": "1bd6b18f-67c4-4fb5-a58a-f22fe4891eb5"
+  },
+  "active": {
+    "version": "2",
+    "revision": "d375b6c8-441c-4e03-8cb5-985d2caa3820"
+  }
+}

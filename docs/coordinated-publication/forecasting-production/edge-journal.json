@@ -1,0 +1,32 @@
+{
+  "name": "engent-release-a-prod-explore",
+  "writes": [
+    {
+      "operation": "update-function",
+      "at": "2026-11-23T03:43:18.673Z",
+      "etag": "E3UN6WX5RRO2AG"
+    },
+    {
+      "operation": "publish-function",
+      "at": "2026-11-23T03:43:22.785Z"
+    }
+  ],
+  "baseline": {
+    "live": {
+      "etag": "ETVPDKIKX0DER",
+      "sha": "d098ac02e701ed0052ed42f6fe9fd26e334d41191568d54b3c481f86c195b482",
+      "file": ".artifacts/forecasting-production/edge-read-LIVE.js"
+    },
+    "dev": {
+      "etag": "ETVPDKIKX0DER",
+      "sha": "d098ac02e701ed0052ed42f6fe9fd26e334d41191568d54b3c481f86c195b482",
+      "file": ".artifacts/forecasting-production/edge-read-DEVELOPMENT.js"
+    }
+  },
+  "candidateSha": "cc08d766831ae01f1aa66ac36d89c3c175a18cc912d5c14473fa73540dd17311",
+  "source": "a74defc6fab03d164e32d7eb31eb5141bd8b9ecb",
+  "updatedEtag": "E3UN6WX5RRO2AG",
+  "published": {
+    "sha": "cc08d766831ae01f1aa66ac36d89c3c175a18cc912d5c14473fa73540dd17311"
+  }
+}

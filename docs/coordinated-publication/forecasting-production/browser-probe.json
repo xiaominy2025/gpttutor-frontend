@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "at": "2026-11-23T03:48:46.022Z",
+  "providerCalls": 0,
+  "requestCount": 2,
+  "directRefresh": true,
+  "cookieAccepted": true,
+  "cookieHttpOnly": true,
+  "cookieSecure": true,
+  "sameSite": "Strict",
+  "hostOnly": true,
+  "viewerIpBoundRouteAccepted": true,
+  "status": 200
+}

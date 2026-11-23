@@ -1,0 +1,50 @@
+{
+  "mode": "canary",
+  "writes": [
+    {
+      "operation": "update-function-configuration",
+      "priorRevision": "83c3ed64-d87e-433d-ad80-e56a9b99323b",
+      "at": "2026-11-23T03:50:31.206Z",
+      "revision": "03656ec6-03c9-4f05-8dd4-26e879d7f259",
+      "version": "$LATEST",
+      "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A="
+    },
+    {
+      "operation": "publish-version",
+      "priorRevision": "aed8578c-380c-48c2-8a68-362ce7f5833a",
+      "at": "2026-11-23T03:52:59.361Z",
+      "revision": "513d7659-0ea9-42ed-807c-ed86a7f614e1",
+      "version": "3",
+      "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A="
+    },
+    {
+      "operation": "update-alias",
+      "priorRevision": "e300876f-3d84-4628-b805-26f19362abfd",
+      "at": "2026-11-23T03:53:06.163Z",
+      "revision": "a8a6f0a3-1133-4baf-9f97-c9ee85eda23d",
+      "version": "3"
+    }
+  ],
+  "state": "active",
+  "priorAlias": {
+    "version": "1",
+    "revision": "e300876f-3d84-4628-b805-26f19362abfd"
+  },
+  "priorPrivateRevision": "83c3ed64-d87e-433d-ad80-e56a9b99323b",
+  "window": {
+    "startsAt": 1795405831198,
+    "endsAt": 1795406131198
+  },
+  "ready": {
+    "acknowledgedRevision": "03656ec6-03c9-4f05-8dd4-26e879d7f259",
+    "readyRevision": "aed8578c-380c-48c2-8a68-362ce7f5833a",
+    "hash": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A=",
+    "configurationHash": "e87b9d6ff661abe2b4b7931806e4e440835e5a25f8d34bde5356ccf8b9bf09ae",
+    "lastModified": "2026-11-23T03:50:32.000+0000",
+    "cloudTrailEventId": "77f09d52-c700-414f-a9fc-158c89880722"
+  },
+  "active": {
+    "version": "3",
+    "revision": "a8a6f0a3-1133-4baf-9f97-c9ee85eda23d"
+  }
+}

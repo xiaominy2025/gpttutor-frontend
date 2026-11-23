@@ -1,0 +1,40 @@
+{
+  "assets": [
+    {
+      "file": "alpha-header-B8C0kLp-.js",
+      "sha256": "c29acdb118cf719359a026180b28c1b03cf07b67a87eb512de4a2693e4fd7116",
+      "status": 200
+    },
+    {
+      "file": "alpha-header-BsL9mC4Y.css",
+      "sha256": "33560ab3991a6f140f3e21c66721603f3f87c67f92c0acf8d70638b593b99876",
+      "status": 200
+    },
+    {
+      "file": "engent-logo-13TNTF-a.png",
+      "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
+      "status": 200
+    },
+    {
+      "file": "index-v09bJpPQ.js",
+      "sha256": "1affc45e2d310e7762eeb45a36e46a688c92d86818b66c52627df1e93c0b0876",
+      "status": 200
+    },
+    {
+      "file": "index-V4JrjwxY.css",
+      "sha256": "0fd9dcd98700b6e2313d2d9de8d4cde5530c2367708c01953adde41226bcf74c",
+      "status": 200
+    },
+    {
+      "file": "alpha-header-CJnJwEmV.js",
+      "sha256": "c7d0bdde3641f482ff202d94a76f21369fd1c249f1986b235f7fff4a9eed5d74",
+      "status": 200
+    },
+    {
+      "file": "index-DtDO6nym.js",
+      "sha256": "7edc950978edeb809924c565754e12362f2781e831b33f5b32b37f236c53819d",
+      "status": 200
+    }
+  ],
+  "slashlessRedirect": 301
+}
