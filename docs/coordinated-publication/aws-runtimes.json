@@ -1,0 +1,102 @@
+{
+  "observedAt": "2026-11-23T01:52:07.726Z",
+  "runtimes": [
+    {
+      "name": "engent-platform-prod-api",
+      "version": "2",
+      "codeSha256": "DuXu7o0BPOC5fK102iqFMDeDzLXt9D8rOCi+5FvZrS8=",
+      "runtime": "nodejs22.x",
+      "memoryMB": 256,
+      "timeoutSeconds": 28,
+      "state": "Active",
+      "role": "arn:aws:iam::771049112957:role/engent-platform-prod-runtime",
+      "flags": {
+        "STAGE": "prod",
+        "NAVIGATOR_ENABLED": "false",
+        "SHARED_AUTH_ENABLED": "true"
+      }
+    },
+    {
+      "name": "decisiontree-prod-api",
+      "version": "5",
+      "codeSha256": "fSWU1g/gAHKTqxneW2M5qpLRSARc8zWoDXb6GGoqjT8=",
+      "runtime": "nodejs22.x",
+      "memoryMB": 512,
+      "timeoutSeconds": 28,
+      "state": "Active",
+      "role": "arn:aws:iam::771049112957:role/decisiontree-prod-ApiRole-vGwUeXNVhAHY",
+      "flags": {
+        "SHARED_AUTH_ENABLED": "true"
+      }
+    },
+    {
+      "name": "engent-platform-alpha-api",
+      "version": "5",
+      "codeSha256": "8AZUE+5Cv4jQub7MBHvajAEc+0uqYeEHNC6Wkl6+Mh8=",
+      "runtime": "nodejs22.x",
+      "memoryMB": 256,
+      "timeoutSeconds": 28,
+      "state": "Active",
+      "role": "arn:aws:iam::771049112957:role/engent-platform-alpha-runtime",
+      "flags": {
+        "STAGE": "alpha",
+        "NAVIGATOR_ENABLED": "false",
+        "RELEASE_B_EMAIL_ENABLED": "true",
+        "SHARED_AUTH_ENABLED": "true"
+      }
+    },
+    {
+      "name": "decisiontree-alpha-staging-api",
+      "version": "18",
+      "codeSha256": "ZDHXdHAapn2CYQNtk3pIAKX1Gjr9+rB4JOwKwapac4Y=",
+      "runtime": "nodejs22.x",
+      "memoryMB": 512,
+      "timeoutSeconds": 28,
+      "state": "Active",
+      "role": "arn:aws:iam::771049112957:role/decisiontree-alpha-staging-ApiRole-tmQtkTYts533",
+      "flags": {
+        "RELEASE_B_EMAIL_ENABLED": "true",
+        "SHARED_AUTH_ENABLED": "true"
+      }
+    },
+    {
+      "name": "decisionprocess-alpha-api",
+      "version": "6",
+      "codeSha256": "07YyCjaVUpeMPc1drHsEI3PHFeIcOAUflwgwZwZVqc0=",
+      "runtime": "nodejs22.x",
+      "memoryMB": 512,
+      "timeoutSeconds": 80,
+      "state": "Active",
+      "role": "arn:aws:iam::771049112957:role/decisionprocess-alpha-runtime",
+      "flags": {
+        "AI_ENABLED": "true",
+        "SESSION_CONTRACT_VERIFIED": "true"
+      }
+    },
+    {
+      "name": "decisionnavigator-alpha-api",
+      "version": "3",
+      "codeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw=",
+      "runtime": "nodejs22.x",
+      "memoryMB": 256,
+      "timeoutSeconds": 29,
+      "state": "Active",
+      "role": "arn:aws:iam::771049112957:role/decisionnavigator-alpha-runtime",
+      "flags": {
+        "STAGE": "alpha",
+        "NAVIGATOR_ENABLED": "true"
+      }
+    },
+    {
+      "name": "forecasting-alpha-api",
+      "version": "9",
+      "codeSha256": "pOn9LVMVAxeYXsuRIdPy3030WSjFs0XG5rHbDtyxA2A=",
+      "runtime": "nodejs22.x",
+      "memoryMB": 256,
+      "timeoutSeconds": 25,
+      "state": "Active",
+      "role": "arn:aws:iam::771049112957:role/forecasting-alpha-runtime",
+      "flags": {}
+    }
+  ]
+}

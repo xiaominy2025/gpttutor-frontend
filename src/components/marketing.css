@@ -191,8 +191,8 @@ body:has(.engent-site),#root:has(.engent-site){min-height:100vh}
 
 /* Compact launch affordance; labels remain available to keyboard and screen readers. */
 .engent-launch{position:relative;display:inline-flex;margin-top:8px;vertical-align:top}
-.engent-site .engent-launch-control{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;padding:0;border:1px solid var(--line);border-radius:6px;background:#fafbf8;color:var(--green);box-shadow:none;cursor:pointer}
-.engent-site .engent-launch-control svg{width:19px;height:19px;flex:none}
+.engent-site .engent-launch-control{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;min-width:44px;min-height:44px;flex:none;padding:0;border:1px solid var(--line);border-radius:6px;background:#fafbf8;color:var(--green);box-shadow:none;cursor:pointer}
+.engent-site .engent-launch-control svg{width:26px;height:26px;flex:none}
 .engent-site .engent-launch-control:hover{background:#edf4ef;border-color:#9bbbab}
 .engent-site .engent-launch-control:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 .engent-launch-tooltip{position:absolute;left:0;top:100%;z-index:45;width:max-content;max-width:min(260px,calc(100vw - 48px));padding:7px 10px;border:1px solid var(--line);border-radius:5px;background:#fafbf8;color:var(--slate);font-size:.85rem;line-height:1.4;visibility:hidden;opacity:0}

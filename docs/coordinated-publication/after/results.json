@@ -1,0 +1,52 @@
+{
+  "phase": "after",
+  "results": [
+    {
+      "width": 1440,
+      "controls": 4,
+      "iconPx": 26,
+      "minTarget": 44,
+      "keyboardTooltipEscape": true,
+      "modalFocusDraft": true,
+      "launchDestinations": true,
+      "overflow": false,
+      "pageErrors": 0
+    },
+    {
+      "width": 1024,
+      "controls": 4,
+      "iconPx": 26,
+      "minTarget": 44,
+      "keyboardTooltipEscape": true,
+      "modalFocusDraft": true,
+      "launchDestinations": true,
+      "overflow": false,
+      "pageErrors": 0
+    },
+    {
+      "width": 768,
+      "controls": 4,
+      "iconPx": 26,
+      "minTarget": 44,
+      "keyboardTooltipEscape": true,
+      "modalFocusDraft": true,
+      "launchDestinations": true,
+      "overflow": false,
+      "pageErrors": 0
+    },
+    {
+      "width": 390,
+      "controls": 4,
+      "iconPx": 26,
+      "minTarget": 44,
+      "keyboardTooltipEscape": true,
+      "modalFocusDraft": true,
+      "launchDestinations": true,
+      "overflow": false,
+      "pageErrors": 0
+    }
+  ],
+  "blocked": 8,
+  "allTrafficIntercepted": true,
+  "liveCalls": 0
+}

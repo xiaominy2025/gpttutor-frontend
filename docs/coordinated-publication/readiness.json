@@ -1,0 +1,71 @@
+{
+  "asOf": "2026-11-22 America/Chicago",
+  "noDeploymentAuthorization": true,
+  "coaches": [
+    {
+      "coach": "Decision Tree Coach",
+      "alpha": "live18; Release B/shared master acceptance recorded",
+      "production": "live5; existing Release A accepted and public HTTPS/health verified",
+      "publicUrl": "https://decisiontree.engentlabs.com/",
+      "decision": "Existing accepted production service can remain linked. New Release B promotion requires production-specific coordinated session/master validation.",
+      "evidence": [
+        "https://github.com/xiaominy2025/gpttutor-frontend/issues/6#issuecomment-7015236490",
+        "https://github.com/xiaominy2025/ai-decision-tree/pull/16#issuecomment-7056445677"
+      ],
+      "handoff": "https://github.com/xiaominy2025/ai-decision-tree/issues/11#issuecomment-7089524917"
+    },
+    {
+      "coach": "Decision Process Coach",
+      "alpha": "live6; AI/session readiness true; one real reconciled AI acceptance; responsive release complete",
+      "production": "No runtime found in current account inventory",
+      "publicUrlProposal": "https://www.engentlabs.com/process/",
+      "decision": "Eligible for production preparation, not yet a production GO. Preserve accepted hard-kill lock/hold limitation; no new quality redesign.",
+      "evidence": [
+        "https://github.com/xiaominy2025/ai-decision-process/pull/11#issuecomment-7057273258",
+        "https://github.com/xiaominy2025/gpttutor-frontend/pull/15"
+      ],
+      "handoff": "https://github.com/xiaominy2025/ai-decision-process/pull/11#issuecomment-7089524196"
+    },
+    {
+      "coach": "AI Decision Navigator",
+      "alpha": "live3; four-call canary passed; hosted activation verified",
+      "production": "No runtime found; production platform NAVIGATOR_ENABLED=false",
+      "publicUrlProposal": "https://www.engentlabs.com/explore (existing modal)",
+      "decision": "Eligible for production preparation. Resolve pending quota PR21 and production anonymous cookie/IP/origin/master/budget binding first.",
+      "evidence": [
+        "https://github.com/xiaominy2025/gpttutor-frontend/pull/8#issuecomment-7074541459",
+        "https://github.com/xiaominy2025/gpttutor-frontend/pull/21"
+      ],
+      "handoff": "https://github.com/xiaominy2025/gpttutor-frontend/pull/8#issuecomment-7089525736"
+    },
+    {
+      "coach": "Forecasting Coach",
+      "alpha": "V1 accepted; Advisor live9; pilot ends 2026-11-23T18:00:00-06:00",
+      "production": "No runtime found; no production quota/window approved",
+      "publicUrlProposal": "https://www.engentlabs.com/forecasting/",
+      "decision": "Accepted Alpha functionality; production release blocked pending pinned durable release package and production window/budget/security binding. Never extend Alpha silently.",
+      "evidence": [
+        "https://github.com/xiaominy2025/gpttutor-frontend/issues/16#issuecomment-7089273927"
+      ],
+      "handoff": "https://github.com/xiaominy2025/gpttutor-frontend/issues/16#issuecomment-7089526520"
+    },
+    {
+      "coach": "Scenario Analysis Coach",
+      "alpha": "No accepted functional launch evidence reviewed",
+      "production": "Not ready",
+      "decision": "Keep Coming Soon; preserve podcasts/illustrations; independent development."
+    },
+    {
+      "coach": "Simulation Coach",
+      "alpha": "No accepted functional launch evidence reviewed",
+      "production": "Not ready",
+      "decision": "Keep Coming Soon; preserve podcasts/illustrations; independent development."
+    },
+    {
+      "coach": "Optimization Coach",
+      "alpha": "No accepted functional launch evidence reviewed",
+      "production": "Not ready",
+      "decision": "Keep Coming Soon; preserve podcasts/illustrations; independent development."
+    }
+  ]
+}
