@@ -48,6 +48,20 @@ Every new paid runtime needs production-only configuration, an exact least-privi
 
 Owner-approved Alpha Forecasting/Navigator provider-key reuse supersedes earlier isolated-key advice. Preserve that accepted Alpha grant. It does **not** authorize copying the Alpha key into production. Production provider credential sharing/isolation, exact SSM/KMS grants and model limits must be explicit; shared keys share provider limits/rotation while application ledgers remain separate. No new shared spending pool is introduced by this publication.
 
+## Credential formats — owner clarification and release gate
+
+Preserve application-specific formats. Tree expects a JSON credential/configuration object: reviewed `server/hosted/aiSecret.ts` parses JSON and extracts `OPENAI_API_KEY` plus optional `ELEVENLABS_API_KEY`; never replace its object with a raw OpenAI token. Source production guard pins `/decisiontree-prod/ai-credentials`, and metadata-only inspection of actual Tree production live5 confirms that reference. This is parser/reference evidence, not a decrypted-value validation of the deployed artifact.
+
+Process also retains its JSON credential configuration. Reviewed `server/hosted/credential.mjs` accepts a strict single-field allowlisted JSON envelope (and also supports a strict raw key); this support does not authorize converting the existing parameter or expanding its schema. Six offline synthetic parser/header/redaction tests pass. Additional fields, duplicate keys, invalid whitespace inside the token or unknown wrappers are rejected generically. Do not normalize/rewrite real secrets automatically.
+
+Navigator uses the raw OpenAI key convention. Its accepted Alpha entry reads `/decisionnavigator-alpha/openai-api-key` directly; it must not be given Tree/Process JSON wrappers. Future AI-light Coaches follow this raw-key convention and the approved shared provider-credential strategy, with exact per-runtime grants and separate signing keys/ledgers. Parameter names do not establish format, and sharing a provider key does not make signing secrets or spending records shared.
+
+Confirmed production-packaging concern: Process and Navigator current Alpha entrypoints hardcode their Alpha SSM references. Their production candidates must bind reviewed production-specific parameter references; this is an outstanding release handoff, not a current Alpha failure. Do not copy an Alpha artifact unchanged into production. No Process/Navigator production runtime was found in this review; no production path for them is assumed provisioned. Forecasting production parser/reference likewise remains an explicit Coach-owned gate.
+
+Before production deployment, record for each exact runtime artifact: parser/schema and source hash, production parameter ARN/name/type/tier/metadata version, effective exact SSM/KMS access and stage isolation, secret-redaction behavior, and a runtime-only format/header construction check under the approved acceptance scope. Return only success/failure and safe format classification; never output raw values, provider headers, cookies or credential fingerprints. Metadata and offline fixtures do not establish a real parameter value's validity. Do not invoke OpenAI merely to check parsing. Report a genuine incompatibility/exposure concern to the owner before changing a parser contract, credential value or access scope.
+
+No credentials were retrieved/decrypted, modified or rotated for this clarification. All current Alpha, production and AI controls remain unchanged.
+
 ## Cross-workstream handoffs already posted
 
 - Tree: [existing production Issue11](https://github.com/xiaominy2025/ai-decision-tree/issues/11#issuecomment-7089524917): exact production baseline/accepted source, ReleaseB session/master delta, entitlements/Admin/registration and rollback.
