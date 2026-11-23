@@ -22,7 +22,7 @@ function Account({ state, error, logout, signingOut }) {
   </>;
 }
 
-function AlphaHeader() {
+function AlphaHeader({ homeUrl }) {
   const [state, setState] = useState("checking");
   const [error, setError] = useState("");
   const [signingOut, setSigningOut] = useState(false);
@@ -97,14 +97,14 @@ function AlphaHeader() {
   }
 
   const label = { checking: "Checking account…", guest: "Guest", student: "Student", unavailable: "Account unavailable" };
-  return <EngentHeader logoUrl={logoUrl} homeUrl="/engent-alpha/" pageName="Forecasting Coach"
+  return <EngentHeader logoUrl={logoUrl} homeUrl={homeUrl} pageName="Forecasting Coach"
     status={label[state]} navigation={<a href="/explore">Explore Tools</a>}>
     <Account state={state} error={error} logout={logout} signingOut={signingOut} />
   </EngentHeader>;
 }
 
-export function mountAlphaHeader() {
+export function mountAlphaHeader(homeUrl = "/engent-alpha/") {
   const host = document.createElement("div");
   document.querySelector(".mast").replaceWith(host);
-  createRoot(host).render(<AlphaHeader />);
+  createRoot(host).render(<AlphaHeader homeUrl={homeUrl} />);
 }

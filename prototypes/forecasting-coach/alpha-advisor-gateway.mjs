@@ -11,7 +11,7 @@ function reject(statusCode, code) {
   };
 }
 
-export function alphaAdvisorGateway(handler, { trustedViewerIp = () => null } = {}) {
+export function alphaAdvisorGateway(handler, { trustedViewerIp = () => null, origin = alphaOrigin } = {}) {
   return async event => {
     if (event.version !== "2.0" || ![advisorRoute, advisorSessionRoute].includes(event.rawPath)) return reject(404, "route");
     if (event.requestContext?.http?.method !== "POST") return reject(405, "method");
@@ -38,7 +38,7 @@ export function alphaAdvisorGateway(handler, { trustedViewerIp = () => null } = 
             event.cookies.some(cookie => typeof cookie !== "string" || cookie.includes(","))) return reject(400, "headers");
         headers.set("cookie", event.cookies.join("; "));
       }
-      const request = new Request(alphaOrigin + event.rawPath, { method: "POST", headers, body: bytes });
+      const request = new Request(origin + event.rawPath, { method: "POST", headers, body: bytes });
       const result = await handler(request, { viewerIp: await trustedViewerIp(event) });
       const cookies = result.headers.getSetCookie();
       const responseHeaders = new Headers(result.headers);

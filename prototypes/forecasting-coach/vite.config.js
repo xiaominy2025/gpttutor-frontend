@@ -2,10 +2,11 @@ import { advisorMockPlugin } from "./advisor-mock.js";
 
 export default ({ command, mode, isPreview }) => {
   const alpha = (command === "build" || isPreview) && ["alpha-workspace", "advisor-alpha"].includes(mode);
-  const home = alpha ? "/engent-alpha/" : "https://www.engentlabs.com/";
-  const explore = alpha ? "/explore" : "https://www.engentlabs.com/explore";
+  const production = (command === "build" || isPreview) && ["production-workspace", "advisor-production"].includes(mode);
+  const home = alpha ? "/engent-alpha/" : production ? "/" : "https://www.engentlabs.com/";
+  const explore = alpha || production ? "/explore" : "https://www.engentlabs.com/explore";
   return {
-    base: alpha ? "/engent-alpha/forecasting/" : "/",
+    base: alpha ? "/engent-alpha/forecasting/" : production ? "/forecasting/" : "/",
     css: { postcss: { plugins: [] } },
     plugins: [{
       name: "forecasting-platform-links",

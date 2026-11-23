@@ -93,17 +93,23 @@ export function createAlphaAdvisor({
   enabled = false, providerBlocked = true, origin, startsAt, endsAt,
   guestSession, masterAllows, ledger, provider, now = Date.now
 } = {}) {
-  const configured = typeof origin === "string" && origin.startsWith("https://") &&
-    guestSession &&
-    Number.isSafeInteger(startsAt) && Number.isSafeInteger(endsAt) &&
+  const configured = Number.isSafeInteger(startsAt) && Number.isSafeInteger(endsAt) &&
     endsAt > startsAt && endsAt - startsAt <= pilotLimits.durationMs && startsAt % 86_400_000 === 0;
-  const inWindow = () => now() >= startsAt && now() < endsAt;
+  return createForecastingAdvisor({ enabled: enabled && configured, providerBlocked, origin, guestSession,
+    masterAllows, ledger, provider, now, available: () => now() >= startsAt && now() < endsAt });
+}
+
+export function createForecastingAdvisor({
+  enabled = false, providerBlocked = true, origin, guestSession, masterAllows, ledger, provider,
+  now = Date.now, available = () => false
+} = {}) {
+  const configured = typeof origin === "string" && origin.startsWith("https://") && guestSession;
   const unavailable = () => error(503, "unavailable");
   return async (request, { viewerIp } = {}) => {
     const path = new URL(request.url).pathname;
     if (path !== advisorRoute && path !== advisorSessionRoute) return error(404, "route");
     if (request.method !== "POST") return error(405, "method");
-    if (!enabled || !configured || !inWindow()) return unavailable();
+    if (!enabled || !configured || !available()) return unavailable();
     if (request.headers.get("origin") !== origin) return error(403, "origin");
     if (request.headers.get("content-type") !== "application/json") return error(415, "media_type");
     try {
@@ -136,7 +142,7 @@ export function createAlphaAdvisor({
       let dispatch;
       try {
         const send = await provider.prepare(plan);
-        if (await masterAllows() === true && inWindow()) dispatch = send;
+        if (await masterAllows() === true && available()) dispatch = send;
       } catch { /* Nothing was dispatched. */ }
       if (!dispatch) {
         await ledger.settle(id, 0);

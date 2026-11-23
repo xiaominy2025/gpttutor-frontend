@@ -24,7 +24,11 @@ const mockAdvisorEnabled = import.meta.env.DEV && import.meta.env.MODE === "advi
 const alphaPlatform = import.meta.env.PROD &&
   ["alpha-workspace", "advisor-alpha"].includes(import.meta.env.MODE) &&
   location.origin === "https://d6owpirihdsus.cloudfront.net";
-const alphaAdvisorEnabled = alphaPlatform && import.meta.env.MODE === "advisor-alpha";
+const productionPlatform = import.meta.env.PROD &&
+  ["production-workspace", "advisor-production"].includes(import.meta.env.MODE) &&
+  location.origin === "https://www.engentlabs.com";
+const hostedAdvisorEnabled = (alphaPlatform && import.meta.env.MODE === "advisor-alpha") ||
+  (productionPlatform && import.meta.env.MODE === "advisor-production");
 const horizons = { ...defaultHorizons };
 
 function element(type, content) {
@@ -208,7 +212,7 @@ function resetAdvisor() {
   if (mockAdvisorEnabled) {
     by("advisor-run").hidden = false;
     by("advisor-status").textContent = "Local mock preview. No provider call is made.";
-  } else if (alphaAdvisorEnabled) {
+  } else if (hostedAdvisorEnabled) {
     by("advisor-run").hidden = false;
     by("advisor-status").textContent = "Generating sends the business challenge and a forecast summary to the AI provider.";
   }
@@ -335,13 +339,13 @@ by("unit").addEventListener("input", () => {
 });
 by("goal").addEventListener("input", resetAdvisor);
 resetAdvisor();
-if (alphaPlatform) {
-  import("./alpha-header.jsx").then(({ mountAlphaHeader }) => mountAlphaHeader()).catch(() => {
+if (alphaPlatform || productionPlatform) {
+  import("./alpha-header.jsx").then(({ mountAlphaHeader }) => mountAlphaHeader(productionPlatform ? "/" : undefined)).catch(() => {
     document.querySelector(".session-state").textContent = "Account unavailable";
   });
 }
 by("advisor-run").addEventListener("click", async () => {
-  if (!(mockAdvisorEnabled || alphaAdvisorEnabled) || !report || advisorRequest) return;
+  if (!(mockAdvisorEnabled || hostedAdvisorEnabled) || !report || advisorRequest) return;
   const active = new AbortController();
   advisorRequest = active;
   by("advisor-run").disabled = true;
@@ -351,7 +355,7 @@ by("advisor-run").addEventListener("click", async () => {
   try {
     const selected = Number(by("forecast-period").value) - report.points.length - 1;
     const summary = buildAdvisorRequest(report, by("goal").value, selected);
-    const draft = await requestAdvisor(summary, { signal: active.signal, guest: alphaAdvisorEnabled });
+    const draft = await requestAdvisor(summary, { signal: active.signal, guest: hostedAdvisorEnabled });
     if (advisorRequest !== active) return;
     by("advisor-text").textContent = draft;
     by("advisor-result").hidden = false;
