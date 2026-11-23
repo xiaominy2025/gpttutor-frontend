@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "mode": "--check",
+  "awsWrites": 0,
+  "liveProcessVersion": "3",
+  "retainedOffVersion": "2",
+  "htmlOwnershipVerified": true,
+  "byteExactBackupVerified": true,
+  "unrelatedCoachAliasesReadOnly": true,
+  "actualRollbackExecuted": false
+}
