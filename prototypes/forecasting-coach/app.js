@@ -340,7 +340,7 @@ by("unit").addEventListener("input", () => {
 by("goal").addEventListener("input", resetAdvisor);
 resetAdvisor();
 if (alphaPlatform || productionPlatform) {
-  import("./alpha-header.jsx").then(({ mountAlphaHeader }) => mountAlphaHeader(productionPlatform ? "/" : undefined, productionPlatform)).catch(() => {
+  import("./alpha-header.jsx").then(({ mountAlphaHeader }) => mountAlphaHeader(productionPlatform ? "/" : undefined)).catch(() => {
     document.querySelector(".session-state").textContent = "Account unavailable";
   });
 }
