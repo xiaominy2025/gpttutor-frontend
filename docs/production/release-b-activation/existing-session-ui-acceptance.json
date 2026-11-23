@@ -1,0 +1,45 @@
+{
+  "method": "Existing protected Chrome, Windows UI read-only acceptance; no session export",
+  "rootSession": {
+    "signedIn": true,
+    "role": "student",
+    "emailBridge": true,
+    "treeAdvanced": true,
+    "treeRequestStatus": "approved"
+  },
+  "explore": {
+    "headerAdvanced": true
+  },
+  "tree": {
+    "sharedLaunchWithoutCode": true,
+    "refreshAdvanced": true,
+    "apiSessionAuthenticated": true,
+    "accountType": "advanced",
+    "aiPermission": true,
+    "savedRecoveryCopiesVisible": 3,
+    "recoveryCopiesOpenedModifiedDeleted": 0
+  },
+  "process": {
+    "openedWithoutCode": true,
+    "headerStudent": true,
+    "treeAdvancedNotInherited": true,
+    "publicAI": "OFF"
+  },
+  "directProjectAddressBarGet": {
+    "deniedAsDesigned": true,
+    "reason": "Existing API additionally requires X-Workspace-User; normal UI recovery list uses this and loaded three copies. This denial is not counted as a revocation pass."
+  },
+  "verificationCodeRequestsByOperator": 0,
+  "projectWrites": 0,
+  "paidCalls": 0,
+  "revocation": {
+    "state": "PENDING_OWNER_MANUAL_SIGNOUT",
+    "reason": "Existing harness command channel closed; clipped account control inaccessible to UI tool. Retained Tree API-only tab will test stale-cookie denial after normal WWW signout."
+  },
+  "automationRecovery": {
+    "debuggerAttempt": "Rejected before execution by automatic approval review",
+    "debuggerAttached": false,
+    "alternative": "Normal Windows UI; no credential stores read or session secrets exported"
+  },
+  "rollback": "Previous checkpoint retained; no deployment mutation this acceptance turn"
+}
