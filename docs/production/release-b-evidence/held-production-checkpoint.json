@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-23T05:28:29.427Z",
+  "aliases": {
+    "decisiontree-prod-api": {
+      "version": "5",
+      "revision": "e4742db0-2e41-42fb-a909-ab30056c3a86"
+    },
+    "engent-platform-prod-api": {
+      "version": "3",
+      "revision": "85d4b6a1-6b64-4790-8642-d256401b99e3"
+    },
+    "decisionprocess-prod-api": {
+      "version": "1",
+      "revision": "dc20b860-88e8-4d7c-9ad6-b177515cc2ad"
+    },
+    "decisionnavigator-prod-api": {
+      "version": "3",
+      "revision": "bbaf9610-8925-4036-87c2-cf3cb6677cd9"
+    },
+    "forecasting-prod-api": {
+      "version": "4",
+      "revision": "3e572a8d-b9e3-4afe-9871-cef0f605dd1d"
+    }
+  },
+  "master": {
+    "suspended": false,
+    "revision": 1
+  },
+  "headerPolicy": {
+    "id": "66465582-49eb-4537-bc5b-10b39aee71af",
+    "etag": "E23ZP02F085DFQ",
+    "cspOverride": true,
+    "referrerOverride": true,
+    "unchanged": true
+  },
+  "paidProcessCalls": 0,
+  "publicBActivation": false
+}
