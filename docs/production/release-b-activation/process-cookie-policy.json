@@ -1,0 +1,61 @@
+{
+  "before": {
+    "ETag": "E23ZP02F085DFQ",
+    "OriginRequestPolicy": {
+      "Id": "79127ff3-f6b1-4f7a-bb52-d7593ed28782",
+      "LastModifiedTime": "2026-11-23T04:28:45.692000+00:00",
+      "OriginRequestPolicyConfig": {
+        "Name": "decisionprocess-prod-api-only",
+        "HeadersConfig": {
+          "HeaderBehavior": "allExcept",
+          "Headers": {
+            "Quantity": 2,
+            "Items": [
+              "Authorization",
+              "Host"
+            ]
+          }
+        },
+        "CookiesConfig": {
+          "CookieBehavior": "whitelist",
+          "Cookies": {
+            "Quantity": 1,
+            "Items": [
+              "__Host-engent-platform"
+            ]
+          }
+        },
+        "QueryStringsConfig": {
+          "QueryStringBehavior": "none"
+        }
+      }
+    }
+  },
+  "target": {
+    "Name": "decisionprocess-prod-api-only",
+    "HeadersConfig": {
+      "HeaderBehavior": "allExcept",
+      "Headers": {
+        "Quantity": 2,
+        "Items": [
+          "Authorization",
+          "Host"
+        ]
+      }
+    },
+    "CookiesConfig": {
+      "CookieBehavior": "whitelist",
+      "Cookies": {
+        "Quantity": 1,
+        "Items": [
+          "__Host-engent-email"
+        ]
+      }
+    },
+    "QueryStringsConfig": {
+      "QueryStringBehavior": "none"
+    }
+  },
+  "activeEtag": "ETVPDKIKX0DER",
+  "verified": true
+}

@@ -1,0 +1,57 @@
+{
+  "checks": [
+    {
+      "kind": "tree",
+      "live": "6",
+      "rollbackVersion": "5",
+      "ownedAlias": true,
+      "oldCodeRetained": true
+    },
+    {
+      "kind": "bff",
+      "live": "4",
+      "rollbackVersion": "3",
+      "ownedAlias": true,
+      "oldCodeRetained": true
+    },
+    {
+      "kind": "process",
+      "live": "2",
+      "rollbackVersion": "1",
+      "ownedAlias": true,
+      "oldCodeRetained": true
+    },
+    {
+      "site": "homepage",
+      "ownedHTML": true,
+      "rollbackBackupAvailable": true
+    },
+    {
+      "site": "tree",
+      "ownedHTML": true,
+      "rollbackBackupAvailable": true
+    },
+    {
+      "site": "process",
+      "ownedHTML": true,
+      "rollbackBackupAvailable": true
+    },
+    {
+      "site": "forecast",
+      "ownedHTML": true,
+      "rollbackBackupAvailable": true
+    },
+    {
+      "role": "engent-platform-prod-runtime",
+      "oldBoundaryRetained": true
+    },
+    {
+      "role": "decisiontree-prod-ApiRole-vGwUeXNVhAHY",
+      "oldBoundaryRetained": true
+    }
+  ],
+  "masterON1": true,
+  "rollbackExecuted": false,
+  "projectWrites": 0,
+  "paidCalls": 0
+}

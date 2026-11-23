@@ -1,0 +1,10 @@
+{
+  "guestAndForgedUiClaims": 401,
+  "crossOrigin": "browser denied; existing edge 403 SPA fallback returns HTML200 without CORS grant",
+  "legacyAuthDisabled": 410,
+  "protectedProjectsGuest": 401,
+  "unsignedPrivateRpc": 403,
+  "paidCalls": 0,
+  "emailRequested": false,
+  "projectWrites": 0
+}

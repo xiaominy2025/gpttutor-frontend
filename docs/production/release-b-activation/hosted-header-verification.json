@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "actualEdgeNonceCsp": true,
+  "nonceMatchesScript": true,
+  "fixedPlatformFormDestination": true,
+  "referrerPolicy": "strict-origin",
+  "hsts": true,
+  "frameDeny": true,
+  "nosniff": true,
+  "emailRequested": false,
+  "providerCalls": 0
+}
