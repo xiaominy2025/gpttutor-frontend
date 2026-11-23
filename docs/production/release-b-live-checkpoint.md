@@ -1,3 +1,5 @@
+> Superseded by [completed Production release](PROCESS_PRODUCTION_RELEASE.md). This file preserves the earlier AI-OFF checkpoint.
+
 # Release B Production live checkpoint - Process AI acceptance pending
 
 ## Published

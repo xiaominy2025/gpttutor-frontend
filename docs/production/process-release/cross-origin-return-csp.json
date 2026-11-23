@@ -1,0 +1,17 @@
+{
+  "productionTraffic": 0,
+  "modelCalls": 0,
+  "exactBffFormUsed": true,
+  "results": [
+    {
+      "fixed": false,
+      "returned": false,
+      "cspBlocked": false
+    },
+    {
+      "fixed": true,
+      "returned": true,
+      "cspBlocked": false
+    }
+  ]
+}

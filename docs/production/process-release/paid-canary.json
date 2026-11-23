@@ -1,0 +1,55 @@
+{
+  "runtimeRequestId": "a123241550865a3d00df5518e5d4e5ae6c6091a57c7943445af0cf5e98db3fea",
+  "requestUUID": "3803140c-7d18-43d6-a898-258418f515a1",
+  "month": "2026-11",
+  "day": "2026-11-23",
+  "baselineNano": {
+    "month": 0,
+    "day": 0,
+    "userDay": 0
+  },
+  "source": "c3111feeb13a8a632b82509048e9583e61e81084",
+  "createdAt": "2026-11-23T14:59:27.936Z",
+  "maxRequests": 1,
+  "maxProviderDispatches": 1,
+  "noRetries": true,
+  "ceilingNano": 20000000,
+  "reservationUpperBoundNano": 12200000,
+  "state": "passed",
+  "requests": 1,
+  "payloadSha256": "3ded9e948d5bd9eb554341bc7af88fdaeac436b430aa9bea601b5aabab82c98c",
+  "http": 200,
+  "response": {
+    "mode": "live",
+    "suggestions": [
+      {
+        "kind": "objective",
+        "text": "Expand access to library services",
+        "why": "Help community members use library resources at times that fit their schedules, whether through evening hours or weekend programming.",
+        "priority": ""
+      },
+      {
+        "kind": "objective",
+        "text": "Support community learning and participation",
+        "why": "Create opportunities for residents to learn, share skills, and connect through library activities.",
+        "priority": ""
+      },
+      {
+        "kind": "objective",
+        "text": "Make effective use of the staffing budget",
+        "why": "Achieve worthwhile community benefits within the fixed staffing resources available.",
+        "priority": ""
+      }
+    ]
+  },
+  "usage": {
+    "inputTokens": 1254,
+    "outputTokens": 216,
+    "costNano": 264750,
+    "costUSD": 0.00026475,
+    "reservedNano": 5118750,
+    "retainedHolds": 0,
+    "globalConcurrency": 0,
+    "userConcurrency": 0
+  }
+}
