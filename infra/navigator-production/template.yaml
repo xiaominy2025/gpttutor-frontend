@@ -50,6 +50,7 @@ Resources:
                   'ForAllValues:StringEquals':
                     'dynamodb:LeadingKeys': ['AI#CONFIG']
                     'dynamodb:Attributes': [pk, sk, suspended, revision]
+                  'StringEqualsIfExists': {'dynamodb:Select': 'SPECIFIC_ATTRIBUTES'}
                   'Null': {'dynamodb:LeadingKeys': 'false', 'dynamodb:Attributes': 'false'}
               - Sid: NavigatorParameters
                 Effect: Allow
