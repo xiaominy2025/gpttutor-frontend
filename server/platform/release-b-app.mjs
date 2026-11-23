@@ -21,7 +21,7 @@ export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=f
  const session=async(allowPending=false)=>{if(!live||live.kind!=='session')throw error();const a=await invoke('session',{lease:live.lease,action:'read'});if(a.active!==true&&!(allowPending&&a.pending===true))throw error();return a;};
  if(p==='/api/platform/email/bootstrap'&&method==='GET'){
   const intent=e.queryStringParameters?.return;
-  if(intent!==undefined&&(!processEnabled||intent!=='process'||origin!=='https://d6owpirihdsus.cloudfront.net'))throw error(400);
+  if(intent!==undefined&&(!processEnabled||intent!=='process'||!['https://d6owpirihdsus.cloudfront.net','https://www.engentlabs.com'].includes(origin)))throw error(400);
   const id=random(),csrf=random();await store.create(key(id),{csrf,expiresAt:now()+600,kind:'preauth',...(intent==='process'?{processReturnUntil:now()+600}:{})});return response(200,{csrf},[cookie(txName,id,600)]);
  }
  const fromTree=p==='/api/platform/email/authorize';
@@ -50,7 +50,7 @@ export function emailPlatform({store,invoke,origin,treeOrigin,fallback,enabled=f
   if(a.sub!==live.sub)throw error();if(a.pending)return response(200,{signedIn:false,pendingSignIn:true,role:'guest'});return response(200,{signedIn:true,role:'student',emailBridge:true,entitlements:{tree:{advanced:a.advanced===true,requestStatus:a.requestStatus}},treeLaunchUrl:treeOrigin+'/api/shared/email/login',...(processEnabled&&live.processReturnUntil>now()?{processReturnAvailable:true}:{})});
  }
  if(p==='/api/platform/email/return'){
-  if(!processEnabled||origin!=='https://d6owpirihdsus.cloudfront.net')throw error(410);
+  if(!processEnabled||!['https://d6owpirihdsus.cloudfront.net','https://www.engentlabs.com'].includes(origin))throw error(410);
   body(e,[]);const a=await session();if(a.sub!==live.sub||!(live.processReturnUntil>now()))throw error();
   const {processReturnUntil,...rest}=live;
   if(!await store.replace(key(sid),live.version,rest))throw error(409);
