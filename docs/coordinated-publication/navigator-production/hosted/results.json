@@ -1,0 +1,47 @@
+{
+  "rows": [
+    {
+      "width": 1440,
+      "icon": 26,
+      "target": 44,
+      "unreadyInactive": true,
+      "releaseASignIn": true,
+      "tooltip": true,
+      "podcast": true,
+      "pageErrors": 0
+    },
+    {
+      "width": 1024,
+      "icon": 26,
+      "target": 44,
+      "unreadyInactive": true,
+      "releaseASignIn": true,
+      "tooltip": true,
+      "podcast": true,
+      "pageErrors": 0
+    },
+    {
+      "width": 768,
+      "icon": 26,
+      "target": 44,
+      "unreadyInactive": true,
+      "releaseASignIn": true,
+      "tooltip": true,
+      "podcast": true,
+      "pageErrors": 0
+    },
+    {
+      "width": 390,
+      "icon": 26,
+      "target": 44,
+      "unreadyInactive": true,
+      "releaseASignIn": true,
+      "tooltip": true,
+      "podcast": true,
+      "pageErrors": 0
+    }
+  ],
+  "hosted": true,
+  "mutationsBlocked": true,
+  "liveCalls": 0
+}

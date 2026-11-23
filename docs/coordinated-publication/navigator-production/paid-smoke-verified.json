@@ -1,0 +1,28 @@
+{
+  "source": "ccbb693b105e3cb650dbbedbfdb4a210f18b850f",
+  "startedAt": "2026-11-23T03:12:37.532Z",
+  "ceilingMicros": 3000,
+  "reservationUpperBoundMicros": 1504,
+  "paidRequests": 1,
+  "retries": 0,
+  "state": "passed",
+  "before": {
+    "spentMicros": 0,
+    "reservedMicros": 0,
+    "paused": false
+  },
+  "sentAt": "2026-11-23T03:12:45.278Z",
+  "httpStatus": 200,
+  "response": {
+    "reply": "Start by clarifying what you want the decision to accomplish. Weekend hours might serve goals such as reaching more customers, increasing revenue, or improving convenience; strengthening weekday service might serve goals such as reliability, customer satisfaction, or keeping operations manageable. These are possibilities to examine, not priorities to assume. The goals you set—and how you weigh them—will determine which evidence matters.\n\nThen organize the analysis around those goals: what you know about customer demand, likely costs and staffing needs, effects on weekday service, and what remains uncertain. Consider the consequences of each approach, including whether a small, reversible trial could provide useful evidence. The point is not to seek certainty, but to identify what information could meaningfully change your judgment and whether it is worth waiting or testing.\n\nEven with good evidence, you’ll still need to judge how to balance growth, service quality, workload, and practical constraints, and what level of risk is acceptable for your business. A useful next step is to make your success criteria explicit before comparing the approaches, so that appealing but unrelated signals—such as more activity without a clear benefit—don’t quietly define success for you. You can revisit the judgment as customer response and operating conditions change.",
+    "done": false,
+    "followUpCount": 3
+  },
+  "after": {
+    "spentMicros": 289,
+    "reservedMicros": 0,
+    "paused": false
+  },
+  "chargedMicros": 289,
+  "completedAt": "2026-11-23T03:12:55.169Z"
+}

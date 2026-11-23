@@ -1,0 +1,41 @@
+{
+  "operator": "arn:aws:iam::771049112957:user/engentlabs-cli",
+  "operatorRoleActions": [
+    {
+      "action": "iam:CreateRole",
+      "decision": "allowed"
+    },
+    {
+      "action": "iam:PutRolePolicy",
+      "decision": "allowed"
+    },
+    {
+      "action": "iam:PassRole",
+      "decision": "allowed"
+    }
+  ],
+  "validationFindings": [],
+  "secretScopeTests": [
+    {
+      "parameter": "/decisionnavigator-prod/openai-api-key",
+      "decision": "allowed"
+    },
+    {
+      "parameter": "/decisionnavigator-prod/hmac-secret",
+      "decision": "allowed"
+    },
+    {
+      "parameter": "/decisionnavigator-alpha/openai-api-key",
+      "decision": "implicitDeny"
+    },
+    {
+      "parameter": "/decisiontree-prod/ai-credentials",
+      "decision": "implicitDeny"
+    },
+    {
+      "parameter": "/decisionprocess-prod/openai-api-key",
+      "decision": "implicitDeny"
+    }
+  ],
+  "existingRolesModified": false
+}

@@ -1,0 +1,143 @@
+{
+  "stack": "decisionnavigator-prod",
+  "source": "6471cee9015fe35b674d392eb80d3e04a299879d",
+  "writes": [
+    {
+      "service": "ssm",
+      "operation": "PutParameter-create-only",
+      "name": "/decisionnavigator-prod/hmac-secret",
+      "at": "2026-11-23T02:42:12.859Z",
+      "result": {
+        "version": 1
+      }
+    },
+    {
+      "service": "s3api",
+      "operation": "put-object",
+      "at": "2026-11-23T02:42:13.234Z",
+      "result": {
+        "ETag": "\"9d125e538596325664dd0d629b04affd\"",
+        "ChecksumSHA256": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+        "ChecksumType": "FULL_OBJECT",
+        "ServerSideEncryption": "AES256",
+        "VersionId": "uhH4hrrtFBHm2qm9EkX20FXFZG9S0Iob"
+      }
+    },
+    {
+      "service": "cloudformation",
+      "operation": "create-change-set",
+      "at": "2026-11-23T02:42:14.846Z",
+      "result": {
+        "Id": "arn:aws:cloudformation:us-east-1:771049112957:changeSet/navigator-prod-6471cee9015f/77a29263-a802-4883-a888-362705746551",
+        "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/decisionnavigator-prod/7e965010-e6e7-11f1-92a6-12fffa169859"
+      }
+    },
+    {
+      "service": "cloudformation",
+      "operation": "execute-change-set",
+      "at": "2026-11-23T02:43:03.194Z",
+      "result": {}
+    }
+  ],
+  "artifactSha256": "16cda4098526fe55a0feef4e34566a88b0edd283b5406e524e9f970b1cfb663c",
+  "codeSha256": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+  "templateSha256": "b6184439abb6f970d60b7ffbc06641106ab22f1c8e1dd8db0db2932e204a4ee0",
+  "key": "releases/decisionnavigator-prod/6471cee9015fe35b674d392eb80d3e04a299879d/navigator-prod-16cda4098526fe55a0feef4e34566a88b0edd283b5406e524e9f970b1cfb663c.zip",
+  "prepared": true,
+  "preparedAt": "2026-11-23T02:41:46.683Z",
+  "hmac": {
+    "name": "/decisionnavigator-prod/hmac-secret",
+    "version": 1
+  },
+  "artifact": {
+    "VersionId": "uhH4hrrtFBHm2qm9EkX20FXFZG9S0Iob",
+    "ETag": "\"9d125e538596325664dd0d629b04affd\""
+  },
+  "changeSet": {
+    "Id": "arn:aws:cloudformation:us-east-1:771049112957:changeSet/navigator-prod-6471cee9015f/77a29263-a802-4883-a888-362705746551",
+    "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/decisionnavigator-prod/7e965010-e6e7-11f1-92a6-12fffa169859"
+  },
+  "review": {
+    "at": "2026-11-23T02:42:57.888Z",
+    "changes": [
+      {
+        "Action": "Add",
+        "LogicalResourceId": "Logs",
+        "ResourceType": "AWS::Logs::LogGroup",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "NavigatorAlias",
+        "ResourceType": "AWS::Lambda::Alias",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "NavigatorFunction",
+        "ResourceType": "AWS::Lambda::Function",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "NavigatorIntegration",
+        "ResourceType": "AWS::ApiGatewayV2::Integration",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "NavigatorSessionPermission",
+        "ResourceType": "AWS::Lambda::Permission",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "NavigatorSessionRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "NavigatorTurnPermission",
+        "ResourceType": "AWS::Lambda::Permission",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "NavigatorTurnRoute",
+        "ResourceType": "AWS::ApiGatewayV2::Route",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "NavigatorVersion",
+        "ResourceType": "AWS::Lambda::Version",
+        "Scope": [],
+        "Details": []
+      },
+      {
+        "Action": "Add",
+        "LogicalResourceId": "RuntimeRole",
+        "ResourceType": "AWS::IAM::Role",
+        "Scope": [],
+        "Details": []
+      }
+    ],
+    "templateSha256": "b6184439abb6f970d60b7ffbc06641106ab22f1c8e1dd8db0db2932e204a4ee0"
+  },
+  "executed": true,
+  "installed": {
+    "at": "2026-11-23T02:45:13.957Z",
+    "version": "1",
+    "aliasRevision": "6ff1d135-09ef-4ef5-b103-827a32ddf5f2",
+    "codeSha256": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw="
+  }
+}

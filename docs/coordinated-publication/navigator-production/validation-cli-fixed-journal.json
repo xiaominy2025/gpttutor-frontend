@@ -1,0 +1,85 @@
+{
+  "source": "aa3aeb00717c4f448497e82126041d1c869028c8",
+  "startedAt": "2026-11-23T02:56:10.770Z",
+  "events": [
+    {
+      "event": "ready-code",
+      "acknowledgedRevision": "c2b70c00-ba24-4c87-8c77-64ef823be469",
+      "readyRevision": "700f008d-e772-4bdd-a27f-e0ef29788145",
+      "hash": "ddYBEQYNRz6OjZ5ywtwRd5vNfvvQ2aoJSoVU64eqh7Y=",
+      "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6",
+      "lastModified": "2026-11-23T02:56:16.000+0000",
+      "cloudTrailEventId": "5a1f487b-965c-4766-b9e0-85e0114f7c47"
+    },
+    {
+      "event": "validation-result",
+      "label": "verify-configuration",
+      "result": {
+        "passed": true,
+        "credentialFormat": "raw-token",
+        "credentialVersion": 3,
+        "hmacReady": true,
+        "masterOn": true,
+        "masterRevision": 1,
+        "providerCalls": 0
+      }
+    },
+    {
+      "event": "validation-result",
+      "label": "protocol",
+      "result": {
+        "suite": "protocol",
+        "passed": true,
+        "providerTransport": "absent",
+        "canonicalWrites": false
+      }
+    },
+    {
+      "event": "validation-result",
+      "label": "limits",
+      "result": {
+        "suite": "limits",
+        "passed": true,
+        "providerTransport": "absent",
+        "canonicalWrites": false
+      }
+    },
+    {
+      "event": "validation-result",
+      "label": "master-and-outcomes",
+      "result": {
+        "suite": "master-and-outcomes",
+        "passed": true,
+        "providerTransport": "absent",
+        "canonicalWrites": false
+      }
+    },
+    {
+      "event": "ready-code",
+      "acknowledgedRevision": "46523ca5-bca0-465e-a3e4-abfb9ed7d40a",
+      "readyRevision": "24b241cf-36a5-4d59-b151-d1e80515d46c",
+      "hash": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+      "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6",
+      "lastModified": "2026-11-23T02:58:10.000+0000",
+      "cloudTrailEventId": "4044819a-075c-4317-9885-b7939506479f"
+    }
+  ],
+  "providerCalls": 0,
+  "baseline": {
+    "aliasRevision": "6ff1d135-09ef-4ef5-b103-827a32ddf5f2",
+    "version": "1",
+    "privateRevision": "a703fe65-f9b5-4aa0-b6d6-eb033f205e87",
+    "codeSha256": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+    "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6"
+  },
+  "restored": {
+    "acknowledgedRevision": "46523ca5-bca0-465e-a3e4-abfb9ed7d40a",
+    "readyRevision": "24b241cf-36a5-4d59-b151-d1e80515d46c",
+    "hash": "Fs2kCYUm/lWg/u9ONFZqiLDt0oO1QG5STp+XCxz7Zjw=",
+    "configurationHash": "67a597007a6299ff8032c85fce2db1f0471574d00aa74010f8db33de86e11db6",
+    "lastModified": "2026-11-23T02:58:10.000+0000",
+    "cloudTrailEventId": "4044819a-075c-4317-9885-b7939506479f"
+  },
+  "complete": true,
+  "completedAt": "2026-11-23T02:59:52.575Z"
+}

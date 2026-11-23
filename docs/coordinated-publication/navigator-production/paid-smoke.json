@@ -1,0 +1,9 @@
+{
+  "source": "ccbb693b105e3cb650dbbedbfdb4a210f18b850f",
+  "startedAt": "2026-11-23T03:10:16.049Z",
+  "ceilingMicros": 3000,
+  "reservationUpperBoundMicros": 1504,
+  "paidRequests": 0,
+  "retries": 0,
+  "state": "prepared"
+}
