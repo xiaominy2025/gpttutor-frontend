@@ -91,7 +91,10 @@ export async function completedDeployment({acknowledgement:ack,priorRevision,exp
     if(e.event!==eventName||e.principal!==principal||e.error||
        e.functionArn!==functionArn||e.priorRevision!==priorRevision||(operation==='code'?e.publish!==false:e.publish!==undefined)||
        e.acknowledgedRevision!==acknowledgedRevision||e.hash!==expectedHash||
-       Math.floor(Date.parse(e.at)/1000)!==Math.floor(modified/1000)||typeof e.eventId!=='string'||!uuid.test(e.eventId))
+       // CloudTrail can record an API call in the following second relative
+       // to Lambda LastModified. Exact principal/CAS/ack/hash/configuration,
+       // unique write and stable completion remain mandatory.
+       !Number.isFinite(Date.parse(e.at))||Date.parse(e.at)<Math.floor(startedAt/1000)*1000||Math.abs(Math.floor(Date.parse(e.at)/1000)-Math.floor(modified/1000))>1||typeof e.eventId!=='string'||!uuid.test(e.eventId))
      throw Error('CloudTrail does not establish exact deployment ownership');
     // Pin again after the audit lookup. All subsequent operations use this ready
     // revision as a CAS token; the acknowledgement revision remains historical evidence.

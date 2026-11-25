@@ -133,6 +133,24 @@ describe('CloudTrail exact function write matching',()=>{
 });
 
 describe('flag-only configuration deployment uses the same ownership lifecycle',()=>{
+ it('accepts one-second CloudTrail timestamp rounding only with exact remaining ownership',async()=>{
+  const f=deploymentFixture();f.options.operation='configuration';
+  const event={...f.event,event:'UpdateFunctionConfiguration20150331v2',publish:undefined,at:new Date(startedAt+1000).toISOString()};
+  f.readWriteEvents.mockResolvedValue([event]);await expect(completedDeployment(f.options)).resolves.toMatchObject({readyRevision:other});
+  const bad=deploymentFixture();bad.options.operation='configuration';bad.readWriteEvents.mockResolvedValue([{...event,priorRevision:other}]);
+  await expect(completedDeployment(bad.options)).rejects.toThrow('ownership');
+ });
+ it('rejects a timestamp outside the one-second bound and concurrent same-time writes',async()=>{
+  const f=deploymentFixture();f.options.operation='configuration';
+  f.readWriteEvents.mockResolvedValue([{...f.event,event:'UpdateFunctionConfiguration20150331v2',publish:undefined,at:new Date(startedAt+2000).toISOString()}]);
+  await expect(completedDeployment(f.options)).rejects.toThrow('ownership');
+  const g=deploymentFixture();g.readWriteEvents.mockResolvedValue([g.event,{...g.event,eventId:'55555555-5555-5555-5555-555555555555',at:new Date(startedAt+1000).toISOString()}]);
+  await expect(completedDeployment(g.options)).rejects.toThrow('Concurrent');
+ });
+ it('does not accept an audit event from before the deployment started',async()=>{
+  const f=deploymentFixture();f.readWriteEvents.mockResolvedValue([{...f.event,at:new Date(startedAt-1000).toISOString()}]);
+  await expect(completedDeployment(f.options)).rejects.toThrow('ownership');
+ });
  it.each([false,true])('verifies the configuration event and completed revision (same=%s)',async sameRevision=>{
   const f=deploymentFixture({sameRevision});f.options.operation='configuration';
   f.readWriteEvents.mockResolvedValue([{...f.event,event:'UpdateFunctionConfiguration20150331v2',publish:undefined}]);
