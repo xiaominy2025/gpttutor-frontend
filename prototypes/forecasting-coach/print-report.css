@@ -1,0 +1,27 @@
+.forecast-print-report { display: none; }
+
+@media print {
+  @page { margin: 14mm 15mm; }
+  body:has(> .forecast-print-report) > :not(.forecast-print-report) { display: none !important; }
+  body:has(> .forecast-print-report), html:has(.forecast-print-report) { background: white; }
+  .forecast-print-report {
+    display: block;
+    color: #182839;
+    font: 10.5pt/1.42 system-ui, sans-serif;
+    overflow-wrap: anywhere;
+    print-color-adjust: exact;
+  }
+  .forecast-print-report header { border-bottom: 2px solid #087167; padding-bottom: 4pt; }
+  .forecast-print-report header p:first-child { color: #087167; font-weight: 700; }
+  .forecast-print-report h1 { font-size: 25pt; margin: 0; }
+  .forecast-print-report h2 { font-size: 15pt; margin: 13pt 0 5pt; color: #07655c; }
+  .forecast-print-report h3 { font-size: 11pt; margin: 8pt 0 2pt; }
+  .forecast-print-report :is(h1, h2, h3) { break-after: avoid; }
+  .forecast-print-report p { margin: 4pt 0 8pt; white-space: pre-line; }
+  .forecast-print-report :is(figure, tr) { break-inside: avoid; }
+  .forecast-print-report figure { margin: 0 0 8pt; }
+  .forecast-print-report svg.chart { max-height: 65mm; border: none; margin: 0; }
+  .forecast-print-report figcaption { font-size: 9pt; color: #425a68; }
+  .forecast-print-report thead { display: table-header-group; }
+  .forecast-print-report :is(th, td) { padding: 3pt 5pt; }
+}

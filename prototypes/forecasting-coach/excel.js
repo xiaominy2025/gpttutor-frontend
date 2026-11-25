@@ -46,46 +46,95 @@ export function readSeries(sheet, dateColumn, valueColumn, cadence, firstRow = 2
 
 import { methods, nextTime, planningScenarios } from "./engine.js";
 
-export function resultWorkbook(Excel, result, points, method, goal, cadence, window, unit, headings) {
-  const workbook = new Excel.Workbook();
-  const series = workbook.addWorksheet("Series");
-  const titles = headings ? [headings.time, headings.target, `${headings.target} — forecast`] : ["Time", "Actual", "Forecast"];
-  series.addRow([...titles, "Low (MAE planning)", "High (MAE planning)"]);
+export function resultWorkbook(Excel, result, points, method, goal, cadence, window, unit, headings, context = {}) {
+  const workbook = context.original ?? new Excel.Workbook();
+  const added = [];
+  function addSheet(name) {
+    let candidate = name;
+    for (let suffix = 2; workbook.worksheets.some(sheet => sheet.name.toLowerCase() === candidate.toLowerCase()); suffix++) {
+      candidate = name + " (" + suffix + ")";
+    }
+    const sheet = workbook.addWorksheet(candidate);
+    added.push(sheet);
+    return sheet;
+  }
+  const series = addSheet("Series");
+  const time = headings?.time ?? "Time";
+  const target = headings?.target ?? "Value";
+  const values = result.predictions[method];
+  const scenarios = planningScenarios(values, result.leadScores ?? []);
+  const hasPlanning = scenarios.some(Boolean);
+  series.addRow([time, target + " · historical actual", target + " · future forecast (base)",
+    ...(hasPlanning ? ["Illustrative planning low", "Illustrative planning high"] : [])]);
   series.getColumn(1).numFmt = "yyyy-mm-dd";
   if (cadence === "periods") series.getColumn(1).numFmt = "0";
   points.forEach(point => series.addRow([point.time, point.value]));
-  const values = result.predictions[method];
-  const scenarios = planningScenarios(values, result.leadScores ?? []);
   result.future.forEach((time, i) => series.addRow([time, null, values[i], scenarios[i]?.low ?? null, scenarios[i]?.high ?? null]));
-  const setup = workbook.addWorksheet("Analysis");
+  const setup = addSheet("Analysis");
   [
     ["Goal", goal], ["Units", unit], ["Cadence", cadence], ["Horizon", result.future.length], ["Method", methods[method]],
-    ["Moving window", method === "moving" ? window : null], ["Runs mean", result.runs.mean], ["Runs", result.runs.runs], ["At or above", result.runs.above],
-    ["Below", result.runs.below], ["Ties", result.runs.ties], ["Runs z", result.runs.z],
-    ["Normal cumulative probability", result.runs.cumulative], ["Two-sided normal p", result.runs.p],
-    ["Backtest origins used", Object.keys(result.scores).length ? result.scoredOrigins : 0]
-  ].forEach(row => setup.addRow(row));
-  const accuracy = workbook.addWorksheet("Accuracy");
-  accuracy.addRow(["Method", "Rolling-origin MAE", "Rolling-origin MSE"]);
-  Object.entries(result.scores).forEach(([key, score]) => accuracy.addRow([methods[key], score.mae, score.mse]));
-  if (result.factors) {
-    const seasonal = workbook.addWorksheet("Seasonal factors");
+    ["Target", target], ["Source", context.source],
+    ["Source workbook", context.original ? "Included (ExcelJS-supported features)" :
+      "Unavailable. The export contains the selected data and analysis."],
+    ["Data frequency", context.frequency], ["Aggregation", context.aggregation],
+    ["Incomplete periods omitted", context.omitted], ["Your management actions", context.actions],
+    ["Moving window", method === "moving" ? window : null],
+    ["Seasonal cycle", method === "seasonal" ? "12 months" : null],
+    ["Planning estimates", hasPlanning ? "Base is the forecast. Low and high use historical MAE at the matching lead. No probabilities are assigned." : null]
+  ].filter(([, value]) => value != null && value !== "").forEach(row => setup.addRow(row));
+  if (context.history && context.aggregation) {
+    const historical = addSheet("Selected historical data");
+    historical.addRows([[time, target], ...context.history.map(point => [point.time, point.value])]);
+    if (context.history[0]?.time instanceof Date) historical.getColumn(1).numFmt = "yyyy-mm-dd";
+  }
+  if (context.fitted?.length) {
+    const fitted = addSheet("Historical fitted values");
+    fitted.addRows([[time, "Historical actual", "In-sample fitted value"],
+      ...points.map((point, i) => [point.time, point.value, context.fitted[i]])]);
+    fitted.getColumn(1).numFmt = series.getColumn(1).numFmt;
+  }
+  if (method === "trend") {
+    const runs = result.runs;
+    addSheet("Runs test").addRows([["Statistic", "Value"], ["Historical mean", runs.mean], ["At or above", runs.above],
+      ["Below", runs.below], ["Ties (included above)", runs.ties], ["Observed runs", runs.runs], ["Expected runs", runs.expected],
+      ["Runs z", runs.z], ["Workbook cumulative probability", runs.cumulative], ["Two-sided normal p-value", runs.p]]
+      .filter((row, i) => !i || Number.isFinite(row[1])));
+    if (context.stats) {
+      const { startValue, slope, rSquared, standardError, t, p, df } = context.stats;
+      addSheet("Regression statistics").addRows([["Statistic", "Value"], ["Fitted first observation", startValue],
+        ["Slope per " + (cadence === "periods" ? "period" : "day"), slope], ["Historical R²", rSquared],
+        ["Slope standard error", standardError], ["Slope t statistic", t], ["Two-sided slope p-value", p], ["Degrees of freedom", df]]
+        .filter((row, i) => !i || Number.isFinite(row[1])));
+    }
+  }
+  const accuracy = (result.leadScores ?? []).flatMap((score, i) => score ? [[i + 1, score.count, score.mae, score.mse]] : []);
+  if (accuracy.length) {
+    addSheet("Historical accuracy").addRows([["Forecast lead", "Held-out forecasts", "Rolling-origin MAE" + (unit ? " (" + unit + ")" : ""),
+      "Rolling-origin MSE"], ...accuracy]);
+  }
+  if (method === "moving" && context.windowComparison?.candidates.length) {
+    const comparison = context.windowComparison;
+    addSheet("Moving window comparison").addRows([["Window", "Common held-out forecasts", "Historical MSE", "Selected window"],
+      ...comparison.candidates.map(candidate => [candidate.window, comparison.evaluationSize, candidate.mse, candidate.window === window])]);
+  }
+  if (method === "seasonal" && result.factors) {
+    const seasonal = addSheet("Seasonal factors");
     seasonal.addRow(["Month number", "Factor", "Centered ratios"]);
     result.factors.forEach(({ factor, count }, i) => seasonal.addRow([i + 1, factor, count]));
   }
-  for (const sheet of workbook.worksheets) {
-    sheet.getColumn(1).width = 34;
-    sheet.getColumn(2).width = 24;
-    sheet.getColumn(3).width = 24;
-  }
-  series.getColumn(4).width = 24;
-  series.getColumn(5).width = 24;
-  if (headings) {
-    series.getRow(1).eachCell((cell, columnNumber) => {
-      const column = series.getColumn(columnNumber);
-      column.width = Math.max(column.width, Math.min(65, cell.text.length + 2));
-      cell.alignment = { wrapText: true };
+  for (const sheet of added) {
+    if (sheet === setup) continue;
+    sheet.views = [{ state: "frozen", ySplit: 1 }];
+    sheet.getRow(1).height = 32;
+    sheet.getRow(1).eachCell((cell, col) => {
+      sheet.getColumn(col).width = Math.min(58, Math.max(22, cell.text.length + 2));
+      cell.alignment = { wrapText: true, vertical: "middle" };
+      cell.font = { bold: true, color: { argb: "FFFFFFFF" } };
+      cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FF255B4B" } };
     });
   }
+  setup.getColumn(1).width = 32;
+  setup.getColumn(2).width = 72;
+  setup.getColumn(2).alignment = { wrapText: true, vertical: "top" };
   return workbook;
 }

@@ -12,9 +12,12 @@
     <button type="button" class="project-action" id="project-new" aria-label="New Project" data-project-icon="new"></button>
     <button type="button" class="project-action" id="project-open" aria-label="Open Project" data-project-icon="open"></button>
     <button type="button" class="project-action" id="project-save" aria-label="Save Project" data-project-icon="save"></button>
+    <button type="button" class="project-action icon-action" id="export" aria-label="Export Excel" data-icon="export" disabled></button>
+    <button type="button" class="project-action icon-action" id="export-pdf" aria-label="Export PDF" data-icon="pdf" disabled></button>
     <input type="file" id="project-file" accept=".json,application/json" hidden>
     <span id="project-status" role="status">Untitled project</span>
     <span id="project-error" role="alert" hidden></span>
+    <span id="export-status" role="status" hidden></span>
   </div>
   <div class="workspace">
     <aside>
@@ -56,7 +59,7 @@
       <section id="results" hidden>
         <details class="card" id="forecast-panel" open>
           <summary id="forecast-heading"><h2>Forecast</h2></summary>
-          <div class="section-top"><p id="recommendation"></p><button id="export" class="icon-action secondary" aria-label="Export forecast results to Excel" data-icon="export" disabled></button></div>
+          <p id="recommendation"></p>
           <div id="chart"></div><div id="prediction-table"></div>
         </details>
         <details class="card" id="trend-reliability" hidden>

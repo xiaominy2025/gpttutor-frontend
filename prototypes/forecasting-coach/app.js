@@ -1,6 +1,6 @@
 import Excel from "exceljs/dist/exceljs.min.js";
 import "./style.css";
-import { coordinate, forecast, methods, movingWindows, planningScenarios } from "./engine.js";
+import { coordinate, forecast, linearFit, methods, movingWindows, planningScenarios } from "./engine.js";
 import { businessPatterns, evidenceCategory, regressionEvidence } from "./trend-evidence.js";
 import { compareValues, describeSeason, months, regressionChange } from "./interpretation.js";
 import { conversions, convertFrequency, detectFrequency, frequencies } from "./frequency.js";
@@ -9,6 +9,7 @@ import { defaultHorizons, parseProject, projectApp, projectFilename, projectSize
 import { formatBusinessPercent, formatDisplayedValue } from "./display-number.js";
 import { forecastPeriodLabel, measuredValue, movingInsight, regressionInsight, reliabilityInsight, seasonalReliabilityInsight, seasonalRangeInsight } from "./insight-copy.js";
 import { buildAdvisorRequest, requestAdvisor } from "./management-advisor.js";
+import { printForecastReport } from "./print-report.js";
 
 const by = id => document.getElementById(id);
 const nf = new Intl.NumberFormat("en-US", { maximumFractionDigits: 3 });
@@ -19,7 +20,7 @@ const probability = p => p === null ? "Unavailable" : p.toPrecision(6);
 let workbook, report, history, workspaceSeries, workbookRead = 0, projectRead = 0;
 let manualWindow, sourceName, dirty = false;
 let timelineSelection;
-let advisorRequest;
+let advisorRequest, currentAdvice, sourceWorkbookBytes;
 const mockAdvisorEnabled = import.meta.env.DEV && import.meta.env.MODE === "advisor-mock" && location.hostname === "127.0.0.1";
 const alphaPlatform = import.meta.env.PROD &&
   ["alpha-workspace", "advisor-alpha"].includes(import.meta.env.MODE) &&
@@ -132,7 +133,8 @@ document.querySelectorAll("[data-term], [data-help]").forEach(node =>
 const icons = {
   upload: "M12 16V3m-5 5 5-5 5 5M4 15v5h16v-5",
   forecast: "M3 3v17h18M7 15l4-4 3 2 6-7m-5 0h5v5",
-  export: "M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5",
+  export: "M6 3h8l4 4v14H6Zm8 0v5h4M9 11h6v6H9Zm0 3h6m-3-3v6",
+  pdf: "M6 3h8l4 4v14H6Zm8 0v5h4M9 12h6m-6 3h6m-6 3h4",
   advisor: "M10 3l1.9 5.1L17 10l-5.1 1.9L10 17l-1.9-5.1L3 10l5.1-1.9L10 3Zm9 10v6m-3-3h6M19 3v4m-2-2h4"
 };
 document.querySelectorAll("[data-icon]").forEach(trigger => {
@@ -199,12 +201,15 @@ function invalidate() {
   report = undefined;
   by("results").hidden = true;
   by("export").disabled = true;
+  by("export-pdf").disabled = true;
+  by("export-status").hidden = true;
   by("error").hidden = true;
 }
 
 function resetAdvisor() {
   advisorRequest?.abort();
   advisorRequest = undefined;
+  currentAdvice = undefined;
   by("advisor-result").hidden = true;
   by("advisor-text").textContent = "";
   by("advisor-run").disabled = false;
@@ -268,8 +273,9 @@ function columns() {
   preview();
 }
 
-function showWorkbook(imported, label) {
+function showWorkbook(imported, label, bytes) {
   workbook = imported;
+  sourceWorkbookBytes = bytes;
   sourceName = label;
   options("sheet", workbook.worksheets.map(({name}, i) => [i, name]));
   by("file-status").textContent = label;
@@ -314,11 +320,12 @@ by("file").addEventListener("change", async () => {
   try {
     if (!/\.xlsx$/i.test(file.name) || file.size > 10 * 1024 * 1024) throw Error("Choose an .xlsx workbook up to 10 MB.");
     const imported = new Excel.Workbook();
-    await imported.xlsx.load(await file.arrayBuffer());
+    const bytes = await file.arrayBuffer();
+    await imported.xlsx.load(bytes);
     if (read !== workbookRead) return;
     if (!imported.worksheets.length) throw Error("The workbook has no worksheets.");
     by("reflection").value = "";
-    showWorkbook(imported, file.name);
+    showWorkbook(imported, file.name, bytes);
     setDirty(true);
   } catch (error) {
     if (read === workbookRead) {
@@ -357,6 +364,7 @@ by("advisor-run").addEventListener("click", async () => {
     const summary = buildAdvisorRequest(report, by("goal").value, selected);
     const draft = await requestAdvisor(summary, { signal: active.signal, guest: hostedAdvisorEnabled });
     if (advisorRequest !== active) return;
+    currentAdvice = { report, draft };
     by("advisor-text").textContent = draft;
     by("advisor-result").hidden = false;
     by("advisor-status").textContent = (mockAdvisorEnabled ? "Local mock insight. " : "AI-generated draft. ") +
@@ -785,6 +793,12 @@ function render() {
   const plot = drawChart(points, a.future, pred, headings, unit);
   renderForecastAccuracy(report, plot);
   const stats = method === "trend" ? regressionEvidence(points) : null;
+  report.stats = stats;
+  if (method !== "moving") {
+    const fit = linearFit(points);
+    report.fitted = points.map(({ time }) => fit.predict(time) *
+      (method === "seasonal" ? a.factors[time.getUTCMonth()].factor : 1));
+  }
   by("trend-reliability").hidden = !stats;
   if (stats) renderTrendEvidence(report, stats);
   else by("trend-evidence").replaceChildren();
@@ -803,6 +817,7 @@ function generateForecast() {
     const method = approach === "recommend" ? (horizon === 1 && window ? "moving" : "trend") : approach;
     const analysis = forecast(points, cadence, horizon, window ?? Infinity, method === "seasonal",
       { student: true, method, windowEvaluationSize: windowComparison.evaluationSize });
+    resetAdvisor();
     report = { analysis, method, approach, points, cadence, horizon, window, omitted, windowComparison, headings: selectedHeadings(),
       frequency: history.frequency, aggregation: by("aggregation").value,
       unit: by("unit-field").hidden ? "" : by("unit").value.trim() };
@@ -811,7 +826,8 @@ function generateForecast() {
     by("decision-panel").open = true;
     render();
     by("patterns").open = false;
-    by("export").disabled = false;
+    by("export").disabled = by("export").hasAttribute("aria-busy");
+    by("export-pdf").disabled = false;
   } catch (error) {
     by("error").textContent = error.message;
     by("error").hidden = false;
@@ -852,6 +868,7 @@ function confirmDiscard() {
 
 function clearProject() {
   workbook = history = sourceName = manualWindow = timelineSelection = undefined;
+  sourceWorkbookBytes = undefined;
   for (const id of ["goal", "unit", "reflection", "aggregation", "file", "project-file"]) by(id).value = "";
   for (const id of ["sheet", "date", "target"]) options(id, []);
   Object.assign(horizons, defaultHorizons);
@@ -970,24 +987,45 @@ by("project-file").addEventListener("change", async () => {
 });
 
 by("export").addEventListener("click", async () => {
+  if (!report) return;
   const button = by("export");
+  const snapshot = report;
+  const bytes = sourceWorkbookBytes;
+  const goal = by("goal").value.trim();
+  const context = { source: sourceName, history: history.points, frequency: frequencies[snapshot.frequency],
+    aggregation: snapshot.aggregation, omitted: snapshot.omitted.map(timeLabel).join(", "),
+    actions: by("reflection").value.trim(), stats: snapshot.stats, fitted: snapshot.fitted,
+    windowComparison: snapshot.windowComparison };
   button.disabled = true;
   button.setAttribute("aria-busy", "true");
   try {
-    const out = resultWorkbook(Excel, report.analysis, report.points, report.method, by("goal").value.trim(), report.cadence, report.window, report.unit, report.headings);
-    out.getWorksheet("Analysis").addRow(["Your Management Actions", by("reflection").value.trim()]);
-    out.getWorksheet("Analysis").addRows([
-      ["Data Frequency", frequencies[report.frequency]], ["Forecast Frequency", frequencies[report.cadence]],
-      ["Aggregation", report.aggregation || "None"], ["Incomplete periods omitted", report.omitted.map(timeLabel).join(", ")],
-      ["Seasonal Cycle", report.method === "seasonal" ? "12 months" : ""]
-    ]);
+    if (bytes) {
+      context.original = new Excel.Workbook();
+      await context.original.xlsx.load(bytes);
+    }
+    const { analysis, points, method, cadence, window, unit, headings } = snapshot;
+    const out = resultWorkbook(Excel, analysis, points, method, goal, cadence, window, unit, headings, context);
     const blob = new Blob([await out.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
     download(blob, "forecasting-coach-results.xlsx");
+    if (report === snapshot) {
+      by("export-status").textContent = bytes ? "Excel exported with source worksheets." :
+        "Excel exported with selected data and analysis. No original workbook was retained.";
+      by("export-status").hidden = false;
+    }
   } catch {
-    by("error").textContent = "The Excel export could not be created. Try again.";
-    by("error").hidden = false;
+    if (report === snapshot) projectError("The Excel export could not be created. Try again.");
   } finally {
     button.disabled = !report;
     button.removeAttribute("aria-busy");
   }
+});
+
+by("export-pdf").addEventListener("click", () => {
+  if (!report) return;
+  const chart = by("chart");
+  printForecastReport({ ...report, source: sourceName, goal: by("goal").value.trim(),
+    actions: by("reflection").value.trim(),
+    advice: currentAdvice?.report === report && !by("advisor-result").hidden ? currentAdvice.draft : "",
+    chart: chart.querySelector("svg"), legend: chart.querySelector(".legend")?.textContent,
+    insights: by("interpretation"), patterns: report.stats ? by("trend-evidence") : null });
 });

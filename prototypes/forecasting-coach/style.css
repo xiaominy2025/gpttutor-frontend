@@ -137,8 +137,7 @@
 .upload-actions #sample { margin-top: 0; }
 .workspace :is(input, select, textarea) { font-weight: 400; }
 #forecast-panel > summary h2, #trend-reliability > summary h2, #decision-panel > summary h2 { display: inline; }
-#forecast-panel > .section-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; margin: .5rem 0; }
-#forecast-panel > .section-top p { margin: 0; }
+#export-status { flex-basis: 100%; color: #425a68; font-size: .875rem; }
 .timeline-labels { display: flex; justify-content: space-between; gap: .8rem; color: #425a68; font-size: .85rem; margin: -.6rem 0 .7rem; }
 .scenario-strip.single-value { grid-template-columns: 1fr; }
 #seasonal-cycle-value { font-weight: 650; }
