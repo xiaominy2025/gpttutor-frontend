@@ -1,5 +1,7 @@
 # Production migration — Navigator and Forecasting
 
+Navigator compatibility retirement and Scenario publication subsequently completed. See [Scenario quota-only completion](../scenario-forecast-production/scenario-quota-production-completion.md). The versions and pending boundary below describe the earlier independent Navigator/Forecasting release.
+
 Executed November 25, 2026 under the owner's direct Production authorization, following the approved Playbook amendment. Alpha and the separate Scenario diagnostic milestone are preserved.
 
 ## Published versions and source

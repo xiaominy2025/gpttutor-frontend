@@ -1,5 +1,7 @@
 # Production migration package — original preparation
 
+All three Production AI-light paths now use the accepted quota-only implementation. See [Scenario completion](../scenario-forecast-production/scenario-quota-production-completion.md). This original preparation is historical; do not reuse its old revisions or pending diagnostic gates.
+
 Navigator and Forecasting execution is now recorded in [Production completion](production-completion.md). Scenario remains OFF and outside that release. Do not reuse old AWS revisions from this preparation.
 
 Approved architecture: [Issue11 comment7175153308](https://github.com/xiaominy2025/gpttutor-frontend/issues/11#issuecomment-7175153308). This package follows the owner's Alpha-first instruction; it does not authorize or execute a Production change. Refresh AWS revisions immediately before any later execution.

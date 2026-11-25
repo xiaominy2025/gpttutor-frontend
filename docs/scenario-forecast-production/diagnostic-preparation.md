@@ -1,5 +1,7 @@
 # Scenario private diagnostics — prepared, paid execution blocked
 
+Resolved by a fresh, directly authorized one-call diagnostic and subsequent hosted acceptance. See [Scenario completion](scenario-quota-production-completion.md). The expired package and earlier blocked state below are preserved as historical evidence, not current execution instructions.
+
 Source `bad0e0b3d814576d4b1c87c6b5314b086637d058`, ZIP SHA256 `43884309ecf5c233690d19827d2c8e12c70ccf18d014d4e6efa1b04259a79400`. Eight focused fixtures passed; compiled OFF503/malformed-live404 checked with no external calls. No prompt/validation/accounting policy changes.
 
 Private immutable `scenario-prod-api:4` installed. Completed revision `e17d3948-6c54-437e-9ec3-91fd423266af`, exact configuration hash `3c5cfc078a89314a576c60a3bc9aae5d141656eef952cdbceba38c566345ef35`, exact CloudTrail ownership event `fb14729e-2f7a-4bdb-841d-47646104f000`. Public alias remains OFF1 revision `ec9ef1fd-919b-4df8-bee2-0f96a067039b`. Other captured aliases/master unchanged.

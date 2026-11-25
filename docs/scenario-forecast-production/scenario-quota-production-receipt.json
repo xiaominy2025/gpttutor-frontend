@@ -1,0 +1,346 @@
+{
+  "verifiedAt": "2026-11-25T23:43:19.035Z",
+  "aliases": {
+    "decisionnavigator-prod-api": {
+      "version": "8",
+      "revision": "40eaa894-457e-4658-b558-33a143b5001d"
+    },
+    "forecasting-prod-api": {
+      "version": "6",
+      "revision": "e6afd94e-4939-4e6f-8e29-c6dd988784a5"
+    },
+    "decisionnavigator-alpha-api": {
+      "version": "8",
+      "revision": "c91b7010-4687-42b3-8e47-c72d33a0d8a8"
+    },
+    "forecasting-alpha-api": {
+      "version": "13",
+      "revision": "6396b8a0-6e95-45d9-a32b-c078e9ec33c4"
+    },
+    "scenario-alpha-api": {
+      "version": "6",
+      "revision": "ce1483a9-89f7-4e87-95d0-3d1dd76d5298"
+    },
+    "decisiontree-prod-api": {
+      "version": "6",
+      "revision": "12217af7-967f-45ee-8f54-bf86b80ecf6f"
+    },
+    "decisionprocess-prod-api": {
+      "version": "3",
+      "revision": "0522322a-acb7-4ea7-b652-38482ea26e78"
+    },
+    "engent-platform-prod-api": {
+      "version": "5",
+      "revision": "a495aed8-1f66-41dd-b6c8-5cafa5a410e6"
+    },
+    "scenario-prod-api": {
+      "version": "6",
+      "revision": "919f1d53-fdbd-48e2-803f-9c09821602a9"
+    },
+    "decisionprocess-alpha-api": {
+      "version": "6",
+      "revision": "9c51c343-ea67-444a-9133-45853b39d81f"
+    },
+    "engent-platform-alpha-api": {
+      "version": "5",
+      "revision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+    }
+  },
+  "code": {
+    "scenario-prod-api": {
+      "version": "6",
+      "sha256": "8baf0ff944b59523b69d6e6b0ad3b632cfb47fd2c01fce30f12c8d6c79c43ebd",
+      "environment": {
+        "SCENARIO_QUOTA_MODE": "live"
+      }
+    },
+    "decisionnavigator-prod-api": {
+      "version": "8",
+      "sha256": "983456bd2cb420990d2d0a8e50b1265feb14b4ca1de25cadac96b877bbe9c80e",
+      "environment": {
+        "STAGE": "prod",
+        "NAVIGATOR_ENABLED": "true",
+        "NAVIGATOR_AI_ENABLED": "true"
+      }
+    },
+    "forecasting-prod-api": {
+      "version": "6",
+      "sha256": "c955f80cea9d5629d17b696062edc70b3aa3eb7cfa8a5c018415e9e80752352d",
+      "environment": {
+        "FORECASTING_ENVIRONMENT": "production",
+        "FORECASTING_MODE": "live"
+      }
+    }
+  },
+  "masterProduction": {
+    "on": true,
+    "revision": "1"
+  },
+  "masterAlpha": {
+    "on": true,
+    "revision": "11"
+  },
+  "policies": {
+    "decisionnavigator-prod-runtime": {
+      "sha256": "6fbb38a6e660adab3fa8bf8809ad5b8aca99f4a6d308d3d27a7f014305c5e447",
+      "financialPermissions": false
+    },
+    "forecasting-prod-runtime": {
+      "sha256": "9108295ad5c23ae62379a05ad320a612afebe03b5cf0ab2f132baf0105ab113e",
+      "financialPermissions": false
+    }
+  },
+  "scenarioRoleUnchanged": true,
+  "html": {
+    "scenario": {
+      "key": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/scenario-analysis/index.html",
+      "version": "mTyxfnatDcTZMC6fT2XVcrM9qrnijl9b",
+      "etag": "\"64eb415b778a1f3f5b59d320e37b872d\"",
+      "sha256": "24cb76c4f06ef2b3e305a87d83ebd48d76e72c687ba39d3db7016f0749dfe8d9",
+      "writeId": "82df3c04-6775-4ffc-bc6c-92b36f5372c5",
+      "hostedStatus": 200,
+      "hostedHashMatched": true
+    },
+    "directory": {
+      "key": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/index.html",
+      "version": "Lke6pChJSuOU7.U1xx1WqZVFft73PgLA",
+      "etag": "\"2aa86da49249f8a3f708fb485ab9206d\"",
+      "sha256": "767cd4fd0c503df9399daa62572fdab0470f38363ca6d66ad78c103d810308a3",
+      "writeId": "e5e75a18-89b4-4689-9424-ba284a971226",
+      "hostedStatus": 200,
+      "hostedHashMatched": true
+    }
+  },
+  "invalidation": {
+    "id": "I11Y1ROPR3UIA67MA5H6F8WI5Z",
+    "status": "Completed"
+  },
+  "rollback": {
+    "navigatorOnlyOff": "7",
+    "scenarioOff": "1",
+    "forecastingOff": "1"
+  },
+  "paidRequests": {
+    "diagnostic": 1,
+    "hostedScenario": 1,
+    "retries": 0
+  },
+  "alphaAiPreserved": true,
+  "forecastingFrozen": true,
+  "analyticalAdvisorBaselineUnchanged": true,
+  "sources": {
+    "scenarioRuntime": "c6d91c58e347ab8e2724aa65b30b964b3fcfe7ff",
+    "scenarioStatic": "bc7c16439998bedbbd93a586ad9cac2aa345ed29",
+    "scenarioDiagnostic": "bad0e0b3d814576d4b1c87c6b5314b086637d058",
+    "privateProbe": "1e1b5318da72352d2fcb8caebe9256cd105d951c",
+    "directory": "0c8a922a6b2dbe702ddae4dd9ca0c4fb0e954c89",
+    "navigatorCleanRuntime": "93ec771b1fe8a973bd4110e4b6952201350bdba9"
+  },
+  "diagnostic": {
+    "state": "passed",
+    "source": "bad0e0b3d814576d4b1c87c6b5314b086637d058",
+    "version": "4",
+    "operatorSha256": "0a190fbb5105d0ec6a47ec8440765f9e01da4d4dae3a9df7c222580b06564992",
+    "maxCalls": 1,
+    "ceilingMicros": 832,
+    "paidRequests": 1,
+    "retries": 0,
+    "syntheticIngress": true,
+    "before": {
+      "spent": 2196,
+      "reserved": 0,
+      "paused": false,
+      "version": 20
+    },
+    "sentAt": "2026-11-25T23:08:02.204Z",
+    "httpStatus": 200,
+    "diagnostics": [],
+    "bodyClassification": "validated_narrative",
+    "journal": {
+      "coach": "scenario",
+      "environment": "prod",
+      "state": "settled",
+      "costMicros": 201,
+      "reservationMicros": 832
+    },
+    "after": {
+      "spent": 2397,
+      "reserved": 0,
+      "paused": false,
+      "version": 22
+    },
+    "narrativeCharacters": 1448,
+    "narrativeSha256": "bd367bedde56481ca821aac2ed82a3c344b2ceaee3b3d09e7ff1ad12f4ac0709",
+    "publicOff": true,
+    "completedAt": "2026-11-25T23:08:28.648Z"
+  },
+  "hosted": {
+    "state": "passed",
+    "version": "6",
+    "aliasRevision": "919f1d53-fdbd-48e2-803f-9c09821602a9",
+    "checks": {
+      "secureProofCookie": true,
+      "noProof": true,
+      "invalidInput": true
+    },
+    "providerCalls": 1,
+    "retries": 0,
+    "requestSha256": "bd3f64628e25c3f5d84a692ba31d025047e8fe439d5954f3f798aa209b56b797",
+    "startedAt": "2026-11-25T23:27:04.176Z",
+    "status": 200,
+    "noStore": true,
+    "requestId": "82154176-f9dd-43cf-83b8-358fca75601f",
+    "narrativeCharacters": 1441,
+    "narrativeSha256": "7cf551594190a2a5a91f214995d442ea54f2b6a9dd507e9a5fc4aeef87e1b315",
+    "passed": true,
+    "completedAt": "2026-11-25T23:27:08.905Z"
+  },
+  "privateProbe": {
+    "passed": true,
+    "version": "5",
+    "checks": {
+      "master": true,
+      "invalidProof": true,
+      "wrongOrigin": true,
+      "validProof": true,
+      "not_dispatched_acquired": true,
+      "not_dispatched_finish": true,
+      "not_dispatched_replay": true,
+      "completed_acquired": true,
+      "dispatch": true,
+      "completed_finish": true,
+      "completed_replay": true,
+      "dispatchReplay": true
+    },
+    "providerCalls": 0,
+    "syntheticIngress": true,
+    "completedAt": "2026-11-25T23:14:07.453Z"
+  },
+  "postCleanupPrivateProbe": {
+    "passed": true,
+    "version": "5",
+    "checks": {
+      "master": true,
+      "invalidProof": true,
+      "wrongOrigin": true,
+      "validProof": true,
+      "not_dispatched_acquired": true,
+      "not_dispatched_finish": true,
+      "not_dispatched_replay": true,
+      "completed_acquired": true,
+      "dispatch": true,
+      "completed_finish": true,
+      "completed_replay": true,
+      "dispatchReplay": true
+    },
+    "providerCalls": 0,
+    "syntheticIngress": true,
+    "completedAt": "2026-11-25T23:37:22.573Z"
+  },
+  "cleanOff": {
+    "version": "7",
+    "checks": {
+      "navigatorOnlyOff": true,
+      "originDenied": true,
+      "v2MasterRetained": true,
+      "v1Retired": true
+    },
+    "providerCalls": 0,
+    "syntheticIngress": true,
+    "syntheticPrivateCallerContext": true,
+    "completedAt": "2026-11-25T23:33:24.199Z"
+  },
+  "ownership": {
+    "scenarioProbe": {
+      "acknowledgedRevision": "80c69afa-3f99-469b-92cd-9b80728ca01d",
+      "readyRevision": "20cc50f9-2840-4b63-a653-93cce7945585",
+      "hash": "uA+XFVxmneY0rmnl1ID9bp/NhVQqxeWDVqbMJxlLccg=",
+      "configurationHash": "3c5cfc078a89314a576c60a3bc9aae5d141656eef952cdbceba38c566345ef35",
+      "lastModified": "2026-11-25T23:11:30.000+0000",
+      "cloudTrailEventId": "4b16c544-55a2-439e-aa0e-f9c18d1a2b38"
+    },
+    "scenarioRuntime": {
+      "acknowledgedRevision": "6e7550cd-5087-4880-95ca-f263aa32fd2a",
+      "readyRevision": "8a28e96e-19aa-48e2-a8cf-e6e80b9b1db1",
+      "hash": "i68P+US1lSO2nW5rCtO2Ms+0f9LAH84w8SyNbHnEPr0=",
+      "configurationHash": "3c5cfc078a89314a576c60a3bc9aae5d141656eef952cdbceba38c566345ef35",
+      "lastModified": "2026-11-25T23:18:24.000+0000",
+      "cloudTrailEventId": "3618695d-3bf5-436d-8955-a4a7742ff35d"
+    },
+    "scenarioConfiguration": {
+      "acknowledgedRevision": "5127152c-3393-4814-bc5a-9b7c1f7cfa0b",
+      "readyRevision": "7814cf0e-a87a-4ff4-b8e9-5a8e745d516a",
+      "hash": "i68P+US1lSO2nW5rCtO2Ms+0f9LAH84w8SyNbHnEPr0=",
+      "configurationHash": "710debf03768f0c730776e526ad97729243289ad931416603ae7a0851a8c76cd",
+      "lastModified": "2026-11-25T23:22:30.000+0000",
+      "cloudTrailEventId": "2702019e-3d5d-4c67-acde-e26f98cca77b"
+    },
+    "scenarioPublishProofs": [
+      {
+        "revision": "e8e5218b-126d-410d-b7ec-065665b0d1ba",
+        "cloudTrailEventId": "4bc9bdf9-cf72-4dc7-9e6b-85b6ec30de5d",
+        "immutableVersion": "5"
+      }
+    ],
+    "navigatorClean": {
+      "acknowledgedRevision": "028cb520-771a-44ab-a95b-2319f33479b0",
+      "readyRevision": "089aad90-36db-4b83-9269-adbd6541ed63",
+      "hash": "mDRWvSy0IJkNLQqOULEmX+sUtMod4lytrJa4d7vpyA4=",
+      "configurationHash": "f07ad4b65aaca9b4348686c471101cb6a374dabaf1ba067b8498b748ea76e474",
+      "lastModified": "2026-11-25T23:29:01.000+0000",
+      "cloudTrailEventId": "98926eaf-1758-449c-956c-6154ed088526"
+    },
+    "navigatorOn": {
+      "acknowledgedRevision": "83f578c2-493d-443b-bf72-a2606f98c682",
+      "readyRevision": "6fe483b8-d8d1-4ef3-91c8-071b5b24838a",
+      "hash": "mDRWvSy0IJkNLQqOULEmX+sUtMod4lytrJa4d7vpyA4=",
+      "configurationHash": "225c885c596ddda230ad8786178ceefbac0911a350a58465fa7a9c4003b62dba",
+      "lastModified": "2026-11-25T23:33:55.000+0000",
+      "cloudTrailEventId": "9da1159e-1bb9-4e9d-ae20-d2bd68ef3179"
+    },
+    "navigatorPublishProofs": [
+      {
+        "revision": "808490c7-5050-44a8-a3be-f05324c39b3d",
+        "cloudTrailEventId": "22a01163-965a-4da3-96ae-20eac0e362f3",
+        "immutableVersion": "7"
+      }
+    ],
+    "narrowedPolicy": {
+      "role": "decisionnavigator-prod-runtime",
+      "name": "navigator-prod-runtime",
+      "sha256": "6fbb38a6e660adab3fa8bf8809ad5b8aca99f4a6d308d3d27a7f014305c5e447",
+      "at": "2026-11-25T23:36:48.646Z"
+    }
+  },
+  "web": {
+    "newImmutableAssets": [
+      {
+        "key": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/scenario-analysis/assets/index-DnWnPZjG.js",
+        "sha256": "5de8a049e4c3ebc9c7071276654214646b0dcadbfbb586c30e6badc96ccd8f9a",
+        "reused": false,
+        "version": "_HzJo15gATfTm.PPEz.h7EK2kdEnp1RV"
+      },
+      {
+        "key": "releases/engent-release-a/d6ca341656d1a246ca3c2d7d3ce44ca822876949/scenario-analysis/assets/index-DyuN4psx.css",
+        "sha256": "c4ba9d784907d3cc9e5d8e4e50519745b7988f5e0622ee0e76311232e0369946",
+        "reused": false,
+        "version": "RJ6dqH.mDEDCe8ZlHxKt41Qyi_k.5Wxw"
+      }
+    ],
+    "reusedDependencies": 63,
+    "mp3Uploads": 0
+  },
+  "history": {
+    "state": "archived",
+    "environment": "production",
+    "bucket": "decisiontree-prod-artifacts-771049112957-us-east-1",
+    "key": "releases/ai-light-history/20261125/518202a42d69b58d9fef08d4713f7e97f801eda8fde6893932f3e0e18ce88ee8.json",
+    "version": "8vcB68lgtcc1wgSHZ4qeB3wHObbiFdUe",
+    "sha256": "518202a42d69b58d9fef08d4713f7e97f801eda8fde6893932f3e0e18ce88ee8",
+    "records": 6,
+    "bytes": 3704,
+    "applicationWrites": 0,
+    "historyModified": false
+  },
+  "historicalFailureDisposition": "Original502 not reproduced; original rule cannot be recovered; accepted Advisor baseline unchanged; fresh private and hosted tests passed."
+}
