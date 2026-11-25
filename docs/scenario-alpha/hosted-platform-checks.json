@@ -1,0 +1,44 @@
+{
+  "at": "2026-11-25T14:36:17.785Z",
+  "providerCalls": 0,
+  "checks": {
+    "navigatorBootstrap": true,
+    "secureCookie": true,
+    "cookieReuse": true,
+    "navigatorInvalidOrigin": true,
+    "navigatorNoProof": true,
+    "navigatorInvalidProof": true,
+    "privateUnsignedDenied": true,
+    "privateOtherCallerDenied": true,
+    "noMoneyChange": true,
+    "rollbackVersion3Retained": true,
+    "exactCallerPolicy": true
+  },
+  "before": {
+    "spent": "3204",
+    "reserved": "0",
+    "paused": false,
+    "leases": 0
+  },
+  "after": {
+    "spent": "3204",
+    "reserved": "0",
+    "paused": false,
+    "leases": 0
+  },
+  "permissions": [
+    {
+      "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/coaches/scenario/ai",
+      "decision": "allowed"
+    },
+    {
+      "resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/api/platform/navigator",
+      "decision": "implicitDeny"
+    },
+    {
+      "resource": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/coaches/scenario/ai",
+      "decision": "implicitDeny"
+    }
+  ],
+  "passed": true
+}

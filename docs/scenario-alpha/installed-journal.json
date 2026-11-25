@@ -1,0 +1,93 @@
+{
+  "source": "ff7931c7f2045deffdff545fce1376ba96d21d12",
+  "before": {
+    "source": "ff7931c7f2045deffdff545fce1376ba96d21d12",
+    "at": "2026-11-25T03:14:12.941Z",
+    "alias": {
+      "AliasArn": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+      "Name": "live",
+      "FunctionVersion": "3",
+      "Description": "navigator-alpha-activation-116740a7-85c4-4d22-8ecb-16476bb1fc3d",
+      "RevisionId": "6e6a8e54-8791-4e84-a4f9-f2a199daa444"
+    },
+    "latest": {
+      "revision": "05003427-52b9-4e03-857f-42f602cfde86",
+      "configurationHash": "ba9aa36b9460df90001794ac94687aba6ebb9be5d9015c82318486ad695e0872",
+      "hash": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw="
+    },
+    "templateSha": "cffb91763c0b150c17bbe5b9d1cf80f676a2a65ab4c9da90979c37c8407532e7",
+    "zipSha": "9e8d8462d90ebb417a567646c7916e050a11615df2b532ea506201b8b7ea0db2",
+    "zipBase64Sha": "no2EYtkOu0F6VnZGx5FuBQoRYV3ytTLqUGIBuLfqDbI=",
+    "protected": {
+      "master": {
+        "revision": {
+          "N": "11"
+        },
+        "suspended": {
+          "BOOL": false
+        }
+      },
+      "aliases": {
+        "engent-platform-alpha-api": {
+          "version": "5",
+          "revision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+        },
+        "decisiontree-alpha-staging-api": {
+          "version": "18",
+          "revision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc"
+        },
+        "decisionprocess-alpha-api": {
+          "version": "6",
+          "revision": "9c51c343-ea67-444a-9133-45853b39d81f"
+        },
+        "forecasting-alpha-api": {
+          "version": "9",
+          "revision": "6ef913f6-6485-44c8-9dd7-a846d6c88859"
+        },
+        "decisionnavigator-prod-api": {
+          "version": "3",
+          "revision": "bbaf9610-8925-4036-87c2-cf3cb6677cd9"
+        },
+        "forecasting-prod-api": {
+          "version": "4",
+          "revision": "3e572a8d-b9e3-4afe-9871-cef0f605dd1d"
+        },
+        "decisionprocess-prod-api": {
+          "version": "3",
+          "revision": "0522322a-acb7-4ea7-b652-38482ea26e78"
+        },
+        "decisiontree-prod-api": {
+          "version": "6",
+          "revision": "12217af7-967f-45ee-8f54-bf86b80ecf6f"
+        },
+        "engent-platform-prod-api": {
+          "version": "5",
+          "revision": "a495aed8-1f66-41dd-b6c8-5cafa5a410e6"
+        }
+      }
+    }
+  },
+  "startedAt": 1795616869496,
+  "acknowledgedRevision": "a7c41149-aa21-4c2b-9cac-8a48755a2433",
+  "completed": {
+    "acknowledgedRevision": "a7c41149-aa21-4c2b-9cac-8a48755a2433",
+    "readyRevision": "808d2a55-5bd5-4c50-b472-28a1be2ed408",
+    "hash": "no2EYtkOu0F6VnZGx5FuBQoRYV3ytTLqUGIBuLfqDbI=",
+    "configurationHash": "ba9aa36b9460df90001794ac94687aba6ebb9be5d9015c82318486ad695e0872",
+    "lastModified": "2026-11-25T14:27:51.000+0000",
+    "cloudTrailEventId": "3d84d901-c861-4319-89b7-e4469a0f3bb7"
+  },
+  "version": "4",
+  "permissionRevision": {
+    "from": "6e6a8e54-8791-4e84-a4f9-f2a199daa444",
+    "to": "1b2025e5-52f8-49e2-b652-913b25a3d13b",
+    "cloudTrailEventId": "88c24dc3-1639-4f45-84ce-7f46e1afbb5d"
+  },
+  "active": {
+    "AliasArn": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+    "Name": "live",
+    "FunctionVersion": "4",
+    "Description": "navigator-alpha-activation-116740a7-85c4-4d22-8ecb-16476bb1fc3d",
+    "RevisionId": "0e4bf980-36f2-4ae3-89db-fd10b1f894ed"
+  }
+}

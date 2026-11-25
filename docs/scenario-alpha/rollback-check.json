@@ -1,0 +1,66 @@
+{
+  "at": "2026-11-25T14:39:29.476Z",
+  "passed": true,
+  "readOnly": true,
+  "current": {
+    "AliasArn": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+    "Name": "live",
+    "FunctionVersion": "4",
+    "Description": "navigator-alpha-activation-116740a7-85c4-4d22-8ecb-16476bb1fc3d",
+    "RevisionId": "0e4bf980-36f2-4ae3-89db-fd10b1f894ed"
+  },
+  "rollback": {
+    "version": "3",
+    "codeSha256": "HR0qCCO8wmix3FZNB28C+Cda8+sRNqYmBV9kPCUU+aw="
+  },
+  "master": {
+    "revision": {
+      "N": "11"
+    },
+    "suspended": {
+      "BOOL": false
+    }
+  },
+  "protectedAliases": {
+    "engent-platform-alpha-api": {
+      "version": "5",
+      "revision": "3463f9d4-7335-4f9c-a686-2ab55ea41ef4"
+    },
+    "decisiontree-alpha-staging-api": {
+      "version": "18",
+      "revision": "1169bc4b-b3b7-4811-926c-d1a3ef1140dc"
+    },
+    "decisionprocess-alpha-api": {
+      "version": "6",
+      "revision": "9c51c343-ea67-444a-9133-45853b39d81f"
+    },
+    "forecasting-alpha-api": {
+      "version": "9",
+      "revision": "6ef913f6-6485-44c8-9dd7-a846d6c88859"
+    },
+    "decisionnavigator-prod-api": {
+      "version": "3",
+      "revision": "bbaf9610-8925-4036-87c2-cf3cb6677cd9"
+    },
+    "forecasting-prod-api": {
+      "version": "4",
+      "revision": "3e572a8d-b9e3-4afe-9871-cef0f605dd1d"
+    },
+    "decisionprocess-prod-api": {
+      "version": "3",
+      "revision": "0522322a-acb7-4ea7-b652-38482ea26e78"
+    },
+    "decisiontree-prod-api": {
+      "version": "6",
+      "revision": "12217af7-967f-45ee-8f54-bf86b80ecf6f"
+    },
+    "engent-platform-prod-api": {
+      "version": "5",
+      "revision": "a495aed8-1f66-41dd-b6c8-5cafa5a410e6"
+    }
+  },
+  "scenarioOff": {
+    "version": "1",
+    "revision": "52c197d3-302b-4613-9859-b48d8329e86f"
+  }
+}

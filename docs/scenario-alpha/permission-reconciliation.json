@@ -1,0 +1,117 @@
+{
+  "at": "2026-11-25T14:32:30.416Z",
+  "events": [
+    {
+      "event": "AddPermission20150331v2",
+      "id": "88c24dc3-1639-4f45-84ce-7f46e1afbb5d",
+      "at": "2026-11-25T14:29:01Z",
+      "principal": "arn:aws:iam::771049112957:user/engentlabs-cli",
+      "invokedBy": "cloudformation.amazonaws.com",
+      "request": {
+        "functionName": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+        "statementId": "engent-scenario-alpha-admission-ScenarioAdmissionPermission-XzdwjJpwY7XY",
+        "principal": "apigateway.amazonaws.com",
+        "sourceArn": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/coaches/scenario/ai",
+        "sourceAccount": "771049112957"
+      },
+      "response": {
+        "statement": "{\"Sid\":\"engent-scenario-alpha-admission-ScenarioAdmissionPermission-XzdwjJpwY7XY\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"apigateway.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live\",\"Condition\":{\"StringEquals\":{\"AWS:SourceAccount\":\"771049112957\"},\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/coaches/scenario/ai\"}}}"
+      }
+    }
+  ],
+  "current": {
+    "AliasArn": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+    "Name": "live",
+    "FunctionVersion": "3",
+    "Description": "navigator-alpha-activation-116740a7-85c4-4d22-8ecb-16476bb1fc3d",
+    "RevisionId": "1b2025e5-52f8-49e2-b652-913b25a3d13b"
+  },
+  "policy": {
+    "revision": "1b2025e5-52f8-49e2-b652-913b25a3d13b",
+    "statements": [
+      {
+        "Sid": "decisionnavigator-alpha-NavigatorSessionPermission-1u78kZC7w6Xm",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "apigateway.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+        "Condition": {
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/api/platform/navigator/session"
+          }
+        }
+      },
+      {
+        "Sid": "decisionnavigator-alpha-NavigatorTurnPermission-MMqG6xHBt1R9",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "apigateway.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+        "Condition": {
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/api/platform/navigator"
+          }
+        }
+      },
+      {
+        "Sid": "engent-scenario-alpha-admission-ScenarioAdmissionPermission-XzdwjJpwY7XY",
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "apigateway.amazonaws.com"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "771049112957"
+          },
+          "ArnLike": {
+            "AWS:SourceArn": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/coaches/scenario/ai"
+          }
+        }
+      }
+    ]
+  },
+  "resources": [
+    {
+      "StackName": "engent-scenario-alpha-admission",
+      "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-scenario-alpha-admission/5768df10-e87e-11f1-b6bd-0eb99b0e6cff",
+      "LogicalResourceId": "ScenarioAdmissionCallerPolicy",
+      "PhysicalResourceId": "engen-Scena-F0c31osJqg5Q",
+      "ResourceType": "AWS::IAM::Policy",
+      "Timestamp": "2026-11-25T14:29:17.476000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "engent-scenario-alpha-admission",
+      "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-scenario-alpha-admission/5768df10-e87e-11f1-b6bd-0eb99b0e6cff",
+      "LogicalResourceId": "ScenarioAdmissionPermission",
+      "PhysicalResourceId": "engent-scenario-alpha-admission-ScenarioAdmissionPermission-XzdwjJpwY7XY",
+      "ResourceType": "AWS::Lambda::Permission",
+      "Timestamp": "2026-11-25T14:29:02.380000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    },
+    {
+      "StackName": "engent-scenario-alpha-admission",
+      "StackId": "arn:aws:cloudformation:us-east-1:771049112957:stack/engent-scenario-alpha-admission/5768df10-e87e-11f1-b6bd-0eb99b0e6cff",
+      "LogicalResourceId": "ScenarioAdmissionRoute",
+      "PhysicalResourceId": "38zxbj8",
+      "ResourceType": "AWS::ApiGatewayV2::Route",
+      "Timestamp": "2026-11-25T14:29:04.295000+00:00",
+      "ResourceStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackResourceDriftStatus": "NOT_CHECKED"
+      }
+    }
+  ]
+}
