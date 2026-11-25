@@ -1,6 +1,8 @@
 import {it,expect,vi} from 'vitest';
 import {anonymousNavigator,NAVIGATOR_PATH,NAVIGATOR_SESSION_PATH} from '../../server/platform/navigator-quota-runtime.mjs';
 import {createAiLightEntry} from '../../server/platform/ai-light-entry.mjs';
+import {dynamoStore} from '../../server/platform/store.mjs';
+import {readFileSync} from 'node:fs';
 const origin='https://d6owpirihdsus.cloudfront.net';
 function fixture({aiEnabled=true}={}){
  const claims=new Set();let on=true,brokenFinish=false,ambiguous=false;
@@ -35,4 +37,16 @@ it('entry rejects wrong environment and gateway before constructing any dependen
 });
 it('Navigator-only AI OFF retains Guest proof bootstrap for Scenario without model dispatch',async()=>{
  const f=fixture({aiEnabled:false}),c=await f.cookie();expect(c).toContain('__Host-engent-navigator=');expect((await f.turn(c)).statusCode).toBe(503);expect(f.generate).not.toHaveBeenCalled();expect(f.controls.acquire).not.toHaveBeenCalled();
+});
+it('signed follow-up claims use the deployed Dynamo namespace covered by the narrowed policy',async()=>{
+ const puts=[],db={send:async command=>{puts.push(command.input);return{};}};
+ const app=anonymousNavigator({origin,enabled:true,signingSecret:async()=>'fixture-secret-for-claim-flow-12345',credential:async()=>'fixture-key',controls:{acquire:async()=>({}),finish:async()=>{}},master:{assertEnabled:async()=>{}},conversationStore:dynamoStore(db,'fixture',id=>({pk:'NAVIGATOR#'+id,sk:'STATE'})),
+  generate:async()=>({output:[{content:[{type:'output_text',text:JSON.stringify({kind:'guide',reply:'Clarify what matters.',followUps:[{dimension:'objectives',question:'What matters most?'}]})}]}]})});
+ const event=(path,x,cookies=[])=>({rawPath:path,headers:{origin},cookies,requestContext:{http:{method:'POST',sourceIp:'192.0.2.1'}},body:JSON.stringify(x)});
+ const boot=await app(event(NAVIGATOR_SESSION_PATH,{})),cookies=[boot.cookies[0].split(';')[0]];
+ const first=JSON.parse((await app(event(NAVIGATOR_PATH,{message:'A capacity choice',history:[]},cookies))).body);
+ const next=await app(event(NAVIGATOR_PATH,{message:'What matters most?',dimension:'objectives',history:[{role:'user',text:'A capacity choice'},{role:'assistant',text:first.reply}],continuation:first.continuation},cookies));expect(next.statusCode).toBe(200);
+ expect(puts).toHaveLength(1);expect(puts[0].Item.pk).toMatch(/^NAVIGATOR#NAVIGATOR#TURN#[a-f0-9]{64}$/);
+ const p=JSON.parse(readFileSync('infra/ai-light-quota/navigator-policy-alpha.json'));
+ expect(p.Statement.find(x=>x.Sid==='NavigatorTurnClaims').Condition['ForAllValues:StringLike']['dynamodb:LeadingKeys']).toContain('NAVIGATOR#NAVIGATOR#TURN#*');
 });

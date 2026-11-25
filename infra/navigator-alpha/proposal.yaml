@@ -32,12 +32,20 @@ Resources:
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
-              - Sid: NavigatorState
+              - Sid: NavigatorQuotaState
+                Effect: Allow
+                Action: [dynamodb:GetItem, dynamodb:PutItem]
+                Resource: arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5
+                Condition:
+                  'ForAllValues:StringLike':
+                    'dynamodb:LeadingKeys': ['NAVIGATOR#NAVIGATOR#GLOBAL', 'NAVIGATOR#ACTOR#*', 'NAVIGATOR#IP#*', 'NAVIGATOR#ACCESS#SCENARIO#*']
+                  'Null': {'dynamodb:LeadingKeys': 'false'}
+              - Sid: NavigatorTurnClaims
                 Effect: Allow
                 Action: [dynamodb:GetItem, dynamodb:PutItem, dynamodb:DeleteItem]
                 Resource: arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5
                 Condition:
-                  'ForAllValues:StringLike': {'dynamodb:LeadingKeys': ['NAVIGATOR#*']}
+                  'ForAllValues:StringLike': {'dynamodb:LeadingKeys': ['NAVIGATOR#NAVIGATOR#TURN#*']}
                   'Null': {'dynamodb:LeadingKeys': 'false'}
               - Sid: ReadSharedPaidAiMaster
                 Effect: Allow
@@ -78,6 +86,7 @@ Resources:
         Variables:
           STAGE: alpha
           NAVIGATOR_ENABLED: 'false'
+          NAVIGATOR_AI_ENABLED: 'false'
       Code:
         S3Bucket: !Ref CodeBucket
         S3Key: !Ref CodeKey

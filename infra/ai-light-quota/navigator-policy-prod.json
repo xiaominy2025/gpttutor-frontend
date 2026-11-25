@@ -27,7 +27,7 @@
       "Condition": {
         "ForAllValues:StringLike": {
           "dynamodb:LeadingKeys": [
-            "NAVIGATOR#TURN#*"
+            "NAVIGATOR#NAVIGATOR#TURN#*"
           ]
         },
         "Null": {
