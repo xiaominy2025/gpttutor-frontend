@@ -1,0 +1,48 @@
+{
+ "AWSTemplateFormatVersion":"2010-09-09",
+ "Description":"Scenario Production AI-light runtime initially OFF; existing Navigator proof/master/combined ten-dollar ledger reused. No new secrets or financial state.",
+ "Parameters":{
+  "CodeKey":{"Type":"String","AllowedPattern":"releases/scenario-prod/[a-f0-9]{64}\\.zip"},
+  "CodeVersion":{"Type":"String"},
+  "ArtifactSha256":{"Type":"String","AllowedPattern":"[A-Za-z0-9+/]{43}="}
+ },
+ "Resources":{
+  "Logs":{"Type":"AWS::Logs::LogGroup","Properties":{"LogGroupName":"/aws/lambda/scenario-prod-api","RetentionInDays":14}},
+  "RuntimeRole":{"Type":"AWS::IAM::Role","Properties":{
+   "RoleName":"scenario-prod-runtime",
+   "AssumeRolePolicyDocument":{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":"lambda.amazonaws.com"},"Action":"sts:AssumeRole"}]},
+   "Policies":[{"PolicyName":"scenario-prod-runtime","PolicyDocument":{"Version":"2012-10-17","Statement":[
+    {"Effect":"Allow","Action":["logs:CreateLogStream","logs:PutLogEvents"],"Resource":"arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/scenario-prod-api:log-stream:*"},
+    {"Effect":"Allow","Action":"ssm:GetParameter","Resource":"arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/openai-api-key"},
+    {"Effect":"Allow","Action":"execute-api:Invoke","Resource":"arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/coaches/scenario/ai"}
+   ]}}]
+  }},
+  "Runtime":{"Type":"AWS::Lambda::Function","DependsOn":"Logs","Properties":{
+   "FunctionName":"scenario-prod-api","Runtime":"nodejs22.x","Handler":"index.handler","Role":{"Fn::GetAtt":["RuntimeRole","Arn"]},
+   "Timeout":25,"MemorySize":256,"ReservedConcurrentExecutions":2,
+   "Environment":{"Variables":{"SCENARIO_PRODUCTION_MODE":"off"}},
+   "Code":{"S3Bucket":"decisiontree-prod-artifacts-771049112957-us-east-1","S3Key":{"Ref":"CodeKey"},"S3ObjectVersion":{"Ref":"CodeVersion"}}
+  }},
+  "OffVersion":{"Type":"AWS::Lambda::Version","Properties":{"FunctionName":{"Ref":"Runtime"},"CodeSha256":{"Ref":"ArtifactSha256"}}},
+  "Live":{"Type":"AWS::Lambda::Alias","Properties":{"FunctionName":{"Ref":"Runtime"},"Name":"live","FunctionVersion":{"Fn::GetAtt":["OffVersion","Version"]}}},
+  "PublicInvoke":{"Type":"AWS::Lambda::Permission","Properties":{
+   "FunctionName":{"Ref":"Live"},"Action":"lambda:InvokeFunction","Principal":"apigateway.amazonaws.com","SourceAccount":"771049112957",
+   "SourceArn":"arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/api/platform/scenario/management-perspective"
+  }},
+  "PublicIntegration":{"Type":"AWS::ApiGatewayV2::Integration","Properties":{
+   "ApiId":"eoszayfkqd","IntegrationType":"AWS_PROXY","IntegrationUri":{"Ref":"Live"},"PayloadFormatVersion":"2.0","TimeoutInMillis":26000
+  }},
+  "PublicRoute":{"Type":"AWS::ApiGatewayV2::Route","DependsOn":"PublicInvoke","Properties":{
+   "ApiId":"eoszayfkqd","RouteKey":"POST /api/platform/scenario/management-perspective","AuthorizationType":"NONE",
+   "Target":{"Fn::Join":["/",["integrations",{"Ref":"PublicIntegration"}]]}
+  }},
+  "PrivateInvoke":{"Type":"AWS::Lambda::Permission","Properties":{
+   "FunctionName":"arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-prod-api:live","Action":"lambda:InvokeFunction","Principal":"apigateway.amazonaws.com","SourceAccount":"771049112957",
+   "SourceArn":"arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/coaches/scenario/ai"
+  }},
+  "PrivateRoute":{"Type":"AWS::ApiGatewayV2::Route","DependsOn":"PrivateInvoke","Properties":{
+   "ApiId":"eoszayfkqd","RouteKey":"POST /internal/coaches/scenario/ai","AuthorizationType":"AWS_IAM","Target":"integrations/3bgzfp4"
+  }}
+ },
+ "Outputs":{"OffVersion":{"Value":{"Fn::GetAtt":["OffVersion","Version"]}},"RuntimeArn":{"Value":{"Ref":"Live"}}}
+}

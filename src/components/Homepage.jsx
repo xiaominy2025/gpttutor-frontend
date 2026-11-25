@@ -48,12 +48,14 @@ function MarketingLayout({ explore, coachNav, children, onSharedLaunch }) {
 }
 
 function canLaunch(coach) {
+  if (coach.id === 'scenario') return import.meta.env.VITE_SCENARIO_COACH_ENABLED === 'true';
   if (coach.id === 'forecast') return import.meta.env.VITE_FORECAST_COACH_ENABLED === 'true';
   if (coach.id === 'process') return import.meta.env.VITE_PROCESS_COACH_ENABLED === 'true';
   return coach.id === 'tree' && (treeUrl === 'https://decisiontree.engentlabs.com/' || (import.meta.env.VITE_RELEASE_B_EMAIL_ENABLED === 'true' && treeUrl === 'https://d6owpirihdsus.cloudfront.net/'));
 }
 
 function Availability({ coach, sharedLaunch }) {
+  if (coach.id === 'scenario' && canLaunch(coach)) return <CoachLaunchControl href="/scenario-analysis/" label="Launch Scenario Analysis Coach" />;
   if (coach.id === 'forecast' && canLaunch(coach)) return <CoachLaunchControl href={forecastUrl} label="Launch Forecasting Coach" />;
   if (coach.id === 'process' && canLaunch(coach)) return <CoachLaunchControl href="/process/" label="Launch Decision Process Coach" />;
   if (canLaunch(coach)) {

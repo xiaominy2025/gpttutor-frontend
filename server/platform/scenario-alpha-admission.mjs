@@ -4,16 +4,24 @@ import {digest, PlatformError} from './oauth.mjs';
 
 export const SCENARIO_ADMISSION_PATH='/internal/coaches/scenario/ai';
 export const SCENARIO_ALPHA_ORIGIN='https://d6owpirihdsus.cloudfront.net';
-const caller=/^arn:aws:sts::771049112957:assumed-role\/scenario-alpha-runtime\/[^/]+$/;
+export const SCENARIO_PRODUCTION_ORIGIN='https://www.engentlabs.com';
+const bindings=Object.freeze({
+ alpha:{origin:SCENARIO_ALPHA_ORIGIN,apiId:'8qmgd1ghdi',caller:/^arn:aws:sts::771049112957:assumed-role\/scenario-alpha-runtime\/[^/]+$/},
+ prod:{origin:SCENARIO_PRODUCTION_ORIGIN,apiId:'eoszayfkqd',caller:/^arn:aws:sts::771049112957:assumed-role\/scenario-prod-runtime\/[^/]+$/}
+});
 const uuid=/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 const response=(statusCode,body)=>({statusCode,headers:{'Content-Type':'application/json','Cache-Control':'no-store'},body:JSON.stringify(body)});
 const unavailable=()=>new PlatformError(503,'Scenario AI admission is unavailable.');
 
 // Only the platform receives Navigator's signing material. Scenario receives no
 // secret, actor identifier, IP hash, arbitrary Dynamo key, or mutable lease data.
-export function scenarioAlphaAdmission({signingSecret,store,controls,master,now=Date.now}) {
+export const scenarioAlphaAdmission=dependencies=>scenarioAdmission('alpha',dependencies);
+export const scenarioProductionAdmission=dependencies=>scenarioAdmission('prod',dependencies);
+function scenarioAdmission(environment,{signingSecret,store,controls,master,now=Date.now}) {
+ const binding=bindings[environment];
+ if(!binding)throw new Error('Unsupported Scenario environment.');
  async function identity(input) {
-  if(input.origin!==SCENARIO_ALPHA_ORIGIN||!isIP(input.sourceIp??''))throw new PlatformError(403,'Invalid Scenario request provenance.');
+  if(input.origin!==binding.origin||!isIP(input.sourceIp??''))throw new PlatformError(403,'Invalid Scenario request provenance.');
   if(typeof input.cookie!=='string'||input.cookie.length>8192)throw new PlatformError(401,'Guest proof is required.');
   const matches=input.cookie.split(';').map(x=>x.trim()).filter(x=>x.startsWith('__Host-engent-navigator='));
   if(matches.length!==1)throw new PlatformError(401,'Guest proof is required.');
@@ -29,9 +37,9 @@ export function scenarioAlphaAdmission({signingSecret,store,controls,master,now=
  }
  return async event=>{
   try {
-   if(event.requestContext?.apiId!=='8qmgd1ghdi'||event.requestContext?.stage!=='$default'||
+   if(event.requestContext?.apiId!==binding.apiId||event.requestContext?.stage!=='$default'||
       event.rawPath!==SCENARIO_ADMISSION_PATH||event.routeKey!=='POST '+SCENARIO_ADMISSION_PATH||
-      event.requestContext?.http?.method!=='POST'||!caller.test(event.requestContext?.authorizer?.iam?.userArn??''))
+      event.requestContext?.http?.method!=='POST'||!binding.caller.test(event.requestContext?.authorizer?.iam?.userArn??''))
     return response(403,{error:'Scenario runtime required.'});
    const raw=event.isBase64Encoded?Buffer.from(event.body??'','base64').toString('utf8'):event.body??'';
    if(Buffer.byteLength(raw)>16384)throw new PlatformError(413,'Admission request too large.');
@@ -39,7 +47,7 @@ export function scenarioAlphaAdmission({signingSecret,store,controls,master,now=
    if(!input||typeof input!=='object'||Array.isArray(input))throw new PlatformError(400,'Invalid admission request.');
    if(input.operation==='verify') {
     await identity(input);await master.assertEnabled();
-    return response(200,{verified:true,coach:'scenario',environment:'alpha'});
+    return response(200,{verified:true,coach:'scenario',environment});
    }
    if(input.operation==='admit') {
     const {actor,ip}=await identity(input);
@@ -48,7 +56,7 @@ export function scenarioAlphaAdmission({signingSecret,store,controls,master,now=
      throw new PlatformError(400,'Invalid Scenario request bounds.');
     await master.assertEnabled();
     const id='SCENARIO#REQUEST#'+input.requestId;
-    const row={coach:'scenario',environment:'alpha',state:'pending',createdAt:now(),
+    const row={coach:'scenario',environment,state:'pending',createdAt:now(),
      expiresAt:Math.floor(now()/1000)+40*86400};
     // A lost admission response must not be retried: it might own a reservation.
     if(!await store.replace(id,0,row))throw new PlatformError(409,'Scenario request already submitted. Do not retry.');
@@ -67,7 +75,7 @@ export function scenarioAlphaAdmission({signingSecret,store,controls,master,now=
      throw unavailable();
     }
     return response(200,{admitted:true,leaseId:input.requestId,reservationMicros:reservation,
-     model:'gpt-6-luna',coach:'scenario',environment:'alpha',noRetry:true});
+     model:'gpt-6-luna',coach:'scenario',environment,noRetry:true});
    }
    if(input.operation==='master') {
     await master.assertEnabled();return response(200,{enabled:true});
@@ -75,7 +83,7 @@ export function scenarioAlphaAdmission({signingSecret,store,controls,master,now=
    if(input.operation==='dispatch') {
     if(!uuid.test(input.leaseId??''))throw new PlatformError(400,'Invalid Scenario lease.');
     const id='SCENARIO#REQUEST#'+input.leaseId,row=await store.get(id);
-    if(row?.coach!=='scenario'||row.state!=='admitted'||row.environment!=='alpha'||row.dispatchBefore<=now())
+    if(row?.coach!=='scenario'||row.state!=='admitted'||row.environment!==environment||row.dispatchBefore<=now())
      throw new PlatformError(409,'Scenario dispatch expired or already authorized. Do not retry.');
     await master.assertEnabled();
     if(!await store.replace(id,row.version,{...row,state:'dispatched'}))throw unavailable();
@@ -84,7 +92,7 @@ export function scenarioAlphaAdmission({signingSecret,store,controls,master,now=
    if(input.operation==='settle') {
     if(!uuid.test(input.leaseId??''))throw new PlatformError(400,'Invalid Scenario lease.');
     const id='SCENARIO#REQUEST#'+input.leaseId,row=await store.get(id);
-    if(row?.coach!=='scenario'||row.environment!=='alpha'||!['admitted','dispatched'].includes(row.state))
+    if(row?.coach!=='scenario'||row.environment!==environment||!['admitted','dispatched'].includes(row.state))
      throw new PlatformError(409,'Scenario settlement is unavailable. Do not retry.');
     let cost;
     if(input.uncertain===true){

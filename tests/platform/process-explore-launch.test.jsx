@@ -19,3 +19,12 @@ it('uses a cross-host POST for the signed-in Release B Tree handoff',async()=>{
  const launch=await within(v.container.querySelector('#tree')).findByRole('button',{name:'Launch Decision Tree Coach'});
  expect(launch.type).toBe('submit');expect(launch.closest('form').method).toBe('post');expect(launch.closest('form').getAttribute('action')).toBe(url);
 });
+it('launches Scenario only at its approved independent path and keeps unfinished coaches unavailable',()=>{
+ vi.stubEnv('VITE_SCENARIO_COACH_ENABLED','true');
+ const v=explore('true');
+ const scenario=within(v.container.querySelector('#scenario'));
+ expect(scenario.getByRole('link',{name:'Launch Scenario Analysis Coach'}).getAttribute('href')).toBe('/scenario-analysis/');
+ expect(scenario.queryByText('Coming Soon')).toBeNull();
+ for(const id of ['simulation','optimization'])expect(within(v.container.querySelector('#'+id)).getByText('Coming Soon')).toBeTruthy();
+ vi.stubEnv('VITE_SCENARIO_COACH_ENABLED','false');
+});
