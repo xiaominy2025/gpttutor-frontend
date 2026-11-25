@@ -17,3 +17,10 @@ for(const stage of ['alpha','prod'])it(stage+' quota IAM excludes financial/hist
  expect(p.Statement.find(x=>x.Sid==='ReadSharedPaidAiMaster').Action).toBe('dynamodb:GetItem');
  expect(p.Statement.find(x=>x.Sid==='NavigatorParameters').Resource.every(x=>x.includes('/decisionnavigator-'+stage+'/'))).toBe(true);
 });
+it('Forecasting Production complete policy retains existing nonfinancial grants while replacing only financial state access',()=>{
+ const original=JSON.parse(readFileSync('docs/ai-light-simplification/aws-inventory.json')).roles['forecasting-prod-runtime'].policies[0].document;
+ const final=JSON.parse(readFileSync('infra/ai-light-quota/forecasting-policy-prod.json'));
+ const nonfinancial=original.Statement.filter(s=>![s.Action].flat().some(a=>a.startsWith('dynamodb:'))||s.Condition?.['ForAllValues:StringEquals']?.['dynamodb:LeadingKeys']?.includes('AI#CONFIG'));
+ expect(nonfinancial).toHaveLength(4);expect(final.Statement.slice(0,4)).toEqual(nonfinancial);expect(final.Statement).toHaveLength(5);
+ const quota=final.Statement[4];expect(quota.Action).toEqual(['dynamodb:GetItem','dynamodb:PutItem']);expect(quota.Condition['ForAllValues:StringEquals']['dynamodb:LeadingKeys']).toEqual(['FORECASTING#PROD#QUOTA','FORECASTING#PROD#QUOTA#VERIFY']);expect(JSON.stringify(final)).not.toMatch(/BUDGET|PILOT|TransactWrite/);
+});

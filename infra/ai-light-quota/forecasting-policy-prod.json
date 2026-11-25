@@ -1,0 +1,68 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/forecasting-prod-api:log-stream:*",
+      "Effect": "Allow"
+    },
+    {
+      "Action": "ssm:GetParameter",
+      "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/forecasting-prod/hmac-secret",
+      "Effect": "Allow"
+    },
+    {
+      "Action": "ssm:GetParameter",
+      "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/openai-api-key",
+      "Effect": "Allow"
+    },
+    {
+      "Condition": {
+        "Null": {
+          "dynamodb:LeadingKeys": "false",
+          "dynamodb:Attributes": "false"
+        },
+        "ForAllValues:StringEquals": {
+          "dynamodb:LeadingKeys": [
+            "AI#CONFIG"
+          ],
+          "dynamodb:Attributes": [
+            "pk",
+            "sk",
+            "suspended",
+            "revision"
+          ]
+        },
+        "StringEqualsIfExists": {
+          "dynamodb:Select": "SPECIFIC_ATTRIBUTES"
+        }
+      },
+      "Action": "dynamodb:GetItem",
+      "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+      "Effect": "Allow"
+    },
+    {
+      "Sid": "ForecastingQuotaState",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem"
+      ],
+      "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+      "Condition": {
+        "ForAllValues:StringEquals": {
+          "dynamodb:LeadingKeys": [
+            "FORECASTING#PROD#QUOTA",
+            "FORECASTING#PROD#QUOTA#VERIFY"
+          ]
+        },
+        "Null": {
+          "dynamodb:LeadingKeys": "false"
+        }
+      }
+    }
+  ]
+}
