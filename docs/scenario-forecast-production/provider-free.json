@@ -1,0 +1,37 @@
+{
+  "startedAt": "2026-11-25T19:55:00.705Z",
+  "pending": false,
+  "providerCalls": 0,
+  "privateVersion": "2",
+  "syntheticIngress": true,
+  "before": {
+    "spent": 1870,
+    "reserved": 0,
+    "version": 16,
+    "paused": false,
+    "holds": 0
+  },
+  "passed": true,
+  "result": {
+    "ok": true,
+    "checks": {
+      "master": true,
+      "invalidCookie": true,
+      "wrongOrigin": true,
+      "validCookie": true,
+      "reservation": true,
+      "replayedAdmission": true,
+      "zeroSettlement": true,
+      "replayedSettlement": true,
+      "credentialFormat": true
+    }
+  },
+  "after": {
+    "spent": 1870,
+    "reserved": 0,
+    "version": 18,
+    "paused": false,
+    "holds": 0
+  },
+  "completedAt": "2026-11-25T19:55:07.408Z"
+}

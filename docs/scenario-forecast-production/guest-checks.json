@@ -1,0 +1,65 @@
+{
+  "providerCalls": 0,
+  "checks": [
+    {
+      "coach": "scenario",
+      "width": 1440,
+      "noHorizontalOverflow": true
+    },
+    {
+      "coach": "scenario",
+      "width": 1024,
+      "noHorizontalOverflow": true
+    },
+    {
+      "coach": "scenario",
+      "width": 768,
+      "noHorizontalOverflow": true
+    },
+    {
+      "coach": "scenario",
+      "width": 390,
+      "noHorizontalOverflow": true
+    },
+    {
+      "coach": "scenario",
+      "guest": true,
+      "projectSaveOpen": true,
+      "originalWorkbookBytesPreserved": true,
+      "excel": true,
+      "pdf": true,
+      "insights": true,
+      "directRefresh": true
+    },
+    {
+      "coach": "forecast",
+      "width": 1440,
+      "noHorizontalOverflow": true
+    },
+    {
+      "coach": "forecast",
+      "width": 1024,
+      "noHorizontalOverflow": true
+    },
+    {
+      "coach": "forecast",
+      "width": 768,
+      "noHorizontalOverflow": true
+    },
+    {
+      "coach": "forecast",
+      "width": 390,
+      "noHorizontalOverflow": true
+    },
+    {
+      "coach": "forecast",
+      "guest": true,
+      "projectSaveOpen": true,
+      "predictionRestored": true,
+      "excel": true,
+      "pdf": true,
+      "directRefresh": true
+    }
+  ],
+  "passed": true
+}

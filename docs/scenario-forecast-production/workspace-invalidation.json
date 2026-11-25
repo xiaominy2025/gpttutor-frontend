@@ -1,0 +1,20 @@
+{
+  "state": "submitted",
+  "request": {
+    "DistributionId": "E1V533CXZPR3FL",
+    "InvalidationBatch": {
+      "CallerReference": "scenario-forecast-20261125-workspaces-only",
+      "Paths": {
+        "Quantity": 4,
+        "Items": [
+          "/forecasting",
+          "/forecasting/*",
+          "/scenario-analysis",
+          "/scenario-analysis/*"
+        ]
+      }
+    }
+  },
+  "id": "I7J81YXMLZEWCOWNTFAAT79U9S",
+  "at": "2026-11-25T20:22:05.831Z"
+}

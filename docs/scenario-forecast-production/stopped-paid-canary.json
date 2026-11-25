@@ -1,0 +1,32 @@
+{
+  "state": "rejected-response-metered",
+  "maxRequests": 1,
+  "ceilingMicros": 832,
+  "paidRequests": 1,
+  "retries": 0,
+  "before": {
+    "spent": 1870,
+    "reserved": 0,
+    "paused": false
+  },
+  "sentAt": "2026-11-25T20:09:07.933Z",
+  "failure": "Expected values to be strictly equal:\n\n502 !== 200\n",
+  "reconciliation": {
+    "at": "2026-11-25T20:12:14.631Z",
+    "rowsMatched": 1,
+    "attribution": {
+      "coach": "scenario",
+      "environment": "prod",
+      "state": "settled",
+      "costMicros": 326,
+      "reservationMicros": 832
+    },
+    "after": {
+      "spent": 2196,
+      "reserved": 0,
+      "paused": false
+    },
+    "deltaMicros": 326,
+    "publicOff": true
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "providerCalls": 0,
+  "results": [
+    {
+      "coach": "scenario",
+      "originalXmlPartsPreserved": 5,
+      "exportSheets": [
+        "Scenario Summary",
+        "Scenario Summary 2",
+        "Capital planning economic model",
+        "Summary (4 machines)",
+        "Summary (2 machines)",
+        "Scenario Results",
+        "Sensitivity Analysis"
+      ],
+      "appendedNumericCells": 195,
+      "pdfPages": 3,
+      "pageTextChars": [
+        954,
+        730,
+        1493
+      ]
+    },
+    {
+      "coach": "forecast",
+      "originalXmlPartsPreserved": 4,
+      "exportSheets": [
+        "Demand",
+        "Series",
+        "Series (2)",
+        "Analysis",
+        "Historical fitted values",
+        "Historical accuracy",
+        "Seasonal factors"
+      ],
+      "appendedNumericCells": 301,
+      "pdfPages": 2,
+      "pageTextChars": [
+        822,
+        533
+      ]
+    }
+  ]
+}
