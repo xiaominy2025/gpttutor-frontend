@@ -1,0 +1,91 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Condition": {
+        "ForAllValues:StringLike": {
+          "dynamodb:LeadingKeys": [
+            "NAVIGATOR#NAVIGATOR#GLOBAL",
+            "NAVIGATOR#ACTOR#*",
+            "NAVIGATOR#IP#*",
+            "NAVIGATOR#ACCESS#SCENARIO#*"
+          ]
+        },
+        "Null": {
+          "dynamodb:LeadingKeys": "false"
+        }
+      },
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem"
+      ],
+      "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+      "Effect": "Allow",
+      "Sid": "NavigatorQuotaState"
+    },
+    {
+      "Condition": {
+        "ForAllValues:StringLike": {
+          "dynamodb:LeadingKeys": [
+            "NAVIGATOR#TURN#*"
+          ]
+        },
+        "Null": {
+          "dynamodb:LeadingKeys": "false"
+        }
+      },
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:DeleteItem"
+      ],
+      "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+      "Effect": "Allow",
+      "Sid": "NavigatorTurnClaims"
+    },
+    {
+      "Condition": {
+        "Null": {
+          "dynamodb:LeadingKeys": "false",
+          "dynamodb:Attributes": "false"
+        },
+        "ForAllValues:StringEquals": {
+          "dynamodb:LeadingKeys": [
+            "AI#CONFIG"
+          ],
+          "dynamodb:Attributes": [
+            "pk",
+            "sk",
+            "suspended",
+            "revision"
+          ]
+        },
+        "StringEqualsIfExists": {
+          "dynamodb:Select": "SPECIFIC_ATTRIBUTES"
+        }
+      },
+      "Action": "dynamodb:GetItem",
+      "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+      "Effect": "Allow",
+      "Sid": "ReadSharedPaidAiMaster"
+    },
+    {
+      "Action": "ssm:GetParameter",
+      "Resource": [
+        "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/openai-api-key",
+        "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/hmac-secret"
+      ],
+      "Effect": "Allow",
+      "Sid": "NavigatorParameters"
+    },
+    {
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/decisionnavigator-prod-api:log-stream:*",
+      "Effect": "Allow",
+      "Sid": "NavigatorLogs"
+    }
+  ]
+}
