@@ -74,7 +74,7 @@ export function resultWorkbook(Excel, result, points, method, goal, cadence, win
   [
     ["Goal", goal], ["Units", unit], ["Cadence", cadence], ["Horizon", result.future.length], ["Method", methods[method]],
     ["Target", target], ["Source", context.source],
-    ["Source workbook", context.original ? "Included (ExcelJS-supported features)" :
+    ["Source workbook", context.original || context.sourceIncluded ? "Included" :
       "Unavailable. The export contains the selected data and analysis."],
     ["Data frequency", context.frequency], ["Aggregation", context.aggregation],
     ["Incomplete periods omitted", context.omitted], ["Your management actions", context.actions],

@@ -10,6 +10,7 @@ import { formatBusinessPercent, formatDisplayedValue } from "./display-number.js
 import { forecastPeriodLabel, measuredValue, movingInsight, regressionInsight, reliabilityInsight, seasonalReliabilityInsight, seasonalRangeInsight } from "./insight-copy.js";
 import { buildAdvisorRequest, requestAdvisor } from "./management-advisor.js";
 import { printForecastReport } from "./print-report.js";
+import { appendWorkbookAnalysis } from "./append-workbook.js";
 
 const by = id => document.getElementById(id);
 const nf = new Intl.NumberFormat("en-US", { maximumFractionDigits: 3 });
@@ -999,13 +1000,11 @@ by("export").addEventListener("click", async () => {
   button.disabled = true;
   button.setAttribute("aria-busy", "true");
   try {
-    if (bytes) {
-      context.original = new Excel.Workbook();
-      await context.original.xlsx.load(bytes);
-    }
+    context.sourceIncluded = Boolean(bytes);
     const { analysis, points, method, cadence, window, unit, headings } = snapshot;
     const out = resultWorkbook(Excel, analysis, points, method, goal, cadence, window, unit, headings, context);
-    const blob = new Blob([await out.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    const output = bytes ? appendWorkbookAnalysis(bytes, out) : await out.xlsx.writeBuffer();
+    const blob = new Blob([output], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
     download(blob, "forecasting-coach-results.xlsx");
     if (report === snapshot) {
       by("export-status").textContent = bytes ? "Excel exported with source worksheets." :
