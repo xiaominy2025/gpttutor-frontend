@@ -38,3 +38,11 @@ Execution journals, original HTML bytes, complete S3 asset receipts and guarded 
 ## Remaining work
 
 Resolve Scenario AI failure with its owner before public activation. Review encoding-only frontend correction. Complete Forecasting Alpha permanent monthly admission under the owner's instruction to remove trial dates/$1 limits; preserve historical charges and canonical monthly ceiling. Record final Alpha cutover independently of this Production checkpoint.
+
+## Forecasting Alpha follow-up completed
+
+The owner-requested removal of obsolete restrictions is installed: `forecasting-alpha-api:live` version11, alias revision `7e3dc9be-a179-4470-af2d-d6f2ace886fe`, final source `490482ae355dc7dd9c1153a171d92d764b58e93f`. Final ZIP SHA256 `7ff1b45426b5350b3250add61439f7a5291c5562d8ccd501272f1f224e1844b0`; Lambda CodeSha256 `f/G0VCa1NQsyUK3WFDn3pSkcVWLYzNUBJy8fIk4YRLA=` independently read. Final source adds the provider-free restricted probe to reviewed e809364; live mode leaves the probe inactive. Only environment setting is `FORECASTING_MODE=live`: no pilot/start/end/IP variables. The prior Advisor prompt and provider remain unchanged.
+
+85 focused tests passed. Actual-role provider-blocked bootstrap/reservation/settlement passed; public Guest bootstrap200. No provider call made; narrative generation was not retested. Alpha canonical monthly spent4402 unchanged; historical2585 micro-USD held separately for reconciliation, with archived pilot unchanged and no automatic refund. One permanent shared $10 UTC calendar-month allowance, existing visitor/IP/concurrency/master safeguards and conditional rollover apply. OFF1 retained for independent alias rollback. Production runtime4 unchanged.
+
+Authoritative receipt: https://github.com/xiaominy2025/gpttutor-frontend/issues/16#issuecomment-7173766040 . Workspace invalidation `I7J81YXMLZEWCOWNTFAAT79U9S` completed. Scenario failure remains unresolved and OFF.
