@@ -1,0 +1,41 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Narrow Alpha Scenario admission route. Reuses Navigator alias, identity proof and accounting. No Production resources.",
+  "Resources": {
+    "ScenarioAdmissionPermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceAccount": "771049112957",
+        "SourceArn": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/coaches/scenario/ai"
+      }
+    },
+    "ScenarioAdmissionRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "DependsOn": "ScenarioAdmissionPermission",
+      "Properties": {
+        "ApiId": "8qmgd1ghdi",
+        "RouteKey": "POST /internal/coaches/scenario/ai",
+        "AuthorizationType": "AWS_IAM",
+        "Target": "integrations/5wsf6z0"
+      }
+    },
+    "ScenarioAdmissionCallerPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "scenario-alpha-platform-admission",
+        "Roles": ["scenario-alpha-runtime"],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [{
+            "Effect": "Allow",
+            "Action": "execute-api:Invoke",
+            "Resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/coaches/scenario/ai"
+          }]
+        }
+      }
+    }
+  }
+}
