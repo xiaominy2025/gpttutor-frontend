@@ -1,0 +1,694 @@
+{
+  "at": "2026-11-25T21:23:08.746Z",
+  "readOnly": true,
+  "functions": [
+    {
+      "name": "decisionnavigator-alpha-api",
+      "version": "4",
+      "aliasRevision": "0e4bf980-36f2-4ae3-89db-fd10b1f894ed",
+      "codeSha256": "no2EYtkOu0F6VnZGx5FuBQoRYV3ytTLqUGIBuLfqDbI=",
+      "role": "arn:aws:iam::771049112957:role/decisionnavigator-alpha-runtime",
+      "runtime": "nodejs22.x",
+      "handler": "index.handlerEntry",
+      "memoryMB": 256,
+      "timeoutSeconds": 29,
+      "reservedConcurrency": 2,
+      "environmentNames": [
+        "NAVIGATOR_ENABLED",
+        "STAGE"
+      ]
+    },
+    {
+      "name": "decisionnavigator-prod-api",
+      "version": "4",
+      "aliasRevision": "7e52f794-b2cf-49f2-8fbc-369fe92a8422",
+      "codeSha256": "VGd6r2hQHsrx1yofiNNWtfDvxnMnMpAtSfkuvnZ8F5M=",
+      "role": "arn:aws:iam::771049112957:role/decisionnavigator-prod-runtime",
+      "runtime": "nodejs22.x",
+      "handler": "index.handlerEntry",
+      "memoryMB": 256,
+      "timeoutSeconds": 29,
+      "reservedConcurrency": 2,
+      "environmentNames": [
+        "NAVIGATOR_ENABLED",
+        "STAGE"
+      ]
+    },
+    {
+      "name": "forecasting-alpha-api",
+      "version": "11",
+      "aliasRevision": "7e3dc9be-a179-4470-af2d-d6f2ace886fe",
+      "codeSha256": "f/G0VCa1NQsyUK3WFDn3pSkcVWLYzNUBJy8fIk4YRLA=",
+      "role": "arn:aws:iam::771049112957:role/forecasting-alpha-runtime",
+      "runtime": "nodejs22.x",
+      "handler": "alpha-monthly-lambda.handler",
+      "memoryMB": 256,
+      "timeoutSeconds": 25,
+      "reservedConcurrency": 2,
+      "environmentNames": [
+        "FORECASTING_MODE"
+      ]
+    },
+    {
+      "name": "forecasting-prod-api",
+      "version": "4",
+      "aliasRevision": "3e572a8d-b9e3-4afe-9871-cef0f605dd1d",
+      "codeSha256": "FCVPO/qhJ3RksMaflvX9uBfhsYUnB8Oj+Mk+6vTb8/A=",
+      "role": "arn:aws:iam::771049112957:role/forecasting-prod-runtime",
+      "runtime": "nodejs22.x",
+      "handler": "production/lambda.handler",
+      "memoryMB": 256,
+      "timeoutSeconds": 25,
+      "reservedConcurrency": 2,
+      "environmentNames": [
+        "FORECASTING_MODE"
+      ]
+    },
+    {
+      "name": "scenario-alpha-api",
+      "version": "4",
+      "aliasRevision": "c8c5a0c0-439a-4c5b-b14c-fa8c9e00b1a7",
+      "codeSha256": "dAWnV1J6lt56u64uAsX8bzmJQLq1kGlBe573W5/HtHA=",
+      "role": "arn:aws:iam::771049112957:role/scenario-alpha-runtime",
+      "runtime": "nodejs22.x",
+      "handler": "index.handler",
+      "memoryMB": 256,
+      "timeoutSeconds": 25,
+      "reservedConcurrency": 2,
+      "environmentNames": []
+    },
+    {
+      "name": "scenario-prod-api",
+      "version": "1",
+      "aliasRevision": "ec9ef1fd-919b-4df8-bee2-0f96a067039b",
+      "codeSha256": "kh2WFV/iN6REXgK9/Wp0wJH0zFWqOwD0IOvIfzr7kxg=",
+      "role": "arn:aws:iam::771049112957:role/scenario-prod-runtime",
+      "runtime": "nodejs22.x",
+      "handler": "index.handler",
+      "memoryMB": 256,
+      "timeoutSeconds": 25,
+      "reservedConcurrency": 2,
+      "environmentNames": [
+        "SCENARIO_PRODUCTION_MODE"
+      ]
+    }
+  ],
+  "roles": {
+    "decisionnavigator-alpha-runtime": {
+      "policies": [
+        {
+          "name": "navigator-alpha-runtime",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Condition": {
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false"
+                  },
+                  "ForAllValues:StringLike": {
+                    "dynamodb:LeadingKeys": [
+                      "NAVIGATOR#*"
+                    ]
+                  }
+                },
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:DeleteItem"
+                ],
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+                "Effect": "Allow",
+                "Sid": "NavigatorState"
+              },
+              {
+                "Condition": {
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false",
+                    "dynamodb:Attributes": "false"
+                  },
+                  "ForAllValues:StringEquals": {
+                    "dynamodb:LeadingKeys": [
+                      "AI#CONFIG"
+                    ],
+                    "dynamodb:Attributes": [
+                      "pk",
+                      "sk",
+                      "suspended",
+                      "revision"
+                    ]
+                  }
+                },
+                "Action": "dynamodb:GetItem",
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+                "Effect": "Allow",
+                "Sid": "ReadSharedPaidAiMaster"
+              },
+              {
+                "Action": "ssm:GetParameter",
+                "Resource": [
+                  "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/openai-api-key",
+                  "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/hmac-secret"
+                ],
+                "Effect": "Allow",
+                "Sid": "NavigatorParameters"
+              },
+              {
+                "Action": [
+                  "logs:CreateLogStream",
+                  "logs:PutLogEvents"
+                ],
+                "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/decisionnavigator-alpha-api:log-stream:*",
+                "Effect": "Allow",
+                "Sid": "NavigatorLogs"
+              }
+            ]
+          }
+        }
+      ],
+      "attached": []
+    },
+    "decisionnavigator-prod-runtime": {
+      "policies": [
+        {
+          "name": "navigator-prod-runtime",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Condition": {
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false"
+                  },
+                  "ForAllValues:StringLike": {
+                    "dynamodb:LeadingKeys": [
+                      "NAVIGATOR#*"
+                    ]
+                  }
+                },
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:DeleteItem"
+                ],
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+                "Effect": "Allow",
+                "Sid": "NavigatorState"
+              },
+              {
+                "Condition": {
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false",
+                    "dynamodb:Attributes": "false"
+                  },
+                  "ForAllValues:StringEquals": {
+                    "dynamodb:LeadingKeys": [
+                      "AI#CONFIG"
+                    ],
+                    "dynamodb:Attributes": [
+                      "pk",
+                      "sk",
+                      "suspended",
+                      "revision"
+                    ]
+                  },
+                  "StringEqualsIfExists": {
+                    "dynamodb:Select": "SPECIFIC_ATTRIBUTES"
+                  }
+                },
+                "Action": "dynamodb:GetItem",
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+                "Effect": "Allow",
+                "Sid": "ReadSharedPaidAiMaster"
+              },
+              {
+                "Action": "ssm:GetParameter",
+                "Resource": [
+                  "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/openai-api-key",
+                  "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/hmac-secret"
+                ],
+                "Effect": "Allow",
+                "Sid": "NavigatorParameters"
+              },
+              {
+                "Action": [
+                  "logs:CreateLogStream",
+                  "logs:PutLogEvents"
+                ],
+                "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/decisionnavigator-prod-api:log-stream:*",
+                "Effect": "Allow",
+                "Sid": "NavigatorLogs"
+              }
+            ]
+          }
+        }
+      ],
+      "attached": []
+    },
+    "forecasting-alpha-runtime": {
+      "policies": [
+        {
+          "name": "forecasting-alpha-runtime",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Action": [
+                  "logs:CreateLogStream",
+                  "logs:PutLogEvents"
+                ],
+                "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/forecasting-alpha-api:log-stream:*",
+                "Effect": "Allow"
+              },
+              {
+                "Action": "ssm:GetParameter",
+                "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/forecasting-alpha/hmac-secret",
+                "Effect": "Allow"
+              },
+              {
+                "Action": "ssm:GetParameter",
+                "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/openai-api-key",
+                "Effect": "Allow"
+              },
+              {
+                "Condition": {
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false"
+                  },
+                  "ForAllValues:StringEquals": {
+                    "dynamodb:LeadingKeys": [
+                      "AI#CONFIG"
+                    ]
+                  }
+                },
+                "Action": "dynamodb:GetItem",
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+                "Effect": "Allow"
+              },
+              {
+                "Condition": {
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false"
+                  },
+                  "ForAllValues:StringEquals": {
+                    "dynamodb:LeadingKeys": [
+                      "FORECASTING#PILOT#alpha-20261122",
+                      "FORECASTING#PILOT#verify-alpha-20261122"
+                    ]
+                  }
+                },
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem"
+                ],
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+                "Effect": "Allow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "forecasting-alpha-shared-monthly-ledger",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ReadForecastingAndCanonicalMonthlyState",
+                "Effect": "Allow",
+                "Action": "dynamodb:GetItem",
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+                "Condition": {
+                  "ForAllValues:StringLike": {
+                    "dynamodb:LeadingKeys": [
+                      "FORECASTING#ALPHA",
+                      "FORECASTING#ALPHA#VERIFY",
+                      "NAVIGATOR#BUDGET#????-??"
+                    ]
+                  },
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false"
+                  }
+                }
+              },
+              {
+                "Sid": "WriteForecastingState",
+                "Effect": "Allow",
+                "Action": "dynamodb:PutItem",
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+                "Condition": {
+                  "ForAllValues:StringEquals": {
+                    "dynamodb:LeadingKeys": [
+                      "FORECASTING#ALPHA",
+                      "FORECASTING#ALPHA#VERIFY"
+                    ]
+                  },
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false"
+                  }
+                }
+              },
+              {
+                "Sid": "WriteCanonicalMonthOnlyInTransaction",
+                "Effect": "Allow",
+                "Action": "dynamodb:PutItem",
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+                "Condition": {
+                  "ForAllValues:StringLike": {
+                    "dynamodb:LeadingKeys": [
+                      "NAVIGATOR#BUDGET#????-??"
+                    ]
+                  },
+                  "StringEquals": {
+                    "dynamodb:EnclosingOperation": "TransactWriteItems"
+                  },
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "attached": []
+    },
+    "forecasting-prod-runtime": {
+      "policies": [
+        {
+          "name": "forecasting-prod-runtime",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Action": [
+                  "logs:CreateLogStream",
+                  "logs:PutLogEvents"
+                ],
+                "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/forecasting-prod-api:log-stream:*",
+                "Effect": "Allow"
+              },
+              {
+                "Action": "ssm:GetParameter",
+                "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/forecasting-prod/hmac-secret",
+                "Effect": "Allow"
+              },
+              {
+                "Action": "ssm:GetParameter",
+                "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/openai-api-key",
+                "Effect": "Allow"
+              },
+              {
+                "Condition": {
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false",
+                    "dynamodb:Attributes": "false"
+                  },
+                  "ForAllValues:StringEquals": {
+                    "dynamodb:LeadingKeys": [
+                      "AI#CONFIG"
+                    ],
+                    "dynamodb:Attributes": [
+                      "pk",
+                      "sk",
+                      "suspended",
+                      "revision"
+                    ]
+                  },
+                  "StringEqualsIfExists": {
+                    "dynamodb:Select": "SPECIFIC_ATTRIBUTES"
+                  }
+                },
+                "Action": "dynamodb:GetItem",
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+                "Effect": "Allow"
+              },
+              {
+                "Condition": {
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false"
+                  },
+                  "ForAllValues:StringLike": {
+                    "dynamodb:LeadingKeys": [
+                      "FORECASTING#PROD",
+                      "FORECASTING#PROD#VERIFY",
+                      "NAVIGATOR#BUDGET#????-??"
+                    ]
+                  }
+                },
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem"
+                ],
+                "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+                "Effect": "Allow"
+              }
+            ]
+          }
+        }
+      ],
+      "attached": []
+    },
+    "scenario-alpha-runtime": {
+      "policies": [
+        {
+          "name": "scenario-alpha-logs",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Action": [
+                  "logs:CreateLogStream",
+                  "logs:PutLogEvents"
+                ],
+                "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/scenario-alpha-api:log-stream:*",
+                "Effect": "Allow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scenario-alpha-model-key",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "ssm:GetParameter",
+                "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-alpha/openai-api-key"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scenario-alpha-platform-admission",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Action": "execute-api:Invoke",
+                "Resource": "arn:aws:execute-api:us-east-1:771049112957:8qmgd1ghdi/$default/POST/internal/coaches/scenario/ai",
+                "Effect": "Allow"
+              }
+            ]
+          }
+        }
+      ],
+      "attached": []
+    },
+    "scenario-prod-runtime": {
+      "policies": [
+        {
+          "name": "scenario-prod-runtime",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Action": [
+                  "logs:CreateLogStream",
+                  "logs:PutLogEvents"
+                ],
+                "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/scenario-prod-api:log-stream:*",
+                "Effect": "Allow"
+              },
+              {
+                "Action": "ssm:GetParameter",
+                "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/openai-api-key",
+                "Effect": "Allow"
+              },
+              {
+                "Action": "execute-api:Invoke",
+                "Resource": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/coaches/scenario/ai",
+                "Effect": "Allow"
+              }
+            ]
+          }
+        }
+      ],
+      "attached": []
+    }
+  },
+  "apis": [
+    {
+      "api": "8qmgd1ghdi",
+      "routes": [
+        {
+          "id": "38zxbj8",
+          "path": "POST /internal/coaches/scenario/ai",
+          "auth": "AWS_IAM",
+          "target": "integrations/5wsf6z0"
+        },
+        {
+          "id": "9izmejm",
+          "path": "POST /api/platform/forecasting/communication",
+          "auth": "NONE",
+          "target": "integrations/i806dmu"
+        },
+        {
+          "id": "d7pxssp",
+          "path": "POST /api/platform/forecasting/session",
+          "auth": "NONE",
+          "target": "integrations/i806dmu"
+        },
+        {
+          "id": "gs0ljeu",
+          "path": "POST /api/platform/navigator/session",
+          "auth": "NONE",
+          "target": "integrations/5wsf6z0"
+        },
+        {
+          "id": "m2ova17",
+          "path": "POST /api/platform/navigator",
+          "auth": "NONE",
+          "target": "integrations/5wsf6z0"
+        },
+        {
+          "id": "nfg0olk",
+          "path": "POST /api/platform/scenario/management-perspective",
+          "auth": "NONE",
+          "target": "integrations/96nnep0"
+        }
+      ],
+      "integrations": [
+        {
+          "id": "5wsf6z0",
+          "type": "AWS_PROXY",
+          "uri": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-alpha-api:live",
+          "payload": "2.0"
+        },
+        {
+          "id": "96nnep0",
+          "type": "AWS_PROXY",
+          "uri": "arn:aws:lambda:us-east-1:771049112957:function:scenario-alpha-api:live",
+          "payload": "2.0"
+        },
+        {
+          "id": "i806dmu",
+          "type": "AWS_PROXY",
+          "uri": "arn:aws:lambda:us-east-1:771049112957:function:forecasting-alpha-api:live",
+          "payload": "2.0"
+        }
+      ]
+    },
+    {
+      "api": "eoszayfkqd",
+      "routes": [
+        {
+          "id": "5tiznk8",
+          "path": "POST /api/platform/navigator/session",
+          "auth": "NONE",
+          "target": "integrations/3bgzfp4"
+        },
+        {
+          "id": "fs84jrf",
+          "path": "POST /api/platform/forecasting/session",
+          "auth": "NONE",
+          "target": "integrations/rm82xn8"
+        },
+        {
+          "id": "kz5uuk2",
+          "path": "POST /api/platform/forecasting/communication",
+          "auth": "NONE",
+          "target": "integrations/rm82xn8"
+        },
+        {
+          "id": "mhoytmd",
+          "path": "POST /internal/coaches/scenario/ai",
+          "auth": "AWS_IAM",
+          "target": "integrations/3bgzfp4"
+        },
+        {
+          "id": "t9xgfu3",
+          "path": "POST /api/platform/scenario/management-perspective",
+          "auth": "NONE",
+          "target": "integrations/eolgeok"
+        },
+        {
+          "id": "yi3zbv2",
+          "path": "POST /api/platform/navigator",
+          "auth": "NONE",
+          "target": "integrations/3bgzfp4"
+        }
+      ],
+      "integrations": [
+        {
+          "id": "3bgzfp4",
+          "type": "AWS_PROXY",
+          "uri": "arn:aws:lambda:us-east-1:771049112957:function:decisionnavigator-prod-api:live",
+          "payload": "2.0"
+        },
+        {
+          "id": "eolgeok",
+          "type": "AWS_PROXY",
+          "uri": "arn:aws:lambda:us-east-1:771049112957:function:scenario-prod-api:live",
+          "payload": "2.0"
+        },
+        {
+          "id": "rm82xn8",
+          "type": "AWS_PROXY",
+          "uri": "arn:aws:lambda:us-east-1:771049112957:function:forecasting-prod-api:live",
+          "payload": "2.0"
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "name": "decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "arn": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-alpha-staging-Data-JH4B4OFXWER5",
+      "billing": "PAY_PER_REQUEST",
+      "keySchema": [
+        {
+          "AttributeName": "pk",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "sk",
+          "KeyType": "RANGE"
+        }
+      ],
+      "ttl": {
+        "TimeToLiveStatus": "ENABLED",
+        "AttributeName": "expiresAt"
+      }
+    },
+    {
+      "name": "decisiontree-prod-data",
+      "arn": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+      "billing": "PAY_PER_REQUEST",
+      "keySchema": [
+        {
+          "AttributeName": "pk",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "sk",
+          "KeyType": "RANGE"
+        }
+      ],
+      "ttl": {
+        "TimeToLiveStatus": "ENABLED",
+        "AttributeName": "expiresAt"
+      }
+    }
+  ]
+}
