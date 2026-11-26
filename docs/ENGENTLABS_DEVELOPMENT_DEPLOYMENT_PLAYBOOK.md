@@ -1,0 +1,135 @@
+# Engent Labs — Development and Deployment Playbook
+
+**Version:** 2.2 (minor refinement of accepted v2.1)  
+**Updated:** November 25, 2026  
+**Status:** Canonical current engineering guidance on the default branch. This file records accepted standards; it does not authorize new application or infrastructure changes.
+
+## 1. Purpose and operating principles
+
+Engent Labs builds interactive Decision Coaches that combine sound analytical methods, helpful AI interpretation and human judgment. Help users think systematically and reduce technical burden without removing intellectual engagement or human decision ownership. Analysis serves decisions, not the other way around. **Reuse what is proven; adapt where necessary; innovate where it matters.** Apply the 80/20 principle across design, evaluation, troubleshooting, testing and release. Prefer educational value, numerical correctness, practical management usefulness, security, simplicity, maintainability and proportional effort to elaborate technical architecture or redundant governance.
+
+Before major work, examine accepted internal implementations, their release receipts, development history, failures and evaluations. Identify (a) what is already solved, (b) what is reusable and (c) what is genuinely new. Do not redesign settled infrastructure or optimize speculatively. Keep this a living, **single consolidated** guidance document, with detail and immutable evidence in linked GitHub source and Coach repositories.
+
+## 2. Application categories, access and ownership
+
+| Type | Examples | Shared integration |
+| --- | --- | --- |
+| A — Platform and discovery | Homepage, Explore, Navigator | Full platform header, navigation, registration, Release B SSO/account controls; Navigator inherits Explore UI and uses the nonfinancial AI-light runtime security policy |
+| B — Authenticated Coaches | Decision Tree, Decision Process | Shared Release B SSO; server-verified, **Coach-specific** Student/Advanced entitlements; coordinated sign-out |
+| C — AI-light Coaches | Forecasting, Scenario Analysis, Simulation, Optimization | Established AI-light header; anonymous Guest analytical/AI Advisor access; optional shared sign-in and verified read-only status; local Save/Open |
+
+Do not create independent Coach account systems. Type B protected operations require server-side authorization; visible account status alone does not confer access. Advanced entitlement is not transferable between Coaches. Type C does not require attended Student/Cognito or Administrator MFA retesting for ordinary integration releases.
+
+**Execution ownership:** Individual Coach teams own their specialized analytical engine, workspace, AI coaching, development, focused testing and Alpha acceptance. Homepage/Platform owns shared UI/navigation, Guest/SSO/security contracts, coordinated Production integration and Explore publication. GitHub issues/commits/PRs are the technical handoff record. This Best Practices guidance records standards and lessons; **it is not another release coordinator or approval gate**.
+
+## 3. UI design and shared navigation
+
+Maintain one Engent Labs identity with two related themes: a clean, professional, discovery-oriented **Public Website** (Homepage/Explore, with accepted green accents and illustrations), and a minimalist, light, efficient **Coach Workspace** designed for analysis. Maintain consistent typography, colors, spacing, accessible focus states, components, responsive behavior, buttons, fields, dialogs, Save/Open and AI Advisor presentation. Coach-specific analytical layouts and justified visualizations remain under Coach ownership. Shared UI standards are design guidance, not a requirement for identical implementations or a centralized component library.
+
+Use the **accepted Production source and extracted verified design tokens** as the reference; do not invent colors, breakpoints or style values. Homepage/Platform owns the shared component contracts and three header configurations: **Platform** (full account/SSO), **Authenticated Coach** (SSO and Coach-specific status) and **AI-light Coach** (Home, Explore, branding, read-only verified/Guest status). Navigator inherits the Platform header. Coach teams follow applicable design guidance and reuse components where practical in Alpha; coordinate shared changes via GitHub rather than independently redesigning them.
+
+## 4. Analytical workspaces, AI Advisor and exports
+
+The deterministic analytical engine establishes facts and remains usable when AI is disabled, unavailable or provider-limited. AI interprets management implications; **human judgment decides and owns the action**.
+
+Start AI Advisor work from successful Forecasting and Scenario implementations. Use focused analytical evidence, concise prompts, factual/shape guards, natural management communication, meaningful economic interpretation, practical actions, monitoring and adaptive management. A single provider request is preferable when sufficient. More context, longer prompts, multiple calls or better automated scores do **not** necessarily improve judgment. Compare actual outputs on representative cases; assess factual reliability separately from management communication, using human judgment alongside automation. Do not shorten responses at the expense of economic meaning or accuracy; stop optimizing when practical improvement is marginal.
+
+**Common exports** (adapt contents to each method):
+- **Save/Open Project:** preserve the complete, editable interactive workspace and necessary inputs/state.
+- **Excel Export:** deliver numerical analytical data and preserve the source workbook content where supported.
+- **PDF Report:** communicate analytical findings, current AI advice (when available) and human management actions; distinguish generated guidance from human decisions.
+
+Reuse accepted export approaches and test changed functionality rather than imposing identical analytical layouts or reports on every Coach.
+
+## 5. Current AI-light security and provider policy — superseding standard
+
+This section applies to **Navigator and Type C Coaches**, **not automatically to Decision Tree or Decision Process**. Their existing policy remains unchanged until separately reviewed.
+
+Reuse existing **environment-specific, server-side OpenAI credentials** (Navigator Alpha/Production SecureString references in AWS Parameter Store where applicable), exact route/Origin checks, signed Guest proof, optional verified shared session recognition, trusted gateway/IP provenance, proportionate atomic visitor/IP rate limits, expiring per-actor/global concurrency locks, replay/one-shot-dispatch protection, bounded input/output/timeouts and fresh server-side Administrator master AI ON/OFF checks before paid dispatch. Fail closed when essential security/admission state cannot be established. Never trust client-supplied forwarding headers or create automatic retries after ambiguous paid dispatch. Keep diagnostics minimal and privacy-safe; no raw IP, credential, cookie, workbook or narrative storage in request logs.
+
+Concurrency locks **are execution safeguards, not financial reservations**. Release upon confirmed completion; retain only bounded locks/replay tombstones on uncertain outcomes, checked against expiry in application logic. DynamoDB TTL cleanup alone is not the enforcement clock. Preserve existing quota pools and counters across releases; Navigator and Scenario share their established pool while Forecasting retains its own existing pool. Do not silently reset or retune limits. Existing secure private Scenario adapter and exact IAM boundaries may be reused; no additional centralized service is required.
+
+**Financial policy:** Use **provider-native usage monitoring and budget notifications**. Provider notifications do **not** constitute guaranteed hard dollar caps. No application-level monthly financial ledger, monetary reservation, settlement, cost attribution, financial reconciliation, price calculator, month rollover, application hard cutoff, separate Coach allowance, trial $1 cap or 48-hour pilot deadline is required. **The old combined $10-per-month hard application pool is superseded**; it is not an admission gate or a mandated provider budget value. Do not create a replacement accounting service, dashboard, scheduler or new provider key for each Coach. Provider-account notification recipients and actual billing require provider-side verification; missing confirmation is an operational follow-up, not an application accounting gate. Do not change provider organization settings affecting unrelated applications without specific authorization.
+
+Historical financial records and release receipts are **read-only historical evidence**. Preserve appropriate archives and privacy protections; do not reconcile, refund, reset or delete them as part of normal AI-light requests. Old financial code, IAM grants and adapters must not be reintroduced through a standard build or rollback. **Do not generalize this retirement to Type B Coaches.**
+
+## 6. Alpha/Production environments and reusable release patterns
+
+Alpha is a **persistent** development/testing environment with live AI enabled under established security safeguards, not a temporary $1/48-hour trial. Maintain strict environment-specific credentials, routing, state and access. Use accepted Type A/B/C application patterns, existing AWS infrastructure/IAM, reusable templates and verified components. Routine authorized provisioning using accepted infrastructure templates and IAM patterns does not require repeated approval. Materially new architecture or substantial changes to security, cost or data integrity require escalation.
+
+Develop and validate the specialized Coach in Alpha; hand off its **exact source commit, immutable artifact/hash, focused acceptance, dependencies, known limitations and independent rollback** through GitHub. Homepage coordinates Production releases and Explore. Combine related release windows when beneficial, but preserve Coach-specific ownership, immutable versions, safe independent OFF modes and compatible rollback floors. Conditional alias/HTML promotion should verify the expected revision/ETag/ownership. Do not blindly retry ambiguous writes.
+
+**Preserve complete IAM policies when changing scoped grants.** A snippet containing only a changed statement is not a full replacement. Read back effective permissions and verify that required nonfinancial credential/master/log grants remain. Never broaden privileges automatically to repair a failed probe.
+
+Normal rollback is a revision-guarded Coach-specific OFF or compatible known-good **quota-only** version, preserving proof/bootstrap, other Coach adapters, counters, replay protection and data. Historical financial runtimes are not automatic rollback targets. Maintain the compatibility boundary when shared Navigator/Scenario components change.
+
+## 7. Proportional acceptance and troubleshooting
+
+Test **new, changed or materially risky** behavior, not the entire accepted platform for every release. Reuse previously accepted Release B SSO, Cognito/MFA, entitlement, sign-out, UI, analytical, prompt/model, IAM and infrastructure evidence when their underlying assumptions remain unchanged.
+
+| Change | Focused acceptance |
+| --- | --- |
+| Documentation | Accuracy, source references, obsolete-policy removal |
+| UI-only | Build, affected navigation and responsive browser checks |
+| Analytical engine/export | Numerical/Excel/PDF/local project correctness and changed user workflows; independent reference validation for new analytical methods |
+| New AI-light Coach | Guest/Origin/IP proof, bounded input, master ON/OFF, atomic quotas, concurrency/replay, environment binding and analytical acceptance; normally **one bounded hosted paid AI canary per changed environment** where justified and authorized |
+| Type B integration | Session and Coach-specific authorization |
+| Shared SSO/security or material infrastructure | Coordinated affected cross-platform acceptance |
+
+New analytical methods require independent mathematical validation or comparison with a trusted external reference (e.g., hand calculations, published benchmarks or established analytical software), including representative cases and relevant edge cases. Software regression tests alone do not establish analytical correctness.
+
+Provider-free fixtures, actual-role probes and focused regressions should precede any live canary. Reuse Alpha analytical acceptance for Production; Production checks should focus on correct configuration, exact deployed artifacts, hosted security/AI behavior, navigation and rollback. Do not repeat broad test suites, MFA sessions or paid canaries without technical cause. An HTTP health 200 alone does not prove the user workflow works.
+
+For failures: reproduce and inspect actual evidence first; distinguish CDN HTML fallback from JSON/API success, synthetic ingress from true browser/IP provenance, and historical conjecture from verified root cause. Make the smallest supported correction and retest affected boundaries. **Do not alter an accepted prompt, guard, model, or architecture to fix an unproven historical failure.** Preserve privacy-safe diagnostic IDs, response classes, source hashes and failed evidence as appropriate.
+
+**Scenario 502 historical limitation:** the original Production 502 was **not reproduced**, and the original request body was not retained. A fresh authorized diagnostic returned a valid 200 narrative; its fixture is not claimed byte-identical to the old request. The exact historical rejection rule is unknown. No Advisor guard/prompt/model change was justified.
+
+## 8. Standing authorization and execution boundaries
+
+Routine development, tests, Alpha and Production deployments, approved bounded paid smoke, routine provisioning using accepted AWS templates, standard AWS/route/Explore publication and release-owned rollback are covered by standing owner authorization **within established architecture, provider access and proportionate abuse safeguards**. This is not a blanket permission to cross an explicit review-only phase, execute a narrower restricted diagnostic or bypass tool/security approval. Honor direct owner instructions and tool-level execution blocks; **never attempt indirect execution around a rejection**.
+
+Escalate material deviations in security/authorization, provider cost exposure, destructive user-data operations, data integrity or substantial infrastructure/architecture changes. Do not demand repeated approvals or turn this documentation chat into a management layer.
+
+## 9. Verified AI-light release reference (November 25, 2026)
+
+**These are Lambda runtime alias versions, NOT frontend release numbers.**
+
+| AI-light application | Alpha runtime | Production runtime | Reference |
+| --- | ---: | ---: | --- |
+| Navigator | 8 | 8 | Shared discovery/Guest conversation and quota-only admission; Production clean runtime after bridge retirement |
+| Forecasting | 13 | 6 | Production quota-only direct runtime and management-oriented Advisor |
+| Scenario Analysis | 6 | 6 | Production live Guest AI, private adapter v2, preserved analytical/Advisor baseline |
+
+Scenario Production is published at [Scenario Analysis](https://www.engentlabs.com/scenario-analysis/) and [Explore](https://www.engentlabs.com/explore#scenario). **Simulation and Optimization** should start from these simplified patterns. The completion evidence is a dated snapshot, not an assurance that aliases cannot subsequently change.
+
+Final compatible OFF rollback versions recorded in the publication report: Navigator **OFF7**, Forecasting **OFF1**, Scenario **OFF1**. Tree/Process/SSO and existing projects were not changed by the AI-light migration.
+
+Key evidence, in order:
+- [Architecture review, 3ffe4a7](https://github.com/xiaominy2025/gpttutor-frontend/commit/3ffe4a7)
+- [Alpha simplification, 9373d50](https://github.com/xiaominy2025/gpttutor-frontend/commit/9373d50)
+- [Navigator and Forecasting Production, b15a373](https://github.com/xiaominy2025/gpttutor-frontend/commit/b15a373)
+- [Scenario Production and final retirement, b7f86cd](https://github.com/xiaominy2025/gpttutor-frontend/commit/b7f86cd)
+- [Scenario final completion report, Issue #11](https://github.com/xiaominy2025/gpttutor-frontend/issues/11#issuecomment-7177992491)
+- [Scenario completion and diagnostic limitation](https://github.com/xiaominy2025/gpttutor-frontend/blob/b7f86cd/docs/scenario-forecast-production/scenario-quota-production-completion.md)
+- [Sanitized Production receipt](https://github.com/xiaominy2025/gpttutor-frontend/blob/b7f86cd/docs/scenario-forecast-production/scenario-quota-production-receipt.json)
+- [Original AI-light architecture assessment](https://github.com/xiaominy2025/gpttutor-frontend/blob/3ffe4a7/docs/ai-light-simplification/README.md)
+- [Previous amendment proposal — historical](https://github.com/xiaominy2025/gpttutor-frontend/blob/3ffe4a7/docs/ai-light-simplification/playbook-amendment.md)
+
+## 10. Historical and superseded guidance
+
+Earlier v1.0–v1.5 proposals established the basic lifecycle, Type A/B/C headers, UI theme, shared access, prior financial-accounting contract, and proportional acceptance. **v2.0 was a draft consolidation; v2.1 integrated the completed migration and supersedes its AI-light financial passages.** Preserve earlier discussions/commits as historical decision records, not independently applicable active checklists.
+
+**Specifically superseded for Navigator and Type C only:** canonical monthly monetary ledgers, a combined $10 hard application spending pool, dollar reservations and settlements, Coach monetary cost attribution, monthly financial reconciliation/hard shutoff, pilot $1/48-hour trial expiration, monthly reset financial testing, finance-aware rollback, and finance-specific IAM release gates. Existing security quotas/locks, exact credential scope, Guest verification, master control, monitoring and normal security expiration **remain current**. Do not silently remove equivalent requirements from Decision Tree or Decision Process.
+
+### Revision history
+
+| Version | Date | Consolidated change |
+| --- | --- | --- |
+| v1.0–v1.5 | Nov 24–25, 2026 | Development/deployment, shared UI/SSO, AI-light integration, proportional tests, Advisor reuse; earlier monetary rules now historical for AI-light |
+| v2.0 draft | Nov 25, 2026 | Proposed unified guidance; financial AI-light sections superseded |
+| **v2.1** | **Nov 25, 2026** | Consolidated post-Scenario Production playbook; provider-native usage notifications, quota-only AI-light security, exports, Advisor/evaluation lessons, focused release/diagnosis, verified runtime snapshot and superseded-policy annotation |
+| **v2.2** | **Nov 25, 2026** | Clarified educational purpose, flexible UI guidance, routine provisioning authorization and independent analytical validation; documentation-only default-branch promotion |
+
+---
+
+**Core rule:** Reuse proven solutions. Test what changed. Diagnose before altering. Preserve security and educational value. Escalate only what is material.
