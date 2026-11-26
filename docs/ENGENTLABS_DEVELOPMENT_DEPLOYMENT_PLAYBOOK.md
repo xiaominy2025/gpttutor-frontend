@@ -1,6 +1,6 @@
 # Engent Labs — Development and Deployment Playbook
 
-**Version:** 2.2 (minor refinement of accepted v2.1)  
+**Version:** 2.3 (minor refinement of v2.2)  
 **Updated:** November 25, 2026  
 **Status:** Canonical current engineering guidance on the default branch. This file records accepted standards; it does not authorize new application or infrastructure changes.
 
@@ -26,7 +26,7 @@ Do not create independent Coach account systems. Type B protected operations req
 
 Maintain one Engent Labs identity with two related themes: a clean, professional, discovery-oriented **Public Website** (Homepage/Explore, with accepted green accents and illustrations), and a minimalist, light, efficient **Coach Workspace** designed for analysis. Maintain consistent typography, colors, spacing, accessible focus states, components, responsive behavior, buttons, fields, dialogs, Save/Open and AI Advisor presentation. Coach-specific analytical layouts and justified visualizations remain under Coach ownership. Shared UI standards are design guidance, not a requirement for identical implementations or a centralized component library.
 
-Use the **accepted Production source and extracted verified design tokens** as the reference; do not invent colors, breakpoints or style values. Homepage/Platform owns the shared component contracts and three header configurations: **Platform** (full account/SSO), **Authenticated Coach** (SSO and Coach-specific status) and **AI-light Coach** (Home, Explore, branding, read-only verified/Guest status). Navigator inherits the Platform header. Coach teams follow applicable design guidance and reuse components where practical in Alpha; coordinate shared changes via GitHub rather than independently redesigning them.
+Use the **accepted Production source and extracted verified design tokens** as the reference; do not invent colors, breakpoints or style values. Homepage/Platform owns the shared component contracts and three header configurations: **Platform** (full account/SSO), **Authenticated Coach** (SSO and Coach-specific status) and **AI-light Coach** (Home, Explore, branding, read-only verified/Guest status). Navigator inherits the Platform header. Coach teams reuse established shared UI components when available; otherwise reproduce accepted appearance and behavior without unnecessary technical dependencies. Consistent user experience matters more than identical source code. Coordinate shared changes via GitHub.
 
 ## 4. Analytical workspaces, AI Advisor and exports
 
@@ -49,7 +49,7 @@ Reuse existing **environment-specific, server-side OpenAI credentials** (Navigat
 
 Concurrency locks **are execution safeguards, not financial reservations**. Release upon confirmed completion; retain only bounded locks/replay tombstones on uncertain outcomes, checked against expiry in application logic. DynamoDB TTL cleanup alone is not the enforcement clock. Preserve existing quota pools and counters across releases; Navigator and Scenario share their established pool while Forecasting retains its own existing pool. Do not silently reset or retune limits. Existing secure private Scenario adapter and exact IAM boundaries may be reused; no additional centralized service is required.
 
-**Financial policy:** Use **provider-native usage monitoring and budget notifications**. Provider notifications do **not** constitute guaranteed hard dollar caps. No application-level monthly financial ledger, monetary reservation, settlement, cost attribution, financial reconciliation, price calculator, month rollover, application hard cutoff, separate Coach allowance, trial $1 cap or 48-hour pilot deadline is required. **The old combined $10-per-month hard application pool is superseded**; it is not an admission gate or a mandated provider budget value. Do not create a replacement accounting service, dashboard, scheduler or new provider key for each Coach. Provider-account notification recipients and actual billing require provider-side verification; missing confirmation is an operational follow-up, not an application accounting gate. Do not change provider organization settings affecting unrelated applications without specific authorization.
+**Financial policy:** Use **provider-native usage monitoring and budget notifications**. Removing application-enforced monetary limits is an intentional owner-approved simplification and acceptance of financial risk. Provider notifications do **not** constitute guaranteed hard dollar caps; visitor/IP quotas, concurrency controls and the Administrator master switch reduce exposure but do not guarantee a maximum dollar cost. Reassess this policy only when actual usage, model pricing or public adoption materially changes; do not reintroduce financial infrastructure speculatively. No application-level monthly financial ledger, monetary reservation, settlement, cost attribution, financial reconciliation, price calculator, month rollover, application hard cutoff, separate Coach allowance, trial $1 cap or 48-hour pilot deadline is required. **The old combined $10-per-month hard application pool is superseded**; it is not an admission gate or a mandated provider budget value. Do not create a replacement accounting service, dashboard, scheduler or new provider key for each Coach. Provider-account notification recipients and actual billing require provider-side verification; missing confirmation is an operational follow-up, not an application accounting gate. Do not change provider organization settings affecting unrelated applications without specific authorization.
 
 Historical financial records and release receipts are **read-only historical evidence**. Preserve appropriate archives and privacy protections; do not reconcile, refund, reset or delete them as part of normal AI-light requests. Old financial code, IAM grants and adapters must not be reintroduced through a standard build or rollback. **Do not generalize this retirement to Type B Coaches.**
 
@@ -65,7 +65,7 @@ Normal rollback is a revision-guarded Coach-specific OFF or compatible known-goo
 
 ## 7. Proportional acceptance and troubleshooting
 
-Test **new, changed or materially risky** behavior, not the entire accepted platform for every release. Reuse previously accepted Release B SSO, Cognito/MFA, entitlement, sign-out, UI, analytical, prompt/model, IAM and infrastructure evidence when their underlying assumptions remain unchanged.
+Test **new, changed or materially risky** behavior, not the entire accepted platform for every release. Reuse previously accepted Release B SSO, Cognito/MFA, entitlement, sign-out, UI, analytical, prompt/model, IAM and infrastructure evidence when their underlying assumptions remain unchanged. A new Coach release does not require a full regression campaign for unchanged Tree, Process, Navigator, Forecasting, Scenario, Cognito or Administrator functionality. Verify the new integration boundary and perform targeted regressions only where shared dependencies actually change. Do not repeat attended SSO, Student authentication or Administrator MFA tests for ordinary AI-light deployments.
 
 | Change | Focused acceptance |
 | --- | --- |
@@ -86,11 +86,11 @@ For failures: reproduce and inspect actual evidence first; distinguish CDN HTML 
 
 ## 8. Standing authorization and execution boundaries
 
-Routine development, tests, Alpha and Production deployments, approved bounded paid smoke, routine provisioning using accepted AWS templates, standard AWS/route/Explore publication and release-owned rollback are covered by standing owner authorization **within established architecture, provider access and proportionate abuse safeguards**. This is not a blanket permission to cross an explicit review-only phase, execute a narrower restricted diagnostic or bypass tool/security approval. Honor direct owner instructions and tool-level execution blocks; **never attempt indirect execution around a rejection**.
+Routine development, tests, Alpha and Production deployments, approved bounded paid smoke, routine provisioning using accepted AWS templates, standard AWS/route/Explore publication and release-owned rollback are covered by standing owner authorization **within established architecture, provider access and proportionate abuse safeguards**. This is not a blanket permission to cross an explicit review-only phase, execute a narrower restricted diagnostic or bypass tool/security approval. Standing owner authorization removes redundant project-level approval requests, not mandatory execution-tool security approvals when triggered. Honor direct owner instructions and tool-level execution blocks; **never attempt indirect execution around a rejection**. Do not add discretionary approval gates.
 
 Escalate material deviations in security/authorization, provider cost exposure, destructive user-data operations, data integrity or substantial infrastructure/architecture changes. Do not demand repeated approvals or turn this documentation chat into a management layer.
 
-## 9. Verified AI-light release reference (November 25, 2026)
+## 9. Historical verified AI-light release snapshot (November 25, 2026)
 
 **These are Lambda runtime alias versions, NOT frontend release numbers.**
 
@@ -100,7 +100,7 @@ Escalate material deviations in security/authorization, provider cost exposure, 
 | Forecasting | 13 | 6 | Production quota-only direct runtime and management-oriented Advisor |
 | Scenario Analysis | 6 | 6 | Production live Guest AI, private adapter v2, preserved analytical/Advisor baseline |
 
-Scenario Production is published at [Scenario Analysis](https://www.engentlabs.com/scenario-analysis/) and [Explore](https://www.engentlabs.com/explore#scenario). **Simulation and Optimization** should start from these simplified patterns. The completion evidence is a dated snapshot, not an assurance that aliases cannot subsequently change.
+Scenario Production is published at [Scenario Analysis](https://www.engentlabs.com/scenario-analysis/) and [Explore](https://www.engentlabs.com/explore#scenario). **Simulation and Optimization** should start from these simplified patterns. This dated evidence is not permanent deployment configuration. Before deployment, always obtain fresh runtime versions, revision identifiers and rollback ownership evidence.
 
 Final compatible OFF rollback versions recorded in the publication report: Navigator **OFF7**, Forecasting **OFF1**, Scenario **OFF1**. Tree/Process/SSO and existing projects were not changed by the AI-light migration.
 
@@ -129,6 +129,7 @@ Earlier v1.0–v1.5 proposals established the basic lifecycle, Type A/B/C header
 | v2.0 draft | Nov 25, 2026 | Proposed unified guidance; financial AI-light sections superseded |
 | **v2.1** | **Nov 25, 2026** | Consolidated post-Scenario Production playbook; provider-native usage notifications, quota-only AI-light security, exports, Advisor/evaluation lessons, focused release/diagnosis, verified runtime snapshot and superseded-policy annotation |
 | **v2.2** | **Nov 25, 2026** | Clarified educational purpose, flexible UI guidance, routine provisioning authorization and independent analytical validation; documentation-only default-branch promotion |
+| **v2.3** | **Nov 25, 2026** | Explicit financial risk acceptance, flexible UI implementation, acceptance evidence reuse, tool authorization distinction and historical release snapshot clarification |
 
 ---
 
