@@ -1,12 +1,14 @@
 # Engent Labs — Development and Deployment Playbook
 
-**Version:** 2.4 (local live AI testing clarification)  
+**Version:** 2.5 (AI safeguards and consistency refinement)  
 **Updated:** November 27, 2026  
-**Status:** Canonical current engineering guidance on the default branch. This file records accepted standards; it does not authorize new application or infrastructure changes.
+**Status:** Canonical current engineering guidance on the default branch. This document records accepted engineering standards and standing authorization boundaries. It does not independently authorize material deviations from those boundaries.
 
 ## 1. Purpose and operating principles
 
 Engent Labs builds interactive Decision Coaches that combine sound analytical methods, helpful AI interpretation and human judgment. Help users think systematically and reduce technical burden without removing intellectual engagement or human decision ownership. Analysis serves decisions, not the other way around. **Reuse what is proven; adapt where necessary; innovate where it matters.** Apply the 80/20 principle across design, evaluation, troubleshooting, testing and release. Prefer educational value, numerical correctness, practical management usefulness, security, simplicity, maintainability and proportional effort to elaborate technical architecture or redundant governance.
+
+Engent Labs AI safeguards primarily protect against intentional excessive use, automated abuse and unauthorized access, rather than enforce precise financial control. Legitimate AI usage is a normal operating expense. Manage expenditure through provider-native usage monitoring and budget notifications; do not introduce application-level financial accounting without a demonstrated operational need. Existing Coach-specific policies remain in force until separately reviewed.
 
 Before major work, examine accepted internal implementations, their release receipts, development history, failures and evaluations. Identify (a) what is already solved, (b) what is reusable and (c) what is genuinely new. Do not redesign settled infrastructure or optimize speculatively. Keep this a living, **single consolidated** guidance document, with detail and immutable evidence in linked GitHub source and Coach repositories.
 
@@ -38,9 +40,11 @@ Start AI Advisor work from successful Forecasting and Scenario implementations. 
 
 Local live AI testing and iterative optimization are standard development activities covered by standing owner authorization for all Engent Labs Coaches. Reuse existing authorized OpenAI API credentials saved in the local development environment. Use actual AI responses to develop, evaluate and optimize prompts, analytical context, reasoning quality and management communication. Iterate as necessary to achieve satisfactory quality, reuse successful development and evaluation practices from existing Coaches, and apply the 80/20 principle: stop when further practical improvement becomes marginal.
 
-Do not impose arbitrary API request-count limits, local testing budgets, per-iteration financial approvals or mandatory provider-free-only testing phases. Provider-free testing is a supplementary engineering practice, not a substitute or mandatory prerequisite for local live AI optimization. Manage API budgets and usage monitoring at the OpenAI API platform level. Routine local live AI testing does not require repeated discretionary owner approval.
+Do not impose arbitrary API request-count limits, local testing budgets, per-iteration financial approvals or mandatory provider-free-only testing phases. Provider-free testing is a supplementary engineering practice, not a substitute or mandatory prerequisite for local live AI optimization. Manage API budgets and usage monitoring at the OpenAI API platform level. Routine local live AI testing does not require repeated discretionary owner approval. Determine testing effort by functional requirements, response quality and the 80/20 principle, without additional financial approval procedures.
 
-Preserve credential security, authorized data scope and mandatory execution-tool approvals. Never bypass execution rejections or automatically retry ambiguous paid dispatches. The bounded hosted AI canary guidance in Section 7 applies to deployment verification, not routine local AI development and optimization. Existing hosted security, authentication and Production policies remain unchanged.
+Preserve credential security, authorized data scope and mandatory execution-tool approvals. Keep credentials out of source code, GitHub, browser bundles, prompts and diagnostic logs. Prefer synthetic or sanitized evaluation data unless real data is necessary and explicitly authorized. Never bypass execution rejections or automatically retry ambiguous paid dispatches. The bounded hosted AI canary guidance in Section 7 applies to deployment verification, not routine local AI development and optimization. Existing hosted security, authentication and Production policies remain unchanged.
+
+Retain representative evaluation cases, accepted prompt/model configurations and meaningful comparison results in the relevant Coach repository, using privacy-safe evidence. No exhaustive experiment archive or separate reporting system is required.
 
 **Common exports** (adapt contents to each method):
 - **Save/Open Project:** preserve the complete, editable interactive workspace and necessary inputs/state.
@@ -69,7 +73,7 @@ Develop and validate the specialized Coach in Alpha; hand off its **exact source
 
 **Preserve complete IAM policies when changing scoped grants.** A snippet containing only a changed statement is not a full replacement. Read back effective permissions and verify that required nonfinancial credential/master/log grants remain. Never broaden privileges automatically to repair a failed probe.
 
-Normal rollback is a revision-guarded Coach-specific OFF or compatible known-good **quota-only** version, preserving proof/bootstrap, other Coach adapters, counters, replay protection and data. Historical financial runtimes are not automatic rollback targets. Maintain the compatibility boundary when shared Navigator/Scenario components change.
+Normal rollback uses the applicable Coach-specific, revision-guarded known-good release or safe OFF mode. For Navigator and Type C Coaches, use compatible quota-only rollback versions, preserving proof/bootstrap, other Coach adapters, counters, replay protection and data; do not automatically restore superseded financial runtimes. Maintain the compatibility boundary when shared Navigator/Scenario components change. Preserve established rollback policies for Type B Coaches.
 
 ## 7. Proportional acceptance and troubleshooting
 
@@ -139,6 +143,7 @@ Earlier v1.0–v1.5 proposals established the basic lifecycle, Type A/B/C header
 | **v2.2** | **Nov 25, 2026** | Clarified educational purpose, flexible UI guidance, routine provisioning authorization and independent analytical validation; documentation-only default-branch promotion |
 | **v2.3** | **Nov 25, 2026** | Explicit financial risk acceptance, flexible UI implementation, acceptance evidence reuse, tool authorization distinction and historical release snapshot clarification |
 | **v2.4** | **Nov 27, 2026** | Clarified standing authorization for local live AI development and optimization, distinct from bounded hosted deployment canaries; preserved execution-tool approvals and hosted policies |
+| **v2.5** | **Nov 27, 2026** | Clarified abuse-first AI safeguards, local development flexibility, authorization wording, credential/data hygiene, reusable evaluation evidence and Coach-specific rollback scope |
 
 ---
 
