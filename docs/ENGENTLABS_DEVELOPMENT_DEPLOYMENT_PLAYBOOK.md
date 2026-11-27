@@ -1,7 +1,7 @@
 # Engent Labs — Development and Deployment Playbook
 
-**Version:** 2.3 (minor refinement of v2.2)  
-**Updated:** November 25, 2026  
+**Version:** 2.4 (local live AI testing clarification)  
+**Updated:** November 27, 2026  
 **Status:** Canonical current engineering guidance on the default branch. This file records accepted standards; it does not authorize new application or infrastructure changes.
 
 ## 1. Purpose and operating principles
@@ -33,6 +33,14 @@ Use the **accepted Production source and extracted verified design tokens** as t
 The deterministic analytical engine establishes facts and remains usable when AI is disabled, unavailable or provider-limited. AI interprets management implications; **human judgment decides and owns the action**.
 
 Start AI Advisor work from successful Forecasting and Scenario implementations. Use focused analytical evidence, concise prompts, factual/shape guards, natural management communication, meaningful economic interpretation, practical actions, monitoring and adaptive management. A single provider request is preferable when sufficient. More context, longer prompts, multiple calls or better automated scores do **not** necessarily improve judgment. Compare actual outputs on representative cases; assess factual reliability separately from management communication, using human judgment alongside automation. Do not shorten responses at the expense of economic meaning or accuracy; stop optimizing when practical improvement is marginal.
+
+### Local live AI development and optimization
+
+Local live AI testing and iterative optimization are standard development activities covered by standing owner authorization for all Engent Labs Coaches. Reuse existing authorized OpenAI API credentials saved in the local development environment. Use actual AI responses to develop, evaluate and optimize prompts, analytical context, reasoning quality and management communication. Iterate as necessary to achieve satisfactory quality, reuse successful development and evaluation practices from existing Coaches, and apply the 80/20 principle: stop when further practical improvement becomes marginal.
+
+Do not impose arbitrary API request-count limits, local testing budgets, per-iteration financial approvals or mandatory provider-free-only testing phases. Provider-free testing is a supplementary engineering practice, not a substitute or mandatory prerequisite for local live AI optimization. Manage API budgets and usage monitoring at the OpenAI API platform level. Routine local live AI testing does not require repeated discretionary owner approval.
+
+Preserve credential security, authorized data scope and mandatory execution-tool approvals. Never bypass execution rejections or automatically retry ambiguous paid dispatches. The bounded hosted AI canary guidance in Section 7 applies to deployment verification, not routine local AI development and optimization. Existing hosted security, authentication and Production policies remain unchanged.
 
 **Common exports** (adapt contents to each method):
 - **Save/Open Project:** preserve the complete, editable interactive workspace and necessary inputs/state.
@@ -78,7 +86,7 @@ Test **new, changed or materially risky** behavior, not the entire accepted plat
 
 New analytical methods require independent mathematical validation or comparison with a trusted external reference (e.g., hand calculations, published benchmarks or established analytical software), including representative cases and relevant edge cases. Software regression tests alone do not establish analytical correctness.
 
-Provider-free fixtures, actual-role probes and focused regressions should precede any live canary. Reuse Alpha analytical acceptance for Production; Production checks should focus on correct configuration, exact deployed artifacts, hosted security/AI behavior, navigation and rollback. Do not repeat broad test suites, MFA sessions or paid canaries without technical cause. An HTTP health 200 alone does not prove the user workflow works.
+For hosted deployment verification, provider-free fixtures, actual-role probes and focused regressions should precede any live canary. This does not impose a prerequisite on routine local live AI optimization (Section 4). Reuse Alpha analytical acceptance for Production; Production checks should focus on correct configuration, exact deployed artifacts, hosted security/AI behavior, navigation and rollback. Do not repeat broad test suites, MFA sessions or paid canaries without technical cause. An HTTP health 200 alone does not prove the user workflow works.
 
 For failures: reproduce and inspect actual evidence first; distinguish CDN HTML fallback from JSON/API success, synthetic ingress from true browser/IP provenance, and historical conjecture from verified root cause. Make the smallest supported correction and retest affected boundaries. **Do not alter an accepted prompt, guard, model, or architecture to fix an unproven historical failure.** Preserve privacy-safe diagnostic IDs, response classes, source hashes and failed evidence as appropriate.
 
@@ -86,7 +94,7 @@ For failures: reproduce and inspect actual evidence first; distinguish CDN HTML 
 
 ## 8. Standing authorization and execution boundaries
 
-Routine development, tests, Alpha and Production deployments, approved bounded paid smoke, routine provisioning using accepted AWS templates, standard AWS/route/Explore publication and release-owned rollback are covered by standing owner authorization **within established architecture, provider access and proportionate abuse safeguards**. This is not a blanket permission to cross an explicit review-only phase, execute a narrower restricted diagnostic or bypass tool/security approval. Standing owner authorization removes redundant project-level approval requests, not mandatory execution-tool security approvals when triggered. Honor direct owner instructions and tool-level execution blocks; **never attempt indirect execution around a rejection**. Do not add discretionary approval gates.
+Routine development and tests (including local live AI testing and iterative optimization for all Coaches under Section 4), Alpha and Production deployments, approved bounded hosted paid smoke, routine provisioning using accepted AWS templates, standard AWS/route/Explore publication and release-owned rollback are covered by standing owner authorization **within established architecture, provider access and proportionate abuse safeguards**. This is not a blanket permission to cross an explicit review-only phase, execute a narrower restricted diagnostic or bypass tool/security approval. Standing owner authorization removes redundant project-level approval requests, not mandatory execution-tool security approvals when triggered. Honor direct owner instructions and tool-level execution blocks; **never attempt indirect execution around a rejection**. Do not add discretionary approval gates.
 
 Escalate material deviations in security/authorization, provider cost exposure, destructive user-data operations, data integrity or substantial infrastructure/architecture changes. Do not demand repeated approvals or turn this documentation chat into a management layer.
 
@@ -130,6 +138,7 @@ Earlier v1.0–v1.5 proposals established the basic lifecycle, Type A/B/C header
 | **v2.1** | **Nov 25, 2026** | Consolidated post-Scenario Production playbook; provider-native usage notifications, quota-only AI-light security, exports, Advisor/evaluation lessons, focused release/diagnosis, verified runtime snapshot and superseded-policy annotation |
 | **v2.2** | **Nov 25, 2026** | Clarified educational purpose, flexible UI guidance, routine provisioning authorization and independent analytical validation; documentation-only default-branch promotion |
 | **v2.3** | **Nov 25, 2026** | Explicit financial risk acceptance, flexible UI implementation, acceptance evidence reuse, tool authorization distinction and historical release snapshot clarification |
+| **v2.4** | **Nov 27, 2026** | Clarified standing authorization for local live AI development and optimization, distinct from bounded hosted deployment canaries; preserved execution-tool approvals and hosted policies |
 
 ---
 
