@@ -1,0 +1,174 @@
+{
+  "completedAt": "2026-11-28T04:03:21.017Z",
+  "url": "https://www.engentlabs.com/simulation/",
+  "explore": "https://www.engentlabs.com/explore#simulation",
+  "ai": "ON",
+  "source": "100f7be00d8867139513b94c639dbbb8415ecc04",
+  "platformSource": "16c12f079d6699f0027fb7a1d69daa8bdae7506c",
+  "frontendZipSha256": "2e604548e1af99ca5c0098d231f7c97a7c910826a928b045b4c8ba5c9d122575",
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "5a537f7563cb0910951d048acfc6f944d4dae883ff642d27020eb6a7e73056f6"
+    },
+    {
+      "path": "assets/engent-logo-13TNTF-a.png",
+      "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295"
+    },
+    {
+      "path": "assets/simulation-review-B7iwuvNo.css",
+      "sha256": "b564166bc829d2f9a0f1b78fe9a50e69545347ad101a4b25e7deca4927c53030"
+    },
+    {
+      "path": "assets/simulation-review-BDivDzws.js",
+      "sha256": "dcedb74047ec2a0720311ed383d92fef996d47d0d05d7858587b1ce5b651ef7b"
+    },
+    {
+      "path": "assets/simulation-worker-SKBQiIDi.js",
+      "sha256": "af2e9760517eaf0fd1af14539fafc33c93a3e1d1970ff0ef4befab1f7f1b8b82"
+    }
+  ],
+  "staticVersions": [
+    {
+      "path": "index.html",
+      "sha256": "5a537f7563cb0910951d048acfc6f944d4dae883ff642d27020eb6a7e73056f6",
+      "version": "L7WrzLRjhACtaXrg4NkuPrMzmSGDv6La"
+    },
+    {
+      "path": "assets/engent-logo-13TNTF-a.png",
+      "sha256": "4fbccf6dc342440c367c9e4089551bc6ee2ae8e2c18f0844a612951e77d54295",
+      "version": "GfBjNx19YEMhKEBQIQvngehmFxaCDcrX"
+    },
+    {
+      "path": "assets/simulation-review-B7iwuvNo.css",
+      "sha256": "b564166bc829d2f9a0f1b78fe9a50e69545347ad101a4b25e7deca4927c53030",
+      "version": "gbyteruN7tWlkM7tCtndgA9lEPn9yFys"
+    },
+    {
+      "path": "assets/simulation-review-BDivDzws.js",
+      "sha256": "dcedb74047ec2a0720311ed383d92fef996d47d0d05d7858587b1ce5b651ef7b",
+      "version": "YZIfjc.T9EgsNObkRJ_sSrildxhdtbwz"
+    },
+    {
+      "path": "assets/simulation-worker-SKBQiIDi.js",
+      "sha256": "af2e9760517eaf0fd1af14539fafc33c93a3e1d1970ff0ef4befab1f7f1b8b82",
+      "version": "YjAR9MIMZgU3Oah_4yHJ_9Onik5TlzpG"
+    }
+  ],
+  "runtime": {
+    "advisor": {
+      "version": "3",
+      "revision": "735e6b47-4011-49de-8269-e5b41b8bd82e",
+      "sha256": "ad00b1e56c30e70a0d143858bb0803951a7b1d99c35b5c1962fb462c682d3421",
+      "mode": "live"
+    },
+    "admission": {
+      "version": "1",
+      "sha256": "f14f8869643e683c3ee225c87041f5939ad145f6a5a2dcbb6bb56e65836df54b"
+    },
+    "alphaAdvisorUnchanged": {
+      "version": "3",
+      "mode": "live"
+    }
+  },
+  "routes": [
+    {
+      "id": "7aidvua",
+      "key": "POST /api/platform/simulation/management-perspective",
+      "authorization": "NONE",
+      "target": "integrations/a9onpj1"
+    },
+    {
+      "id": "u507dc9",
+      "key": "POST /internal/coaches/simulation/ai",
+      "authorization": "AWS_IAM",
+      "target": "integrations/cqc6b3f"
+    }
+  ],
+  "publication": {
+    "stack": "engent-simulation-prod",
+    "resourceCount": 15,
+    "directory": {
+      "version": "PmVD9QlSnprMgG4fSASeQrwS4H4VilvF",
+      "etag": "\"b64c33c8aa48f673c821da20e4113bfb\"",
+      "sha256": "f47946d33022378e7d1525b14c8944b8e2566300cf18dc3cf5d6267bf9f86aaa",
+      "source": "16c12f079d6699f0027fb7a1d69daa8bdae7506c"
+    },
+    "directoryAssets": [
+      {
+        "path": "assets/DecisionNavigator-BPgthh3o.js",
+        "sha256": "94ec7bbc8732db473de1383207191b5d4c7af1008189679d618dff0c8bc10cba",
+        "version": "LFAIhIE1MtnmXkgqrejHw.hswifrHtXv"
+      },
+      {
+        "path": "assets/index-LVGtyp0Y.js",
+        "sha256": "a44306f81588adbdf7fb365a0ba5f3d95116448c9606691bdb9a4acdff8e4f7e",
+        "version": "2x1S6rOwAh2Me_M2ZTzYt3wxqN7sDAb9"
+      }
+    ],
+    "viewer": {
+      "etag": "E13V1IB3VIYZZH",
+      "sha256": "f2bb1cce53d1caefc6fb4aa398dff90479868ef7068cf46f5802965b7ccb49b2"
+    },
+    "invalidation": {
+      "id": "I7RXCGGOTFKDTI8ITF8OM6I6AL",
+      "status": "Completed"
+    }
+  },
+  "acceptance": {
+    "providerFreeHosted": true,
+    "originDirectApi403": true,
+    "missingGuest401": true,
+    "replayDenied": true,
+    "invalidAdviceWithheld": true,
+    "effectiveIamMatched": true,
+    "canary": {
+      "paidRequests": 1,
+      "retries": 0,
+      "httpStatus": 200,
+      "paragraphs": 3,
+      "maxOutputTokens": 640,
+      "workspaceAndPdfMatch": true,
+      "staleAdviceCleared": true,
+      "authoredActionsPreserved": true
+    },
+    "responsiveWidths": [
+      1440,
+      390
+    ],
+    "genericPlaceholder": true,
+    "contextRestoration": true,
+    "worker": true,
+    "exploreLaunch": true,
+    "directRefreshHome": true,
+    "podcasts": true,
+    "navigatorDialog": true,
+    "existingAliasesAndMasterUnchanged": true
+  },
+  "limitations": [
+    "Existing CloudFront403 error fallback returns exact directory HTML200; direct API403 verified, no advice.",
+    "Native OS file-picker tests and full numerical campaign reused from Alpha; not repeated."
+  ],
+  "rollback": {
+    "advisorOffVersion": "1",
+    "offActualInvokeStatus": 503,
+    "directory": {
+      "version": "Lke6pChJSuOU7.U1xx1WqZVFft73PgLA",
+      "etag": "\"2aa86da49249f8a3f708fb485ab9206d\"",
+      "sha256": "767cd4fd0c503df9399daa62572fdab0470f38363ca6d66ad78c103d810308a3"
+    },
+    "viewer": {
+      "priorSha256": "4421dac166c4c37a35f6480fdbb67abb85623dd8db75157dab3f16a2a03aaab6",
+      "requiredCurrentSha256": "f2bb1cce53d1caefc6fb4aa398dff90479868ef7068cf46f5802965b7ccb49b2"
+    },
+    "conditional": true,
+    "executed": false
+  },
+  "privacy": {
+    "credentialsExposed": false,
+    "rawIpOrCookieRetained": false,
+    "requestBodiesRetained": false
+  },
+  "providerCost": "One bounded model request; native provider monitoring; no application accounting or hard dollar cutoff.",
+  "pdfSha256": "06f06763ad9a607c15f45b4ccdd505760a0d8e9378e3962cb61a24dd605c2493"
+}
