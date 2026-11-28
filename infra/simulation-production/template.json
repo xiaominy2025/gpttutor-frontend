@@ -1,0 +1,368 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Simulation Type C Production; isolated quota-only admission; existing Guest signing/master/provider parameters; initially OFF.",
+  "Parameters": {
+    "AdvisorKey": {
+      "Type": "String"
+    },
+    "AdvisorSha256": {
+      "Type": "String"
+    },
+    "AdmissionKey": {
+      "Type": "String"
+    },
+    "AdmissionSha256": {
+      "Type": "String"
+    },
+    "AdvisorObjectVersion": {
+      "Type": "String"
+    },
+    "AdmissionObjectVersion": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "AdvisorLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/simulation-prod-api",
+        "RetentionInDays": 14
+      }
+    },
+    "AdvisorRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": "simulation-prod-runtime",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "simulation-prod-runtime",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "ssm:GetParameter",
+                  "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/openai-api-key"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "execute-api:Invoke",
+                  "Resource": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/coaches/simulation/ai"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/simulation-prod-api:log-stream:*"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "Advisor": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": "AdvisorLogs",
+      "Properties": {
+        "FunctionName": "simulation-prod-api",
+        "Runtime": "nodejs22.x",
+        "Architectures": [
+          "x86_64"
+        ],
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "AdvisorRole",
+            "Arn"
+          ]
+        },
+        "Timeout": 25,
+        "MemorySize": 256,
+        "ReservedConcurrentExecutions": 2,
+        "Environment": {
+          "Variables": {
+            "SIMULATION_QUOTA_MODE": "off"
+          }
+        },
+        "Code": {
+          "S3Bucket": "decisiontree-prod-artifacts-771049112957-us-east-1",
+          "S3Key": {
+            "Ref": "AdvisorKey"
+          },
+          "S3ObjectVersion": {
+            "Ref": "AdvisorObjectVersion"
+          }
+        }
+      }
+    },
+    "AdvisorVersion": {
+      "Type": "AWS::Lambda::Version",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "Advisor"
+        },
+        "CodeSha256": {
+          "Ref": "AdvisorSha256"
+        }
+      }
+    },
+    "AdmissionLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/simulation-prod-admission",
+        "RetentionInDays": 14
+      }
+    },
+    "AdmissionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": "simulation-prod-admission-runtime",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "simulation-prod-admission-runtime",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "ssm:GetParameter",
+                  "Resource": "arn:aws:ssm:us-east-1:771049112957:parameter/decisionnavigator-prod/hmac-secret"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "dynamodb:GetItem",
+                  "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+                  "Condition": {
+                    "ForAllValues:StringEquals": {
+                      "dynamodb:LeadingKeys": [
+                        "AI#CONFIG"
+                      ]
+                    },
+                    "Null": {
+                      "dynamodb:LeadingKeys": "false"
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:PutItem"
+                  ],
+                  "Resource": "arn:aws:dynamodb:us-east-1:771049112957:table/decisiontree-prod-data",
+                  "Condition": {
+                    "ForAllValues:StringLike": {
+                      "dynamodb:LeadingKeys": [
+                        "NAVIGATOR#SIMULATION#*"
+                      ]
+                    },
+                    "Null": {
+                      "dynamodb:LeadingKeys": "false"
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": "arn:aws:logs:us-east-1:771049112957:log-group:/aws/lambda/simulation-prod-admission:log-stream:*"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "Admission": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": "AdmissionLogs",
+      "Properties": {
+        "FunctionName": "simulation-prod-admission",
+        "Runtime": "nodejs22.x",
+        "Architectures": [
+          "x86_64"
+        ],
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "AdmissionRole",
+            "Arn"
+          ]
+        },
+        "Timeout": 15,
+        "MemorySize": 256,
+        "ReservedConcurrentExecutions": 2,
+        "Code": {
+          "S3Bucket": "decisiontree-prod-artifacts-771049112957-us-east-1",
+          "S3Key": {
+            "Ref": "AdmissionKey"
+          },
+          "S3ObjectVersion": {
+            "Ref": "AdmissionObjectVersion"
+          }
+        }
+      }
+    },
+    "AdmissionVersion": {
+      "Type": "AWS::Lambda::Version",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "Admission"
+        },
+        "CodeSha256": {
+          "Ref": "AdmissionSha256"
+        }
+      }
+    },
+    "Live": {
+      "Type": "AWS::Lambda::Alias",
+      "Properties": {
+        "Name": "live",
+        "FunctionName": {
+          "Ref": "Advisor"
+        },
+        "FunctionVersion": {
+          "Fn::GetAtt": [
+            "AdvisorVersion",
+            "Version"
+          ]
+        }
+      }
+    },
+    "PublicInvoke": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "Live"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceAccount": "771049112957",
+        "SourceArn": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/api/platform/simulation/management-perspective"
+      }
+    },
+    "PublicIntegration": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": "eoszayfkqd",
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Ref": "Live"
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 26000
+      }
+    },
+    "PublicRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "DependsOn": "PublicInvoke",
+      "Properties": {
+        "ApiId": "eoszayfkqd",
+        "RouteKey": "POST /api/platform/simulation/management-perspective",
+        "AuthorizationType": "NONE",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "PublicIntegration"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "PrivateInvoke": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AdmissionVersion"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceAccount": "771049112957",
+        "SourceArn": "arn:aws:execute-api:us-east-1:771049112957:eoszayfkqd/$default/POST/internal/coaches/simulation/ai"
+      }
+    },
+    "PrivateIntegration": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": "eoszayfkqd",
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Ref": "AdmissionVersion"
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 26000
+      }
+    },
+    "PrivateRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "DependsOn": "PrivateInvoke",
+      "Properties": {
+        "ApiId": "eoszayfkqd",
+        "RouteKey": "POST /internal/coaches/simulation/ai",
+        "AuthorizationType": "AWS_IAM",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "PrivateIntegration"
+              }
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "OffVersion": {
+      "Value": {
+        "Fn::GetAtt": [
+          "AdvisorVersion",
+          "Version"
+        ]
+      }
+    },
+    "AdmissionVersion": {
+      "Value": {
+        "Fn::GetAtt": [
+          "AdmissionVersion",
+          "Version"
+        ]
+      }
+    }
+  }
+}

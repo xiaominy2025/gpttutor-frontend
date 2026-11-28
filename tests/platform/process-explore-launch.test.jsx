@@ -28,3 +28,13 @@ it('launches Scenario only at its approved independent path and keeps unfinished
  for(const id of ['simulation','optimization'])expect(within(v.container.querySelector('#'+id)).getByText('Coming Soon')).toBeTruthy();
  vi.stubEnv('VITE_SCENARIO_COACH_ENABLED','false');
 });
+
+it('launches Simulation only at its independent production path when explicitly enabled',()=>{
+ vi.stubEnv('VITE_SIMULATION_COACH_ENABLED','true');
+ const v=explore('true');
+ const simulation=within(v.container.querySelector('#simulation'));
+ expect(simulation.getByRole('link',{name:'Launch Simulation Coach'}).getAttribute('href')).toBe('/simulation/');
+ expect(simulation.queryByText('Coming Soon')).toBeNull();
+ expect(within(v.container.querySelector('#optimization')).getByText('Coming Soon')).toBeTruthy();
+ vi.stubEnv('VITE_SIMULATION_COACH_ENABLED','false');
+});

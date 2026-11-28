@@ -1,6 +1,6 @@
 // Web-only publication build: explicit coordinated Release B mode; no AWS writes.
 import{build}from'vite';import{resolve}from'node:path';import{readFile,readdir,mkdir,writeFile}from'node:fs/promises';import{createHash}from'node:crypto';import{execFileSync}from'node:child_process';
-const args=process.argv.slice(2);if(args.some(a=>!['--navigator','--forecasting','--process','--scenario','--release-b'].includes(a)))throw Error('Unsupported production publication feature');const navigator=args.includes('--navigator'),forecasting=args.includes('--forecasting'),processCoach=args.includes('--process'),scenario=args.includes('--scenario'),releaseB=args.includes('--release-b'),root='.artifacts/coordinated-production';await mkdir(root,{recursive:true});
+const args=process.argv.slice(2);if(args.some(a=>!['--navigator','--forecasting','--process','--scenario','--release-b','--simulation'].includes(a)))throw Error('Unsupported production publication feature');const navigator=args.includes('--navigator'),forecasting=args.includes('--forecasting'),processCoach=args.includes('--process'),scenario=args.includes('--scenario'),simulation=args.includes('--simulation'),releaseB=args.includes('--release-b'),root='.artifacts/coordinated-production';await mkdir(root,{recursive:true});
 await build({base:'/engent-release-a/',build:{outDir:root+'/web',emptyOutDir:true},define:{
 'import.meta.env.VITE_SHARED_AUTH_ENABLED':JSON.stringify('true'),
 'import.meta.env.VITE_VERIFIED_DECISION_TREE_URL':JSON.stringify('https://decisiontree.engentlabs.com/'),
@@ -9,6 +9,7 @@ await build({base:'/engent-release-a/',build:{outDir:root+'/web',emptyOutDir:tru
 'import.meta.env.VITE_PROCESS_COACH_ENABLED':JSON.stringify(processCoach?'true':'false'),
 'import.meta.env.VITE_FORECAST_COACH_ENABLED':JSON.stringify(forecasting?'true':'false'),
 'import.meta.env.VITE_FORECAST_COACH_URL':JSON.stringify('/forecasting/'),
+'import.meta.env.VITE_SIMULATION_COACH_ENABLED':JSON.stringify(simulation?'true':'false'),
 'import.meta.env.VITE_SCENARIO_COACH_ENABLED':JSON.stringify(scenario?'true':'false'),
 'import.meta.env.VITE_NAVIGATOR_ALPHA_ENABLED':JSON.stringify(navigator?'true':'false')
 },plugins:[{name:'preserve-production-release-a',enforce:'pre',resolveId(source,importer){if(!releaseB&&source==='./PlatformAccess'&&importer?.replaceAll('\\','/').endsWith('/src/components/Homepage.jsx'))return resolve('src/components/ReleaseAAccess.jsx');},transform(code,id){if(!id.replaceAll('\\','/').endsWith('/src/components/Homepage.jsx'))return;const logo="const logo = '/assets/Engent Labs Transparent.png';";if(!code.includes(logo))throw Error('Branding source drift');return code.replace(logo,"const logo = '/engent-release-a/assets/Engent Labs Transparent.png';");}}]});
