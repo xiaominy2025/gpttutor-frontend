@@ -1,6 +1,6 @@
 # Engent Labs — Development and Deployment Playbook
 
-**Version:** 2.5 (AI safeguards and consistency refinement)  
+**Version:** 2.6 (UI design guidance and reference implementations)  
 **Updated:** November 27, 2026  
 **Status:** Canonical current engineering guidance on the default branch. This document records accepted engineering standards and standing authorization boundaries. It does not independently authorize material deviations from those boundaries.
 
@@ -24,11 +24,67 @@ Do not create independent Coach account systems. Type B protected operations req
 
 **Execution ownership:** Individual Coach teams own their specialized analytical engine, workspace, AI coaching, development, focused testing and Alpha acceptance. Homepage/Platform owns shared UI/navigation, Guest/SSO/security contracts, coordinated Production integration and Explore publication. GitHub issues/commits/PRs are the technical handoff record. This Best Practices guidance records standards and lessons; **it is not another release coordinator or approval gate**.
 
-## 3. UI design and shared navigation
+## 3. UI Design Guidance and Reference Implementations
 
-Maintain one Engent Labs identity with two related themes: a clean, professional, discovery-oriented **Public Website** (Homepage/Explore, with accepted green accents and illustrations), and a minimalist, light, efficient **Coach Workspace** designed for analysis. Maintain consistent typography, colors, spacing, accessible focus states, components, responsive behavior, buttons, fields, dialogs, Save/Open and AI Advisor presentation. Coach-specific analytical layouts and justified visualizations remain under Coach ownership. Shared UI standards are design guidance, not a requirement for identical implementations or a centralized component library.
+### 3.1 Governing UI design philosophy
 
-Use the **accepted Production source and extracted verified design tokens** as the reference; do not invent colors, breakpoints or style values. Homepage/Platform owns the shared component contracts and three header configurations: **Platform** (full account/SSO), **Authenticated Coach** (SSO and Coach-specific status) and **AI-light Coach** (Home, Explore, branding, read-only verified/Guest status). Navigator inherits the Platform header. Coach teams reuse established shared UI components when available; otherwise reproduce accepted appearance and behavior without unnecessary technical dependencies. Consistent user experience matters more than identical source code. Coordinate shared changes via GitHub.
+Optimize each Coach's interface for its **analytical function, educational purpose and user workflow**. This guidance provides recommended design principles, proven interaction patterns and reference implementations rather than rigid specifications. Maintain a recognizable Engent Labs identity and familiar shared interactions without sacrificing analytical effectiveness for visual uniformity.
+
+**Functional effectiveness takes precedence over visual uniformity.** Reuse what is proven. Adapt where necessary. Innovate where it matters.
+
+Maintain two related visual themes: a clean, professional, discovery-oriented **Public Website** (Homepage/Explore) and a minimalist, light, efficient **Coach Workspace** oriented toward analysis. Use accepted Production code and extracted verified design tokens as references, not invented colors or breakpoints. Existing platform security, authentication and authorization remain **mandatory**, independent of UI flexibility.
+
+### 3.2 Common UI guidance
+
+Encourage consistency when it improves usability:
+
+- Branding, typography, color identity, shared navigation and clear visual hierarchy.
+- Three established headers: **Platform** (full Release B SSO/account controls), **Authenticated Coach** (shared SSO and Coach-specific verified status) and **AI-light Coach** (Home, Explore, branding and read-only Guest/verified user status). Navigator inherits Explore's Platform header.
+- Minimalist analysis-oriented workspaces and familiar toolbar icons, inputs, controls and interaction behavior.
+- Consistent **New, Open, Save, Save As, Excel Export and PDF Report** functions where applicable.
+- Native file-handle support where available, safe cancellation, unsaved-change protection and browser-compatible download fallback. Preserve complete editable project state and source workbook content where supported.
+- Clear editing, **Apply, Undo, Confirm and Cancel** workflows, especially when changing variable mappings or replacing work.
+- Readable charts, meaningful accessible colors, consistent units and numerical formatting, minimal visual redundancy.
+- Clear separation of deterministic analytical insights, AI interpretation and human-owned management actions.
+- Accessible controls, keyboard/focus behavior and responsive desktop/mobile layouts.
+
+These are design conventions, **not mandatory identical implementations**. Reuse accepted shared components when available; otherwise reproduce familiar behavior without unnecessary technical dependencies.
+
+### 3.3 Coach-specific design flexibility
+
+Individual Coach teams own their specialized workspace design. Optimize panel proportions, navigation, inputs, tables, visualizations and analysis workflows for the particular decision-making method.
+
+| Coach | UI priorities |
+| --- | --- |
+| Decision Tree | Graphical decision modeling and tree visualization |
+| Forecasting | Historical data, trends and future projections |
+| Scenario Analysis | Excel economic models, scenario comparison, sensitivity and decision exploration |
+| Simulation | Excel economic models, probability distributions, uncertainty, risk and decision comparisons |
+| Optimization | Excel economic models, objectives, decision variables, constraints and solution interpretation |
+
+For spreadsheet-based analytical Coaches, make the source model and variable configuration understandable: distinguish **controllable decisions** from **uncertain conditions**, display units and formula/variable relationships where supported, and let users inspect the effects on model outputs. Do not imply full Excel functionality where it is not implemented. Preserve enough space for interpreting results rather than exposing only raw configuration.
+
+The **45:55 two-panel layout, compact mapping tables, worksheet zoom, inline editing and decision dials** are proven reference patterns for appropriate Coaches, **not universal requirements**.
+
+Do not impose identical layouts, visualizations, source code or a centralized component library.
+
+### 3.4 Reference implementations and reuse
+
+Before significant UI development, examine accepted implementations and identify reusable components, interaction patterns and design lessons. Distinguish accepted Production reference implementations from experimental Alpha features.
+
+- **Scenario Analysis:** the accepted Production UI source `4240535a00bbabe5795b26eb166a45bd62779589` is a **primary reference for spreadsheet-based analytical workspaces**. See [accepted release evidence](https://github.com/xiaominy2025/gpttutor-frontend/issues/11#issuecomment-7232340830).
+- **Forecasting:** reference its data/trend/projection workflows and management-oriented AI guidance.
+- **Decision Tree:** reference its graphical modeling and visualization interactions.
+- **Decision Process:** reference structured coaching and authenticated navigation.
+- **Navigator and Homepage/Explore:** reference discovery, platform header, user status and established brand presentation.
+
+Incorporate Simulation and Optimization lessons as their implementations are accepted. References provide tested ideas, not templates that must be copied wholesale.
+
+### 3.5 Continuous improvement
+
+Apply the 80/20 principle to UI design. Judge changes by functional effectiveness, ease of use, educational value, accessibility and maintainability. Improve interfaces when user value is meaningful; avoid cosmetic standardization. Do not redesign existing Coaches solely to conform to newer guidance.
+
+Homepage/Platform owns shared branding, navigation, header and account contracts. Individual Coach teams own specialized workspaces and Alpha acceptance. Coordinate shared changes through GitHub; Homepage owns Production integration and publication.
 
 ## 4. Analytical workspaces, AI Advisor and exports
 
@@ -144,6 +200,7 @@ Earlier v1.0–v1.5 proposals established the basic lifecycle, Type A/B/C header
 | **v2.3** | **Nov 25, 2026** | Explicit financial risk acceptance, flexible UI implementation, acceptance evidence reuse, tool authorization distinction and historical release snapshot clarification |
 | **v2.4** | **Nov 27, 2026** | Clarified standing authorization for local live AI development and optimization, distinct from bounded hosted deployment canaries; preserved execution-tool approvals and hosted policies |
 | **v2.5** | **Nov 27, 2026** | Clarified abuse-first AI safeguards, local development flexibility, authorization wording, credential/data hygiene, reusable evaluation evidence and Coach-specific rollback scope |
+| **v2.6** | **Nov 27, 2026** | Consolidated flexible UI guidance, shared interactions, Excel-based analytical workflows and the accepted Scenario Production reference; documentation only |
 
 ---
 
